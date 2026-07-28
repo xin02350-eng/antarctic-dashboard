@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>Test</title></head>
+<body>
+<div id="r">Loading...</div>
+<script>
+fetch("data.json").then(function(resp){return resp.json()}).then(function(d){
+document.getElementById("r").innerHTML="OK: "+d.length+" rows, last mode="+d[d.length-1].mode;
+}).catch(function(e){
+document.getElementById("r").innerHTML="FAIL: "+e.message;
+});
+</script></body></html>
