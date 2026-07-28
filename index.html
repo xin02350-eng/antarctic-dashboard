@@ -4,189 +4,202 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>南极监测仪表盘 | Antarctic Monitor</title>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
-/* ══════════════════════════════════════════════════════════════
-   CSS Custom Properties — 极光主题配色
-   ══════════════════════════════════════════════════════════════ */
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js">
+</script>
+<!-- Leaflet 地图 -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+</script>
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ═══════════════════════════════════════════════════════════════
+   DESIGN SYSTEM — 极光 · 冰川 · 星空 主题
+   ═══════════════════════════════════════════════════════════════ */
 :root {
-  --bg-deep:    #060b18;
-  --bg-mid:     #0a1428;
-  --bg-card:    rgba(13, 25, 50, 0.65);
-  --border:     rgba(0, 200, 255, 0.12);
-  --glow-cyan:  rgba(0, 212, 255, 0.25);
-  --glow-green: rgba(0, 255, 136, 0.2);
-  --glow-gold:  rgba(254, 202, 87, 0.2);
-  --text-primary:   #e8edf5;
+  /* 主色调 */
+  --aurora-cyan:    #00d4ff;
+  --aurora-teal:    #2dd4bf;
+  --aurora-green:   #00ff88;
+  --aurora-purple:  #a78bfa;
+  --aurora-pink:    #ff6b9d;
+  --aurora-gold:    #feca57;
+  --aurora-orange:  #ff9f43;
+  --aurora-red:     #ff4d6a;
+
+  /* 背景层级 */
+  --abyss:          #020617;
+  --deep:           #060b1a;
+  --mid:            #0a1428;
+  --surface:        rgba(13, 25, 52, 0.55);
+  --surface-hover:  rgba(16, 32, 64, 0.7);
+  --border-glass:   rgba(0, 200, 255, 0.10);
+  --border-active:  rgba(0, 212, 255, 0.30);
+
+  /* 文字 */
+  --text-primary:   #e4ebf5;
   --text-secondary: #8899bb;
-  --text-muted:     #556688;
-  --cyan:       #00d4ff;
-  --green:      #00ff88;
-  --yellow:     #ffcc00;
-  --red:        #ff4d6a;
-  --gold:       #feca57;
-  --purple:     #a78bfa;
-  --pink:       #ff6b9d;
-  --orange:     #ff9f43;
-  --teal:       #2dd4bf;
+  --text-muted:     #4a5d80;
+
+  /* 辉光 */
+  --glow-cyan:      0 0 40px rgba(0,212,255,0.25);
+  --glow-green:     0 0 30px rgba(0,255,136,0.20);
+  --glow-gold:      0 0 25px rgba(254,202,87,0.18);
+
+  /* 圆角 */
+  --radius-xs:  6px;
   --radius-sm:  10px;
   --radius-md:  16px;
-  --radius-lg:  22px;
-  --shadow-card: 0 8px 40px rgba(0,0,0,0.45), 0 0 0 1px var(--border);
-  --shadow-glow: 0 0 30px var(--glow-cyan);
-  --blur:       16px;
-  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --radius-lg:  24px;
+  --radius-xl:  32px;
+
+  /* 动画 */
+  --ease-out:   cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring:cubic-bezier(0.34, 1.56, 0.64, 1);
+  --duration-fast:  0.2s;
+  --duration-normal:0.35s;
+  --duration-slow:  0.6s;
 }
 
-/* ══════════════════════════════════════════════════════════════
-   Reset & Base
-   ══════════════════════════════════════════════════════════════ */
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
+/* ═══════════════════════════════════════════════════════════════
+   RESET & BASE
+   ═══════════════════════════════════════════════════════════════ */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-tap-highlight-color:transparent}
 
 body{
-  background: var(--bg-deep);
-  background-image:
-    radial-gradient(ellipse 80% 60% at 20% 10%, rgba(0,180,255,0.08) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 50% at 80% 90%, rgba(0,255,136,0.05) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 40% at 50% 50%, rgba(120,80,255,0.04) 0%, transparent 70%),
-    linear-gradient(180deg, #060b18 0%, #0a1428 40%, #0d1935 100%);
+  background:var(--abyss);
   color:var(--text-primary);
   font-family:'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-  padding:20px 24px;
   min-height:100vh;
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
+  overflow-x:hidden;
 }
 
-/* ══════════════════════════════════════════════════════════════
-   Header
-   ══════════════════════════════════════════════════════════════ */
-.header{
+/* ═══════════════════════════════════════════════════════════════
+   AURORA CANVAS — 动态极光背景
+   ═══════════════════════════════════════════════════════════════ */
+#aurora-canvas{
+  position:fixed;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   STAR PARTICLES — 星空粒子
+   ═══════════════════════════════════════════════════════════════ */
+.stars-container{
+  position:fixed;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  overflow:hidden;
+}
+.star{
+  position:absolute;
+  background:white;
+  border-radius:50%;
+  animation:twinkle var(--star-duration) ease-in-out infinite;
+  animation-delay:var(--star-delay);
+  opacity:0;
+}
+@keyframes twinkle{
+  0%,100%{opacity:0.15;transform:scale(1)}
+  50%{opacity:0.9;transform:scale(1.8)}
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   MAIN LAYOUT
+   ═══════════════════════════════════════════════════════════════ */
+main{
+  position:relative;
+  z-index:1;
+  padding:24px 28px;
+  max-width:1440px;
+  margin:0 auto;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   HEADER
+   ═══════════════════════════════════════════════════════════════ */
+.app-header{
   text-align:center;
-  margin-bottom:24px;
+  margin-bottom:28px;
   position:relative;
 }
-.header h1{
-  font-size:clamp(20px, 4vw, 30px);
-  font-weight:800;
-  letter-spacing:3px;
-  background: linear-gradient(135deg, var(--cyan) 0%, var(--teal) 30%, var(--green) 70%, var(--cyan) 100%);
+.app-header .logo-text{
+  font-size:clamp(22px, 4.5vw, 34px);
+  font-weight:900;
+  letter-spacing:2px;
+  display:inline-block;
+  background:linear-gradient(
+    135deg,
+    var(--aurora-cyan) 0%,
+    var(--aurora-teal) 25%,
+    var(--aurora-green) 50%,
+    var(--aurora-purple) 75%,
+    var(--aurora-cyan) 100%
+  );
+  background-size:300% 300%;
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
   background-clip:text;
-  display:inline-block;
-  position:relative;
+  animation:shimmer 6s ease-in-out infinite;
 }
-.header h1::after{
+@keyframes shimmer{
+  0%,100%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+}
+.app-header .tagline{
+  display:block;
+  font-size:10px;
+  font-weight:400;
+  letter-spacing:6px;
+  color:var(--text-muted);
+  margin-top:8px;
+  text-transform:uppercase;
+}
+.app-header::after{
   content:'';
-  position:absolute;
-  bottom:-8px;
-  left:50%;
-  transform:translateX(-50%);
-  width:60%;
+  display:block;
+  width:80px;
   height:2px;
-  background:linear-gradient(90deg, transparent, var(--cyan), transparent);
+  margin:14px auto 0;
+  background:linear-gradient(90deg, transparent, var(--aurora-cyan), transparent);
   border-radius:1px;
 }
-.header .subtitle{
-  display:block;
-  font-size:11px;
-  font-weight:400;
-  letter-spacing:5px;
-  color:var(--text-muted);
-  margin-top:10px;
-  text-transform:uppercase;
+
+/* ═══════════════════════════════════════════════════════════════
+   GLASS PANEL — 通用毛玻璃面板
+   ═══════════════════════════════════════════════════════════════ */
+.glass{
+  background:var(--surface);
+  backdrop-filter:blur(24px) saturate(140%);
+  -webkit-backdrop-filter:blur(24px) saturate(140%);
+  border:1px solid var(--border-glass);
+  box-shadow:
+    0 8px 40px rgba(0,0,0,0.5),
+    inset 0 1px 0 rgba(255,255,255,0.03);
+  transition:all var(--duration-normal) var(--ease-out);
+}
+.glass:hover{
+  border-color:var(--border-active);
+  box-shadow:
+    0 12px 48px rgba(0,0,0,0.6),
+    0 0 60px rgba(0,180,255,0.06),
+    inset 0 1px 0 rgba(255,255,255,0.05);
 }
 
-/* ══════════════════════════════════════════════════════════════
-   Slider Box
-   ══════════════════════════════════════════════════════════════ */
-.slider-box{
-  background:var(--bg-card);
-  backdrop-filter:blur(var(--blur));
-  -webkit-backdrop-filter:blur(var(--blur));
-  border:1px solid var(--border);
-  border-radius:var(--radius-lg);
-  padding:14px 22px;
-  margin-bottom:18px;
-  display:flex;
-  gap:12px;
-  align-items:center;
-  flex-wrap:wrap;
-  justify-content:center;
-  box-shadow:var(--shadow-card);
-  transition:var(--transition);
-}
-.slider-box:hover{
-  border-color:rgba(0,212,255,0.3);
-  box-shadow:var(--shadow-card), var(--shadow-glow);
-}
-.slider-box .section-label{
-  color:var(--text-secondary);
-  font-size:12px;
-  font-weight:500;
-  letter-spacing:1px;
-  text-transform:uppercase;
-  display:flex;
-  align-items:center;
-  gap:6px;
-}
-.slider-box .section-label::before{
-  content:'';
-  display:inline-block;
-  width:6px;height:6px;
-  background:var(--green);
-  border-radius:50%;
-  animation:pulse-dot 2s ease-in-out infinite;
-}
-.slider-box button{
-  background:rgba(13,30,55,0.8);
-  color:var(--text-secondary);
-  border:1px solid rgba(255,255,255,0.08);
-  padding:8px 18px;
-  border-radius:50px;
-  cursor:pointer;
-  font-size:12px;
-  font-weight:600;
-  letter-spacing:0.5px;
-  transition:var(--transition);
-  position:relative;
-  overflow:hidden;
-}
-.slider-box button::before{
-  content:'';
-  position:absolute;
-  inset:0;
-  background:linear-gradient(135deg, var(--cyan), var(--green));
-  opacity:0;
-  transition:opacity 0.3s;
-}
-.slider-box button:hover{
-  color:#fff;
-  border-color:var(--cyan);
-  transform:translateY(-1px);
-  box-shadow:0 4px 20px var(--glow-cyan);
-}
-.slider-box button.active{
-  color:#060b18;
-  border-color:transparent;
-  font-weight:700;
-  box-shadow:0 0 25px var(--glow-cyan);
-}
-.slider-box button.active::before{
-  opacity:1;
-}
-.slider-box button span{
-  position:relative;
-  z-index:1;
-}
-
-/* ══════════════════════════════════════════════════════════════
-   Status Cards
-   ══════════════════════════════════════════════════════════════ */
+/* ═══════════════════════════════════════════════════════════════
+   ROW & GRID
+   ═══════════════════════════════════════════════════════════════ */
 .row{
   display:flex;
   gap:14px;
@@ -194,133 +207,242 @@ body{
   justify-content:center;
   margin-bottom:14px;
 }
-.card{
-  background:var(--bg-card);
-  backdrop-filter:blur(var(--blur));
-  -webkit-backdrop-filter:blur(var(--blur));
-  border:1px solid var(--border);
+.grid-2{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(340px, 1fr));
+  gap:14px;
+  margin-bottom:14px;
+}
+.grid-3{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
+  gap:14px;
+  margin-bottom:14px;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   KPI CARD
+   ═══════════════════════════════════════════════════════════════ */
+.kpi-card{
   border-radius:var(--radius-md);
-  padding:16px 22px;
+  padding:18px 24px;
   text-align:center;
-  min-width:105px;
   flex:1;
-  max-width:180px;
-  box-shadow:var(--shadow-card);
-  transition:var(--transition);
+  min-width:105px;
+  max-width:185px;
+  cursor:default;
   position:relative;
   overflow:hidden;
+  transition:all var(--duration-normal) var(--ease-spring);
 }
-.card::before{
-  content:'';
-  position:absolute;
-  top:0;left:0;right:0;
-  height:1px;
-  background:linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
-  opacity:0;
-  transition:opacity 0.3s;
+.kpi-card .kpi-icon{
+  font-size:22px;
+  margin-bottom:6px;
+  display:block;
+  transition:transform var(--duration-normal) var(--ease-spring);
 }
-.card:hover{
-  transform:translateY(-3px);
-  box-shadow:var(--shadow-card), 0 12px 40px rgba(0,0,0,0.5);
-  border-color:rgba(255,255,255,0.15);
+.kpi-card:hover .kpi-icon{
+  transform:scale(1.25) translateY(-2px);
 }
-.card:hover::before{opacity:1}
-.card .label{
-  font-size:10px;
+.kpi-card .kpi-label{
+  font-size:9px;
+  font-weight:600;
   color:var(--text-secondary);
   text-transform:uppercase;
-  letter-spacing:1.5px;
-  margin-bottom:8px;
-  font-weight:500;
+  letter-spacing:1.8px;
+  margin-bottom:6px;
 }
-.card .value{
-  font-size:24px;
+.kpi-card .kpi-value{
+  font-size:clamp(18px, 3vw, 26px);
   font-weight:800;
   letter-spacing:-0.5px;
-  line-height:1.1;
+  line-height:1;
+  font-family:'JetBrains Mono', 'Consolas', monospace;
+  transition:color var(--duration-fast);
 }
-.card .value.big{font-size:16px;font-weight:700}
+.kpi-card:hover{
+  transform:translateY(-4px);
+}
+.kpi-card::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  border-radius:inherit;
+  background:radial-gradient(
+    400px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(255,255,255,0.04),
+    transparent 60%
+  );
+  opacity:0;
+  transition:opacity var(--duration-normal);
+}
+.kpi-card:hover::before{opacity:1}
 
-/* 颜色类 */
-.green{color:var(--green)}
-.yellow{color:var(--yellow)}
-.red{color:var(--red)}
-.cyan{color:var(--cyan)}
-.gold{color:var(--gold)}
+/* KPI 颜色 */
+.c-cyan{color:var(--aurora-cyan)}
+.c-green{color:var(--aurora-green)}
+.c-gold{color:var(--aurora-gold)}
+.c-red{color:var(--aurora-red)}
+.c-purple{color:var(--aurora-purple)}
 
-/* 脉冲点 */
-@keyframes pulse-dot{
-  0%,100%{opacity:1;transform:scale(1)}
-  50%{opacity:0.4;transform:scale(1.8)}
+/* ═══════════════════════════════════════════════════════════════
+   TIME SLIDER
+   ═══════════════════════════════════════════════════════════════ */
+.time-slider{
+  border-radius:var(--radius-lg);
+  padding:12px 20px;
+  margin-bottom:18px;
+  display:flex;
+  gap:10px;
+  align-items:center;
+  flex-wrap:wrap;
+  justify-content:center;
 }
-.live-dot{
-  display:inline-block;
-  width:7px;height:7px;
-  background:var(--green);
-  border-radius:50%;
-  margin-right:6px;
-  animation:pulse-dot 2s ease-in-out infinite;
-  box-shadow:0 0 10px var(--green);
-}
-
-/* ══════════════════════════════════════════════════════════════
-   Chart Boxes
-   ══════════════════════════════════════════════════════════════ */
-.chart-box{
-  background:var(--bg-card);
-  backdrop-filter:blur(var(--blur));
-  -webkit-backdrop-filter:blur(var(--blur));
-  border:1px solid var(--border);
-  border-radius:var(--radius-md);
-  padding:16px 18px 12px;
-  flex:1;
-  min-width:320px;
-  box-shadow:var(--shadow-card);
-  transition:var(--transition);
-}
-.chart-box:hover{
-  border-color:rgba(255,255,255,0.12);
-  box-shadow:var(--shadow-card), 0 4px 30px rgba(0,0,0,0.4);
-}
-.chart-box h3{
-  text-align:center;
+.time-slider .slider-label{
   color:var(--text-secondary);
-  margin-bottom:10px;
-  font-size:13px;
+  font-size:11px;
+  font-weight:600;
+  letter-spacing:1.2px;
+  text-transform:uppercase;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.pulse-dot{
+  display:inline-block;
+  width:8px;height:8px;
+  background:var(--aurora-green);
+  border-radius:50%;
+  animation:pulse 2s var(--ease-out) infinite;
+  box-shadow:0 0 10px var(--aurora-green);
+}
+@keyframes pulse{
+  0%,100%{opacity:1;box-shadow:0 0 10px var(--aurora-green)}
+  50%{opacity:0.3;box-shadow:0 0 25px var(--aurora-green)}
+}
+
+.time-slider button{
+  background:rgba(10,20,40,0.7);
+  color:var(--text-secondary);
+  border:1px solid rgba(255,255,255,0.06);
+  padding:8px 20px;
+  border-radius:50px;
+  cursor:pointer;
+  font-size:11px;
   font-weight:600;
   letter-spacing:0.5px;
+  transition:all var(--duration-normal) var(--ease-out);
+  position:relative;
+  overflow:hidden;
+  backdrop-filter:blur(8px);
+}
+.time-slider button:hover{
+  color:#fff;
+  border-color:var(--aurora-cyan);
+  transform:translateY(-2px);
+  box-shadow:var(--glow-cyan);
+}
+.time-slider button.active{
+  color:var(--abyss);
+  background:linear-gradient(135deg, var(--aurora-cyan), var(--aurora-teal));
+  border-color:transparent;
+  font-weight:700;
+  box-shadow:0 0 30px rgba(0,212,255,0.4);
+}
+.time-slider button .btn-text{
+  position:relative;
+  z-index:1;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   GPS MAP
+   ═══════════════════════════════════════════════════════════════ */
+.gps-panel{
+  border-radius:var(--radius-lg);
+  overflow:hidden;
+  min-height:280px;
+  position:relative;
+}
+#gps-map{
+  width:100%;
+  height:280px;
+  border-radius:var(--radius-lg);
+  z-index:1;
+}
+.gps-no-data{
   display:flex;
   align-items:center;
   justify-content:center;
-  gap:8px;
+  height:280px;
+  color:var(--text-muted);
+  font-size:14px;
+  flex-direction:column;
+  gap:10px;
 }
-.chart-box h3 .chart-icon{
-  font-size:15px;
-}
-.chart-box canvas{
-  width:100%!important;
-  max-height:210px;
+.gps-no-data .gps-no-icon{
+  font-size:48px;
+  opacity:0.5;
 }
 
-/* ══════════════════════════════════════════════════════════════
-   Table Box
-   ══════════════════════════════════════════════════════════════ */
-.table-box{
-  background:var(--bg-card);
-  backdrop-filter:blur(var(--blur));
-  -webkit-backdrop-filter:blur(var(--blur));
-  border:1px solid var(--border);
-  border-radius:var(--radius-md);
-  padding:16px 18px;
+/* Leaflet 主题覆盖 */
+.leaflet-container{
+  background:var(--mid)!important;
+  font-family:'Inter',sans-serif!important;
+}
+.leaflet-control-zoom a{
+  background:var(--surface)!important;
+  color:var(--text-primary)!important;
+  border-color:var(--border-glass)!important;
+  backdrop-filter:blur(16px)!important;
+}
+.leaflet-control-attribution{
+  display:none!important;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   CHART PANEL
+   ═══════════════════════════════════════════════════════════════ */
+.chart-panel{
+  border-radius:var(--radius-lg);
+  padding:18px 20px 12px;
+  position:relative;
+  overflow:hidden;
+}
+.chart-panel .chart-title{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  margin-bottom:12px;
+  font-size:12px;
+  font-weight:600;
+  color:var(--text-secondary);
+  letter-spacing:0.5px;
+}
+.chart-panel .chart-title .chart-dot{
+  width:8px;height:8px;
+  border-radius:50%;
+  display:inline-block;
+}
+.chart-panel canvas{
+  width:100%!important;
+  max-height:240px;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   TABLE
+   ═══════════════════════════════════════════════════════════════ */
+.table-panel{
+  border-radius:var(--radius-lg);
+  padding:18px 20px;
   margin-top:16px;
   overflow-x:auto;
-  box-shadow:var(--shadow-card);
 }
-.table-box h3{
+.table-panel .table-title{
+  font-size:13px;
+  font-weight:600;
   color:var(--text-secondary);
   margin-bottom:12px;
-  font-size:14px;
-  font-weight:600;
   letter-spacing:0.5px;
   display:flex;
   align-items:center;
@@ -330,255 +452,361 @@ table{
   width:100%;
   border-collapse:separate;
   border-spacing:0;
-  font-size:11px;
+  font-size:10.5px;
   white-space:nowrap;
 }
 thead th{
-  background:rgba(0,212,255,0.06);
+  background:rgba(0,212,255,0.04);
   padding:10px 8px;
   text-align:center;
   font-weight:600;
-  color:var(--cyan);
-  font-size:10px;
-  letter-spacing:1px;
+  color:var(--aurora-cyan);
+  font-size:9px;
+  letter-spacing:1.2px;
   text-transform:uppercase;
-  border-bottom:2px solid rgba(0,212,255,0.25);
+  border-bottom:2px solid rgba(0,212,255,0.2);
   position:sticky;
   top:0;
 }
-thead th:first-child{border-radius:8px 0 0 0}
-thead th:last-child{border-radius:0 8px 0 0}
+thead th:first-child{border-radius:var(--radius-xs) 0 0 0}
+thead th:last-child{border-radius:0 var(--radius-xs) 0 0}
 tbody td{
-  padding:8px 6px;
+  padding:9px 6px;
   text-align:center;
-  border-bottom:1px solid rgba(255,255,255,0.03);
-  color:var(--text-primary);
+  border-bottom:1px solid rgba(255,255,255,0.025);
+  font-family:'JetBrains Mono', 'Consolas', monospace;
+  font-size:10.5px;
   font-variant-numeric:tabular-nums;
-  font-family:'SF Mono', 'JetBrains Mono', 'Consolas', monospace;
-  font-size:11px;
 }
 tbody tr{
-  transition:var(--transition);
+  transition:background var(--duration-fast);
 }
 tbody tr:hover{
   background:rgba(0,212,255,0.04);
 }
 tbody tr:nth-child(even){
-  background:rgba(255,255,255,0.01);
+  background:rgba(255,255,255,0.012);
 }
 tbody tr:nth-child(even):hover{
   background:rgba(0,212,255,0.05);
 }
 
-/* ══════════════════════════════════════════════════════════════
-   Footer
-   ══════════════════════════════════════════════════════════════ */
-.footer{
+/* ═══════════════════════════════════════════════════════════════
+   FOOTER
+   ═══════════════════════════════════════════════════════════════ */
+.app-footer{
   text-align:center;
   color:var(--text-muted);
   font-size:10px;
-  margin-top:18px;
+  margin-top:20px;
   letter-spacing:0.5px;
-  opacity:0.7;
+  opacity:0.6;
   display:flex;
   align-items:center;
   justify-content:center;
-  gap:8px;
+  gap:10px;
 }
 
-/* ══════════════════════════════════════════════════════════════
-   Responsive
-   ══════════════════════════════════════════════════════════════ */
-@media(max-width:768px){
-  body{padding:12px 10px}
-  .card{padding:12px 14px;min-width:75px;max-width:140px}
-  .card .value{font-size:18px}
-  .card .value.big{font-size:13px}
-  .chart-box{min-width:100%}
-  .slider-box{gap:8px;padding:10px 14px}
-  .slider-box button{padding:6px 12px;font-size:11px}
-  table{font-size:10px}
-  thead th,tbody td{padding:6px 4px}
-}
-
-/* 滚动条 */
-::-webkit-scrollbar{width:6px;height:6px}
+/* ═══════════════════════════════════════════════════════════════
+   SCROLLBAR
+   ═══════════════════════════════════════════════════════════════ */
+::-webkit-scrollbar{width:5px;height:5px}
 ::-webkit-scrollbar-track{background:transparent}
-::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.1);border-radius:3px}
-::-webkit-scrollbar-thumb:hover{background:rgba(255,255,255,0.2)}
+::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.08);border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:rgba(255,255,255,0.15)}
+
+/* ═══════════════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════════════ */
+@media(max-width:768px){
+  main{padding:12px 8px}
+  .kpi-card{padding:12px 10px;min-width:65px;max-width:120px}
+  .kpi-card .kpi-value{font-size:15px}
+  .time-slider{padding:8px 10px;gap:6px}
+  .time-slider button{padding:6px 12px;font-size:10px}
+  .chart-panel{padding:10px 8px 8px}
+  .grid-2{grid-template-columns:1fr}
+  .grid-3{grid-template-columns:1fr}
+  table{font-size:9px}
+  thead th,tbody td{padding:5px 3px}
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   Skeleton loading
+   ═══════════════════════════════════════════════════════════════ */
+@keyframes skeleton{
+  0%{background-position:-200% 0}
+  100%{background-position:200% 0}
+}
+.skeleton{
+  background:linear-gradient(90deg, rgba(255,255,255,0.03) 25%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.03) 75%);
+  background-size:200% 100%;
+  animation:skeleton 1.8s ease-in-out infinite;
+  border-radius:var(--radius-xs);
+}
 </style>
 </head>
 <body>
 
-<!-- ═══════════ HEADER ═══════════ -->
-<div class="header">
-  <h1>🌐 南极无人监测网关</h1>
-  <span class="subtitle">Antarctic · Remote Monitoring · Real‑time</span>
-</div>
+<!-- ═══════ 极光背景 Canvas ═══════ -->
+<canvas id="aurora-canvas"></canvas>
 
-<!-- ═══════════ TIME RANGE SLIDER ═══════════ -->
-<div class="slider-box">
-  <span class="section-label"><span class="live-dot"></span>时间范围</span>
-  <button onclick="setRange(0)" id="btnAll" class="active"><span>📅 全部</span></button>
-  <button onclick="setRange(24)" id="btn24h"><span>🕐 24 小时</span></button>
-  <button onclick="setRange(6)" id="btn6h"><span>⏳ 6 小时</span></button>
-  <button onclick="setRange(2)" id="btn2h"><span>⚡ 2 小时</span></button>
-  <span style="margin-left:12px;color:var(--text-muted);font-size:12px">
-    总计 <b id="totalCount" style="color:var(--cyan);font-size:15px">0</b> 条记录
+<!-- ═══════ 星空粒子 ═══════ -->
+<div class="stars-container" id="stars-container"></div>
+
+<!-- ═══════ 主布局 ═══════ -->
+<main>
+
+<!-- ── HEADER ── -->
+<header class="app-header">
+  <span class="logo-text">🌐 南极无人监测网关</span>
+  <span class="tagline">Antarctic Station · Real‑time Telemetry</span>
+</header>
+
+<!-- ── TIME SLIDER ── -->
+<div class="glass time-slider" id="time-slider-panel">
+  <span class="slider-label"><span class="pulse-dot"></span>数据范围</span>
+  <button onclick="setRange(0)"  id="btnAll"  class="active"><span class="btn-text">📅 全部历史</span></button>
+  <button onclick="setRange(24)" id="btn24h"><span class="btn-text">🕐 24 小时</span></button>
+  <button onclick="setRange(6)"  id="btn6h"><span class="btn-text">⏳ 6 小时</span></button>
+  <button onclick="setRange(2)"  id="btn2h"><span class="btn-text">⚡ 2 小时</span></button>
+  <span style="margin-left:auto;color:var(--text-muted);font-size:11px">
+    总计 <b id="totalCount" style="color:var(--aurora-cyan);font-size:16px">0</b> 条
   </span>
 </div>
 
-<!-- ═══════════ SYSTEM STATUS CARDS ═══════════ -->
-<div class="row">
-  <div class="card">
-    <div class="label">⚡ 运行模式</div>
-    <div class="value" id="mode">--</div>
+<!-- ── KPI CARDS ROW 1: 系统状态 ── -->
+<div class="row" id="kpi-row-1">
+  <div class="glass kpi-card" id="card-mode">
+    <span class="kpi-icon">⚡</span>
+    <div class="kpi-label">运行模式</div>
+    <div class="kpi-value" id="mode">--</div>
   </div>
-  <div class="card">
-    <div class="label">🔋 电池电压</div>
-    <div class="value cyan" id="voltage">--</div>
+  <div class="glass kpi-card" id="card-voltage">
+    <span class="kpi-icon">🔋</span>
+    <div class="kpi-label">电池电压</div>
+    <div class="kpi-value c-cyan" id="voltage">--</div>
   </div>
-  <div class="card">
-    <div class="label">⚙ 系统电流</div>
-    <div class="value yellow" id="current">--</div>
+  <div class="glass kpi-card" id="card-current">
+    <span class="kpi-icon">⚙</span>
+    <div class="kpi-label">系统电流</div>
+    <div class="kpi-value c-gold" id="current">--</div>
   </div>
-  <div class="card">
-    <div class="label">⚠ 错误状态</div>
-    <div class="value" id="error">--</div>
+  <div class="glass kpi-card" id="card-error">
+    <span class="kpi-icon">🛡</span>
+    <div class="kpi-label">错误状态</div>
+    <div class="kpi-value" id="error">--</div>
   </div>
-  <div class="card">
-    <div class="label">📡 会话 · 序列</div>
-    <div class="value cyan" id="ssid">--</div>
-  </div>
-</div>
-
-<!-- ═══════════ GPS LOCATION CARDS ═══════════ -->
-<div class="row">
-  <div class="card">
-    <div class="label">🌍 纬度 Latitude</div>
-    <div class="value gold big" id="lat">--</div>
-  </div>
-  <div class="card">
-    <div class="label">🗺 经度 Longitude</div>
-    <div class="value gold big" id="lng">--</div>
-  </div>
-  <div class="card">
-    <div class="label">🛰 卫星 Satellites</div>
-    <div class="value cyan" id="sat">--</div>
-  </div>
-  <div class="card">
-    <div class="label">📍 定位 Fix</div>
-    <div class="value" id="fix">--</div>
-  </div>
-  <div class="card">
-    <div class="label">🕐 GPS 时间</div>
-    <div class="value green big" id="gpstime">--</div>
+  <div class="glass kpi-card" id="card-ssid">
+    <span class="kpi-icon">📡</span>
+    <div class="kpi-label">会话 · 序列</div>
+    <div class="kpi-value c-purple" id="ssid">--</div>
   </div>
 </div>
 
-<!-- ═══════════ CHARTS ROW 1: Voltage + Current ═══════════ -->
-<div class="row">
-  <div class="chart-box">
-    <h3><span class="chart-icon">📈</span>电池电压 (V)</h3>
-    <canvas id="cv"></canvas>
+<!-- ── GPS 地图 ── -->
+<div class="glass gps-panel" id="gps-panel">
+  <div class="gps-no-data" id="gps-placeholder">
+    <span class="gps-no-icon">🛰</span>
+    <span>GPS 定位数据载入中…</span>
+    <span style="font-size:10px;opacity:0.6">每日更新一次</span>
   </div>
-  <div class="chart-box">
-    <h3><span class="chart-icon">📊</span>系统电流 (mA)</h3>
-    <canvas id="ca"></canvas>
-  </div>
+  <div id="gps-map" style="display:none"></div>
 </div>
 
-<!-- ═══════════ CHARTS ROW 2: SHT35 Temp + Humidity ═══════════ -->
-<div class="row">
-  <div class="chart-box">
-    <h3><span class="chart-icon">🌡</span>SHT35 温度 (°C)</h3>
-    <canvas id="cst"></canvas>
-  </div>
-  <div class="chart-box">
-    <h3><span class="chart-icon">💧</span>SHT35 湿度 (%)</h3>
-    <canvas id="csh"></canvas>
-  </div>
+<!-- ── CHARTS 2×4 网格 ── -->
+<div class="grid-2" id="charts-grid">
+  <div class="glass chart-panel"><div class="chart-title"><span class="chart-dot" style="background:var(--aurora-cyan)"></span>电池电压 (V)</div><canvas id="cv"></canvas></div>
+  <div class="glass chart-panel"><div class="chart-title"><span class="chart-dot" style="background:var(--aurora-gold)"></span>系统电流 (mA)</div><canvas id="ca"></canvas></div>
+  <div class="glass chart-panel"><div class="chart-title"><span class="chart-dot" style="background:var(--aurora-pink)"></span>SHT35 温度 (°C)</div><canvas id="cst"></canvas></div>
+  <div class="glass chart-panel"><div class="chart-title"><span class="chart-dot" style="background:var(--aurora-teal)"></span>SHT35 湿度 (%)</div><canvas id="csh"></canvas></div>
+  <div class="glass chart-panel"><div class="chart-title"><span class="chart-dot" style="background:var(--aurora-orange)"></span>RS485 温度 (°C)</div><canvas id="ctt"></canvas></div>
+  <div class="glass chart-panel"><div class="chart-title"><span class="chart-dot" style="background:var(--aurora-purple)"></span>RS485 湿度 (%)</div><canvas id="cth"></canvas></div>
+  <div class="glass chart-panel"><div class="chart-title"><span class="chart-dot" style="background:var(--aurora-gold)"></span>太阳辐射 (W/m²)</div><canvas id="cs"></canvas></div>
+  <div class="glass chart-panel"><div class="chart-title"><span class="chart-dot" style="background:var(--aurora-green)"></span>风速 / 风向 (待安装)</div><canvas id="cws"></canvas></div>
 </div>
 
-<!-- ═══════════ CHARTS ROW 3: RS485 Temp + Humidity ═══════════ -->
-<div class="row">
-  <div class="chart-box">
-    <h3><span class="chart-icon">🔥</span>RS485 温度 (°C)</h3>
-    <canvas id="ctt"></canvas>
-  </div>
-  <div class="chart-box">
-    <h3><span class="chart-icon">💦</span>RS485 湿度 (%)</h3>
-    <canvas id="cth"></canvas>
-  </div>
-</div>
-
-<!-- ═══════════ CHARTS ROW 4: Solar + Wind ═══════════ -->
-<div class="row">
-  <div class="chart-box">
-    <h3><span class="chart-icon">☀️</span>太阳辐射 (W/m²)</h3>
-    <canvas id="cs"></canvas>
-  </div>
-  <div class="chart-box">
-    <h3><span class="chart-icon">💨</span>风速 / 风向 (待安装)</h3>
-    <canvas id="cws"></canvas>
-  </div>
-</div>
-
-<!-- ═══════════ DATA TABLE ═══════════ -->
-<div class="table-box">
-  <h3>📋 最新 20 条数据记录</h3>
+<!-- ── TABLE ── -->
+<div class="glass table-panel">
+  <div class="table-title">📋 最新 20 条数据记录</div>
   <table>
-    <thead>
-      <tr>
-        <th>时间</th><th>模式</th><th>V</th><th>mA</th><th>辐射</th>
-        <th>SHT°C</th><th>SHT%</th><th>TH°C</th><th>TH%</th>
-        <th>纬度</th><th>经度</th><th>🛰</th><th>定位</th><th>错误</th>
-      </tr>
-    </thead>
+    <thead><tr>
+      <th>时间</th><th>模式</th><th>V</th><th>mA</th><th>辐射</th>
+      <th>SHT°C</th><th>SHT%</th><th>TH°C</th><th>TH%</th>
+      <th>纬度</th><th>经度</th><th>🛰</th><th>定位</th><th>E</th>
+    </tr></thead>
     <tbody id="tbody"></tbody>
   </table>
 </div>
 
-<div class="footer" id="update">
-  <span class="live-dot"></span> 系统运行中 · 数据实时更新
-</div>
+<!-- ── FOOTER ── -->
+<footer class="app-footer" id="update">
+  <span class="pulse-dot"></span> 系统运行中
+</footer>
 
-<!-- ═══════════ JAVASCRIPT ═══════════ -->
+</main>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     JAVASCRIPT
+     ═══════════════════════════════════════════════════════════════ -->
 <script>
-// ═══ 工具函数 ═══
-function fmt(v,d){return v!=null?Number(v).toFixed(d):"--"}
-function mc(m){return m=="N"?"green":m=="S"?"yellow":"red"}
+// ═══════════════════════════════════════════════════════════════
+// AURORA BACKGROUND
+// ═══════════════════════════════════════════════════════════════
+(function(){
+  var c=document.getElementById('aurora-canvas');
+  var ctx=c.getContext('2d');
+  var w,h;
+  var ribbons=[
+    {y:0.25,amp:80,freq:0.0008,speed:0.15,color:'rgba(0,180,255,0.06)',width:300},
+    {y:0.35,amp:60,freq:0.0012,speed:-0.10,color:'rgba(0,255,136,0.04)',width:240},
+    {y:0.55,amp:100,freq:0.0006,speed:0.12,color:'rgba(120,80,255,0.05)',width:350},
+    {y:0.70,amp:50,freq:0.0010,speed:-0.18,color:'rgba(0,200,200,0.04)',width:200},
+  ];
+  var t=0;
 
-// ═══ 图表基类 ═══
+  function resize(){
+    w=c.width=window.innerWidth;
+    h=c.height=window.innerHeight;
+    ribbons.forEach(function(r){r.y=h*r.y});
+  }
+  resize();
+  window.addEventListener('resize',resize);
+
+  function draw(){
+    ctx.clearRect(0,0,w,h);
+    t+=0.005;
+    ribbons.forEach(function(r){
+      ctx.beginPath();
+      for(var x=0;x<w;x+=2){
+        var yy=r.y+Math.sin(x*r.freq+t*r.speed)*r.amp+
+               Math.sin(x*r.freq*2.7-t*r.speed*0.7)*r.amp*0.4;
+        if(x===0)ctx.moveTo(x,yy);
+        else ctx.lineTo(x,yy);
+      }
+      ctx.lineTo(w,h);ctx.lineTo(0,h);ctx.closePath();
+      var g=ctx.createLinearGradient(0,r.y-r.amp,0,r.y+r.amp);
+      g.addColorStop(0,'transparent');
+      g.addColorStop(0.5,r.color);
+      g.addColorStop(1,'transparent');
+      ctx.fillStyle=g;
+      ctx.fill();
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+// ═══════════════════════════════════════════════════════════════
+// STARS
+// ═══════════════════════════════════════════════════════════════
+(function(){
+  var container=document.getElementById('stars-container');
+  for(var i=0;i<80;i++){
+    var s=document.createElement('div');
+    s.className='star';
+    s.style.left=Math.random()*100+'%';
+    s.style.top=Math.random()*100+'%';
+    var size=Math.random()*2+0.5;
+    s.style.width=size+'px';s.style.height=size+'px';
+    s.style.setProperty('--star-duration',(Math.random()*3+2)+'s');
+    s.style.setProperty('--star-delay',(Math.random()*5)+'s');
+    container.appendChild(s);
+  }
+})();
+
+// ═══════════════════════════════════════════════════════════════
+// KPI CARD MOUSE TRACKING
+// ═══════════════════════════════════════════════════════════════
+document.querySelectorAll('.kpi-card').forEach(function(card){
+  card.addEventListener('mousemove',function(e){
+    var rect=card.getBoundingClientRect();
+    var x=((e.clientX-rect.left)/rect.width)*100;
+    var y=((e.clientY-rect.top)/rect.height)*100;
+    card.style.setProperty('--mouse-x',x+'%');
+    card.style.setProperty('--mouse-y',y+'%');
+  });
+});
+
+// ═══════════════════════════════════════════════════════════════
+// LEAFLET MAP
+// ═══════════════════════════════════════════════════════════════
+var gpsMap=null;
+var gpsMarker=null;
+
+function initMap(lat,lng){
+  var mapEl=document.getElementById('gps-map');
+  var phEl=document.getElementById('gps-placeholder');
+  if(!gpsMap){
+    mapEl.style.display='block';
+    phEl.style.display='none';
+    gpsMap=L.map('gps-map',{
+      center:[lat,lng],
+      zoom:15,
+      zoomControl:true,
+      attributionControl:false,
+    });
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{
+      maxZoom:19,
+    }).addTo(gpsMap);
+  }
+  if(gpsMarker)gpsMap.removeLayer(gpsMarker);
+  gpsMarker=L.marker([lat,lng],{
+    icon:L.divIcon({
+      className:'',
+      html:'<div style="width:16px;height:16px;background:#00ff88;border-radius:50%;border:3px solid #fff;box-shadow:0 0 20px #00ff88,0 0 40px #00ff88;animation:pulse 2s ease-in-out infinite"></div>',
+      iconSize:[16,16],
+      iconAnchor:[8,8],
+    })
+  }).addTo(gpsMap);
+  gpsMap.setView([lat,lng],15);
+}
+
+// ═══════════════════════════════════════════════════════════════
+// UTILS
+// ═══════════════════════════════════════════════════════════════
+function fmt(v,d){return v!=null?Number(v).toFixed(d):"--"}
+function mc(m){return m=="N"?"c-green":m=="S"?"c-gold":"c-red"}
+
+// ═══════════════════════════════════════════════════════════════
+// CHARTS
+// ═══════════════════════════════════════════════════════════════
 var charts={};
-var chartColors={
-  cv:  {line:'#00d4ff', fill:'rgba(0,212,255,0.18)'},
-  ca:  {line:'#ffcc00', fill:'rgba(255,204,0,0.15)'},
-  cst: {line:'#ff6b9d', fill:'rgba(255,107,157,0.15)'},
-  csh: {line:'#2dd4bf', fill:'rgba(45,212,191,0.12)'},
-  ctt: {line:'#ff9f43', fill:'rgba(255,159,67,0.15)'},
-  cth: {line:'#a78bfa', fill:'rgba(167,139,250,0.12)'},
-  cs:  {line:'#feca57', fill:'rgba(254,202,87,0.18)'},
-  cws: {line:'#00ff88', fill:'rgba(0,255,136,0.12)'},
+var chartDefs={
+  cv:{label:'电压 V', color:{line:'#00d4ff', fill:['rgba(0,212,255,0.22)','rgba(0,212,255,0.0)']}, opts:{title:{display:true,text:'V',color:'#8899bb'}}},
+  ca:{label:'电流 mA',color:{line:'#ffcc00',fill:['rgba(255,204,0,0.18)','rgba(255,204,0,0.0)']},opts:{title:{display:true,text:'mA',color:'#8899bb'}}},
+  cst:{label:'SHT35 °C',color:{line:'#ff6b9d',fill:['rgba(255,107,157,0.18)','rgba(255,107,157,0.0)']},opts:{title:{display:true,text:'°C',color:'#8899bb'}}},
+  csh:{label:'SHT35 %',color:{line:'#2dd4bf',fill:['rgba(45,212,191,0.15)','rgba(45,212,191,0.0)']},opts:{title:{display:true,text:'%',color:'#8899bb'}}},
+  ctt:{label:'RS485 °C',color:{line:'#ff9f43',fill:['rgba(255,159,67,0.18)','rgba(255,159,67,0.0)']},opts:{title:{display:true,text:'°C',color:'#8899bb'}}},
+  cth:{label:'RS485 %',color:{line:'#a78bfa',fill:['rgba(167,139,250,0.15)','rgba(167,139,250,0.0)']},opts:{title:{display:true,text:'%',color:'#8899bb'}}},
+  cs:{label:'辐射 W/m²',color:{line:'#feca57',fill:['rgba(254,202,87,0.20)','rgba(254,202,87,0.0)']},opts:{min:0,title:{display:true,text:'W/m²',color:'#8899bb'}}},
+  cws:{label:'风速 m/s',color:{line:'#00ff88',fill:['rgba(0,255,136,0.15)','rgba(0,255,136,0.0)']},opts:{title:{display:true,text:'m/s',color:'#8899bb'}}},
 };
 
-function mk(id, label, colorId, extraOpts){
-  var colors=chartColors[colorId]||chartColors.cv;
-  var opts={
+Object.keys(chartDefs).forEach(function(id){
+  var def=chartDefs[id];
+  var canvas=document.getElementById(id);
+  // 创建渐变填充
+  var ctx=canvas.getContext('2d');
+  var gradient=ctx.createLinearGradient(0,0,0,240);
+  gradient.addColorStop(0,def.color.fill[0]);
+  gradient.addColorStop(1,def.color.fill[1]);
+
+  var config={
     type:'line',
     data:{labels:[],datasets:[{
-      label:label,
+      label:def.label,
       data:[],
-      borderColor:colors.line,
-      backgroundColor:colors.fill,
+      borderColor:def.color.line,
+      backgroundColor:gradient,
       fill:true,
       tension:0.4,
       pointRadius:0,
-      pointHoverRadius:5,
-      pointHoverBackgroundColor:colors.line,
+      pointHoverRadius:6,
+      pointHoverBackgroundColor:def.color.line,
       pointHoverBorderColor:'#fff',
-      pointHoverBorderWidth:2,
-      borderWidth:2,
+      pointHoverBorderWidth:3,
+      borderWidth:2.5,
     }]},
     options:{
       responsive:true,
@@ -587,93 +815,101 @@ function mk(id, label, colorId, extraOpts){
       plugins:{
         legend:{display:false},
         tooltip:{
-          backgroundColor:'rgba(10,20,40,0.9)',
+          backgroundColor:'rgba(6,11,24,0.95)',
           titleColor:'#00d4ff',
-          bodyColor:'#e0e0e0',
+          bodyColor:'#e4ebf5',
           borderColor:'rgba(0,212,255,0.3)',
           borderWidth:1,
-          padding:10,
+          padding:12,
+          cornerRadius:8,
           displayColors:false,
-          titleFont:{family:'Inter',size:11,weight:'600'},
-          bodyFont:{family:'Inter',size:11},
+          titleFont:{family:'Inter',size:11,weight:'700'},
+          bodyFont:{family:'JetBrains Mono',size:10},
         }
       },
       scales:{
         x:{
-          ticks:{color:'#556688',maxTicksLimit:8,font:{size:9}},
-          grid:{color:'rgba(255,255,255,0.03)'}
+          ticks:{color:'#556688',maxTicksLimit:7,font:{size:9}},
+          grid:{color:'rgba(255,255,255,0.025)'}
         },
         y:{
           ticks:{color:'#8899bb',font:{size:9},padding:6},
-          grid:{color:'rgba(255,255,255,0.04)'},
-          ...(extraOpts||{})
+          grid:{color:'rgba(255,255,255,0.03)'},
+          ...(def.opts||{})
         }
-      }
+      },
+      animation:{duration:800,easing:'easeOutQuart'},
     }
   };
-  charts[id]=new Chart(document.getElementById(id),opts);
-}
+  charts[id]=new Chart(canvas,config);
+});
 
-// ═══ 创建所有图表 ═══
-mk("cv", "电压",  "cv",  {title:{display:true,text:'V',color:'#8899bb'}});
-mk("ca", "电流",  "ca",  {title:{display:true,text:'mA',color:'#8899bb'}});
-mk("cst","SHT温度","cst",{title:{display:true,text:'°C',color:'#8899bb'}});
-mk("csh","SHT湿度","csh",{title:{display:true,text:'%',color:'#8899bb'}});
-mk("ctt","RS485温度","ctt",{title:{display:true,text:'°C',color:'#8899bb'}});
-mk("cth","RS485湿度","cth",{title:{display:true,text:'%',color:'#8899bb'}});
-// ★ 太阳辐射 Y 轴从 0 开始
-mk("cs", "辐射",  "cs",  {min:0, title:{display:true,text:'W/m²',color:'#8899bb'}});
-mk("cws","风速",  "cws", {title:{display:true,text:'m/s',color:'#8899bb'}});
-
-// ═══ 时间范围 ═══
+// ═══════════════════════════════════════════════════════════════
+// DATA LOGIC
+// ═══════════════════════════════════════════════════════════════
 var ALL_DATA=[],currentRangeHours=0;
+
 function setRange(h){
   currentRangeHours=h;
-  document.querySelectorAll('.slider-box button').forEach(function(b){b.classList.remove('active')});
+  var btns=document.querySelectorAll('.time-slider button');
+  btns.forEach(function(b){b.classList.remove('active')});
   var map={0:'btnAll',24:'btn24h',6:'btn6h',2:'btn2h'};
-  var id=map[h]||'btn2h';
-  document.getElementById(id).classList.add('active');
+  (document.getElementById(map[h]||'btn2h')||{}).classList.add('active');
   render();
 }
+
 function getFilteredData(){
-  if(currentRangeHours==0)return ALL_DATA;
+  if(!currentRangeHours)return ALL_DATA;
   var cutoff=new Date();cutoff.setHours(cutoff.getHours()-currentRangeHours);
   return ALL_DATA.filter(function(r){
     try{return new Date(r.time)>=cutoff}catch(e){return false}
   });
 }
 
-// ═══ 主渲染 ═══
 var labels=[];
 function push(arr,id){
   var c=charts[id];if(!c)return;
-  c.data.labels=labels;c.data.datasets[0].data=arr;c.update('none');
+  c.data.labels=labels;c.data.datasets[0].data=arr;
+  c.update('none');
 }
+
 function render(){
   var d=getFilteredData();
   document.getElementById('totalCount').textContent=d.length;
   if(!d.length)return;
 
+  // ── 最后一条 ──
   var last=d[d.length-1];
-  document.getElementById("mode").textContent=last.mode||"--";
-  document.getElementById("mode").className="value "+mc(last.mode);
+  var modeEl=document.getElementById("mode");
+  modeEl.textContent=last.mode||"--";
+  modeEl.className='kpi-value '+mc(last.mode);
+
   document.getElementById("voltage").textContent=fmt(last.v,1)+" V";
   document.getElementById("current").textContent=fmt(last.a,1)+" mA";
-  document.getElementById("error").textContent=last.e||0;
-  document.getElementById("error").className="value "+(last.e==0?"green":"red");
+
+  var errEl=document.getElementById("error");
+  errEl.textContent=last.e||0;
+  errEl.className='kpi-value '+(last.e==0?"c-green":"c-red");
+
   document.getElementById("ssid").textContent=(last.i||"--")+" / "+(last.q||"--");
 
-  var gps=null;for(var i=d.length-1;i>=0;i--){if(d[i].x!=null){gps=d[i];break;}}
+  // ── GPS ──
+  var gps=null;
+  for(var i=d.length-1;i>=0;i--){if(d[i].x!=null){gps=d[i];break;}}
   if(gps){
     document.getElementById("lat").textContent=fmt(gps.x,6);
     document.getElementById("lng").textContent=fmt(gps.y,6);
     document.getElementById("sat").textContent=gps.n||"--";
     document.getElementById("fix").textContent=gps.g||"--";
-    document.getElementById("fix").className="value "+(gps.g=="O"?"green":"yellow");
+    document.getElementById("fix").className='kpi-value '+(gps.g=="O"?"c-green":"c-gold");
     document.getElementById("gpstime").textContent=gps.time?gps.time.substring(0,16):"--";
+    initMap(gps.x,gps.y);
   }
-  document.getElementById("update").innerHTML='<span class="live-dot"></span> 最后更新: '+last.time+' · 共 '+d.length+' 条';
 
+  document.getElementById("update").innerHTML=
+    '<span class="pulse-dot"></span> 最后更新: '+last.time+' · 共 '+d.length+' 条';
+
+  // ── 图表数据 ──
   labels=[];var vv=[],va=[],vst=[],vsh=[],vtt=[],vth=[],vs=[],vws=[];
   for(var i=0;i<d.length;i++){
     var r=d[i];
@@ -684,19 +920,29 @@ function render(){
   push(vv,"cv");push(va,"ca");push(vst,"cst");push(vsh,"csh");
   push(vtt,"ctt");push(vth,"cth");push(vs,"cs");push(vws,"cws");
 
+  // ── 表格 ──
   var tb=document.getElementById("tbody");tb.innerHTML="";
   var show=d.slice(-20).reverse();
   for(var j=0;j<show.length;j++){
     var r=show[j],tm=r.time?r.time.substring(5,16):"";
-    tb.innerHTML+="<tr><td>"+tm+"</td><td class=\""+mc(r.mode)+"\">"+(r.mode||"--")+
-      "</td><td>"+fmt(r.v,1)+"</td><td>"+fmt(r.a,1)+"</td><td>"+fmt(r.s,0)+
-      "</td><td>"+fmt(r.j,1)+"</td><td>"+fmt(r.k,1)+"</td><td>"+fmt(r.t,1)+
-      "</td><td>"+fmt(r.h,1)+"</td><td>"+fmt(r.x,5)+"</td><td>"+fmt(r.y,5)+
-      "</td><td>"+(r.n||"--")+"</td><td>"+(r.g||"--")+"</td><td>"+(r.e||0)+"</td></tr>";
+    tb.innerHTML+=
+      "<tr><td>"+tm+"</td>"+
+      "<td class=\""+mc(r.mode)+"\">"+(r.mode||"--")+"</td>"+
+      "<td>"+fmt(r.v,1)+"</td>"+
+      "<td>"+fmt(r.a,1)+"</td>"+
+      "<td>"+fmt(r.s,0)+"</td>"+
+      "<td>"+fmt(r.j,1)+"</td>"+
+      "<td>"+fmt(r.k,1)+"</td>"+
+      "<td>"+fmt(r.t,1)+"</td>"+
+      "<td>"+fmt(r.h,1)+"</td>"+
+      "<td>"+fmt(r.x,5)+"</td>"+
+      "<td>"+fmt(r.y,5)+"</td>"+
+      "<td>"+(r.n||"--")+"</td>"+
+      "<td>"+(r.g||"--")+"</td>"+
+      "<td style=\""+(r.e==0?'color:var(--aurora-green)':'color:var(--aurora-red)')+"\">"+(r.e||0)+"</td></tr>";
   }
 }
 
-// ═══ 数据加载 ═══
 function load(){
   fetch("data.json?v="+Date.now())
     .then(function(r){return r.json()})
@@ -706,5 +952,6 @@ function load(){
 load();
 setInterval(load,300000);
 </script>
+
 </body>
 </html>
