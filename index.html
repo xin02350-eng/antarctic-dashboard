@@ -133,6 +133,6 @@ var tb=document.getElementById("tbody");tb.innerHTML="";
 var show=d.slice(-20).reverse();
 for(var j=0;j<show.length;j++){var r=show[j],tm=r.time?r.time.substring(5,16):"";
 tb.innerHTML+="<tr><td>"+tm+"</td><td class=\""+mc(r.mode)+"\">"+(r.mode||"--")+"</td><td>"+fmt(r.v,1)+"</td><td>"+fmt(r.a,1)+"</td><td>"+fmt(r.s,0)+"</td><td>"+fmt(r.j,1)+"</td><td>"+fmt(r.k,1)+"</td><td>"+fmt(r.t,1)+"</td><td>"+fmt(r.h,1)+"</td><td>"+fmt(r.x,5)+"</td><td>"+fmt(r.y,5)+"</td><td>"+(r.n||"--")+"</td><td>"+(r.g||"--")+"</td><td>"+(r.e||0)+"</td></tr>";}}
-function load(){fetch("data.json").then(r=>r.json()).then(d=>{ALL_DATA=d;document.getElementById("totalCount").textContent=d.length;render();});}
-load();setInterval(load,300000);
+function load(){fetch("data.json?v=5").then(r=>r.json()).then(d=>{ALL_DATA=d;document.getElementById("totalCount").textContent=d.length;render();});}
+fetch("data.json?v=5").then(r=>r.json()).then(d=>{alert("Loaded: "+d.length+" rows");ALL_DATA=d;document.getElementById("totalCount").textContent=d.length;render();}).catch(e=>alert("ERROR: "+e));setInterval(load,300000);
 </script></body></html>
