@@ -1,0 +1,109 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>南极监测仪表盘</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}body{background:#0a1628;color:#e0e0e0;font-family:Arial,sans-serif;padding:15px}
+h1{text-align:center;color:#00d4ff;margin-bottom:15px;font-size:24px}
+.row{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-bottom:12px}
+.card{background:#162a45;border-radius:10px;padding:14px 20px;text-align:center;min-width:100px}
+.card .label{font-size:11px;color:#8899aa;margin-bottom:4px}
+.card .value{font-size:20px;font-weight:bold}
+.card .value.big{font-size:15px}
+.green{color:#00ff88}.yellow{color:#ffcc00}.red{color:#ff4444}.cyan{color:#00d4ff}.gold{color:#feca57}
+.chart-box{background:#162a45;border-radius:10px;padding:12px;flex:1;min-width:300px}
+.chart-box h3{text-align:center;color:#00d4ff;margin-bottom:8px;font-size:14px}
+.chart-box canvas{width:100%!important;max-height:200px}
+.table-box{background:#162a45;border-radius:10px;padding:12px;margin-top:12px;overflow-x:auto}
+.table-box h3{color:#00d4ff;margin-bottom:8px;font-size:14px}
+table{width:100%;border-collapse:collapse;font-size:12px;white-space:nowrap}
+th{background:#0d2137;padding:8px 6px;text-align:center;border-bottom:2px solid #00d4ff}
+td{padding:6px;text-align:center;border-bottom:1px solid #1a3350}tr:hover{background:#1a3350}
+.footer{text-align:center;color:#556677;font-size:11px;margin-top:10px}
+</style></head><body>
+<h1>南极无人监测网关</h1>
+<div class="row">
+<div class="card"><div class="label">模式</div><div class="value" id="mode">--</div></div>
+<div class="card"><div class="label">电池电压</div><div class="value cyan" id="voltage">--</div></div>
+<div class="card"><div class="label">电流</div><div class="value yellow" id="current">--</div></div>
+<div class="card"><div class="label">错误码</div><div class="value" id="error">--</div></div>
+<div class="card"><div class="label">SSID / Q</div><div class="value cyan" id="ssid">--</div></div>
+</div>
+<div class="row">
+<div class="card"><div class="label">纬度</div><div class="value gold big" id="lat">--</div></div>
+<div class="card"><div class="label">经度</div><div class="value gold big" id="lng">--</div></div>
+<div class="card"><div class="label">卫星数</div><div class="value cyan" id="sat">--</div></div>
+<div class="card"><div class="label">定位状态</div><div class="value" id="fix">--</div></div>
+<div class="card"><div class="label">GPS 时间</div><div class="value green big" id="gpstime">--</div></div>
+</div>
+<div class="row">
+<div class="chart-box"><h3>电池电压 (V)</h3><canvas id="cv"></canvas></div>
+<div class="chart-box"><h3>系统电流 (mA)</h3><canvas id="ca"></canvas></div>
+</div>
+<div class="row">
+<div class="chart-box"><h3>SHT35 温度 (°C)</h3><canvas id="cst"></canvas></div>
+<div class="chart-box"><h3>SHT35 湿度 (%)</h3><canvas id="csh"></canvas></div>
+</div>
+<div class="row">
+<div class="chart-box"><h3>RS485 温度 (°C)</h3><canvas id="ctt"></canvas></div>
+<div class="chart-box"><h3>RS485 湿度 (%)</h3><canvas id="cth"></canvas></div>
+</div>
+<div class="row">
+<div class="chart-box"><h3>太阳辐射 (W/m²)</h3><canvas id="cs"></canvas></div>
+<div class="chart-box"><h3>风速 / 风向 (待安装)</h3><canvas id="cws"></canvas></div>
+</div>
+<div class="table-box"><h3>最新 20 条数据</h3>
+<table><thead><tr>
+<th>时间</th><th>模式</th><th>V</th><th>mA</th><th>辐射</th><th>SHT°C</th><th>SHT%</th><th>TH°C</th><th>TH%</th><th>纬度</th><th>经度</th><th>卫星</th><th>定位</th><th>错误</th>
+</tr></thead><tbody id="tbody"></tbody></table></div>
+<div class="footer" id="update">加载中...</div>
+<script>
+function fmt(v,d){return v!=null?Number(v).toFixed(d):"--"}
+function mc(m){return m=="N"?"green":m=="S"?"yellow":"red"}
+var charts={};
+function mk(id,label,color){
+var c=new Chart(document.getElementById(id),{type:"line",data:{labels:[],datasets:[{label:label,data:[],borderColor:color,backgroundColor:color+"30",fill:true,tension:0.3,pointRadius:1}]},
+options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+scales:{x:{ticks:{color:"#556677",maxTicksLimit:6},grid:{color:"#1a3350"}},
+y:{ticks:{color:"#8899aa"},grid:{color:"#1a3350"}}}}});charts[id]=c;}
+mk("cv","电压","#00d4ff");mk("ca","电流","#ffcc00");
+mk("cst","SHT温度","#ff6b6b");mk("csh","SHT湿度","#4ecdc4");
+mk("ctt","RS485温度","#ff9f43");mk("cth","RS485湿度","#a29bfe");
+mk("cs","辐射","#feca57");mk("cws","风速","#00ff88");
+var labels=[];
+function push(arr,id){var c=charts[id];c.data.labels=labels;c.data.datasets[0].data=arr;c.update()}
+function load(){
+fetch("data.json").then(r=>r.json()).then(d=>{
+if(!d.length)return;
+var last=d[d.length-1];
+document.getElementById("mode").textContent=last.mode||"--";
+document.getElementById("mode").className="value "+mc(last.mode);
+document.getElementById("voltage").textContent=fmt(last.v,1)+" V";
+document.getElementById("current").textContent=fmt(last.a,1)+" mA";
+document.getElementById("error").textContent=last.e||0;
+document.getElementById("error").className="value "+(last.e==0?"green":"red");
+document.getElementById("ssid").textContent=(last.i||"--")+" / "+(last.q||"--");
+var gps=null;
+for(var i=d.length-1;i>=0;i--){if(d[i].x!=null){gps=d[i];break;}}
+if(gps){
+document.getElementById("lat").textContent=fmt(gps.x,6);
+document.getElementById("lng").textContent=fmt(gps.y,6);
+document.getElementById("sat").textContent=gps.n||"--";
+document.getElementById("fix").textContent=gps.g||"--";
+document.getElementById("fix").className="value "+(gps.g=="O"?"green":"yellow");
+document.getElementById("gpstime").textContent=gps.time?gps.time.substring(0,10)+" "+gps.time.substring(11,19):"--";
+}
+document.getElementById("update").textContent="更新: "+last.time+" | 每5分钟自动刷新";
+labels=[];var vv=[],va=[],vst=[],vsh=[],vtt=[],vth=[],vs=[],vws=[];
+for(var i=0;i<d.length;i++){
+var r=d[i];labels.push(r.time?r.time.substring(11,16):"");
+vv.push(r.v);va.push(r.a);vst.push(r.j);vsh.push(r.k);
+vtt.push(r.t);vth.push(r.h);vs.push(r.s);vws.push(r.w||null);}
+push(vv,"cv");push(va,"ca");push(vst,"cst");push(vsh,"csh");
+push(vtt,"ctt");push(vth,"cth");push(vs,"cs");push(vws,"cws");
+var tb=document.getElementById("tbody");tb.innerHTML="";
+var show=d.slice(-20).reverse();
+for(var j=0;j<show.length;j++){
+var r=show[j],tm=r.time?r.time.substring(11,19):"";
+tb.innerHTML+="<tr><td>"+tm+"</td><td class=\""+mc(r.mode)+"\">"+(r.mode||"--")+"</td><td>"+fmt(r.v,1)+"</td><td>"+fmt(r.a,1)+"</td><td>"+fmt(r.s,0)+"</td><td>"+fmt(r.j,1)+"</td><td>"+fmt(r.k,1)+"</td><td>"+fmt(r.t,1)+"</td><td>"+fmt(r.h,1)+"</td><td>"+fmt(r.x,5)+"</td><td>"+fmt(r.y,5)+"</td><td>"+(r.n||"--")+"</td><td>"+(r.g||"--")+"</td><td>"+(r.e||0)+"</td></tr>";}});}
+load();setInterval(load,300000);
+</script></body></html>
