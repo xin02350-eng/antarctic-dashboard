@@ -1,6 +1,15 @@
 <!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>南极监测仪表盘</title>
-<script src="https://cdn.bootcdn.net/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+<script>
+var s=document.createElement('script');
+s.src='https://unpkg.com/chart.js@4.4.0/dist/chart.umd.min.js';
+s.onerror=function(){
+  var f=document.createElement('script');
+  f.src='https://cdn.bootcdn.net/ajax/libs/Chart.js/4.4.0/chart.umd.min.js';
+  document.head.appendChild(f);
+};
+document.head.appendChild(s);
+</script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}body{background:#0a1628;color:#e0e0e0;font-family:Arial,sans-serif;padding:15px}
 h1{text-align:center;color:#00d4ff;margin-bottom:10px;font-size:22px}
