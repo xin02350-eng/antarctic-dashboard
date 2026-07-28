@@ -1,8 +1,4 @@
-<!DOCTYPE html>
-<html lang="zh">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>南极监测仪表盘</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <style>
@@ -27,11 +23,8 @@ table{width:100%;border-collapse:collapse;font-size:11px;white-space:nowrap}
 th{background:#0d2137;padding:6px 5px;text-align:center;border-bottom:2px solid #00d4ff}
 td{padding:5px;text-align:center;border-bottom:1px solid #1a3350}tr:hover{background:#1a3350}
 .footer{text-align:center;color:#556677;font-size:10px;margin-top:8px}
-#status{background:#162a45;color:#00d4ff;padding:12px;text-align:center;border-radius:10px;margin-bottom:10px;font-size:14px}
-</style></head>
-<body>
+</style></head><body>
 <h1>南极无人监测网关</h1>
-<div id="status">正在加载数据...</div>
 <div class="slider-box">
 <span>图表范围:</span>
 <button onclick="setRange(0)" id="btnAll" class="active">全部</button>
@@ -78,29 +71,24 @@ td{padding:5px;text-align:center;border-bottom:1px solid #1a3350}tr:hover{backgr
 <script>
 function fmt(v,d){return v!=null?Number(v).toFixed(d):"--"}
 function mc(m){return m=="N"?"green":m=="S"?"yellow":"red"}
-
 var charts={};
 function mk(id,label,color){
-try{
 var c=new Chart(document.getElementById(id),{type:"line",data:{labels:[],datasets:[{label:label,data:[],borderColor:color,backgroundColor:color+"30",fill:true,tension:0.3,pointRadius:1}]},
 options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
 scales:{x:{ticks:{color:"#556677",maxTicksLimit:8,autoSkip:true},grid:{color:"#1a3350"}},
-y:{ticks:{color:"#8899aa"},grid:{color:"#1a3350"}}}}});charts[id]=c;}catch(e){document.getElementById('status').innerHTML='Chart error: '+e.message;}
-}
-try{
+y:{ticks:{color:"#8899aa"},grid:{color:"#1a3350"}}}}});charts[id]=c;}
 mk("cv","电压","#00d4ff");mk("ca","电流","#ffcc00");
 mk("cst","SHT温度","#ff6b6b");mk("csh","SHT湿度","#4ecdc4");
 mk("ctt","RS485温度","#ff9f43");mk("cth","RS485湿度","#a29bfe");
 mk("cs","辐射","#feca57");mk("cws","风速","#00ff88");
-}catch(e){document.getElementById('status').innerHTML='Chart init error: '+e.message;}
-
 var ALL_DATA=[],currentRangeHours=0;
 function setRange(h){currentRangeHours=h;
-document.querySelectorAll('.slider-box button').forEach(b=>b.classList.remove('active'));
+document.querySelectorAll('.slider-box button').forEach(function(b){b.classList.remove('active')});
 if(h==0)document.getElementById('btnAll').classList.add('active');
 else if(h==24)document.getElementById('btn24h').classList.add('active');
 else if(h==6)document.getElementById('btn6h').classList.add('active');
-else document.getElementById('btn2h').classList.add('active');render();}
+else document.getElementById('btn2h').classList.add('active');
+render();}
 function getFilteredData(){
 if(currentRangeHours==0)return ALL_DATA;
 var cutoff=new Date();cutoff.setHours(cutoff.getHours()-currentRangeHours);
@@ -110,7 +98,7 @@ function push(arr,id){var c=charts[id];if(!c)return;c.data.labels=labels;c.data.
 function render(){
 var d=getFilteredData();
 document.getElementById('totalCount').textContent=d.length;
-if(!d.length){document.getElementById('status').innerHTML='筛选后无数据 (共 '+ALL_DATA.length+' 条原始数据)';return;}
+if(!d.length)return;
 var last=d[d.length-1];
 document.getElementById("mode").textContent=last.mode||"--";
 document.getElementById("mode").className="value "+mc(last.mode);
@@ -139,17 +127,10 @@ var tb=document.getElementById("tbody");tb.innerHTML="";
 var show=d.slice(-20).reverse();
 for(var j=0;j<show.length;j++){var r=show[j],tm=r.time?r.time.substring(5,16):"";
 tb.innerHTML+="<tr><td>"+tm+"</td><td class=\""+mc(r.mode)+"\">"+(r.mode||"--")+"</td><td>"+fmt(r.v,1)+"</td><td>"+fmt(r.a,1)+"</td><td>"+fmt(r.s,0)+"</td><td>"+fmt(r.j,1)+"</td><td>"+fmt(r.k,1)+"</td><td>"+fmt(r.t,1)+"</td><td>"+fmt(r.h,1)+"</td><td>"+fmt(r.x,5)+"</td><td>"+fmt(r.y,5)+"</td><td>"+(r.n||"--")+"</td><td>"+(r.g||"--")+"</td><td>"+(r.e||0)+"</td></tr>";}}
-
 function load(){
-fetch("data.json?v=7").then(function(r){return r.json();}).then(function(d){
-document.getElementById('status').innerHTML='加载成功: '+d.length+' 条数据';
-ALL_DATA=d;
-render();
-}).catch(function(e){
-document.getElementById('status').innerHTML='加载失败: '+e.message;
-});
+fetch("data.json?v="+Date.now()).then(function(r){return r.json()}).then(function(d){
+ALL_DATA=d;render();
+}).catch(function(e){console.log(e)});
 }
-
-load();
-setInterval(load,300000);
+load();setInterval(load,300000);
 </script></body></html>
