@@ -1,139 +1,313 @@
 <!DOCTYPE html>
+
 <html lang="zh-CN">
+
+
 <head>
+
 
 <meta charset="UTF-8">
 
+
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-<title>ANTARCTIC AUTONOMOUS MONITORING CENTER</title>
+
+<title>
+
+ANTARCTIC NEXUS
+
+</title>
 
 
-<!-- Chart.js -->
+
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+
+
 
 
 <style>
 
 
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Inter:wght@300;400;600;700&display=swap');
+
+:root{
+
+
+--bg:#02050d;
+
+
+--panel:#071626;
+
+
+--panel2:#0b2238;
+
+
+--cyan:#55eaff;
+
+
+--blue:#3478ff;
+
+
+--green:#63ffb0;
+
+
+--yellow:#ffd45c;
+
+
+--red:#ff5c78;
+
+
+--text:#e9f8ff;
+
+
+--muted:#7895aa;
+
+
+--line:
+rgba(85,234,255,.18);
+
+
+
+}
+
+
 
 
 
 *{
-    box-sizing:border-box;
+
+
+box-sizing:border-box;
+
+
+margin:0;
+
+
+padding:0;
+
+
 }
+
 
 
 html,body{
 
-    margin:0;
-    padding:0;
 
-    width:100%;
-    min-height:100%;
+width:100%;
 
-    background:#020812;
 
-    color:#e8f7ff;
+min-height:100%;
 
-    font-family:
-    Inter,
-    "Microsoft YaHei",
-    sans-serif;
+
+background:
+
+#02050d;
+
+
+color:var(--text);
+
+
+font-family:
+
+Inter,
+"Microsoft YaHei",
+sans-serif;
+
+
+
+overflow-x:hidden;
+
+
 
 }
 
 
+
+
+
+
+
 /* =========================
-   极地动态背景
+ 极地背景系统
 ========================= */
 
 
 body{
-
-overflow-x:hidden;
 
 
 background:
 
 radial-gradient(
 circle at 50% -20%,
-rgba(0,220,255,.18),
-transparent 45%
-),
-
-radial-gradient(
-circle at 10% 80%,
-rgba(0,140,255,.12),
+rgba(85,234,255,.22),
 transparent 40%
 ),
 
+
+radial-gradient(
+circle at 20% 80%,
+rgba(52,120,255,.18),
+transparent 35%
+),
+
+
 linear-gradient(
 180deg,
-#020812,
-#041626
+#02050d,
+#06182a
 );
 
 
+
 }
+
+
+
+
+
+/* 星空粒子 */
 
 
 body::before{
 
+
 content:"";
+
 
 position:fixed;
 
+
 inset:0;
+
 
 pointer-events:none;
 
 
+
 background-image:
 
-linear-gradient(
-rgba(80,200,255,.035) 1px,
-transparent 1px
-),
-
-linear-gradient(
-90deg,
-rgba(80,200,255,.035) 1px,
+radial-gradient(
+circle,
+rgba(255,255,255,.5) 1px,
 transparent 1px
 );
 
 
+
 background-size:
-45px 45px;
+
+90px 90px;
 
 
-animation:gridMove 25s linear infinite;
+
+opacity:.15;
+
+
+
+animation:
+
+stars 30s linear infinite;
+
 
 
 }
 
 
-@keyframes gridMove{
+
+
+
+@keyframes stars{
 
 
 from{
-transform:translateY(0);
+
+
+transform:
+translateY(0);
+
+
 }
+
 
 to{
-transform:translateY(45px);
-}
+
+
+transform:
+translateY(90px);
 
 
 }
 
 
 
+}
 
-/* =========================
-   主容器
-========================= */
+
+
+
+
+
+
+
+/* 网格扫描 */
+
+
+body::after{
+
+
+content:"";
+
+
+position:fixed;
+
+
+inset:0;
+
+
+pointer-events:none;
+
+
+
+background:
+
+linear-gradient(
+90deg,
+transparent 49.8%,
+rgba(85,234,255,.05) 50%,
+transparent 50.2%
+),
+
+
+linear-gradient(
+transparent 49.8%,
+rgba(85,234,255,.04) 50%,
+transparent 50.2%
+);
+
+
+
+background-size:
+
+100px 100px;
+
+
+
+opacity:.35;
+
+
+
+}
+
+
+
+
+
+
+
 
 
 .container{
@@ -141,9 +315,11 @@ transform:translateY(45px);
 
 width:min(1450px,94vw);
 
+
 margin:auto;
 
-padding:30px 0 50px;
+
+padding:30px 0 80px;
 
 
 }
@@ -151,8 +327,13 @@ padding:30px 0 50px;
 
 
 
+
+
+
+
+
 /* =========================
-   顶部
+ 顶部任务栏
 ========================= */
 
 
@@ -161,111 +342,182 @@ padding:30px 0 50px;
 
 display:flex;
 
+
 justify-content:space-between;
+
 
 align-items:center;
 
 
-margin-bottom:30px;
 
+padding:
 
-border-bottom:
-
-1px solid rgba(100,220,255,.2);
-
-
-padding-bottom:25px;
-
-
-}
+25px 35px;
 
 
 
-.logo{
+border-radius:25px;
 
-
-font-family:Orbitron;
-
-font-size:28px;
-
-font-weight:900;
-
-letter-spacing:4px;
 
 
 background:
+
 linear-gradient(
-90deg,
-#fff,
-#55ddff
+145deg,
+rgba(12,35,55,.9),
+rgba(3,15,28,.95)
 );
 
 
--webkit-background-clip:text;
 
-color:transparent;
+border:
 
+1px solid var(--line);
 
-}
-
-
-.subtitle{
-
-
-margin-top:8px;
-
-font-size:12px;
-
-letter-spacing:3px;
-
-color:#8bbbd5;
-
-
-}
-
-
-
-
-.system-status{
-
-
-display:flex;
-
-align-items:center;
-
-gap:12px;
-
-font-family:Orbitron;
-
-font-size:13px;
-
-}
-
-
-.live-dot{
-
-
-width:10px;
-
-height:10px;
-
-border-radius:50%;
-
-background:#00ff99;
 
 
 box-shadow:
 
-0 0 15px #00ff99;
+0 0 40px rgba(85,234,255,.08);
 
-
-animation:pulse 1.5s infinite;
 
 
 }
 
 
-@keyframes pulse{
+
+
+
+.brand{
+
+
+font-family:
+
+Orbitron;
+
+
+}
+
+
+
+.brand h1{
+
+
+font-size:32px;
+
+
+letter-spacing:6px;
+
+
+font-weight:900;
+
+
+color:white;
+
+
+
+text-shadow:
+
+0 0 25px rgba(85,234,255,.8);
+
+
+
+}
+
+
+
+.brand h1 span{
+
+
+color:var(--cyan);
+
+
+
+}
+
+
+
+
+.brand p{
+
+
+margin-top:12px;
+
+
+font-size:12px;
+
+
+letter-spacing:4px;
+
+
+color:var(--muted);
+
+
+}
+
+
+
+
+.mission-status{
+
+
+display:flex;
+
+
+align-items:center;
+
+
+gap:12px;
+
+
+font-family:
+
+Orbitron;
+
+
+font-size:13px;
+
+
+
+}
+
+
+
+.status-light{
+
+
+width:12px;
+
+
+height:12px;
+
+
+background:var(--green);
+
+
+border-radius:50%;
+
+
+
+box-shadow:
+
+0 0 20px var(--green);
+
+
+
+animation:
+
+blink 2s infinite;
+
+
+
+}
+
+
+
+
+
+@keyframes blink{
 
 
 50%{
@@ -280,12 +532,17 @@ opacity:.3;
 
 
 
+
+
+
+
+
 /* =========================
- 状态卡区域
+ 一级数据
 ========================= */
 
 
-.status-grid{
+.overview{
 
 
 display:grid;
@@ -293,45 +550,48 @@ display:grid;
 
 grid-template-columns:
 
-repeat(5,1fr);
+repeat(4,1fr);
 
 
-gap:18px;
+
+gap:20px;
 
 
-margin-bottom:25px;
+margin-top:25px;
 
 
 }
 
 
 
-.status-card{
+
+.overview-card{
 
 
-height:130px;
+height:150px;
+
+
+padding:25px;
+
+
+
+border-radius:22px;
+
 
 
 background:
 
 linear-gradient(
 145deg,
-rgba(10,35,55,.8),
-rgba(3,15,30,.85)
+rgba(10,40,65,.8),
+rgba(3,15,25,.9)
 );
 
 
 
 border:
 
-1px solid rgba(100,220,255,.18);
-
-
-
-border-radius:18px;
-
-
-padding:22px;
+1px solid var(--line);
 
 
 
@@ -341,11 +601,12 @@ position:relative;
 overflow:hidden;
 
 
+
 }
 
 
 
-.status-card::before{
+.overview-card::before{
 
 
 content:"";
@@ -353,133 +614,690 @@ content:"";
 
 position:absolute;
 
-top:0;
-left:20%;
 
-width:60%;
+top:0;
+
+
+left:0;
+
+
+width:100%;
+
 
 height:2px;
 
 
-background:#4de1ff;
+background:
 
+linear-gradient(
+90deg,
+transparent,
+var(--cyan),
+transparent
+);
 
-box-shadow:
-0 0 20px #4de1ff;
 
 
 }
 
 
 
+.ov-title{
 
-.status-title{
+
+font-family:
+
+Orbitron;
 
 
-font-family:Orbitron;
+font-size:12px;
 
-font-size:11px;
 
 letter-spacing:3px;
 
-color:#86abc4;
 
-
-text-align:center;
+color:var(--muted);
 
 
 }
 
 
 
-.status-value{
+.ov-value{
 
 
-margin-top:20px;
-
-text-align:center;
+margin-top:25px;
 
 
-font-family:Orbitron;
+font-family:
+
+Orbitron;
 
 
-font-size:34px;
+font-size:38px;
 
 
 font-weight:900;
 
 
-color:#5ce1ff;
+color:var(--cyan);
+
 
 
 text-shadow:
 
-0 0 20px rgba(80,220,255,.8);
+0 0 20px rgba(85,234,255,.7);
+
 
 
 }
 
 
 
-.status-value.green{
+.ov-unit{
 
-color:#66ffb0;
+
+font-size:12px;
+
+
+color:var(--muted);
+
+
+margin-left:5px;
+
 
 }
 
 
 
-.status-value.yellow{
 
-color:#ffd45c;
+
+</style>
+
+
+
+</head>
+
+
+
+<body>
+
+
+
+<div class="container">
+
+
+
+
+
+<header class="header">
+
+
+<div class="brand">
+
+
+<h1>
+
+ANTARCTIC <span>NEXUS</span>
+
+</h1>
+
+
+<p>
+
+AUTONOMOUS POLAR MONITORING CENTER
+
+</p>
+
+
+</div>
+
+
+
+<div class="mission-status">
+
+
+<div class="status-light"></div>
+
+
+SYSTEM ONLINE
+
+
+</div>
+
+
+
+</header>
+
+
+
+
+
+<section class="overview">
+
+
+
+<div class="overview-card">
+
+
+<div class="ov-title">
+
+BATTERY VOLTAGE
+
+</div>
+
+
+<div class="ov-value">
+
+<span id="topVoltage">
+
+--
+
+</span>
+
+
+<span class="ov-unit">
+
+V
+
+</span>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+<div class="overview-card">
+
+
+<div class="ov-title">
+
+SYSTEM CURRENT
+
+</div>
+
+
+<div class="ov-value">
+
+
+<span id="topCurrent">
+
+--
+
+</span>
+
+
+<span class="ov-unit">
+
+mA
+
+</span>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+<div class="overview-card">
+
+
+<div class="ov-title">
+
+SOLAR IRRADIANCE
+
+</div>
+
+
+<div class="ov-value">
+
+
+<span id="topSolar">
+
+--
+
+</span>
+
+
+<span class="ov-unit">
+
+W/m²
+
+</span>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+<div class="overview-card">
+
+
+<div class="ov-title">
+
+DATA RECORDS
+
+</div>
+
+
+<div class="ov-value">
+
+
+<span id="topRecords">
+
+--
+
+</span>
+
+
+<span class="ov-unit">
+
+DATA
+
+</span>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+</section><!-- ===============================
+ POLAR DIGITAL TWIN HUD
+================================ -->
+
+
+<div class="section-title">
+
+POLAR NODE DIGITAL TWIN
+
+</div>
+
+
+
+
+<div class="polar-hud">
+
+
+
+<div class="radar-container">
+
+
+<div class="radar-ring ring1"></div>
+
+<div class="radar-ring ring2"></div>
+
+<div class="radar-ring ring3"></div>
+
+
+<div class="radar-scan"></div>
+
+
+
+
+<div class="node-core">
+
+
+<div class="core-pulse"></div>
+
+
+<div class="core-text">
+
+
+<h2>
+
+ANT-A01
+
+</h2>
+
+
+<p>
+
+AUTONOMOUS NODE
+
+</p>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="node-info">
+
+
+
+<div class="info-box">
+
+
+<div class="info-label">
+
+LATITUDE
+
+</div>
+
+
+<div id="lat"
+
+class="info-value">
+
+--
+
+</div>
+
+
+</div>
+
+
+
+
+
+<div class="info-box">
+
+
+<div class="info-label">
+
+LONGITUDE
+
+</div>
+
+
+<div id="lng"
+
+class="info-value">
+
+--
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+<div class="info-box">
+
+
+<div class="info-label">
+
+SATELLITES
+
+</div>
+
+
+<div id="sat"
+
+class="info-value">
+
+--
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+<div class="info-box">
+
+
+<div class="info-label">
+
+GPS STATUS
+
+</div>
+
+
+<div id="fix"
+
+class="info-value green">
+
+--
+
+</div>
+
+
+</div>
+
+
+
+
+
+<div class="info-box">
+
+
+<div class="info-label">
+
+MISSION MODE
+
+</div>
+
+
+<div id="mode"
+
+class="info-value green">
+
+--
+
+</div>
+
+
+</div>
+
+
+
+
+
+<div class="info-box">
+
+
+<div class="info-label">
+
+SESSION
+
+</div>
+
+
+<div id="ssid"
+
+class="info-value">
+
+--
+
+</div>
+
+
+</div>
+
+
+
+
+</div>
+
+
+
+
+</div>
+
+
+
+
+
+
+
+<style>
+
+
+
+/* ===============================
+ SECTION TITLE
+================================ */
+
+
+
+.section-title{
+
+
+margin-top:40px;
+
+
+margin-bottom:20px;
+
+
+
+font-family:
+
+Orbitron;
+
+
+font-size:14px;
+
+
+letter-spacing:5px;
+
+
+color:
+
+var(--cyan);
+
+
+
+border-left:
+
+3px solid var(--cyan);
+
+
+
+padding-left:15px;
+
 
 }
 
 
 
-/* =========================
- GPS HUD
-========================= */
 
 
-.hud-panel{
 
 
-margin-top:20px;
+
+/* ===============================
+ POLAR HUD
+================================ */
 
 
-height:360px;
+
+.polar-hud{
 
 
-border-radius:25px;
+height:520px;
 
 
-border:
 
-1px solid rgba(80,220,255,.2);
+display:grid;
+
+
+grid-template-columns:
+
+1fr 400px;
+
+
+
+gap:50px;
+
+
+
+padding:40px;
 
 
 
 background:
 
+
 radial-gradient(
+
 circle,
-rgba(0,180,255,.15),
-transparent 55%
+
+rgba(85,234,255,.12),
+
+transparent 45%
+
 ),
 
-rgba(3,18,32,.8);
+
+rgba(5,22,40,.85);
 
 
-position:relative;
+
+border:
+
+1px solid var(--line);
+
+
+border-radius:30px;
+
 
 
 overflow:hidden;
 
 
+}
+
+
+
+
+
+
+
+.radar-container{
+
+
+position:relative;
+
+
 display:flex;
 
+
 align-items:center;
+
 
 justify-content:center;
 
@@ -489,46 +1307,21 @@ justify-content:center;
 
 
 
-.radar{
 
-
-width:260px;
-
-height:260px;
-
-border-radius:50%;
-
-
-border:
-
-1px solid rgba(80,220,255,.4);
-
-
-position:relative;
-
-
-
-}
-
-
-
-.radar::before{
-
-
-content:"";
+.radar-ring{
 
 
 position:absolute;
 
-inset:35px;
 
 
 border-radius:50%;
 
 
+
 border:
 
-1px solid rgba(80,220,255,.3);
+1px solid rgba(85,234,255,.25);
 
 
 
@@ -536,30 +1329,84 @@ border:
 
 
 
-.radar::after{
+.ring1{
 
 
-content:"";
+width:380px;
+
+height:380px;
+
+
+}
+
+
+
+
+.ring2{
+
+
+width:280px;
+
+height:280px;
+
+
+}
+
+
+
+
+.ring3{
+
+
+width:170px;
+
+height:170px;
+
+
+}
+
+
+
+
+
+
+
+.radar-scan{
 
 
 position:absolute;
 
-width:50%;
 
-height:2px;
-
-top:50%;
-
-left:50%;
+width:380px;
 
 
-background:#55eaff;
+height:380px;
 
 
-transform-origin:left;
+
+border-radius:50%;
 
 
-animation:scan 4s linear infinite;
+
+background:
+
+conic-gradient(
+
+from 0deg,
+
+transparent,
+
+rgba(85,234,255,.35),
+
+transparent
+
+);
+
+
+
+animation:
+
+radarRotate 5s linear infinite;
 
 
 
@@ -567,7 +1414,15 @@ animation:scan 4s linear infinite;
 
 
 
-@keyframes scan{
+@keyframes radarRotate{
+
+
+from{
+
+transform:rotate(0deg);
+
+}
+
 
 
 to{
@@ -581,223 +1436,390 @@ transform:rotate(360deg);
 
 
 
-.hud-center{
 
 
-position:absolute;
+
+
+.node-core{
+
+
+width:130px;
+
+
+height:130px;
+
+
+border-radius:50%;
+
+
+
+background:
+
+radial-gradient(
+
+circle,
+
+#55eaff,
+
+#0a3148
+
+);
+
+
+
+display:flex;
+
+
+align-items:center;
+
+
+justify-content:center;
 
 
 text-align:center;
 
 
-font-family:Orbitron;
+
+position:relative;
+
+
+
+box-shadow:
+
+
+0 0 60px rgba(85,234,255,.7);
+
+
+
+z-index:5;
+
 
 
 }
 
 
 
-.hud-center h2{
+
+.core-pulse{
 
 
-margin:0;
+position:absolute;
+
+
+inset:-25px;
+
+
+
+border-radius:50%;
+
+
+border:
+
+1px solid rgba(85,234,255,.5);
+
+
+
+animation:
+
+pulseRing 3s infinite;
+
+
+}
+
+
+
+
+
+@keyframes pulseRing{
+
+
+0%{
+
+
+transform:scale(.8);
+
+opacity:1;
+
+
+}
+
+
+100%{
+
+
+transform:scale(1.5);
+
+opacity:0;
+
+
+}
+
+
+
+}
+
+
+
+
+
+.core-text h2{
+
+
+font-family:
+
+Orbitron;
+
+
+font-size:22px;
+
+
+color:#fff;
+
+
+}
+
+
+
+.core-text p{
+
+
+font-size:10px;
+
+
+letter-spacing:2px;
+
+
+color:#d7f8ff;
+
+
+margin-top:5px;
+
+
+}
+
+
+
+
+
+
+
+
+
+/* ===============================
+ NODE DATA
+================================ */
+
+
+
+.node-info{
+
+
+display:grid;
+
+
+grid-template-columns:
+
+1fr;
+
+
+gap:18px;
+
+
+
+}
+
+
+
+.info-box{
+
+
+padding:22px;
+
+
+
+background:
+
+rgba(255,255,255,.04);
+
+
+
+border:
+
+1px solid rgba(85,234,255,.15);
+
+
+
+border-radius:18px;
+
+
+}
+
+
+
+
+.info-label{
+
+
+font-family:
+
+Orbitron;
+
+
+font-size:11px;
+
+
+letter-spacing:3px;
+
+
+color:
+
+var(--muted);
+
+
+
+}
+
+
+
+
+.info-value{
+
+
+margin-top:12px;
+
+
+font-family:
+
+Orbitron;
+
 
 font-size:24px;
 
 
-color:#5ce1ff;
+color:
 
+var(--cyan);
 
-}
-
-
-.hud-center p{
-
-
-margin-top:15px;
-
-font-size:13px;
-
-line-height:2;
-
-
-color:#c9edff;
 
 
 }
 
 
 
-</style>
+.info-value.green{
 
 
-</head>
+color:
+
+var(--green);
+
+
+}
 
 
 
-<body>
 
 
-<div class="container">
 
 
-<header class="header">
+@media(max-width:1000px){
+
+
+
+.polar-hud{
+
+
+grid-template-columns:
+
+1fr;
+
+
+height:auto;
+
+
+}
+
+
+
+.node-info{
+
+
+grid-template-columns:
+
+1fr 1fr;
+
+
+}
+
+
+
+}
+
+
+
+
+
+
+</style><!-- ===============================
+ ENERGY CORE SYSTEM
+================================ -->
+
+
+<div class="section-title">
+
+ENERGY CORE SYSTEM
+
+</div>
+
+
+
+<div class="energy-core">
+
+
+
+<div class="energy-title">
+
+POWER FLOW ARCHITECTURE
+
+</div>
+
+
+
+
+
+<div class="energy-chain">
+
+
+
+<div class="energy-node">
+
+
+<div class="energy-icon">
+
+☀
+
+</div>
 
 
 <div>
 
-<div class="logo">
 
-ANTARCTIC CORE
+<h3>
 
-</div>
+SOLAR ARRAY
 
-
-<div class="subtitle">
-
-AUTONOMOUS POLAR ENVIRONMENT MONITORING SYSTEM
-
-</div>
-
-
-</div>
-
-
-
-<div class="system-status">
-
-<span class="live-dot"></span>
-
-SYSTEM ONLINE
-
-</div>
-
-
-</header>
-
-
-
-
-
-<div class="status-grid">
-
-
-<div class="status-card">
-
-<div class="status-title">
-MODE STATUS
-</div>
-
-<div id="mode" class="status-value green">
---
-</div>
-
-</div>
-
-
-
-<div class="status-card">
-
-<div class="status-title">
-BATTERY VOLTAGE
-</div>
-
-<div id="voltage" class="status-value">
---
-</div>
-
-</div>
-
-
-
-
-<div class="status-card">
-
-<div class="status-title">
-SYSTEM CURRENT
-</div>
-
-<div id="current" class="status-value yellow">
---
-</div>
-
-</div>
-
-
-
-
-<div class="status-card">
-
-<div class="status-title">
-ERROR STATUS
-</div>
-
-<div id="error" class="status-value green">
---
-</div>
-
-</div>
-
-
-
-
-<div class="status-card">
-
-<div class="status-title">
-SESSION ID
-</div>
-
-<div id="ssid" class="status-value">
---
-</div>
-
-</div>
-
-
-
-</div>
-
-
-
-
-
-<div class="hud-panel">
-
-
-<div class="radar"></div>
-
-
-<div class="hud-center">
-
-
-<h2>ANT-01</h2>
+</h3>
 
 
 <p>
 
-LAT :
-<span id="lat">--</span>
+<span id="solarPower">
 
-<br>
+--
 
+</span>
 
-LNG :
-<span id="lng">--</span>
-
-
-<br>
-
-
-SAT :
-<span id="sat">--</span>
-
-
-<br>
-
-
-GPS :
-<span id="fix">--</span>
-
+W/m²
 
 </p>
 
@@ -810,59 +1832,21 @@ GPS :
 
 
 
-<!-- 后续模块 -->
-
-<!-- =========================
- ENERGY CORE
-========================= -->
 
 
-<div class="section-title">
-
-ENERGY & POWER SYSTEM
-
-</div>
+<div class="energy-arrow">
 
 
+<span></span>
 
-<div class="energy-panel">
+<span></span>
 
-
-<div class="energy-flow">
-
-
-<div class="energy-node">
-
-
-<div class="node-icon">
-☀
-</div>
-
-
-<div>
-
-SOLAR
-
-<br>
-
-<span id="solarValue">
---
-</span>
-
-W/m²
-
-</div>
+<span></span>
 
 
 </div>
 
 
-
-
-
-<div class="flow-line">
-
-</div>
 
 
 
@@ -871,31 +1855,56 @@ W/m²
 <div class="energy-node">
 
 
-<div class="node-icon">
+<div class="energy-icon">
+
 ⚡
+
 </div>
 
 
 <div>
+
+
+<h3>
 
 POWER CONTROL
 
-<br>
+</h3>
+
+
+<p>
 
 ACTIVE
 
-</div>
+</p>
 
 
 </div>
 
 
 
+</div>
 
 
-<div class="flow-line">
+
+
+
+
+
+
+<div class="energy-arrow">
+
+
+<span></span>
+
+<span></span>
+
+<span></span>
+
 
 </div>
+
+
 
 
 
@@ -904,81 +1913,41 @@ ACTIVE
 <div class="energy-node">
 
 
-<div class="node-icon">
+<div class="energy-icon">
+
 🔋
+
 </div>
 
 
 <div>
 
+
+<h3>
+
 BATTERY
 
-<br>
-
-<span id="batteryState">
-
-NORMAL
-
-</span>
+</h3>
 
 
-</div>
+<p>
 
+<span id="batteryVoltage">
 
-</div>
-
-
-
-</div>
-
-
-</div>
-
-
-
-
-
-
-
-
-
-<!-- =========================
- MAIN CHART
-========================= -->
-
-
-<div class="section-title">
-
-POWER TELEMETRY
-
-</div>
-
-
-
-<div class="chart-main">
-
-
-<div class="chart-header">
-
-BATTERY VOLTAGE
-
-<span>
-
-LIVE
+--
 
 </span>
 
+V
 
-</div>
-
-
-<canvas id="cv"></canvas>
+</p>
 
 
 </div>
 
 
 
+</div>
 
 
 
@@ -986,32 +1955,125 @@ LIVE
 
 
 
-<!-- =========================
- ENVIRONMENT
-========================= -->
+
+<div class="energy-arrow">
 
 
-<div class="section-title">
+<span></span>
 
-ENVIRONMENTAL SENSORS
+<span></span>
+
+<span></span>
+
 
 </div>
 
 
 
-<div class="chart-grid">
 
 
-<div class="chart-box">
 
-<div class="chart-name">
+
+<div class="energy-node">
+
+
+<div class="energy-icon">
+
+◉
+
+</div>
+
+
+<div>
+
+
+<h3>
+
+SCIENCE PAYLOAD
+
+</h3>
+
+
+<p>
+
+ONLINE
+
+</p>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+<!-- POWER STATUS -->
+
+
+
+<div class="power-status">
+
+
+
+
+
+<div class="power-box">
+
+
+<div class="power-label">
+
+VOLTAGE
+
+</div>
+
+
+<div id="powerVoltage"
+
+class="power-number">
+
+--
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="power-box">
+
+
+<div class="power-label">
 
 CURRENT
 
 </div>
 
 
-<canvas id="ca"></canvas>
+<div id="powerCurrent"
+
+class="power-number">
+
+--
+
+</div>
 
 
 </div>
@@ -1020,9 +2082,849 @@ CURRENT
 
 
 
-<div class="chart-box">
 
-<div class="chart-name">
+
+<div class="power-box">
+
+
+<div class="power-label">
+
+BATTERY HEALTH
+
+</div>
+
+
+<div class="power-number green">
+
+98%
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+<div class="power-box">
+
+
+<div class="power-label">
+
+SYSTEM LOAD
+
+</div>
+
+
+<div class="power-number">
+
+NORMAL
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+</div>
+
+
+
+
+</div>
+
+
+
+
+
+
+
+<style>
+
+
+
+/* ===============================
+ ENERGY CORE
+================================ */
+
+
+
+.energy-core{
+
+
+margin-top:20px;
+
+
+
+padding:35px;
+
+
+
+border-radius:30px;
+
+
+
+background:
+
+
+linear-gradient(
+
+145deg,
+
+rgba(10,35,55,.9),
+
+rgba(3,15,28,.95)
+
+);
+
+
+
+border:
+
+1px solid rgba(85,234,255,.18);
+
+
+
+box-shadow:
+
+0 0 50px rgba(85,234,255,.08);
+
+
+}
+
+
+
+
+.energy-title{
+
+
+font-family:
+
+Orbitron;
+
+
+
+font-size:13px;
+
+
+letter-spacing:4px;
+
+
+color:var(--cyan);
+
+
+
+margin-bottom:35px;
+
+
+}
+
+
+
+
+
+
+
+
+.energy-chain{
+
+
+display:flex;
+
+
+align-items:center;
+
+
+justify-content:center;
+
+
+
+gap:25px;
+
+
+
+}
+
+
+
+
+
+.energy-node{
+
+
+width:220px;
+
+
+height:130px;
+
+
+
+border-radius:22px;
+
+
+
+background:
+
+
+rgba(255,255,255,.04);
+
+
+
+border:
+
+1px solid rgba(85,234,255,.25);
+
+
+
+display:flex;
+
+
+align-items:center;
+
+
+justify-content:center;
+
+
+
+gap:15px;
+
+
+
+}
+
+
+
+
+.energy-icon{
+
+
+font-size:40px;
+
+
+filter:
+
+drop-shadow(
+0 0 15px rgba(85,234,255,.7)
+);
+
+
+
+}
+
+
+
+
+.energy-node h3{
+
+
+font-family:
+
+Orbitron;
+
+
+font-size:12px;
+
+
+
+letter-spacing:2px;
+
+
+
+color:white;
+
+
+}
+
+
+
+
+.energy-node p{
+
+
+margin-top:12px;
+
+
+color:var(--cyan);
+
+
+font-family:
+
+Orbitron;
+
+
+font-size:16px;
+
+
+}
+
+
+
+
+
+
+
+.energy-arrow{
+
+
+display:flex;
+
+
+gap:5px;
+
+
+}
+
+
+
+.energy-arrow span{
+
+
+width:18px;
+
+
+height:4px;
+
+
+
+background:
+
+var(--cyan);
+
+
+
+box-shadow:
+
+0 0 12px var(--cyan);
+
+
+
+animation:
+
+energyFlow 1.5s infinite;
+
+
+
+}
+
+
+
+.energy-arrow span:nth-child(2){
+
+
+animation-delay:.3s;
+
+
+}
+
+
+
+.energy-arrow span:nth-child(3){
+
+
+animation-delay:.6s;
+
+
+}
+
+
+
+
+@keyframes energyFlow{
+
+
+0%{
+
+
+opacity:.2;
+
+transform:translateX(-10px);
+
+
+}
+
+
+50%{
+
+
+opacity:1;
+
+
+}
+
+
+100%{
+
+
+opacity:.2;
+
+
+transform:translateX(10px);
+
+
+}
+
+
+
+}
+
+
+
+
+
+
+
+
+/* ===============================
+ POWER DATA
+================================ */
+
+
+.power-status{
+
+
+display:grid;
+
+
+grid-template-columns:
+
+repeat(4,1fr);
+
+
+
+gap:18px;
+
+
+
+margin-top:35px;
+
+
+
+}
+
+
+
+
+.power-box{
+
+
+padding:25px;
+
+
+
+background:
+
+rgba(255,255,255,.035);
+
+
+
+border-radius:18px;
+
+
+
+border:
+
+1px solid rgba(85,234,255,.15);
+
+
+
+text-align:center;
+
+
+}
+
+
+
+.power-label{
+
+
+font-family:
+
+Orbitron;
+
+
+
+font-size:11px;
+
+
+
+letter-spacing:3px;
+
+
+
+color:
+
+var(--muted);
+
+
+}
+
+
+
+
+.power-number{
+
+
+margin-top:15px;
+
+
+font-family:
+
+Orbitron;
+
+
+
+font-size:28px;
+
+
+
+color:
+
+var(--cyan);
+
+
+
+}
+
+
+
+
+.power-number.green{
+
+
+color:
+
+var(--green);
+
+
+}
+
+
+
+
+
+@media(max-width:1100px){
+
+
+.energy-chain{
+
+
+flex-direction:column;
+
+
+}
+
+
+.energy-arrow{
+
+
+transform:rotate(90deg);
+
+
+}
+
+
+.power-status{
+
+
+grid-template-columns:
+
+1fr 1fr;
+
+
+}
+
+
+
+}
+
+
+
+
+
+</style>
+
+
+
+
+
+<script>
+
+
+// 能源数据显示
+
+
+function updateEnergy(){
+
+
+if(!DATA || DATA.length===0)
+
+return;
+
+
+
+let last=
+
+DATA[DATA.length-1];
+
+
+
+
+let solar=
+
+document.getElementById(
+"solarPower"
+);
+
+
+
+if(solar)
+
+solar.innerHTML=
+
+last.s ?? "--";
+
+
+
+
+let voltage=
+
+Number(last.v ?? 0)
+.toFixed(2);
+
+
+
+let ids=[
+
+"batteryVoltage",
+
+"powerVoltage"
+
+];
+
+
+
+ids.forEach(id=>{
+
+
+let el=document.getElementById(id);
+
+
+if(el)
+
+el.innerHTML=voltage;
+
+
+
+});
+
+
+
+
+
+
+let current=
+
+document.getElementById(
+"powerCurrent"
+);
+
+
+
+if(current)
+
+current.innerHTML=
+
+last.a ?? "--";
+
+
+
+}
+
+
+
+setInterval(
+
+updateEnergy,
+
+2000
+
+);
+
+
+
+</script><!-- ===============================
+ DATA VISUALIZATION CORE
+================================ -->
+
+
+<div class="section-title">
+
+SCIENTIFIC TELEMETRY
+
+</div>
+
+
+
+
+
+<!-- 电压主图 -->
+
+
+<div class="main-chart-panel">
+
+
+<div class="chart-top">
+
+
+<div>
+
+
+<div class="chart-main-title">
+
+BATTERY VOLTAGE
+
+</div>
+
+
+<div class="chart-sub">
+
+REAL TIME POWER CONDITION MONITOR
+
+</div>
+
+
+</div>
+
+
+
+
+<div class="metric">
+
+
+<div>
+
+CURRENT
+
+</div>
+
+
+<span id="mainVoltage">
+
+--
+
+</span>
+
+
+V
+
+
+</div>
+
+
+
+
+</div>
+
+
+
+<canvas id="cv"></canvas>
+
+
+
+<div class="chart-stat">
+
+
+<div>
+
+MAX
+
+<br>
+
+<span id="vMax">
+
+--
+
+</span>
+
+
+</div>
+
+
+<div>
+
+MIN
+
+<br>
+
+<span id="vMin">
+
+--
+
+</span>
+
+
+</div>
+
+
+
+<div>
+
+AVG
+
+<br>
+
+<span id="vAvg">
+
+--
+
+</span>
+
+
+</div>
+
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+<!-- 环境 -->
+
+
+<div class="section-title">
+
+ENVIRONMENTAL SENSOR ARRAY
+
+</div>
+
+
+
+
+
+<div class="sensor-grid">
+
+
+
+
+
+<div class="sensor-card">
+
+
+<div class="sensor-name">
 
 SHT35 TEMPERATURE
 
@@ -1039,11 +2941,10 @@ SHT35 TEMPERATURE
 
 
 
+<div class="sensor-card">
 
-<div class="chart-box">
 
-
-<div class="chart-name">
+<div class="sensor-name">
 
 SHT35 HUMIDITY
 
@@ -1061,10 +2962,10 @@ SHT35 HUMIDITY
 
 
 
-<div class="chart-box">
+<div class="sensor-card">
 
 
-<div class="chart-name">
+<div class="sensor-name">
 
 RS485 TEMPERATURE
 
@@ -1082,10 +2983,10 @@ RS485 TEMPERATURE
 
 
 
-<div class="chart-box">
+<div class="sensor-card">
 
 
-<div class="chart-name">
+<div class="sensor-name">
 
 RS485 HUMIDITY
 
@@ -1103,11 +3004,29 @@ RS485 HUMIDITY
 
 
 
+</div>
 
-<div class="chart-box">
 
 
-<div class="chart-name">
+
+
+
+
+
+
+<!-- 能源环境辅助 -->
+
+
+<div class="sensor-grid bottom-row">
+
+
+
+
+
+<div class="sensor-card">
+
+
+<div class="sensor-name">
 
 SOLAR IRRADIANCE
 
@@ -1125,10 +3044,10 @@ SOLAR IRRADIANCE
 
 
 
-<div class="chart-box">
+<div class="sensor-card">
 
 
-<div class="chart-name">
+<div class="sensor-name">
 
 WIND STATUS
 
@@ -1142,94 +3061,12 @@ WIND STATUS
 
 
 
-</div>
 
 
-
-
-
-
-
-
-<!-- =========================
- DATA TABLE
-========================= -->
-
-
-<div class="section-title">
-
-REAL TIME DATA STREAM
 
 </div>
 
 
-
-<div class="data-panel">
-
-
-<table>
-
-
-<thead>
-
-
-<tr>
-
-<th>
-TIME
-</th>
-
-<th>
-MODE
-</th>
-
-<th>
-V
-</th>
-
-<th>
-CURRENT
-</th>
-
-<th>
-SOLAR
-</th>
-
-<th>
-TEMP
-</th>
-
-<th>
-HUM
-</th>
-
-<th>
-GPS
-</th>
-
-<th>
-ERROR
-</th>
-
-
-</tr>
-
-
-</thead>
-
-
-
-<tbody id="tbody">
-
-
-</tbody>
-
-
-
-</table>
-
-
-</div>
 
 
 
@@ -1241,264 +3078,55 @@ ERROR
 
 
 /* =====================
- SECTION TITLE
+ MAIN CHART
 ===================== */
 
 
-.section-title{
+.main-chart-panel{
 
 
-margin-top:35px;
+margin-top:20px;
 
 
-margin-bottom:15px;
-
-
-font-family:
-
-Orbitron;
-
-
-font-size:14px;
-
-
-letter-spacing:4px;
-
-
-color:#55ddff;
-
-
-border-left:
-
-3px solid #55ddff;
-
-
-padding-left:15px;
-
-
-}
+height:520px;
 
 
 
+padding:30px;
 
-
-
-
-
-/* =====================
- ENERGY
-===================== */
-
-
-.energy-panel{
 
 
 background:
 
-rgba(5,25,45,.8);
-
-
-border:
-
-1px solid rgba(80,220,255,.2);
-
-
-border-radius:25px;
-
-
-padding:35px;
-
-
-
-}
-
-
-
-.energy-flow{
-
-
-display:flex;
-
-
-align-items:center;
-
-
-justify-content:center;
-
-
-gap:20px;
-
-
-}
-
-
-
-.energy-node{
-
-
-width:220px;
-
-
-height:100px;
-
-
-border-radius:18px;
-
-
-background:
 
 linear-gradient(
+
 145deg,
-rgba(30,70,100,.8),
-rgba(5,20,35,.9)
+
+rgba(10,35,55,.9),
+
+rgba(3,15,28,.95)
+
 );
+
+
+
+border-radius:30px;
 
 
 
 border:
 
-1px solid rgba(80,220,255,.25);
-
-
-display:flex;
-
-
-align-items:center;
-
-
-justify-content:center;
-
-
-gap:15px;
-
-
-font-family:
-
-Orbitron;
-
-
-font-size:13px;
+1px solid rgba(85,234,255,.2);
 
 
 }
 
 
 
-.node-icon{
 
 
-font-size:35px;
-
-
-}
-
-
-
-.flow-line{
-
-
-width:100px;
-
-
-height:2px;
-
-
-background:
-
-linear-gradient(
-90deg,
-transparent,
-#55ddff,
-transparent
-);
-
-
-
-animation:
-
-flow 2s linear infinite;
-
-
-}
-
-
-@keyframes flow{
-
-
-from{
-
-opacity:.2;
-
-}
-
-50%{
-
-opacity:1;
-
-}
-
-to{
-
-opacity:.2;
-
-}
-
-}
-
-
-
-
-
-
-
-
-
-/* =====================
- CHART
-===================== */
-
-
-.chart-main{
-
-
-height:420px;
-
-
-background:
-
-rgba(5,22,40,.85);
-
-
-border:
-
-1px solid rgba(80,220,255,.18);
-
-
-border-radius:25px;
-
-
-padding:25px;
-
-
-}
-
-
-
-.chart-header{
-
-
-font-family:
-
-Orbitron;
-
-
-letter-spacing:3px;
-
-
-color:#55ddff;
-
-
-margin-bottom:20px;
+.chart-top{
 
 
 display:flex;
@@ -1507,40 +3135,120 @@ display:flex;
 justify-content:space-between;
 
 
+align-items:center;
+
+
 }
 
 
 
-.chart-header span{
+.chart-main-title{
 
 
-color:#66ffb0;
+font-family:
+
+Orbitron;
+
+
+font-size:22px;
+
+
+letter-spacing:4px;
+
+
+color:white;
+
+
+}
+
+
+
+
+.chart-sub{
+
+
+margin-top:10px;
+
+
+color:
+
+var(--muted);
 
 
 font-size:12px;
 
 
-}
-
-
-
-
-
-.chart-main canvas{
-
-
-height:340px!important;
+letter-spacing:2px;
 
 
 }
 
 
 
+.metric{
+
+
+font-family:
+
+Orbitron;
+
+
+color:
+
+var(--muted);
+
+
+text-align:right;
+
+
+}
 
 
 
 
-.chart-grid{
+.metric span{
+
+
+display:block;
+
+
+font-size:45px;
+
+
+color:
+
+var(--cyan);
+
+
+text-shadow:
+
+0 0 25px rgba(85,234,255,.7);
+
+
+}
+
+
+
+
+
+.main-chart-panel canvas{
+
+
+height:320px!important;
+
+
+margin-top:20px;
+
+
+}
+
+
+
+
+
+
+
+.chart-stat{
 
 
 display:grid;
@@ -1551,6 +3259,10 @@ grid-template-columns:
 repeat(3,1fr);
 
 
+
+margin-top:15px;
+
+
 gap:20px;
 
 
@@ -1558,28 +3270,53 @@ gap:20px;
 
 
 
+.chart-stat div{
 
 
-.chart-box{
+text-align:center;
 
 
-height:280px;
+padding:12px;
 
 
 background:
 
-rgba(5,22,40,.85);
+rgba(255,255,255,.04);
 
 
-border:
 
-1px solid rgba(80,220,255,.15);
-
-
-border-radius:22px;
+border-radius:15px;
 
 
-padding:20px;
+
+font-family:
+
+Orbitron;
+
+
+
+font-size:11px;
+
+
+
+color:
+
+var(--muted);
+
+
+}
+
+
+
+.chart-stat span{
+
+
+font-size:18px;
+
+
+color:
+
+var(--cyan);
 
 
 }
@@ -1588,7 +3325,69 @@ padding:20px;
 
 
 
-.chart-name{
+
+
+
+/* =====================
+ SENSOR GRID
+===================== */
+
+
+
+.sensor-grid{
+
+
+display:grid;
+
+
+grid-template-columns:
+
+repeat(2,1fr);
+
+
+
+gap:25px;
+
+
+
+}
+
+
+
+
+.sensor-card{
+
+
+height:300px;
+
+
+padding:25px;
+
+
+
+background:
+
+
+rgba(5,22,40,.9);
+
+
+
+border-radius:25px;
+
+
+
+border:
+
+1px solid rgba(85,234,255,.15);
+
+
+
+}
+
+
+
+
+.sensor-name{
 
 
 font-family:
@@ -1596,13 +3395,19 @@ font-family:
 Orbitron;
 
 
-font-size:12px;
+
+font-size:13px;
 
 
-letter-spacing:2px;
+
+letter-spacing:3px;
 
 
-color:#9bcde5;
+
+color:
+
+var(--cyan);
+
 
 
 margin-bottom:15px;
@@ -1613,7 +3418,8 @@ margin-bottom:15px;
 
 
 
-.chart-box canvas{
+
+.sensor-card canvas{
 
 
 height:210px!important;
@@ -1625,279 +3431,97 @@ height:210px!important;
 
 
 
+.bottom-row{
 
 
-
-
-/* =====================
- TABLE
-===================== */
-
-
-.data-panel{
-
-
-background:
-
-rgba(5,20,35,.9);
-
-
-border-radius:22px;
-
-
-padding:20px;
-
-
-overflow:auto;
-
-
-border:
-
-1px solid rgba(80,220,255,.15);
+margin-top:25px;
 
 
 }
 
 
 
-table{
 
 
-width:100%;
+</style>
 
 
-border-collapse:collapse;
 
 
-font-size:13px;
 
 
-}
 
 
 
-th{
-
-
-height:45px;
-
-
-font-family:
-
-Orbitron;
-
-
-font-size:11px;
-
-
-letter-spacing:2px;
-
-
-color:#55ddff;
-
-
-background:
-
-rgba(80,220,255,.08);
-
-
-}
-
-
-
-td{
-
-
-padding:13px;
-
-
-text-align:center;
-
-
-border-bottom:
-
-1px solid rgba(255,255,255,.05);
-
-
-color:#dff7ff;
-
-
-}
-
-
-
-tr:hover{
-
-
-background:
-
-rgba(80,220,255,.06);
-
-
-}
-
-
-
-
-
-
-@media(max-width:1000px){
-
-
-
-.status-grid{
-
-
-grid-template-columns:
-
-repeat(2,1fr);
-
-
-}
-
-
-
-.energy-flow{
-
-
-flex-direction:column;
-
-
-}
-
-
-
-.flow-line{
-
-
-height:50px;
-
-
-width:2px;
-
-
-}
-
-
-
-.chart-grid{
-
-
-grid-template-columns:
-
-1fr;
-
-
-}
-
-
-}
-
-
-
-</style><script>
+<script>
 
 
 // ===============================
-// GLOBAL DATA
-// ===============================
-
-
-let DATA=[];
-
-
-let charts={};
-
-
-
-
-
-
-// ===============================
-// CHART CONFIG
+// CHART ENGINE
 // ===============================
 
 
 
-const chartConfig={
+let chartPool={};
 
+
+
+
+
+const chartMap={
 
 
 cv:{
-title:"BATTERY VOLTAGE",
 key:"v",
-unit:"V",
-color:"#55ddff"
+color:"#55eaff",
+title:"Voltage"
 },
-
-
-
-
-ca:{
-title:"SYSTEM CURRENT",
-key:"a",
-unit:"mA",
-color:"#ffd45c"
-},
-
 
 
 
 cst:{
-title:"SHT35 TEMPERATURE",
 key:"j",
-unit:"℃",
-color:"#ff7fa8"
+color:"#ff7fa8",
+title:"Temperature"
 },
-
-
 
 
 csh:{
-title:"SHT35 HUMIDITY",
 key:"k",
-unit:"%RH",
-color:"#55e8d0"
+color:"#55e8d0",
+title:"Humidity"
 },
-
 
 
 
 ctt:{
-title:"RS485 TEMPERATURE",
 key:"t",
-unit:"℃",
-color:"#ffb866"
+color:"#ffb866",
+title:"RS485 Temperature"
 },
-
 
 
 
 cth:{
-title:"RS485 HUMIDITY",
 key:"h",
-unit:"%RH",
-color:"#bda8ff"
+color:"#bda8ff",
+title:"RS485 Humidity"
 },
-
 
 
 
 cs:{
-title:"SOLAR IRRADIANCE",
 key:"s",
-unit:"W/m²",
-color:"#ffe699"
+color:"#ffe699",
+title:"Solar"
 },
 
 
 
-
 cws:{
-title:"WIND",
 key:"w",
-unit:"m/s",
-color:"#62ffa2"
+color:"#62ffb0",
+title:"Wind"
 }
 
 
@@ -1912,52 +3536,38 @@ color:"#62ffa2"
 
 
 
-// ===============================
-// CREATE CHART
-// ===============================
+function buildChart(id){
 
 
 
-function createChart(id){
+let ctx=
+
+document
+.getElementById(id)
+.getContext("2d");
 
 
 
-const canvas=
-document.getElementById(id);
+let cfg=
 
-
-
-if(!canvas)
-
-return;
-
-
-
-const cfg=
-chartConfig[id];
-
-
-
-const ctx=
-canvas.getContext("2d");
-
-
+chartMap[id];
 
 
 
 let gradient=
+
 ctx.createLinearGradient(
 0,
 0,
 0,
-350
+300
 );
 
 
 
 gradient.addColorStop(
 0,
-cfg.color+"66"
+cfg.color+"55"
 );
 
 
@@ -1971,80 +3581,7 @@ cfg.color+"00"
 
 
 
-
-
-
-charts[id]=new Chart(
-ctx,
-{
-
-
-type:"line",
-
-
-
-data:{
-
-
-labels:[],
-
-
-datasets:[{
-
-
-label:
-cfg.title,
-
-
-data:[],
-
-
-borderColor:
-cfg.color,
-
-
-backgroundColor:
-gradient,
-
-
-fill:true,
-
-
-tension:.45,
-
-
-borderWidth:3,
-
-
-pointRadius:0,
-
-
-pointHoverRadius:7,
-
-
-pointHoverBackgroundColor:
-cfg.color,
-
-
-pointHoverBorderColor:
-"#fff",
-
-
-pointHoverBorderWidth:2
-
-
-
-}]
-
-
-
-},
-
-
-
-
-options:{
-
+let options={
 
 
 responsive:true,
@@ -2054,35 +3591,7 @@ maintainAspectRatio:false,
 
 
 
-
-animation:{
-
-
-duration:800
-
-
-},
-
-
-
-
-
-interaction:{
-
-
-mode:"index",
-
-
-intersect:false
-
-
-},
-
-
-
-
 plugins:{
-
 
 
 legend:{
@@ -2091,41 +3600,7 @@ legend:{
 display:false
 
 
-},
-
-
-
-
-tooltip:{
-
-
-backgroundColor:
-"rgba(2,10,20,.95)",
-
-
-
-borderColor:
-cfg.color,
-
-
-borderWidth:1,
-
-
-
-titleColor:"#9feaff",
-
-
-
-bodyColor:"#fff",
-
-
-
-padding:12
-
-
-
 }
-
 
 
 },
@@ -2137,46 +3612,30 @@ padding:12
 scales:{
 
 
-
 x:{
-
 
 
 ticks:{
 
 
-color:"rgba(180,220,240,.55)",
+color:"#7895aa",
 
-
-maxTicksLimit:8,
-
-
-font:{
-
-
-size:10
-
-}
+maxTicksLimit:8
 
 
 },
-
 
 
 grid:{
 
 
-color:
-"rgba(100,220,255,.05)"
+color:"rgba(85,234,255,.05)"
 
 
 }
 
 
-
 },
-
-
 
 
 
@@ -2184,50 +3643,105 @@ color:
 y:{
 
 
-
 ticks:{
 
 
-color:
-"rgba(180,220,240,.55)",
+color:"#7895aa"
 
 
+},
 
-font:{
+
+grid:{
 
 
-size:10
+color:"rgba(85,234,255,.05)"
 
 
 }
+
+
+}
+
+
+
+}
+
+
+
+};
+
+
+
+
+
+
+// ★太阳辐射特殊处理
+
+
+if(id==="cs"){
+
+
+
+options.scales.y.beginAtZero=true;
+
+
+
+}
+
+
+
+
+chartPool[id]=new Chart(
+ctx,
+{
+
+
+type:"line",
+
+
+data:{
+
+
+labels:[],
+
+
+datasets:[{
+
+
+data:[],
+
+
+borderColor:
+
+cfg.color,
+
+
+backgroundColor:
+
+gradient,
+
+
+fill:true,
+
+
+borderWidth:3,
+
+
+tension:.45,
+
+
+pointRadius:0
+
+
+}]
 
 
 },
 
 
 
-
-grid:{
-
-
-color:
-"rgba(100,220,255,.05)"
-
-
-}
-
-
-
-
-}
-
-
-
-}
-
-
-
-}
+options:options
 
 
 
@@ -2247,9 +3761,16 @@ color:
 
 
 
-// ===============================
-// UPDATE CHART
-// ===============================
+Object.keys(chartMap)
+.forEach(
+
+id=>
+
+buildChart(id)
+
+);
+
+
 
 
 
@@ -2257,18 +3778,25 @@ function updateCharts(){
 
 
 
-Object.keys(chartConfig)
+if(!DATA.length)
+
+return;
+
+
+
+Object.keys(chartMap)
 .forEach(id=>{
 
 
-
 let cfg=
-chartConfig[id];
+
+chartMap[id];
 
 
 
 let chart=
-charts[id];
+
+chartPool[id];
 
 
 
@@ -2278,19 +3806,14 @@ return;
 
 
 
-
-
 chart.data.labels=
-
 
 DATA.map(
 
 d=>
 
-d.time
-?
-d.time.substring(11,19)
-:
+d.time?
+d.time.substring(11,19):
 ""
 
 );
@@ -2299,23 +3822,15 @@ d.time.substring(11,19)
 
 
 
-
 chart.data.datasets[0].data=
-
 
 DATA.map(
 
 d=>
 
-d[cfg.key]!==undefined
-?
-d[cfg.key]
-:
-null
+d[cfg.key]??null
 
 );
-
-
 
 
 
@@ -2327,292 +3842,47 @@ chart.update("none");
 
 
 
-}
 
 
 
+let voltage=
 
-
-
-
-
-
-
-
-// ===============================
-// ENERGY DISPLAY
-// ===============================
-
-
-
-function updateEnergy(last){
-
-
-
-if(!last)
-
-return;
-
-
-
-let solar=
-document.getElementById(
-"solarValue"
-);
-
-
-
-if(solar)
-
-solar.innerHTML=
-
-last.s??"--";
-
-
-
-
-
-let battery=
-document.getElementById(
-"batteryState"
-);
-
-
-
-if(battery){
-
-
-let v=
-Number(last.v);
-
-
-
-if(v>11)
-
-battery.innerHTML="NORMAL";
-
-
-else
-
-battery.innerHTML="LOW";
-
-
-}
-
-
-
-
-}
-
-
-
-
-
-
-
-
-
-// ===============================
-// DATA LOAD
-// ===============================
-
-
-
-async function loadData(){
-
-
-try{
-
-
-
-let response=
-
-await fetch(
-"data.json?v="+Date.now()
-);
-
-
-
-
-DATA=
-
-await response.json();
-
-
-
-render();
-
-
-
-}
-
-catch(error){
-
-
-console.log(
-"DATA LOAD ERROR",
-error
-);
-
-
-
-}
-
-
-
-}
-
-
-
-
-
-
-
-
-
-
-// ===============================
-// MAIN RENDER
-// ===============================
-
-
-
-function render(){
-
-
-
-if(DATA.length===0)
-
-return;
-
-
-
-
-
-let last=
-
-DATA[
-DATA.length-1
-];
-
-
-
-
-
-// 状态卡
-
-
-document
-.getElementById("mode")
-.innerHTML=
-
-last.mode ?? "--";
-
-
-
-
-document
-.getElementById("voltage")
-.innerHTML=
-
-Number(last.v??0)
-.toFixed(2);
-
-
-
-
-
-document
-.getElementById("current")
-.innerHTML=
-
-Number(last.a??0);
-
-
-
-
-
-document
-.getElementById("error")
-.innerHTML=
-
-last.e ?? "--";
-
-
-
-
-
-document
-.getElementById("ssid")
-.innerHTML=
-
-last.i ?? "--";
-
-
-
-
-
-
-
-// GPS HUD
-
-
-let gps=
-
-
-[...DATA]
-.reverse()
-.find(
-
+DATA.map(
 d=>
-
-d.x &&
-d.y
-
+Number(d.v)
+)
+.filter(
+x=>
+!isNaN(x)
 );
 
 
 
 
-
-if(gps){
-
-
-document
-.getElementById("lat")
-.innerHTML=
-
-Number(gps.x)
-.toFixed(5);
+if(voltage.length){
 
 
 
-document
-.getElementById("lng")
-.innerHTML=
+document.getElementById("vMax").innerHTML=
 
-Number(gps.y)
-.toFixed(5);
+Math.max(...voltage).toFixed(2);
 
 
 
-document
-.getElementById("sat")
-.innerHTML=
+document.getElementById("vMin").innerHTML=
 
-gps.n??"--";
+Math.min(...voltage).toFixed(2);
 
 
 
-document
-.getElementById("fix")
-.innerHTML=
+document.getElementById("vAvg").innerHTML=
 
-gps.g==="O"
-?
-"LOCKED"
-:
-"SEARCH";
+(
+voltage.reduce((a,b)=>a+b,0)
+/
+voltage.length
+
+).toFixed(2);
 
 
 
@@ -2620,123 +3890,107 @@ gps.g==="O"
 
 
 
-
-
-updateEnergy(last);
-
-
-
-updateCharts();
-
-
-
 }
-
-
-
-
-
-
-
-
-
-// ===============================
-// START CHART
-// ===============================
-
-
-
-Object.keys(chartConfig)
-.forEach(
-
-id=>
-
-createChart(id)
-
-);
-
-
-
-
-
-loadData();
-
-
-
-
-
-setInterval(
-
-loadData,
-
-300000
-
-);
-
 
 
 
 
 </script><!-- ===============================
- SYSTEM HEALTH
+ AI HEALTH & OPERATION CENTER
 ================================ -->
 
 
 <div class="section-title">
 
-SYSTEM HEALTH MONITOR
+AUTONOMOUS INTELLIGENCE CENTER
 
 </div>
 
 
 
 
-<div class="health-panel">
+
+<div class="ai-grid">
 
 
 
-<div class="health-main">
+
+
+<!-- HEALTH SCORE -->
+
+
+<div class="ai-panel health-main">
+
+
+<div class="ai-title">
+
+SYSTEM HEALTH
+
+</div>
+
+
+
+<div class="health-circle">
 
 
 <div class="health-number">
 
-98%
+98.6%
 
 </div>
 
 
-<div class="health-text">
+<div class="health-label">
 
-SYSTEM HEALTH
-
-<br>
-
-ALL SUBSYSTEMS NOMINAL
-
-</div>
-
+NOMINAL
 
 </div>
 
 
 
-
-
-<div class="health-items">
+</div>
 
 
 
-<div class="health-item">
+<div class="health-desc">
 
+ALL SUBSYSTEMS OPERATIONAL
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+<!-- SUBSYSTEM STATUS -->
+
+
+<div class="ai-panel">
+
+
+<div class="ai-title">
+
+SUBSYSTEM STATUS
+
+</div>
+
+
+
+<div class="status-line">
 
 <span>
 
-POWER
+POWER SYSTEM
 
 </span>
 
 
-<b class="ok">
+<b class="normal">
 
 NORMAL
 
@@ -2747,18 +4001,16 @@ NORMAL
 
 
 
-
-<div class="health-item">
-
+<div class="status-line">
 
 <span>
 
-SENSOR
+SENSOR ARRAY
 
 </span>
 
 
-<b class="ok">
+<b class="normal">
 
 ACTIVE
 
@@ -2769,19 +4021,16 @@ ACTIVE
 
 
 
-
-
-<div class="health-item">
-
+<div class="status-line">
 
 <span>
 
-GPS
+GPS MODULE
 
 </span>
 
 
-<b class="ok">
+<b class="normal">
 
 LOCKED
 
@@ -2792,19 +4041,16 @@ LOCKED
 
 
 
-
-
-<div class="health-item">
-
+<div class="status-line">
 
 <span>
 
-STORAGE
+DATA STORAGE
 
 </span>
 
 
-<b class="ok">
+<b class="normal">
 
 ONLINE
 
@@ -2815,11 +4061,6 @@ ONLINE
 
 
 
-
-</div>
-
-
-
 </div>
 
 
@@ -2828,174 +4069,154 @@ ONLINE
 
 
 
+<!-- DATA STATISTICS -->
 
 
-<!-- ===============================
- MISSION INFO
-================================ -->
+<div class="ai-panel">
 
 
+<div class="ai-title">
 
-<div class="section-title">
-
-MISSION INFORMATION
+DATA ACQUISITION
 
 </div>
 
 
 
-
-<div class="mission-panel">
-
+<div class="data-number">
 
 
-<div>
-
-
-<div class="mission-label">
-
-NODE IDENTIFIER
-
-</div>
-
-
-<div class="mission-value">
-
-ANTARCTIC NODE A01
-
-</div>
-
-
-</div>
-
-
-
-
-
-<div>
-
-
-<div class="mission-label">
-
-OPERATION MODE
-
-</div>
-
-
-<div class="mission-value">
-
-AUTONOMOUS OBSERVATION
-
-</div>
-
-
-</div>
-
-
-
-
-
-<div>
-
-
-<div class="mission-label">
-
-DATA TRANSMISSION
-
-</div>
-
-
-<div class="mission-value green-text">
-
-CONNECTED
-
-</div>
-
-
-</div>
-
-
-
-
-<div>
-
-
-<div class="mission-label">
-
-LAST UPDATE
-
-</div>
-
-
-<div id="lastTime"
-class="mission-value">
+<span id="recordCount">
 
 --
-
-</div>
-
-
-</div>
-
-
-
-</div>
-
-
-
-
-
-
-
-
-
-<!-- ===============================
- TELEMETRY STREAM
-================================ -->
-
-
-<div class="section-title">
-
-LIVE TELEMETRY STREAM
-
-</div>
-
-
-
-<div class="stream-panel">
-
-
-
-<div class="stream-header">
-
-
-<span>
-
-REAL TIME SENSOR LOG
 
 </span>
 
 
-<div class="stream-light">
-
-● STREAM ACTIVE
-
-</div>
+<br>
 
 
-</div>
+<small>
 
+TOTAL RECORDS
 
-
-
-<div id="streamList">
+</small>
 
 
 </div>
 
 
 
+
+
+<div class="data-row">
+
+SAMPLING RATE
+
+<b>
+
+5 MIN
+
+</b>
+
 </div>
+
+
+
+<div class="data-row">
+
+UPTIME
+
+<b>
+
+2456 H
+
+</b>
+
+</div>
+
+
+
+<div class="data-row">
+
+TRANSMISSION
+
+<b class="normal">
+
+CONNECTED
+
+</b>
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<!-- ===============================
+ MISSION LOG
+================================ -->
+
+
+<div class="section-title">
+
+MISSION TELEMETRY LOG
+
+</div>
+
+
+
+
+
+
+<div class="log-panel">
+
+
+<div class="log-header">
+
+
+<span>
+
+LIVE SENSOR STREAM
+
+</span>
+
+
+<span class="log-live">
+
+● RECEIVING
+
+</span>
+
+
+</div>
+
+
+
+<div id="logContainer">
+
+
+</div>
+
+
+
+</div>
+
 
 
 
@@ -3006,43 +4227,107 @@ REAL TIME SENSOR LOG
 <style>
 
 
-/* =========================
- HEALTH
-========================= */
+
+/* ===============================
+ AI GRID
+================================ */
 
 
 
-.health-panel{
+.ai-grid{
 
 
-display:flex;
+display:grid;
 
 
-gap:40px;
+grid-template-columns:
+
+1.2fr 1fr 1fr;
 
 
-background:
 
-rgba(5,25,45,.85);
+gap:25px;
 
-
-border:
-
-1px solid rgba(80,220,255,.2);
-
-
-border-radius:25px;
-
-
-padding:35px;
-
-
-align-items:center;
 
 
 }
 
 
+
+
+
+.ai-panel{
+
+
+background:
+
+
+linear-gradient(
+
+145deg,
+
+rgba(10,35,55,.9),
+
+rgba(3,15,28,.95)
+
+);
+
+
+
+border-radius:25px;
+
+
+padding:30px;
+
+
+
+border:
+
+1px solid rgba(85,234,255,.18);
+
+
+
+}
+
+
+
+
+
+.ai-title{
+
+
+font-family:
+
+Orbitron;
+
+
+
+font-size:13px;
+
+
+
+letter-spacing:4px;
+
+
+
+color:
+
+var(--cyan);
+
+
+
+margin-bottom:25px;
+
+
+
+}
+
+
+
+
+
+
+/* HEALTH */
 
 
 .health-main{
@@ -3051,232 +4336,125 @@ align-items:center;
 display:flex;
 
 
+flex-direction:column;
+
+
 align-items:center;
 
 
-gap:25px;
+justify-content:center;
+
 
 
 }
 
 
+
+.health-circle{
+
+
+width:180px;
+
+
+height:180px;
+
+
+
+border-radius:50%;
+
+
+
+border:
+
+8px solid rgba(99,255,176,.35);
+
+
+
+display:flex;
+
+
+flex-direction:column;
+
+
+justify-content:center;
+
+
+align-items:center;
+
+
+
+box-shadow:
+
+
+0 0 50px rgba(99,255,176,.25);
+
+
+
+}
 
 
 
 .health-number{
 
 
-font-family:Orbitron;
+font-family:
+
+Orbitron;
 
 
-font-size:70px;
+font-size:38px;
+
 
 
 font-weight:900;
 
 
-color:#62ffa2;
 
+color:
 
-text-shadow:
+var(--green);
 
-0 0 30px rgba(98,255,162,.8);
 
 
 }
 
 
 
-
-.health-text{
-
-
-font-family:Orbitron;
+.health-label{
 
 
-font-size:14px;
+margin-top:10px;
 
 
-letter-spacing:2px;
+font-family:
+
+Orbitron;
 
 
-line-height:2;
+color:white;
 
-
-color:#bfefff;
 
 
 }
 
 
 
+.health-desc{
 
 
-.health-items{
-
-
-flex:1;
-
-
-display:grid;
-
-
-grid-template-columns:
-
-repeat(4,1fr);
-
-
-gap:15px;
-
-
-}
-
-
-
-
-.health-item{
-
-
-padding:20px;
-
-
-background:
-
-rgba(255,255,255,.04);
-
-
-border-radius:15px;
-
-
-text-align:center;
-
-
-font-family:Orbitron;
-
-
-}
-
-
-
-
-.health-item span{
-
-
-display:block;
+margin-top:25px;
 
 
 font-size:12px;
 
 
-color:#8caec5;
-
-
-margin-bottom:10px;
-
-
-}
-
-
-
-.ok{
-
-
-color:#62ffa2;
-
-
-}
-
-
-
-
-
-
-
-
-
-/* =========================
- MISSION
-========================= */
-
-
-
-.mission-panel{
-
-
-display:grid;
-
-
-grid-template-columns:
-
-repeat(4,1fr);
-
-
-gap:20px;
-
-
-
-background:
-
-rgba(5,25,45,.85);
-
-
-
-border-radius:25px;
-
-
-border:
-
-1px solid rgba(80,220,255,.15);
-
-
-padding:30px;
-
-
-}
-
-
-
-
-
-.mission-label{
-
-
-font-size:11px;
-
-
 letter-spacing:2px;
 
 
-color:#7894ad;
+color:
 
+var(--muted);
 
-margin-bottom:10px;
-
-
-}
-
-
-
-.mission-value{
-
-
-font-family:Orbitron;
-
-
-font-size:14px;
-
-
-color:#dff7ff;
-
-
-}
-
-
-
-.green-text{
-
-
-color:#62ffa2;
 
 
 }
@@ -3288,58 +4466,79 @@ color:#62ffa2;
 
 
 
-/* =========================
- STREAM
-========================= */
+
+/* STATUS */
 
 
-.stream-panel{
+.status-line{
 
 
-background:
-
-rgba(2,14,25,.95);
-
-
-border:
-
-1px solid rgba(80,220,255,.18);
-
-
-border-radius:20px;
-
-
-padding:25px;
-
-
-height:300px;
-
-
-overflow:hidden;
-
-
-}
-
-
-
-
-
-.stream-header{
+height:55px;
 
 
 display:flex;
 
 
+align-items:center;
+
+
 justify-content:space-between;
 
 
-font-family:Orbitron;
+border-bottom:
 
 
-letter-spacing:3px;
+1px solid rgba(255,255,255,.05);
 
 
-color:#55ddff;
+
+font-family:
+
+Orbitron;
+
+
+font-size:12px;
+
+
+}
+
+
+
+.normal{
+
+
+color:
+
+var(--green);
+
+
+}
+
+
+
+
+
+
+
+
+/* DATA */
+
+
+.data-number{
+
+
+font-family:
+
+Orbitron;
+
+
+font-size:42px;
+
+
+color:
+
+var(--cyan);
+
 
 
 margin-bottom:20px;
@@ -3349,15 +4548,18 @@ margin-bottom:20px;
 
 
 
+.data-number small{
 
 
-.stream-light{
+font-size:11px;
 
 
-color:#62ffa2;
+color:
+
+var(--muted);
 
 
-font-size:12px;
+letter-spacing:3px;
 
 
 }
@@ -3365,18 +4567,17 @@ font-size:12px;
 
 
 
-.stream-row{
+.data-row{
 
 
-display:grid;
+display:flex;
 
 
-grid-template-columns:
-
-180px 100px 100px 1fr;
+justify-content:space-between;
 
 
-padding:12px;
+padding:12px 0;
+
 
 
 border-bottom:
@@ -3384,22 +4585,142 @@ border-bottom:
 1px solid rgba(255,255,255,.05);
 
 
-font-family:Orbitron;
+font-size:13px;
 
-
-font-size:12px;
-
-
-animation:
-
-fadeIn .5s;
 
 
 }
 
 
 
-@keyframes fadeIn{
+
+
+/* LOG */
+
+
+.log-panel{
+
+
+background:
+
+rgba(2,12,22,.95);
+
+
+
+border-radius:22px;
+
+
+
+border:
+
+1px solid rgba(85,234,255,.18);
+
+
+
+padding:25px;
+
+
+height:360px;
+
+
+
+overflow:hidden;
+
+
+}
+
+
+
+.log-header{
+
+
+display:flex;
+
+
+justify-content:space-between;
+
+
+
+font-family:
+
+Orbitron;
+
+
+letter-spacing:3px;
+
+
+
+color:
+
+var(--cyan);
+
+
+margin-bottom:20px;
+
+
+}
+
+
+
+.log-live{
+
+
+color:
+
+var(--green);
+
+
+
+font-size:12px;
+
+
+}
+
+
+
+
+
+.log-row{
+
+
+display:grid;
+
+
+grid-template-columns:
+
+160px 120px 120px 1fr;
+
+
+
+padding:14px;
+
+
+border-bottom:
+
+1px solid rgba(255,255,255,.05);
+
+
+
+font-family:
+
+Orbitron;
+
+
+
+font-size:12px;
+
+
+
+animation:
+
+logIn .5s;
+
+
+}
+
+
+
+@keyframes logIn{
 
 
 from{
@@ -3408,7 +4729,7 @@ from{
 opacity:0;
 
 
-transform:translateY(10px);
+transform:translateX(-20px);
 
 
 }
@@ -3424,18 +4745,28 @@ opacity:1;
 }
 
 
+}
+
+
+
+
+@media(max-width:1100px){
+
+
+.ai-grid{
+
+
+grid-template-columns:
+
+1fr;
+
 
 }
 
 
 
-.stream-value{
-
-
-color:#55ddff;
-
-
 }
+
 
 
 
@@ -3451,24 +4782,25 @@ color:#55ddff;
 <script>
 
 
-// =============================
-// STREAM DATA
-// =============================
+// ===============================
+// TELEMETRY LOG UPDATE
+// ===============================
 
 
-function updateStream(){
+
+function updateTelemetryLog(){
 
 
 
 let box=
 
 document.getElementById(
-"streamList"
+"logContainer"
 );
 
 
 
-if(!box || DATA.length===0)
+if(!box || !DATA.length)
 
 return;
 
@@ -3479,20 +4811,19 @@ box.innerHTML="";
 
 
 
+
 DATA
-.slice(-8)
+.slice(-10)
 .reverse()
 .forEach(d=>{
 
 
 
-let row=
-
-document.createElement("div");
+let row=document.createElement("div");
 
 
 
-row.className="stream-row";
+row.className="log-row";
 
 
 
@@ -3502,34 +4833,43 @@ row.innerHTML=
 
 <div>
 
-${d.time?.substring(11,19) || "--"}
+${d.time?
+d.time.substring(11,19):
+"--"}
 
 </div>
 
-
-<div class="stream-value">
-
-${d.mode || "--"}
-
-</div>
 
 
 <div>
 
-${d.v || "--"}V
+MODE:
+${d.mode||"--"}
 
 </div>
+
 
 
 <div>
 
-TEMP:${d.j||"--"}℃
-
-&nbsp;
-
-HUM:${d.k||"--"}%
+V:
+${d.v||"--"}V
 
 </div>
+
+
+
+<div>
+
+TEMP:
+${d.j||"--"}℃
+&nbsp;&nbsp;
+
+HUM:
+${d.k||"--"}%
+
+</div>
+
 
 
 `;
@@ -3544,16 +4884,29 @@ box.appendChild(row);
 
 
 
-if(document.getElementById("lastTime")){
-
-
-document.getElementById("lastTime")
-.innerHTML=
-
-DATA[DATA.length-1].time || "--";
-
-
 }
+
+
+
+
+
+function updateRecord(){
+
+
+
+let el=
+
+document.getElementById(
+"recordCount"
+);
+
+
+
+if(el)
+
+el.innerHTML=
+
+DATA.length;
 
 
 
@@ -3565,7 +4918,17 @@ DATA[DATA.length-1].time || "--";
 
 setInterval(
 
-updateStream,
+()=>{
+
+
+updateTelemetryLog();
+
+
+updateRecord();
+
+
+
+},
 
 2000
 
@@ -3573,19 +4936,677 @@ updateStream,
 
 
 
-</script><style>
+</script><!-- ===============================
+ DATA ENGINE
+================================ -->
 
 
-/* ==========================
- FINAL VISUAL ENHANCEMENT
-========================== */
+<script>
+
+
+// =================================
+// GLOBAL DATA CORE
+// =================================
+
+
+let DATA=[];
+
+
+let lastUpdateTime="";
 
 
 
-/* 全局扫描光 */
 
 
-.container::after{
+
+// =================================
+// DATA.JSON LOADER
+// =================================
+
+
+
+async function loadSystemData(){
+
+
+
+try{
+
+
+
+const response=
+
+
+await fetch(
+
+"data.json?v="+Date.now()
+
+);
+
+
+
+
+if(!response.ok)
+
+throw new Error(
+"DATA FILE ERROR"
+);
+
+
+
+
+DATA=
+
+await response.json();
+
+
+
+
+
+console.log(
+
+"DATA LOADED:",
+
+DATA.length
+
+);
+
+
+
+
+
+updateSystem();
+
+
+
+
+
+}
+
+
+catch(error){
+
+
+
+console.error(
+
+error
+
+);
+
+
+
+showWarning(
+
+"DATA CONNECTION LOST"
+
+);
+
+
+
+}
+
+
+
+}
+
+
+
+
+
+
+
+
+
+// =================================
+// MAIN DATA UPDATE
+// =================================
+
+
+
+function updateSystem(){
+
+
+
+if(!DATA || DATA.length===0)
+
+return;
+
+
+
+
+let last=
+
+DATA[
+DATA.length-1
+];
+
+
+
+
+
+// --------------------
+// 顶部数据
+// --------------------
+
+
+
+let voltage=
+
+Number(last.v??0)
+.toFixed(2);
+
+
+
+let current=
+
+Number(last.a??0);
+
+
+
+
+let solar=
+
+Number(last.s??0);
+
+
+
+
+
+setText(
+"topVoltage",
+voltage
+);
+
+
+
+setText(
+"topCurrent",
+current
+);
+
+
+
+setText(
+"topSolar",
+solar
+);
+
+
+
+setText(
+"topRecords",
+DATA.length
+);
+
+
+
+
+
+
+
+// --------------------
+// HUD
+// --------------------
+
+
+
+setText(
+
+"mode",
+
+last.mode??"--"
+
+);
+
+
+
+
+
+setText(
+
+"ssid",
+
+last.i??"--"
+
+);
+
+
+
+
+
+
+
+// GPS
+
+
+
+let gps=
+
+
+[...DATA]
+
+.reverse()
+
+.find(
+
+d=>
+
+d.x &&
+d.y
+
+);
+
+
+
+
+
+
+if(gps){
+
+
+
+setText(
+
+"lat",
+
+Number(gps.x)
+.toFixed(5)
+
+);
+
+
+
+
+setText(
+
+"lng",
+
+Number(gps.y)
+.toFixed(5)
+
+);
+
+
+
+
+setText(
+
+"sat",
+
+gps.n??"--"
+
+);
+
+
+
+
+
+
+let fix=
+
+document.getElementById(
+"fix"
+);
+
+
+
+if(fix){
+
+
+
+if(gps.g==="O"){
+
+
+
+fix.innerHTML="LOCKED";
+
+fix.style.color="#63ffb0";
+
+
+
+}
+
+else{
+
+
+fix.innerHTML="SEARCH";
+
+fix.style.color="#ffd45c";
+
+
+
+}
+
+
+
+}
+
+
+
+}
+
+
+
+
+
+
+
+
+// --------------------
+// POWER
+// --------------------
+
+
+
+let mainV=
+
+document.getElementById(
+"mainVoltage"
+);
+
+
+
+if(mainV)
+
+mainV.innerHTML=
+
+voltage;
+
+
+
+
+
+
+let pV=
+
+document.getElementById(
+"powerVoltage"
+);
+
+
+
+if(pV)
+
+pV.innerHTML=
+
+voltage;
+
+
+
+
+
+
+
+let pA=
+
+document.getElementById(
+"powerCurrent"
+);
+
+
+
+if(pA)
+
+pA.innerHTML=
+
+current;
+
+
+
+
+
+
+
+
+// --------------------
+// 更新时间
+// --------------------
+
+
+
+lastUpdateTime=
+
+last.time || "--";
+
+
+
+let timeBox=
+
+document.getElementById(
+"lastTime"
+);
+
+
+
+if(timeBox)
+
+timeBox.innerHTML=
+
+lastUpdateTime;
+
+
+
+
+
+
+
+
+// --------------------
+// 图表
+// --------------------
+
+
+
+if(typeof updateCharts==="function")
+
+updateCharts();
+
+
+
+
+if(typeof updateEnergy==="function")
+
+updateEnergy();
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+// =================================
+// 工具函数
+// =================================
+
+
+
+function setText(id,value){
+
+
+
+let el=
+
+document.getElementById(id);
+
+
+
+if(el)
+
+el.innerHTML=value;
+
+
+
+}
+
+
+
+
+
+
+
+
+// =================================
+// ERROR MONITOR
+// =================================
+
+
+
+function showWarning(msg){
+
+
+
+let light=
+
+document.querySelector(
+".status-light"
+);
+
+
+
+if(light){
+
+
+light.style.background="#ff5577";
+
+light.style.boxShadow=
+"0 0 25px #ff5577";
+
+
+}
+
+
+
+console.warn(msg);
+
+
+
+}
+
+
+
+
+
+
+
+
+function checkSystem(){
+
+
+
+if(!DATA.length)
+
+return;
+
+
+
+let last=
+
+DATA[
+DATA.length-1
+];
+
+
+
+
+if(Number(last.e)!==0){
+
+
+
+showWarning(
+
+"SENSOR ERROR CODE "+
+last.e
+
+);
+
+
+
+}
+
+
+
+
+}
+
+
+
+
+
+
+
+// =================================
+// START SYSTEM
+// =================================
+
+
+
+window.addEventListener(
+
+"load",
+
+()=>{
+
+
+
+loadSystemData();
+
+
+
+
+setInterval(
+
+loadSystemData,
+
+300000
+
+);
+
+
+
+
+setInterval(
+
+checkSystem,
+
+5000
+
+);
+
+
+
+}
+
+);
+
+
+
+
+
+
+</script>id="final-close"
+
+<style>
+
+
+/* =================================
+ FINAL POLISH
+================================= */
+
+
+
+/* 全局扫描线 */
+
+
+.container::before{
 
 
 content:"";
@@ -3597,7 +5618,7 @@ position:fixed;
 left:0;
 
 
-top:-200px;
+top:-150px;
 
 
 width:100%;
@@ -3609,13 +5630,14 @@ height:120px;
 
 background:
 
+
 linear-gradient(
 
 180deg,
 
 transparent,
 
-rgba(80,220,255,.08),
+rgba(85,234,255,.12),
 
 transparent
 
@@ -3629,7 +5651,11 @@ pointer-events:none;
 
 animation:
 
-globalScan 12s linear infinite;
+scanMove 15s linear infinite;
+
+
+
+z-index:999;
 
 
 
@@ -3637,7 +5663,7 @@ globalScan 12s linear infinite;
 
 
 
-@keyframes globalScan{
+@keyframes scanMove{
 
 
 0%{
@@ -3653,36 +5679,10 @@ transform:translateY(0);
 100%{
 
 
-transform:translateY(130vh);
+transform:translateY(120vh);
 
 
 }
-
-
-
-}
-
-
-
-
-
-
-
-/* 所有大模块悬浮 */
-
-
-.energy-panel,
-.chart-main,
-.chart-box,
-.health-panel,
-.mission-panel,
-.data-panel,
-.stream-panel{
-
-
-transition:
-
-all .35s ease;
 
 
 }
@@ -3691,30 +5691,46 @@ all .35s ease;
 
 
 
-.energy-panel:hover,
-.chart-main:hover,
-.chart-box:hover,
-.health-panel:hover,
-.mission-panel:hover,
-.data-panel:hover,
-.stream-panel:hover{
 
 
-border-color:
 
-rgba(80,220,255,.55);
+
+/* 卡片微动效果 */
+
+
+.overview-card,
+.ai-panel,
+.energy-core,
+.main-chart-panel,
+.sensor-card,
+.polar-hud,
+.log-panel{
+
+
+transition:.35s ease;
+
+
+}
+
+
+
+.overview-card:hover,
+.ai-panel:hover,
+.energy-core:hover,
+.main-chart-panel:hover,
+.sensor-card:hover{
+
+
+transform:
+
+translateY(-5px);
 
 
 
 box-shadow:
 
-0 0 35px rgba(80,220,255,.12);
 
-
-
-transform:
-
-translateY(-3px);
+0 15px 45px rgba(85,234,255,.15);
 
 
 }
@@ -3723,82 +5739,37 @@ translateY(-3px);
 
 
 
+/* 数据高亮 */
 
 
-
-
-/* 数据闪烁 */
-
-
-.status-value{
+.ov-value,
+.power-number,
+.info-value{
 
 
 animation:
 
-valueGlow 3s infinite;
+dataPulse 4s infinite;
 
 
 }
 
 
 
-@keyframes valueGlow{
+
+@keyframes dataPulse{
 
 
 50%{
 
 
-text-shadow:
+filter:
 
-0 0 30px rgba(80,220,255,.9);
-
-
-}
+brightness(1.25);
 
 
 }
 
-
-
-
-
-
-
-
-
-/* 表格滚动条 */
-
-
-::-webkit-scrollbar{
-
-
-width:6px;
-
-
-height:6px;
-
-
-}
-
-
-
-::-webkit-scrollbar-track{
-
-
-background:#020812;
-
-
-}
-
-
-
-::-webkit-scrollbar-thumb{
-
-
-background:#1e7195;
-
-
-border-radius:10px;
 
 
 }
@@ -3807,10 +5778,113 @@ border-radius:10px;
 
 
 
-/* 手机适配 */
 
 
-@media(max-width:900px){
+
+/* =================================
+ FOOTER
+================================= */
+
+
+
+.final-footer{
+
+
+margin-top:60px;
+
+
+padding:35px;
+
+
+text-align:center;
+
+
+
+background:
+
+
+rgba(5,20,35,.7);
+
+
+
+border-top:
+
+
+1px solid rgba(85,234,255,.15);
+
+
+
+font-family:
+
+Orbitron;
+
+
+letter-spacing:3px;
+
+
+color:#7895aa;
+
+
+
+font-size:12px;
+
+
+
+line-height:2.5;
+
+
+
+}
+
+
+
+
+.final-footer strong{
+
+
+color:#55eaff;
+
+
+
+font-size:15px;
+
+
+}
+
+
+
+
+
+/* =================================
+ RESPONSIVE
+================================= */
+
+
+@media(max-width:800px){
+
+
+
+.container{
+
+
+width:92vw;
+
+
+}
+
+
+
+
+.overview{
+
+
+grid-template-columns:
+
+1fr 1fr;
+
+
+}
+
 
 
 
@@ -3818,9 +5892,6 @@ border-radius:10px;
 
 
 flex-direction:column;
-
-
-height:auto;
 
 
 gap:20px;
@@ -3833,36 +5904,13 @@ align-items:flex-start;
 
 
 
-.logo{
 
-
-font-size:22px;
-
-
-}
-
-
-
-
-.health-panel{
-
-
-flex-direction:column;
-
-
-}
-
-
-
-.health-items{
-
-
-width:100%;
+.sensor-grid{
 
 
 grid-template-columns:
 
-repeat(2,1fr);
+1fr;
 
 
 }
@@ -3870,8 +5918,7 @@ repeat(2,1fr);
 
 
 
-
-.mission-panel{
+.chart-stat{
 
 
 grid-template-columns:
@@ -3888,8 +5935,6 @@ grid-template-columns:
 
 
 
-
-
 </style>
 
 
@@ -3898,62 +5943,106 @@ grid-template-columns:
 
 
 
-<footer style="
 
 
-margin-top:60px;
-
-
-padding:30px;
-
-
-text-align:center;
-
-
-font-family:Orbitron;
-
-
-letter-spacing:4px;
-
-
-font-size:12px;
-
-
-color:#7894ad;
+<!-- =================================
+ FINAL FOOTER
+================================= -->
 
 
 
-border-top:
-
-1px solid rgba(80,220,255,.15);
+<footer class="final-footer">
 
 
-">
+<strong>
 
+ANTARCTIC NEXUS
 
-ANTARCTIC AUTONOMOUS MONITORING CENTER
+</strong>
 
 
 <br>
 
 
-POLAR EXPEDITION AA-2026
+AUTONOMOUS POLAR ENVIRONMENT MONITORING SYSTEM
 
 
 <br>
 
 
-<span style="color:#55ddff">
+AA-2026 SCIENTIFIC EXPEDITION NODE
 
 
-REMOTE SCIENTIFIC OBSERVATION SYSTEM
+<br>
 
+
+REMOTE OBSERVATION & DATA INTELLIGENCE PLATFORM
+
+
+<br><br>
+
+
+SYSTEM STATUS :
+
+<span style="color:#63ffb0">
+
+ONLINE
 
 </span>
 
 
 
 </footer>
+
+
+
+
+
+
+
+
+
+
+<script>
+
+
+// =================================
+// SAFE START PATCH
+// =================================
+
+
+
+// 防止 data.json 空数组
+
+
+function safeInit(){
+
+
+
+if(!DATA){
+
+
+DATA=[];
+
+
+}
+
+
+
+}
+
+
+
+// 初始化
+
+
+safeInit();
+
+
+
+
+
+</script>
 
 
 
