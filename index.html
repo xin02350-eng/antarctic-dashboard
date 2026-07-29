@@ -228,7 +228,7 @@ padding:
 
 
 /* =====================
-BOOT
+BOOT SCREEN
 ===================== */
 
 
@@ -252,10 +252,10 @@ z-index:9999;
 display:flex;
 
 
-align-items:center;
-
-
 justify-content:center;
+
+
+align-items:center;
 
 
 
@@ -384,7 +384,6 @@ loading 2s infinite;
 
 
 
-
 @keyframes loading{
 
 
@@ -408,7 +407,6 @@ transform:translateX(300%);
 
 
 
-
 .boot-line{
 
 
@@ -425,7 +423,6 @@ color:#9bb7c9;
 
 
 }
-
 
 
 
@@ -477,12 +474,9 @@ visibility:hidden;
 
 
 
-
-
 /* =====================
 HEADER
 ===================== */
-
 
 
 .header{
@@ -656,7 +650,6 @@ opacity:.3;
 /* =====================
 OVERVIEW
 ===================== */
-
 
 
 .overview{
@@ -1438,7 +1431,7 @@ right:-55px;
 
 
 /* =====================
-GPS PANEL
+GPS INFORMATION
 ===================== */
 
 
@@ -2034,6 +2027,7 @@ width:100%;
 
 
 
+
 .energy-node{
 
 
@@ -2338,9 +2332,8 @@ color:var(--cyan);
 
 
 /* =====================
-SENSOR GRID
+SENSOR CHART GRID
 ===================== */
-
 
 
 .sensor-grid{
@@ -2612,6 +2605,7 @@ font-size:48px;
 text-align:center;
 
 
+
 color:var(--green);
 
 
@@ -2850,10 +2844,13 @@ background:
 rgba(84,234,255,.4);
 
 
+
 border-radius:10px;
 
 
 }
+
+
 
 
 
@@ -2915,6 +2912,7 @@ color:#b9dfff;
 
 
 }
+
 
 
 
@@ -3017,6 +3015,7 @@ border:
 
 
 
+
 footer h2{
 
 
@@ -3081,6 +3080,7 @@ grid-template-columns:
 
 
 
+
 .telemetry-row{
 
 
@@ -3094,10 +3094,6 @@ grid-template-columns:
 
 
 }
-/* =====================
-HTML BODY
-===================== */
-
 
 </style>
 
@@ -3107,13 +3103,15 @@ HTML BODY
 <body>
 
 
-
 <div class="container">
 
 
 
 
 
+<!-- =====================
+HEADER
+===================== -->
 
 
 <header class="header">
@@ -3165,6 +3163,11 @@ SYSTEM ONLINE
 
 
 
+<!-- =====================
+OVERVIEW
+===================== -->
+
+
 <section class="overview">
 
 
@@ -3202,6 +3205,7 @@ V
 
 
 </div>
+
 
 
 
@@ -3257,12 +3261,12 @@ mA
 
 
 
+
 <div class="card-state">
 
 ● ACTIVE
 
 </div>
-
 
 
 
@@ -3282,6 +3286,7 @@ mA
 03
 
 </div>
+
 
 
 
@@ -3310,12 +3315,12 @@ W/m²
 
 
 
+
 <div class="card-state">
 
 ● MONITORING
 
 </div>
-
 
 
 
@@ -3338,11 +3343,13 @@ W/m²
 
 
 
+
 <div class="card-label">
 
 DATA PACKETS
 
 </div>
+
 
 
 
@@ -3369,7 +3376,6 @@ DATA PACKETS
 
 
 
-
 </div>
 
 
@@ -3384,6 +3390,11 @@ DATA PACKETS
 
 
 
+<!-- =====================
+POLAR NODE DIGITAL TWIN
+===================== -->
+
+
 <div class="section-title">
 
 POLAR NODE DIGITAL TWIN
@@ -3395,13 +3406,12 @@ POLAR NODE DIGITAL TWIN
 
 
 
+
 <section class="polar-system">
 
 
 
 <div class="polar-core-area">
-
-
 
 
 
@@ -3437,10 +3447,12 @@ POLAR NODE DIGITAL TWIN
 
 
 
+
 <div class="orbit-node node-left"></div>
 
 
 <div class="orbit-node node-right"></div>
+
 
 
 
@@ -3456,11 +3468,13 @@ A01
 </h2>
 
 
+
 <p>
 
 POLAR NODE
 
 </p>
+
 
 
 
@@ -3471,15 +3485,17 @@ ONLINE
 </span>
 
 
-</div>
-
 
 </div>
 
 
 
+
 </div>
 
+
+
+</div>
 
 
 
@@ -3510,6 +3526,7 @@ LATITUDE
 </div>
 
 
+
 <div class="info-value" id="lat">
 
 --
@@ -3517,7 +3534,9 @@ LATITUDE
 </div>
 
 
+
 </div>
+
 
 
 
@@ -3534,6 +3553,7 @@ LONGITUDE
 </div>
 
 
+
 <div class="info-value" id="lng">
 
 --
@@ -3541,7 +3561,10 @@ LONGITUDE
 </div>
 
 
+
 </div>
+
+
 
 
 
@@ -3558,6 +3581,7 @@ SATELLITES
 </div>
 
 
+
 <div class="info-value" id="sat">
 
 --
@@ -3565,7 +3589,10 @@ SATELLITES
 </div>
 
 
+
 </div>
+
+
 
 
 
@@ -3582,6 +3609,7 @@ GPS STATUS
 </div>
 
 
+
 <div class="info-value green" id="fix">
 
 --
@@ -3589,7 +3617,9 @@ GPS STATUS
 </div>
 
 
+
 </div>
+
 
 
 
@@ -3618,6 +3648,7 @@ POLAR EXPOSURE MODE
 </span>
 
 
+
 <span>
 
 ● REMOTE AUTONOMY ENABLED
@@ -3625,19 +3656,19 @@ POLAR EXPOSURE MODE
 </span>
 
 
-</div>
-
-
 
 </div>
 
 
 
-
 </div>
 
 
 
+
+
+
+</div>
 
 
 
@@ -3651,13 +3682,16 @@ POLAR EXPOSURE MODE
 
 
 
+<!-- =====================
+HARDWARE DIGITAL TWIN
+===================== -->
+
+
 <div class="section-title">
 
 HARDWARE DIGITAL TWIN
 
 </div>
-
-
 
 
 
@@ -3686,7 +3720,6 @@ ANT-A01 FIELD UNIT
 
 
 
-
 <div class="device-model">
 
 
@@ -3703,21 +3736,18 @@ SOLAR ARRAY
 
 
 
-
 <div class="solar-panel">
 
 
 <div></div>
 
-
 <div></div>
 
-
 <div></div>
-
 
 
 </div>
+
 
 
 
@@ -3764,7 +3794,6 @@ SHT35 / RS485
 
 COMMUNICATION MODULE
 
-
 </div>
 
 
@@ -3788,8 +3817,6 @@ COMMUNICATION MODULE
 
 
 <div class="device-info">
-
-
 
 
 
@@ -3868,11 +3895,7 @@ LOW TEMPERATURE RESISTANCE
 
 
 
-
-
 </div>
-
-
 
 
 
@@ -3888,13 +3911,16 @@ LOW TEMPERATURE RESISTANCE
 
 
 
+<!-- =====================
+ENERGY CORE
+===================== -->
+
+
 <div class="section-title">
 
 ENERGY CORE
 
 </div>
-
-
 
 
 
@@ -3913,7 +3939,6 @@ ENERGY CORE
 SOLAR
 
 </div>
-
 
 
 <div>
@@ -3993,6 +4018,7 @@ SYSTEM
 
 
 
+
 <div class="energy-arrow">
 
 →
@@ -4044,12 +4070,12 @@ ENERGY
 
 
 
-
 <div class="energy-arrow">
 
 →
 
 </div>
+
 
 
 
@@ -4093,6 +4119,7 @@ ONLINE
 
 
 
+
 </section>
 <!-- =====================
 SCIENTIFIC TELEMETRY
@@ -4108,9 +4135,7 @@ SCIENTIFIC TELEMETRY
 
 
 
-
 <section class="main-telemetry">
-
 
 
 <div class="telemetry-header">
@@ -4121,7 +4146,6 @@ SCIENTIFIC TELEMETRY
 BATTERY VOLTAGE
 
 </h2>
-
 
 
 
@@ -4140,15 +4164,14 @@ V
 </div>
 
 
+
 </div>
 
 
 
 
 
-
 <canvas id="cv"></canvas>
-
 
 
 
@@ -4227,7 +4250,6 @@ MIN
 
 <div class="sensor-panel">
 
-
 <div class="sensor-title">
 
 SHT35 TEMPERATURE
@@ -4245,7 +4267,6 @@ SHT35 TEMPERATURE
 
 
 <div class="sensor-panel">
-
 
 <div class="sensor-title">
 
@@ -4265,7 +4286,6 @@ SHT35 HUMIDITY
 
 <div class="sensor-panel">
 
-
 <div class="sensor-title">
 
 RS485 TEMPERATURE
@@ -4283,7 +4303,6 @@ RS485 TEMPERATURE
 
 
 <div class="sensor-panel">
-
 
 <div class="sensor-title">
 
@@ -4303,7 +4322,6 @@ RS485 HUMIDITY
 
 <div class="sensor-panel">
 
-
 <div class="sensor-title">
 
 SOLAR IRRADIANCE
@@ -4322,7 +4340,6 @@ SOLAR IRRADIANCE
 
 <div class="sensor-panel">
 
-
 <div class="sensor-title">
 
 WIND SPEED
@@ -4334,8 +4351,6 @@ WIND SPEED
 
 
 </div>
-
-
 
 
 
@@ -4364,6 +4379,8 @@ AUTONOMOUS INTELLIGENCE CENTER
 
 
 
+
+
 <section class="intelligence-grid">
 
 
@@ -4387,7 +4404,6 @@ SYSTEM HEALTH
 
 
 
-
 <p>
 
 NOMINAL
@@ -4397,6 +4413,7 @@ NOMINAL
 
 
 </div>
+
 
 
 
@@ -4415,7 +4432,6 @@ SUBSYSTEM STATUS
 
 
 
-
 <p>
 
 POWER SYSTEM
@@ -4426,8 +4442,8 @@ NORMAL
 
 </span>
 
-</p>
 
+</p>
 
 
 
@@ -4440,6 +4456,7 @@ SENSOR ARRAY
 ACTIVE
 
 </span>
+
 
 </p>
 
@@ -4456,7 +4473,9 @@ LOCKED
 
 </span>
 
+
 </p>
+
 
 
 
@@ -4470,12 +4489,13 @@ ONLINE
 
 </span>
 
+
 </p>
 
 
 
-
 </div>
+
 
 
 
@@ -4494,7 +4514,6 @@ EXTREME ENVIRONMENT
 
 
 
-
 <p>
 
 LOW TEMPERATURE
@@ -4507,7 +4526,6 @@ LOW TEMPERATURE
 
 
 </p>
-
 
 
 
@@ -4526,7 +4544,6 @@ POWER AUTONOMY
 
 
 
-
 <p>
 
 COMMUNICATION
@@ -4539,7 +4556,6 @@ READY
 
 
 </p>
-
 
 
 
@@ -4574,6 +4590,7 @@ LIVE TELEMETRY STREAM
 
 
 
+
 <section class="stream-panel">
 
 
@@ -4584,7 +4601,6 @@ LIVE TELEMETRY STREAM
 REAL TIME SENSOR DATA
 
 
-
 <span>
 
 ● RECEIVING
@@ -4592,16 +4608,13 @@ REAL TIME SENSOR DATA
 </span>
 
 
-
 </div>
-
 
 
 
 <div id="telemetryLog">
 
 </div>
-
 
 
 
@@ -4625,7 +4638,6 @@ MISSION INFORMATION
 
 
 
-
 <footer>
 
 
@@ -4637,7 +4649,6 @@ ANTARCTIC NEXUS Ω
 
 
 
-
 <p>
 
 AUTONOMOUS POLAR MONITORING PLATFORM
@@ -4646,13 +4657,11 @@ AUTONOMOUS POLAR MONITORING PLATFORM
 
 
 
-
 <p>
 
 ANT-A01 REMOTE OBSERVATION NODE
 
 </p>
-
 
 
 
@@ -4674,13 +4683,10 @@ VERSION Ω-v0.4.2
 
 
 
-
 <script>
 
 
-
 const chartConfig={
-
 
 
 cv:{
@@ -4725,9 +4731,7 @@ color:"#69ffb0"
 }
 
 
-
 };
-
 
 
 
@@ -4739,12 +4743,12 @@ let charts={};
 
 
 
+
 function createChart(id){
 
 
 
 const canvas=document.getElementById(id);
-
 
 
 if(!canvas)
@@ -4770,48 +4774,36 @@ type:"line",
 data:{
 
 
-
 labels:[],
-
 
 
 datasets:[{
 
-
 data:[],
-
 
 
 borderColor:cfg.color,
 
 
-
 backgroundColor:cfg.color+"33",
-
 
 
 fill:true,
 
 
-
 tension:.35,
-
 
 
 pointRadius:0,
 
 
-
 borderWidth:2
-
 
 
 }]
 
 
-
 },
-
 
 
 
@@ -4823,13 +4815,11 @@ options:{
 responsive:true,
 
 
-
 maintainAspectRatio:false,
 
 
 
 plugins:{
-
 
 
 legend:{
@@ -4841,7 +4831,6 @@ display:false
 }
 
 
-
 },
 
 
@@ -4850,9 +4839,7 @@ display:false
 scales:{
 
 
-
 x:{
-
 
 
 ticks:{
@@ -4864,7 +4851,6 @@ color:"#7895aa"
 }
 
 
-
 },
 
 
@@ -4874,7 +4860,7 @@ y:{
 
 
 
-beginAtZero:false,
+beginAtZero:id==="cs",
 
 
 
@@ -4910,11 +4896,10 @@ color:"#7895aa"
 
 
 
+
 Object.keys(chartConfig)
 
 .forEach(createChart);
-
-
 
 
 
@@ -4958,7 +4943,6 @@ el.innerHTML=value;
 async function loadData(){
 
 
-
 try{
 
 
@@ -4977,9 +4961,11 @@ throw new Error("data.json error");
 
 
 
+
 DATA=
 
 await res.json();
+
 
 
 
@@ -4994,7 +4980,6 @@ catch(e){
 
 
 console.error(e);
-
 
 
 }
@@ -5014,7 +4999,6 @@ console.error(e);
 function updateDashboard(){
 
 
-
 if(!DATA.length)
 
 return;
@@ -5026,7 +5010,6 @@ return;
 const last=
 
 DATA[DATA.length-1];
-
 
 
 
@@ -5079,8 +5062,6 @@ DATA.length
 
 
 
-
-
 // GPS
 
 
@@ -5099,6 +5080,7 @@ Number(d.y)!==0
 
 
 );
+
 
 
 
@@ -5125,9 +5107,7 @@ Number(gps.y).toFixed(5)
 );
 
 
-
 }
-
 
 
 
@@ -5160,8 +5140,8 @@ Number(d.n)>0
 
 
 
-if(sat){
 
+if(sat){
 
 
 setValue(
@@ -5183,11 +5163,10 @@ sat.n
 
 
 
-
 // GPS STATUS
 
 
-const gpsStatus=
+const fix=
 
 [...DATA]
 
@@ -5197,7 +5176,7 @@ const gpsStatus=
 
 
 
-if(gpsStatus){
+if(fix){
 
 
 
@@ -5205,7 +5184,7 @@ setValue(
 
 "fix",
 
-gpsStatus.g==="O"
+fix.g==="O"
 
 ?
 
@@ -5230,9 +5209,7 @@ gpsStatus.g==="O"
 
 const voltage=
 
-DATA
-
-.map(d=>Number(d.v))
+DATA.map(d=>Number(d.v))
 
 .filter(v=>!isNaN(v));
 
@@ -5254,6 +5231,8 @@ voltage.at(-1).toFixed(2)
 
 
 
+
+
 setValue(
 
 "vMax",
@@ -5261,6 +5240,8 @@ setValue(
 Math.max(...voltage).toFixed(2)
 
 );
+
+
 
 
 
@@ -5274,19 +5255,15 @@ Math.min(...voltage).toFixed(2)
 
 
 
+
+
 setValue(
 
 "vAvg",
 
 (
 
-voltage.reduce(
-
-(a,b)=>a+b,
-
-0
-
-)
+voltage.reduce((a,b)=>a+b,0)
 
 /
 
@@ -5299,6 +5276,7 @@ voltage.length
 
 
 }
+
 
 
 
@@ -5336,9 +5314,8 @@ const chart=charts[id];
 
 
 
-const key=
+const key=chartConfig[id].key;
 
-chartConfig[id].key;
 
 
 
@@ -5351,7 +5328,6 @@ DATA.map(d=>d.time);
 
 
 
-
 chart.data.datasets[0].data=
 
 DATA.map(d=>
@@ -5359,7 +5335,6 @@ DATA.map(d=>
 d[key] ?? null
 
 );
-
 
 
 
@@ -5387,9 +5362,7 @@ function updateTerminal(){
 
 
 
-const box=
-
-document.getElementById(
+const box=document.getElementById(
 
 "telemetryLog"
 
@@ -5438,7 +5411,12 @@ row.className="telemetry-row";
 row.innerHTML=`
 
 
-<div>${d.time ?? "--"}</div>
+<div>
+
+${d.time ?? "--"}
+
+</div>
+
 
 
 <div>
@@ -5521,7 +5499,6 @@ ${d.k ?? "--"}
 
 
 
-
 <div>
 
 RS485-T:
@@ -5535,7 +5512,6 @@ ${d.t ?? "--"}
 ℃
 
 </div>
-
 
 
 
@@ -5554,9 +5530,7 @@ ${d.h ?? "--"}
 </div>
 
 
-
 `;
-
 
 
 
@@ -5568,8 +5542,13 @@ box.appendChild(row);
 
 
 
-}
 
+
+box.scrollTop=0;
+
+
+
+}
 
 
 
@@ -5606,8 +5585,6 @@ loadData,
 
 
 </script>
-
-
 
 
 
