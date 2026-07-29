@@ -1,154 +1,175 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-CN">
+
 <head>
 
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
 
 <title>
 Antarctic Autonomous Monitoring System
 </title>
+
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 
 
 <style>
 
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=Orbitron:wght@500;700;900&display=swap');
+
 
 
 :root{
 
+
 --bg:#020812;
 
---panel:
-rgba(8,25,45,.72);
+--panel:rgba(8,25,45,.75);
 
---panel-light:
-rgba(20,60,90,.35);
+--border:rgba(80,220,255,.18);
 
 --cyan:#4de1ff;
 
---ice:#b8f1ff;
+--ice:#d8f7ff;
 
---green:#58ff9b;
+--green:#5cff9b;
 
 --yellow:#ffd166;
 
 --red:#ff667f;
 
---text:#eaf8ff;
+--text:#edf9ff;
 
---muted:#7d9bb8;
-
-
---border:
-rgba(77,225,255,.2);
+--muted:#7895ad;
 
 
 --shadow:
-0 0 35px rgba(77,225,255,.15);
+0 0 40px rgba(77,225,255,.14);
 
 
 }
+
 
 
 *{
+
 margin:0;
+
 padding:0;
+
 box-sizing:border-box;
+
 }
+
 
 
 body{
 
+
 min-height:100vh;
 
-padding:25px;
+
+padding:28px;
+
 
 font-family:
+
 Inter,
-Microsoft YaHei,
+
+"Microsoft YaHei",
+
 sans-serif;
+
 
 color:var(--text);
 
 
+
 background:
+
 
 radial-gradient(
 circle at 15% 0%,
-rgba(77,225,255,.18),
+rgba(77,225,255,.2),
 transparent 35%
 ),
 
+
 radial-gradient(
 circle at 85% 100%,
-rgba(88,255,155,.08),
+rgba(92,255,155,.12),
 transparent 35%
 ),
+
 
 linear-gradient(
 180deg,
 #020812,
-#071b31
+#071c32
 );
+
+
 
 }
 
-
-
-/* ===== HEADER ===== */
 
 
 .header{
 
+
 display:flex;
+
 
 justify-content:space-between;
 
+
 align-items:center;
 
-padding:25px 35px;
 
-margin-bottom:25px;
+padding:28px 35px;
+
+
+border-radius:28px;
 
 
 background:var(--panel);
 
-border:
 
-1px solid var(--border);
-
-
-border-radius:26px;
+border:1px solid var(--border);
 
 
 box-shadow:var(--shadow);
+
+
+margin-bottom:22px;
+
 
 }
 
 
 
-.header-left h1{
+.header h1{
 
 
-font-family:
-Orbitron;
+font-family:Orbitron;
 
 
-font-size:
-clamp(24px,4vw,42px);
+font-size:clamp(25px,4vw,44px);
 
 
-letter-spacing:3px;
+letter-spacing:4px;
+
 
 
 background:
 
 linear-gradient(
 90deg,
-#ffffff,
+#fff,
 var(--cyan),
 var(--green)
 );
@@ -156,22 +177,24 @@ var(--green)
 
 -webkit-background-clip:text;
 
+
 color:transparent;
 
 
 }
 
 
-.header-left p{
+
+.header p{
 
 
 margin-top:12px;
 
 
-letter-spacing:3px;
-
-
 font-size:13px;
+
+
+letter-spacing:4px;
 
 
 color:var(--muted);
@@ -181,16 +204,20 @@ color:var(--muted);
 
 
 
-.mission-box{
+.mission{
+
+
+font-family:Orbitron;
+
+
+font-size:12px;
+
+
+line-height:2.2;
 
 
 text-align:right;
 
-font-family:Orbitron;
-
-font-size:12px;
-
-line-height:2;
 
 color:var(--ice);
 
@@ -198,50 +225,50 @@ color:var(--ice);
 }
 
 
-.status-online{
+
+.online{
+
 
 color:var(--green);
 
 }
 
 
-.status-online::before{
+
+.online::before{
+
 
 content:"●";
 
+
 margin-right:8px;
 
-}
-
-
-
-@media(max-width:800px){
-
-.header{
-
-display:block;
-
-text-align:center;
-
-}
-
-.mission-box{
-
-margin-top:20px;
-
-text-align:center;
-
-}
 
 }
 
 
 
-
-/* ===== TIME CONTROL ===== */
 
 
 .slider-box{
+
+
+display:flex;
+
+
+align-items:center;
+
+
+justify-content:center;
+
+
+gap:12px;
+
+
+flex-wrap:wrap;
+
+
+padding:18px;
 
 
 background:var(--panel);
@@ -253,46 +280,10 @@ border:1px solid var(--border);
 border-radius:22px;
 
 
-padding:18px;
-
-
-display:flex;
-
-
-gap:15px;
-
-
-align-items:center;
-
-
-justify-content:center;
-
-
-flex-wrap:wrap;
-
-
-margin-bottom:22px;
-
-
 box-shadow:var(--shadow);
 
 
-}
-
-
-.section-label{
-
-
-font-family:Orbitron;
-
-
-color:var(--ice);
-
-
-font-size:12px;
-
-
-letter-spacing:2px;
+margin-bottom:22px;
 
 
 }
@@ -302,12 +293,13 @@ letter-spacing:2px;
 .slider-box button{
 
 
-padding:
-
-10px 22px;
+padding:10px 22px;
 
 
 border-radius:50px;
+
+
+cursor:pointer;
 
 
 background:
@@ -317,13 +309,10 @@ rgba(255,255,255,.05);
 
 border:
 
-1px solid rgba(255,255,255,.15);
+1px solid rgba(255,255,255,.12);
 
 
 color:var(--muted);
-
-
-cursor:pointer;
 
 
 transition:.3s;
@@ -336,10 +325,10 @@ transition:.3s;
 .slider-box button:hover{
 
 
-border-color:var(--cyan);
-
-
 color:white;
+
+
+border-color:var(--cyan);
 
 
 }
@@ -361,14 +350,11 @@ var(--green)
 color:#001018;
 
 
-font-weight:800;
+font-weight:900;
 
 
 }
 
-
-
-/* ===== STATUS CARDS ===== */
 
 
 .row{
@@ -376,7 +362,9 @@ font-weight:800;
 
 display:flex;
 
+
 gap:18px;
+
 
 flex-wrap:wrap;
 
@@ -400,9 +388,7 @@ min-width:150px;
 padding:22px;
 
 
-background:
-
-var(--panel);
+background:var(--panel);
 
 
 border:
@@ -411,6 +397,9 @@ border:
 
 
 border-radius:22px;
+
+
+box-shadow:var(--shadow);
 
 
 text-align:center;
@@ -422,9 +411,6 @@ position:relative;
 overflow:hidden;
 
 
-box-shadow:var(--shadow);
-
-
 transition:.3s;
 
 
@@ -434,15 +420,18 @@ transition:.3s;
 
 .card:hover{
 
+
 transform:translateY(-5px);
 
+
 border-color:var(--cyan);
+
 
 }
 
 
 
-.card::before{
+.card:before{
 
 
 content:"";
@@ -453,7 +442,9 @@ position:absolute;
 
 top:0;
 
+
 left:0;
+
 
 right:0;
 
@@ -497,11 +488,10 @@ margin-bottom:12px;
 .value{
 
 
-font-family:
-Orbitron;
+font-family:Orbitron;
 
 
-font-size:30px;
+font-size:28px;
 
 
 font-weight:900;
@@ -511,360 +501,41 @@ font-weight:900;
 
 
 
-.big{
-
-font-size:18px;
-
-}
-
-
 .green{
+
 color:var(--green);
+
 }
 
 
 .yellow{
+
 color:var(--yellow);
+
 }
 
 
 .red{
+
 color:var(--red);
+
 }
 
 
 .cyan{
+
 color:var(--cyan);
-}
-
-
-.gold{
-color:#ffe58a;
-}
-
-<!-- =========================
- CHART SECTION
-========================= -->
-
-
-<div class="chart-section">
-
-
-<div class="chart-title">
-
-REAL TIME TELEMETRY
-
-<span>
-实时环境遥测数据
-</span>
-
-</div>
-
-
-
-<div class="row charts-row">
-
-
-<div class="chart-box">
-<h3>
-BATTERY VOLTAGE
-<br>
-<span>电池电压 V</span>
-</h3>
-
-<canvas id="cv"></canvas>
-
-</div>
-
-
-
-<div class="chart-box">
-<h3>
-SYSTEM CURRENT
-<br>
-<span>系统电流 mA</span>
-</h3>
-
-<canvas id="ca"></canvas>
-
-</div>
-
-
-
-</div>
-
-
-
-
-
-<div class="row charts-row">
-
-
-<div class="chart-box">
-
-<h3>
-SHT35 TEMPERATURE
-<br>
-<span>空气温度 ℃</span>
-</h3>
-
-
-<canvas id="cst"></canvas>
-
-
-</div>
-
-
-
-
-<div class="chart-box">
-
-<h3>
-SHT35 HUMIDITY
-<br>
-<span>空气湿度 %RH</span>
-</h3>
-
-
-<canvas id="csh"></canvas>
-
-
-</div>
-
-
-</div>
-
-
-
-
-
-
-
-<div class="row charts-row">
-
-
-<div class="chart-box">
-
-<h3>
-RS485 TEMPERATURE
-<br>
-<span>外部传感器温度 ℃</span>
-</h3>
-
-
-<canvas id="ctt"></canvas>
-
-
-</div>
-
-
-
-
-
-<div class="chart-box">
-
-<h3>
-RS485 HUMIDITY
-<br>
-<span>外部传感器湿度 %RH</span>
-</h3>
-
-
-<canvas id="cth"></canvas>
-
-
-</div>
-
-
-</div>
-
-
-
-
-
-
-
-<div class="row charts-row">
-
-
-<div class="chart-box">
-
-
-<h3>
-SOLAR IRRADIANCE
-<br>
-<span>太阳辐射 W/m²</span>
-</h3>
-
-
-<canvas id="cs"></canvas>
-
-
-</div>
-
-
-
-
-
-<div class="chart-box">
-
-
-<h3>
-WIND MONITOR
-<br>
-<span>风速 / 风向</span>
-</h3>
-
-
-<canvas id="cws"></canvas>
-
-
-</div>
-
-
-</div>
-
-
-</div>
-
-
-
-
-
-
-<!-- =========================
- DATA TABLE
-========================= -->
-
-
-<div class="table-box">
-
-
-<div class="table-header">
-
-
-<h3>
-LIVE TELEMETRY STREAM
-</h3>
-
-
-<div class="receiving">
-
-<span class="live-dot"></span>
-
-DATA RECEIVING
-
-</div>
-
-
-</div>
-
-
-
-<table>
-
-
-<thead>
-
-<tr>
-
-<th>TIME</th>
-
-<th>MODE</th>
-
-<th>VOLTAGE</th>
-
-<th>CURRENT</th>
-
-<th>SOLAR</th>
-
-<th>SHT TEMP</th>
-
-<th>SHT HUM</th>
-
-<th>RS485 TEMP</th>
-
-<th>RS485 HUM</th>
-
-<th>LAT</th>
-
-<th>LON</th>
-
-<th>SAT</th>
-
-<th>GPS</th>
-
-<th>ERROR</th>
-
-
-</tr>
-
-
-</thead>
-
-
-
-<tbody id="tbody">
-
-
-</tbody>
-
-
-
-</table>
-
-
-
-</div>
-
-
-
-
-
-
-
-<div class="footer">
-
-
-<span class="live-dot"></span>
-
-
-<span id="update">
-
-LAST UPDATE
-
-</span>
-
-
-<br>
-
-
-ANTARCTIC AUTONOMOUS MONITORING SYSTEM
-
-</div>
-
-
-
-
-
-
-
-<style>
-
-
-.chart-section{
-
-margin-top:25px;
 
 }
-
+/* ================================
+   CHART AREA
+================================ */
 
 
 .chart-title{
 
 
-font-family:
-Orbitron;
+font-family:Orbitron;
 
 
 font-size:22px;
@@ -873,15 +544,14 @@ font-size:22px;
 letter-spacing:3px;
 
 
+margin:30px 0 20px;
+
+
 color:var(--ice);
 
 
-margin:
-
-25px 0;
-
-
 }
+
 
 
 .chart-title span{
@@ -890,11 +560,13 @@ margin:
 display:block;
 
 
-font-family:
-Inter;
+font-family:Inter;
 
 
 font-size:13px;
+
+
+margin-top:8px;
 
 
 color:var(--muted);
@@ -903,11 +575,7 @@ color:var(--muted);
 letter-spacing:2px;
 
 
-margin-top:8px;
-
-
 }
-
 
 
 
@@ -923,9 +591,7 @@ min-width:420px;
 padding:24px;
 
 
-background:
-
-var(--panel);
+background:var(--panel);
 
 
 border:
@@ -933,12 +599,10 @@ border:
 1px solid var(--border);
 
 
-border-radius:24px;
+border-radius:25px;
 
 
-box-shadow:
-
-var(--shadow);
+box-shadow:var(--shadow);
 
 
 }
@@ -948,18 +612,16 @@ var(--shadow);
 .chart-box h3{
 
 
-font-family:
-
-Orbitron;
+font-family:Orbitron;
 
 
 font-size:15px;
 
 
-letter-spacing:2px;
-
-
 line-height:1.8;
+
+
+letter-spacing:2px;
 
 
 color:var(--cyan);
@@ -971,12 +633,11 @@ margin-bottom:15px;
 }
 
 
+
 .chart-box h3 span{
 
 
-font-family:
-
-Inter;
+font-family:Inter;
 
 
 font-size:12px;
@@ -1003,6 +664,40 @@ height:260px!important;
 
 
 
+
+/* ================================
+   TABLE
+================================ */
+
+
+
+.table-box{
+
+
+background:var(--panel);
+
+
+border:
+
+1px solid var(--border);
+
+
+border-radius:25px;
+
+
+padding:25px;
+
+
+box-shadow:var(--shadow);
+
+
+overflow:auto;
+
+
+}
+
+
+
 .table-header{
 
 
@@ -1021,18 +716,20 @@ margin-bottom:20px;
 }
 
 
-.table-header h3{
+
+.table-header h2{
 
 
-font-family:
-
-Orbitron;
+font-family:Orbitron;
 
 
 letter-spacing:3px;
 
 
 color:var(--ice);
+
+
+font-size:18px;
 
 
 }
@@ -1042,17 +739,16 @@ color:var(--ice);
 .receiving{
 
 
+font-family:Orbitron;
+
+
 font-size:12px;
 
 
 color:var(--green);
 
 
-letter-spacing:2px;
-
-
 }
-
 
 
 
@@ -1064,86 +760,935 @@ display:inline-block;
 
 width:8px;
 
+
 height:8px;
 
 
 border-radius:50%;
 
 
-background:
-
-var(--green);
+background:var(--green);
 
 
-box-shadow:
-
-0 0 15px var(--green);
+box-shadow:0 0 15px var(--green);
 
 
 margin-right:8px;
 
 
-animation:
+}
 
-pulse 2s infinite;
+
+
+table{
+
+
+width:100%;
+
+
+border-collapse:collapse;
+
+
+font-size:12px;
 
 
 }
 
 
 
-@keyframes pulse{
+th{
 
 
-50%{
+padding:12px;
 
-opacity:.35;
 
-transform:scale(1.5);
+background:
+
+rgba(77,225,255,.08);
+
+
+color:var(--cyan);
+
+
+white-space:nowrap;
+
 
 }
 
 
+
+td{
+
+
+padding:10px;
+
+
+text-align:center;
+
+
+border-bottom:
+
+1px solid rgba(255,255,255,.05);
+
+
+white-space:nowrap;
+
+
 }
 
 
+
+tbody tr:hover{
+
+
+background:
+
+rgba(77,225,255,.08);
+
+
+}
+
+
+
+
+.footer{
+
+
+text-align:center;
+
+
+margin:30px 0;
+
+
+font-size:12px;
+
+
+color:var(--muted);
+
+
+letter-spacing:1px;
+
+
+}
 
 
 
 @media(max-width:900px){
 
 
-.chart-box{
+.header{
 
-min-width:100%;
-
-}
-
-
-.table-header{
 
 display:block;
 
-}
+
+text-align:center;
 
 
 }
 
 
-</style><script>
 
+.mission{
+
+
+text-align:center;
+
+
+margin-top:20px;
+
+
+}
+
+
+
+.chart-box{
+
+
+min-width:100%;
+
+
+}
+
+
+}
+
+</style>
+
+
+</head>
+
+
+
+
+<body>
+
+
+
+<!-- ================================
+HEADER
+================================ -->
+
+
+<div class="header">
+
+
+<div>
+
+
+<h1>
+ANTARCTIC AUTONOMOUS
+<br>
+MONITORING SYSTEM
+</h1>
+
+
+<p>
+南极自主环境监测平台 · REAL TIME TELEMETRY
+</p>
+
+
+</div>
+
+
+
+
+<div class="mission">
+
+
+<div>
+MISSION AA-2026
+</div>
+
+
+<div class="online">
+SYSTEM ONLINE
+</div>
+
+
+<div>
+GPS LOCKED
+</div>
+
+
+<div>
+DATA STREAM ACTIVE
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+<!-- ================================
+TIME RANGE
+================================ -->
+
+
+<div class="slider-box">
+
+
+<button 
+onclick="setRange(0)"
+id="btnAll"
+class="active">
+
+ALL DATA
+
+</button>
+
+
+<button
+onclick="setRange(24)"
+id="btn24h">
+
+24 HOURS
+
+</button>
+
+
+
+<button
+onclick="setRange(6)"
+id="btn6h">
+
+6 HOURS
+
+</button>
+
+
+
+<button
+onclick="setRange(2)"
+id="btn2h">
+
+2 HOURS
+
+</button>
+
+
+
+<div>
+
+RECORDS:
+
+<span id="totalCount">
+
+0
+
+</span>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+<!-- ================================
+SYSTEM STATUS
+================================ -->
+
+
+<div class="row">
+
+
+
+<div class="card">
+
+<div class="label">
+MODE STATUS
+</div>
+
+<div 
+id="mode"
+class="value green">
+
+--
+
+</div>
+
+</div>
+
+
+
+
+
+<div class="card">
+
+<div class="label">
+BATTERY VOLTAGE
+</div>
+
+<div 
+id="voltage"
+class="value cyan">
+
+--
+
+</div>
+
+</div>
+
+
+
+
+
+<div class="card">
+
+<div class="label">
+SYSTEM CURRENT
+</div>
+
+
+<div 
+id="current"
+class="value yellow">
+
+--
+
+</div>
+
+</div>
+
+
+
+
+
+<div class="card">
+
+<div class="label">
+ERROR STATUS
+</div>
+
+
+<div 
+id="error"
+class="value green">
+
+--
+
+</div>
+
+</div>
+
+
+
+
+
+<div class="card">
+
+<div class="label">
+SESSION ID
+</div>
+
+
+<div 
+id="ssid"
+class="value">
+
+--
+
+</div>
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+<!-- ================================
+GPS STATUS
+================================ -->
+
+
+
+<div class="row">
+
+
+
+<div class="card">
+
+
+<div class="label">
+LATITUDE
+</div>
+
+
+<div
+id="lat"
+class="value cyan">
+
+--
+
+</div>
+
+
+</div>
+
+
+
+
+<div class="card">
+
+
+<div class="label">
+LONGITUDE
+</div>
+
+
+<div
+id="lng"
+class="value cyan">
+
+--
+
+</div>
+
+
+</div>
+
+
+
+
+<div class="card">
+
+
+<div class="label">
+SATELLITES
+</div>
+
+
+<div
+id="sat"
+class="value">
+
+--
+
+</div>
+
+
+</div>
+
+
+
+
+<div class="card">
+
+
+<div class="label">
+GPS FIX
+</div>
+
+
+<div
+id="fix"
+class="value green">
+
+--
+
+</div>
+
+
+</div>
+
+
+
+
+<div class="card">
+
+
+<div class="label">
+GPS TIME
+</div>
+
+
+<div
+id="gpstime"
+class="value">
+
+--
+
+</div>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+<!-- ================================
+CHARTS
+================================ -->
+
+
+<div class="chart-title">
+
+REAL TIME TELEMETRY
+
+<span>
+实时环境传感器数据
+</span>
+
+</div>
+
+
+
+
+
+<div class="row">
+
+
+<div class="chart-box">
+
+<h3>
+BATTERY VOLTAGE
+<br>
+<span>
+电池电压
+</span>
+</h3>
+
+<canvas id="cv"></canvas>
+
+
+</div>
+
+
+
+<div class="chart-box">
+
+<h3>
+SYSTEM CURRENT
+<br>
+<span>
+系统电流
+</span>
+</h3>
+
+<canvas id="ca"></canvas>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+<div class="row">
+
+
+<div class="chart-box">
+
+<h3>
+SHT35 TEMPERATURE
+<br>
+<span>
+环境温度
+</span>
+</h3>
+
+
+<canvas id="cst"></canvas>
+
+
+</div>
+
+
+
+
+<div class="chart-box">
+
+<h3>
+SHT35 HUMIDITY
+<br>
+<span>
+环境湿度
+</span>
+</h3>
+
+
+<canvas id="csh"></canvas>
+
+
+</div>
+
+
+</div>
+
+<div class="row">
+
+
+<div class="chart-box">
+
+
+<h3>
+RS485 TEMPERATURE
+<br>
+
+<span>
+外部温度传感器
+</span>
+
+</h3>
+
+
+<canvas id="ctt"></canvas>
+
+
+</div>
+
+
+
+
+<div class="chart-box">
+
+
+<h3>
+RS485 HUMIDITY
+<br>
+
+<span>
+外部湿度传感器
+</span>
+
+</h3>
+
+
+<canvas id="cth"></canvas>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+<div class="row">
+
+
+<div class="chart-box">
+
+
+<h3>
+SOLAR IRRADIANCE
+<br>
+
+<span>
+太阳辐射
+</span>
+
+
+</h3>
+
+
+<canvas id="cs"></canvas>
+
+
+</div>
+
+
+
+
+
+<div class="chart-box">
+
+
+<h3>
+WIND MONITOR
+<br>
+
+<span>
+风速 / 风向
+</span>
+
+
+</h3>
+
+
+<canvas id="cws"></canvas>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<!-- ================================
+DATA TABLE
+================================ -->
+
+
+
+<div class="table-box">
+
+
+
+<div class="table-header">
+
+
+<h2>
+LIVE TELEMETRY STREAM
+</h2>
+
+
+
+<div class="receiving">
+
+<span class="live-dot"></span>
+
+DATA RECEIVING
+
+</div>
+
+
+</div>
+
+
+
+
+
+<table>
+
+
+<thead>
+
+<tr>
+
+<th>
+TIME
+</th>
+
+
+<th>
+MODE
+</th>
+
+
+<th>
+V
+</th>
+
+
+<th>
+CURRENT
+</th>
+
+
+<th>
+SOLAR
+</th>
+
+
+<th>
+SHT TEMP
+</th>
+
+
+<th>
+SHT HUM
+</th>
+
+
+<th>
+RS485 TEMP
+</th>
+
+
+<th>
+RS485 HUM
+</th>
+
+
+<th>
+LAT
+</th>
+
+
+<th>
+LON
+</th>
+
+
+<th>
+SAT
+</th>
+
+
+<th>
+GPS
+</th>
+
+
+<th>
+ERROR
+</th>
+
+
+</tr>
+
+
+</thead>
+
+
+
+<tbody id="tbody">
+
+
+</tbody>
+
+
+
+</table>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="footer">
+
+
+<span class="live-dot"></span>
+
+
+<span id="update">
+
+WAITING DATA
+
+</span>
+
+
+<br><br>
+
+
+ANTARCTIC AUTONOMOUS MONITORING SYSTEM
+
+
+</div>
+
+
+
+
+
+<script>
 
 // ================================
-// DATA SYSTEM
+// GLOBAL
 // ================================
 
 
-var ALL_DATA=[];
+let ALL_DATA=[];
 
-var currentRangeHours=0;
+let currentRangeHours=0;
 
+let charts={};
 
-var charts={};
 
 
 
@@ -1152,54 +1697,54 @@ var charts={};
 // ================================
 
 
-var chartColors={
+const chartColors={
 
 
 cv:{
-line:'#4de1ff',
-fill:'rgba(77,225,255,.12)'
+line:"#4de1ff",
+fill:"rgba(77,225,255,.12)"
 },
 
 
 ca:{
-line:'#ffd166',
-fill:'rgba(255,209,102,.12)'
+line:"#ffd166",
+fill:"rgba(255,209,102,.12)"
 },
 
 
 cst:{
-line:'#ff8fab',
-fill:'rgba(255,143,171,.12)'
+line:"#ff8fab",
+fill:"rgba(255,143,171,.12)"
 },
 
 
 csh:{
-line:'#56d9e8',
-fill:'rgba(86,217,232,.12)'
+line:"#56d9e8",
+fill:"rgba(86,217,232,.12)"
 },
 
 
 ctt:{
-line:'#ffc266',
-fill:'rgba(255,194,102,.12)'
+line:"#ffc266",
+fill:"rgba(255,194,102,.12)"
 },
 
 
 cth:{
-line:'#c4b5fd',
-fill:'rgba(196,181,253,.12)'
+line:"#c4b5fd",
+fill:"rgba(196,181,253,.12)"
 },
 
 
 cs:{
-line:'#ffe699',
-fill:'rgba(255,230,153,.12)'
+line:"#ffe699",
+fill:"rgba(255,230,153,.12)"
 },
 
 
 cws:{
-line:'#7dffb8',
-fill:'rgba(125,255,184,.12)'
+line:"#7dffb8",
+fill:"rgba(125,255,184,.12)"
 }
 
 
@@ -1209,18 +1754,34 @@ fill:'rgba(125,255,184,.12)'
 
 
 
+
+
+// ================================
+// CREATE CHART
+// ================================
+
+
 function createChart(id,label,color){
 
 
-var ctx=document
-.getElementById(id)
-.getContext('2d');
+let canvas=document.getElementById(id);
+
+
+if(!canvas){
+console.warn("Canvas missing:",id);
+return;
+}
+
+
+
+let ctx=canvas.getContext("2d");
+
 
 
 charts[id]=new Chart(ctx,{
 
 
-type:'line',
+type:"line",
 
 
 data:{
@@ -1231,9 +1792,12 @@ labels:[],
 
 datasets:[{
 
+
 label:label,
 
+
 data:[],
+
 
 borderColor:
 chartColors[color].line,
@@ -1254,7 +1818,9 @@ pointRadius:0,
 
 borderWidth:2.5
 
+
 }]
+
 
 },
 
@@ -1269,6 +1835,16 @@ responsive:true,
 maintainAspectRatio:false,
 
 
+animation:{
+
+
+duration:500
+
+
+},
+
+
+
 plugins:{
 
 
@@ -1277,20 +1853,23 @@ display:false
 },
 
 
+
 tooltip:{
 
 
 backgroundColor:
-'rgba(0,15,30,.9)',
+"rgba(2,15,30,.92)",
 
 
 borderColor:
-'rgba(77,225,255,.3)',
+"rgba(77,225,255,.3)",
 
 
 borderWidth:1
 
+
 }
+
 
 },
 
@@ -1305,8 +1884,7 @@ x:{
 ticks:{
 
 
-color:
-'rgba(200,230,255,.5)',
+color:"rgba(220,240,255,.5)",
 
 
 maxTicksLimit:8
@@ -1318,11 +1896,11 @@ maxTicksLimit:8
 grid:{
 
 
-color:
-'rgba(255,255,255,.04)'
+color:"rgba(255,255,255,.04)"
 
 
 }
+
 
 },
 
@@ -1334,8 +1912,7 @@ y:{
 ticks:{
 
 
-color:
-'rgba(200,230,255,.5)'
+color:"rgba(220,240,255,.5)"
 
 
 },
@@ -1344,8 +1921,7 @@ color:
 grid:{
 
 
-color:
-'rgba(255,255,255,.04)'
+color:"rgba(255,255,255,.04)"
 
 
 }
@@ -1371,60 +1947,31 @@ color:
 
 
 
-createChart(
-"cv",
-"Battery Voltage",
-"cv"
-);
 
 
-createChart(
-"ca",
-"Current",
-"ca"
-);
+// ================================
+// UPDATE CHART
+// ================================
 
 
-createChart(
-"cst",
-"SHT Temperature",
-"cst"
-);
+function updateChart(id,labels,data){
 
 
-createChart(
-"csh",
-"SHT Humidity",
-"csh"
-);
+if(!charts[id]) return;
 
 
-createChart(
-"ctt",
-"RS485 Temperature",
-"ctt"
-);
+
+charts[id].data.labels=labels;
 
 
-createChart(
-"cth",
-"RS485 Humidity",
-"cth"
-);
+charts[id].data.datasets[0].data=data;
 
 
-createChart(
-"cs",
-"Solar",
-"cs"
-);
+charts[id].update();
 
 
-createChart(
-"cws",
-"Wind",
-"cws"
-);
+}
+
 
 
 
@@ -1437,25 +1984,28 @@ createChart(
 // ================================
 
 
-
 async function load(){
 
 
 try{
 
 
-let res=
+let response=
+
 await fetch(
 "data.json?v="+Date.now()
 );
 
 
-let data=
-await res.json();
+
+let json=
+
+await response.json();
 
 
 
-ALL_DATA=data;
+ALL_DATA=json;
+
 
 
 render();
@@ -1463,10 +2013,13 @@ render();
 
 }
 
-catch(e){
+catch(error){
 
 
-console.log(e);
+console.error(
+"DATA ERROR:",
+error
+);
 
 
 }
@@ -1481,17 +2034,16 @@ console.log(e);
 
 
 
-
 // ================================
-// RANGE FILTER
+// RANGE
 // ================================
-
 
 
 function setRange(hours){
 
 
 currentRangeHours=hours;
+
 
 
 document
@@ -1505,22 +2057,22 @@ b=>b.classList.remove("active")
 let id="btnAll";
 
 
-if(hours==24)
+if(hours===24)
 id="btn24h";
 
-if(hours==6)
+
+if(hours===6)
 id="btn6h";
 
-if(hours==2)
+
+if(hours===2)
 id="btn2h";
 
 
-let btn=
-document.getElementById(id);
 
-
-if(btn)
-btn.classList.add("active");
+document
+.getElementById(id)
+.classList.add("active");
 
 
 
@@ -1542,7 +2094,6 @@ render();
 // ================================
 
 
-
 function render(){
 
 
@@ -1550,26 +2101,39 @@ let data=[...ALL_DATA];
 
 
 
+if(!data.length)
+return;
+
+
+
+
 if(currentRangeHours>0){
 
 
-let last=
+let end=
+
 new Date(
 data[data.length-1].time
 );
 
 
-data=data.filter(d=>{
+
+data=data.filter(item=>{
 
 
 let t=
-new Date(d.time);
+
+new Date(item.time);
+
 
 
 return
 
-(last-t)/3600000
-<=currentRangeHours;
+(end-t)
+
+<=
+
+currentRangeHours*3600000;
 
 
 });
@@ -1580,13 +2144,8 @@ return
 
 
 
-if(!data.length)
-return;
+let last=data[data.length-1];
 
-
-
-let last=
-data[data.length-1];
 
 
 
@@ -1594,70 +2153,66 @@ data[data.length-1];
 // STATUS
 
 
-document
-.getElementById("mode")
-.innerHTML=
-last.mode||"--";
+document.getElementById("mode").innerHTML=
+last.mode ?? "--";
 
 
-document
-.getElementById("voltage")
-.innerHTML=
-(last.v||0).toFixed(2)
+
+document.getElementById("voltage").innerHTML=
+(Number(last.v)||0).toFixed(2)
 +" V";
 
 
-document
-.getElementById("current")
-.innerHTML=
-(last.a||0)
+
+document.getElementById("current").innerHTML=
+(Number(last.a)||0)
 +" mA";
 
 
-document
-.getElementById("error")
-.innerHTML=
-last.e||0;
+
+document.getElementById("error").innerHTML=
+last.e ?? "--";
 
 
 
-document
-.getElementById("lat")
-.innerHTML=
-last.x||"--";
+document.getElementById("lat").innerHTML=
+last.x ?? "--";
 
 
-document
-.getElementById("lng")
-.innerHTML=
-last.y||"--";
+document.getElementById("lng").innerHTML=
+last.y ?? "--";
 
 
-document
-.getElementById("sat")
-.innerHTML=
-last.n||"--";
+document.getElementById("sat").innerHTML=
+last.n ?? "--";
 
 
-document
-.getElementById("fix")
-.innerHTML=
-last.g||"--";
+document.getElementById("fix").innerHTML=
+last.g ?? "--";
 
 
-document
-.getElementById("gpstime")
-.innerHTML=
-last.time||"--";
+document.getElementById("gpstime").innerHTML=
+last.time ?? "--";
 
 
 
+
+document.getElementById("totalCount").innerHTML=
+data.length;
+
+
+
+
+
+
+
+let times=data.map(d=>d.time);
 
 
 
 updateChart(
 "cv",
-data.map(d=>d.time),
+times,
 data.map(d=>d.v)
 );
 
@@ -1665,7 +2220,7 @@ data.map(d=>d.v)
 
 updateChart(
 "ca",
-data.map(d=>d.time),
+times,
 data.map(d=>d.a)
 );
 
@@ -1673,7 +2228,7 @@ data.map(d=>d.a)
 
 updateChart(
 "cst",
-data.map(d=>d.time),
+times,
 data.map(d=>d.j)
 );
 
@@ -1681,7 +2236,7 @@ data.map(d=>d.j)
 
 updateChart(
 "csh",
-data.map(d=>d.time),
+times,
 data.map(d=>d.k)
 );
 
@@ -1689,7 +2244,7 @@ data.map(d=>d.k)
 
 updateChart(
 "ctt",
-data.map(d=>d.time),
+times,
 data.map(d=>d.t)
 );
 
@@ -1697,7 +2252,7 @@ data.map(d=>d.t)
 
 updateChart(
 "cth",
-data.map(d=>d.time),
+times,
 data.map(d=>d.h)
 );
 
@@ -1705,7 +2260,7 @@ data.map(d=>d.h)
 
 updateChart(
 "cs",
-data.map(d=>d.time),
+times,
 data.map(d=>d.s)
 );
 
@@ -1713,7 +2268,7 @@ data.map(d=>d.s)
 
 updateChart(
 "cws",
-data.map(d=>d.time),
+times,
 data.map(d=>d.w)
 );
 
@@ -1724,46 +2279,30 @@ renderTable(data);
 
 
 
-document
-.getElementById("update")
-.innerHTML=
+document.getElementById("update").innerHTML=
+
 "LAST UPDATE : "
+
 +
+
 last.time
+
 +
+
 " · "
+
 +
+
 data.length
+
 +
+
 " RECORDS";
 
 
 
 }
 
-
-
-
-
-
-
-
-
-function updateChart(id,label,data){
-
-
-charts[id].data.labels=
-label;
-
-
-charts[id].data.datasets[0].data=
-data;
-
-
-charts[id].update();
-
-
-}
 
 
 
@@ -1781,7 +2320,9 @@ function renderTable(data){
 
 
 let tbody=
+
 document.getElementById("tbody");
+
 
 
 tbody.innerHTML="";
@@ -1794,42 +2335,42 @@ data
 .forEach(d=>{
 
 
-let tr=
-document.createElement("tr");
+let tr=document.createElement("tr");
 
 
 
 tr.innerHTML=`
 
-<td>${d.time||""}</td>
+<td>${d.time??""}</td>
 
-<td>${d.mode||""}</td>
+<td>${d.mode??""}</td>
 
-<td>${d.v||""}</td>
+<td>${d.v??""}</td>
 
-<td>${d.a||""}</td>
+<td>${d.a??""}</td>
 
-<td>${d.s||""}</td>
+<td>${d.s??""}</td>
 
-<td>${d.j||""}</td>
+<td>${d.j??""}</td>
 
-<td>${d.k||""}</td>
+<td>${d.k??""}</td>
 
-<td>${d.t||""}</td>
+<td>${d.t??""}</td>
 
-<td>${d.h||""}</td>
+<td>${d.h??""}</td>
 
-<td>${d.x||""}</td>
+<td>${d.x??""}</td>
 
-<td>${d.y||""}</td>
+<td>${d.y??""}</td>
 
-<td>${d.n||""}</td>
+<td>${d.n??""}</td>
 
-<td>${d.g||""}</td>
+<td>${d.g??""}</td>
 
-<td>${d.e||""}</td>
+<td>${d.e??""}</td>
 
 `;
+
 
 
 tbody.appendChild(tr);
@@ -1846,11 +2387,83 @@ tbody.appendChild(tr);
 
 
 
+
+
+// ================================
+// START SYSTEM
+// ================================
+
+
+window.onload=function(){
+
+
+
+createChart(
+"cv",
+"Battery Voltage",
+"cv"
+);
+
+
+
+createChart(
+"ca",
+"Current",
+"ca"
+);
+
+
+
+createChart(
+"cst",
+"SHT Temperature",
+"cst"
+);
+
+
+
+createChart(
+"csh",
+"SHT Humidity",
+"csh"
+);
+
+
+
+createChart(
+"ctt",
+"RS485 Temperature",
+"ctt"
+);
+
+
+
+createChart(
+"cth",
+"RS485 Humidity",
+"cth"
+);
+
+
+
+createChart(
+"cs",
+"Solar Irradiance",
+"cs"
+);
+
+
+
+createChart(
+"cws",
+"Wind",
+"cws"
+);
+
+
+
 load();
 
-
-
-// 5分钟刷新
 
 
 setInterval(
@@ -1860,9 +2473,19 @@ load,
 
 
 
+};
+
+
+
 </script>
 
 
 </body>
 
 </html>
+
+
+
+
+
+
