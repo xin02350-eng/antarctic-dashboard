@@ -1,74 +1,56 @@
 <!DOCTYPE html>
-
 <html lang="zh-CN">
-
 
 <head>
 
-
 <meta charset="UTF-8">
-
 
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
 
 <title>
-
-ANTARCTIC NEXUS
-
+ANTARCTIC NEXUS Ω
 </title>
 
 
-
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-
-
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
 
 
 <style>
 
 
-
 :root{
 
 
---bg:#02050d;
+--bg:#020711;
+
+--panel:rgba(8,25,42,.86);
+
+--panel2:rgba(12,38,60,.8);
 
 
---panel:#071626;
+--cyan:#54eaff;
+
+--blue:#4388ff;
+
+--green:#69ffb0;
+
+--yellow:#ffd966;
+
+--red:#ff5577;
 
 
---panel2:#0b2238;
+--text:#eaf8ff;
+
+--muted:#7996ad;
 
 
---cyan:#55eaff;
-
-
---blue:#3478ff;
-
-
---green:#63ffb0;
-
-
---yellow:#ffd45c;
-
-
---red:#ff5c78;
-
-
---text:#e9f8ff;
-
-
---muted:#7895aa;
-
-
---line:
-rgba(85,234,255,.18);
+--border:
+rgba(84,234,255,.18);
 
 
 
@@ -81,13 +63,11 @@ rgba(85,234,255,.18);
 *{
 
 
-box-sizing:border-box;
-
-
 margin:0;
 
-
 padding:0;
+
+box-sizing:border-box;
 
 
 }
@@ -99,13 +79,10 @@ html,body{
 
 width:100%;
 
-
 min-height:100%;
 
 
-background:
-
-#02050d;
+background:#020711;
 
 
 color:var(--text);
@@ -114,13 +91,14 @@ color:var(--text);
 font-family:
 
 Inter,
+
 "Microsoft YaHei",
+
 sans-serif;
 
 
 
 overflow-x:hidden;
-
 
 
 }
@@ -131,9 +109,10 @@ overflow-x:hidden;
 
 
 
-/* =========================
- 极地背景系统
-========================= */
+/* =================================
+   POLAR SPACE BACKGROUND
+================================= */
+
 
 
 body{
@@ -141,24 +120,39 @@ body{
 
 background:
 
+
 radial-gradient(
-circle at 50% -20%,
-rgba(85,234,255,.22),
-transparent 40%
+
+circle at 50% -10%,
+
+rgba(84,234,255,.22),
+
+transparent 38%
+
 ),
 
 
+
 radial-gradient(
+
 circle at 20% 80%,
-rgba(52,120,255,.18),
+
+rgba(67,136,255,.18),
+
 transparent 35%
+
 ),
+
 
 
 linear-gradient(
+
 180deg,
-#02050d,
+
+#020711,
+
 #06182a
+
 );
 
 
@@ -167,9 +161,6 @@ linear-gradient(
 
 
 
-
-
-/* 星空粒子 */
 
 
 body::before{
@@ -191,26 +182,28 @@ pointer-events:none;
 background-image:
 
 radial-gradient(
-circle,
-rgba(255,255,255,.5) 1px,
+
+white 1px,
+
 transparent 1px
+
 );
 
 
 
 background-size:
 
-90px 90px;
+80px 80px;
 
 
 
-opacity:.15;
+opacity:.12;
 
 
 
 animation:
 
-stars 30s linear infinite;
+starMove 40s linear infinite;
 
 
 
@@ -218,42 +211,30 @@ stars 30s linear infinite;
 
 
 
-
-
-@keyframes stars{
+@keyframes starMove{
 
 
 from{
 
-
-transform:
-translateY(0);
-
+transform:translateY(0);
 
 }
 
 
 to{
 
+transform:translateY(80px);
 
-transform:
-translateY(90px);
+}
 
 
 }
 
 
 
-}
 
 
 
-
-
-
-
-
-/* 网格扫描 */
 
 
 body::after{
@@ -274,31 +255,197 @@ pointer-events:none;
 
 background:
 
+
 linear-gradient(
+
 90deg,
+
 transparent 49.8%,
-rgba(85,234,255,.05) 50%,
+
+rgba(84,234,255,.04)
+
+50%,
+
 transparent 50.2%
+
 ),
 
 
 linear-gradient(
+
 transparent 49.8%,
-rgba(85,234,255,.04) 50%,
+
+rgba(84,234,255,.04)
+
+50%,
+
 transparent 50.2%
+
 );
 
 
 
 background-size:
 
-100px 100px;
+120px 120px;
 
 
 
 opacity:.35;
 
 
+}
+
+
+
+
+
+
+
+
+
+/* =================================
+   STARTUP SCREEN
+================================= */
+
+
+
+.boot-screen{
+
+
+position:fixed;
+
+
+inset:0;
+
+
+background:#020711;
+
+
+
+display:flex;
+
+
+align-items:center;
+
+
+justify-content:center;
+
+
+
+z-index:9999;
+
+
+
+animation:
+
+bootOut 2.8s forwards;
+
+
+
+}
+
+
+
+
+.boot-box{
+
+
+font-family:
+
+Orbitron;
+
+
+
+letter-spacing:3px;
+
+
+
+text-align:center;
+
+
+
+}
+
+
+
+
+
+.boot-title{
+
+
+font-size:34px;
+
+
+
+color:var(--cyan);
+
+
+
+text-shadow:
+
+0 0 30px var(--cyan);
+
+
+
+}
+
+
+
+.boot-line{
+
+
+margin-top:20px;
+
+
+color:#8ab5cc;
+
+
+font-size:13px;
+
+
+
+}
+
+
+
+.boot-ok{
+
+
+color:var(--green);
+
+
+margin-left:20px;
+
+
+}
+
+
+
+
+@keyframes bootOut{
+
+
+0%,75%{
+
+
+opacity:1;
+
+
+}
+
+
+
+100%{
+
+
+opacity:0;
+
+visibility:hidden;
+
+
+}
+
 
 }
 
@@ -308,18 +455,25 @@ opacity:.35;
 
 
 
+
+/* =================================
+ MAIN
+================================= */
 
 
 .container{
 
 
-width:min(1450px,94vw);
+width:min(1500px,94vw);
 
 
 margin:auto;
 
 
-padding:30px 0 80px;
+padding:
+
+35px 0 80px;
+
 
 
 }
@@ -331,13 +485,16 @@ padding:30px 0 80px;
 
 
 
+/* =================================
+ HEADER
+================================= */
 
-/* =========================
- 顶部任务栏
-========================= */
 
 
 .header{
+
+
+height:120px;
 
 
 display:flex;
@@ -350,35 +507,39 @@ align-items:center;
 
 
 
-padding:
-
-25px 35px;
-
-
-
-border-radius:25px;
+padding:30px 40px;
 
 
 
 background:
 
+
 linear-gradient(
+
 145deg,
-rgba(12,35,55,.9),
-rgba(3,15,28,.95)
+
+rgba(10,35,55,.95),
+
+rgba(2,12,24,.95)
+
 );
 
 
 
 border:
 
-1px solid var(--line);
+1px solid var(--border);
+
+
+
+border-radius:28px;
 
 
 
 box-shadow:
 
-0 0 40px rgba(85,234,255,.08);
+
+0 0 50px rgba(84,234,255,.08);
 
 
 
@@ -388,7 +549,7 @@ box-shadow:
 
 
 
-.brand{
+.logo{
 
 
 font-family:
@@ -400,25 +561,18 @@ Orbitron;
 
 
 
-.brand h1{
+.logo h1{
 
 
-font-size:32px;
+font-size:34px;
 
 
-letter-spacing:6px;
+
+letter-spacing:7px;
+
 
 
 font-weight:900;
-
-
-color:white;
-
-
-
-text-shadow:
-
-0 0 25px rgba(85,234,255,.8);
 
 
 
@@ -426,7 +580,7 @@ text-shadow:
 
 
 
-.brand h1 span{
+.logo h1 span{
 
 
 color:var(--cyan);
@@ -438,7 +592,7 @@ color:var(--cyan);
 
 
 
-.brand p{
+.logo p{
 
 
 margin-top:12px;
@@ -447,10 +601,12 @@ margin-top:12px;
 font-size:12px;
 
 
-letter-spacing:4px;
+
+letter-spacing:5px;
 
 
 color:var(--muted);
+
 
 
 }
@@ -458,7 +614,14 @@ color:var(--muted);
 
 
 
-.mission-status{
+
+
+.system-status{
+
+
+font-family:
+
+Orbitron;
 
 
 display:flex;
@@ -467,47 +630,45 @@ display:flex;
 align-items:center;
 
 
-gap:12px;
+gap:15px;
 
 
-font-family:
 
-Orbitron;
-
-
-font-size:13px;
-
+font-size:14px;
 
 
 }
 
 
 
-.status-light{
 
 
-width:12px;
+.status-dot{
 
 
-height:12px;
+width:14px;
 
 
-background:var(--green);
+height:14px;
 
 
 border-radius:50%;
 
 
 
+background:var(--green);
+
+
+
 box-shadow:
 
-0 0 20px var(--green);
+0 0 25px var(--green);
 
 
 
 animation:
 
-blink 2s infinite;
+statusPulse 2s infinite;
 
 
 
@@ -515,9 +676,7 @@ blink 2s infinite;
 
 
 
-
-
-@keyframes blink{
+@keyframes statusPulse{
 
 
 50%{
@@ -537,9 +696,11 @@ opacity:.3;
 
 
 
-/* =========================
- 一级数据
-========================= */
+
+/* =================================
+ OVERVIEW
+================================= */
+
 
 
 .overview{
@@ -554,13 +715,14 @@ repeat(4,1fr);
 
 
 
-gap:20px;
+gap:22px;
 
 
-margin-top:25px;
+margin-top:30px;
 
 
 }
+
 
 
 
@@ -575,23 +737,28 @@ padding:25px;
 
 
 
-border-radius:22px;
+border-radius:24px;
 
 
 
 background:
 
+
 linear-gradient(
+
 145deg,
-rgba(10,40,65,.8),
-rgba(3,15,25,.9)
+
+rgba(12,40,65,.85),
+
+rgba(4,15,28,.95)
+
 );
 
 
 
 border:
 
-1px solid var(--line);
+1px solid var(--border);
 
 
 
@@ -603,6 +770,7 @@ overflow:hidden;
 
 
 }
+
 
 
 
@@ -627,13 +795,20 @@ width:100%;
 height:2px;
 
 
+
 background:
 
+
 linear-gradient(
+
 90deg,
+
 transparent,
+
 var(--cyan),
+
 transparent
+
 );
 
 
@@ -642,7 +817,9 @@ transparent
 
 
 
-.ov-title{
+
+
+.card-label{
 
 
 font-family:
@@ -663,7 +840,9 @@ color:var(--muted);
 
 
 
-.ov-value{
+
+
+.card-value{
 
 
 margin-top:25px;
@@ -680,13 +859,14 @@ font-size:38px;
 font-weight:900;
 
 
+
 color:var(--cyan);
 
 
 
 text-shadow:
 
-0 0 20px rgba(85,234,255,.7);
+0 0 25px rgba(84,234,255,.7);
 
 
 
@@ -694,7 +874,9 @@ text-shadow:
 
 
 
-.ov-unit{
+
+
+.card-unit{
 
 
 font-size:12px;
@@ -703,24 +885,82 @@ font-size:12px;
 color:var(--muted);
 
 
-margin-left:5px;
-
-
 }
-
-
 
 
 
 </style>
 
 
-
 </head>
 
 
 
+
+
 <body>
+
+
+<div class="boot-screen">
+
+
+<div class="boot-box">
+
+
+<div class="boot-title">
+
+ANTARCTIC NEXUS Ω
+
+</div>
+
+
+<div class="boot-line">
+
+POWER SYSTEM
+
+<span class="boot-ok">
+
+OK
+
+</span>
+
+</div>
+
+
+<div class="boot-line">
+
+SENSOR ARRAY
+
+<span class="boot-ok">
+
+OK
+
+</span>
+
+</div>
+
+
+
+<div class="boot-line">
+
+POLAR NODE
+
+<span class="boot-ok">
+
+ONLINE
+
+</span>
+
+</div>
+
+
+
+</div>
+
+
+</div>
+
+
 
 
 
@@ -728,24 +968,22 @@ margin-left:5px;
 
 
 
-
-
 <header class="header">
 
 
-<div class="brand">
+<div class="logo">
 
 
 <h1>
 
-ANTARCTIC <span>NEXUS</span>
+ANTARCTIC <span>NEXUS Ω</span>
 
 </h1>
 
 
 <p>
 
-AUTONOMOUS POLAR MONITORING CENTER
+AUTONOMOUS POLAR MONITORING SYSTEM
 
 </p>
 
@@ -754,10 +992,10 @@ AUTONOMOUS POLAR MONITORING CENTER
 
 
 
-<div class="mission-status">
+<div class="system-status">
 
 
-<div class="status-light"></div>
+<div class="status-dot"></div>
 
 
 SYSTEM ONLINE
@@ -773,21 +1011,21 @@ SYSTEM ONLINE
 
 
 
+
 <section class="overview">
 
 
 
 <div class="overview-card">
 
-
-<div class="ov-title">
+<div class="card-label">
 
 BATTERY VOLTAGE
 
 </div>
 
 
-<div class="ov-value">
+<div class="card-value">
 
 <span id="topVoltage">
 
@@ -795,19 +1033,17 @@ BATTERY VOLTAGE
 
 </span>
 
-
-<span class="ov-unit">
+<span class="card-unit">
 
 V
 
 </span>
 
-
 </div>
 
 
-
 </div>
+
 
 
 
@@ -815,16 +1051,14 @@ V
 
 <div class="overview-card">
 
-
-<div class="ov-title">
+<div class="card-label">
 
 SYSTEM CURRENT
 
 </div>
 
 
-<div class="ov-value">
-
+<div class="card-value">
 
 <span id="topCurrent">
 
@@ -832,19 +1066,17 @@ SYSTEM CURRENT
 
 </span>
 
-
-<span class="ov-unit">
+<span class="card-unit">
 
 mA
 
 </span>
 
-
 </div>
 
 
-
 </div>
+
 
 
 
@@ -853,16 +1085,14 @@ mA
 
 <div class="overview-card">
 
-
-<div class="ov-title">
+<div class="card-label">
 
 SOLAR IRRADIANCE
 
 </div>
 
 
-<div class="ov-value">
-
+<div class="card-value">
 
 <span id="topSolar">
 
@@ -870,19 +1100,18 @@ SOLAR IRRADIANCE
 
 </span>
 
-
-<span class="ov-unit">
+<span class="card-unit">
 
 W/m²
 
 </span>
 
+</div>
+
 
 </div>
 
 
-
-</div>
 
 
 
@@ -891,16 +1120,14 @@ W/m²
 
 <div class="overview-card">
 
-
-<div class="ov-title">
+<div class="card-label">
 
 DATA RECORDS
 
 </div>
 
 
-<div class="ov-value">
-
+<div class="card-value">
 
 <span id="topRecords">
 
@@ -908,27 +1135,23 @@ DATA RECORDS
 
 </span>
 
+<span class="card-unit">
 
-<span class="ov-unit">
-
-DATA
+POINTS
 
 </span>
 
+</div>
+
 
 </div>
 
 
 
-</div>
 
-
-
-
-
-</section><!-- ===============================
- POLAR DIGITAL TWIN HUD
-================================ -->
+</section><!-- =================================
+ POLAR NODE DIGITAL TWIN
+================================= -->
 
 
 <div class="section-title">
@@ -940,49 +1163,83 @@ POLAR NODE DIGITAL TWIN
 
 
 
-<div class="polar-hud">
+
+<section class="polar-system">
 
 
 
-<div class="radar-container">
-
-
-<div class="radar-ring ring1"></div>
-
-<div class="radar-ring ring2"></div>
-
-<div class="radar-ring ring3"></div>
-
-
-<div class="radar-scan"></div>
+<div class="polar-core-area">
 
 
 
+<div class="direction north">
 
-<div class="node-core">
+N
+
+</div>
 
 
-<div class="core-pulse"></div>
+
+<div class="direction south">
+
+S
+
+</div>
 
 
-<div class="core-text">
+
+
+
+<div class="radar">
+
+
+
+<div class="radar-circle circle-a"></div>
+
+
+<div class="radar-circle circle-b"></div>
+
+
+<div class="radar-circle circle-c"></div>
+
+
+
+<div class="radar-sweep"></div>
+
+
+
+
+
+<div class="node-center">
+
+
+
+<div class="node-pulse"></div>
+
+
+
+<div class="node-content">
 
 
 <h2>
 
-ANT-A01
+A01
 
 </h2>
 
 
 <p>
 
-AUTONOMOUS NODE
+POLAR NODE
 
 </p>
 
 
-</div>
+<span>
+
+ONLINE
+
+</span>
 
 
 </div>
@@ -992,27 +1249,38 @@ AUTONOMOUS NODE
 
 
 
+</div>
 
 
 
 
-<div class="node-info">
+</div>
 
 
 
-<div class="info-box">
 
 
-<div class="info-label">
+
+
+
+
+<div class="polar-info">
+
+
+
+<div class="info-card">
+
+
+<div class="info-title">
 
 LATITUDE
 
 </div>
 
 
-<div id="lat"
+<div class="info-value"
 
-class="info-value">
+id="lat">
 
 --
 
@@ -1025,19 +1293,20 @@ class="info-value">
 
 
 
-<div class="info-box">
+
+<div class="info-card">
 
 
-<div class="info-label">
+<div class="info-title">
 
 LONGITUDE
 
 </div>
 
 
-<div id="lng"
+<div class="info-value"
 
-class="info-value">
+id="lng">
 
 --
 
@@ -1051,19 +1320,20 @@ class="info-value">
 
 
 
-<div class="info-box">
+
+<div class="info-card">
 
 
-<div class="info-label">
+<div class="info-title">
 
 SATELLITES
 
 </div>
 
 
-<div id="sat"
+<div class="info-value"
 
-class="info-value">
+id="sat">
 
 --
 
@@ -1077,44 +1347,20 @@ class="info-value">
 
 
 
-<div class="info-box">
+
+<div class="info-card">
 
 
-<div class="info-label">
+<div class="info-title">
 
 GPS STATUS
 
 </div>
 
 
-<div id="fix"
+<div class="info-value green"
 
-class="info-value green">
-
---
-
-</div>
-
-
-</div>
-
-
-
-
-
-<div class="info-box">
-
-
-<div class="info-label">
-
-MISSION MODE
-
-</div>
-
-
-<div id="mode"
-
-class="info-value green">
+id="fix">
 
 --
 
@@ -1127,36 +1373,47 @@ class="info-value green">
 
 
 
-<div class="info-box">
+
+<div class="info-card wide">
 
 
-<div class="info-label">
+<div class="info-title">
 
-SESSION
-
-</div>
-
-
-<div id="ssid"
-
-class="info-value">
-
---
+POLAR EXPOSURE MODE
 
 </div>
 
 
+<div class="exposure">
+
+
+ICE FIELD OPERATION
+
+<br>
+
+
+REMOTE AUTONOMY ENABLED
+
+
+</div>
+
+
+
 </div>
 
 
 
 
-</div>
-
-
-
 
 </div>
+
+
+
+
+
+</section>
+
+
 
 
 
@@ -1167,20 +1424,19 @@ class="info-value">
 <style>
 
 
-
-/* ===============================
- SECTION TITLE
-================================ */
+/* ==============================
+ SECTION
+============================== */
 
 
 
 .section-title{
 
 
-margin-top:40px;
+margin-top:45px;
 
 
-margin-bottom:20px;
+margin-bottom:22px;
 
 
 
@@ -1192,7 +1448,9 @@ Orbitron;
 font-size:14px;
 
 
+
 letter-spacing:5px;
+
 
 
 color:
@@ -1210,6 +1468,7 @@ border-left:
 padding-left:15px;
 
 
+
 }
 
 
@@ -1219,17 +1478,17 @@ padding-left:15px;
 
 
 
-/* ===============================
- POLAR HUD
-================================ */
 
 
+/* ==============================
+ POLAR SYSTEM
+============================== */
 
-.polar-hud{
+
+.polar-system{
 
 
-height:520px;
-
+height:650px;
 
 
 display:grid;
@@ -1237,11 +1496,10 @@ display:grid;
 
 grid-template-columns:
 
-1fr 400px;
+1fr 380px;
 
 
-
-gap:50px;
+gap:40px;
 
 
 
@@ -1254,9 +1512,9 @@ background:
 
 radial-gradient(
 
-circle,
+circle at center,
 
-rgba(85,234,255,.12),
+rgba(84,234,255,.12),
 
 transparent 45%
 
@@ -1267,16 +1525,13 @@ rgba(5,22,40,.85);
 
 
 
+border-radius:35px;
+
+
 border:
 
-1px solid var(--line);
+1px solid var(--border);
 
-
-border-radius:30px;
-
-
-
-overflow:hidden;
 
 
 }
@@ -1287,7 +1542,13 @@ overflow:hidden;
 
 
 
-.radar-container{
+
+/* ==============================
+ CENTER RADAR
+============================== */
+
+
+.polar-core-area{
 
 
 position:relative;
@@ -1296,10 +1557,36 @@ position:relative;
 display:flex;
 
 
+justify-content:center;
+
+
 align-items:center;
 
 
-justify-content:center;
+
+}
+
+
+
+.direction{
+
+
+position:absolute;
+
+
+
+font-family:
+
+Orbitron;
+
+
+font-size:22px;
+
+
+
+color:
+
+rgba(84,234,255,.5);
 
 
 
@@ -1308,11 +1595,61 @@ justify-content:center;
 
 
 
-.radar-ring{
+.north{
+
+
+top:20px;
+
+
+}
+
+
+
+.south{
+
+
+bottom:20px;
+
+
+}
+
+
+
+
+
+
+
+.radar{
+
+
+width:460px;
+
+
+height:460px;
+
+
+position:relative;
+
+
+display:flex;
+
+
+justify-content:center;
+
+
+align-items:center;
+
+
+
+}
+
+
+
+
+.radar-circle{
 
 
 position:absolute;
-
 
 
 border-radius:50%;
@@ -1321,7 +1658,7 @@ border-radius:50%;
 
 border:
 
-1px solid rgba(85,234,255,.25);
+1px solid rgba(84,234,255,.28);
 
 
 
@@ -1329,25 +1666,12 @@ border:
 
 
 
-.ring1{
+.circle-a{
 
 
-width:380px;
+width:460px;
 
-height:380px;
-
-
-}
-
-
-
-
-.ring2{
-
-
-width:280px;
-
-height:280px;
+height:460px;
 
 
 }
@@ -1355,12 +1679,12 @@ height:280px;
 
 
 
-.ring3{
+.circle-b{
 
 
-width:170px;
+width:330px;
 
-height:170px;
+height:330px;
 
 
 }
@@ -1369,18 +1693,87 @@ height:170px;
 
 
 
+.circle-c{
 
 
-.radar-scan{
+width:200px;
+
+height:200px;
+
+
+}
+
+
+
+
+
+
+
+.radar::before{
+
+
+content:"";
 
 
 position:absolute;
 
 
-width:380px;
+width:100%;
 
 
-height:380px;
+height:1px;
+
+
+background:
+
+rgba(84,234,255,.25);
+
+
+
+}
+
+
+
+.radar::after{
+
+
+content:"";
+
+
+position:absolute;
+
+
+height:100%;
+
+
+width:1px;
+
+
+background:
+
+rgba(84,234,255,.25);
+
+
+
+}
+
+
+
+
+
+
+
+.radar-sweep{
+
+
+position:absolute;
+
+
+
+width:460px;
+
+
+height:460px;
 
 
 
@@ -1390,13 +1783,12 @@ border-radius:50%;
 
 background:
 
-conic-gradient(
 
-from 0deg,
+conic-gradient(
 
 transparent,
 
-rgba(85,234,255,.35),
+rgba(84,234,255,.35),
 
 transparent
 
@@ -1406,7 +1798,7 @@ transparent
 
 animation:
 
-radarRotate 5s linear infinite;
+rotateRadar 5s linear infinite;
 
 
 
@@ -1414,7 +1806,9 @@ radarRotate 5s linear infinite;
 
 
 
-@keyframes radarRotate{
+
+
+@keyframes rotateRadar{
 
 
 from{
@@ -1422,7 +1816,6 @@ from{
 transform:rotate(0deg);
 
 }
-
 
 
 to{
@@ -1440,13 +1833,15 @@ transform:rotate(360deg);
 
 
 
-.node-core{
 
 
-width:130px;
+.node-center{
 
 
-height:130px;
+width:150px;
+
+
+height:150px;
 
 
 border-radius:50%;
@@ -1455,13 +1850,14 @@ border-radius:50%;
 
 background:
 
+
 radial-gradient(
 
 circle,
 
 #55eaff,
 
-#0a3148
+#07314b
 
 );
 
@@ -1480,18 +1876,18 @@ text-align:center;
 
 
 
-position:relative;
+z-index:5;
 
 
 
 box-shadow:
 
 
-0 0 60px rgba(85,234,255,.7);
+0 0 70px rgba(84,234,255,.8);
 
 
 
-z-index:5;
+position:relative;
 
 
 
@@ -1499,29 +1895,30 @@ z-index:5;
 
 
 
-
-.core-pulse{
+.node-pulse{
 
 
 position:absolute;
 
 
-inset:-25px;
+inset:-30px;
 
 
 
 border-radius:50%;
 
 
+
 border:
 
-1px solid rgba(85,234,255,.5);
+1px solid rgba(84,234,255,.6);
 
 
 
 animation:
 
-pulseRing 3s infinite;
+nodePulse 3s infinite;
+
 
 
 }
@@ -1530,7 +1927,7 @@ pulseRing 3s infinite;
 
 
 
-@keyframes pulseRing{
+@keyframes nodePulse{
 
 
 0%{
@@ -1538,16 +1935,19 @@ pulseRing 3s infinite;
 
 transform:scale(.8);
 
+
 opacity:1;
 
 
 }
 
 
+
 100%{
 
 
 transform:scale(1.5);
+
 
 opacity:0;
 
@@ -1562,7 +1962,7 @@ opacity:0;
 
 
 
-.core-text h2{
+.node-content h2{
 
 
 font-family:
@@ -1570,29 +1970,49 @@ font-family:
 Orbitron;
 
 
-font-size:22px;
-
-
-color:#fff;
+font-size:42px;
 
 
 }
 
 
 
-.core-text p{
+.node-content p{
+
+
+font-size:11px;
+
+
+letter-spacing:3px;
+
+
+
+}
+
+
+
+.node-content span{
+
+
+display:block;
+
+
+margin-top:8px;
+
+
+
+font-family:
+
+Orbitron;
 
 
 font-size:10px;
 
 
-letter-spacing:2px;
+color:
 
+var(--green);
 
-color:#d7f8ff;
-
-
-margin-top:5px;
 
 
 }
@@ -1604,14 +2024,13 @@ margin-top:5px;
 
 
 
-
-/* ===============================
- NODE DATA
-================================ */
-
+/* ==============================
+ DATA PANEL
+============================== */
 
 
-.node-info{
+
+.polar-info{
 
 
 display:grid;
@@ -1622,6 +2041,7 @@ grid-template-columns:
 1fr;
 
 
+
 gap:18px;
 
 
@@ -1630,34 +2050,35 @@ gap:18px;
 
 
 
-.info-box{
+.info-card{
 
 
-padding:22px;
+padding:25px;
 
 
 
 background:
 
+
 rgba(255,255,255,.04);
+
+
+
+border-radius:20px;
 
 
 
 border:
 
-1px solid rgba(85,234,255,.15);
+1px solid rgba(84,234,255,.15);
 
-
-
-border-radius:18px;
 
 
 }
 
 
 
-
-.info-label{
+.info-title{
 
 
 font-family:
@@ -1671,6 +2092,7 @@ font-size:11px;
 letter-spacing:3px;
 
 
+
 color:
 
 var(--muted);
@@ -1678,7 +2100,6 @@ var(--muted);
 
 
 }
-
 
 
 
@@ -1693,7 +2114,8 @@ font-family:
 Orbitron;
 
 
-font-size:24px;
+font-size:28px;
+
 
 
 color:
@@ -1706,7 +2128,7 @@ var(--cyan);
 
 
 
-.info-value.green{
+.green{
 
 
 color:
@@ -1718,6 +2140,46 @@ var(--green);
 
 
 
+.exposure{
+
+
+margin-top:15px;
+
+
+font-family:
+
+Orbitron;
+
+
+font-size:15px;
+
+
+line-height:2;
+
+
+
+color:
+
+var(--green);
+
+
+
+}
+
+
+
+
+.wide{
+
+
+height:150px;
+
+
+}
+
+
+
+
 
 
 
@@ -1726,7 +2188,7 @@ var(--green);
 
 
 
-.polar-hud{
+.polar-system{
 
 
 grid-template-columns:
@@ -1741,60 +2203,286 @@ height:auto;
 
 
 
-.node-info{
+.radar{
 
 
-grid-template-columns:
-
-1fr 1fr;
-
-
-}
-
+transform:scale(.75);
 
 
 }
 
 
 
+}
 
 
 
-</style><!-- ===============================
- ENERGY CORE SYSTEM
-================================ -->
+</style><!-- =================================
+ HARDWARE DIGITAL TWIN
+================================= -->
 
 
 <div class="section-title">
 
-ENERGY CORE SYSTEM
-
-</div>
-
-
-
-<div class="energy-core">
-
-
-
-<div class="energy-title">
-
-POWER FLOW ARCHITECTURE
+HARDWARE DIGITAL TWIN
 
 </div>
 
 
 
 
+<section class="hardware-section">
 
-<div class="energy-chain">
+
+
+
+
+<!-- DEVICE VIEW -->
+
+
+<div class="device-view">
+
+
+
+<div class="device-title">
+
+ANT-A01 FIELD UNIT
+
+</div>
+
+
+
+
+
+<div class="device-model">
+
+
+
+<div class="solar-panel">
+
+
+<div class="panel-line"></div>
+
+<div class="panel-line"></div>
+
+<div class="panel-line"></div>
+
+
+</div>
+
+
+
+
+
+<div class="support-pole">
+
+
+</div>
+
+
+
+
+
+<div class="sensor-box">
+
+
+<div class="sensor-light"></div>
+
+
+
+<div>
+
+SENSOR MODULE
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+<div class="communication">
+
+
+●
+
+COMMUNICATION
+
+</div>
+
+
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<!-- DEVICE PARAMETER -->
+
+
+<div class="device-info">
+
+
+
+
+
+<div class="device-card">
+
+
+<div class="device-label">
+
+POWER
+
+</div>
+
+
+<div class="device-value green">
+
+SOLAR
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+<div class="device-card">
+
+
+<div class="device-label">
+
+DATA
+
+</div>
+
+
+<div class="device-value">
+
+20min/sample
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+<div class="device-card">
+
+
+<div class="device-label">
+
+LOW TEMPERATURE RESISTANCE
+
+</div>
+
+
+<div class="device-value yellow">
+
+-40℃
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+<div class="device-card">
+
+
+<div class="device-label">
+
+OPERATION MODE
+
+</div>
+
+
+<div class="device-value">
+
+REMOTE AUTONOMY
+
+</div>
+
+
+</div>
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<!-- =================================
+ ENERGY FLOW
+================================= -->
+
+
+
+<div class="section-title">
+
+ENERGY CORE
+
+</div>
+
+
+
+
+
+
+
+<section class="energy-flow">
+
+
+
 
 
 
 <div class="energy-node">
 
 
-<div class="energy-icon">
+<div class="energy-symbol">
 
 ☀
 
@@ -1813,13 +2501,7 @@ SOLAR ARRAY
 
 <p>
 
-<span id="solarPower">
-
---
-
-</span>
-
-W/m²
+INPUT POWER
 
 </p>
 
@@ -1834,7 +2516,10 @@ W/m²
 
 
 
-<div class="energy-arrow">
+
+
+
+<div class="energy-particles">
 
 
 <span></span>
@@ -1852,10 +2537,11 @@ W/m²
 
 
 
+
 <div class="energy-node">
 
 
-<div class="energy-icon">
+<div class="energy-symbol">
 
 ⚡
 
@@ -1874,7 +2560,7 @@ POWER CONTROL
 
 <p>
 
-ACTIVE
+MANAGEMENT
 
 </p>
 
@@ -1892,7 +2578,7 @@ ACTIVE
 
 
 
-<div class="energy-arrow">
+<div class="energy-particles">
 
 
 <span></span>
@@ -1910,10 +2596,11 @@ ACTIVE
 
 
 
+
 <div class="energy-node">
 
 
-<div class="energy-icon">
+<div class="energy-symbol">
 
 🔋
 
@@ -1932,13 +2619,7 @@ BATTERY
 
 <p>
 
-<span id="batteryVoltage">
-
---
-
-</span>
-
-V
+STORAGE
 
 </p>
 
@@ -1956,7 +2637,7 @@ V
 
 
 
-<div class="energy-arrow">
+<div class="energy-particles">
 
 
 <span></span>
@@ -1974,10 +2655,11 @@ V
 
 
 
+
 <div class="energy-node">
 
 
-<div class="energy-icon">
+<div class="energy-symbol">
 
 ◉
 
@@ -1996,7 +2678,7 @@ SCIENCE PAYLOAD
 
 <p>
 
-ONLINE
+SENSORS ONLINE
 
 </p>
 
@@ -2012,132 +2694,11 @@ ONLINE
 
 
 
-</div>
 
+</section>
 
 
 
-
-
-
-<!-- POWER STATUS -->
-
-
-
-<div class="power-status">
-
-
-
-
-
-<div class="power-box">
-
-
-<div class="power-label">
-
-VOLTAGE
-
-</div>
-
-
-<div id="powerVoltage"
-
-class="power-number">
-
---
-
-</div>
-
-
-</div>
-
-
-
-
-
-
-
-<div class="power-box">
-
-
-<div class="power-label">
-
-CURRENT
-
-</div>
-
-
-<div id="powerCurrent"
-
-class="power-number">
-
---
-
-</div>
-
-
-</div>
-
-
-
-
-
-
-
-<div class="power-box">
-
-
-<div class="power-label">
-
-BATTERY HEALTH
-
-</div>
-
-
-<div class="power-number green">
-
-98%
-
-</div>
-
-
-</div>
-
-
-
-
-
-
-<div class="power-box">
-
-
-<div class="power-label">
-
-SYSTEM LOAD
-
-</div>
-
-
-<div class="power-number">
-
-NORMAL
-
-</div>
-
-
-</div>
-
-
-
-
-
-
-</div>
-
-
-
-
-</div>
 
 
 
@@ -2148,52 +2709,46 @@ NORMAL
 <style>
 
 
-
-/* ===============================
- ENERGY CORE
-================================ */
-
-
-
-.energy-core{
-
-
-margin-top:20px;
+/* =================================
+ HARDWARE
+================================= */
 
 
 
-padding:35px;
+.hardware-section{
+
+
+display:grid;
+
+
+grid-template-columns:
+
+1.2fr 1fr;
 
 
 
-border-radius:30px;
+gap:35px;
+
+
+
+padding:40px;
 
 
 
 background:
 
-
-linear-gradient(
-
-145deg,
-
-rgba(10,35,55,.9),
-
-rgba(3,15,28,.95)
-
-);
+rgba(5,22,40,.85);
 
 
 
 border:
 
-1px solid rgba(85,234,255,.18);
+1px solid var(--border);
 
 
 
-box-shadow:
+border-radius:35px;
 
-0 0 50px rgba(85,234,255,.08);
 
 
 }
@@ -2201,7 +2756,290 @@ box-shadow:
 
 
 
-.energy-title{
+
+.device-view{
+
+
+background:
+
+
+radial-gradient(
+
+circle,
+
+rgba(84,234,255,.12),
+
+transparent 60%
+
+);
+
+
+
+border-radius:25px;
+
+
+padding:30px;
+
+
+
+position:relative;
+
+
+
+min-height:450px;
+
+
+}
+
+
+
+
+
+.device-title{
+
+
+font-family:
+
+Orbitron;
+
+
+letter-spacing:4px;
+
+
+
+color:
+
+var(--cyan);
+
+
+
+}
+
+
+
+
+
+.device-model{
+
+
+height:350px;
+
+
+display:flex;
+
+
+flex-direction:column;
+
+
+align-items:center;
+
+
+justify-content:center;
+
+
+
+}
+
+
+
+
+
+
+.solar-panel{
+
+
+width:220px;
+
+
+height:80px;
+
+
+
+background:
+
+linear-gradient(
+
+135deg,
+
+#143954,
+
+#071827
+
+);
+
+
+
+border:
+
+2px solid rgba(84,234,255,.5);
+
+
+
+transform:
+
+perspective(400px)
+
+rotateX(55deg);
+
+
+
+display:flex;
+
+
+gap:20px;
+
+
+padding:10px;
+
+
+
+}
+
+
+
+
+.panel-line{
+
+
+flex:1;
+
+
+border-right:
+
+1px solid rgba(84,234,255,.3);
+
+
+}
+
+
+
+
+.support-pole{
+
+
+height:90px;
+
+
+width:12px;
+
+
+
+background:
+
+linear-gradient(
+
+90deg,
+
+#4d6475,
+
+#b4d4e8,
+
+#4d6475
+
+);
+
+
+
+}
+
+
+
+
+
+.sensor-box{
+
+
+width:170px;
+
+
+height:80px;
+
+
+
+background:
+
+linear-gradient(
+
+145deg,
+
+#16364e,
+
+#061522
+
+);
+
+
+
+border-radius:12px;
+
+
+
+border:
+
+1px solid rgba(84,234,255,.5);
+
+
+
+display:flex;
+
+
+align-items:center;
+
+
+justify-content:center;
+
+
+gap:15px;
+
+
+
+font-family:
+
+Orbitron;
+
+
+font-size:12px;
+
+
+
+}
+
+
+
+.sensor-light{
+
+
+width:10px;
+
+
+height:10px;
+
+
+background:
+
+var(--green);
+
+
+
+border-radius:50%;
+
+
+
+box-shadow:
+
+0 0 20px var(--green);
+
+
+}
+
+
+
+
+
+.communication{
+
+
+margin-top:25px;
 
 
 font-family:
@@ -2210,17 +3048,16 @@ Orbitron;
 
 
 
-font-size:13px;
+font-size:11px;
 
 
-letter-spacing:4px;
+letter-spacing:3px;
 
 
-color:var(--cyan);
+color:
 
+var(--cyan);
 
-
-margin-bottom:35px;
 
 
 }
@@ -2232,7 +3069,152 @@ margin-bottom:35px;
 
 
 
-.energy-chain{
+/* =================================
+ DEVICE INFO
+================================= */
+
+
+
+.device-info{
+
+
+display:grid;
+
+
+grid-template-columns:
+
+1fr;
+
+
+
+gap:20px;
+
+
+}
+
+
+
+
+
+.device-card{
+
+
+padding:28px;
+
+
+
+background:
+
+rgba(255,255,255,.04);
+
+
+
+border-radius:20px;
+
+
+
+border:
+
+1px solid rgba(84,234,255,.15);
+
+
+}
+
+
+
+
+
+.device-label{
+
+
+font-family:
+
+Orbitron;
+
+
+font-size:11px;
+
+
+
+letter-spacing:3px;
+
+
+
+color:
+
+var(--muted);
+
+
+
+}
+
+
+
+
+.device-value{
+
+
+margin-top:15px;
+
+
+font-family:
+
+Orbitron;
+
+
+
+font-size:22px;
+
+
+
+color:
+
+var(--cyan);
+
+
+
+}
+
+
+
+.green{
+
+
+color:
+
+var(--green);
+
+
+}
+
+
+
+.yellow{
+
+
+color:
+
+var(--yellow);
+
+
+}
+
+
+
+
+
+
+
+
+
+
+/* =================================
+ ENERGY FLOW
+================================= */
+
+
+
+.energy-flow{
 
 
 display:flex;
@@ -2245,7 +3227,27 @@ justify-content:center;
 
 
 
-gap:25px;
+gap:20px;
+
+
+
+padding:40px;
+
+
+
+background:
+
+rgba(5,22,40,.85);
+
+
+
+border-radius:30px;
+
+
+
+border:
+
+1px solid var(--border);
 
 
 
@@ -2265,20 +3267,19 @@ height:130px;
 
 
 
-border-radius:22px;
-
-
-
 background:
-
 
 rgba(255,255,255,.04);
 
 
 
+border-radius:22px;
+
+
+
 border:
 
-1px solid rgba(85,234,255,.25);
+1px solid rgba(84,234,255,.2);
 
 
 
@@ -2301,22 +3302,14 @@ gap:15px;
 
 
 
-.energy-icon{
+.energy-symbol{
 
 
-font-size:40px;
-
-
-filter:
-
-drop-shadow(
-0 0 15px rgba(85,234,255,.7)
-);
+font-size:42px;
 
 
 
 }
-
 
 
 
@@ -2331,34 +3324,25 @@ Orbitron;
 font-size:12px;
 
 
-
 letter-spacing:2px;
 
 
-
-color:white;
-
-
 }
-
 
 
 
 .energy-node p{
 
 
-margin-top:12px;
+margin-top:10px;
 
 
-color:var(--cyan);
+font-size:12px;
 
 
-font-family:
+color:
 
-Orbitron;
-
-
-font-size:16px;
+var(--cyan);
 
 
 }
@@ -2368,27 +3352,26 @@ font-size:16px;
 
 
 
-
-.energy-arrow{
+.energy-particles{
 
 
 display:flex;
 
 
-gap:5px;
+gap:6px;
 
 
 }
 
 
 
-.energy-arrow span{
+.energy-particles span{
 
 
-width:18px;
+width:12px;
 
 
-height:4px;
+height:5px;
 
 
 
@@ -2400,13 +3383,13 @@ var(--cyan);
 
 box-shadow:
 
-0 0 12px var(--cyan);
+0 0 15px var(--cyan);
 
 
 
 animation:
 
-energyFlow 1.5s infinite;
+particleMove 1.5s infinite;
 
 
 
@@ -2414,48 +3397,35 @@ energyFlow 1.5s infinite;
 
 
 
-.energy-arrow span:nth-child(2){
-
+.energy-particles span:nth-child(2){
 
 animation-delay:.3s;
 
-
 }
 
 
 
-.energy-arrow span:nth-child(3){
-
+.energy-particles span:nth-child(3){
 
 animation-delay:.6s;
 
-
 }
 
 
 
-
-@keyframes energyFlow{
-
-
-0%{
-
-
-opacity:.2;
-
-transform:translateX(-10px);
-
-
-}
+@keyframes particleMove{
 
 
 50%{
 
 
+transform:translateX(15px);
+
 opacity:1;
 
 
 }
+
 
 
 100%{
@@ -2464,145 +3434,12 @@ opacity:1;
 opacity:.2;
 
 
-transform:translateX(10px);
+}
 
 
 }
 
 
-
-}
-
-
-
-
-
-
-
-
-/* ===============================
- POWER DATA
-================================ */
-
-
-.power-status{
-
-
-display:grid;
-
-
-grid-template-columns:
-
-repeat(4,1fr);
-
-
-
-gap:18px;
-
-
-
-margin-top:35px;
-
-
-
-}
-
-
-
-
-.power-box{
-
-
-padding:25px;
-
-
-
-background:
-
-rgba(255,255,255,.035);
-
-
-
-border-radius:18px;
-
-
-
-border:
-
-1px solid rgba(85,234,255,.15);
-
-
-
-text-align:center;
-
-
-}
-
-
-
-.power-label{
-
-
-font-family:
-
-Orbitron;
-
-
-
-font-size:11px;
-
-
-
-letter-spacing:3px;
-
-
-
-color:
-
-var(--muted);
-
-
-}
-
-
-
-
-.power-number{
-
-
-margin-top:15px;
-
-
-font-family:
-
-Orbitron;
-
-
-
-font-size:28px;
-
-
-
-color:
-
-var(--cyan);
-
-
-
-}
-
-
-
-
-.power-number.green{
-
-
-color:
-
-var(--green);
-
-
-}
 
 
 
@@ -2611,7 +3448,19 @@ var(--green);
 @media(max-width:1100px){
 
 
-.energy-chain{
+.hardware-section{
+
+
+grid-template-columns:
+
+1fr;
+
+
+}
+
+
+
+.energy-flow{
 
 
 flex-direction:column;
@@ -2620,147 +3469,15 @@ flex-direction:column;
 }
 
 
-.energy-arrow{
-
-
-transform:rotate(90deg);
-
-
-}
-
-
-.power-status{
-
-
-grid-template-columns:
-
-1fr 1fr;
-
-
-}
-
-
-
 }
 
 
 
 
 
-</style>
-
-
-
-
-
-<script>
-
-
-// 能源数据显示
-
-
-function updateEnergy(){
-
-
-if(!DATA || DATA.length===0)
-
-return;
-
-
-
-let last=
-
-DATA[DATA.length-1];
-
-
-
-
-let solar=
-
-document.getElementById(
-"solarPower"
-);
-
-
-
-if(solar)
-
-solar.innerHTML=
-
-last.s ?? "--";
-
-
-
-
-let voltage=
-
-Number(last.v ?? 0)
-.toFixed(2);
-
-
-
-let ids=[
-
-"batteryVoltage",
-
-"powerVoltage"
-
-];
-
-
-
-ids.forEach(id=>{
-
-
-let el=document.getElementById(id);
-
-
-if(el)
-
-el.innerHTML=voltage;
-
-
-
-});
-
-
-
-
-
-
-let current=
-
-document.getElementById(
-"powerCurrent"
-);
-
-
-
-if(current)
-
-current.innerHTML=
-
-last.a ?? "--";
-
-
-
-}
-
-
-
-setInterval(
-
-updateEnergy,
-
-2000
-
-);
-
-
-
-</script><!-- ===============================
- DATA VISUALIZATION CORE
-================================ -->
+</style><!-- =================================
+ SCIENTIFIC TELEMETRY
+================================= -->
 
 
 <div class="section-title">
@@ -2773,45 +3490,39 @@ SCIENTIFIC TELEMETRY
 
 
 
-<!-- 电压主图 -->
+
+<!-- MAIN VOLTAGE -->
 
 
-<div class="main-chart-panel">
+<section class="main-telemetry">
 
 
-<div class="chart-top">
+
+<div class="telemetry-header">
 
 
 <div>
 
 
-<div class="chart-main-title">
+<h2>
 
 BATTERY VOLTAGE
 
+</h2>
+
+
+<p>
+
+REAL TIME POWER CONDITION
+
+</p>
+
+
 </div>
 
 
-<div class="chart-sub">
 
-REAL TIME POWER CONDITION MONITOR
-
-</div>
-
-
-</div>
-
-
-
-
-<div class="metric">
-
-
-<div>
-
-CURRENT
-
-</div>
+<div class="live-value">
 
 
 <span id="mainVoltage">
@@ -2828,8 +3539,9 @@ V
 
 
 
-
 </div>
+
+
 
 
 
@@ -2837,7 +3549,10 @@ V
 
 
 
-<div class="chart-stat">
+
+
+<div class="statistics">
+
 
 
 <div>
@@ -2855,21 +3570,6 @@ MAX
 
 </div>
 
-
-<div>
-
-MIN
-
-<br>
-
-<span id="vMin">
-
---
-
-</span>
-
-
-</div>
 
 
 
@@ -2890,7 +3590,18 @@ AVG
 
 
 
-</div>
+
+<div>
+
+MIN
+
+<br>
+
+<span id="vMin">
+
+--
+
+</span>
 
 
 </div>
@@ -2898,11 +3609,23 @@ AVG
 
 
 
+</div>
+
+
+
+</section>
 
 
 
 
-<!-- 环境 -->
+
+
+
+
+
+
+<!-- SENSOR MATRIX -->
+
 
 
 <div class="section-title">
@@ -2915,16 +3638,19 @@ ENVIRONMENTAL SENSOR ARRAY
 
 
 
+
+
 <div class="sensor-grid">
 
 
 
 
 
-<div class="sensor-card">
+
+<div class="sensor-panel">
 
 
-<div class="sensor-name">
+<div class="sensor-title">
 
 SHT35 TEMPERATURE
 
@@ -2941,10 +3667,10 @@ SHT35 TEMPERATURE
 
 
 
-<div class="sensor-card">
+<div class="sensor-panel">
 
 
-<div class="sensor-name">
+<div class="sensor-title">
 
 SHT35 HUMIDITY
 
@@ -2962,10 +3688,10 @@ SHT35 HUMIDITY
 
 
 
-<div class="sensor-card">
+<div class="sensor-panel">
 
 
-<div class="sensor-name">
+<div class="sensor-title">
 
 RS485 TEMPERATURE
 
@@ -2983,10 +3709,10 @@ RS485 TEMPERATURE
 
 
 
-<div class="sensor-card">
+<div class="sensor-panel">
 
 
-<div class="sensor-name">
+<div class="sensor-title">
 
 RS485 HUMIDITY
 
@@ -3014,19 +3740,19 @@ RS485 HUMIDITY
 
 
 
-<!-- 能源环境辅助 -->
+<!-- SOLAR WIND -->
 
 
-<div class="sensor-grid bottom-row">
+<div class="sensor-grid bottom-sensor">
 
 
 
 
 
-<div class="sensor-card">
+<div class="sensor-panel">
 
 
-<div class="sensor-name">
+<div class="sensor-title">
 
 SOLAR IRRADIANCE
 
@@ -3043,13 +3769,12 @@ SOLAR IRRADIANCE
 
 
 
+<div class="sensor-panel">
 
-<div class="sensor-card">
 
+<div class="sensor-title">
 
-<div class="sensor-name">
-
-WIND STATUS
+WIND SPEED
 
 </div>
 
@@ -3058,8 +3783,6 @@ WIND STATUS
 
 
 </div>
-
-
 
 
 
@@ -3077,27 +3800,23 @@ WIND STATUS
 <style>
 
 
-/* =====================
- MAIN CHART
-===================== */
-
-
-.main-chart-panel{
-
-
-margin-top:20px;
-
-
-height:520px;
+/* =================================
+ MAIN TELEMETRY
+================================= */
 
 
 
-padding:30px;
+.main-telemetry{
+
+
+height:560px;
+
+
+padding:35px;
 
 
 
 background:
-
 
 linear-gradient(
 
@@ -3111,22 +3830,21 @@ rgba(3,15,28,.95)
 
 
 
-border-radius:30px;
+border-radius:32px;
 
 
 
 border:
 
-1px solid rgba(85,234,255,.2);
+1px solid var(--border);
+
 
 
 }
 
 
 
-
-
-.chart-top{
+.telemetry-header{
 
 
 display:flex;
@@ -3142,7 +3860,9 @@ align-items:center;
 
 
 
-.chart-main-title{
+
+
+.telemetry-header h2{
 
 
 font-family:
@@ -3150,13 +3870,12 @@ font-family:
 Orbitron;
 
 
+
 font-size:22px;
 
 
+
 letter-spacing:4px;
-
-
-color:white;
 
 
 }
@@ -3164,7 +3883,7 @@ color:white;
 
 
 
-.chart-sub{
+.telemetry-header p{
 
 
 margin-top:10px;
@@ -3185,7 +3904,9 @@ letter-spacing:2px;
 
 
 
-.metric{
+
+
+.live-value{
 
 
 font-family:
@@ -3193,26 +3914,26 @@ font-family:
 Orbitron;
 
 
+
+font-size:18px;
+
+
+
 color:
 
 var(--muted);
 
-
-text-align:right;
 
 
 }
 
 
 
-
-.metric span{
-
-
-display:block;
+.live-value span{
 
 
-font-size:45px;
+font-size:55px;
+
 
 
 color:
@@ -3220,9 +3941,12 @@ color:
 var(--cyan);
 
 
+
 text-shadow:
 
-0 0 25px rgba(85,234,255,.7);
+
+0 0 30px rgba(84,234,255,.8);
+
 
 
 }
@@ -3231,10 +3955,10 @@ text-shadow:
 
 
 
-.main-chart-panel canvas{
+.main-telemetry canvas{
 
 
-height:320px!important;
+height:330px!important;
 
 
 margin-top:20px;
@@ -3248,7 +3972,7 @@ margin-top:20px;
 
 
 
-.chart-stat{
+.statistics{
 
 
 display:grid;
@@ -3260,23 +3984,20 @@ repeat(3,1fr);
 
 
 
-margin-top:15px;
-
-
 gap:20px;
+
+
+
+margin-top:20px;
+
 
 
 }
 
 
 
-.chart-stat div{
 
-
-text-align:center;
-
-
-padding:12px;
+.statistics div{
 
 
 background:
@@ -3285,7 +4006,15 @@ rgba(255,255,255,.04);
 
 
 
-border-radius:15px;
+border-radius:18px;
+
+
+
+padding:15px;
+
+
+
+text-align:center;
 
 
 
@@ -3295,8 +4024,7 @@ Orbitron;
 
 
 
-font-size:11px;
-
+font-size:12px;
 
 
 color:
@@ -3308,10 +4036,11 @@ var(--muted);
 
 
 
-.chart-stat span{
+
+.statistics span{
 
 
-font-size:18px;
+font-size:22px;
 
 
 color:
@@ -3328,10 +4057,9 @@ var(--cyan);
 
 
 
-/* =====================
+/* =================================
  SENSOR GRID
-===================== */
-
+================================= */
 
 
 .sensor-grid{
@@ -3355,10 +4083,10 @@ gap:25px;
 
 
 
-.sensor-card{
+.sensor-panel{
 
 
-height:300px;
+height:310px;
 
 
 padding:25px;
@@ -3366,7 +4094,6 @@ padding:25px;
 
 
 background:
-
 
 rgba(5,22,40,.9);
 
@@ -3378,7 +4105,7 @@ border-radius:25px;
 
 border:
 
-1px solid rgba(85,234,255,.15);
+1px solid rgba(84,234,255,.16);
 
 
 
@@ -3386,8 +4113,7 @@ border:
 
 
 
-
-.sensor-name{
+.sensor-title{
 
 
 font-family:
@@ -3396,11 +4122,11 @@ Orbitron;
 
 
 
-font-size:13px;
-
-
-
 letter-spacing:3px;
+
+
+
+font-size:12px;
 
 
 
@@ -3419,10 +4145,10 @@ margin-bottom:15px;
 
 
 
-.sensor-card canvas{
+.sensor-panel canvas{
 
 
-height:210px!important;
+height:220px!important;
 
 
 }
@@ -3431,13 +4157,15 @@ height:210px!important;
 
 
 
-.bottom-row{
+.bottom-sensor{
 
 
 margin-top:25px;
 
 
 }
+
+
 
 
 
@@ -3456,72 +4184,88 @@ margin-top:25px;
 <script>
 
 
-// ===============================
+// =================================
 // CHART ENGINE
-// ===============================
+// =================================
 
 
 
-let chartPool={};
+let telemetryCharts={};
 
 
 
 
 
-const chartMap={
+const telemetryMap={
+
 
 
 cv:{
+
 key:"v",
-color:"#55eaff",
-title:"Voltage"
+
+color:"#54eaff"
+
 },
 
 
 
 cst:{
+
 key:"j",
-color:"#ff7fa8",
-title:"Temperature"
+
+color:"#ff7fa8"
+
 },
 
 
+
 csh:{
+
 key:"k",
-color:"#55e8d0",
-title:"Humidity"
+
+color:"#55e8d0"
+
 },
 
 
 
 ctt:{
+
 key:"t",
-color:"#ffb866",
-title:"RS485 Temperature"
+
+color:"#ffb866"
+
 },
 
 
 
 cth:{
+
 key:"h",
-color:"#bda8ff",
-title:"RS485 Humidity"
+
+color:"#bda8ff"
+
 },
 
 
 
 cs:{
+
 key:"s",
-color:"#ffe699",
-title:"Solar"
+
+color:"#ffe699"
+
 },
 
 
 
 cws:{
+
 key:"w",
-color:"#62ffb0",
-title:"Wind"
+
+color:"#69ffb0"
+
 }
 
 
@@ -3534,113 +4278,76 @@ title:"Wind"
 
 
 
+function createTelemetryChart(id){
 
 
-function buildChart(id){
+
+let canvas=
+
+document.getElementById(id);
+
+
+
+if(!canvas)
+
+return;
 
 
 
 let ctx=
 
-document
-.getElementById(id)
-.getContext("2d");
+canvas.getContext("2d");
 
 
 
 let cfg=
 
-chartMap[id];
+telemetryMap[id];
+
 
 
 
 let gradient=
 
 ctx.createLinearGradient(
+
 0,
+
 0,
+
 0,
+
 300
+
 );
 
 
 
 gradient.addColorStop(
+
 0,
+
 cfg.color+"55"
+
 );
 
 
 
 gradient.addColorStop(
+
 1,
+
 cfg.color+"00"
+
 );
 
 
 
 
 
-let options={
 
+let yOptions={
 
-responsive:true,
-
-
-maintainAspectRatio:false,
-
-
-
-plugins:{
-
-
-legend:{
-
-
-display:false
-
-
-}
-
-
-},
-
-
-
-
-
-scales:{
-
-
-x:{
-
-
-ticks:{
-
-
-color:"#7895aa",
-
-maxTicksLimit:8
-
-
-},
-
-
-grid:{
-
-
-color:"rgba(85,234,255,.05)"
-
-
-}
-
-
-},
-
-
-
-
-y:{
 
 
 ticks:{
@@ -3652,17 +4359,11 @@ color:"#7895aa"
 },
 
 
+
 grid:{
 
 
-color:"rgba(85,234,255,.05)"
-
-
-}
-
-
-}
-
+color:"rgba(84,234,255,.05)"
 
 
 }
@@ -3676,15 +4377,13 @@ color:"rgba(85,234,255,.05)"
 
 
 
-// ★太阳辐射特殊处理
+// ★太阳辐射必须从0开始
 
 
 if(id==="cs"){
 
 
-
-options.scales.y.beginAtZero=true;
-
+yOptions.beginAtZero=true;
 
 
 }
@@ -3692,12 +4391,19 @@ options.scales.y.beginAtZero=true;
 
 
 
-chartPool[id]=new Chart(
+
+
+
+
+telemetryCharts[id]=new Chart(
+
 ctx,
+
 {
 
 
 type:"line",
+
 
 
 data:{
@@ -3707,7 +4413,6 @@ labels:[],
 
 
 datasets:[{
-
 
 data:[],
 
@@ -3734,18 +4439,90 @@ tension:.45,
 pointRadius:0
 
 
+
 }]
+
 
 
 },
 
 
 
-options:options
+
+options:{
+
+
+responsive:true,
+
+
+maintainAspectRatio:false,
+
+
+
+plugins:{
+
+
+legend:{
+
+
+display:false
+
+
+}
+
+
+
+},
+
+
+
+
+scales:{
+
+
+
+x:{
+
+
+ticks:{
+
+
+color:"#7895aa"
+
+
+},
+
+
+grid:{
+
+
+color:"rgba(84,234,255,.04)"
+
+
+}
+
+
+
+},
+
+
+
+
+y:yOptions
 
 
 
 }
+
+
+
+}
+
+
+
+}
+
+
 
 );
 
@@ -3758,15 +4535,12 @@ options:options
 
 
 
-
-
-
-Object.keys(chartMap)
+Object.keys(telemetryMap)
 .forEach(
 
 id=>
 
-buildChart(id)
+createTelemetryChart(id)
 
 );
 
@@ -3774,7 +4548,9 @@ buildChart(id)
 
 
 
-function updateCharts(){
+
+
+function updateTelemetryCharts(){
 
 
 
@@ -3784,25 +4560,29 @@ return;
 
 
 
-Object.keys(chartMap)
+Object.keys(telemetryMap)
+
 .forEach(id=>{
-
-
-let cfg=
-
-chartMap[id];
 
 
 
 let chart=
 
-chartPool[id];
+telemetryCharts[id];
+
+
+
+let cfg=
+
+telemetryMap[id];
 
 
 
 if(!chart)
 
 return;
+
+
 
 
 
@@ -3813,10 +4593,13 @@ DATA.map(
 d=>
 
 d.time?
+
 d.time.substring(11,19):
+
 ""
 
 );
+
 
 
 
@@ -3834,6 +4617,9 @@ d[cfg.key]??null
 
 
 
+
+
+
 chart.update("none");
 
 
@@ -3845,48 +4631,59 @@ chart.update("none");
 
 
 
-let voltage=
+let values=
 
 DATA.map(
+
 d=>
+
 Number(d.v)
+
 )
+
 .filter(
-x=>
-!isNaN(x)
+
+v=>!isNaN(v)
+
 );
 
 
 
 
-if(voltage.length){
+
+if(values.length){
 
 
 
 document.getElementById("vMax").innerHTML=
 
-Math.max(...voltage).toFixed(2);
+Math.max(...values).toFixed(2);
 
 
 
 document.getElementById("vMin").innerHTML=
 
-Math.min(...voltage).toFixed(2);
+Math.min(...values).toFixed(2);
 
 
 
 document.getElementById("vAvg").innerHTML=
 
 (
-voltage.reduce((a,b)=>a+b,0)
+
+values.reduce((a,b)=>a+b,0)
+
 /
-voltage.length
+
+values.length
 
 ).toFixed(2);
 
 
 
-}
+document.getElementById("mainVoltage").innerHTML=
+
+values[values.length-1].toFixed(2);
 
 
 
@@ -3894,10 +4691,14 @@ voltage.length
 
 
 
+}
 
-</script><!-- ===============================
- AI HEALTH & OPERATION CENTER
-================================ -->
+
+
+
+</script><!-- =================================
+ AUTONOMOUS INTELLIGENCE CENTER
+================================= -->
 
 
 <div class="section-title">
@@ -3910,19 +4711,20 @@ AUTONOMOUS INTELLIGENCE CENTER
 
 
 
-<div class="ai-grid">
+<section class="intelligence-grid">
 
 
 
 
 
-<!-- HEALTH SCORE -->
+<!-- HEALTH -->
 
 
-<div class="ai-panel health-main">
+<div class="intel-panel health-panel">
 
 
-<div class="ai-title">
+
+<div class="intel-title">
 
 SYSTEM HEALTH
 
@@ -3930,17 +4732,20 @@ SYSTEM HEALTH
 
 
 
-<div class="health-circle">
 
 
-<div class="health-number">
+<div class="health-ring">
 
-98.6%
+
+<div class="health-score">
+
+98.7%
 
 </div>
 
 
-<div class="health-label">
+
+<div class="health-state">
 
 NOMINAL
 
@@ -3952,14 +4757,19 @@ NOMINAL
 
 
 
-<div class="health-desc">
 
-ALL SUBSYSTEMS OPERATIONAL
+
+<p>
+
+ALL SUBSYSTEMS OPERATING
+
+</p>
+
+
 
 </div>
 
 
-</div>
 
 
 
@@ -3967,13 +4777,14 @@ ALL SUBSYSTEMS OPERATIONAL
 
 
 
-<!-- SUBSYSTEM STATUS -->
+<!-- STATUS -->
 
 
-<div class="ai-panel">
+<div class="intel-panel">
 
 
-<div class="ai-title">
+
+<div class="intel-title">
 
 SUBSYSTEM STATUS
 
@@ -3981,7 +4792,9 @@ SUBSYSTEM STATUS
 
 
 
-<div class="status-line">
+
+<div class="system-item">
+
 
 <span>
 
@@ -3990,7 +4803,7 @@ POWER SYSTEM
 </span>
 
 
-<b class="normal">
+<b>
 
 NORMAL
 
@@ -4001,7 +4814,10 @@ NORMAL
 
 
 
-<div class="status-line">
+
+
+<div class="system-item">
+
 
 <span>
 
@@ -4010,7 +4826,7 @@ SENSOR ARRAY
 </span>
 
 
-<b class="normal">
+<b>
 
 ACTIVE
 
@@ -4021,7 +4837,10 @@ ACTIVE
 
 
 
-<div class="status-line">
+
+
+<div class="system-item">
+
 
 <span>
 
@@ -4030,7 +4849,7 @@ GPS MODULE
 </span>
 
 
-<b class="normal">
+<b>
 
 LOCKED
 
@@ -4041,16 +4860,19 @@ LOCKED
 
 
 
-<div class="status-line">
+
+
+<div class="system-item">
+
 
 <span>
 
-DATA STORAGE
+DATA LINK
 
 </span>
 
 
-<b class="normal">
+<b>
 
 ONLINE
 
@@ -4061,101 +4883,6 @@ ONLINE
 
 
 
-</div>
-
-
-
-
-
-
-
-<!-- DATA STATISTICS -->
-
-
-<div class="ai-panel">
-
-
-<div class="ai-title">
-
-DATA ACQUISITION
-
-</div>
-
-
-
-<div class="data-number">
-
-
-<span id="recordCount">
-
---
-
-</span>
-
-
-<br>
-
-
-<small>
-
-TOTAL RECORDS
-
-</small>
-
-
-</div>
-
-
-
-
-
-<div class="data-row">
-
-SAMPLING RATE
-
-<b>
-
-5 MIN
-
-</b>
-
-</div>
-
-
-
-<div class="data-row">
-
-UPTIME
-
-<b>
-
-2456 H
-
-</b>
-
-</div>
-
-
-
-<div class="data-row">
-
-TRANSMISSION
-
-<b class="normal">
-
-CONNECTED
-
-</b>
-
-</div>
-
-
-
-</div>
-
-
-
-
 
 
 </div>
@@ -4168,14 +4895,156 @@ CONNECTED
 
 
 
-<!-- ===============================
- MISSION LOG
-================================ -->
+
+<!-- EXTREME -->
+
+
+<div class="intel-panel">
+
+
+
+<div class="intel-title">
+
+EXTREME ENVIRONMENT
+
+</div>
+
+
+
+
+
+
+<div class="environment-item">
+
+
+<div>
+
+LOW TEMPERATURE RESISTANCE
+
+</div>
+
+
+
+<strong>
+
+-40℃
+
+</strong>
+
+
+</div>
+
+
+
+
+
+
+<div class="environment-item">
+
+
+<div>
+
+POWER AUTONOMY
+
+</div>
+
+
+
+<strong>
+
+30 DAYS
+
+</strong>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="environment-item">
+
+
+<div>
+
+DATA STORAGE
+
+</div>
+
+
+
+<strong>
+
+LOCAL BUFFER
+
+</strong>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="environment-item">
+
+
+<div>
+
+COMMUNICATION
+
+</div>
+
+
+
+<strong>
+
+SATELLITE READY
+
+</strong>
+
+
+</div>
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<!-- =================================
+ ALERT CENTER
+================================= -->
+
 
 
 <div class="section-title">
 
-MISSION TELEMETRY LOG
+SYSTEM DIAGNOSTIC
 
 </div>
 
@@ -4183,23 +5052,64 @@ MISSION TELEMETRY LOG
 
 
 
+<div class="diagnostic-panel">
 
-<div class="log-panel">
 
 
-<div class="log-header">
+<div class="diagnostic-head">
 
 
 <span>
 
-LIVE SENSOR STREAM
+AUTOMATED ANALYSIS
 
 </span>
 
 
-<span class="log-live">
 
-● RECEIVING
+<span class="analysis-live">
+
+● RUNNING
+
+</span>
+
+
+
+</div>
+
+
+
+
+
+
+<div class="diagnostic-line">
+
+
+<div class="scan-bar">
+
+
+<div></div>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+<div class="diagnostic-result">
+
+
+CURRENT SYSTEM STATUS:
+
+
+<span>
+
+STABLE
 
 </span>
 
@@ -4208,14 +5118,11 @@ LIVE SENSOR STREAM
 
 
 
-<div id="logContainer">
-
 
 </div>
 
 
 
-</div>
 
 
 
@@ -4228,13 +5135,13 @@ LIVE SENSOR STREAM
 
 
 
-/* ===============================
- AI GRID
-================================ */
+/* =================================
+ INTELLIGENCE
+================================= */
 
 
 
-.ai-grid{
+.intelligence-grid{
 
 
 display:grid;
@@ -4242,7 +5149,7 @@ display:grid;
 
 grid-template-columns:
 
-1.2fr 1fr 1fr;
+1.1fr 1fr 1.1fr;
 
 
 
@@ -4256,7 +5163,14 @@ gap:25px;
 
 
 
-.ai-panel{
+.intel-panel{
+
+
+padding:30px;
+
+
+border-radius:28px;
+
 
 
 background:
@@ -4274,16 +5188,9 @@ rgba(3,15,28,.95)
 
 
 
-border-radius:25px;
-
-
-padding:30px;
-
-
-
 border:
 
-1px solid rgba(85,234,255,.18);
+1px solid rgba(84,234,255,.18);
 
 
 
@@ -4292,8 +5199,7 @@ border:
 
 
 
-
-.ai-title{
+.intel-title{
 
 
 font-family:
@@ -4316,11 +5222,15 @@ var(--cyan);
 
 
 
-margin-bottom:25px;
+margin-bottom:30px;
 
 
 
 }
+
+
+
+
 
 
 
@@ -4330,7 +5240,7 @@ margin-bottom:25px;
 /* HEALTH */
 
 
-.health-main{
+.health-panel{
 
 
 display:flex;
@@ -4345,19 +5255,17 @@ align-items:center;
 justify-content:center;
 
 
-
 }
 
 
 
-.health-circle{
+.health-ring{
 
 
-width:180px;
+width:200px;
 
 
-height:180px;
-
+height:200px;
 
 
 border-radius:50%;
@@ -4366,7 +5274,7 @@ border-radius:50%;
 
 border:
 
-8px solid rgba(99,255,176,.35);
+10px solid rgba(105,255,176,.35);
 
 
 
@@ -4376,17 +5284,17 @@ display:flex;
 flex-direction:column;
 
 
-justify-content:center;
-
-
 align-items:center;
+
+
+justify-content:center;
 
 
 
 box-shadow:
 
 
-0 0 50px rgba(99,255,176,.25);
+0 0 60px rgba(105,255,176,.25);
 
 
 
@@ -4394,7 +5302,7 @@ box-shadow:
 
 
 
-.health-number{
+.health-score{
 
 
 font-family:
@@ -4402,8 +5310,7 @@ font-family:
 Orbitron;
 
 
-font-size:38px;
-
+font-size:40px;
 
 
 font-weight:900;
@@ -4420,7 +5327,7 @@ var(--green);
 
 
 
-.health-label{
+.health-state{
 
 
 margin-top:10px;
@@ -4431,15 +5338,15 @@ font-family:
 Orbitron;
 
 
-color:white;
 
+color:white;
 
 
 }
 
 
 
-.health-desc{
+.health-panel p{
 
 
 margin-top:25px;
@@ -4448,7 +5355,7 @@ margin-top:25px;
 font-size:12px;
 
 
-letter-spacing:2px;
+letter-spacing:3px;
 
 
 color:
@@ -4456,8 +5363,8 @@ color:
 var(--muted);
 
 
-
 }
+
 
 
 
@@ -4470,10 +5377,11 @@ var(--muted);
 /* STATUS */
 
 
-.status-line{
+.system-item{
 
 
-height:55px;
+height:60px;
+
 
 
 display:flex;
@@ -4485,16 +5393,186 @@ align-items:center;
 justify-content:space-between;
 
 
+
 border-bottom:
 
 
-1px solid rgba(255,255,255,.05);
+1px solid rgba(255,255,255,.06);
 
 
 
 font-family:
 
 Orbitron;
+
+
+
+font-size:12px;
+
+
+
+}
+
+
+
+.system-item b{
+
+
+color:
+
+var(--green);
+
+
+
+}
+
+
+
+
+
+
+
+
+
+/* EXTREME */
+
+
+.environment-item{
+
+
+padding:15px 0;
+
+
+
+border-bottom:
+
+
+1px solid rgba(255,255,255,.06);
+
+
+
+font-size:12px;
+
+
+
+color:
+
+var(--muted);
+
+
+
+}
+
+
+
+.environment-item strong{
+
+
+display:block;
+
+
+margin-top:8px;
+
+
+font-family:
+
+Orbitron;
+
+
+
+font-size:22px;
+
+
+
+color:
+
+var(--cyan);
+
+
+
+}
+
+
+
+
+
+
+
+
+
+/* =================================
+ DIAGNOSTIC
+================================= */
+
+
+.diagnostic-panel{
+
+
+padding:30px;
+
+
+
+background:
+
+rgba(3,16,28,.95);
+
+
+
+border-radius:25px;
+
+
+
+border:
+
+1px solid rgba(84,234,255,.15);
+
+
+
+}
+
+
+
+
+
+.diagnostic-head{
+
+
+display:flex;
+
+
+justify-content:space-between;
+
+
+
+font-family:
+
+Orbitron;
+
+
+
+letter-spacing:3px;
+
+
+
+color:
+
+var(--cyan);
+
+
+
+}
+
+
+
+
+
+.analysis-live{
+
+
+color:
+
+var(--green);
+
 
 
 font-size:12px;
@@ -4504,12 +5582,95 @@ font-size:12px;
 
 
 
-.normal{
+
+.diagnostic-line{
 
 
-color:
+margin-top:30px;
 
-var(--green);
+
+height:8px;
+
+
+
+background:
+
+rgba(255,255,255,.08);
+
+
+
+border-radius:10px;
+
+
+
+overflow:hidden;
+
+
+
+}
+
+
+
+.scan-bar div{
+
+
+height:100%;
+
+
+width:40%;
+
+
+
+background:
+
+
+linear-gradient(
+
+90deg,
+
+transparent,
+
+var(--cyan),
+
+transparent
+
+);
+
+
+
+animation:
+
+scanHealth 2s infinite;
+
+
+
+}
+
+
+
+
+
+@keyframes scanHealth{
+
+
+from{
+
+
+transform:translateX(-200%);
+
+
+}
+
+
+
+to{
+
+
+transform:translateX(300%);
+
+
+}
+
 
 
 }
@@ -4520,11 +5681,11 @@ var(--green);
 
 
 
+.diagnostic-result{
 
-/* DATA */
 
+margin-top:25px;
 
-.data-number{
 
 
 font-family:
@@ -4532,42 +5693,171 @@ font-family:
 Orbitron;
 
 
-font-size:42px;
-
-
-color:
-
-var(--cyan);
-
-
-
-margin-bottom:20px;
-
-
-}
-
-
-
-.data-number small{
-
-
-font-size:11px;
-
-
-color:
-
-var(--muted);
-
-
 letter-spacing:3px;
 
 
+
+}
+
+
+
+.diagnostic-result span{
+
+
+color:
+
+var(--green);
+
+
+
 }
 
 
 
 
-.data-row{
+
+@media(max-width:1100px){
+
+
+.intelligence-grid{
+
+
+grid-template-columns:
+
+1fr;
+
+
+
+}
+
+
+
+}
+
+
+
+
+
+</style><!-- =================================
+ LIVE TELEMETRY STREAM
+================================= -->
+
+
+<div class="section-title">
+
+LIVE TELEMETRY STREAM
+
+</div>
+
+
+
+
+
+<section class="stream-panel">
+
+
+
+<div class="stream-header">
+
+
+<div>
+
+REAL TIME SENSOR DATA
+
+</div>
+
+
+
+<div class="receive-status">
+
+● RECEIVING
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+<div id="telemetryLog"
+
+class="telemetry-log">
+
+
+
+</div>
+
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<style>
+
+
+
+/* =================================
+ STREAM
+================================= */
+
+
+
+.stream-panel{
+
+
+padding:30px;
+
+
+
+background:
+
+linear-gradient(
+
+145deg,
+
+rgba(8,30,50,.95),
+
+rgba(2,12,24,.95)
+
+);
+
+
+
+border-radius:30px;
+
+
+
+border:
+
+1px solid rgba(84,234,255,.18);
+
+
+
+height:420px;
+
+
+
+overflow:hidden;
+
+
+
+}
+
+
+
+
+.stream-header{
 
 
 display:flex;
@@ -4576,16 +5866,63 @@ display:flex;
 justify-content:space-between;
 
 
-padding:12px 0;
+font-family:
+
+Orbitron;
 
 
 
-border-bottom:
-
-1px solid rgba(255,255,255,.05);
+letter-spacing:3px;
 
 
-font-size:13px;
+
+color:
+
+var(--cyan);
+
+
+
+margin-bottom:25px;
+
+
+}
+
+
+
+
+.receive-status{
+
+
+color:
+
+var(--green);
+
+
+
+font-size:12px;
+
+
+
+animation:
+
+receiveBlink 2s infinite;
+
+
+
+}
+
+
+
+@keyframes receiveBlink{
+
+
+50%{
+
+
+opacity:.35;
+
+
+}
 
 
 
@@ -4595,33 +5932,11 @@ font-size:13px;
 
 
 
-/* LOG */
+
+.telemetry-log{
 
 
-.log-panel{
-
-
-background:
-
-rgba(2,12,22,.95);
-
-
-
-border-radius:22px;
-
-
-
-border:
-
-1px solid rgba(85,234,255,.18);
-
-
-
-padding:25px;
-
-
-height:360px;
-
+height:330px;
 
 
 overflow:hidden;
@@ -4631,56 +5946,9 @@ overflow:hidden;
 
 
 
-.log-header{
 
 
-display:flex;
-
-
-justify-content:space-between;
-
-
-
-font-family:
-
-Orbitron;
-
-
-letter-spacing:3px;
-
-
-
-color:
-
-var(--cyan);
-
-
-margin-bottom:20px;
-
-
-}
-
-
-
-.log-live{
-
-
-color:
-
-var(--green);
-
-
-
-font-size:12px;
-
-
-}
-
-
-
-
-
-.log-row{
+.telemetry-row{
 
 
 display:grid;
@@ -4688,14 +5956,16 @@ display:grid;
 
 grid-template-columns:
 
-160px 120px 120px 1fr;
+160px 130px 130px 130px 1fr;
 
 
 
-padding:14px;
+padding:16px;
+
 
 
 border-bottom:
+
 
 1px solid rgba(255,255,255,.05);
 
@@ -4713,14 +5983,16 @@ font-size:12px;
 
 animation:
 
-logIn .5s;
+rowAppear .4s;
+
 
 
 }
 
 
 
-@keyframes logIn{
+
+@keyframes rowAppear{
 
 
 from{
@@ -4745,15 +6017,31 @@ opacity:1;
 }
 
 
+
+}
+
+
+
+.telemetry-row span{
+
+
+color:
+
+var(--cyan);
+
+
+
 }
 
 
 
 
-@media(max-width:1100px){
+
+@media(max-width:900px){
 
 
-.ai-grid{
+
+.telemetry-row{
 
 
 grid-template-columns:
@@ -4761,13 +6049,14 @@ grid-template-columns:
 1fr;
 
 
+gap:8px;
+
+
 }
 
 
 
 }
-
-
 
 
 
@@ -4779,23 +6068,27 @@ grid-template-columns:
 
 
 
+
+
 <script>
 
 
-// ===============================
-// TELEMETRY LOG UPDATE
-// ===============================
+// =================================
+// TELEMETRY STREAM
+// =================================
 
 
 
-function updateTelemetryLog(){
+function updateLiveStream(){
 
 
 
 let box=
 
 document.getElementById(
-"logContainer"
+
+"telemetryLog"
+
 );
 
 
@@ -4806,6 +6099,8 @@ return;
 
 
 
+
+
 box.innerHTML="";
 
 
@@ -4813,17 +6108,32 @@ box.innerHTML="";
 
 
 DATA
-.slice(-10)
+
+.slice(-8)
+
 .reverse()
+
 .forEach(d=>{
 
 
 
-let row=document.createElement("div");
+
+
+let row=
+
+document.createElement(
+
+"div"
+
+);
 
 
 
-row.className="log-row";
+row.className=
+
+"telemetry-row";
+
+
 
 
 
@@ -4831,10 +6141,13 @@ row.innerHTML=
 
 `
 
+
 <div>
 
 ${d.time?
+
 d.time.substring(11,19):
+
 "--"}
 
 </div>
@@ -4843,17 +6156,32 @@ d.time.substring(11,19):
 
 <div>
 
-MODE:
-${d.mode||"--"}
-
-</div>
-
-
-
-<div>
-
 V:
-${d.v||"--"}V
+
+<span>
+
+${d.v??"--"}
+
+</span>
+
+V
+
+</div>
+
+
+
+
+<div>
+
+I:
+
+<span>
+
+${d.a??"--"}
+
+</span>
+
+mA
 
 </div>
 
@@ -4861,18 +6189,48 @@ ${d.v||"--"}V
 
 <div>
 
-TEMP:
-${d.j||"--"}℃
+T:
+
+<span>
+
+${d.j??"--"}
+
+</span>
+
+℃
+
+</div>
+
+
+
+<div>
+
+H:
+
+<span>
+
+${d.k??"--"}
+
+</span>
+
+%
+
 &nbsp;&nbsp;
 
-HUM:
-${d.k||"--"}%
+SOL:
+
+<span>
+
+${d.s??"--"}
+
+</span>
 
 </div>
-
 
 
 `;
+
+
 
 
 
@@ -4890,82 +6248,15 @@ box.appendChild(row);
 
 
 
-function updateRecord(){
-
-
-
-let el=
-
-document.getElementById(
-"recordCount"
-);
-
-
-
-if(el)
-
-el.innerHTML=
-
-DATA.length;
-
-
-
-}
-
-
-
-
-
-setInterval(
-
-()=>{
-
-
-updateTelemetryLog();
-
-
-updateRecord();
-
-
-
-},
-
-2000
-
-);
-
-
-
-</script><!-- ===============================
- DATA ENGINE
-================================ -->
-
-
-<script>
 
 
 // =================================
-// GLOBAL DATA CORE
-// =================================
-
-
-let DATA=[];
-
-
-let lastUpdateTime="";
-
-
-
-
-
-
-// =================================
-// DATA.JSON LOADER
+// DATA.JSON FINAL CONNECT
 // =================================
 
 
 
-async function loadSystemData(){
+async function loadDataJSON(){
 
 
 
@@ -4973,8 +6264,7 @@ try{
 
 
 
-const response=
-
+let res=
 
 await fetch(
 
@@ -4985,18 +6275,18 @@ await fetch(
 
 
 
-if(!response.ok)
 
-throw new Error(
-"DATA FILE ERROR"
-);
+if(!res.ok)
+
+throw "DATA ERROR";
+
 
 
 
 
 DATA=
 
-await response.json();
+await res.json();
 
 
 
@@ -5004,7 +6294,7 @@ await response.json();
 
 console.log(
 
-"DATA LOADED:",
+"ANTARCTIC DATA:",
 
 DATA.length
 
@@ -5014,30 +6304,19 @@ DATA.length
 
 
 
-updateSystem();
-
-
+refreshAll();
 
 
 
 }
 
-
-catch(error){
-
-
-
-console.error(
-
-error
-
-);
+catch(e){
 
 
 
-showWarning(
+console.warn(
 
-"DATA CONNECTION LOST"
+"WAITING DATA.JSON"
 
 );
 
@@ -5057,118 +6336,65 @@ showWarning(
 
 
 
-// =================================
-// MAIN DATA UPDATE
-// =================================
+function refreshAll(){
 
 
 
-function updateSystem(){
+// 顶部
 
 
-
-if(!DATA || DATA.length===0)
+if(!DATA.length)
 
 return;
 
 
 
-
 let last=
 
-DATA[
-DATA.length-1
-];
+DATA[DATA.length-1];
 
 
 
 
 
-// --------------------
-// 顶部数据
-// --------------------
+setValue(
 
-
-
-let voltage=
-
-Number(last.v??0)
-.toFixed(2);
-
-
-
-let current=
-
-Number(last.a??0);
-
-
-
-
-let solar=
-
-Number(last.s??0);
-
-
-
-
-
-setText(
 "topVoltage",
-voltage
+
+Number(last.v||0).toFixed(2)
+
 );
 
 
 
-setText(
+setValue(
+
 "topCurrent",
-current
+
+last.a??"--"
+
 );
 
 
 
-setText(
+setValue(
+
 "topSolar",
-solar
+
+last.s??"--"
+
 );
 
 
 
-setText(
+setValue(
+
 "topRecords",
+
 DATA.length
-);
-
-
-
-
-
-
-
-// --------------------
-// HUD
-// --------------------
-
-
-
-setText(
-
-"mode",
-
-last.mode??"--"
 
 );
 
-
-
-
-
-setText(
-
-"ssid",
-
-last.i??"--"
-
-);
 
 
 
@@ -5179,9 +6405,7 @@ last.i??"--"
 // GPS
 
 
-
 let gps=
-
 
 [...DATA]
 
@@ -5189,13 +6413,11 @@ let gps=
 
 .find(
 
-d=>
+x=>
 
-d.x &&
-d.y
+x.x&&x.y
 
 );
-
 
 
 
@@ -5205,73 +6427,23 @@ if(gps){
 
 
 
-setText(
+setValue(
 
 "lat",
 
-Number(gps.x)
-.toFixed(5)
+Number(gps.x).toFixed(5)
 
 );
 
 
 
-
-setText(
+setValue(
 
 "lng",
 
-Number(gps.y)
-.toFixed(5)
+Number(gps.y).toFixed(5)
 
 );
-
-
-
-
-setText(
-
-"sat",
-
-gps.n??"--"
-
-);
-
-
-
-
-
-
-let fix=
-
-document.getElementById(
-"fix"
-);
-
-
-
-if(fix){
-
-
-
-if(gps.g==="O"){
-
-
-
-fix.innerHTML="LOCKED";
-
-fix.style.color="#63ffb0";
-
-
-
-}
-
-else{
-
-
-fix.innerHTML="SEARCH";
-
-fix.style.color="#ffd45c";
 
 
 
@@ -5279,7 +6451,19 @@ fix.style.color="#ffd45c";
 
 
 
-}
+
+
+
+if(typeof updateTelemetryCharts==="function")
+
+updateTelemetryCharts();
+
+
+
+
+if(typeof updateLiveStream==="function")
+
+updateLiveStream();
 
 
 
@@ -5291,145 +6475,7 @@ fix.style.color="#ffd45c";
 
 
 
-
-// --------------------
-// POWER
-// --------------------
-
-
-
-let mainV=
-
-document.getElementById(
-"mainVoltage"
-);
-
-
-
-if(mainV)
-
-mainV.innerHTML=
-
-voltage;
-
-
-
-
-
-
-let pV=
-
-document.getElementById(
-"powerVoltage"
-);
-
-
-
-if(pV)
-
-pV.innerHTML=
-
-voltage;
-
-
-
-
-
-
-
-let pA=
-
-document.getElementById(
-"powerCurrent"
-);
-
-
-
-if(pA)
-
-pA.innerHTML=
-
-current;
-
-
-
-
-
-
-
-
-// --------------------
-// 更新时间
-// --------------------
-
-
-
-lastUpdateTime=
-
-last.time || "--";
-
-
-
-let timeBox=
-
-document.getElementById(
-"lastTime"
-);
-
-
-
-if(timeBox)
-
-timeBox.innerHTML=
-
-lastUpdateTime;
-
-
-
-
-
-
-
-
-// --------------------
-// 图表
-// --------------------
-
-
-
-if(typeof updateCharts==="function")
-
-updateCharts();
-
-
-
-
-if(typeof updateEnergy==="function")
-
-updateEnergy();
-
-
-
-
-}
-
-
-
-
-
-
-
-
-
-
-
-// =================================
-// 工具函数
-// =================================
-
-
-
-function setText(id,value){
+function setValue(id,val){
 
 
 
@@ -5441,7 +6487,7 @@ document.getElementById(id);
 
 if(el)
 
-el.innerHTML=value;
+el.innerHTML=val;
 
 
 
@@ -5451,101 +6497,6 @@ el.innerHTML=value;
 
 
 
-
-
-
-// =================================
-// ERROR MONITOR
-// =================================
-
-
-
-function showWarning(msg){
-
-
-
-let light=
-
-document.querySelector(
-".status-light"
-);
-
-
-
-if(light){
-
-
-light.style.background="#ff5577";
-
-light.style.boxShadow=
-"0 0 25px #ff5577";
-
-
-}
-
-
-
-console.warn(msg);
-
-
-
-}
-
-
-
-
-
-
-
-
-function checkSystem(){
-
-
-
-if(!DATA.length)
-
-return;
-
-
-
-let last=
-
-DATA[
-DATA.length-1
-];
-
-
-
-
-if(Number(last.e)!==0){
-
-
-
-showWarning(
-
-"SENSOR ERROR CODE "+
-last.e
-
-);
-
-
-
-}
-
-
-
-
-}
-
-
-
-
-
-
-
-// =================================
-// START SYSTEM
-// =================================
 
 
 
@@ -5557,27 +6508,15 @@ window.addEventListener(
 
 
 
-loadSystemData();
-
-
-
-
-setInterval(
-
-loadSystemData,
-
-300000
-
-);
-
+loadDataJSON();
 
 
 
 setInterval(
 
-checkSystem,
+loadDataJSON,
 
-5000
+1200000
 
 );
 
@@ -5591,40 +6530,149 @@ checkSystem,
 
 
 
+</script><!-- =================================
+ FINAL FOOTER
+================================= -->
 
-</script>id="final-close"
+
+<div class="section-title">
+
+MISSION INFORMATION
+
+</div>
+
+
+
+
+
+
+<footer class="omega-footer">
+
+
+
+<div class="footer-brand">
+
+ANTARCTIC NEXUS Ω
+
+</div>
+
+
+
+<div class="footer-desc">
+
+
+AUTONOMOUS POLAR ENVIRONMENT MONITORING SYSTEM
+
+
+<br>
+
+
+ANT-A01 REMOTE OBSERVATION NODE
+
+
+</div>
+
+
+
+
+<div class="footer-grid">
+
+
+
+<div>
+
+SYSTEM
+
+<br>
+
+<span>
+
+ONLINE
+
+</span>
+
+</div>
+
+
+
+<div>
+
+POWER
+
+<br>
+
+<span>
+
+SOLAR
+
+</span>
+
+</div>
+
+
+
+<div>
+
+DATA INTERVAL
+
+<br>
+
+<span>
+
+20min/sample
+
+</span>
+
+</div>
+
+
+
+<div>
+
+VERSION
+
+<br>
+
+<span>
+
+Ω-2026.01
+
+</span>
+
+</div>
+
+
+
+</div>
+
+
+
+
+</footer>
+
+
+
+
+
+
+
 
 <style>
 
 
 /* =================================
- FINAL POLISH
+ FINAL FOOTER STYLE
 ================================= */
 
 
 
-/* 全局扫描线 */
+.omega-footer{
 
 
-.container::before{
+margin-top:40px;
 
 
-content:"";
-
-
-position:fixed;
-
-
-left:0;
-
-
-top:-150px;
-
-
-width:100%;
-
-
-height:120px;
+padding:45px;
 
 
 
@@ -5633,184 +6681,140 @@ background:
 
 linear-gradient(
 
-180deg,
+145deg,
 
-transparent,
+rgba(8,30,50,.95),
 
-rgba(85,234,255,.12),
-
-transparent
+rgba(2,12,24,.95)
 
 );
 
 
 
-pointer-events:none;
+border-radius:30px;
 
 
 
-animation:
+border:
 
-scanMove 15s linear infinite;
+1px solid rgba(84,234,255,.18);
 
-
-
-z-index:999;
-
-
-
-}
-
-
-
-@keyframes scanMove{
-
-
-0%{
-
-
-transform:translateY(0);
-
-
-}
-
-
-
-100%{
-
-
-transform:translateY(120vh);
-
-
-}
-
-
-}
-
-
-
-
-
-
-
-
-
-/* 卡片微动效果 */
-
-
-.overview-card,
-.ai-panel,
-.energy-core,
-.main-chart-panel,
-.sensor-card,
-.polar-hud,
-.log-panel{
-
-
-transition:.35s ease;
-
-
-}
-
-
-
-.overview-card:hover,
-.ai-panel:hover,
-.energy-core:hover,
-.main-chart-panel:hover,
-.sensor-card:hover{
-
-
-transform:
-
-translateY(-5px);
-
-
-
-box-shadow:
-
-
-0 15px 45px rgba(85,234,255,.15);
-
-
-}
-
-
-
-
-
-/* 数据高亮 */
-
-
-.ov-value,
-.power-number,
-.info-value{
-
-
-animation:
-
-dataPulse 4s infinite;
-
-
-}
-
-
-
-
-@keyframes dataPulse{
-
-
-50%{
-
-
-filter:
-
-brightness(1.25);
-
-
-}
-
-
-
-}
-
-
-
-
-
-
-
-
-/* =================================
- FOOTER
-================================= */
-
-
-
-.final-footer{
-
-
-margin-top:60px;
-
-
-padding:35px;
 
 
 text-align:center;
 
 
 
+}
+
+
+
+
+
+.footer-brand{
+
+
+font-family:
+
+Orbitron;
+
+
+
+font-size:32px;
+
+
+
+letter-spacing:8px;
+
+
+
+color:
+
+var(--cyan);
+
+
+
+text-shadow:
+
+
+0 0 30px rgba(84,234,255,.8);
+
+
+
+}
+
+
+
+
+
+.footer-desc{
+
+
+margin-top:20px;
+
+
+
+font-size:12px;
+
+
+
+letter-spacing:3px;
+
+
+
+line-height:2.5;
+
+
+
+color:
+
+var(--muted);
+
+
+
+}
+
+
+
+
+.footer-grid{
+
+
+margin-top:35px;
+
+
+display:grid;
+
+
+grid-template-columns:
+
+repeat(4,1fr);
+
+
+
+gap:20px;
+
+
+
+}
+
+
+
+
+.footer-grid div{
+
+
+padding:20px;
+
+
+
 background:
 
-
-rgba(5,20,35,.7);
-
+rgba(255,255,255,.04);
 
 
-border-top:
 
-
-1px solid rgba(85,234,255,.15);
+border-radius:18px;
 
 
 
@@ -5819,18 +6823,18 @@ font-family:
 Orbitron;
 
 
-letter-spacing:3px;
 
-
-color:#7895aa;
-
-
-
-font-size:12px;
+font-size:11px;
 
 
 
-line-height:2.5;
+letter-spacing:2px;
+
+
+
+color:
+
+var(--muted);
 
 
 
@@ -5839,28 +6843,41 @@ line-height:2.5;
 
 
 
-.final-footer strong{
+
+.footer-grid span{
 
 
-color:#55eaff;
+display:block;
 
+
+margin-top:10px;
 
 
 font-size:15px;
 
 
+color:
+
+var(--green);
+
+
+
 }
+
+
+
+
 
 
 
 
 
 /* =================================
- RESPONSIVE
+ MOBILE FINAL
 ================================= */
 
 
-@media(max-width:800px){
+@media(max-width:900px){
 
 
 
@@ -5888,16 +6905,12 @@ grid-template-columns:
 
 
 
-.header{
+.footer-grid{
 
 
-flex-direction:column;
+grid-template-columns:
 
-
-gap:20px;
-
-
-align-items:flex-start;
+1fr 1fr;
 
 
 }
@@ -5905,7 +6918,27 @@ align-items:flex-start;
 
 
 
-.sensor-grid{
+.logo h1{
+
+
+font-size:22px;
+
+
+}
+
+
+
+}
+
+
+
+
+
+@media(max-width:500px){
+
+
+
+.overview{
 
 
 grid-template-columns:
@@ -5917,8 +6950,7 @@ grid-template-columns:
 
 
 
-
-.chart-stat{
+.footer-grid{
 
 
 grid-template-columns:
@@ -5931,6 +6963,7 @@ grid-template-columns:
 
 
 }
+
 
 
 
@@ -5945,98 +6978,56 @@ grid-template-columns:
 
 
 
-<!-- =================================
- FINAL FOOTER
-================================= -->
-
-
-
-<footer class="final-footer">
-
-
-<strong>
-
-ANTARCTIC NEXUS
-
-</strong>
-
-
-<br>
-
-
-AUTONOMOUS POLAR ENVIRONMENT MONITORING SYSTEM
-
-
-<br>
-
-
-AA-2026 SCIENTIFIC EXPEDITION NODE
-
-
-<br>
-
-
-REMOTE OBSERVATION & DATA INTELLIGENCE PLATFORM
-
-
-<br><br>
-
-
-SYSTEM STATUS :
-
-<span style="color:#63ffb0">
-
-ONLINE
-
-</span>
-
-
-
-</footer>
-
-
-
-
-
-
-
-
-
 
 <script>
 
 
 // =================================
-// SAFE START PATCH
+// FINAL SAFETY PATCH
 // =================================
 
 
 
-// 防止 data.json 空数组
+// 防止 DATA 未初始化
 
 
-function safeInit(){
+if(typeof DATA==="undefined"){
 
 
-
-if(!DATA){
-
-
-DATA=[];
+window.DATA=[];
 
 
 }
 
 
 
+
+
+
+// 防止图表初始化错误
+
+
+window.addEventListener(
+
+"error",
+
+function(e){
+
+
+
+console.warn(
+
+"ANTARCTIC SYSTEM WARNING:",
+
+e.message
+
+);
+
+
+
 }
 
-
-
-// 初始化
-
-
-safeInit();
+);
 
 
 
