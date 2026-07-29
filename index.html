@@ -1,136 +1,710 @@
-<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>南极监测仪表盘</title>
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>南极监测仪表盘 | Antarctic Monitor</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <style>
-*{margin:0;padding:0;box-sizing:border-box}body{background:#0a1628;color:#e0e0e0;font-family:Arial,sans-serif;padding:15px}
-h1{text-align:center;color:#00d4ff;margin-bottom:10px;font-size:22px}
-.row{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:10px}
-.card{background:#162a45;border-radius:10px;padding:12px 16px;text-align:center;min-width:90px}
-.card .label{font-size:10px;color:#8899aa;margin-bottom:3px}
-.card .value{font-size:18px;font-weight:bold}
-.card .value.big{font-size:13px}
-.green{color:#00ff88}.yellow{color:#ffcc00}.red{color:#ff4444}.cyan{color:#00d4ff}.gold{color:#feca57}
-.slider-box{background:#162a45;border-radius:10px;padding:10px 15px;margin-bottom:10px;display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:center}
-.slider-box span{color:#8899aa;font-size:12px}
-.slider-box button{background:#0d2137;color:#00d4ff;border:1px solid #00d4ff;padding:6px 14px;border-radius:6px;cursor:pointer;font-size:12px}
-.slider-box button:hover,.slider-box button.active{background:#00d4ff;color:#0a1628}
-.chart-box{background:#162a45;border-radius:10px;padding:10px;flex:1;min-width:300px}
-.chart-box h3{text-align:center;color:#00d4ff;margin-bottom:6px;font-size:13px}
-.chart-box canvas{width:100%!important;max-height:180px}
-.table-box{background:#162a45;border-radius:10px;padding:10px;margin-top:10px;overflow-x:auto}
-.table-box h3{color:#00d4ff;margin-bottom:6px;font-size:13px}
-table{width:100%;border-collapse:collapse;font-size:11px;white-space:nowrap}
-th{background:#0d2137;padding:6px 5px;text-align:center;border-bottom:2px solid #00d4ff}
-td{padding:5px;text-align:center;border-bottom:1px solid #1a3350}tr:hover{background:#1a3350}
-.footer{text-align:center;color:#556677;font-size:10px;margin-top:8px}
-</style></head><body>
-<h1>南极无人监测网关</h1>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+/* ══════════════════════════════════════════════════════════════
+   CSS Custom Properties — 极光主题配色
+   ══════════════════════════════════════════════════════════════ */
+:root {
+  --bg-deep:    #060b18;
+  --bg-mid:     #0a1428;
+  --bg-card:    rgba(13, 25, 50, 0.65);
+  --border:     rgba(0, 200, 255, 0.12);
+  --glow-cyan:  rgba(0, 212, 255, 0.25);
+  --glow-green: rgba(0, 255, 136, 0.2);
+  --glow-gold:  rgba(254, 202, 87, 0.2);
+  --text-primary:   #e8edf5;
+  --text-secondary: #8899bb;
+  --text-muted:     #556688;
+  --cyan:       #00d4ff;
+  --green:      #00ff88;
+  --yellow:     #ffcc00;
+  --red:        #ff4d6a;
+  --gold:       #feca57;
+  --purple:     #a78bfa;
+  --pink:       #ff6b9d;
+  --orange:     #ff9f43;
+  --teal:       #2dd4bf;
+  --radius-sm:  10px;
+  --radius-md:  16px;
+  --radius-lg:  22px;
+  --shadow-card: 0 8px 40px rgba(0,0,0,0.45), 0 0 0 1px var(--border);
+  --shadow-glow: 0 0 30px var(--glow-cyan);
+  --blur:       16px;
+  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   Reset & Base
+   ══════════════════════════════════════════════════════════════ */
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+
+body{
+  background: var(--bg-deep);
+  background-image:
+    radial-gradient(ellipse 80% 60% at 20% 10%, rgba(0,180,255,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 80% 90%, rgba(0,255,136,0.05) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 40% at 50% 50%, rgba(120,80,255,0.04) 0%, transparent 70%),
+    linear-gradient(180deg, #060b18 0%, #0a1428 40%, #0d1935 100%);
+  color:var(--text-primary);
+  font-family:'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  padding:20px 24px;
+  min-height:100vh;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   Header
+   ══════════════════════════════════════════════════════════════ */
+.header{
+  text-align:center;
+  margin-bottom:24px;
+  position:relative;
+}
+.header h1{
+  font-size:clamp(20px, 4vw, 30px);
+  font-weight:800;
+  letter-spacing:3px;
+  background: linear-gradient(135deg, var(--cyan) 0%, var(--teal) 30%, var(--green) 70%, var(--cyan) 100%);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+  display:inline-block;
+  position:relative;
+}
+.header h1::after{
+  content:'';
+  position:absolute;
+  bottom:-8px;
+  left:50%;
+  transform:translateX(-50%);
+  width:60%;
+  height:2px;
+  background:linear-gradient(90deg, transparent, var(--cyan), transparent);
+  border-radius:1px;
+}
+.header .subtitle{
+  display:block;
+  font-size:11px;
+  font-weight:400;
+  letter-spacing:5px;
+  color:var(--text-muted);
+  margin-top:10px;
+  text-transform:uppercase;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   Slider Box
+   ══════════════════════════════════════════════════════════════ */
+.slider-box{
+  background:var(--bg-card);
+  backdrop-filter:blur(var(--blur));
+  -webkit-backdrop-filter:blur(var(--blur));
+  border:1px solid var(--border);
+  border-radius:var(--radius-lg);
+  padding:14px 22px;
+  margin-bottom:18px;
+  display:flex;
+  gap:12px;
+  align-items:center;
+  flex-wrap:wrap;
+  justify-content:center;
+  box-shadow:var(--shadow-card);
+  transition:var(--transition);
+}
+.slider-box:hover{
+  border-color:rgba(0,212,255,0.3);
+  box-shadow:var(--shadow-card), var(--shadow-glow);
+}
+.slider-box .section-label{
+  color:var(--text-secondary);
+  font-size:12px;
+  font-weight:500;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  display:flex;
+  align-items:center;
+  gap:6px;
+}
+.slider-box .section-label::before{
+  content:'';
+  display:inline-block;
+  width:6px;height:6px;
+  background:var(--green);
+  border-radius:50%;
+  animation:pulse-dot 2s ease-in-out infinite;
+}
+.slider-box button{
+  background:rgba(13,30,55,0.8);
+  color:var(--text-secondary);
+  border:1px solid rgba(255,255,255,0.08);
+  padding:8px 18px;
+  border-radius:50px;
+  cursor:pointer;
+  font-size:12px;
+  font-weight:600;
+  letter-spacing:0.5px;
+  transition:var(--transition);
+  position:relative;
+  overflow:hidden;
+}
+.slider-box button::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(135deg, var(--cyan), var(--green));
+  opacity:0;
+  transition:opacity 0.3s;
+}
+.slider-box button:hover{
+  color:#fff;
+  border-color:var(--cyan);
+  transform:translateY(-1px);
+  box-shadow:0 4px 20px var(--glow-cyan);
+}
+.slider-box button.active{
+  color:#060b18;
+  border-color:transparent;
+  font-weight:700;
+  box-shadow:0 0 25px var(--glow-cyan);
+}
+.slider-box button.active::before{
+  opacity:1;
+}
+.slider-box button span{
+  position:relative;
+  z-index:1;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   Status Cards
+   ══════════════════════════════════════════════════════════════ */
+.row{
+  display:flex;
+  gap:14px;
+  flex-wrap:wrap;
+  justify-content:center;
+  margin-bottom:14px;
+}
+.card{
+  background:var(--bg-card);
+  backdrop-filter:blur(var(--blur));
+  -webkit-backdrop-filter:blur(var(--blur));
+  border:1px solid var(--border);
+  border-radius:var(--radius-md);
+  padding:16px 22px;
+  text-align:center;
+  min-width:105px;
+  flex:1;
+  max-width:180px;
+  box-shadow:var(--shadow-card);
+  transition:var(--transition);
+  position:relative;
+  overflow:hidden;
+}
+.card::before{
+  content:'';
+  position:absolute;
+  top:0;left:0;right:0;
+  height:1px;
+  background:linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+  opacity:0;
+  transition:opacity 0.3s;
+}
+.card:hover{
+  transform:translateY(-3px);
+  box-shadow:var(--shadow-card), 0 12px 40px rgba(0,0,0,0.5);
+  border-color:rgba(255,255,255,0.15);
+}
+.card:hover::before{opacity:1}
+.card .label{
+  font-size:10px;
+  color:var(--text-secondary);
+  text-transform:uppercase;
+  letter-spacing:1.5px;
+  margin-bottom:8px;
+  font-weight:500;
+}
+.card .value{
+  font-size:24px;
+  font-weight:800;
+  letter-spacing:-0.5px;
+  line-height:1.1;
+}
+.card .value.big{font-size:16px;font-weight:700}
+
+/* 颜色类 */
+.green{color:var(--green)}
+.yellow{color:var(--yellow)}
+.red{color:var(--red)}
+.cyan{color:var(--cyan)}
+.gold{color:var(--gold)}
+
+/* 脉冲点 */
+@keyframes pulse-dot{
+  0%,100%{opacity:1;transform:scale(1)}
+  50%{opacity:0.4;transform:scale(1.8)}
+}
+.live-dot{
+  display:inline-block;
+  width:7px;height:7px;
+  background:var(--green);
+  border-radius:50%;
+  margin-right:6px;
+  animation:pulse-dot 2s ease-in-out infinite;
+  box-shadow:0 0 10px var(--green);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   Chart Boxes
+   ══════════════════════════════════════════════════════════════ */
+.chart-box{
+  background:var(--bg-card);
+  backdrop-filter:blur(var(--blur));
+  -webkit-backdrop-filter:blur(var(--blur));
+  border:1px solid var(--border);
+  border-radius:var(--radius-md);
+  padding:16px 18px 12px;
+  flex:1;
+  min-width:320px;
+  box-shadow:var(--shadow-card);
+  transition:var(--transition);
+}
+.chart-box:hover{
+  border-color:rgba(255,255,255,0.12);
+  box-shadow:var(--shadow-card), 0 4px 30px rgba(0,0,0,0.4);
+}
+.chart-box h3{
+  text-align:center;
+  color:var(--text-secondary);
+  margin-bottom:10px;
+  font-size:13px;
+  font-weight:600;
+  letter-spacing:0.5px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+}
+.chart-box h3 .chart-icon{
+  font-size:15px;
+}
+.chart-box canvas{
+  width:100%!important;
+  max-height:210px;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   Table Box
+   ══════════════════════════════════════════════════════════════ */
+.table-box{
+  background:var(--bg-card);
+  backdrop-filter:blur(var(--blur));
+  -webkit-backdrop-filter:blur(var(--blur));
+  border:1px solid var(--border);
+  border-radius:var(--radius-md);
+  padding:16px 18px;
+  margin-top:16px;
+  overflow-x:auto;
+  box-shadow:var(--shadow-card);
+}
+.table-box h3{
+  color:var(--text-secondary);
+  margin-bottom:12px;
+  font-size:14px;
+  font-weight:600;
+  letter-spacing:0.5px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+table{
+  width:100%;
+  border-collapse:separate;
+  border-spacing:0;
+  font-size:11px;
+  white-space:nowrap;
+}
+thead th{
+  background:rgba(0,212,255,0.06);
+  padding:10px 8px;
+  text-align:center;
+  font-weight:600;
+  color:var(--cyan);
+  font-size:10px;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  border-bottom:2px solid rgba(0,212,255,0.25);
+  position:sticky;
+  top:0;
+}
+thead th:first-child{border-radius:8px 0 0 0}
+thead th:last-child{border-radius:0 8px 0 0}
+tbody td{
+  padding:8px 6px;
+  text-align:center;
+  border-bottom:1px solid rgba(255,255,255,0.03);
+  color:var(--text-primary);
+  font-variant-numeric:tabular-nums;
+  font-family:'SF Mono', 'JetBrains Mono', 'Consolas', monospace;
+  font-size:11px;
+}
+tbody tr{
+  transition:var(--transition);
+}
+tbody tr:hover{
+  background:rgba(0,212,255,0.04);
+}
+tbody tr:nth-child(even){
+  background:rgba(255,255,255,0.01);
+}
+tbody tr:nth-child(even):hover{
+  background:rgba(0,212,255,0.05);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   Footer
+   ══════════════════════════════════════════════════════════════ */
+.footer{
+  text-align:center;
+  color:var(--text-muted);
+  font-size:10px;
+  margin-top:18px;
+  letter-spacing:0.5px;
+  opacity:0.7;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   Responsive
+   ══════════════════════════════════════════════════════════════ */
+@media(max-width:768px){
+  body{padding:12px 10px}
+  .card{padding:12px 14px;min-width:75px;max-width:140px}
+  .card .value{font-size:18px}
+  .card .value.big{font-size:13px}
+  .chart-box{min-width:100%}
+  .slider-box{gap:8px;padding:10px 14px}
+  .slider-box button{padding:6px 12px;font-size:11px}
+  table{font-size:10px}
+  thead th,tbody td{padding:6px 4px}
+}
+
+/* 滚动条 */
+::-webkit-scrollbar{width:6px;height:6px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.1);border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:rgba(255,255,255,0.2)}
+</style>
+</head>
+<body>
+
+<!-- ═══════════ HEADER ═══════════ -->
+<div class="header">
+  <h1>🌐 南极无人监测网关</h1>
+  <span class="subtitle">Antarctic · Remote Monitoring · Real‑time</span>
+</div>
+
+<!-- ═══════════ TIME RANGE SLIDER ═══════════ -->
 <div class="slider-box">
-<span>图表范围:</span>
-<button onclick="setRange(0)" id="btnAll" class="active">全部</button>
-<button onclick="setRange(24)" id="btn24h">24小时</button>
-<button onclick="setRange(6)" id="btn6h">6小时</button>
-<button onclick="setRange(2)" id="btn2h">2小时</button>
-<span style="margin-left:10px">共 <b id="totalCount">0</b> 条</span>
+  <span class="section-label"><span class="live-dot"></span>时间范围</span>
+  <button onclick="setRange(0)" id="btnAll" class="active"><span>📅 全部</span></button>
+  <button onclick="setRange(24)" id="btn24h"><span>🕐 24 小时</span></button>
+  <button onclick="setRange(6)" id="btn6h"><span>⏳ 6 小时</span></button>
+  <button onclick="setRange(2)" id="btn2h"><span>⚡ 2 小时</span></button>
+  <span style="margin-left:12px;color:var(--text-muted);font-size:12px">
+    总计 <b id="totalCount" style="color:var(--cyan);font-size:15px">0</b> 条记录
+  </span>
 </div>
+
+<!-- ═══════════ SYSTEM STATUS CARDS ═══════════ -->
 <div class="row">
-<div class="card"><div class="label">模式</div><div class="value" id="mode">--</div></div>
-<div class="card"><div class="label">电池电压</div><div class="value cyan" id="voltage">--</div></div>
-<div class="card"><div class="label">电流</div><div class="value yellow" id="current">--</div></div>
-<div class="card"><div class="label">错误码</div><div class="value" id="error">--</div></div>
-<div class="card"><div class="label">SSID / Q</div><div class="value cyan" id="ssid">--</div></div>
+  <div class="card">
+    <div class="label">⚡ 运行模式</div>
+    <div class="value" id="mode">--</div>
+  </div>
+  <div class="card">
+    <div class="label">🔋 电池电压</div>
+    <div class="value cyan" id="voltage">--</div>
+  </div>
+  <div class="card">
+    <div class="label">⚙ 系统电流</div>
+    <div class="value yellow" id="current">--</div>
+  </div>
+  <div class="card">
+    <div class="label">⚠ 错误状态</div>
+    <div class="value" id="error">--</div>
+  </div>
+  <div class="card">
+    <div class="label">📡 会话 · 序列</div>
+    <div class="value cyan" id="ssid">--</div>
+  </div>
 </div>
+
+<!-- ═══════════ GPS LOCATION CARDS ═══════════ -->
 <div class="row">
-<div class="card"><div class="label">纬度</div><div class="value gold big" id="lat">--</div></div>
-<div class="card"><div class="label">经度</div><div class="value gold big" id="lng">--</div></div>
-<div class="card"><div class="label">卫星数</div><div class="value cyan" id="sat">--</div></div>
-<div class="card"><div class="label">定位状态</div><div class="value" id="fix">--</div></div>
-<div class="card"><div class="label">GPS 时间</div><div class="value green big" id="gpstime">--</div></div>
+  <div class="card">
+    <div class="label">🌍 纬度 Latitude</div>
+    <div class="value gold big" id="lat">--</div>
+  </div>
+  <div class="card">
+    <div class="label">🗺 经度 Longitude</div>
+    <div class="value gold big" id="lng">--</div>
+  </div>
+  <div class="card">
+    <div class="label">🛰 卫星 Satellites</div>
+    <div class="value cyan" id="sat">--</div>
+  </div>
+  <div class="card">
+    <div class="label">📍 定位 Fix</div>
+    <div class="value" id="fix">--</div>
+  </div>
+  <div class="card">
+    <div class="label">🕐 GPS 时间</div>
+    <div class="value green big" id="gpstime">--</div>
+  </div>
 </div>
+
+<!-- ═══════════ CHARTS ROW 1: Voltage + Current ═══════════ -->
 <div class="row">
-<div class="chart-box"><h3>电池电压 (V)</h3><canvas id="cv"></canvas></div>
-<div class="chart-box"><h3>系统电流 (mA)</h3><canvas id="ca"></canvas></div>
+  <div class="chart-box">
+    <h3><span class="chart-icon">📈</span>电池电压 (V)</h3>
+    <canvas id="cv"></canvas>
+  </div>
+  <div class="chart-box">
+    <h3><span class="chart-icon">📊</span>系统电流 (mA)</h3>
+    <canvas id="ca"></canvas>
+  </div>
 </div>
+
+<!-- ═══════════ CHARTS ROW 2: SHT35 Temp + Humidity ═══════════ -->
 <div class="row">
-<div class="chart-box"><h3>SHT35 温度 (°C)</h3><canvas id="cst"></canvas></div>
-<div class="chart-box"><h3>SHT35 湿度 (%)</h3><canvas id="csh"></canvas></div>
+  <div class="chart-box">
+    <h3><span class="chart-icon">🌡</span>SHT35 温度 (°C)</h3>
+    <canvas id="cst"></canvas>
+  </div>
+  <div class="chart-box">
+    <h3><span class="chart-icon">💧</span>SHT35 湿度 (%)</h3>
+    <canvas id="csh"></canvas>
+  </div>
 </div>
+
+<!-- ═══════════ CHARTS ROW 3: RS485 Temp + Humidity ═══════════ -->
 <div class="row">
-<div class="chart-box"><h3>RS485 温度 (°C)</h3><canvas id="ctt"></canvas></div>
-<div class="chart-box"><h3>RS485 湿度 (%)</h3><canvas id="cth"></canvas></div>
+  <div class="chart-box">
+    <h3><span class="chart-icon">🔥</span>RS485 温度 (°C)</h3>
+    <canvas id="ctt"></canvas>
+  </div>
+  <div class="chart-box">
+    <h3><span class="chart-icon">💦</span>RS485 湿度 (%)</h3>
+    <canvas id="cth"></canvas>
+  </div>
 </div>
+
+<!-- ═══════════ CHARTS ROW 4: Solar + Wind ═══════════ -->
 <div class="row">
-<div class="chart-box"><h3>太阳辐射 (W/m²)</h3><canvas id="cs"></canvas></div>
-<div class="chart-box"><h3>风速 / 风向 (待安装)</h3><canvas id="cws"></canvas></div>
+  <div class="chart-box">
+    <h3><span class="chart-icon">☀️</span>太阳辐射 (W/m²)</h3>
+    <canvas id="cs"></canvas>
+  </div>
+  <div class="chart-box">
+    <h3><span class="chart-icon">💨</span>风速 / 风向 (待安装)</h3>
+    <canvas id="cws"></canvas>
+  </div>
 </div>
-<div class="table-box"><h3>最新 20 条数据</h3>
-<table><thead><tr>
-<th>时间</th><th>模式</th><th>V</th><th>mA</th><th>辐射</th><th>SHT°C</th><th>SHT%</th><th>TH°C</th><th>TH%</th><th>纬度</th><th>经度</th><th>卫星</th><th>定位</th><th>错误</th>
-</tr></thead><tbody id="tbody"></tbody></table></div>
-<div class="footer" id="update">--</div>
+
+<!-- ═══════════ DATA TABLE ═══════════ -->
+<div class="table-box">
+  <h3>📋 最新 20 条数据记录</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>时间</th><th>模式</th><th>V</th><th>mA</th><th>辐射</th>
+        <th>SHT°C</th><th>SHT%</th><th>TH°C</th><th>TH%</th>
+        <th>纬度</th><th>经度</th><th>🛰</th><th>定位</th><th>错误</th>
+      </tr>
+    </thead>
+    <tbody id="tbody"></tbody>
+  </table>
+</div>
+
+<div class="footer" id="update">
+  <span class="live-dot"></span> 系统运行中 · 数据实时更新
+</div>
+
+<!-- ═══════════ JAVASCRIPT ═══════════ -->
 <script>
+// ═══ 工具函数 ═══
 function fmt(v,d){return v!=null?Number(v).toFixed(d):"--"}
 function mc(m){return m=="N"?"green":m=="S"?"yellow":"red"}
+
+// ═══ 图表基类 ═══
 var charts={};
-function mk(id,label,color){
-var c=new Chart(document.getElementById(id),{type:"line",data:{labels:[],datasets:[{label:label,data:[],borderColor:color,backgroundColor:color+"30",fill:true,tension:0.3,pointRadius:1}]},
-options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
-scales:{x:{ticks:{color:"#556677",maxTicksLimit:8,autoSkip:true},grid:{color:"#1a3350"}},
-y:{ticks:{color:"#8899aa"},grid:{color:"#1a3350"}}}}});charts[id]=c;}
-mk("cv","电压","#00d4ff");mk("ca","电流","#ffcc00");
-mk("cst","SHT温度","#ff6b6b");mk("csh","SHT湿度","#4ecdc4");
-mk("ctt","RS485温度","#ff9f43");mk("cth","RS485湿度","#a29bfe");
-mk("cs","辐射","#feca57");mk("cws","风速","#00ff88");
-var ALL_DATA=[],currentRangeHours=0;
-function setRange(h){currentRangeHours=h;
-document.querySelectorAll('.slider-box button').forEach(function(b){b.classList.remove('active')});
-if(h==0)document.getElementById('btnAll').classList.add('active');
-else if(h==24)document.getElementById('btn24h').classList.add('active');
-else if(h==6)document.getElementById('btn6h').classList.add('active');
-else document.getElementById('btn2h').classList.add('active');
-render();}
-function getFilteredData(){
-if(currentRangeHours==0)return ALL_DATA;
-var cutoff=new Date();cutoff.setHours(cutoff.getHours()-currentRangeHours);
-return ALL_DATA.filter(function(r){try{return new Date(r.time)>=cutoff;}catch(e){return false;}});}
-var labels=[];
-function push(arr,id){var c=charts[id];if(!c)return;c.data.labels=labels;c.data.datasets[0].data=arr;c.update()}
-function render(){
-var d=getFilteredData();
-document.getElementById('totalCount').textContent=d.length;
-if(!d.length)return;
-var last=d[d.length-1];
-document.getElementById("mode").textContent=last.mode||"--";
-document.getElementById("mode").className="value "+mc(last.mode);
-document.getElementById("voltage").textContent=fmt(last.v,1)+" V";
-document.getElementById("current").textContent=fmt(last.a,1)+" mA";
-document.getElementById("error").textContent=last.e||0;
-document.getElementById("error").className="value "+(last.e==0?"green":"red");
-document.getElementById("ssid").textContent=(last.i||"--")+" / "+(last.q||"--");
-var gps=null;for(var i=d.length-1;i>=0;i--){if(d[i].x!=null){gps=d[i];break;}}
-if(gps){
-document.getElementById("lat").textContent=fmt(gps.x,6);
-document.getElementById("lng").textContent=fmt(gps.y,6);
-document.getElementById("sat").textContent=gps.n||"--";
-document.getElementById("fix").textContent=gps.g||"--";
-document.getElementById("fix").className="value "+(gps.g=="O"?"green":"yellow");
-document.getElementById("gpstime").textContent=gps.time?gps.time.substring(0,16):"--";}
-document.getElementById("update").textContent=d.length+"条 | "+last.time;
-labels=[];var vv=[],va=[],vst=[],vsh=[],vtt=[],vth=[],vs=[],vws=[];
-for(var i=0;i<d.length;i++){var r=d[i];
-labels.push(r.time?r.time.substring(5,16):"");
-vv.push(r.v);va.push(r.a);vst.push(r.j);vsh.push(r.k);
-vtt.push(r.t);vth.push(r.h);vs.push(r.s);vws.push(r.w||null);}
-push(vv,"cv");push(va,"ca");push(vst,"cst");push(vsh,"csh");
-push(vtt,"ctt");push(vth,"cth");push(vs,"cs");push(vws,"cws");
-var tb=document.getElementById("tbody");tb.innerHTML="";
-var show=d.slice(-20).reverse();
-for(var j=0;j<show.length;j++){var r=show[j],tm=r.time?r.time.substring(5,16):"";
-tb.innerHTML+="<tr><td>"+tm+"</td><td class=\""+mc(r.mode)+"\">"+(r.mode||"--")+"</td><td>"+fmt(r.v,1)+"</td><td>"+fmt(r.a,1)+"</td><td>"+fmt(r.s,0)+"</td><td>"+fmt(r.j,1)+"</td><td>"+fmt(r.k,1)+"</td><td>"+fmt(r.t,1)+"</td><td>"+fmt(r.h,1)+"</td><td>"+fmt(r.x,5)+"</td><td>"+fmt(r.y,5)+"</td><td>"+(r.n||"--")+"</td><td>"+(r.g||"--")+"</td><td>"+(r.e||0)+"</td></tr>";}}
-function load(){
-fetch("data.json?v="+Date.now()).then(function(r){return r.json()}).then(function(d){
-ALL_DATA=d;render();
-}).catch(function(e){console.log(e)});
+var chartColors={
+  cv:  {line:'#00d4ff', fill:'rgba(0,212,255,0.18)'},
+  ca:  {line:'#ffcc00', fill:'rgba(255,204,0,0.15)'},
+  cst: {line:'#ff6b9d', fill:'rgba(255,107,157,0.15)'},
+  csh: {line:'#2dd4bf', fill:'rgba(45,212,191,0.12)'},
+  ctt: {line:'#ff9f43', fill:'rgba(255,159,67,0.15)'},
+  cth: {line:'#a78bfa', fill:'rgba(167,139,250,0.12)'},
+  cs:  {line:'#feca57', fill:'rgba(254,202,87,0.18)'},
+  cws: {line:'#00ff88', fill:'rgba(0,255,136,0.12)'},
+};
+
+function mk(id, label, colorId, extraOpts){
+  var colors=chartColors[colorId]||chartColors.cv;
+  var opts={
+    type:'line',
+    data:{labels:[],datasets:[{
+      label:label,
+      data:[],
+      borderColor:colors.line,
+      backgroundColor:colors.fill,
+      fill:true,
+      tension:0.4,
+      pointRadius:0,
+      pointHoverRadius:5,
+      pointHoverBackgroundColor:colors.line,
+      pointHoverBorderColor:'#fff',
+      pointHoverBorderWidth:2,
+      borderWidth:2,
+    }]},
+    options:{
+      responsive:true,
+      maintainAspectRatio:false,
+      interaction:{mode:'index',intersect:false},
+      plugins:{
+        legend:{display:false},
+        tooltip:{
+          backgroundColor:'rgba(10,20,40,0.9)',
+          titleColor:'#00d4ff',
+          bodyColor:'#e0e0e0',
+          borderColor:'rgba(0,212,255,0.3)',
+          borderWidth:1,
+          padding:10,
+          displayColors:false,
+          titleFont:{family:'Inter',size:11,weight:'600'},
+          bodyFont:{family:'Inter',size:11},
+        }
+      },
+      scales:{
+        x:{
+          ticks:{color:'#556688',maxTicksLimit:8,font:{size:9}},
+          grid:{color:'rgba(255,255,255,0.03)'}
+        },
+        y:{
+          ticks:{color:'#8899bb',font:{size:9},padding:6},
+          grid:{color:'rgba(255,255,255,0.04)'},
+          ...(extraOpts||{})
+        }
+      }
+    }
+  };
+  charts[id]=new Chart(document.getElementById(id),opts);
 }
-load();setInterval(load,300000);
-</script></body></html>
+
+// ═══ 创建所有图表 ═══
+mk("cv", "电压",  "cv",  {title:{display:true,text:'V',color:'#8899bb'}});
+mk("ca", "电流",  "ca",  {title:{display:true,text:'mA',color:'#8899bb'}});
+mk("cst","SHT温度","cst",{title:{display:true,text:'°C',color:'#8899bb'}});
+mk("csh","SHT湿度","csh",{title:{display:true,text:'%',color:'#8899bb'}});
+mk("ctt","RS485温度","ctt",{title:{display:true,text:'°C',color:'#8899bb'}});
+mk("cth","RS485湿度","cth",{title:{display:true,text:'%',color:'#8899bb'}});
+// ★ 太阳辐射 Y 轴从 0 开始
+mk("cs", "辐射",  "cs",  {min:0, title:{display:true,text:'W/m²',color:'#8899bb'}});
+mk("cws","风速",  "cws", {title:{display:true,text:'m/s',color:'#8899bb'}});
+
+// ═══ 时间范围 ═══
+var ALL_DATA=[],currentRangeHours=0;
+function setRange(h){
+  currentRangeHours=h;
+  document.querySelectorAll('.slider-box button').forEach(function(b){b.classList.remove('active')});
+  var map={0:'btnAll',24:'btn24h',6:'btn6h',2:'btn2h'};
+  var id=map[h]||'btn2h';
+  document.getElementById(id).classList.add('active');
+  render();
+}
+function getFilteredData(){
+  if(currentRangeHours==0)return ALL_DATA;
+  var cutoff=new Date();cutoff.setHours(cutoff.getHours()-currentRangeHours);
+  return ALL_DATA.filter(function(r){
+    try{return new Date(r.time)>=cutoff}catch(e){return false}
+  });
+}
+
+// ═══ 主渲染 ═══
+var labels=[];
+function push(arr,id){
+  var c=charts[id];if(!c)return;
+  c.data.labels=labels;c.data.datasets[0].data=arr;c.update('none');
+}
+function render(){
+  var d=getFilteredData();
+  document.getElementById('totalCount').textContent=d.length;
+  if(!d.length)return;
+
+  var last=d[d.length-1];
+  document.getElementById("mode").textContent=last.mode||"--";
+  document.getElementById("mode").className="value "+mc(last.mode);
+  document.getElementById("voltage").textContent=fmt(last.v,1)+" V";
+  document.getElementById("current").textContent=fmt(last.a,1)+" mA";
+  document.getElementById("error").textContent=last.e||0;
+  document.getElementById("error").className="value "+(last.e==0?"green":"red");
+  document.getElementById("ssid").textContent=(last.i||"--")+" / "+(last.q||"--");
+
+  var gps=null;for(var i=d.length-1;i>=0;i--){if(d[i].x!=null){gps=d[i];break;}}
+  if(gps){
+    document.getElementById("lat").textContent=fmt(gps.x,6);
+    document.getElementById("lng").textContent=fmt(gps.y,6);
+    document.getElementById("sat").textContent=gps.n||"--";
+    document.getElementById("fix").textContent=gps.g||"--";
+    document.getElementById("fix").className="value "+(gps.g=="O"?"green":"yellow");
+    document.getElementById("gpstime").textContent=gps.time?gps.time.substring(0,16):"--";
+  }
+  document.getElementById("update").innerHTML='<span class="live-dot"></span> 最后更新: '+last.time+' · 共 '+d.length+' 条';
+
+  labels=[];var vv=[],va=[],vst=[],vsh=[],vtt=[],vth=[],vs=[],vws=[];
+  for(var i=0;i<d.length;i++){
+    var r=d[i];
+    labels.push(r.time?r.time.substring(5,16):"");
+    vv.push(r.v);va.push(r.a);vst.push(r.j);vsh.push(r.k);
+    vtt.push(r.t);vth.push(r.h);vs.push(r.s);vws.push(r.w||null);
+  }
+  push(vv,"cv");push(va,"ca");push(vst,"cst");push(vsh,"csh");
+  push(vtt,"ctt");push(vth,"cth");push(vs,"cs");push(vws,"cws");
+
+  var tb=document.getElementById("tbody");tb.innerHTML="";
+  var show=d.slice(-20).reverse();
+  for(var j=0;j<show.length;j++){
+    var r=show[j],tm=r.time?r.time.substring(5,16):"";
+    tb.innerHTML+="<tr><td>"+tm+"</td><td class=\""+mc(r.mode)+"\">"+(r.mode||"--")+
+      "</td><td>"+fmt(r.v,1)+"</td><td>"+fmt(r.a,1)+"</td><td>"+fmt(r.s,0)+
+      "</td><td>"+fmt(r.j,1)+"</td><td>"+fmt(r.k,1)+"</td><td>"+fmt(r.t,1)+
+      "</td><td>"+fmt(r.h,1)+"</td><td>"+fmt(r.x,5)+"</td><td>"+fmt(r.y,5)+
+      "</td><td>"+(r.n||"--")+"</td><td>"+(r.g||"--")+"</td><td>"+(r.e||0)+"</td></tr>";
+  }
+}
+
+// ═══ 数据加载 ═══
+function load(){
+  fetch("data.json?v="+Date.now())
+    .then(function(r){return r.json()})
+    .then(function(d){ALL_DATA=d;render();})
+    .catch(function(e){console.log("Load error:",e);});
+}
+load();
+setInterval(load,300000);
+</script>
+</body>
+</html>
