@@ -5,12 +5,17 @@
 
 <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 
 
 <title>
-ANTARCTIC NEXUS Ω
+ANTARCTIC NEXUS Ω v0.4
 </title>
+
+
+
+<link rel="icon" href="data:,">
+
 
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -19,28 +24,55 @@ ANTARCTIC NEXUS Ω
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
 
+
+
+
 <style>
+
+
+/* ==============================
+   GLOBAL
+============================== */
 
 
 :root{
 
+
 --bg:#020711;
 
---panel:rgba(8,25,42,.88);
+
+--panel:#081a2b;
+
+
+--panel2:#0b2238;
+
 
 --cyan:#54eaff;
 
+
 --blue:#4388ff;
+
 
 --green:#69ffb0;
 
+
 --yellow:#ffe699;
+
+
+--orange:#ffb866;
+
+
+--purple:#b39ddb;
+
 
 --text:#eaf8ff;
 
+
 --muted:#7895aa;
 
+
 --border:rgba(84,234,255,.18);
+
 
 }
 
@@ -48,11 +80,25 @@ ANTARCTIC NEXUS Ω
 
 *{
 
+
 margin:0;
+
 
 padding:0;
 
+
 box-sizing:border-box;
+
+
+}
+
+
+
+html{
+
+
+scroll-behavior:smooth;
+
 
 }
 
@@ -60,15 +106,22 @@ box-sizing:border-box;
 
 body{
 
+
 min-height:100vh;
+
 
 background:
 
-radial-gradient(circle at 50% -10%,
 
-rgba(84,234,255,.2),
+radial-gradient(
 
-transparent 40%),
+circle at 50% -20%,
+
+rgba(84,234,255,.22),
+
+transparent 45%
+
+),
 
 
 linear-gradient(
@@ -82,16 +135,22 @@ linear-gradient(
 );
 
 
+
 color:var(--text);
+
 
 
 font-family:
 
+
 Inter,
+
 
 "Microsoft YaHei",
 
+
 sans-serif;
+
 
 
 overflow-x:hidden;
@@ -101,7 +160,10 @@ overflow-x:hidden;
 
 
 
-/* 星空背景 */
+
+
+/* 星空 */
+
 
 body::before{
 
@@ -111,10 +173,13 @@ content:"";
 
 position:fixed;
 
+
 inset:0;
 
 
+
 background-image:
+
 
 radial-gradient(
 
@@ -125,26 +190,37 @@ transparent 1px
 );
 
 
+
 background-size:
 
 90px 90px;
 
 
-opacity:.15;
+
+opacity:.12;
+
 
 
 animation:
 
-stars 40s linear infinite;
+starMove 40s linear infinite;
+
 
 
 pointer-events:none;
 
 
+
+z-index:-2;
+
+
+
 }
 
 
-@keyframes stars{
+
+@keyframes starMove{
+
 
 from{
 
@@ -153,17 +229,23 @@ transform:translateY(0);
 }
 
 
+
 to{
 
 transform:translateY(90px);
 
 }
 
+
+
 }
 
 
 
-/* 扫描网格 */
+
+
+/* 网格 */
+
 
 body::after{
 
@@ -173,10 +255,12 @@ content:"";
 
 position:fixed;
 
+
 inset:0;
 
 
-background-image:
+background:
+
 
 linear-gradient(
 
@@ -184,22 +268,19 @@ linear-gradient(
 
 transparent 49.8%,
 
-rgba(84,234,255,.03)
-
-50%,
+rgba(84,234,255,.03) 50%,
 
 transparent 50.2%
 
 ),
 
 
+
 linear-gradient(
 
 transparent 49.8%,
 
-rgba(84,234,255,.03)
-
-50%,
+rgba(84,234,255,.03) 50%,
 
 transparent 50.2%
 
@@ -212,7 +293,13 @@ background-size:
 120px 120px;
 
 
+
 pointer-events:none;
+
+
+
+z-index:-1;
+
 
 
 }
@@ -221,9 +308,9 @@ pointer-events:none;
 
 
 
-/* =========================
+/* ==============================
 BOOT
-========================= */
+============================== */
 
 
 .boot-screen{
@@ -231,13 +318,11 @@ BOOT
 
 position:fixed;
 
+
 inset:0;
 
 
 background:#020711;
-
-
-z-index:9999;
 
 
 display:flex;
@@ -249,9 +334,15 @@ align-items:center;
 justify-content:center;
 
 
+
+z-index:9999;
+
+
+
 animation:
 
 bootHide 3s forwards;
+
 
 
 }
@@ -260,11 +351,15 @@ bootHide 3s forwards;
 
 .boot-box{
 
+
 text-align:center;
+
 
 font-family:Orbitron;
 
+
 letter-spacing:3px;
+
 
 }
 
@@ -272,14 +367,22 @@ letter-spacing:3px;
 
 .boot-title{
 
+
 font-size:38px;
 
+
+font-weight:900;
+
+
+
 color:var(--cyan);
+
 
 
 text-shadow:
 
 0 0 30px var(--cyan);
+
 
 
 }
@@ -288,11 +391,16 @@ text-shadow:
 
 .boot-sub{
 
+
 margin-top:18px;
+
+
 
 font-size:12px;
 
+
 color:var(--muted);
+
 
 letter-spacing:5px;
 
@@ -300,12 +408,19 @@ letter-spacing:5px;
 }
 
 
+
+
 .loading-bar{
 
 
 width:320px;
 
+
 height:5px;
+
+
+margin:30px auto;
+
 
 
 background:
@@ -313,13 +428,12 @@ background:
 rgba(255,255,255,.1);
 
 
-margin:30px auto;
+
+overflow:hidden;
+
 
 
 border-radius:10px;
-
-
-overflow:hidden;
 
 
 }
@@ -335,12 +449,15 @@ height:100%;
 width:45%;
 
 
+
 background:var(--cyan);
+
 
 
 animation:
 
 loading 2s infinite;
+
 
 
 }
@@ -357,11 +474,13 @@ transform:translateX(-150%);
 }
 
 
+
 to{
 
 transform:translateX(300%);
 
 }
+
 
 
 }
@@ -380,12 +499,16 @@ font-size:12px;
 color:#9bb7c9;
 
 
+
 }
+
 
 
 .boot-ok{
 
+
 color:var(--green);
+
 
 margin-left:20px;
 
@@ -394,37 +517,47 @@ margin-left:20px;
 
 
 
+
+
 @keyframes bootHide{
 
 
 0%,80%{
 
+
 opacity:1;
 
+
 }
+
 
 
 100%{
 
+
 opacity:0;
+
 
 visibility:hidden;
 
-}
-
 
 }
 
 
 
+}
 
 
 
 
-/* =========================
+
+
+
+
+
+/* ==============================
 LAYOUT
-========================= */
-
+============================== */
 
 
 .container{
@@ -436,9 +569,11 @@ width:min(1280px,94vw);
 margin:auto;
 
 
+
 padding:
 
 35px 0 70px;
+
 
 
 }
@@ -448,8 +583,9 @@ padding:
 
 
 
-
-/* HEADER */
+/* ==============================
+HEADER
+============================== */
 
 
 .header{
@@ -461,17 +597,19 @@ height:120px;
 padding:30px 40px;
 
 
+
 display:flex;
-
-
-align-items:center;
 
 
 justify-content:space-between;
 
 
+align-items:center;
+
+
 
 background:
+
 
 linear-gradient(
 
@@ -485,16 +623,17 @@ rgba(2,12,24,.95)
 
 
 
-border-radius:28px;
-
-
 border:
 
 1px solid var(--border);
 
 
-}
 
+border-radius:28px;
+
+
+
+}
 
 
 
@@ -507,7 +646,9 @@ font-family:Orbitron;
 font-size:34px;
 
 
+
 letter-spacing:6px;
+
 
 
 }
@@ -520,7 +661,9 @@ letter-spacing:6px;
 color:var(--cyan);
 
 
+
 }
+
 
 
 
@@ -539,14 +682,13 @@ letter-spacing:4px;
 color:var(--muted);
 
 
+
 }
 
 
 
+
 .system-status{
-
-
-font-family:Orbitron;
 
 
 display:flex;
@@ -556,6 +698,10 @@ align-items:center;
 
 
 gap:14px;
+
+
+
+font-family:Orbitron;
 
 
 }
@@ -571,10 +717,13 @@ width:13px;
 height:13px;
 
 
+
 border-radius:50%;
 
 
+
 background:var(--green);
+
 
 
 box-shadow:
@@ -582,12 +731,15 @@ box-shadow:
 0 0 25px var(--green);
 
 
+
 animation:
 
 pulse 2s infinite;
 
 
+
 }
+
 
 
 @keyframes pulse{
@@ -595,10 +747,12 @@ pulse 2s infinite;
 
 50%{
 
-opacity:.3;
+opacity:.35;
 
 }
 
+
+
 }
 
 
@@ -608,13 +762,20 @@ opacity:.3;
 
 
 
-/* OVERVIEW */
+/* ==============================
+TOP CARDS
+============================== */
 
 
 .overview{
 
 
+margin-top:30px;
+
+
+
 display:grid;
+
 
 
 grid-template-columns:
@@ -622,10 +783,9 @@ grid-template-columns:
 repeat(4,1fr);
 
 
+
 gap:22px;
 
-
-margin-top:30px;
 
 
 }
@@ -641,12 +801,11 @@ height:150px;
 padding:25px;
 
 
-border-radius:24px;
-
 
 background:
 
-rgba(8,30,50,.8);
+rgba(8,30,50,.85);
+
 
 
 border:
@@ -654,16 +813,45 @@ border:
 1px solid var(--border);
 
 
+
+border-radius:24px;
+
+
+
 position:relative;
 
-
-overflow:hidden;
 
 
 backdrop-filter:blur(15px);
 
 
+
+overflow:hidden;
+
+
+
+transition:.3s;
+
+
+
 }
+
+
+
+.overview-card:hover{
+
+
+transform:translateY(-5px);
+
+
+box-shadow:
+
+0 15px 40px rgba(84,234,255,.12);
+
+
+}
+
+
 
 
 
@@ -676,13 +864,15 @@ position:absolute;
 right:18px;
 
 
-top:10px;
+top:8px;
 
 
 font-family:Orbitron;
 
 
-font-size:28px;
+
+font-size:30px;
+
 
 
 color:
@@ -690,7 +880,9 @@ color:
 rgba(84,234,255,.12);
 
 
+
 }
+
 
 
 
@@ -703,6 +895,7 @@ font-family:Orbitron;
 font-size:11px;
 
 
+
 letter-spacing:3px;
 
 
@@ -713,19 +906,23 @@ color:var(--muted);
 
 
 
+
 .card-value{
 
 
 margin-top:22px;
 
 
+
 font-family:Orbitron;
 
 
-font-size:36px;
+font-size:34px;
+
 
 
 color:var(--cyan);
+
 
 
 }
@@ -737,131 +934,90 @@ color:var(--cyan);
 
 font-size:12px;
 
+
 }
+
 
 
 
 .card-state{
 
 
-margin-top:10px;
+margin-top:12px;
+
 
 
 font-family:Orbitron;
 
 
+
 font-size:10px;
+
 
 
 letter-spacing:2px;
 
 
+
 color:var(--green);
+
 
 
 }
 
-</head>
 
-
-<body>
-
-
-
-<!-- =========================
+<!-- ==============================
 BOOT SCREEN
-========================= -->
+============================== -->
 
 <div class="boot-screen">
 
-
 <div class="boot-box">
 
-
 <div class="boot-title">
-
 ANTARCTIC NEXUS Ω
-
 </div>
-
 
 
 <div class="boot-sub">
-
 POLAR DIGITAL TWIN SYSTEM
-
 </div>
-
 
 
 
 <div class="loading-bar">
-
 <div></div>
-
 </div>
 
 
 
 
 <div class="boot-line">
-
 POWER SYSTEM
-
-<span class="boot-ok">
-
-OK
-
-</span>
-
+<span class="boot-ok">OK</span>
 </div>
 
 
-
 <div class="boot-line">
-
 SENSOR ARRAY
-
-<span class="boot-ok">
-
-OK
-
-</span>
-
+<span class="boot-ok">OK</span>
 </div>
 
 
-
 <div class="boot-line">
-
 COMMUNICATION
-
-<span class="boot-ok">
-
-READY
-
-</span>
-
+<span class="boot-ok">READY</span>
 </div>
-
 
 
 <div class="boot-line">
-
 SYSTEM ONLINE
-
 </div>
-
-
-
-</div>
-
 
 
 </div>
 
-
-
+</div>
 
 
 
@@ -871,6 +1027,11 @@ SYSTEM ONLINE
 
 <div class="container">
 
+
+
+<!-- ==============================
+HEADER
+============================== -->
 
 
 <header class="header">
@@ -898,7 +1059,6 @@ AUTONOMOUS POLAR MONITORING SYSTEM
 
 
 
-
 <div class="system-status">
 
 
@@ -920,10 +1080,9 @@ SYSTEM ONLINE
 
 
 
-
-<!-- =========================
+<!-- ==============================
 OVERVIEW
-========================= -->
+============================== -->
 
 
 <section class="overview">
@@ -932,44 +1091,35 @@ OVERVIEW
 
 <div class="overview-card">
 
+
 <div class="card-number">
-
 01
-
 </div>
 
 
 <div class="card-label">
-
 BATTERY VOLTAGE
-
 </div>
 
 
-<div class="card-value">
 
+<div class="card-value">
 
 <span id="topVoltage">
-
 WAITING
-
 </span>
 
-
 <span class="card-unit">
-
 V
-
 </span>
 
 
 </div>
 
 
+
 <div class="card-state">
-
 ● STABLE
-
 </div>
 
 
@@ -986,48 +1136,37 @@ V
 
 
 <div class="card-number">
-
 02
-
 </div>
 
 
 <div class="card-label">
-
 SYSTEM CURRENT
-
 </div>
 
 
-<div class="card-value">
 
+<div class="card-value">
 
 <span id="topCurrent">
-
 WAITING
-
 </span>
 
-
 <span class="card-unit">
-
 mA
-
 </span>
 
 
 </div>
+
 
 
 <div class="card-state">
-
 ● ACTIVE
-
 </div>
 
 
 </div>
-
 
 
 
@@ -1040,48 +1179,37 @@ mA
 
 
 <div class="card-number">
-
 03
-
 </div>
 
 
 <div class="card-label">
-
 SOLAR IRRADIANCE
-
 </div>
 
 
-<div class="card-value">
 
+<div class="card-value">
 
 <span id="topSolar">
-
 WAITING
-
 </span>
 
-
 <span class="card-unit">
-
 W/m²
-
 </span>
 
 
 </div>
+
 
 
 <div class="card-state">
-
 ● MONITORING
-
 </div>
 
 
 </div>
-
 
 
 
@@ -1094,41 +1222,35 @@ W/m²
 
 
 <div class="card-number">
-
 04
-
 </div>
 
 
 <div class="card-label">
-
 MISSION PACKETS
-
 </div>
+
 
 
 <div class="card-value">
 
-
 <span id="topRecords">
-
 WAITING
-
 </span>
 
 
-
 </div>
+
 
 
 <div class="card-state">
-
 ● RECEIVED
-
 </div>
 
 
 </div>
+
+
 
 
 
@@ -1142,9 +1264,9 @@ WAITING
 
 
 
-<!-- =========================
-POLAR NODE
-========================= -->
+<!-- ==============================
+POLAR NODE DIGITAL TWIN
+============================== -->
 
 
 <div class="section-title">
@@ -1170,18 +1292,15 @@ POLAR NODE DIGITAL TWIN
 
 
 <div class="direction north">
-
 N
-
 </div>
-
 
 
 <div class="direction south">
-
 S
-
 </div>
+
+
 
 
 
@@ -1192,11 +1311,10 @@ S
 
 <div class="radar-circle circle-a"></div>
 
-
 <div class="radar-circle circle-b"></div>
 
-
 <div class="radar-circle circle-c"></div>
+
 
 
 <div class="radar-sweep"></div>
@@ -1206,6 +1324,7 @@ S
 
 
 <div class="node-center">
+
 
 
 <div class="orbit orbit1"></div>
@@ -1226,24 +1345,18 @@ S
 
 
 <h2>
-
 A01
-
 </h2>
 
 
 <p>
-
 POLAR NODE
-
 </p>
 
 
 
 <span>
-
 ONLINE
-
 </span>
 
 
@@ -1251,9 +1364,8 @@ ONLINE
 
 
 
+
 </div>
-
-
 
 
 
@@ -1281,22 +1393,17 @@ ONLINE
 
 
 <div class="info-title">
-
 LATITUDE
-
 </div>
 
 
-<div class="info-value"
-
-id="lat">
-
+<div class="info-value" id="lat">
 --
-
 </div>
 
 
 </div>
+
 
 
 
@@ -1307,18 +1414,12 @@ id="lat">
 
 
 <div class="info-title">
-
 LONGITUDE
-
 </div>
 
 
-<div class="info-value"
-
-id="lng">
-
+<div class="info-value" id="lng">
 --
-
 </div>
 
 
@@ -1334,18 +1435,12 @@ id="lng">
 
 
 <div class="info-title">
-
 SATELLITES
-
 </div>
 
 
-<div class="info-value"
-
-id="sat">
-
+<div class="info-value" id="sat">
 --
-
 </div>
 
 
@@ -1361,18 +1456,12 @@ id="sat">
 
 
 <div class="info-title">
-
 GPS STATUS
-
 </div>
 
 
-<div class="info-value green"
-
-id="fix">
-
+<div class="info-value green" id="fix">
 --
-
 </div>
 
 
@@ -1389,9 +1478,7 @@ id="fix">
 
 
 <div class="info-title">
-
 POLAR EXPOSURE MODE
-
 </div>
 
 
@@ -1399,23 +1486,18 @@ POLAR EXPOSURE MODE
 
 
 <span>
-
 ● ICE FIELD OPERATION
-
 </span>
 
 
 <span>
-
 ● REMOTE AUTONOMY ENABLED
-
 </span>
 
 
 </div>
 
 
-
 </div>
 
 
@@ -1423,8 +1505,8 @@ POLAR EXPOSURE MODE
 
 
 
-</div>
 
+</div>
 
 
 
@@ -1440,691 +1522,9 @@ POLAR EXPOSURE MODE
 
 
 
-
-
-
-
-<style>
-
-
-.section-title{
-
-
-display:flex;
-
-align-items:center;
-
-
-font-family:Orbitron;
-
-
-font-size:14px;
-
-
-letter-spacing:5px;
-
-
-color:var(--cyan);
-
-
-margin-top:50px;
-
-
-margin-bottom:25px;
-
-
-}
-
-
-
-.section-title::after{
-
-
-content:"";
-
-
-height:1px;
-
-
-flex:1;
-
-
-margin-left:25px;
-
-
-
-background:
-
-linear-gradient(
-
-90deg,
-
-rgba(84,234,255,.5),
-
-transparent
-
-);
-
-
-
-}
-
-
-
-
-.polar-system{
-
-
-height:650px;
-
-
-display:grid;
-
-
-grid-template-columns:
-
-1fr 350px;
-
-
-gap:40px;
-
-
-padding:40px;
-
-
-background:
-
-rgba(5,22,40,.85);
-
-
-border-radius:35px;
-
-
-border:
-
-1px solid var(--border);
-
-
-}
-
-
-
-
-
-.polar-core-area{
-
-
-display:flex;
-
-
-justify-content:center;
-
-
-align-items:center;
-
-
-position:relative;
-
-
-}
-
-
-
-
-.direction{
-
-
-position:absolute;
-
-
-font-family:Orbitron;
-
-
-font-size:22px;
-
-
-color:rgba(84,234,255,.45);
-
-
-}
-
-
-
-.north{
-
-
-top:15px;
-
-
-}
-
-
-
-.south{
-
-
-bottom:15px;
-
-
-}
-
-
-
-
-
-
-.radar{
-
-
-width:460px;
-
-
-height:460px;
-
-
-display:flex;
-
-
-align-items:center;
-
-
-justify-content:center;
-
-
-position:relative;
-
-
-}
-
-
-
-
-
-.radar-circle{
-
-
-position:absolute;
-
-
-border-radius:50%;
-
-
-border:
-
-1px solid rgba(84,234,255,.25);
-
-
-}
-
-
-
-.circle-a{
-
-width:460px;
-
-height:460px;
-
-}
-
-
-.circle-b{
-
-width:330px;
-
-height:330px;
-
-}
-
-
-
-.circle-c{
-
-width:200px;
-
-height:200px;
-
-}
-
-
-
-
-
-.radar::before{
-
-
-content:"";
-
-
-position:absolute;
-
-
-height:100%;
-
-
-width:1px;
-
-
-background:rgba(84,234,255,.2);
-
-
-}
-
-
-
-
-
-.radar::after{
-
-
-content:"";
-
-
-position:absolute;
-
-
-width:100%;
-
-
-height:1px;
-
-
-background:rgba(84,234,255,.2);
-
-
-}
-
-
-
-
-
-.radar-sweep{
-
-
-position:absolute;
-
-
-width:460px;
-
-
-height:460px;
-
-
-border-radius:50%;
-
-
-background:
-
-conic-gradient(
-
-transparent,
-
-rgba(84,234,255,.35),
-
-transparent
-
-);
-
-
-animation:
-
-rotateRadar 5s linear infinite;
-
-
-}
-
-
-
-@keyframes rotateRadar{
-
-
-from{
-
-transform:rotate(0deg);
-
-}
-
-
-to{
-
-transform:rotate(360deg);
-
-}
-
-
-}
-
-
-
-
-
-
-.node-center{
-
-
-width:150px;
-
-
-height:150px;
-
-
-border-radius:50%;
-
-
-background:
-
-radial-gradient(
-
-circle,
-
-#54eaff,
-
-#06304b
-
-);
-
-
-display:flex;
-
-
-justify-content:center;
-
-
-align-items:center;
-
-
-text-align:center;
-
-
-position:relative;
-
-
-z-index:5;
-
-
-box-shadow:
-
-0 0 60px rgba(84,234,255,.8);
-
-
-}
-
-
-
-
-
-.orbit{
-
-
-position:absolute;
-
-
-border-radius:50%;
-
-
-border:
-
-1px solid rgba(84,234,255,.35);
-
-
-}
-
-
-
-.orbit1{
-
-
-width:230px;
-
-height:230px;
-
-
-animation:
-
-orbitRotate 8s linear infinite;
-
-
-}
-
-
-.orbit2{
-
-
-width:290px;
-
-height:290px;
-
-
-border-style:dashed;
-
-
-animation:
-
-orbitRotate 15s linear infinite reverse;
-
-
-}
-
-
-@keyframes orbitRotate{
-
-
-to{
-
-transform:rotate(360deg);
-
-}
-
-}
-
-
-
-.orbit-node{
-
-
-position:absolute;
-
-
-width:10px;
-
-
-height:10px;
-
-
-border-radius:50%;
-
-
-background:var(--cyan);
-
-
-box-shadow:
-
-0 0 20px var(--cyan);
-
-
-}
-
-
-
-.node-left{
-
-left:-55px;
-
-}
-
-
-.node-right{
-
-right:-55px;
-
-}
-
-
-
-
-
-
-.node-content h2{
-
-
-font-family:Orbitron;
-
-
-font-size:40px;
-
-
-}
-
-
-.node-content p{
-
-
-font-size:11px;
-
-
-letter-spacing:3px;
-
-
-}
-
-
-.node-content span{
-
-
-display:block;
-
-
-margin-top:8px;
-
-
-font-family:Orbitron;
-
-
-font-size:10px;
-
-
-color:var(--green);
-
-
-animation:pulse 2s infinite;
-
-
-}
-
-
-
-
-
-
-
-.info-card{
-
-
-padding:22px;
-
-
-background:
-
-rgba(255,255,255,.04);
-
-
-border-radius:18px;
-
-
-border:
-
-1px solid rgba(84,234,255,.15);
-
-
-}
-
-
-
-.info-title{
-
-
-font-family:Orbitron;
-
-
-font-size:11px;
-
-
-letter-spacing:3px;
-
-
-color:var(--muted);
-
-
-}
-
-
-
-.info-value{
-
-
-margin-top:10px;
-
-
-font-family:Orbitron;
-
-
-font-size:25px;
-
-
-color:var(--cyan);
-
-
-}
-
-
-
-.green{
-
-color:var(--green);
-
-}
-
-
-
-.wide{
-
-height:190px;
-
-}
-
-
-
-.exposure{
-
-
-margin-top:15px;
-
-
-font-family:Orbitron;
-
-
-font-size:13px;
-
-
-line-height:2.2;
-
-
-color:var(--green);
-
-
-}
-
-
-
-.exposure span{
-
-
-display:block;
-
-
-}
-<!-- =========================
+<!-- ==============================
 HARDWARE DIGITAL TWIN
-========================= -->
+============================== -->
 
 
 <div class="section-title">
@@ -2137,7 +1537,9 @@ HARDWARE DIGITAL TWIN
 
 
 
+
 <section class="hardware-section">
+
 
 
 <div class="device-view">
@@ -2148,6 +1550,7 @@ HARDWARE DIGITAL TWIN
 ANT-A01 FIELD UNIT
 
 </div>
+
 
 
 
@@ -2166,8 +1569,8 @@ SOLAR ARRAY
 
 <div class="solar-panel">
 
-
 </div>
+
 
 
 
@@ -2181,17 +1584,11 @@ SOLAR ARRAY
 <div class="sensor-box">
 
 
-<div>
-
 SENSOR NODE
-
-</div>
 
 
 <small>
-
 SHT35 / RS485
-
 </small>
 
 
@@ -2220,10 +1617,7 @@ COMMUNICATION MODULE
 
 
 
-
 </div>
-
-
 
 
 
@@ -2239,21 +1633,16 @@ COMMUNICATION MODULE
 
 
 <div class="device-label">
-
 POWER
-
 </div>
 
 
 <div class="device-value green">
-
 SOLAR
-
 </div>
 
 
 </div>
-
 
 
 
@@ -2263,21 +1652,16 @@ SOLAR
 
 
 <div class="device-label">
-
 DATA
-
 </div>
 
 
 <div class="device-value">
-
 20min/sample
-
 </div>
 
 
 </div>
-
 
 
 
@@ -2287,21 +1671,16 @@ DATA
 
 
 <div class="device-label">
-
 LOW TEMPERATURE RESISTANCE
-
 </div>
 
 
 <div class="device-value">
-
 -40℃
-
 </div>
 
 
 </div>
-
 
 
 
@@ -2311,16 +1690,12 @@ LOW TEMPERATURE RESISTANCE
 
 
 <div class="device-label">
-
 OPERATION MODE
-
 </div>
 
 
 <div class="device-value">
-
 REMOTE AUTONOMY
-
 </div>
 
 
@@ -2328,22 +1703,18 @@ REMOTE AUTONOMY
 
 
 
+
+
 </div>
 
 
 
-</section>
 
 
 
-
-
-
-
-
-<!-- =========================
+</section><!-- ==============================
 ENERGY CORE
-========================= -->
+============================== -->
 
 
 <div class="section-title">
@@ -2356,18 +1727,19 @@ ENERGY CORE
 
 
 
-
 <section class="energy-flow">
 
 
 
 <div class="energy-node">
 
+
 <div class="energy-symbol">
 
 SOLAR
 
 </div>
+
 
 <div>
 
@@ -2384,10 +1756,12 @@ INPUT POWER
 
 </p>
 
+
 </div>
 
 
 </div>
+
 
 
 
@@ -2401,13 +1775,16 @@ INPUT POWER
 
 
 
+
 <div class="energy-node">
+
 
 <div class="energy-symbol">
 
 POWER
 
 </div>
+
 
 <div>
 
@@ -2424,10 +1801,12 @@ MANAGEMENT
 
 </p>
 
+
 </div>
 
 
 </div>
+
 
 
 
@@ -2441,13 +1820,16 @@ MANAGEMENT
 
 
 
+
 <div class="energy-node">
+
 
 <div class="energy-symbol">
 
 BATTERY
 
 </div>
+
 
 <div>
 
@@ -2464,10 +1846,12 @@ ENERGY
 
 </p>
 
+
 </div>
 
 
 </div>
+
 
 
 
@@ -2482,13 +1866,16 @@ ENERGY
 
 
 
+
 <div class="energy-node">
+
 
 <div class="energy-symbol">
 
 PAYLOAD
 
 </div>
+
 
 <div>
 
@@ -2505,10 +1892,13 @@ ONLINE
 
 </p>
 
+
 </div>
 
 
 </div>
+
+
 
 
 
@@ -2523,9 +1913,13 @@ ONLINE
 
 
 
-<!-- =========================
+
+
+
+
+<!-- ==============================
 SCIENTIFIC TELEMETRY
-========================= -->
+============================== -->
 
 
 <div class="section-title">
@@ -2542,10 +1936,13 @@ SCIENTIFIC TELEMETRY
 <section class="main-telemetry">
 
 
+
 <div class="telemetry-header">
 
 
+
 <div>
+
 
 <h2>
 
@@ -2560,7 +1957,11 @@ REAL TIME POWER CONDITION
 
 </p>
 
+
 </div>
+
+
+
 
 
 
@@ -2576,7 +1977,10 @@ WAITING
 
 V
 
+
 </div>
+
+
 
 
 </div>
@@ -2594,11 +1998,14 @@ V
 <div class="statistics">
 
 
+
 <div>
+
 
 MAX
 
 <br>
+
 
 <span id="vMax">
 
@@ -2606,15 +2013,19 @@ MAX
 
 </span>
 
+
 </div>
+
 
 
 
 <div>
 
+
 AVG
 
 <br>
+
 
 <span id="vAvg">
 
@@ -2622,15 +2033,19 @@ AVG
 
 </span>
 
+
 </div>
+
 
 
 
 <div>
 
+
 MIN
 
 <br>
+
 
 <span id="vMin">
 
@@ -2638,11 +2053,15 @@ MIN
 
 </span>
 
+
+</div>
+
+
+
+
 </div>
 
 
-
-</div>
 
 
 
@@ -2654,11 +2073,16 @@ MIN
 
 
 
+
+
 <div class="sensor-grid">
 
 
 
+
+
 <div class="sensor-panel">
+
 
 <div class="sensor-title">
 
@@ -2666,13 +2090,19 @@ SHT35 TEMPERATURE
 
 </div>
 
+
 <canvas id="cst"></canvas>
+
 
 </div>
 
 
 
+
+
+
 <div class="sensor-panel">
+
 
 <div class="sensor-title">
 
@@ -2680,13 +2110,20 @@ SHT35 HUMIDITY
 
 </div>
 
+
 <canvas id="csh"></canvas>
+
 
 </div>
 
 
 
+
+
+
+
 <div class="sensor-panel">
+
 
 <div class="sensor-title">
 
@@ -2694,13 +2131,20 @@ RS485 TEMPERATURE
 
 </div>
 
+
 <canvas id="ctt"></canvas>
+
 
 </div>
 
 
 
+
+
+
+
 <div class="sensor-panel">
+
 
 <div class="sensor-title">
 
@@ -2708,13 +2152,20 @@ RS485 HUMIDITY
 
 </div>
 
+
 <canvas id="cth"></canvas>
+
 
 </div>
 
 
 
+
+
+
+
 <div class="sensor-panel">
+
 
 <div class="sensor-title">
 
@@ -2722,13 +2173,20 @@ SOLAR IRRADIANCE
 
 </div>
 
+
 <canvas id="cs"></canvas>
+
 
 </div>
 
 
 
+
+
+
+
 <div class="sensor-panel">
+
 
 <div class="sensor-title">
 
@@ -2736,11 +2194,9 @@ WIND SPEED
 
 </div>
 
+
 <canvas id="cws"></canvas>
 
-</div>
-
-
 
 </div>
 
@@ -2748,13 +2204,751 @@ WIND SPEED
 
 
 
+</div>
 
 
 
 
-<!-- =========================
-AI CENTER
-========================= -->
+
+
+
+
+
+<style>
+
+
+/* ==============================
+ENERGY STYLE
+============================== */
+
+
+.energy-flow{
+
+
+display:flex;
+
+
+align-items:center;
+
+
+justify-content:center;
+
+
+gap:20px;
+
+
+
+padding:40px;
+
+
+
+background:
+
+rgba(5,22,40,.85);
+
+
+
+border-radius:30px;
+
+
+
+border:
+
+1px solid var(--border);
+
+
+
+}
+
+
+
+
+.energy-node{
+
+
+width:210px;
+
+
+height:130px;
+
+
+
+background:
+
+rgba(255,255,255,.04);
+
+
+
+border-radius:22px;
+
+
+
+border:
+
+1px solid rgba(84,234,255,.2);
+
+
+
+display:flex;
+
+
+align-items:center;
+
+
+justify-content:center;
+
+
+gap:15px;
+
+
+
+}
+
+
+
+.energy-symbol{
+
+
+font-family:Orbitron;
+
+
+font-size:16px;
+
+
+letter-spacing:3px;
+
+
+color:var(--cyan);
+
+
+}
+
+
+
+
+.energy-node h3{
+
+
+font-family:Orbitron;
+
+
+font-size:12px;
+
+
+}
+
+
+
+.energy-node p{
+
+
+font-size:11px;
+
+
+margin-top:10px;
+
+
+color:var(--muted);
+
+
+}
+
+
+
+.energy-arrow{
+
+
+font-size:28px;
+
+
+color:var(--cyan);
+
+
+}
+
+
+
+
+
+
+
+
+/* ==============================
+TELEMETRY STYLE
+============================== */
+
+
+.main-telemetry{
+
+
+padding:35px;
+
+
+height:560px;
+
+
+background:
+
+linear-gradient(
+
+145deg,
+
+rgba(10,35,55,.9),
+
+rgba(3,15,28,.95)
+
+);
+
+
+
+border-radius:32px;
+
+
+
+border:
+
+1px solid var(--border);
+
+
+}
+
+
+
+
+.telemetry-header{
+
+
+display:flex;
+
+
+justify-content:space-between;
+
+
+align-items:center;
+
+
+}
+
+
+
+
+.telemetry-header h2{
+
+
+font-family:Orbitron;
+
+
+font-size:22px;
+
+
+letter-spacing:4px;
+
+
+}
+
+
+
+.telemetry-header p{
+
+
+margin-top:10px;
+
+
+font-size:12px;
+
+
+color:var(--muted);
+
+
+}
+
+
+
+.live-value{
+
+
+font-family:Orbitron;
+
+
+color:var(--muted);
+
+
+}
+
+
+
+
+.live-value span{
+
+
+font-size:52px;
+
+
+color:var(--cyan);
+
+
+}
+
+
+
+.main-telemetry canvas{
+
+
+height:320px!important;
+
+
+margin-top:25px;
+
+
+}
+
+
+
+
+
+.statistics{
+
+
+display:grid;
+
+
+grid-template-columns:
+
+repeat(3,1fr);
+
+
+
+gap:20px;
+
+
+margin-top:20px;
+
+
+}
+
+
+
+.statistics div{
+
+
+padding:15px;
+
+
+text-align:center;
+
+
+
+font-family:Orbitron;
+
+
+
+font-size:12px;
+
+
+color:var(--muted);
+
+
+background:
+
+rgba(255,255,255,.04);
+
+
+
+border-radius:15px;
+
+
+
+}
+
+
+
+.statistics span{
+
+
+font-size:22px;
+
+
+color:var(--cyan);
+
+
+}
+
+
+
+
+
+
+
+
+.sensor-grid{
+
+
+display:grid;
+
+
+grid-template-columns:
+
+repeat(2,1fr);
+
+
+
+gap:25px;
+
+
+margin-top:25px;
+
+
+}
+
+
+
+
+.sensor-panel{
+
+
+height:310px;
+
+
+padding:25px;
+
+
+background:
+
+rgba(5,22,40,.9);
+
+
+
+border-radius:25px;
+
+
+
+border:
+
+1px solid rgba(84,234,255,.16);
+
+
+
+transition:.3s;
+
+
+}
+
+
+
+
+.sensor-panel:hover{
+
+
+transform:translateY(-5px);
+
+
+}
+
+
+
+.sensor-title{
+
+
+font-family:Orbitron;
+
+
+font-size:12px;
+
+
+letter-spacing:3px;
+
+
+color:var(--cyan);
+
+
+
+margin-bottom:15px;
+
+
+}
+
+
+
+
+.sensor-panel canvas{
+
+
+height:220px!important;
+
+
+}
+
+
+
+</style>
+
+
+
+
+
+
+
+
+
+<script>
+
+
+// ==============================
+// CHART ENGINE
+// ==============================
+
+
+
+const chartConfig={
+
+
+
+cv:{
+key:"v",
+color:"#54eaff"
+},
+
+
+
+cst:{
+key:"j",
+color:"#ff9d66"
+},
+
+
+
+csh:{
+key:"k",
+color:"#56d9e8"
+},
+
+
+
+ctt:{
+key:"t",
+color:"#ffb866"
+},
+
+
+
+cth:{
+key:"h",
+color:"#9fb5ff"
+},
+
+
+
+cs:{
+key:"s",
+color:"#ffe699"
+},
+
+
+
+cws:{
+key:"w",
+color:"#69ffb0"
+}
+
+
+
+};
+
+
+
+
+
+let charts={};
+
+
+
+
+
+
+function createChart(id){
+
+
+
+let canvas=document.getElementById(id);
+
+
+if(!canvas)
+
+return;
+
+
+
+let ctx=canvas.getContext("2d");
+
+
+
+let cfg=chartConfig[id];
+
+
+
+charts[id]=new Chart(
+
+ctx,
+
+{
+
+
+type:"line",
+
+
+data:{
+
+
+labels:[],
+
+
+datasets:[{
+
+
+data:[],
+
+
+borderColor:cfg.color,
+
+
+backgroundColor:cfg.color+"33",
+
+
+fill:true,
+
+
+tension:.4,
+
+
+borderWidth:2.5,
+
+
+pointRadius:0
+
+
+
+}]
+
+
+
+},
+
+
+
+options:{
+
+
+responsive:true,
+
+
+maintainAspectRatio:false,
+
+
+
+plugins:{
+
+
+legend:{
+
+
+display:false
+
+
+}
+
+
+
+},
+
+
+
+scales:{
+
+
+
+x:{
+
+
+ticks:{
+
+
+color:"#7895aa"
+
+
+},
+
+
+grid:{
+
+
+color:"rgba(84,234,255,.05)"
+
+
+}
+
+
+
+},
+
+
+
+
+y:{
+
+
+beginAtZero:id==="cs",
+
+
+
+ticks:{
+
+
+color:"#7895aa"
+
+
+}
+
+
+
+}
+
+
+
+}
+
+
+
+
+}
+
+
+
+}
+
+
+
+);
+
+
+
+
+}
+
+
+
+
+
+
+Object.keys(chartConfig)
+
+.forEach(createChart);
+
+
+
+
+<!-- ==============================
+AUTONOMOUS INTELLIGENCE CENTER
+============================== -->
 
 
 <div class="section-title">
@@ -2767,8 +2961,9 @@ AUTONOMOUS INTELLIGENCE CENTER
 
 
 
-
 <section class="intelligence-grid">
+
+
 
 
 
@@ -2780,6 +2975,9 @@ AUTONOMOUS INTELLIGENCE CENTER
 SYSTEM HEALTH
 
 </div>
+
+
+
 
 
 <div class="health-ring">
@@ -2799,11 +2997,13 @@ NOMINAL
 </div>
 
 
+
+</div>
+
+
 </div>
 
 
-
-</div>
 
 
 
@@ -2821,6 +3021,9 @@ SUBSYSTEM STATUS
 </div>
 
 
+
+
+
 <div class="system-item">
 
 POWER SYSTEM
@@ -2832,6 +3035,8 @@ NORMAL
 </b>
 
 </div>
+
+
 
 
 
@@ -2849,6 +3054,8 @@ ACTIVE
 
 
 
+
+
 <div class="system-item">
 
 GPS MODULE
@@ -2860,6 +3067,8 @@ LOCKED
 </b>
 
 </div>
+
+
 
 
 
@@ -2877,7 +3086,11 @@ ONLINE
 
 
 
+
+
 </div>
+
+
 
 
 
@@ -2895,9 +3108,12 @@ EXTREME ENVIRONMENT
 </div>
 
 
+
+
+
 <div class="environment-item">
 
-LOW TEMPERATURE
+LOW TEMPERATURE RESISTANCE
 
 <strong>
 
@@ -2906,6 +3122,9 @@ LOW TEMPERATURE
 </strong>
 
 </div>
+
+
+
 
 
 <div class="environment-item">
@@ -2921,6 +3140,9 @@ POWER AUTONOMY
 </div>
 
 
+
+
+
 <div class="environment-item">
 
 DATA STORAGE
@@ -2932,6 +3154,9 @@ LOCAL BUFFER
 </strong>
 
 </div>
+
+
+
 
 
 <div class="environment-item">
@@ -2948,7 +3173,13 @@ SATELLITE READY
 
 
 
+
+
 </div>
+
+
+
+
 
 
 
@@ -2962,9 +3193,9 @@ SATELLITE READY
 
 
 
-<!-- =========================
+<!-- ==============================
 LIVE STREAM
-========================= -->
+============================== -->
 
 
 <div class="section-title">
@@ -2977,7 +3208,9 @@ LIVE TELEMETRY STREAM
 
 
 
+
 <section class="stream-panel">
+
 
 
 <div class="stream-header">
@@ -2991,6 +3224,7 @@ REAL TIME SENSOR DATA
 ● RECEIVING
 
 </span>
+
 
 
 </div>
@@ -3014,9 +3248,9 @@ REAL TIME SENSOR DATA
 
 
 
-<!-- =========================
-FOOTER
-========================= -->
+<!-- ==============================
+MISSION INFORMATION
+============================== -->
 
 
 <div class="section-title">
@@ -3024,6 +3258,8 @@ FOOTER
 MISSION INFORMATION
 
 </div>
+
+
 
 
 
@@ -3040,6 +3276,7 @@ ANTARCTIC NEXUS Ω
 
 
 
+
 <div class="footer-desc">
 
 AUTONOMOUS POLAR MONITORING PLATFORM
@@ -3053,7 +3290,11 @@ ANT-A01 REMOTE OBSERVATION NODE
 
 
 
+
 <div class="footer-grid">
+
+
+
 
 
 <div>
@@ -3072,6 +3313,8 @@ ONLINE
 
 
 
+
+
 <div>
 
 POWER
@@ -3085,6 +3328,7 @@ SOLAR
 </span>
 
 </div>
+
 
 
 
@@ -3106,6 +3350,7 @@ DATA
 
 
 
+
 <div>
 
 VERSION
@@ -3122,7 +3367,10 @@ VERSION
 
 
 
+
+
 </div>
+
 
 
 
@@ -3134,53 +3382,580 @@ VERSION
 
 
 
+
+
+<style>
+
+
+/* ==============================
+AI STYLE
+============================== */
+
+
+
+.intelligence-grid{
+
+
+display:grid;
+
+
+grid-template-columns:
+
+repeat(3,1fr);
+
+
+
+gap:25px;
+
+
+margin-top:20px;
+
+
+}
+
+
+
+.intel-panel{
+
+
+padding:30px;
+
+
+
+background:
+
+linear-gradient(
+
+145deg,
+
+rgba(10,35,55,.9),
+
+rgba(3,15,28,.95)
+
+);
+
+
+
+border-radius:28px;
+
+
+
+border:
+
+1px solid var(--border);
+
+
+
+}
+
+
+
+.intel-title{
+
+
+font-family:Orbitron;
+
+
+letter-spacing:4px;
+
+
+font-size:13px;
+
+
+color:var(--cyan);
+
+
+margin-bottom:30px;
+
+
+
+}
+
+
+
+
+
+.health-panel{
+
+
+display:flex;
+
+
+flex-direction:column;
+
+
+align-items:center;
+
+
+justify-content:center;
+
+
+}
+
+
+
+.health-ring{
+
+
+width:200px;
+
+
+height:200px;
+
+
+border-radius:50%;
+
+
+
+border:
+
+10px solid rgba(105,255,176,.35);
+
+
+
+display:flex;
+
+
+flex-direction:column;
+
+
+align-items:center;
+
+
+justify-content:center;
+
+
+
+}
+
+
+
+.health-score{
+
+
+font-family:Orbitron;
+
+
+font-size:40px;
+
+
+color:var(--green);
+
+
+}
+
+
+
+.system-item{
+
+
+height:55px;
+
+
+
+display:flex;
+
+
+justify-content:space-between;
+
+
+align-items:center;
+
+
+
+font-family:Orbitron;
+
+
+font-size:12px;
+
+
+
+border-bottom:
+
+1px solid rgba(255,255,255,.06);
+
+
+
+}
+
+
+
+.system-item b{
+
+
+color:var(--green);
+
+
+}
+
+
+
+
+
+.environment-item{
+
+
+padding:12px 0;
+
+
+font-size:12px;
+
+
+color:var(--muted);
+
+
+
+border-bottom:
+
+1px solid rgba(255,255,255,.06);
+
+
+
+}
+
+
+
+
+.environment-item strong{
+
+
+display:block;
+
+
+margin-top:8px;
+
+
+font-family:Orbitron;
+
+
+font-size:20px;
+
+
+color:var(--cyan);
+
+
+
+}
+
+
+
+
+
+
+
+
+
+/* ==============================
+STREAM STYLE
+============================== */
+
+
+.stream-panel{
+
+
+height:380px;
+
+
+padding:30px;
+
+
+
+background:
+
+rgba(3,16,28,.95);
+
+
+
+border-radius:28px;
+
+
+
+border:
+
+1px solid var(--border);
+
+
+
+overflow:hidden;
+
+
+
+}
+
+
+
+.stream-header{
+
+
+display:flex;
+
+
+justify-content:space-between;
+
+
+font-family:Orbitron;
+
+
+letter-spacing:3px;
+
+
+color:var(--cyan);
+
+
+
+margin-bottom:20px;
+
+
+
+}
+
+
+
+.stream-header span{
+
+
+color:var(--green);
+
+
+}
+
+
+
+
+
+.telemetry-row{
+
+
+display:grid;
+
+
+grid-template-columns:
+
+160px 130px 130px 130px 1fr;
+
+
+
+padding:15px;
+
+
+font-family:Orbitron;
+
+
+font-size:12px;
+
+
+
+border-bottom:
+
+1px solid rgba(255,255,255,.05);
+
+
+
+}
+
+
+
+
+
+.telemetry-row span{
+
+
+color:var(--cyan);
+
+
+}
+
+
+
+
+
+
+
+
+
+/* ==============================
+FOOTER STYLE
+============================== */
+
+
+.omega-footer{
+
+
+margin-top:20px;
+
+
+padding:45px;
+
+
+
+text-align:center;
+
+
+
+background:
+
+linear-gradient(
+
+145deg,
+
+rgba(8,30,50,.95),
+
+rgba(2,12,24,.95)
+
+);
+
+
+
+border-radius:30px;
+
+
+
+border:
+
+1px solid var(--border);
+
+
+
+}
+
+
+
+.footer-brand{
+
+
+font-family:Orbitron;
+
+
+font-size:32px;
+
+
+letter-spacing:8px;
+
+
+color:var(--cyan);
+
+
+
+}
+
+
+
+.footer-desc{
+
+
+margin-top:20px;
+
+
+font-size:12px;
+
+
+letter-spacing:3px;
+
+
+line-height:2.5;
+
+
+color:var(--muted);
+
+
+}
+
+
+
+.footer-grid{
+
+
+margin-top:35px;
+
+
+display:grid;
+
+
+grid-template-columns:
+
+repeat(4,1fr);
+
+
+
+gap:20px;
+
+
+
+}
+
+
+
+.footer-grid div{
+
+
+padding:20px;
+
+
+background:
+
+rgba(255,255,255,.04);
+
+
+
+border-radius:18px;
+
+
+font-family:Orbitron;
+
+
+font-size:11px;
+
+
+color:var(--muted);
+
+
+
+}
+
+
+
+.footer-grid span{
+
+
+display:block;
+
+
+margin-top:8px;
+
+
+color:var(--green);
+
+
+font-size:15px;
+
+
+}
+
+
+
+
+
+
+</style>
+
+
+
+
+
+
+
+
+
 <script>
 
 
+// ==============================
+// DATA SYSTEM
+// ==============================
+
+
+
 let DATA=[];
-
-
-let charts={};
-
-
-
-
-
-async function loadData(){
-
-
-try{
-
-
-let res=
-
-await fetch("data.json?v="+Date.now());
-
-
-DATA=
-
-await res.json();
-
-
-
-refresh();
-
-
-
-}
-
-
-catch(e){
-
-
-console.log("WAITING DATA.JSON");
-
-
-}
-
-
-
-}
 
 
 
@@ -3192,9 +3967,11 @@ function setValue(id,value){
 let el=document.getElementById(id);
 
 
-if(el)
+if(el){
 
 el.innerHTML=value;
+
+}
 
 
 }
@@ -3205,7 +3982,68 @@ el.innerHTML=value;
 
 
 
-function refresh(){
+
+async function loadData(){
+
+
+
+try{
+
+
+let response=
+
+await fetch(
+
+"data.json?v="+Date.now()
+
+);
+
+
+
+if(!response.ok)
+
+throw new Error("DATA LOAD ERROR");
+
+
+
+
+
+DATA=
+
+await response.json();
+
+
+
+
+
+refreshDashboard();
+
+
+
+}
+
+
+catch(e){
+
+
+console.log(e);
+
+
+}
+
+
+
+}
+
+
+
+
+
+
+
+
+function refreshDashboard(){
+
 
 
 if(!DATA.length)
@@ -3213,11 +4051,18 @@ if(!DATA.length)
 return;
 
 
+
+
+
 let last=
 
 DATA[DATA.length-1];
 
 
+
+
+
+// 顶部数据
 
 
 setValue(
@@ -3262,13 +4107,27 @@ last.i??DATA.length
 
 
 
+
+
+// GPS
+
+
 let gps=
 
-[...DATA].reverse().find(
+[...DATA]
 
-x=>x.x&&x.y
+.reverse()
+
+.find(
+
+x=>x.x!==undefined
+
+&&
+
+x.y!==undefined
 
 );
+
 
 
 
@@ -3276,11 +4135,12 @@ x=>x.x&&x.y
 if(gps){
 
 
+
 setValue(
 
 "lat",
 
-gps.x.toFixed(5)+"°"
+Number(gps.x).toFixed(5)+"°"
 
 );
 
@@ -3290,7 +4150,7 @@ setValue(
 
 "lng",
 
-gps.y.toFixed(5)+"°"
+Number(gps.y).toFixed(5)+"°"
 
 );
 
@@ -3328,16 +4188,295 @@ gps.g==="O"
 
 
 
+
+
+
+
+
+// 电压统计
+
+
+let voltages=DATA
+
+.map(
+
+d=>Number(d.v)
+
+)
+
+.filter(
+
+v=>!isNaN(v)
+
+);
+
+
+
+
+
+if(voltages.length){
+
+
+
+setValue(
+
+"mainVoltage",
+
+voltages.at(-1).toFixed(2)
+
+);
+
+
+
+setValue(
+
+"vMax",
+
+Math.max(...voltages).toFixed(2)
+
+);
+
+
+
+setValue(
+
+"vMin",
+
+Math.min(...voltages).toFixed(2)
+
+);
+
+
+
+setValue(
+
+"vAvg",
+
+(
+
+voltages.reduce(
+
+(a,b)=>a+b,
+
+0
+
+)
+
+/
+
+voltages.length
+
+).toFixed(2)
+
+);
+
+
+
 }
 
 
 
 
 
-window.onload=()=>{
+
+// 实时流
+
+
+updateStream();
+
+
+
+}
+
+
+
+
+
+
+
+
+function updateStream(){
+
+
+
+let box=
+
+document.getElementById(
+
+"telemetryLog"
+
+);
+
+
+
+if(!box)
+
+return;
+
+
+
+box.innerHTML="";
+
+
+
+
+
+DATA
+
+.slice(-8)
+
+.reverse()
+
+.forEach(d=>{
+
+
+
+let row=
+
+document.createElement(
+
+"div"
+
+);
+
+
+
+row.className=
+
+"telemetry-row";
+
+
+
+
+
+row.innerHTML=`
+
+<div>${d.time?.substring(11,19)??"--"}</div>
+
+<div>V:
+
+<span>${d.v??"--"}</span>
+
+V</div>
+
+<div>I:
+
+<span>${d.a??"--"}</span>
+
+mA</div>
+
+<div>T:
+
+<span>${d.j??"--"}</span>
+
+℃</div>
+
+<div>SOLAR:
+
+<span>${d.s??"--"}</span>
+
+</div>
+
+`;
+
+
+
+
+
+box.appendChild(row);
+
+
+
+});
+
+
+
+}
+
+
+
+
+
+
+
+
+
+// ==============================
+// CHART UPDATE
+// ==============================
+
+
+
+function updateCharts(){
+
+
+
+Object.keys(charts)
+
+.forEach(id=>{
+
+
+
+let cfg=
+
+chartConfig[id];
+
+
+
+let chart=
+
+charts[id];
+
+
+
+
+
+chart.data.labels=
+
+DATA.map(
+
+d=>d.time?.substring(11,19)
+
+);
+
+
+
+
+chart.data.datasets[0].data=
+
+DATA.map(
+
+d=>d[cfg.key]
+
+);
+
+
+
+chart.update();
+
+
+
+});
+
+
+
+}
+
+
+
+
+
+
+document.addEventListener(
+
+"DOMContentLoaded",
+
+()=>{
+
 
 
 loadData();
+
 
 
 setInterval(
@@ -3349,11 +4488,18 @@ loadData,
 );
 
 
+
 }
+
+);
+
+
 
 
 
 </script>
+
+
 
 
 
