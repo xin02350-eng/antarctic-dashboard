@@ -1,375 +1,189 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-
 <head>
 
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Antarctic Autonomous Monitoring System</title>
 
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-<title>
-Antarctic Autonomous Monitoring System
-</title>
-
-
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
 
 
 <style>
 
-
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=Orbitron:wght@500;700;900&display=swap');
-
-
-
 :root{
 
+--bg:#040914;
+--panel:#0b1628;
+--panel2:#101f35;
 
---bg:#020812;
+--cyan:#42d9ff;
+--blue:#4f8cff;
+--green:#62ff9a;
+--yellow:#ffd75e;
+--red:#ff6175;
 
---panel:rgba(8,25,45,.75);
-
---border:rgba(80,220,255,.18);
-
---cyan:#4de1ff;
-
---ice:#d8f7ff;
-
---green:#5cff9b;
-
---yellow:#ffd166;
-
---red:#ff667f;
-
---text:#edf9ff;
-
---muted:#7895ad;
-
-
---shadow:
-0 0 40px rgba(77,225,255,.14);
-
+--text:#e8f4ff;
+--sub:#7690aa;
 
 }
-
 
 
 *{
-
-margin:0;
-
-padding:0;
-
 box-sizing:border-box;
-
 }
-
 
 
 body{
 
+margin:0;
 
-min-height:100vh;
-
-
-padding:28px;
-
-
-font-family:
-
-Inter,
-
-"Microsoft YaHei",
-
-sans-serif;
-
+background:
+radial-gradient(circle at 20% 0%,rgba(66,217,255,.15),transparent 35%),
+radial-gradient(circle at 80% 20%,rgba(79,140,255,.12),transparent 30%),
+#040914;
 
 color:var(--text);
 
+font-family:Rajdhani,Arial;
 
-
-background:
-
-
-radial-gradient(
-circle at 15% 0%,
-rgba(77,225,255,.2),
-transparent 35%
-),
-
-
-radial-gradient(
-circle at 85% 100%,
-rgba(92,255,155,.12),
-transparent 35%
-),
-
-
-linear-gradient(
-180deg,
-#020812,
-#071c32
-);
-
-
+min-height:100vh;
 
 }
 
+
+body:before{
+
+content:"";
+
+position:fixed;
+inset:0;
+
+background-image:
+
+linear-gradient(
+rgba(255,255,255,.025) 1px,
+transparent 1px),
+
+linear-gradient(
+90deg,
+rgba(255,255,255,.025) 1px,
+transparent 1px);
+
+background-size:40px 40px;
+
+pointer-events:none;
+
+}
+
+
+
+/* ===== HEADER ===== */
 
 
 .header{
 
 
-display:flex;
+padding:35px 45px 20px;
 
+display:flex;
 
 justify-content:space-between;
 
-
 align-items:center;
 
 
-padding:28px 35px;
-
-
-border-radius:28px;
-
-
-background:var(--panel);
-
-
-border:1px solid var(--border);
-
-
-box-shadow:var(--shadow);
-
-
-margin-bottom:22px;
-
-
 }
 
 
-
-.header h1{
+.logo{
 
 
 font-family:Orbitron;
 
-
-font-size:clamp(25px,4vw,44px);
-
+font-size:28px;
 
 letter-spacing:4px;
 
-
-
-background:
-
-linear-gradient(
-90deg,
-#fff,
-var(--cyan),
-var(--green)
-);
-
-
--webkit-background-clip:text;
-
-
-color:transparent;
-
+color:var(--cyan);
 
 }
 
 
 
-.header p{
+.subtitle{
 
+color:var(--sub);
 
-margin-top:12px;
+letter-spacing:3px;
 
-
-font-size:13px;
-
-
-letter-spacing:4px;
-
-
-color:var(--muted);
-
+margin-top:8px;
 
 }
 
 
 
-.mission{
+.status-online{
 
-
-font-family:Orbitron;
-
-
-font-size:12px;
-
-
-line-height:2.2;
-
-
-text-align:right;
-
-
-color:var(--ice);
-
-
-}
-
-
-
-.online{
-
+border:1px solid rgba(98,255,154,.5);
 
 color:var(--green);
 
-}
+padding:8px 18px;
 
+border-radius:30px;
 
-
-.online::before{
-
-
-content:"●";
-
-
-margin-right:8px;
-
+font-family:Orbitron;
 
 }
 
 
 
+/* ===== MAIN ===== */
 
 
-.slider-box{
+.container{
+
+padding:0 45px 50px;
+
+}
 
 
-display:flex;
 
 
-align-items:center;
+.section-title{
 
 
-justify-content:center;
+font-family:Orbitron;
 
+font-size:14px;
 
-gap:12px;
+letter-spacing:4px;
 
+color:#8bb8d8;
 
-flex-wrap:wrap;
-
-
-padding:18px;
-
-
-background:var(--panel);
-
-
-border:1px solid var(--border);
-
-
-border-radius:22px;
-
-
-box-shadow:var(--shadow);
-
-
-margin-bottom:22px;
+margin:25px 0 15px;
 
 
 }
 
 
 
-.slider-box button{
+
+/* ===== STATUS ===== */
 
 
-padding:10px 22px;
+.cards{
 
 
-border-radius:50px;
+display:grid;
 
-
-cursor:pointer;
-
-
-background:
-
-rgba(255,255,255,.05);
-
-
-border:
-
-1px solid rgba(255,255,255,.12);
-
-
-color:var(--muted);
-
-
-transition:.3s;
-
-
-}
-
-
-
-.slider-box button:hover{
-
-
-color:white;
-
-
-border-color:var(--cyan);
-
-
-}
-
-
-
-.slider-box button.active{
-
-
-background:
-
-linear-gradient(
-135deg,
-var(--cyan),
-var(--green)
-);
-
-
-color:#001018;
-
-
-font-weight:900;
-
-
-}
-
-
-
-.row{
-
-
-display:flex;
-
+grid-template-columns:repeat(5,1fr);
 
 gap:18px;
-
-
-flex-wrap:wrap;
-
-
-margin-bottom:20px;
 
 
 }
@@ -379,39 +193,25 @@ margin-bottom:20px;
 .card{
 
 
-flex:1;
+background:
+linear-gradient(
+145deg,
+rgba(20,40,65,.85),
+rgba(8,18,32,.9)
+);
 
 
-min-width:150px;
+border:1px solid rgba(66,217,255,.18);
 
+border-radius:20px;
 
 padding:22px;
 
-
-background:var(--panel);
-
-
-border:
-
-1px solid var(--border);
-
-
-border-radius:22px;
-
-
-box-shadow:var(--shadow);
-
-
 text-align:center;
 
-
-position:relative;
-
-
-overflow:hidden;
-
-
-transition:.3s;
+box-shadow:
+0 10px 40px rgba(0,0,0,.4),
+inset 0 0 30px rgba(66,217,255,.04);
 
 
 }
@@ -420,66 +220,24 @@ transition:.3s;
 
 .card:hover{
 
-
 transform:translateY(-5px);
-
 
 border-color:var(--cyan);
 
+transition:.3s;
 
 }
-
-
-
-.card:before{
-
-
-content:"";
-
-
-position:absolute;
-
-
-top:0;
-
-
-left:0;
-
-
-right:0;
-
-
-height:2px;
-
-
-background:
-
-linear-gradient(
-90deg,
-transparent,
-var(--cyan),
-transparent
-);
-
-
-}
-
 
 
 .label{
 
+font-family:Orbitron;
 
-font-size:11px;
+font-size:12px;
 
+letter-spacing:3px;
 
-letter-spacing:2px;
-
-
-color:var(--muted);
-
-
-margin-bottom:12px;
-
+color:var(--sub);
 
 }
 
@@ -488,17 +246,18 @@ margin-bottom:12px;
 .value{
 
 
+margin-top:15px;
+
 font-family:Orbitron;
 
+font-size:34px;
 
-font-size:28px;
+font-weight:700;
 
-
-font-weight:900;
+color:var(--cyan);
 
 
 }
-
 
 
 .green{
@@ -507,13 +266,11 @@ color:var(--green);
 
 }
 
-
 .yellow{
 
 color:var(--yellow);
 
 }
-
 
 .red{
 
@@ -522,14 +279,82 @@ color:var(--red);
 }
 
 
-.cyan{
 
-color:var(--cyan);
+
+
+/* ===== GPS ===== */
+
+
+.gps-grid{
+
+display:grid;
+
+grid-template-columns:repeat(5,1fr);
+
+gap:18px;
+
 
 }
-/* ================================
-   CHART AREA
-================================ */
+
+
+.gps-card{
+
+background:
+linear-gradient(
+145deg,
+rgba(12,30,50,.9),
+rgba(6,15,27,.95)
+);
+
+
+border-radius:20px;
+
+padding:22px;
+
+border:1px solid rgba(66,217,255,.15);
+
+text-align:center;
+
+
+}
+
+
+
+/* ===== chart ===== */
+
+
+.chart-grid{
+
+
+display:grid;
+
+grid-template-columns:repeat(2,1fr);
+
+gap:20px;
+
+
+}
+
+
+
+.chart-box{
+
+
+background:
+rgba(10,25,45,.8);
+
+
+border-radius:22px;
+
+
+border:1px solid rgba(66,217,255,.18);
+
+
+padding:22px;
+
+
+}
+
 
 
 .chart-title{
@@ -537,337 +362,21 @@ color:var(--cyan);
 
 font-family:Orbitron;
 
-
-font-size:22px;
-
-
-letter-spacing:3px;
-
-
-margin:30px 0 20px;
-
-
-color:var(--ice);
-
-
-}
-
-
-
-.chart-title span{
-
-
-display:block;
-
-
-font-family:Inter;
-
-
-font-size:13px;
-
-
-margin-top:8px;
-
-
-color:var(--muted);
-
-
-letter-spacing:2px;
-
-
-}
-
-
-
-.chart-box{
-
-
-flex:1;
-
-
-min-width:420px;
-
-
-padding:24px;
-
-
-background:var(--panel);
-
-
-border:
-
-1px solid var(--border);
-
-
-border-radius:25px;
-
-
-box-shadow:var(--shadow);
-
-
-}
-
-
-
-.chart-box h3{
-
-
-font-family:Orbitron;
-
-
 font-size:15px;
 
-
-line-height:1.8;
-
-
 letter-spacing:2px;
-
-
-color:var(--cyan);
-
-
-margin-bottom:15px;
-
-
-}
-
-
-
-.chart-box h3 span{
-
-
-font-family:Inter;
-
-
-font-size:12px;
-
-
-color:var(--muted);
-
-
-letter-spacing:1px;
-
-
-}
-
-
-
-.chart-box canvas{
-
-
-height:260px!important;
-
-
-}
-
-
-
-
-
-/* ================================
-   TABLE
-================================ */
-
-
-
-.table-box{
-
-
-background:var(--panel);
-
-
-border:
-
-1px solid var(--border);
-
-
-border-radius:25px;
-
-
-padding:25px;
-
-
-box-shadow:var(--shadow);
-
-
-overflow:auto;
-
-
-}
-
-
-
-.table-header{
-
-
-display:flex;
-
-
-justify-content:space-between;
-
-
-align-items:center;
-
 
 margin-bottom:20px;
 
-
-}
-
-
-
-.table-header h2{
-
-
-font-family:Orbitron;
-
-
-letter-spacing:3px;
-
-
-color:var(--ice);
-
-
-font-size:18px;
+color:#bdeaff;
 
 
 }
 
 
+canvas{
 
-.receiving{
-
-
-font-family:Orbitron;
-
-
-font-size:12px;
-
-
-color:var(--green);
-
-
-}
-
-
-
-.live-dot{
-
-
-display:inline-block;
-
-
-width:8px;
-
-
-height:8px;
-
-
-border-radius:50%;
-
-
-background:var(--green);
-
-
-box-shadow:0 0 15px var(--green);
-
-
-margin-right:8px;
-
-
-}
-
-
-
-table{
-
-
-width:100%;
-
-
-border-collapse:collapse;
-
-
-font-size:12px;
-
-
-}
-
-
-
-th{
-
-
-padding:12px;
-
-
-background:
-
-rgba(77,225,255,.08);
-
-
-color:var(--cyan);
-
-
-white-space:nowrap;
-
-
-}
-
-
-
-td{
-
-
-padding:10px;
-
-
-text-align:center;
-
-
-border-bottom:
-
-1px solid rgba(255,255,255,.05);
-
-
-white-space:nowrap;
-
-
-}
-
-
-
-tbody tr:hover{
-
-
-background:
-
-rgba(77,225,255,.08);
-
-
-}
-
-
-
-
-.footer{
-
-
-text-align:center;
-
-
-margin:30px 0;
-
-
-font-size:12px;
-
-
-color:var(--muted);
-
-
-letter-spacing:1px;
-
+height:260px!important;
 
 }
 
@@ -875,106 +384,48 @@ letter-spacing:1px;
 
 @media(max-width:900px){
 
+.cards,
+.gps-grid,
+.chart-grid{
 
-.header{
-
-
-display:block;
-
-
-text-align:center;
-
+grid-template-columns:1fr;
 
 }
 
 
+.container{
 
-.mission{
+padding:20px;
 
-
-text-align:center;
-
-
-margin-top:20px;
-
+}
 
 }
 
 
-
-.chart-box{
-
-
-min-width:100%;
-
-
-}
-
-
-}
 
 </style>
 
-
 </head>
-
-
 
 
 <body>
 
 
-
-<!-- ================================
-HEADER
-================================ -->
-
-
-<div class="header">
+<header class="header">
 
 
 <div>
 
+<div class="logo">
 
-<h1>
-ANTARCTIC AUTONOMOUS
-<br>
-MONITORING SYSTEM
-</h1>
-
-
-<p>
-南极自主环境监测平台 · REAL TIME TELEMETRY
-</p>
-
+ANTARCTIC SYSTEM
 
 </div>
 
 
+<div class="subtitle">
 
-
-<div class="mission">
-
-
-<div>
-MISSION AA-2026
-</div>
-
-
-<div class="online">
-SYSTEM ONLINE
-</div>
-
-
-<div>
-GPS LOCKED
-</div>
-
-
-<div>
-DATA STREAM ACTIVE
-</div>
-
+AUTONOMOUS POLAR ENVIRONMENT MONITORING
 
 </div>
 
@@ -982,502 +433,334 @@ DATA STREAM ACTIVE
 </div>
 
 
+<div class="status-online">
 
-
-
-
-
-<!-- ================================
-TIME RANGE
-================================ -->
-
-
-<div class="slider-box">
-
-
-<button 
-onclick="setRange(0)"
-id="btnAll"
-class="active">
-
-ALL DATA
-
-</button>
-
-
-<button
-onclick="setRange(24)"
-id="btn24h">
-
-24 HOURS
-
-</button>
-
-
-
-<button
-onclick="setRange(6)"
-id="btn6h">
-
-6 HOURS
-
-</button>
-
-
-
-<button
-onclick="setRange(2)"
-id="btn2h">
-
-2 HOURS
-
-</button>
-
-
-
-<div>
-
-RECORDS:
-
-<span id="totalCount">
-
-0
-
-</span>
-
+● ONLINE
 
 </div>
 
 
-</div>
+</header>
 
 
 
+<div class="container">
 
 
+<div class="section-title">
 
-
-
-<!-- ================================
 SYSTEM STATUS
-================================ -->
+
+</div>
 
 
-<div class="row">
+
+<div class="cards">
+
+
+<div class="card">
+
+<div class="label">
+MODE
+</div>
+
+<div id="mode" class="value green">
+--
+</div>
+
+</div>
 
 
 
 <div class="card">
 
 <div class="label">
-MODE STATUS
+BATTERY
 </div>
 
-<div 
-id="mode"
-class="value green">
-
+<div id="voltage" class="value">
 --
-
 </div>
 
 </div>
-
-
 
 
 
 <div class="card">
 
 <div class="label">
-BATTERY VOLTAGE
+CURRENT
 </div>
 
-<div 
-id="voltage"
-class="value cyan">
-
+<div id="current" class="value yellow">
 --
-
 </div>
 
 </div>
-
-
 
 
 
 <div class="card">
 
 <div class="label">
-SYSTEM CURRENT
+ERROR
 </div>
 
-
-<div 
-id="current"
-class="value yellow">
-
+<div id="error" class="value green">
 --
-
 </div>
 
 </div>
-
-
 
 
 
 <div class="card">
 
 <div class="label">
-ERROR STATUS
+SESSION
 </div>
 
-
-<div 
-id="error"
-class="value green">
-
+<div id="ssid" class="value">
 --
-
 </div>
 
 </div>
 
 
 
-
-
-<div class="card">
-
-<div class="label">
-SESSION ID
-</div>
-
-
-<div 
-id="ssid"
-class="value">
-
---
-
-</div>
-
-</div>
-
-
-</div>
-
-
-
-
-
-
-
-
-<!-- ================================
+</div><!-- =========================
 GPS STATUS
-================================ -->
+========================= -->
 
 
+<div class="section-title">
 
-<div class="row">
+GPS POSITION
+
+</div>
 
 
+<div class="gps-grid">
 
-<div class="card">
 
+<div class="gps-card">
 
 <div class="label">
 LATITUDE
 </div>
 
-
-<div
-id="lat"
-class="value cyan">
-
+<div id="lat" class="value">
 --
+</div>
 
 </div>
 
 
-</div>
 
-
-
-
-<div class="card">
-
+<div class="gps-card">
 
 <div class="label">
 LONGITUDE
 </div>
 
-
-<div
-id="lng"
-class="value cyan">
-
+<div id="lng" class="value">
 --
+</div>
 
 </div>
 
 
-</div>
 
 
-
-
-<div class="card">
-
+<div class="gps-card">
 
 <div class="label">
 SATELLITES
 </div>
 
-
-<div
-id="sat"
-class="value">
-
+<div id="sat" class="value">
 --
+</div>
 
 </div>
 
 
-</div>
 
 
 
-
-<div class="card">
-
+<div class="gps-card">
 
 <div class="label">
 GPS FIX
 </div>
 
-
-<div
-id="fix"
-class="value green">
-
+<div id="fix" class="value green">
 --
+</div>
 
 </div>
 
 
-</div>
 
 
 
-
-<div class="card">
-
+<div class="gps-card">
 
 <div class="label">
 GPS TIME
 </div>
 
-
-<div
-id="gpstime"
-class="value">
-
+<div id="gpstime" class="value">
 --
-
 </div>
-
-
-</div>
-
-
 
 </div>
 
 
 
+</div>
 
 
 
-<!-- ================================
+
+
+
+
+
+<!-- =========================
 CHARTS
-================================ -->
+========================= -->
 
+
+<div class="section-title">
+
+ENVIRONMENT TELEMETRY
+
+</div>
+
+
+
+<div class="chart-grid">
+
+
+
+<div class="chart-box">
 
 <div class="chart-title">
 
-REAL TIME TELEMETRY
-
-<span>
-实时环境传感器数据
-</span>
+BATTERY VOLTAGE
 
 </div>
-
-
-
-
-
-<div class="row">
-
-
-<div class="chart-box">
-
-<h3>
-BATTERY VOLTAGE
-<br>
-<span>
-电池电压
-</span>
-</h3>
 
 <canvas id="cv"></canvas>
 
-
 </div>
+
+
 
 
 
 <div class="chart-box">
 
-<h3>
+<div class="chart-title">
+
 SYSTEM CURRENT
-<br>
-<span>
-系统电流
-</span>
-</h3>
+
+</div>
 
 <canvas id="ca"></canvas>
 
-
-</div>
-
-
 </div>
 
 
 
 
-
-<div class="row">
 
 
 <div class="chart-box">
 
-<h3>
-SHT35 TEMPERATURE
-<br>
-<span>
-环境温度
-</span>
-</h3>
+<div class="chart-title">
 
+SHT35 TEMPERATURE
+
+</div>
 
 <canvas id="cst"></canvas>
 
-
 </div>
+
 
 
 
 
 <div class="chart-box">
 
-<h3>
-SHT35 HUMIDITY
-<br>
-<span>
-环境湿度
-</span>
-</h3>
+<div class="chart-title">
 
+SHT35 HUMIDITY
+
+</div>
 
 <canvas id="csh"></canvas>
 
-
 </div>
 
 
-</div>
 
-<div class="row">
+
+
 
 
 <div class="chart-box">
 
+<div class="chart-title">
 
-<h3>
 RS485 TEMPERATURE
-<br>
 
-<span>
-外部温度传感器
-</span>
-
-</h3>
-
+</div>
 
 <canvas id="ctt"></canvas>
 
-
 </div>
+
+
+
 
 
 
 
 <div class="chart-box">
 
+<div class="chart-title">
 
-<h3>
 RS485 HUMIDITY
-<br>
 
-<span>
-外部湿度传感器
-</span>
-
-</h3>
-
+</div>
 
 <canvas id="cth"></canvas>
 
-
-</div>
-
-
 </div>
 
 
 
 
 
-
-<div class="row">
 
 
 <div class="chart-box">
 
+<div class="chart-title">
 
-<h3>
 SOLAR IRRADIANCE
-<br>
 
-<span>
-太阳辐射
-</span>
-
-
-</h3>
-
+</div>
 
 <canvas id="cs"></canvas>
 
-
 </div>
+
+
+
 
 
 
@@ -1485,62 +768,17 @@ SOLAR IRRADIANCE
 
 <div class="chart-box">
 
+<div class="chart-title">
 
-<h3>
-WIND MONITOR
-<br>
+WIND SPEED
 
-<span>
-风速 / 风向
-</span>
-
-
-</h3>
-
+</div>
 
 <canvas id="cws"></canvas>
 
-
 </div>
 
 
-
-</div>
-
-
-
-
-
-
-
-
-
-<!-- ================================
-DATA TABLE
-================================ -->
-
-
-
-<div class="table-box">
-
-
-
-<div class="table-header">
-
-
-<h2>
-LIVE TELEMETRY STREAM
-</h2>
-
-
-
-<div class="receiving">
-
-<span class="live-dot"></span>
-
-DATA RECEIVING
-
-</div>
 
 
 </div>
@@ -1549,85 +787,54 @@ DATA RECEIVING
 
 
 
-<table>
+
+
+
+
+
+<!-- =========================
+TABLE
+========================= -->
+
+
+<div class="section-title">
+
+DATA STREAM
+
+</div>
+
+
+
+<div class="chart-box">
+
+
+<table width="100%" id="data-table">
 
 
 <thead>
 
 <tr>
 
-<th>
-TIME
-</th>
+<th>TIME</th>
 
+<th>MODE</th>
 
-<th>
-MODE
-</th>
+<th>V</th>
 
+<th>mA</th>
 
-<th>
-V
-</th>
+<th>SOLAR</th>
 
+<th>TEMP</th>
 
-<th>
-CURRENT
-</th>
+<th>HUM</th>
 
+<th>GPS</th>
 
-<th>
-SOLAR
-</th>
-
-
-<th>
-SHT TEMP
-</th>
-
-
-<th>
-SHT HUM
-</th>
-
-
-<th>
-RS485 TEMP
-</th>
-
-
-<th>
-RS485 HUM
-</th>
-
-
-<th>
-LAT
-</th>
-
-
-<th>
-LON
-</th>
-
-
-<th>
-SAT
-</th>
-
-
-<th>
-GPS
-</th>
-
-
-<th>
-ERROR
-</th>
+<th>ERROR</th>
 
 
 </tr>
-
 
 </thead>
 
@@ -1639,8 +846,8 @@ ERROR
 </tbody>
 
 
-
 </table>
+
 
 
 </div>
@@ -1651,11 +858,12 @@ ERROR
 
 
 
-<div class="footer">
-
-
-<span class="live-dot"></span>
-
+<div style="
+text-align:center;
+padding:30px;
+color:#7690aa;
+font-family:Orbitron;
+">
 
 <span id="update">
 
@@ -1663,15 +871,7 @@ WAITING DATA
 
 </span>
 
-
-<br><br>
-
-
-ANTARCTIC AUTONOMOUS MONITORING SYSTEM
-
-
 </div>
-
 
 
 
@@ -1679,77 +879,39 @@ ANTARCTIC AUTONOMOUS MONITORING SYSTEM
 <script>
 
 // ================================
-// GLOBAL
+// DATA SYSTEM
 // ================================
 
 
 let ALL_DATA=[];
-
-let currentRangeHours=0;
 
 let charts={};
 
 
 
 
-// ================================
-// CHART CONFIG
-// ================================
+
+const colors={
 
 
-const chartColors={
+cv:"#42d9ff",
 
+ca:"#ffd75e",
 
-cv:{
-line:"#4de1ff",
-fill:"rgba(77,225,255,.12)"
-},
+cst:"#ff7fa8",
 
+csh:"#56d9e8",
 
-ca:{
-line:"#ffd166",
-fill:"rgba(255,209,102,.12)"
-},
+ctt:"#ffb866",
 
+cth:"#bda8ff",
 
-cst:{
-line:"#ff8fab",
-fill:"rgba(255,143,171,.12)"
-},
+cs:"#ffe699",
 
-
-csh:{
-line:"#56d9e8",
-fill:"rgba(86,217,232,.12)"
-},
-
-
-ctt:{
-line:"#ffc266",
-fill:"rgba(255,194,102,.12)"
-},
-
-
-cth:{
-line:"#c4b5fd",
-fill:"rgba(196,181,253,.12)"
-},
-
-
-cs:{
-line:"#ffe699",
-fill:"rgba(255,230,153,.12)"
-},
-
-
-cws:{
-line:"#7dffb8",
-fill:"rgba(125,255,184,.12)"
-}
+cws:"#62ff9a"
 
 
 };
-
 
 
 
@@ -1761,15 +923,20 @@ fill:"rgba(125,255,184,.12)"
 // ================================
 
 
-function createChart(id,label,color){
+function createChart(id,name,color){
+
 
 
 let canvas=document.getElementById(id);
 
 
+
 if(!canvas){
-console.warn("Canvas missing:",id);
+
+console.log("missing canvas:",id);
+
 return;
+
 }
 
 
@@ -1781,7 +948,9 @@ let ctx=canvas.getContext("2d");
 charts[id]=new Chart(ctx,{
 
 
+
 type:"line",
+
 
 
 data:{
@@ -1792,37 +961,37 @@ labels:[],
 
 datasets:[{
 
-
-label:label,
+label:name,
 
 
 data:[],
 
 
-borderColor:
-chartColors[color].line,
+borderColor:colors[color],
 
 
 backgroundColor:
-chartColors[color].fill,
+colors[color]+"22",
+
+
+borderWidth:2,
 
 
 fill:true,
 
 
-tension:.45,
+tension:.4,
 
 
-pointRadius:0,
-
-
-borderWidth:2.5
+pointRadius:0
 
 
 }]
 
 
 },
+
+
 
 
 
@@ -1835,37 +1004,14 @@ responsive:true,
 maintainAspectRatio:false,
 
 
-animation:{
-
-
-duration:500
-
-
-},
-
-
 
 plugins:{
 
 
 legend:{
+
+
 display:false
-},
-
-
-
-tooltip:{
-
-
-backgroundColor:
-"rgba(2,15,30,.92)",
-
-
-borderColor:
-"rgba(77,225,255,.3)",
-
-
-borderWidth:1
 
 
 }
@@ -1884,8 +1030,7 @@ x:{
 ticks:{
 
 
-color:"rgba(220,240,255,.5)",
-
+color:"#7690aa",
 
 maxTicksLimit:8
 
@@ -1912,7 +1057,7 @@ y:{
 ticks:{
 
 
-color:"rgba(220,240,255,.5)"
+color:"#7690aa"
 
 
 },
@@ -1933,10 +1078,12 @@ color:"rgba(255,255,255,.04)"
 }
 
 
+
 }
 
 
 });
+
 
 
 }
@@ -1954,20 +1101,34 @@ color:"rgba(255,255,255,.04)"
 // ================================
 
 
-function updateChart(id,labels,data){
+function updateChart(id,data,key){
+
 
 
 if(!charts[id]) return;
 
 
 
-charts[id].data.labels=labels;
+charts[id].data.labels=
 
 
-charts[id].data.datasets[0].data=data;
+data.map(
+x=>x.time.substring(11,16)
+);
+
+
+
+charts[id].data.datasets[0].data=
+
+
+data.map(
+x=>x[key] ?? null
+);
+
 
 
 charts[id].update();
+
 
 
 }
@@ -1979,18 +1140,19 @@ charts[id].update();
 
 
 
+
 // ================================
-// LOAD DATA
+// LOAD JSON
 // ================================
 
 
-async function load(){
+async function loadData(){
 
 
 try{
 
 
-let response=
+let res=
 
 await fetch(
 "data.json?v="+Date.now()
@@ -1998,13 +1160,9 @@ await fetch(
 
 
 
-let json=
+ALL_DATA=
 
-await response.json();
-
-
-
-ALL_DATA=json;
+await res.json();
 
 
 
@@ -2013,12 +1171,12 @@ render();
 
 }
 
-catch(error){
+catch(e){
 
 
 console.error(
-"DATA ERROR:",
-error
+"DATA LOAD ERROR",
+e
 );
 
 
@@ -2027,59 +1185,6 @@ error
 
 }
 
-
-
-
-
-
-
-
-// ================================
-// RANGE
-// ================================
-
-
-function setRange(hours){
-
-
-currentRangeHours=hours;
-
-
-
-document
-.querySelectorAll(".slider-box button")
-.forEach(
-b=>b.classList.remove("active")
-);
-
-
-
-let id="btnAll";
-
-
-if(hours===24)
-id="btn24h";
-
-
-if(hours===6)
-id="btn6h";
-
-
-if(hours===2)
-id="btn2h";
-
-
-
-document
-.getElementById(id)
-.classList.add("active");
-
-
-
-render();
-
-
-}
 
 
 
@@ -2097,46 +1202,148 @@ render();
 function render(){
 
 
-let data=[...ALL_DATA];
 
-
-
-if(!data.length)
+if(!ALL_DATA.length)
 return;
 
 
 
 
-if(currentRangeHours>0){
+let last=
+
+ALL_DATA[
+ALL_DATA.length-1
+];
 
 
-let end=
 
-new Date(
-data[data.length-1].time
+
+// --------
+// SYSTEM
+// --------
+
+
+document
+.getElementById("mode")
+.innerHTML=
+
+last.mode || "--";
+
+
+
+document
+.getElementById("voltage")
+.innerHTML=
+
+Number(last.v||0)
+.toFixed(2)
++
+" V";
+
+
+
+document
+.getElementById("current")
+.innerHTML=
+
+Number(last.a||0)
++
+" mA";
+
+
+
+document
+.getElementById("error")
+.innerHTML=
+
+last.e ?? "--";
+
+
+
+document
+.getElementById("ssid")
+.innerHTML=
+
+(last.i||"--");
+
+
+
+
+
+
+
+
+
+// --------
+// GPS
+// --------
+
+
+// 找最近一次有效GPS
+
+let gps=
+
+[...ALL_DATA]
+.reverse()
+.find(
+
+x=>
+
+x.x &&
+x.y
+
 );
 
 
 
-data=data.filter(item=>{
+
+if(gps){
 
 
-let t=
+document
+.getElementById("lat")
+.innerHTML=
 
-new Date(item.time);
-
-
-
-return
-
-(end-t)
-
-<=
-
-currentRangeHours*3600000;
+Number(gps.x)
+.toFixed(5);
 
 
-});
+
+document
+.getElementById("lng")
+.innerHTML=
+
+Number(gps.y)
+.toFixed(5);
+
+
+
+document
+.getElementById("sat")
+.innerHTML=
+
+gps.n ?? "--";
+
+
+
+document
+.getElementById("fix")
+.innerHTML=
+
+gps.g==="O"
+?
+"CONNECTED"
+:
+"NO FIX";
+
+
+
+document
+.getElementById("gpstime")
+.innerHTML=
+
+gps.time
+.replace("T"," ");
 
 
 }
@@ -2144,144 +1351,86 @@ currentRangeHours*3600000;
 
 
 
-let last=data[data.length-1];
 
 
 
 
 
-// STATUS
-
-
-document.getElementById("mode").innerHTML=
-last.mode ?? "--";
-
-
-
-document.getElementById("voltage").innerHTML=
-(Number(last.v)||0).toFixed(2)
-+" V";
-
-
-
-document.getElementById("current").innerHTML=
-(Number(last.a)||0)
-+" mA";
-
-
-
-document.getElementById("error").innerHTML=
-last.e ?? "--";
-
-
-
-document.getElementById("lat").innerHTML=
-last.x ?? "--";
-
-
-document.getElementById("lng").innerHTML=
-last.y ?? "--";
-
-
-document.getElementById("sat").innerHTML=
-last.n ?? "--";
-
-
-document.getElementById("fix").innerHTML=
-last.g ?? "--";
-
-
-document.getElementById("gpstime").innerHTML=
-last.time ?? "--";
-
-
-
-
-document.getElementById("totalCount").innerHTML=
-data.length;
-
-
-
-
-
-
-
-let times=data.map(d=>d.time);
+// --------
+// CHARTS
+// --------
 
 
 
 updateChart(
 "cv",
-times,
-data.map(d=>d.v)
+ALL_DATA,
+"v"
 );
-
 
 
 updateChart(
 "ca",
-times,
-data.map(d=>d.a)
+ALL_DATA,
+"a"
 );
-
 
 
 updateChart(
 "cst",
-times,
-data.map(d=>d.j)
+ALL_DATA,
+"j"
 );
-
 
 
 updateChart(
 "csh",
-times,
-data.map(d=>d.k)
+ALL_DATA,
+"k"
 );
-
 
 
 updateChart(
 "ctt",
-times,
-data.map(d=>d.t)
+ALL_DATA,
+"t"
 );
-
 
 
 updateChart(
 "cth",
-times,
-data.map(d=>d.h)
+ALL_DATA,
+"h"
 );
-
 
 
 updateChart(
 "cs",
-times,
-data.map(d=>d.s)
+ALL_DATA,
+"s"
 );
-
 
 
 updateChart(
 "cws",
-times,
-data.map(d=>d.w)
+ALL_DATA,
+"w"
 );
 
 
 
 
-renderTable(data);
+
+renderTable();
 
 
 
-document.getElementById("update").innerHTML=
 
-"LAST UPDATE : "
+document
+.getElementById("update")
+.innerHTML=
+
+"LAST SYNC : "
 
 +
 
@@ -2293,7 +1442,7 @@ last.time
 
 +
 
-data.length
+ALL_DATA.length
 
 +
 
@@ -2316,12 +1465,14 @@ data.length
 // ================================
 
 
-function renderTable(data){
+function renderTable(){
+
 
 
 let tbody=
 
-document.getElementById("tbody");
+document
+.getElementById("tbody");
 
 
 
@@ -2329,51 +1480,44 @@ tbody.innerHTML="";
 
 
 
-data
+ALL_DATA
 .slice(-20)
 .reverse()
 .forEach(d=>{
 
 
-let tr=document.createElement("tr");
+let tr=
+
+document.createElement("tr");
 
 
 
 tr.innerHTML=`
 
-<td>${d.time??""}</td>
+<td>${d.time}</td>
 
-<td>${d.mode??""}</td>
+<td>${d.mode||""}</td>
 
-<td>${d.v??""}</td>
+<td>${d.v||""}</td>
 
-<td>${d.a??""}</td>
+<td>${d.a||""}</td>
 
-<td>${d.s??""}</td>
+<td>${d.s||""}</td>
 
-<td>${d.j??""}</td>
+<td>${d.j||""}</td>
 
-<td>${d.k??""}</td>
+<td>${d.k||""}</td>
 
-<td>${d.t??""}</td>
+<td>${d.g||""}</td>
 
-<td>${d.h??""}</td>
-
-<td>${d.x??""}</td>
-
-<td>${d.y??""}</td>
-
-<td>${d.n??""}</td>
-
-<td>${d.g??""}</td>
-
-<td>${d.e??""}</td>
+<td>${d.e||""}</td>
 
 `;
 
 
 
 tbody.appendChild(tr);
+
 
 
 });
@@ -2390,7 +1534,7 @@ tbody.appendChild(tr);
 
 
 // ================================
-// START SYSTEM
+// START
 // ================================
 
 
@@ -2400,7 +1544,7 @@ window.onload=function(){
 
 createChart(
 "cv",
-"Battery Voltage",
+"Voltage",
 "cv"
 );
 
@@ -2448,7 +1592,7 @@ createChart(
 
 createChart(
 "cs",
-"Solar Irradiance",
+"Solar",
 "cs"
 );
 
@@ -2462,12 +1606,12 @@ createChart(
 
 
 
-load();
+loadData();
 
 
 
 setInterval(
-load,
+loadData,
 300000
 );
 
@@ -2483,9 +1627,3 @@ load,
 </body>
 
 </html>
-
-
-
-
-
-
