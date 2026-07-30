@@ -5,18 +5,14 @@
 
 <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
 <title>
 ANTARCTIC NEXUS Ω
 </title>
 
 
-<link rel="stylesheet" href="css/style.css">
+<link rel="icon" href="data:,">
 
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./css/style.css">
 
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -32,21 +28,14 @@ ANTARCTIC NEXUS Ω
 <div class="app">
 
 
-<!-- =====================
-SIDEBAR
-===================== -->
-
 
 <aside class="sidebar">
 
 
 <div class="brand">
 
-
 <div class="logo">
-
 Ω
-
 </div>
 
 
@@ -56,7 +45,6 @@ SIDEBAR
 ANTARCTIC<br>
 NEXUS Ω
 </h1>
-
 
 <p>
 Autonomous Monitoring System
@@ -72,79 +60,31 @@ Autonomous Monitoring System
 
 
 
-
 <nav>
 
 
-<a class="active" href="index.html">
-
+<a class="active" href="./index.html">
 Dashboard
-
 </a>
 
 
-<a href="location.html">
-
+<a href="./location.html">
 Location
-
 </a>
 
 
-<a href="sensors.html">
-
+<a href="./sensors.html">
 Sensors
-
 </a>
 
 
-<a href="telemetry.html">
-
-Telemetry
-
-</a>
-
-
-<a href="hardware.html">
-
-Hardware
-
-</a>
-
-
-<a href="analysis.html">
-
+<a href="./analysis.html">
 Analysis
-
 </a>
+
 
 
 </nav>
-
-
-
-
-
-
-<div class="system-status">
-
-
-<p>
-SYSTEM STATUS
-</p>
-
-
-<strong>
-● ONLINE
-</strong>
-
-
-<span>
-DATA LINK ACTIVE
-</span>
-
-
-</div>
-
 
 
 </aside>
@@ -157,15 +97,7 @@ DATA LINK ACTIVE
 
 
 
-<!-- =====================
-MAIN
-===================== -->
-
-
 <main>
-
-
-
 
 
 <header class="topbar">
@@ -176,13 +108,10 @@ MAIN
 LOCAL TIME
 
 <strong id="time">
-
 --
-
 </strong>
 
 </div>
-
 
 
 
@@ -192,13 +121,11 @@ LOCAL TIME
 CURRENT TEMPERATURE
 
 <strong id="currentTemp">
-
 NULL
-
 </strong>
 
-</div>
 
+</div>
 
 
 
@@ -209,18 +136,14 @@ NULL
 STATION
 
 <strong>
-
 ANT-A01
-
 </strong>
+
 
 </div>
 
 
-
 </header>
-
-
 
 
 
@@ -237,7 +160,7 @@ DASHBOARD
 
 
 <p>
-Real-time environmental monitoring overview
+Real-time monitoring system
 </p>
 
 
@@ -251,19 +174,11 @@ Real-time environmental monitoring overview
 
 
 
-<!-- =====================
-DATA CARDS
-===================== -->
-
-
 <section class="cards">
 
 
 
-
-
 <div class="card">
-
 
 <h3>
 BATTERY
@@ -271,33 +186,22 @@ BATTERY
 
 
 <div class="number" id="voltage">
-
 NULL
-
 </div>
 
 
-<p>
-Voltage
+<p id="batterySOC">
+NULL
 </p>
-
 
 
 <div class="battery-bar">
 
-
-<div id="batteryProgress"></div>
-
+<div id="batteryProgress">
 
 </div>
 
-
-<span id="batterySOC">
-
-NULL
-
-</span>
-
+</div>
 
 
 </div>
@@ -309,35 +213,17 @@ NULL
 
 
 <div class="card">
-
 
 <h3>
 CURRENT
 </h3>
 
-
-<div class="number">
-
-<span id="current">
-
+<div class="number" id="current">
 NULL
+</div>
 
-</span>
-
-
-<span class="unit">
-
+<p>
 mA
-
-</span>
-
-
-</div>
-
-
-
-<p>
-Charging Current
 </p>
 
 
@@ -348,39 +234,18 @@ Charging Current
 
 
 
-
-
 <div class="card">
 
-
 <h3>
-SOLAR IRRADIANCE
+SOLAR
 </h3>
 
-
-<div class="number">
-
-
-<span id="solar">
-
+<div class="number" id="solar">
 NULL
+</div>
 
-</span>
-
-
-<span class="unit">
-
+<p>
 W/m²
-
-</span>
-
-
-</div>
-
-
-<p>
-Solar Sensor
-
 </p>
 
 
@@ -394,35 +259,18 @@ Solar Sensor
 
 <div class="card">
 
-
 <h3>
-CABIN TEMPERATURE
+CABIN TEMP
 </h3>
 
 
-<div class="number">
-
-
-<span id="insideTemp">
-
+<div class="number" id="insideTemp">
 NULL
+</div>
 
-</span>
 
-
-<span class="unit">
-
+<p>
 ℃
-
-</span>
-
-
-</div>
-
-
-<p>
-RS485
-
 </p>
 
 
@@ -436,35 +284,18 @@ RS485
 
 <div class="card">
 
-
 <h3>
-CABIN HUMIDITY
+CABIN HUM
 </h3>
 
 
-<div class="number">
-
-
-<span id="insideHum">
-
+<div class="number" id="insideHum">
 NULL
-
-</span>
-
-
-<span class="unit">
-
-%
-
-</span>
-
-
 </div>
 
 
 <p>
-RS485
-
+%
 </p>
 
 
@@ -477,42 +308,23 @@ RS485
 
 
 <div class="card">
-
 
 <h3>
 OUTSIDE TEMP
-
 </h3>
 
 
-<div class="number">
-
-
-<span id="outsideTemp">
-
+<div class="number" id="outsideTemp">
 NULL
-
-</span>
-
-
-<span class="unit">
-
-℃
-
-</span>
-
-
 </div>
 
 
 <p>
 SHT35
-
 </p>
 
 
 </div>
-
 
 
 
@@ -526,14 +338,7 @@ SHT35
 
 
 
-<!-- =====================
-MAIN PANEL
-===================== -->
-
-
 <section class="main-grid">
-
-
 
 
 
@@ -542,41 +347,22 @@ MAIN PANEL
 
 <div class="panel-title">
 
-POLAR LOCATION
-
-
-<span>
-GPS
-</span>
-
+GPS LOCATION
 
 </div>
-
 
 
 
 <div class="map-box">
 
 
-
-<div class="map-line"></div>
-
-
-
-<div class="location-point"></div>
-
-
-
-<div class="point-label">
-
-ANT-A01
+<div class="location-point">
 
 </div>
 
 
 
 </div>
-
 
 
 
@@ -585,48 +371,38 @@ ANT-A01
 
 <div>
 
-LATITUDE
+LAT
 
 <strong id="latitude">
-
 NULL
-
 </strong>
 
 </div>
 
 
-
 <div>
 
-LONGITUDE
+LON
 
 <strong id="longitude">
-
 NULL
-
 </strong>
 
 </div>
-
 
 
 <div>
 
-SATELLITES
+SAT
 
 <strong id="satellites">
-
 NULL
-
 </strong>
 
 </div>
 
 
-
 </div>
-
 
 
 </div>
@@ -646,82 +422,20 @@ NULL
 
 REAL TIME TREND
 
+</div>
 
-<span>
-DATA
-</span>
+
+
+<canvas id="trendChart">
+
+</canvas>
 
 
 </div>
 
 
 
-
-<canvas id="trendChart"></canvas>
-
-
-
-</div>
-
-
-
-
-
-
 </section>
-
-
-
-
-
-
-
-
-
-<section class="quick">
-
-
-<a href="location.html">
-
-LOCATION
-
-<p>
-GPS Monitoring
-</p>
-
-</a>
-
-
-
-
-<a href="sensors.html">
-
-SENSORS
-
-<p>
-Environment Data
-</p>
-
-</a>
-
-
-
-
-
-<a href="telemetry.html">
-
-TELEMETRY
-
-<p>
-Real Time Stream
-</p>
-
-</a>
-
-
-
-</section>
-
 
 
 
@@ -730,12 +444,13 @@ Real Time Stream
 </main>
 
 
-
 </div>
 
 
 
-<script src="js/main.js"></script>
+
+
+<script src="./js/main.js"></script>
 
 
 </body>
