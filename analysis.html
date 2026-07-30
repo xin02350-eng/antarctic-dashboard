@@ -1,54 +1,209 @@
 <!DOCTYPE html>
-<html>
+
+<html lang="zh-CN">
 
 <head>
 
+
+<meta charset="UTF-8">
+
+
 <title>
-DATA ANALYSIS
+ANTARCTIC NEXUS Ω - ANALYSIS
 </title>
 
-<link rel="stylesheet" href="css/style.css">
+
+<link rel="icon" href="data:,">
+
+
+<link rel="stylesheet" href="./css/style.css">
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 
 </head>
+
+
 
 
 <body>
 
 
+
 <div class="app">
 
-<main style="margin:auto;width:90%">
+
+
+<aside class="sidebar">
+
+
+<div class="brand">
+
+<div class="logo">
+
+Ω
+
+</div>
+
+
+<div>
+
+
+<h1>
+ANTARCTIC<br>
+NEXUS Ω
+</h1>
+
+
+<p>
+AUTONOMOUS POLAR MONITORING
+</p>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+<nav>
+
+
+<a href="./index.html">
+Dashboard
+</a>
+
+
+<a href="./location.html">
+Location
+</a>
+
+
+<a href="./sensors.html">
+Sensors
+</a>
+
+
+<a href="./telemetry.html">
+Telemetry
+</a>
+
+
+<a href="./hardware.html">
+Hardware
+</a>
+
+
+<a class="active">
+Analysis
+</a>
+
+
+
+</nav>
+
+
+</aside>
+
+
+
+
+
+
+
+
+<main>
+
+
+
+<header class="topbar">
+
+
+<div>
+
+DATA ANALYSIS
+
+<strong>
+ONLINE
+</strong>
+
+
+</div>
+
+
+</header>
+
+
+
+
+
+
 
 
 <section class="title">
 
+
 <h2>
-DATA ANALYSIS
+ENVIRONMENT ANALYSIS
 </h2>
 
+
 <p>
-Historical monitoring statistics
+Historical sensor trend analysis
 </p>
+
 
 </section>
 
 
+
+
+
+
+
+
+
 <div class="panel">
 
-<canvas id="analysisChart"></canvas>
+
+<div class="panel-title">
+
+TEMPERATURE / SOLAR / VOLTAGE TREND
 
 </div>
+
+
+
+<canvas id="trendChart">
+
+</canvas>
+
+
+
+</div>
+
+
+
+
 
 
 </main>
 
+
 </div>
 
 
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-<script src="js/main.js"></script>
+
+
+<script src="./js/main.js"></script>
+
 
 
 </body>
