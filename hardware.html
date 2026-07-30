@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="zh-CN">
 
 <head>
@@ -15,7 +14,6 @@ ANTARCTIC NEXUS Ω - HARDWARE
 
 <link rel="stylesheet" href="./css/style.css">
 
-
 </head>
 
 
@@ -24,6 +22,7 @@ ANTARCTIC NEXUS Ω - HARDWARE
 
 
 <div class="app">
+
 
 
 <aside class="sidebar">
@@ -101,8 +100,10 @@ Analysis
 
 
 
-<main>
 
+
+
+<main>
 
 
 <header class="topbar">
@@ -115,7 +116,6 @@ SYSTEM ARCHITECTURE
 <strong>
 ANT-A01
 </strong>
-
 
 </div>
 
@@ -130,11 +130,9 @@ ANT-A01
 
 <section class="title">
 
-
 <h2>
 HARDWARE DIGITAL TWIN
 </h2>
-
 
 <p>
 Autonomous monitoring station architecture
@@ -150,9 +148,7 @@ Autonomous monitoring station architecture
 
 
 
-
 <div class="panel">
-
 
 
 <div class="device">
@@ -161,9 +157,24 @@ Autonomous monitoring station architecture
 
 <div class="module">
 
+
 SOLAR POWER MODULE
 
+
+<br>
+
+
+Solar Irradiance
+
+<strong id="hardwareSolar">
+
+NULL
+
+</strong>
+
+
 </div>
+
 
 
 
@@ -171,14 +182,31 @@ SOLAR POWER MODULE
 
 
 
+
+
 <div class="module">
+
 
 POWER MANAGEMENT UNIT
 
+
 <br>
-BATTERY + MCU
+
+
+Battery Voltage
+
+
+<strong id="hardwareVoltage">
+
+NULL
+
+</strong>
+
 
 </div>
+
+
+
 
 
 
@@ -186,14 +214,35 @@ BATTERY + MCU
 
 
 
+
+
 <div class="module">
+
 
 ENVIRONMENT SENSOR NODE
 
+
 <br>
+
+
 SHT35 / RS485
 
+
+<br>
+
+
+Temperature
+
+
+<strong id="hardwareTemp">
+
+NULL
+
+</strong>
+
+
 </div>
+
 
 
 
@@ -202,10 +251,27 @@ SHT35 / RS485
 
 
 
+
+
 <div class="module">
+
 
 GPS COMMUNICATION UNIT
 
+
+<br>
+
+
+Satellite Link
+
+
+<strong id="hardwareGPS">
+
+NULL
+
+</strong>
+
+
 </div>
 
 
@@ -215,8 +281,6 @@ GPS COMMUNICATION UNIT
 
 
 </div>
-
-
 
 
 
@@ -227,6 +291,12 @@ GPS COMMUNICATION UNIT
 </div>
 
 
+
+
+<script src="./js/main.js"></script>
+
+
 </body>
+
 
 </html>
