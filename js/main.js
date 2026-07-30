@@ -1,137 +1,96 @@
-// ======================================================
-// ANTARCTIC NEXUS Ω
-// V6 FINAL CONTROLLER
-// PART 1
-// ======================================================
+/* =====================================================
+ ANTARCTIC NEXUS Ω
+ MAIN.JS V7 FINAL
+
+ PART 1 / 4
+
+ DATA CORE
+===================================================== */
+
 
 
 let DATA = [];
 
-let charts = [];
+let latest = null;
 
-let map = null;
+let gpsData = {
 
-let markerA01 = null;
+lat:null,
+
+lng:null
+
+};
+
+
+let charts = {};
 
 
 
 
-// ==============================
-// DATA LOAD
-// ==============================
+
+/* ==========================
+ 数据读取
+========================== */
 
 
 async function loadData(){
 
 
-    try{
+try{
 
 
-        const res =
-        await fetch("./data.json?v="+Date.now());
-
-
-
-        if(!res.ok){
-
-            throw new Error(
-                "data.json not found"
-            );
-
-        }
+let url = "./data.json?v=" + Date.now();
 
 
 
-        DATA =
-        await res.json();
+let res = await fetch(url);
 
 
 
-        console.log(
-            "DATA:",
-            DATA.length
-        );
+if(!res.ok){
 
-
-
-        refresh();
-
-
-
-    }
-    catch(e){
-
-        console.error(e);
-
-    }
-
+throw new Error(
+"data.json HTTP "
++
+res.status
+);
 
 }
 
 
 
+DATA = await res.json();
+
+
+
+console.log(
+"DATA:",
+DATA.length
+);
 
 
 
 
-// ==============================
-// BASIC
-// ==============================
+processData();
 
 
-function latest(){
 
+refresh();
 
-    return DATA.length
-
-    ?
-
-    DATA[DATA.length-1]
-
-    :
-
-    null;
 
 
 }
+catch(err){
 
 
+console.error(
+"DATA LOAD ERROR:",
+err
+);
 
-
-
-function value(v,unit=""){
-
-
-    if(v===null || v===undefined){
-
-        return "NULL";
-
-    }
-
-
-    return v+unit;
 
 
 }
-
-
-
-
-
-function text(id,val){
-
-
-    let el =
-    document.getElementById(id);
-
-
-
-    if(el){
-
-        el.innerHTML = val;
-
-    }
-
 
 }
 
@@ -143,57 +102,234 @@ function text(id,val){
 
 
 
-// ==============================
-// TIME
-// ==============================
+/* ==========================
+ 数据处理
+========================== */
 
 
-function clock(){
-
-
-    let d =
-    new Date();
+function processData(){
 
 
 
-    text(
+if(!DATA.length){
 
-        "time",
-
-        d.getFullYear()
-        + "-"
-        +
-        String(
-            d.getMonth()+1
-        ).padStart(2,"0")
-
-        +
-
-        "-"
-
-        +
-
-        String(
-            d.getDate()
-        ).padStart(2,"0")
-
-        +
-
-        " "
-
-        +
-
-        d.toLocaleTimeString()
-
-    );
+return;
 
 }
+
+
+
+
+latest =
+DATA[
+DATA.length-1
+];
+
+
+
+
+/*
+ GPS:
+ 使用最近有效数据
+
+ x = latitude
+ y = longitude
+
+ NULL保持NULL
+
+*/
+
+
+for(
+let i=DATA.length-1;
+i>=0;
+i--
+){
+
+
+let d=DATA[i];
+
+
+
+if(
+
+d.x!==null
+&&
+d.x!==undefined
+&&
+d.y!==null
+&&
+d.y!==undefined
+
+){
+
+
+gpsData.lat=d.x;
+
+gpsData.lng=d.y;
+
+
+break;
+
+
+}
+
+
+}
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+/* ==========================
+ 安全显示
+========================== */
+
+
+function showValue(v){
+
+
+if(
+v===null
+||
+v===undefined
+||
+v===""
+
+){
+
+
+return "NULL";
+
+
+}
+
+
+return v;
+
+
+}
+
+
+
+
+
+
+
+
+
+/* ==========================
+ 时间系统
+ 修复 updateClock
+========================== */
+
+
+
+function updateClock(){
+
+
+let el =
+document.getElementById(
+"localTime"
+);
+
+
+
+let now =
+new Date();
+
+
+
+
+let text =
+
+now.getFullYear()
++
+"-"
++
+String(
+now.getMonth()+1
+).padStart(2,"0")
++
+"-"
++
+String(
+now.getDate()
+).padStart(2,"0")
++
+" "
++
+now.toLocaleTimeString();
+
+
+
+
+
+if(el){
+
+
+el.innerHTML=text;
+
+
+}
+
+
+
+
+let utc =
+
+document.getElementById(
+"utcTime"
+);
+
+
+
+if(utc){
+
+
+utc.innerHTML=
+now.toISOString()
+.replace("T"," ")
+.substring(0,19)
++
+" UTC";
+
+
+}
+
+
+
+}
+
+
+
+
+
+
+
+
+
+/* ==========================
+ 时间启动
+========================== */
 
 
 
 setInterval(
-clock,
+
+updateClock,
+
 1000
+
 );
 
 
@@ -204,30 +340,27 @@ clock,
 
 
 
-// ==============================
-// GPS DATA
-// ==============================
-
-
-function getGPS(){
+/* ==========================
+ 当前数据
+========================== */
 
 
 
-    return DATA
+function getLatest(){
 
-    .slice()
 
-    .reverse()
+if(!latest){
 
-    .find(
+return {
 
-        d=>
+};
 
-        d.x!==null
-        &&
-        d.y!==null
 
-    );
+}
+
+
+
+return latest;
 
 
 }
@@ -239,35 +372,208 @@ function getGPS(){
 
 
 
-function gpsText(g){
+
+/* ==========================
+ 状态方向
+ N/S/E
+========================== */
+
+
+function getMode(){
+
+
+if(!latest){
+
+return "NULL";
+
+
+}
+
+
+return showValue(
+latest.mode
+||
+latest.g
+||
+"N"
+);
+
+
+}/* =====================================================
+ PART 2 / 4
+
+ DASHBOARD
+ GPS
+ HARDWARE
+ MAP
+
+===================================================== */
 
 
 
-    if(!g){
-
-        return "NULL";
-
-    }
 
 
 
-    if(g.g==="O"){
 
-        return "ONLINE";
-
-    }
-
+/* ==========================
+ Dashboard刷新
+========================== */
 
 
-    if(g.g==="N"){
-
-        return "NO FIX";
-
-    }
+function updateDashboard(){
 
 
 
-    return g.g;
+let d=getLatest();
+
+
+
+if(!d){
+
+return;
+
+}
+
+
+
+
+
+/*
+ 电压
+*/
+
+
+let voltage =
+
+document.getElementById(
+"voltage"
+);
+
+
+
+if(voltage){
+
+voltage.innerHTML=
+showValue(d.v);
+
+
+}
+
+
+
+
+
+
+/*
+ 电流
+*/
+
+
+let current =
+
+document.getElementById(
+"current"
+);
+
+
+
+if(current){
+
+current.innerHTML=
+showValue(d.a);
+
+
+}
+
+
+
+
+
+
+
+/*
+ 温度
+*/
+
+
+let temp =
+
+document.getElementById(
+"temperature"
+);
+
+
+
+if(temp){
+
+temp.innerHTML=
+showValue(d.t);
+
+
+}
+
+
+
+
+
+
+
+
+/*
+ 湿度
+*/
+
+
+let humidity =
+
+document.getElementById(
+"humidity"
+);
+
+
+
+if(humidity){
+
+humidity.innerHTML=
+showValue(d.h);
+
+
+}
+
+
+
+
+
+
+
+
+/*
+ 模式 N/S/E
+
+*/
+
+
+let mode =
+
+document.getElementById(
+"mode"
+);
+
+
+
+if(mode){
+
+
+mode.innerHTML=
+showValue(getMode());
+
+
+}
+
+
+
+
+
 
 
 
@@ -278,6 +584,162 @@ function gpsText(g){
 
 
 
+
+
+
+
+
+
+/* ==========================
+ Hardware
+========================== */
+
+
+
+function updateHardware(){
+
+
+
+let d=getLatest();
+
+
+
+if(!d){
+
+return;
+
+}
+
+
+
+
+
+
+let solar=
+
+document.getElementById(
+"hardwareSolar"
+);
+
+
+
+if(solar){
+
+
+solar.innerHTML=
+showValue(d.s);
+
+
+}
+
+
+
+
+
+
+
+
+let voltage=
+
+document.getElementById(
+"hardwareVoltage"
+);
+
+
+
+if(voltage){
+
+
+voltage.innerHTML=
+showValue(d.v);
+
+
+}
+
+
+
+
+
+
+
+
+let temp=
+
+document.getElementById(
+"hardwareTemp"
+);
+
+
+
+if(temp){
+
+
+temp.innerHTML=
+showValue(d.t);
+
+
+}
+
+
+
+
+
+
+
+let gps=
+
+document.getElementById(
+"hardwareGPS"
+);
+
+
+
+if(gps){
+
+
+
+if(
+gpsData.lat!==null
+&&
+gpsData.lng!==null
+
+){
+
+
+gps.innerHTML="ONLINE";
+
+
+}
+
+else{
+
+
+gps.innerHTML="NULL";
+
+
+}
+
+
+
+}
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+/* ==========================
+ GPS显示
+========================== */
 
 
 
@@ -285,89 +747,83 @@ function updateGPS(){
 
 
 
-    let g =
-    getGPS();
+let lat=
+
+document.getElementById(
+"latitude"
+);
 
 
 
-    if(!g){
+let lng=
 
-        return;
-
-    }
-
-
+document.getElementById(
+"longitude"
+);
 
 
 
+let sat=
 
-    let lat =
-    g.x.toFixed(6)+"°";
-
-
-
-    let lon =
-    g.y.toFixed(6)+"°";
-
-
+document.getElementById(
+"satellites"
+);
 
 
 
 
 
-    // Dashboard
+if(lat){
 
 
-    text(
-        "latitude",
-        lat
-    );
+lat.innerHTML=
+
+showValue(
+gpsData.lat
+);
 
 
-    text(
-        "longitude",
-        lon
-    );
 
-
-    text(
-        "satellites",
-        value(g.n)
-    );
+}
 
 
 
 
-
-    // Location
-
-
-    text(
-        "latitudePage",
-        lat
-    );
+if(lng){
 
 
-    text(
-        "longitudePage",
-        lon
-    );
+lng.innerHTML=
 
-
-    text(
-        "satellitesPage",
-        value(g.n)
-    );
+showValue(
+gpsData.lng
+);
 
 
 
-    text(
+}
 
-        "gpsStatusPage",
 
-        gpsText(g)
 
-    );
+
+if(sat){
+
+
+sat.innerHTML=
+
+showValue(
+latest
+?
+latest.n
+:
+null
+
+);
+
+
+
+}
+
+
 
 
 
@@ -381,162 +837,9 @@ function updateGPS(){
 
 
 
-// ==============================
-// MAP
-// ==============================
-
-
-function createMap(){
-
-
-
-    let box =
-    document.getElementById(
-        "worldMap"
-    );
-
-
-
-    if(!box){
-
-        return;
-
-    }
-
-
-
-
-
-    let g =
-    getGPS();
-
-
-
-    let center =
-
-    g
-
-    ?
-
-    [
-        g.x,
-        g.y
-    ]
-
-    :
-
-    [
-
-        30,
-        120
-
-    ];
-
-
-
-
-
-
-
-    map =
-    L.map(
-        "worldMap"
-    )
-
-    .setView(
-
-        center,
-
-        4
-
-    );
-
-
-
-
-
-
-
-    // 深色世界地图
-
-
-    L.tileLayer(
-
-    "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",
-
-    {
-
-        attribution:
-        "© OpenStreetMap © CARTO"
-
-    }
-
-    )
-
-    .addTo(map);
-
-
-
-
-
-
-
-
-
-    if(g){
-
-
-
-        markerA01 =
-
-        L.marker(
-
-        [
-
-        g.x,
-
-        g.y
-
-        ]
-
-        )
-
-        .addTo(map);
-
-
-
-        markerA01.bindPopup(
-
-        `
-
-        <b>
-
-        ANT-A01
-
-        </b>
-
-        <br>
-
-        ${g.x}
-
-        <br>
-
-        ${g.y}
-
-        `
-
-        );
-
-
-    }
-
-
-
-}
-
-
-
-
+/* ==========================
+ 地图
+========================== */
 
 
 
@@ -544,48 +847,184 @@ function updateMap(){
 
 
 
-    if(!map){
+let mapBox=
 
-
-        createMap();
-
-
-        return;
-
-
-    }
+document.getElementById(
+"worldMap"
+);
 
 
 
-    let g =
-    getGPS();
+if(!mapBox){
+
+return;
+
+}
 
 
 
-    if(
-
-    g
-    &&
-    markerA01
-
-    ){
 
 
+if(
+typeof L==="undefined"
 
-        markerA01.setLatLng(
-
-        [
-
-        g.x,
-
-        g.y
-
-        ]
-
-        );
+){
 
 
-    }
+console.warn(
+"Leaflet not loaded"
+);
+
+
+return;
+
+
+}
+
+
+
+
+
+
+if(
+!gpsData.lat
+||
+!gpsData.lng
+
+){
+
+return;
+
+
+}
+
+
+
+
+
+
+
+if(window.deviceMap){
+
+
+window.deviceMap.setView(
+
+[
+gpsData.lat,
+gpsData.lng
+],
+
+8
+
+);
+
+
+
+if(window.deviceMarker){
+
+
+window.deviceMarker.setLatLng(
+
+[
+gpsData.lat,
+gpsData.lng
+]
+
+);
+
+
+}
+
+
+
+return;
+
+
+}
+
+
+
+
+
+
+
+
+window.deviceMap =
+
+L.map(
+"worldMap",
+
+{
+
+zoomControl:false
+
+}
+
+)
+.setView(
+
+[
+gpsData.lat,
+gpsData.lng
+],
+
+5
+
+);
+
+
+
+
+
+
+
+
+L.tileLayer(
+
+"https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+
+{
+
+maxZoom:18
+
+}
+
+)
+.addTo(
+
+window.deviceMap
+
+);
+
+
+
+
+
+
+window.deviceMarker =
+
+L.marker(
+
+[
+gpsData.lat,
+gpsData.lng
+]
+
+)
+.addTo(
+
+window.deviceMap
+
+)
+.bindPopup(
+
+"ANT-A01"
+
+);
+
+
+
+
 
 
 
@@ -599,124 +1038,224 @@ function updateMap(){
 
 
 
-// ==============================
-// DASHBOARD
-// ==============================
+/* ==========================
+ 主刷新
+========================== */
 
 
-function updateDashboard(){
 
+function refresh(){
 
 
-    let d =
-    latest();
 
+updateClock();
 
 
-    if(!d){
+updateDashboard();
 
-        return;
 
-    }
+updateHardware();
 
 
+updateGPS();
 
 
-    text(
+updateMap();
 
-        "systemMode",
 
-        value(d.mode)
+}
+/* =====================================================
+ PART 3 / 4
 
-    );
+ SENSOR CHART SYSTEM
 
+===================================================== */
 
 
-    text(
 
-        "voltage",
 
-        value(d.v," V")
 
-    );
 
 
+let sensorConfig = [
 
-    text(
+{
+id:"chartTemp",
+key:"t",
+name:"CABIN TEMPERATURE"
+},
 
-        "current",
 
-        value(d.a," mA")
+{
+id:"chartHumidity",
+key:"h",
+name:"HUMIDITY"
+},
 
-    );
 
+{
+id:"chartSolar",
+key:"s",
+name:"SOLAR RADIATION"
+},
 
 
-    text(
+{
+id:"chartCurrent",
+key:"a",
+name:"CURRENT"
+},
 
-        "solar",
 
-        value(d.s," W/m²")
+{
+id:"chartVoltage",
+key:"v",
+name:"VOLTAGE"
+},
 
-    );
 
+{
+id:"chartWind",
+key:"wind",
+name:"WIND SPEED"
+},
 
 
-    text(
+{
+id:"chartPressure",
+key:"pressure",
+name:"PRESSURE"
+},
 
-        "insideTemp",
 
-        value(d.t," ℃")
+{
+id:"chartBattery",
+key:"battery",
+name:"BATTERY"
 
-    );
+}
 
+];
 
 
-    text(
 
-        "insideHum",
 
-        value(d.h," %")
 
-    );
 
 
 
-    text(
 
-        "outsideTemp",
+/* ==========================
+ 时间格式
+ 到小时
+========================== */
 
-        value(d.j," ℃")
 
-    );
+function formatHour(time){
 
 
+if(!time){
 
-    text(
+return "";
 
-        "outsideHum",
+}
 
-        value(d.k," %")
 
-    );
+let d =
+new Date(time);
 
 
 
-}// ======================================================
-// SENSORS CHART
-// ======================================================
+return (
 
+d.getMonth()+1
 
-function drawChart(
-id,
-title,
-data,
-zero=false
+)
+
++
+
+"/"
+
++
+
+d.getDate()
+
++
+
+" "
+
++
+
+String(
+
+d.getHours()
+
+)
+
+.padStart(2,"0")
+
++
+
+":00";
+
+
+}
+
+
+
+
+
+
+
+
+
+/* ==========================
+ 生成图表
+========================== */
+
+
+
+function createSensorCharts(){
+
+
+
+if(
+typeof Chart==="undefined"
+
 ){
 
 
-let canvas =
-document.getElementById(id);
+console.warn(
+
+"Chart.js not loaded"
+
+);
+
+
+return;
+
+}
+
+
+
+
+
+
+sensorConfig.forEach(
+
+item=>{
+
+
+
+
+
+let canvas=
+
+document.getElementById(
+item.id
+);
+
+
 
 
 
@@ -730,14 +1269,78 @@ return;
 
 
 
-let old =
-Chart.getChart(canvas);
+let labels=[];
+
+let values=[];
 
 
 
-if(old){
 
-old.destroy();
+
+
+DATA.forEach(
+
+d=>{
+
+
+
+labels.push(
+
+formatHour(
+d.time
+)
+
+);
+
+
+
+let value=
+
+d[item.key];
+
+
+
+
+
+
+if(
+value===null
+||
+value===undefined
+
+){
+
+
+values.push(null);
+
+
+}
+
+else{
+
+
+values.push(value);
+
+
+}
+
+
+
+});
+
+
+
+
+
+
+
+
+
+if(charts[item.id]){
+
+
+charts[item.id].destroy();
+
 
 }
 
@@ -746,7 +1349,7 @@ old.destroy();
 
 
 
-let chart =
+charts[item.id]=
 
 new Chart(
 
@@ -762,47 +1365,44 @@ type:"line",
 data:{
 
 
-labels:
-
-DATA.map(
-
-d=>
-
-d.time.substring(
-11,
-16
-)
-
-),
+labels:labels,
 
 
 
-datasets:[{
+datasets:[
 
 
-label:title,
+{
 
 
-data:data,
+label:item.name,
 
 
-borderColor:"#62d9ff",
+data:values,
 
-
-backgroundColor:
-"rgba(98,217,255,0.12)",
 
 
 borderWidth:2,
 
 
+
+tension:.35,
+
+
+
 pointRadius:2,
 
 
-tension:.35
+
+fill:false
 
 
-}]
+
+}
+
+
+]
+
 
 
 },
@@ -810,12 +1410,11 @@ tension:.35
 
 
 
-
 options:{
 
 
-
 responsive:true,
+
 
 
 maintainAspectRatio:false,
@@ -828,20 +1427,13 @@ plugins:{
 legend:{
 
 
-labels:{
-
-
-color:"#e7f8ff"
-
-
-}
+display:false
 
 
 }
 
 
 },
-
 
 
 
@@ -856,33 +1448,21 @@ x:{
 ticks:{
 
 
-color:"#8da8bb",
-
-
-maxTicksLimit:10
+maxTicksLimit:8
 
 
 }
+
 
 
 },
 
 
 
-
 y:{
 
 
-beginAtZero:zero,
-
-
-ticks:{
-
-
-color:"#8da8bb"
-
-
-}
+beginAtZero:false
 
 
 }
@@ -897,54 +1477,10 @@ color:"#8da8bb"
 
 
 
-}
-
-
-
-);
-
 
 
 }
 
-
-
-
-
-
-
-
-
-function loadSensors(){
-
-
-
-drawChart(
-
-"chartInTemp",
-
-"CABIN TEMPERATURE",
-
-DATA.map(
-d=>d.t
-)
-
-);
-
-
-
-
-
-drawChart(
-
-"chartInHum",
-
-"CABIN HUMIDITY",
-
-DATA.map(
-d=>d.h
-)
-
 );
 
 
@@ -953,119 +1489,10 @@ d=>d.h
 
 
 
-drawChart(
+});
 
-"chartOutTemp",
 
-"OUTSIDE TEMPERATURE",
 
-DATA.map(
-d=>d.j
-)
-
-);
-
-
-
-
-
-
-
-drawChart(
-
-"chartOutHum",
-
-"OUTSIDE HUMIDITY",
-
-DATA.map(
-d=>d.k
-)
-
-);
-
-
-
-
-
-
-
-// 太阳辐射 0开始
-
-
-drawChart(
-
-"chartSolar",
-
-"SOLAR IRRADIANCE",
-
-DATA.map(
-d=>d.s
-),
-
-true
-
-);
-
-
-
-
-
-
-
-drawChart(
-
-"chartCurrent",
-
-"CURRENT",
-
-DATA.map(
-d=>d.a
-),
-
-true
-
-);
-
-
-
-
-
-
-
-drawChart(
-
-"chartVoltage",
-
-"VOLTAGE",
-
-DATA.map(
-d=>d.v
-)
-
-);
-
-
-
-
-
-
-
-// 风速没有数据
-
-
-drawChart(
-
-"chartWind",
-
-"WIND SPEED",
-
-DATA.map(
-d=>null
-),
-
-true
-
-);
 
 
 
@@ -1079,9 +1506,37 @@ true
 
 
 
-// ======================================================
-// TELEMETRY
-// ======================================================
+/* ==========================
+ Sensors刷新
+========================== */
+
+
+function updateSensors(){
+
+
+createSensorCharts();
+
+
+
+}
+/* =====================================================
+ PART 4 / 4
+
+ TELEMETRY
+ ANALYSIS
+ INIT
+
+===================================================== */
+
+
+
+
+
+
+/* ==========================
+ Telemetry
+ 20条数据
+========================== */
 
 
 function updateTelemetry(){
@@ -1089,9 +1544,14 @@ function updateTelemetry(){
 
 
 let box =
+
 document.getElementById(
-"telemetryData"
+
+"telemetryList"
+
 );
+
+
 
 
 
@@ -1111,34 +1571,57 @@ box.innerHTML="";
 
 
 
+let list =
 
-DATA
+DATA.slice(
 
-.slice(-20)
+Math.max(
 
-.reverse()
+0,
 
-.forEach(
+DATA.length-20
+
+)
+
+)
+
+.reverse();
+
+
+
+
+
+
+
+list.forEach(
 
 d=>{
 
 
 
-let div =
+
+
+let item =
+
 document.createElement(
+
 "div"
+
 );
 
 
 
-div.className =
+item.className=
+
 "telemetry-item";
 
 
 
 
 
-div.innerHTML=
+
+
+item.innerHTML=
 
 
 
@@ -1146,25 +1629,17 @@ div.innerHTML=
 
 <h3>
 
-${d.time}
+${formatTelemetryTime(d.time)}
 
 </h3>
 
 
-<p>
-
-VOLTAGE
-
-${value(d.v," V")}
-
-</p>
-
 
 <p>
 
-CURRENT
+VOLTAGE:
 
-${value(d.a," mA")}
+${showValue(d.v)}
 
 </p>
 
@@ -1172,27 +1647,39 @@ ${value(d.a," mA")}
 
 <p>
 
-SOLAR
+TEMP:
 
-${value(d.s," W/m²")}
-
-</p>
-
-
-<p>
-
-CABIN
-
-${value(d.t," ℃")}
+${showValue(d.t)}
 
 </p>
 
 
+
 <p>
 
-OUTSIDE
+HUMIDITY:
 
-${value(d.j," ℃")}
+${showValue(d.h)}
+
+</p>
+
+
+
+<p>
+
+CURRENT:
+
+${showValue(d.a)}
+
+</p>
+
+
+
+<p>
+
+MODE:
+
+${showValue(d.mode)}
 
 </p>
 
@@ -1204,115 +1691,16 @@ ${value(d.j," ℃")}
 
 
 
-box.appendChild(div);
 
+box.appendChild(item);
 
 
-}
 
+});
 
 
-);
 
 
-
-}
-
-
-
-
-
-
-
-
-
-// ======================================================
-// HARDWARE
-// ======================================================
-
-
-function updateHardware(){
-
-
-
-let d =
-latest();
-
-
-
-if(!d){
-
-return;
-
-}
-
-
-
-
-
-text(
-
-"hardwareSolar",
-
-value(
-d.s,
-" W/m²"
-)
-
-);
-
-
-
-
-
-text(
-
-"hardwareVoltage",
-
-value(
-d.v,
-" V"
-)
-
-);
-
-
-
-
-
-text(
-
-"hardwareTemp",
-
-value(
-d.t,
-" ℃"
-)
-
-);
-
-
-
-
-
-let g =
-getGPS();
-
-
-
-if(g){
-
-
-text(
-
-"hardwareGPS",
-
-"ONLINE"
-
-);
-
-
-}
 
 
 
@@ -1326,16 +1714,85 @@ text(
 
 
 
-// ======================================================
-// ANALYSIS
-// ======================================================
+/* ==========================
+ Telemetry 时间
+========================== */
+
+
+function formatTelemetryTime(t){
+
+
+if(!t){
+
+return "NULL";
+
+}
+
+
+
+let d=
+
+new Date(t);
+
+
+
+
+return (
+
+d.getFullYear()
+
++
+
+"/"
+
++
+
+String(
+d.getMonth()+1
+).padStart(2,"0")
+
++
+
+"/"
+
++
+
+String(
+d.getDate()
+).padStart(2,"0")
+
++
+
+" "
+
++
+
+d.toLocaleTimeString()
+
+);
+
+
+}
+
+
+
+
+
+
+
+
+
+/* ==========================
+ Analysis
+========================== */
+
 
 
 function updateAnalysis(){
 
 
 
-if(DATA.length===0){
+if(!DATA.length){
 
 return;
 
@@ -1359,9 +1816,7 @@ let end =
 
 new Date(
 
-DATA[
-DATA.length-1
-].time
+DATA[DATA.length-1].time
 
 );
 
@@ -1369,10 +1824,9 @@ DATA.length-1
 
 
 
-
 let days =
 
-Math.floor(
+Math.ceil(
 
 (end-start)
 
@@ -1386,23 +1840,13 @@ Math.floor(
 
 
 
-text(
-
-"runDays",
-
-days
-
-);
 
 
+let daysEl =
 
+document.getElementById(
 
-
-text(
-
-"dataCount",
-
-DATA.length
+"missionDays"
 
 );
 
@@ -1410,13 +1854,73 @@ DATA.length
 
 
 
-text(
+if(daysEl){
 
-"lastUpdate",
 
-latest().time
+daysEl.innerHTML=
+
+days;
+
+
+}
+
+
+
+
+
+
+
+let total =
+
+document.getElementById(
+
+"totalRecords"
 
 );
+
+
+
+
+
+if(total){
+
+
+total.innerHTML=
+
+DATA.length;
+
+
+}
+
+
+
+
+
+let last =
+
+document.getElementById(
+
+"lastContact"
+
+);
+
+
+
+
+
+if(last){
+
+
+last.innerHTML=
+
+formatTelemetryTime(
+
+latest.time
+
+);
+
+
+}
 
 
 
@@ -1430,53 +1934,28 @@ latest().time
 
 
 
-// ======================================================
-// REFRESH
-// ======================================================
+/* ==========================
+ 所有页面刷新
+========================== */
 
 
-function refresh(){
+function fullRefresh(){
 
 
 
-updateClock();
+refresh();
 
-
-updateDashboard();
-
-
-updateGPS();
-
-
-updateMap();
 
 
 updateTelemetry();
 
-
-updateHardware();
 
 
 updateAnalysis();
 
 
 
-
-
-// 等DOM完成后加载图表
-
-
-setTimeout(
-
-()=>{
-
-loadSensors();
-
-},
-
-500
-
-);
+updateSensors();
 
 
 
@@ -1490,24 +1969,25 @@ loadSensors();
 
 
 
-// ======================================================
-// START
-// ======================================================
+/* ==========================
+ 初始化
+========================== */
 
 
-window.addEventListener(
+document.addEventListener(
 
-"load",
+"DOMContentLoaded",
 
 ()=>{
 
 
-clock();
+
 
 
 loadData();
 
 
-}
 
-);
+
+
+});
