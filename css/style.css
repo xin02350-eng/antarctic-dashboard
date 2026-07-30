@@ -1,29 +1,26 @@
 :root{
 
+--bg:#050d16;
 
---bg:#06131f;
+--bg2:#081b29;
 
---panel:rgba(13,31,48,.88);
+--panel:rgba(12,29,45,.82);
 
---panel-light:#10283b;
+--panel-border:rgba(120,210,255,.18);
 
---line:rgba(130,200,240,.18);
+--blue:#62d9ff;
 
---blue:#67d5ff;
+--ice:#e7f8ff;
 
---ice:#dff6ff;
+--green:#39e58c;
 
---green:#35e08b;
-
---orange:#ffbd59;
+--orange:#ffb84d;
 
 --text:#f5fbff;
 
---sub:#91aabd;
-
+--sub:#8da8bb;
 
 }
-
 
 
 
@@ -39,49 +36,116 @@ box-sizing:border-box;
 
 
 
-
 body{
-
 
 background:
 
-
 radial-gradient(
-circle at 80% 0%,
-rgba(67,170,220,.18),
-transparent 35%
+ellipse at top,
+rgba(70,180,230,.18),
+transparent 45%
 ),
 
+radial-gradient(
+ellipse at bottom,
+rgba(0,110,170,.2),
+transparent 40%
+),
 
 linear-gradient(
 135deg,
-#04101b,
-#092235
+#030912,
+#071d2b
 );
-
-
-
-font-family:
-
-"Microsoft YaHei",
-"Segoe UI",
-Arial,
-sans-serif;
 
 
 color:var(--text);
 
+font-family:
+
+"Segoe UI",
+"Microsoft YaHei",
+Arial,
+sans-serif;
+
 
 min-height:100vh;
+
+
+overflow-x:hidden;
+
+}
+
+
+
+/* 极光背景层 */
+
+body::before{
+
+
+content:"";
+
+
+position:fixed;
+
+
+inset:0;
+
+
+background:
+
+linear-gradient(
+120deg,
+transparent 30%,
+rgba(90,220,255,.05),
+transparent 70%
+);
+
+
+animation:
+
+aurora 12s infinite alternate;
+
+
+pointer-events:none;
 
 
 }
 
 
 
-/* ======================
+
+@keyframes aurora{
+
+
+from{
+
+opacity:.3;
+
+transform:translateX(-30px);
+
+}
+
+
+to{
+
+opacity:.8;
+
+transform:translateX(30px);
+
+}
+
+
+}
+
+
+
+
+
+
+/* =====================
 LAYOUT
-====================== */
+===================== */
 
 
 .app{
@@ -92,8 +156,6 @@ min-height:100vh;
 
 
 }
-
-
 
 
 
@@ -114,22 +176,26 @@ bottom:0;
 
 background:
 
-rgba(5,17,29,.92);
+rgba(3,13,22,.9);
 
 
 border-right:
 
-1px solid var(--line);
+1px solid var(--panel-border);
 
 
 padding:32px 22px;
 
 
-backdrop-filter:blur(20px);
+backdrop-filter:
+
+blur(20px);
+
+
+z-index:10;
 
 
 }
-
 
 
 
@@ -142,7 +208,7 @@ margin-left:260px;
 width:calc(100% - 260px);
 
 
-padding:32px 45px;
+padding:35px 45px;
 
 
 }
@@ -154,10 +220,9 @@ padding:32px 45px;
 
 
 
-
-/* ======================
+/* =====================
 BRAND
-====================== */
+===================== */
 
 
 .brand{
@@ -167,7 +232,7 @@ display:flex;
 
 align-items:center;
 
-gap:15px;
+gap:16px;
 
 margin-bottom:50px;
 
@@ -179,45 +244,36 @@ margin-bottom:50px;
 .logo{
 
 
-width:54px;
+width:58px;
 
-height:54px;
+height:58px;
 
 
-border-radius:16px;
+border-radius:18px;
 
 
 display:flex;
 
-
 align-items:center;
-
 
 justify-content:center;
 
 
-font-size:32px;
-
-
-font-weight:bold;
-
-
-color:white;
+font-size:34px;
 
 
 background:
 
-
 linear-gradient(
 135deg,
-#45c9ff,
-#17658d
+#61dcff,
+#12638c
 );
 
 
 box-shadow:
 
-0 0 25px rgba(80,200,255,.4);
+0 0 40px rgba(80,220,255,.45);
 
 
 }
@@ -227,9 +283,10 @@ box-shadow:
 .brand h1{
 
 
-font-size:19px;
+font-size:20px;
 
-letter-spacing:1px;
+
+letter-spacing:2px;
 
 
 }
@@ -239,11 +296,17 @@ letter-spacing:1px;
 .brand p{
 
 
-margin-top:8px;
-
 font-size:10px;
 
+
 color:var(--sub);
+
+
+margin-top:8px;
+
+
+letter-spacing:1px;
+
 
 }
 
@@ -258,9 +321,11 @@ nav{
 
 display:flex;
 
+
 flex-direction:column;
 
-gap:10px;
+
+gap:12px;
 
 
 }
@@ -270,16 +335,19 @@ gap:10px;
 nav a{
 
 
-padding:14px 18px;
+padding:15px 18px;
 
 
-border-radius:12px;
+border-radius:14px;
 
 
-color:#b5cfdd;
+color:#a9c2d1;
 
 
 transition:.3s;
+
+
+cursor:pointer;
 
 
 }
@@ -293,7 +361,7 @@ nav a.active{
 
 background:
 
-rgba(80,200,255,.13);
+rgba(90,210,255,.12);
 
 
 color:white;
@@ -302,6 +370,11 @@ color:white;
 border-left:
 
 3px solid var(--blue);
+
+
+box-shadow:
+
+inset 0 0 25px rgba(80,200,255,.08);
 
 
 }
@@ -313,9 +386,10 @@ border-left:
 
 
 
-/* ======================
+
+/* =====================
 HEADER
-====================== */
+===================== */
 
 
 .mission-header{
@@ -330,12 +404,12 @@ justify-content:space-between;
 align-items:center;
 
 
-padding-bottom:25px;
+padding-bottom:28px;
 
 
 border-bottom:
 
-1px solid var(--line);
+1px solid var(--panel-border);
 
 
 }
@@ -345,10 +419,10 @@ border-bottom:
 .mission-header h2{
 
 
-font-size:34px;
+font-size:36px;
 
 
-letter-spacing:2px;
+letter-spacing:3px;
 
 
 }
@@ -358,16 +432,17 @@ letter-spacing:2px;
 .mission-header p{
 
 
-margin-top:8px;
+margin-top:10px;
 
 
 color:var(--sub);
 
 
-font-size:13px;
+letter-spacing:1px;
 
 
 }
+
 
 
 
@@ -377,12 +452,17 @@ font-size:13px;
 
 display:flex;
 
+
 align-items:center;
 
-gap:10px;
+
+gap:12px;
 
 
 font-weight:bold;
+
+
+letter-spacing:2px;
 
 
 }
@@ -394,18 +474,39 @@ font-weight:bold;
 
 width:12px;
 
+
 height:12px;
-
-
-border-radius:50%;
 
 
 background:var(--green);
 
 
+border-radius:50%;
+
+
 box-shadow:
 
-0 0 18px var(--green);
+0 0 20px var(--green);
+
+
+animation:
+
+pulse 2s infinite;
+
+
+}
+
+
+
+
+@keyframes pulse{
+
+
+50%{
+
+opacity:.4;
+
+}
 
 
 }
@@ -417,9 +518,10 @@ box-shadow:
 
 
 
-/* ======================
-MISSION INFO
-====================== */
+
+/* =====================
+INFO BAR
+===================== */
 
 
 .mission-info{
@@ -436,7 +538,7 @@ repeat(3,1fr);
 gap:20px;
 
 
-margin:25px 0;
+margin:30px 0;
 
 
 }
@@ -446,18 +548,25 @@ margin:25px 0;
 .mission-info div{
 
 
-background:var(--panel);
+background:
+
+var(--panel);
 
 
 border:
 
-1px solid var(--line);
+1px solid var(--panel-border);
 
 
-padding:20px;
+border-radius:18px;
 
 
-border-radius:16px;
+padding:22px;
+
+
+backdrop-filter:
+
+blur(20px);
 
 
 color:var(--sub);
@@ -473,10 +582,10 @@ color:var(--sub);
 display:block;
 
 
-font-size:22px;
+font-size:24px;
 
 
-margin-top:10px;
+margin-top:12px;
 
 
 color:white;
@@ -492,29 +601,33 @@ color:white;
 
 
 
-/* ======================
+/* =====================
 MAP
-====================== */
+===================== */
 
 
 .map-panel{
 
 
-background:var(--panel);
+background:
+
+var(--panel);
 
 
 border:
 
-1px solid var(--line);
+1px solid var(--panel-border);
 
 
-border-radius:22px;
+border-radius:24px;
 
 
-padding:22px;
+padding:25px;
 
 
-position:relative;
+box-shadow:
+
+0 20px 60px rgba(0,0,0,.35);
 
 
 }
@@ -527,13 +640,13 @@ position:relative;
 font-size:15px;
 
 
-letter-spacing:1px;
+letter-spacing:2px;
+
+
+margin-bottom:20px;
 
 
 color:var(--ice);
-
-
-margin-bottom:18px;
 
 
 font-weight:bold;
@@ -543,14 +656,13 @@ font-weight:bold;
 
 
 
-
 #worldMap{
 
 
 height:520px;
 
 
-border-radius:18px;
+border-radius:20px;
 
 
 overflow:hidden;
@@ -560,14 +672,13 @@ overflow:hidden;
 
 
 
-#worldMap .leaflet-container{
+.leaflet-container{
 
 
-background:#091923;
+background:#050d16!important;
 
 
 }
-
 
 
 
@@ -578,29 +689,31 @@ background:#091923;
 position:absolute;
 
 
-right:45px;
+right:70px;
 
 
-bottom:45px;
+bottom:70px;
 
 
 background:
 
-rgba(5,18,30,.85);
-
-
-padding:22px;
-
-
-border-radius:15px;
+rgba(5,15,25,.85);
 
 
 border:
 
-1px solid var(--line);
+1px solid var(--panel-border);
 
 
-backdrop-filter:blur(15px);
+padding:25px;
+
+
+border-radius:18px;
+
+
+backdrop-filter:
+
+blur(20px);
 
 
 }
@@ -610,10 +723,7 @@ backdrop-filter:blur(15px);
 .map-overlay h3{
 
 
-font-size:22px;
-
-
-margin-bottom:15px;
+font-size:24px;
 
 
 }
@@ -623,7 +733,7 @@ margin-bottom:15px;
 .map-overlay p{
 
 
-margin-top:8px;
+margin-top:12px;
 
 
 color:var(--sub);
@@ -649,9 +759,9 @@ color:white;
 
 
 
-/* ======================
+/* =====================
 STATUS
-====================== */
+===================== */
 
 
 .status-grid{
@@ -665,10 +775,10 @@ grid-template-columns:
 repeat(3,1fr);
 
 
-gap:22px;
+gap:25px;
 
 
-margin-top:25px;
+margin-top:30px;
 
 
 }
@@ -685,13 +795,18 @@ var(--panel);
 
 border:
 
-1px solid var(--line);
+1px solid var(--panel-border);
 
 
-border-radius:20px;
+border-radius:22px;
 
 
-padding:28px;
+padding:30px;
+
+
+backdrop-filter:
+
+blur(20px);
 
 
 }
@@ -701,13 +816,13 @@ padding:28px;
 .status-title{
 
 
-font-size:14px;
-
-
 color:var(--sub);
 
 
-letter-spacing:1px;
+letter-spacing:2px;
+
+
+font-size:13px;
 
 
 }
@@ -717,16 +832,13 @@ letter-spacing:1px;
 .big-number{
 
 
-font-size:42px;
+font-size:46px;
 
 
-font-weight:bold;
+font-weight:700;
 
 
 margin:25px 0;
-
-
-color:white;
 
 
 }
@@ -739,31 +851,27 @@ color:white;
 color:var(--sub);
 
 
-font-size:13px;
-
-
 }
+
+
 
 
 
 .sub-data{
 
 
-margin-top:25px;
-
-
-padding-top:15px;
-
-
-border-top:
-
-1px solid var(--line);
-
-
 display:flex;
 
 
 justify-content:space-between;
+
+
+padding:15px 0;
+
+
+border-bottom:
+
+1px solid var(--panel-border);
 
 
 color:var(--sub);
@@ -792,26 +900,188 @@ font-weight:bold;
 
 
 
-.environment{
+/* =====================
+SENSORS
+===================== */
 
 
-display:flex;
+.sensor-grid{
 
 
-gap:30px;
+display:grid;
 
 
-margin:30px 0;
+grid-template-columns:
+
+repeat(2,1fr);
+
+
+gap:25px;
 
 
 }
 
 
 
-.environment div{
+.panel{
+
+
+background:
+
+var(--panel);
+
+
+border:
+
+1px solid var(--panel-border);
+
+
+border-radius:22px;
+
+
+padding:25px;
+
+
+backdrop-filter:
+
+blur(20px);
+
+
+}
+
+
+
+canvas{
+
+
+height:280px!important;
+
+
+width:100%!important;
+
+
+}
+
+
+
+
+
+
+
+
+
+/* =====================
+TELEMETRY
+===================== */
+
+
+.telemetry-item{
+
+
+background:
+
+rgba(255,255,255,.04);
+
+
+border-left:
+
+3px solid var(--blue);
+
+
+padding:18px;
+
+
+border-radius:14px;
+
+
+margin-bottom:15px;
+
+
+}
+
+
+
+.telemetry-item h3{
+
+
+color:var(--blue);
 
 
 font-size:14px;
+
+
+margin-bottom:12px;
+
+
+}
+
+
+
+.telemetry-item p{
+
+
+display:inline-block;
+
+
+margin-right:25px;
+
+
+color:#d7edf8;
+
+
+}
+
+
+
+
+
+
+
+
+/* =====================
+HARDWARE
+===================== */
+
+
+.hardware-layout{
+
+
+display:grid;
+
+
+grid-template-columns:
+
+1fr 1fr;
+
+
+gap:30px;
+
+
+}
+
+
+
+.device-show{
+
+
+height:500px;
+
+
+display:flex;
+
+
+align-items:center;
+
+
+justify-content:center;
+
+
+border:
+
+1px dashed var(--blue);
+
+
+border-radius:20px;
 
 
 color:var(--sub);
@@ -821,121 +1091,89 @@ color:var(--sub);
 
 
 
-.environment strong{
 
 
-display:block;
+.energy-system{
 
 
-font-size:28px;
+display:flex;
 
 
-margin-top:10px;
+flex-direction:column;
+
+
+align-items:center;
+
+
+}
+
+
+
+.energy-node{
+
+
+width:280px;
+
+
+padding:20px;
+
+
+text-align:center;
+
+
+background:
+
+rgba(80,200,255,.08);
+
+
+border:
+
+1px solid var(--panel-border);
+
+
+border-radius:18px;
+
+
+}
+
+
+
+.flow-line{
+
+
+height:35px;
+
+
+width:2px;
+
+
+background:var(--blue);
+
+
+}
+
+
+
+
+
+
+
+
+/* =====================
+ANALYSIS
+===================== */
+
+
+.analysis-value{
+
+
+font-size:50px;
+
+
+font-weight:bold;
 
 
 color:white;
-
-
-}
-
-
-
-
-
-
-
-
-
-
-/* ======================
-STREAM
-====================== */
-
-
-.stream-panel{
-
-
-margin-top:25px;
-
-
-background:var(--panel);
-
-
-border:
-
-1px solid var(--line);
-
-
-border-radius:20px;
-
-
-padding:25px;
-
-
-}
-
-
-
-.stream div{
-
-
-padding:12px 0;
-
-
-border-bottom:
-
-1px solid var(--line);
-
-
-color:#cbe9f5;
-
-
-}
-
-
-
-
-
-
-
-
-/* ======================
-COMMON PANEL
-====================== */
-
-
-.panel{
-
-
-background:var(--panel);
-
-
-border:
-
-1px solid var(--line);
-
-
-border-radius:20px;
-
-
-padding:25px;
-
-
-}
-
-
-
-
-
-
-
-canvas{
-
-
-width:100%!important;
-
-
-height:280px!important;
 
 
 }
@@ -953,7 +1191,9 @@ height:280px!important;
 
 .status-grid,
 
-.mission-info{
+.mission-info,
+
+.hardware-layout{
 
 
 grid-template-columns:1fr;
