@@ -1,38 +1,34 @@
-let DATA = [];
-let chart = null;
+let DATA=[];
+
+let chart=null;
 
 
-// =====================
-// LOAD DATA
-// =====================
 
 async function loadData(){
 
     try{
 
-        const response = await fetch("./data.json");
+        const res=await fetch("./data.json");
 
-        if(!response.ok){
+        DATA=await res.json();
 
-            throw new Error("data.json not found");
-
-        }
-
-
-        DATA = await response.json();
-
-
-        console.log("DATA LOADED:", DATA);
+        console.log(DATA);
 
 
         updateDashboard();
 
+        updateLocation();
+
+        updateSensors();
+
+        updateTelemetry();
+
         createChart();
 
 
-    }catch(error){
+    }catch(e){
 
-        console.error(error);
+        console.log(e);
 
     }
 
@@ -42,43 +38,22 @@ async function loadData(){
 
 
 
+function show(v,unit=""){
 
-// =====================
-// NULL DISPLAY
-// =====================
-
-function show(value, unit=""){
-
-
-    if(value === null || value === undefined){
+    if(v===null || v===undefined){
 
         return "NULL";
 
     }
 
-
-    return value + unit;
+    return v+unit;
 
 }
 
 
 
 
-
-
-
-// =====================
-// LAST DATA
-// =====================
-
 function latest(){
-
-    if(DATA.length === 0){
-
-        return null;
-
-    }
-
 
     return DATA[DATA.length-1];
 
@@ -88,22 +63,14 @@ function latest(){
 
 
 
-
-
-
-// =====================
-// GPS LAST VALID
-// =====================
-
 function latestGPS(){
-
 
     return [...DATA]
     .reverse()
-    .find(item =>
+    .find(d=>
 
-        item.x !== null &&
-        item.y !== null
+        d.x!==null &&
+        d.y!==null
 
     );
 
@@ -114,183 +81,135 @@ function latestGPS(){
 
 
 
+// 电池百分比
+
+function battery(v){
+
+    if(v===null || v===undefined){
+
+        return "NULL";
+
+    }
+
+
+    if(v>=12.7)return 100;
+
+    if(v>=12.5)return 95;
+
+    if(v>=12.0)return 90;
+
+    if(v>=11.4)return 85;
+
+    if(v>=10.8)return 80;
+
+    return 70;
+
+}
 
 
 
-// =====================
-// DASHBOARD UPDATE
-// =====================
+
+
+
+
+
 
 function updateDashboard(){
 
 
-    let d = latest();
+let d=latest();
 
+if(!d)return;
 
-    if(!d){
 
-        return;
 
-    }
+let map={
 
 
+currentTemp:
+show(d.t," ℃"),
 
 
+voltage:
+show(d.v," V"),
 
-    // 时间
 
-    let time =
-    document.getElementById("time");
+current:
+show(d.a),
 
 
-    if(time){
+solar:
+show(d.s),
 
-        time.innerHTML =
-        d.time.substring(11,19);
 
-    }
+insideTemp:
+show(d.t),
 
 
+insideHum:
+show(d.h),
 
 
+outsideTemp:
+show(d.j)
 
 
-    // 当前温度 t
 
-    let temp =
-    document.getElementById("currentTemp");
+};
 
 
-    if(temp){
 
-        temp.innerHTML =
-        show(d.t," ℃");
+for(let id in map){
 
-    }
+let el=document.getElementById(id);
 
+if(el){
 
+el.innerHTML=map[id];
 
+}
 
+}
 
 
 
 
-    // 电压
 
-    let voltage =
-    document.getElementById("voltage");
+let soc=battery(d.v);
 
 
-    if(voltage){
+let socEl=document.getElementById(
+"batterySOC"
+);
 
-        voltage.innerHTML =
-        show(d.v," V");
 
-    }
+if(socEl){
 
+socEl.innerHTML=
 
+soc==="NULL"
+?
+"NULL"
+:
+soc+"%";
 
+}
 
 
 
-    // 电流
+let bar=document.getElementById(
+"batteryProgress"
+);
 
-    let current =
-    document.getElementById("current");
 
+if(bar && soc!=="NULL"){
 
-    if(current){
+bar.style.width=soc+"%";
 
-        current.innerHTML =
-        show(d.a);
+}
 
-    }
 
-
-
-
-
-
-
-    // 太阳辐射
-
-    let solar =
-    document.getElementById("solar");
-
-
-    if(solar){
-
-        solar.innerHTML =
-        show(d.s);
-
-    }
-
-
-
-
-
-
-
-
-    // 仓内温度
-
-    let insideTemp =
-    document.getElementById("insideTemp");
-
-
-    if(insideTemp){
-
-        insideTemp.innerHTML =
-        show(d.t);
-
-    }
-
-
-
-
-
-
-
-
-    // 仓内湿度
-
-    let insideHum =
-    document.getElementById("insideHum");
-
-
-    if(insideHum){
-
-        insideHum.innerHTML =
-        show(d.h);
-
-    }
-
-
-
-
-
-
-
-
-    // 舱外温度 SHT35
-
-    let outsideTemp =
-    document.getElementById("outsideTemp");
-
-
-    if(outsideTemp){
-
-        outsideTemp.innerHTML =
-        show(d.j);
-
-    }
-
-
-
-
-
-
-    updateGPS();
+updateGPS();
 
 
 }
@@ -302,66 +221,68 @@ function updateDashboard(){
 
 
 
-
-// =====================
-// GPS UPDATE
-// =====================
 
 function updateGPS(){
 
 
-    let gps = latestGPS();
+let g=latestGPS();
 
 
-    if(!gps){
-
-        return;
-
-    }
+if(!g)return;
 
 
 
-    let lat =
-    document.getElementById("latitude");
+let data={
 
 
-    if(lat){
-
-        lat.innerHTML =
-        gps.x.toFixed(6);
-
-    }
+latitude:
+g.x.toFixed(6),
 
 
+longitude:
+g.y.toFixed(6),
+
+
+satellites:
+show(g.n),
+
+
+latitudePage:
+g.x.toFixed(6),
+
+
+longitudePage:
+g.y.toFixed(6),
+
+
+satellitesPage:
+show(g.n),
+
+
+gpsStatusPage:
+show(g.g),
+
+
+modePage:
+show(g.mode)
 
 
 
-    let lon =
-    document.getElementById("longitude");
-
-
-    if(lon){
-
-        lon.innerHTML =
-        gps.y.toFixed(6);
-
-    }
+};
 
 
 
+for(let id in data){
 
+let el=document.getElementById(id);
 
+if(el){
 
-    let sat =
-    document.getElementById("satellites");
+el.innerHTML=data[id];
 
+}
 
-    if(sat){
-
-        sat.innerHTML =
-        show(gps.n);
-
-    }
+}
 
 
 }
@@ -374,144 +295,209 @@ function updateGPS(){
 
 
 
-// =====================
-// CHART
-// =====================
+
+function updateSensors(){
+
+
+let d=latest();
+
+
+if(!d)return;
+
+
+
+let data={
+
+
+outTempPage:
+show(d.j),
+
+
+outHumPage:
+show(d.k),
+
+
+inTempPage:
+show(d.t),
+
+
+inHumPage:
+show(d.h),
+
+
+solarPage:
+show(d.s),
+
+
+currentPage:
+show(d.a)
+
+
+
+};
+
+
+
+for(let id in data){
+
+
+let el=document.getElementById(id);
+
+
+if(el){
+
+el.innerHTML=data[id];
+
+}
+
+
+}
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+function updateTelemetry(){
+
+
+let box=document.getElementById(
+"telemetryData"
+);
+
+
+if(!box)return;
+
+
+
+box.innerHTML="";
+
+
+
+DATA.slice(-10)
+.reverse()
+.forEach(d=>{
+
+
+let row=document.createElement(
+"div"
+);
+
+
+row.className="telemetry-row";
+
+
+row.innerHTML=`
+
+<div>${d.time.substring(11,19)}</div>
+
+<div>${show(d.v,"V")}</div>
+
+<div>${show(d.a,"mA")}</div>
+
+<div>${show(d.s,"W/m²")}</div>
+
+<div>${show(d.j,"℃")}</div>
+
+<div>${show(d.k,"%")}</div>
+
+<div>${show(d.t,"℃")}</div>
+
+<div>${show(d.h,"%")}</div>
+
+`;
+
+box.appendChild(row);
+
+
+
+});
+
+
+}
+
+
+
+
+
+
+
+
 
 function createChart(){
 
 
-    let canvas =
-    document.getElementById("trendChart");
+let c=document.getElementById(
+"trendChart"
+);
 
 
+if(!c)return;
 
-    if(!canvas){
 
-        return;
 
-    }
+chart=new Chart(c,{
 
+type:"line",
 
 
+data:{
 
-    if(chart){
 
-        chart.destroy();
+labels:
 
-    }
+DATA.map(d=>
 
+d.time.substring(11,16)
 
+),
 
 
-    chart = new Chart(canvas,{
+datasets:[
 
+{
 
-        type:"line",
+label:"Temperature",
 
+data:DATA.map(d=>d.t)
 
+},
 
-        data:{
 
+{
 
-            labels:
+label:"Solar",
 
-            DATA.map(item=>
+data:DATA.map(d=>d.s)
 
-                item.time.substring(11,16)
+},
 
-            ),
 
+{
 
+label:"Voltage",
 
+data:DATA.map(d=>d.v)
 
-            datasets:[
+}
 
 
-                {
+]
 
-                    label:"Temperature",
 
-                    data:
+}
 
-                    DATA.map(item=>
 
-                        item.t
 
-                    )
-
-                },
-
-
-
-                {
-
-                    label:"Solar",
-
-                    data:
-
-                    DATA.map(item=>
-
-                        item.s
-
-                    )
-
-                },
-
-
-
-                {
-
-                    label:"Voltage",
-
-                    data:
-
-                    DATA.map(item=>
-
-                        item.v
-
-                    )
-
-                }
-
-
-            ]
-
-        },
-
-
-
-
-
-        options:{
-
-
-            responsive:true,
-
-
-            maintainAspectRatio:false,
-
-
-            scales:{
-
-
-                y:{
-
-
-                    beginAtZero:true
-
-
-                }
-
-
-            }
-
-
-        }
-
-
-
-    });
+});
 
 
 
@@ -523,13 +509,5 @@ function createChart(){
 
 
 
-// =====================
-// START
-// =====================
 
-
-window.onload=function(){
-
-    loadData();
-
-};
+window.onload=loadData;
