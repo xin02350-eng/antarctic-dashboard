@@ -1,13 +1,16 @@
 let DATA = [];
+
 let charts = [];
 
 
 
+
 // =============================
-// LOAD JSON
+// LOAD DATA
 // =============================
 
 async function loadData(){
+
 
     try{
 
@@ -17,19 +20,19 @@ async function loadData(){
 
         if(!res.ok){
 
-            throw new Error(
-                "data.json ERROR"
-            );
+            throw new Error("data.json error");
 
         }
+
 
 
         DATA = await res.json();
 
 
+
         console.log(
-            "DATA LOADED",
-            DATA
+            "DATA LOAD:",
+            DATA.length
         );
 
 
@@ -38,9 +41,9 @@ async function loadData(){
 
 
 
-    }catch(err){
+    }catch(e){
 
-        console.error(err);
+        console.error(e);
 
     }
 
@@ -60,14 +63,15 @@ async function loadData(){
 
 function latest(){
 
+
     return DATA.length
     ?
     DATA[DATA.length-1]
     :
     null;
 
-}
 
+}
 
 
 
@@ -88,9 +92,7 @@ function show(v,unit=""){
 
 
 
-
-
-function set(id,value){
+function setText(id,value){
 
 
     let el=document.getElementById(id);
@@ -111,8 +113,10 @@ function set(id,value){
 
 
 
+
+
 // =============================
-// TIME
+// CLOCK
 // =============================
 
 
@@ -122,18 +126,24 @@ function updateClock(){
     let now=new Date();
 
 
-    let text=
+    let str=
 
-    now.getFullYear()+"-"+
-    String(now.getMonth()+1).padStart(2,"0")+"-"+
-    String(now.getDate()).padStart(2,"0")+" "+
+    now.getFullYear()
+    +"-"+
+    String(now.getMonth()+1).padStart(2,"0")
+    +"-"+
+    String(now.getDate()).padStart(2,"0")
+    +" "
+    +
     now.toLocaleTimeString();
 
 
-    set(
+
+    setText(
         "time",
-        text
+        str
     );
+
 
 
 }
@@ -143,7 +153,6 @@ setInterval(
     updateClock,
     1000
 );
-
 
 
 
@@ -171,12 +180,12 @@ function latestGPS(){
 
     );
 
+
 }
 
 
 
-
-function gpsStatus(v){
+function gpsState(v){
 
 
     if(v==="O"){
@@ -205,15 +214,14 @@ function gpsStatus(v){
 
 
 
-
 function updateGPS(){
 
 
+    let gps=latestGPS();
 
-    let g=latestGPS();
 
 
-    if(!g){
+    if(!gps){
 
         return;
 
@@ -221,54 +229,91 @@ function updateGPS(){
 
 
 
-    set(
+
+    setText(
         "latitude",
-        g.x.toFixed(6)+"°"
+        gps.x.toFixed(6)
+        +"°"
     );
 
 
-    set(
+
+    setText(
         "longitude",
-        g.y.toFixed(6)+"°"
+        gps.y.toFixed(6)
+        +"°"
     );
 
 
-    set(
+
+    setText(
         "satellites",
-        show(g.n)
+        show(gps.n)
     );
 
 
 
-    set(
+
+
+    setText(
         "latitudePage",
-        g.x.toFixed(6)+"°"
+        gps.x.toFixed(6)
+        +"°"
     );
 
 
-    set(
+
+    setText(
         "longitudePage",
-        g.y.toFixed(6)+"°"
+        gps.y.toFixed(6)
+        +"°"
     );
 
 
-    set(
+
+    setText(
         "satellitesPage",
-        show(g.n)
+        show(gps.n)
     );
 
 
 
-    set(
+    setText(
         "gpsStatusPage",
-        gpsStatus(g.g)
+        gpsState(gps.g)
     );
 
 
 
-    set(
-        "modePage",
-        show(g.mode)
+}
+
+
+
+
+
+
+
+
+
+// =============================
+// MODE
+// N/S/E
+// =============================
+
+
+function updateMode(){
+
+
+    let d=latest();
+
+
+    if(!d)return;
+
+
+
+    setText(
+        "systemMode",
+        show(d.mode)
     );
 
 
@@ -294,6 +339,7 @@ function updateDashboard(){
     let d=latest();
 
 
+
     if(!d){
 
         return;
@@ -302,59 +348,72 @@ function updateDashboard(){
 
 
 
-    set(
+    setText(
         "currentTemp",
         show(d.t," ℃")
     );
 
 
 
-    set(
+    setText(
         "voltage",
         show(d.v," V")
     );
 
 
 
-    set(
+    setText(
         "current",
         show(d.a," mA")
     );
 
 
 
-    set(
+    setText(
         "solar",
         show(d.s," W/m²")
     );
 
 
 
-    set(
+    // RS485 仓内
+
+    setText(
         "insideTemp",
         show(d.t," ℃")
     );
 
 
 
-    set(
+    setText(
         "insideHum",
         show(d.h," %")
     );
 
 
 
-    set(
+
+    // SHT35 仓外
+
+    setText(
         "outsideTemp",
         show(d.j," ℃")
     );
 
 
 
-    set(
+    setText(
+        "outsideHum",
+        show(d.k," %")
+    );
+
+
+
+    setText(
         "batterySOC",
         "N/A"
     );
+
 
 
 }
@@ -382,42 +441,45 @@ function updateSensors(){
 
 
 
-    set(
+    setText(
         "outTempPage",
         show(d.j," ℃")
     );
 
 
-    set(
+
+    setText(
         "outHumPage",
         show(d.k," %")
     );
 
 
 
-    set(
+    setText(
         "inTempPage",
         show(d.t," ℃")
     );
 
 
-    set(
+
+    setText(
         "inHumPage",
         show(d.h," %")
     );
 
 
-    set(
+
+    setText(
         "solarPage",
         show(d.s," W/m²")
     );
 
 
-    set(
+
+    setText(
         "currentPage",
         show(d.a," mA")
     );
-
 
 
 }
@@ -431,17 +493,18 @@ function updateSensors(){
 
 
 // =============================
-// TELEMETRY
+// TELEMETRY 20
 // =============================
 
 
 function updateTelemetry(){
 
 
-
-    let box=document.getElementById(
+    let box=
+    document.getElementById(
         "telemetryData"
     );
+
 
 
     if(!box){
@@ -456,16 +519,20 @@ function updateTelemetry(){
 
 
 
-    DATA.slice(-10)
+
+
+    DATA.slice(-20)
 
     .reverse()
 
     .forEach(d=>{
 
 
+
         let row=document.createElement(
             "div"
         );
+
 
 
         row.className=
@@ -475,21 +542,44 @@ function updateTelemetry(){
 
         row.innerHTML=`
 
-        <div>${d.time.substring(11,19)}</div>
+        <div>
+        ${d.time.substring(5,16)}
+        </div>
 
-        <div>${show(d.v," V")}</div>
 
-        <div>${show(d.a," mA")}</div>
+        <div>
+        ${show(d.v," V")}
+        </div>
 
-        <div>${show(d.s," W/m²")}</div>
 
-        <div>${show(d.j," ℃")}</div>
+        <div>
+        ${show(d.a," mA")}
+        </div>
 
-        <div>${show(d.k," %")}</div>
 
-        <div>${show(d.t," ℃")}</div>
+        <div>
+        ${show(d.s," W/m²")}
+        </div>
 
-        <div>${show(d.h," %")}</div>
+
+        <div>
+        ${show(d.j," ℃")}
+        </div>
+
+
+        <div>
+        ${show(d.k," %")}
+        </div>
+
+
+        <div>
+        ${show(d.t," ℃")}
+        </div>
+
+
+        <div>
+        ${show(d.h," %")}
+        </div>
 
         `;
 
@@ -518,11 +608,18 @@ function updateTelemetry(){
 // =============================
 
 
-function createChart(id,title,labels,data){
+function createChart(
+id,
+name,
+data,
+zero=false
+){
 
 
 
-    let canvas=document.getElementById(id);
+    let canvas=
+    document.getElementById(id);
+
 
 
     if(!canvas){
@@ -533,8 +630,7 @@ function createChart(id,title,labels,data){
 
 
 
-
-    let c=new Chart(
+    let chart=new Chart(
         canvas,
         {
 
@@ -544,14 +640,19 @@ function createChart(id,title,labels,data){
         data:{
 
 
-            labels:labels,
+        labels:
+
+        DATA.map(d=>
+
+            d.time.substring(11,16)
+
+        ),
 
 
-            datasets:[
 
-            {
+        datasets:[{
 
-            label:title,
+            label:name,
 
             data:data,
 
@@ -559,45 +660,50 @@ function createChart(id,title,labels,data){
 
             tension:.3
 
-            }
-
-
-            ]
+        }]
 
 
         },
 
 
+
         options:{
 
 
-            responsive:true,
+        responsive:true,
 
 
-            maintainAspectRatio:false,
+        maintainAspectRatio:false,
 
 
-            scales:{
+
+        scales:{
 
 
-                y:{
-
-                    beginAtZero:true
-
-                }
+        y:{
 
 
-            }
+        beginAtZero:zero
 
 
         }
 
 
-    });
+        }
 
 
 
-    charts.push(c);
+        }
+
+
+        }
+
+
+
+    );
+
+
+    charts.push(chart);
 
 
 }
@@ -614,54 +720,29 @@ function createCharts(){
 
 
 
-    let labels=
-
-    DATA.map(d=>
-
-        d.time.substring(11,16)
-
-    );
-
-
-
-    createChart(
-
-        "trendChart",
-
-        "Temperature",
-
-        labels,
-
-        DATA.map(d=>d.t)
-
-    );
-
-
-
-
-    createChart(
-
-        "analysisTemp",
-
-        "Cabin Temperature",
-
-        labels,
-
-        DATA.map(d=>d.t)
-
-    );
-
-
-
     createChart(
 
         "analysisSolar",
 
         "Solar Irradiance",
 
-        labels,
+        DATA.map(d=>d.s),
 
-        DATA.map(d=>d.s)
+        true
+
+    );
+
+
+
+    createChart(
+
+        "analysisCurrent",
+
+        "Current",
+
+        DATA.map(d=>d.a),
+
+        true
 
     );
 
@@ -673,11 +754,63 @@ function createCharts(){
 
         "Voltage",
 
-        labels,
+        DATA.map(d=>d.v),
 
-        DATA.map(d=>d.v)
+        false
 
     );
+
+
+
+    createChart(
+
+        "windChart",
+
+        "Wind Speed",
+
+        DATA.map(d=>null),
+
+        true
+
+    );
+
+
+}
+
+
+
+
+
+
+
+
+
+function updateAnalysis(){
+
+
+    setText(
+
+    "dataCount",
+
+    DATA.length
+
+    );
+
+
+
+    if(DATA.length>0){
+
+
+        setText(
+
+        "lastUpdate",
+
+        latest().time
+
+        );
+
+
+    }
 
 
 
@@ -691,12 +824,8 @@ function createCharts(){
 
 
 
-// =============================
-// UPDATE ALL
-// =============================
-
-
 function updateAll(){
+
 
 
     updateClock();
@@ -708,10 +837,16 @@ function updateAll(){
     updateGPS();
 
 
+    updateMode();
+
+
     updateSensors();
 
 
     updateTelemetry();
+
+
+    updateAnalysis();
 
 
     createCharts();
@@ -724,8 +859,5 @@ function updateAll(){
 
 
 
-window.onload=function(){
 
-    loadData();
-
-};
+window.onload=loadData;

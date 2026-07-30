@@ -1,30 +1,24 @@
-/* ===============================
-ANTARCTIC NEXUS Ω
-Polar Research Control System V2
-=============================== */
-
-
 :root{
 
-    --bg:#061522;
+--bg:#061522;
 
-    --panel:#0D2438;
+--panel:#0c2235;
 
-    --panel2:#102C44;
+--panel2:#102c44;
 
-    --line:#1F4968;
+--line:#23465f;
 
-    --blue:#4DB9E8;
+--blue:#4db9e8;
 
-    --cyan:#7ED7FF;
+--cyan:#7ed7ff;
 
-    --text:#EAF6FF;
+--text:#eaf6ff;
 
-    --sub:#8EA9BD;
+--sub:#91aabd;
 
-    --green:#4FD18B;
+--green:#4fd18b;
 
-    --red:#FF6B6B;
+--orange:#ffb84d;
 
 }
 
@@ -32,11 +26,11 @@ Polar Research Control System V2
 
 *{
 
-    margin:0;
+margin:0;
 
-    padding:0;
+padding:0;
 
-    box-sizing:border-box;
+box-sizing:border-box;
 
 }
 
@@ -44,47 +38,33 @@ Polar Research Control System V2
 
 body{
 
+background:
 
-    background:
+linear-gradient(
+135deg,
+#061522,
+#0b2033
+);
 
-    radial-gradient(
+color:var(--text);
 
-    circle at top,
+font-family:
 
-    #12304A,
+"Microsoft YaHei",
+Arial,
+sans-serif;
 
-    #061522 55%
-
-    );
-
-
-    color:var(--text);
-
-
-    font-family:
-
-    "Inter",
-
-    "Microsoft YaHei",
-
-    Arial,
-
-    sans-serif;
-
-
-    min-height:100vh;
+min-height:100vh;
 
 }
-
-
 
 
 
 a{
 
-    color:inherit;
+text-decoration:none;
 
-    text-decoration:none;
+color:inherit;
 
 }
 
@@ -93,141 +73,110 @@ a{
 
 
 
-
-/* ===============================
+/* =================
 LAYOUT
-=============================== */
+================= */
 
 
 .app{
 
-    display:flex;
+display:flex;
 
-    min-height:100vh;
+min-height:100vh;
 
 }
 
-
-
-
-
-/* ===============================
-SIDEBAR
-=============================== */
 
 
 .sidebar{
 
+width:260px;
 
-    width:260px;
+position:fixed;
 
+top:0;
 
-    position:fixed;
+bottom:0;
 
+padding:30px 20px;
 
-    top:0;
+background:
 
-    bottom:0;
+#081b2b;
 
+border-right:
 
-    background:
-
-    linear-gradient(
-
-    180deg,
-
-    #091E31,
-
-    #061522
-
-    );
-
-
-    border-right:
-
-    1px solid var(--line);
-
-
-    padding:28px 20px;
-
+1px solid var(--line);
 
 }
 
 
 
+main{
+
+margin-left:260px;
+
+width:calc(100% - 260px);
+
+padding:30px 40px;
+
+}
+
+
+
+
+
+/* =================
+BRAND
+================= */
 
 
 .brand{
 
+display:flex;
 
-    display:flex;
+gap:15px;
 
-    align-items:center;
+align-items:center;
 
-    gap:14px;
-
-
-    margin-bottom:45px;
-
+margin-bottom:45px;
 
 }
-
-
 
 
 
 .logo{
 
+width:50px;
 
-    width:48px;
+height:50px;
 
-    height:48px;
+border-radius:12px;
 
+background:
 
-    border-radius:12px;
-
-
-    background:
-
-    linear-gradient(
-
-    135deg,
-
-    #4DB9E8,
-
-    #1C6C9A
-
-    );
+linear-gradient(
+135deg,
+#4db9e8,
+#1c628b
+);
 
 
-    display:flex;
+display:flex;
 
-    justify-content:center;
+align-items:center;
 
-    align-items:center;
+justify-content:center;
 
-
-    font-size:30px;
-
-
-    color:white;
-
-
-    font-weight:700;
-
+font-size:30px;
 
 }
 
 
 
-
 .brand h1{
 
-
-    font-size:18px;
-
-    line-height:1.2;
-
+font-size:18px;
 
 }
 
@@ -235,18 +184,13 @@ SIDEBAR
 
 .brand p{
 
+font-size:11px;
 
-    color:var(--sub);
+color:var(--sub);
 
-
-    font-size:11px;
-
-    margin-top:6px;
-
+margin-top:5px;
 
 }
-
-
 
 
 
@@ -254,38 +198,25 @@ SIDEBAR
 
 nav{
 
+display:flex;
 
-    display:flex;
+flex-direction:column;
 
-    flex-direction:column;
-
-    gap:10px;
-
+gap:8px;
 
 }
-
-
 
 
 
 nav a{
 
+padding:13px 15px;
 
-    padding:13px 15px;
+border-radius:10px;
 
-
-    border-radius:10px;
-
-
-    color:#B7D1E4;
-
-
-    font-size:14px;
-
+color:#b8d0df;
 
 }
-
-
 
 
 
@@ -293,19 +224,15 @@ nav a:hover,
 
 nav a.active{
 
+background:
 
-    background:
+rgba(77,185,232,.15);
 
-    rgba(77,185,232,.18);
+color:white;
 
+border-left:
 
-    color:white;
-
-
-    border-left:
-
-    3px solid var(--blue);
-
+3px solid var(--blue);
 
 }
 
@@ -316,70 +243,34 @@ nav a.active{
 
 
 
-
-/* ===============================
-MAIN
-=============================== */
-
-
-main{
-
-
-    margin-left:260px;
-
-
-    width:
-
-    calc(100% - 260px);
-
-
-    padding:30px 40px;
-
-
-}
-
-
-
-
-
+/* =================
+TOP
+================= */
 
 
 .topbar{
 
+display:flex;
 
-    height:70px;
+justify-content:flex-end;
 
+gap:40px;
 
-    display:flex;
+padding-bottom:20px;
 
+border-bottom:
 
-    justify-content:flex-end;
-
-
-    align-items:center;
-
-
-    gap:45px;
-
-
-    border-bottom:
-
-    1px solid var(--line);
-
+1px solid var(--line);
 
 }
-
 
 
 
 .topbar div{
 
+font-size:12px;
 
-    color:var(--sub);
-
-
-    font-size:12px;
-
+color:var(--sub);
 
 }
 
@@ -387,21 +278,15 @@ main{
 
 .topbar strong{
 
+display:block;
 
-    display:block;
+font-size:16px;
 
+margin-top:5px;
 
-    margin-top:6px;
-
-
-    color:white;
-
-
-    font-size:16px;
-
+color:white;
 
 }
-
 
 
 
@@ -410,23 +295,15 @@ main{
 
 .title{
 
-
-    margin:35px 0;
-
+margin:35px 0;
 
 }
 
 
 
-
 .title h2{
 
-
-    font-size:34px;
-
-
-    letter-spacing:1px;
-
+font-size:32px;
 
 }
 
@@ -434,12 +311,9 @@ main{
 
 .title p{
 
+margin-top:8px;
 
-    margin-top:8px;
-
-
-    color:var(--sub);
-
+color:var(--sub);
 
 }
 
@@ -450,106 +324,60 @@ main{
 
 
 
-/* ===============================
+/* =================
 CARDS
-=============================== */
+================= */
 
 
 .cards{
 
+display:grid;
 
-    display:grid;
+grid-template-columns:
 
+repeat(6,1fr);
 
-    grid-template-columns:
-
-    repeat(6,1fr);
-
-
-    gap:18px;
-
+gap:18px;
 
 }
-
-
-
 
 
 
 .card{
 
+background:
 
-    background:
+var(--panel);
 
-    linear-gradient(
+border:
 
-    145deg,
+1px solid var(--line);
 
-    var(--panel2),
+border-radius:16px;
 
-    var(--panel)
-
-    );
-
-
-    border:
-
-    1px solid var(--line);
-
-
-    border-radius:16px;
-
-
-    padding:22px;
-
-
-    min-height:160px;
-
-
-    box-shadow:
-
-    0 10px 30px rgba(0,0,0,.25);
-
+padding:22px;
 
 }
-
-
-
-
 
 
 
 .card h3{
 
+font-size:13px;
 
-    color:var(--sub);
-
-
-    font-size:13px;
-
-
-    font-weight:500;
-
+color:var(--sub);
 
 }
 
 
 
-
 .number{
 
+font-size:32px;
 
-    margin-top:25px;
+font-weight:bold;
 
-
-    font-size:34px;
-
-
-    font-weight:700;
-
-
-    color:white;
-
+margin-top:25px;
 
 }
 
@@ -557,58 +385,11 @@ CARDS
 
 .card p{
 
+margin-top:10px;
 
-    margin-top:10px;
+font-size:13px;
 
-
-    color:var(--sub);
-
-
-    font-size:13px;
-
-
-}
-
-
-
-
-
-
-.battery-bar{
-
-
-    margin-top:20px;
-
-
-    height:7px;
-
-
-    background:#18364D;
-
-
-    border-radius:10px;
-
-
-    overflow:hidden;
-
-
-}
-
-
-
-
-
-#batteryProgress{
-
-
-    height:100%;
-
-
-    background:var(--green);
-
-
-    width:0;
-
+color:var(--sub);
 
 }
 
@@ -619,73 +400,54 @@ CARDS
 
 
 
-/* ===============================
-PANELS
-=============================== */
-
-
-.main-grid{
-
-
-    margin-top:25px;
-
-
-    display:grid;
-
-
-    grid-template-columns:
-
-    1fr 1fr;
-
-
-    gap:25px;
-
-
-}
-
-
-
+/* =================
+PANEL
+================= */
 
 
 .panel{
 
+background:
 
-    background:
+rgba(12,34,53,.95);
 
-    rgba(13,36,56,.95);
+border:
 
+1px solid var(--line);
 
-    border:
+border-radius:18px;
 
-    1px solid var(--line);
+padding:25px;
 
-
-    border-radius:18px;
-
-
-    padding:25px;
-
+margin-bottom:25px;
 
 }
-
-
 
 
 
 .panel-title{
 
+font-size:18px;
 
-    font-size:17px;
+font-weight:bold;
+
+margin-bottom:20px;
+
+}
 
 
-    font-weight:600;
 
 
-    margin-bottom:20px;
 
+.main-grid{
 
-    color:white;
+display:grid;
 
+grid-template-columns:
+
+1fr 1fr;
+
+gap:25px;
 
 }
 
@@ -696,191 +458,99 @@ PANELS
 
 
 
-/* ===============================
-GPS MAP
-=============================== */
+/* =================
+REAL MAP
+================= */
 
 
 .map-box{
 
+height:380px;
 
-    height:320px;
+border-radius:15px;
 
+overflow:hidden;
 
-    border-radius:15px;
+background:
 
+#0a1926;
 
-    background:
-
-
-    linear-gradient(
-
-    135deg,
-
-    #12344D,
-
-    #081A29
-
-    );
-
-
-    position:relative;
-
-
-    overflow:hidden;
-
+position:relative;
 
 }
 
 
 
-
-
-.map-box::before{
-
-
-    content:"";
-
-
-    position:absolute;
-
-
-    inset:0;
-
-
-    background-image:
-
-
-    linear-gradient(
-
-    rgba(77,185,232,.15) 1px,
-
-    transparent 1px
-
-    ),
-
-
-    linear-gradient(
-
-    90deg,
-
-    rgba(77,185,232,.15) 1px,
-
-    transparent 1px
-
-    );
-
-
-    background-size:40px 40px;
-
-
-}
-
+/* 以后真实地图iframe/地图canvas放这里 */
 
 
 
 .location-point{
 
+position:absolute;
 
-    position:absolute;
+width:18px;
 
+height:18px;
 
-    width:18px;
+background:#ff5555;
 
+border-radius:50%;
 
-    height:18px;
+left:50%;
 
+top:50%;
 
-    background:#FF6B6B;
+box-shadow:
 
-
-    border-radius:50%;
-
-
-    left:50%;
-
-
-    top:50%;
-
-
-    box-shadow:
-
-    0 0 20px #FF6B6B;
-
+0 0 20px red;
 
 }
-
-
-
-
 
 
 
 
 .gps-info{
 
+display:grid;
 
-    display:grid;
+grid-template-columns:
 
+repeat(3,1fr);
 
-    grid-template-columns:
+gap:15px;
 
-    repeat(3,1fr);
-
-
-    gap:15px;
-
-
-    margin-top:20px;
-
+margin-top:20px;
 
 }
-
 
 
 
 .gps-info div{
 
+background:#091b2b;
 
-    background:#091D2E;
+padding:15px;
 
+border-radius:10px;
 
-    border:
+font-size:12px;
 
-    1px solid var(--line);
-
-
-    padding:15px;
-
-
-    border-radius:10px;
-
-
-    color:var(--sub);
-
-
-    font-size:12px;
-
+color:var(--sub);
 
 }
-
 
 
 
 .gps-info strong{
 
+display:block;
 
-    display:block;
+margin-top:8px;
 
+font-size:16px;
 
-    margin-top:8px;
-
-
-    color:white;
-
-
-    font-size:16px;
-
+color:white;
 
 }
 
@@ -891,16 +561,17 @@ GPS MAP
 
 
 
-/* ===============================
+
+/* =================
 CHART
-=============================== */
+================= */
 
 
-#trendChart{
+canvas{
 
+width:100%!important;
 
-    height:320px!important;
-
+height:280px!important;
 
 }
 
@@ -910,80 +581,99 @@ CHART
 
 
 
-/* ===============================
+/* =================
+SENSOR 8 CHART
+================= */
+
+
+.sensor-grid{
+
+display:grid;
+
+grid-template-columns:
+
+repeat(2,1fr);
+
+gap:25px;
+
+}
+
+
+
+.sensor-chart{
+
+height:300px;
+
+}
+
+
+
+
+
+
+
+
+
+/* =================
 TELEMETRY
-=============================== */
+================= */
+
+
+.telemetry-box{
+
+max-height:650px;
+
+overflow-y:auto;
+
+}
+
 
 
 .telemetry-head,
 
 .telemetry-row{
 
+display:grid;
 
-    display:grid;
+grid-template-columns:
 
-
-    grid-template-columns:
-
-    150px
-
-    120px
-
-    120px
-
-    120px
-
-    120px
-
-    100px
-
-    120px
-
-    100px;
+150px
+100px
+110px
+120px
+120px
+100px
+120px
+100px;
 
 
-    align-items:center;
-
+align-items:center;
 
 }
-
-
 
 
 
 .telemetry-head{
 
+background:#102c44;
 
-    background:#102C44;
+padding:15px;
 
-
-    padding:15px;
-
-
-    color:var(--cyan);
-
+color:var(--cyan);
 
 }
-
-
 
 
 
 .telemetry-row{
 
+padding:14px;
 
-    padding:14px;
+border-bottom:
 
+1px solid var(--line);
 
-    border-bottom:
-
-    1px solid var(--line);
-
-
-    font-family:
-
-    monospace;
-
+font-family:monospace;
 
 }
 
@@ -993,9 +683,150 @@ TELEMETRY
 
 
 
-/* ===============================
-RESPONSIVE
-=============================== */
+
+/* =================
+HARDWARE
+================= */
+
+
+.device-image{
+
+height:260px;
+
+border:
+
+1px dashed var(--blue);
+
+border-radius:15px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+color:var(--sub);
+
+margin-bottom:30px;
+
+}
+
+
+
+
+.energy-flow{
+
+display:flex;
+
+flex-direction:column;
+
+align-items:center;
+
+gap:15px;
+
+}
+
+
+
+.energy-node{
+
+width:320px;
+
+padding:20px;
+
+text-align:center;
+
+background:
+
+var(--panel2);
+
+border:
+
+1px solid var(--blue);
+
+border-radius:15px;
+
+}
+
+
+
+.energy-line{
+
+height:35px;
+
+width:2px;
+
+background:var(--blue);
+
+}
+
+
+
+
+
+
+
+
+/* =================
+ANALYSIS
+================= */
+
+
+.analysis-grid{
+
+display:grid;
+
+grid-template-columns:
+
+repeat(3,1fr);
+
+gap:25px;
+
+}
+
+
+
+.analysis-card{
+
+background:var(--panel);
+
+border:
+
+1px solid var(--line);
+
+border-radius:15px;
+
+padding:30px;
+
+}
+
+
+
+.analysis-value{
+
+font-size:40px;
+
+font-weight:bold;
+
+color:white;
+
+margin-top:15px;
+
+}
+
+
+
+.analysis-label{
+
+color:var(--sub);
+
+}
+
+
+
+
+
+
 
 
 @media(max-width:1200px){
@@ -1010,8 +841,16 @@ repeat(3,1fr);
 }
 
 
+.sensor-grid,
+
+.main-grid{
+
+grid-template-columns:1fr;
+
 }
 
+
+}
 
 
 @media(max-width:800px){
@@ -1032,60 +871,5 @@ width:100%;
 
 }
 
-
-
-.cards,
-
-.main-grid{
-
-grid-template-columns:1fr;
-
-}
-
-
-}
-.device{
-
-display:flex;
-
-flex-direction:column;
-
-align-items:center;
-
-padding:50px;
-
-}
-
-
-
-.module{
-
-width:300px;
-
-padding:25px;
-
-text-align:center;
-
-background:#102C44;
-
-border:1px solid #4DB9E8;
-
-border-radius:15px;
-
-color:#EAF6FF;
-
-font-weight:600;
-
-}
-
-
-
-.connector{
-
-height:45px;
-
-width:2px;
-
-background:#4DB9E8;
 
 }

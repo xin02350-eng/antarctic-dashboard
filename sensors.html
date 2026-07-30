@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 
-
 <head>
 
 
@@ -19,9 +18,10 @@ ANTARCTIC NEXUS Ω - SENSORS
 <link rel="stylesheet" href="./css/style.css">
 
 
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
 </head>
-
-
 
 
 
@@ -33,14 +33,10 @@ ANTARCTIC NEXUS Ω - SENSORS
 
 
 
-
-
 <aside class="sidebar">
 
 
-
 <div class="brand">
-
 
 <div class="logo">
 
@@ -49,9 +45,7 @@ ANTARCTIC NEXUS Ω - SENSORS
 </div>
 
 
-
 <div>
-
 
 <h1>
 ANTARCTIC<br>
@@ -67,11 +61,7 @@ AUTONOMOUS POLAR MONITORING
 </div>
 
 
-
 </div>
-
-
-
 
 
 
@@ -128,12 +118,7 @@ Analysis
 </a>
 
 
-
 </nav>
-
-
-
-
 
 
 </aside>
@@ -145,11 +130,7 @@ Analysis
 
 
 
-
 <main>
-
-
-
 
 
 <header class="topbar">
@@ -157,9 +138,7 @@ Analysis
 
 <div>
 
-
-SENSOR SYSTEM
-
+SENSOR ARRAY
 
 <strong>
 
@@ -169,7 +148,6 @@ ONLINE
 
 
 </div>
-
 
 
 </header>
@@ -194,7 +172,7 @@ ENVIRONMENT SENSORS
 
 <p>
 
-Multi sensor acquisition system
+Multi-channel environmental monitoring
 
 </p>
 
@@ -209,106 +187,27 @@ Multi sensor acquisition system
 
 
 
-<section class="cards">
-
-
-
-
-
-<div class="card">
-
-
-<h3>
-
-OUTSIDE TEMPERATURE
-
-</h3>
-
-
-
-<div class="number" id="outTempPage">
-
-NULL
-
-</div>
-
-
-<p>
-
-SHT35
-
-</p>
-
-
-
-</div>
+<section class="sensor-grid">
 
 
 
 
 
 
+<div class="panel">
 
-
-<div class="card">
-
-
-<h3>
-
-OUTSIDE HUMIDITY
-
-</h3>
-
-
-
-<div class="number" id="outHumPage">
-
-NULL
-
-</div>
-
-
-<p>
-
-SHT35
-
-</p>
-
-
-
-</div>
-
-
-
-
-
-
-
-
-<div class="card">
-
-
-<h3>
+<div class="panel-title">
 
 CABIN TEMPERATURE
 
-</h3>
-
-
-
-<div class="number" id="inTempPage">
-
-NULL
-
-</div>
-
-
-<p>
+<br>
 
 RS485
 
-</p>
+</div>
 
+
+<canvas id="chartInTemp"></canvas>
 
 
 </div>
@@ -320,30 +219,21 @@ RS485
 
 
 
-<div class="card">
 
+<div class="panel">
 
-<h3>
+<div class="panel-title">
 
 CABIN HUMIDITY
 
-</h3>
-
-
-
-<div class="number" id="inHumPage">
-
-NULL
-
-</div>
-
-
-<p>
+<br>
 
 RS485
 
-</p>
+</div>
 
+
+<canvas id="chartInHum"></canvas>
 
 
 </div>
@@ -355,30 +245,69 @@ RS485
 
 
 
-<div class="card">
+
+<div class="panel">
+
+<div class="panel-title">
+
+OUTSIDE TEMPERATURE
+
+<br>
+
+SHT35
+
+</div>
 
 
-<h3>
+<canvas id="chartOutTemp"></canvas>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<div class="panel">
+
+<div class="panel-title">
+
+OUTSIDE HUMIDITY
+
+<br>
+
+SHT35
+
+</div>
+
+
+<canvas id="chartOutHum"></canvas>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<div class="panel">
+
+<div class="panel-title">
 
 SOLAR IRRADIANCE
 
-</h3>
-
-
-
-<div class="number" id="solarPage">
-
-NULL
-
 </div>
 
 
-<p>
-
-W/m²
-
-</p>
-
+<canvas id="chartSolar"></canvas>
 
 
 </div>
@@ -390,33 +319,69 @@ W/m²
 
 
 
-<div class="card">
 
+<div class="panel">
 
-<h3>
+<div class="panel-title">
 
 CURRENT
 
-</h3>
+</div>
 
 
+<canvas id="chartCurrent"></canvas>
 
-<div class="number" id="currentPage">
-
-NULL
 
 </div>
 
 
-<p>
 
-mA
 
-</p>
 
+
+
+
+
+<div class="panel">
+
+<div class="panel-title">
+
+VOLTAGE
+
+</div>
+
+
+<canvas id="chartVoltage"></canvas>
 
 
 </div>
+
+
+
+
+
+
+
+
+
+<div class="panel">
+
+<div class="panel-title">
+
+WIND SPEED
+
+<br>
+
+NO DATA
+
+</div>
+
+
+<canvas id="chartWind"></canvas>
+
+
+</div>
+
 
 
 
@@ -434,12 +399,7 @@ mA
 </main>
 
 
-
-
-
 </div>
-
-
 
 
 
@@ -448,9 +408,7 @@ mA
 <script src="./js/main.js"></script>
 
 
-
 </body>
-
 
 
 </html>

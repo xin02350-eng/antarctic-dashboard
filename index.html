@@ -26,9 +26,7 @@ ANTARCTIC NEXUS Ω
 
 
 
-
 <body>
-
 
 
 <div class="app">
@@ -40,20 +38,15 @@ ANTARCTIC NEXUS Ω
 <aside class="sidebar">
 
 
-
 <div class="brand">
 
 
 <div class="logo">
-
 Ω
-
 </div>
 
 
-
 <div>
-
 
 <h1>
 ANTARCTIC<br>
@@ -69,10 +62,7 @@ AUTONOMOUS POLAR MONITORING
 </div>
 
 
-
 </div>
-
-
 
 
 
@@ -128,11 +118,8 @@ Analysis
 </nav>
 
 
-
-
-
-
 </aside>
+
 
 
 
@@ -146,17 +133,12 @@ Analysis
 
 
 
-
-
 <header class="topbar">
-
 
 
 <div>
 
-
 LOCAL TIME
-
 
 <strong id="time">
 
@@ -164,39 +146,14 @@ LOCAL TIME
 
 </strong>
 
-
 </div>
-
-
 
 
 
 
 <div>
 
-
-CABIN TEMPERATURE
-
-
-<strong id="currentTemp">
-
-NULL
-
-</strong>
-
-
-</div>
-
-
-
-
-
-
-<div>
-
-
-STATION ID
-
+STATION
 
 <strong>
 
@@ -204,9 +161,23 @@ ANT-A01
 
 </strong>
 
-
 </div>
 
+
+
+
+
+<div>
+
+SYSTEM MODE
+
+<strong id="systemMode">
+
+--
+
+</strong>
+
+</div>
 
 
 
@@ -225,14 +196,14 @@ ANT-A01
 
 <h2>
 
-DASHBOARD
+MISSION DASHBOARD
 
 </h2>
 
 
 <p>
 
-Autonomous Antarctic Environmental Monitoring Platform
+Autonomous Antarctic Environmental Monitoring System
 
 </p>
 
@@ -244,6 +215,12 @@ Autonomous Antarctic Environmental Monitoring Platform
 
 
 
+
+
+
+<!-- =================
+SYSTEM STATUS
+================= -->
 
 
 
@@ -263,7 +240,6 @@ BATTERY VOLTAGE
 </h3>
 
 
-
 <div class="number" id="voltage">
 
 NULL
@@ -271,15 +247,11 @@ NULL
 </div>
 
 
-
-
 <p>
 
-STATE OF CHARGE : N/A
+Power System
 
 </p>
-
-
 
 
 </div>
@@ -302,7 +274,6 @@ CURRENT
 </h3>
 
 
-
 <div class="number" id="current">
 
 NULL
@@ -310,13 +281,11 @@ NULL
 </div>
 
 
-
 <p>
 
 mA
 
 </p>
-
 
 
 </div>
@@ -339,7 +308,6 @@ SOLAR IRRADIANCE
 </h3>
 
 
-
 <div class="number" id="solar">
 
 NULL
@@ -347,13 +315,11 @@ NULL
 </div>
 
 
-
 <p>
 
 W/m²
 
 </p>
-
 
 
 </div>
@@ -371,10 +337,9 @@ W/m²
 
 <h3>
 
-CABIN TEMPERATURE
+CABIN TEMP
 
 </h3>
-
 
 
 <div class="number" id="insideTemp">
@@ -384,13 +349,45 @@ NULL
 </div>
 
 
-
 <p>
 
 RS485
 
 </p>
 
+
+</div>
+
+
+
+
+
+
+
+
+
+<div class="card">
+
+
+<h3>
+
+OUTSIDE TEMP
+
+</h3>
+
+
+<div class="number" id="outsideTemp">
+
+NULL
+
+</div>
+
+
+<p>
+
+SHT35
+
+</p>
 
 
 </div>
@@ -413,13 +410,11 @@ CABIN HUMIDITY
 </h3>
 
 
-
 <div class="number" id="insideHum">
 
 NULL
 
 </div>
-
 
 
 <p>
@@ -429,47 +424,7 @@ RS485
 </p>
 
 
-
 </div>
-
-
-
-
-
-
-
-
-
-<div class="card">
-
-
-<h3>
-
-OUTSIDE TEMPERATURE
-
-</h3>
-
-
-
-<div class="number" id="outsideTemp">
-
-NULL
-
-</div>
-
-
-
-<p>
-
-SHT35
-
-</p>
-
-
-
-</div>
-
-
 
 
 
@@ -480,6 +435,12 @@ SHT35
 
 
 
+
+
+
+<!-- =================
+MAP + STATUS
+================= -->
 
 
 
@@ -496,7 +457,7 @@ SHT35
 
 <div class="panel-title">
 
-GPS POSITION
+GLOBAL POSITION
 
 </div>
 
@@ -507,14 +468,16 @@ GPS POSITION
 <div class="map-box">
 
 
+<!--
+这里后续接真实世界地图
+-->
+
 <div class="location-point">
 
 </div>
 
 
-
 </div>
-
 
 
 
@@ -527,7 +490,9 @@ GPS POSITION
 
 <div>
 
+
 LATITUDE
+
 
 <strong id="latitude">
 
@@ -544,7 +509,9 @@ NULL
 
 <div>
 
+
 LONGITUDE
+
 
 <strong id="longitude">
 
@@ -559,10 +526,11 @@ NULL
 
 
 
-
 <div>
 
+
 SATELLITES
+
 
 <strong id="satellites">
 
@@ -596,7 +564,7 @@ NULL
 
 <div class="panel-title">
 
-REAL TIME TREND
+SYSTEM OVERVIEW
 
 </div>
 
@@ -605,9 +573,147 @@ REAL TIME TREND
 
 
 
-<canvas id="trendChart">
 
-</canvas>
+<div class="gps-info">
+
+
+
+<div>
+
+
+GPS STATUS
+
+
+<strong id="gpsStatusPage">
+
+NULL
+
+</strong>
+
+
+</div>
+
+
+
+
+
+<div>
+
+
+MODE
+
+
+<strong id="systemMode">
+
+NULL
+
+</strong>
+
+
+</div>
+
+
+
+
+
+
+<div>
+
+
+SOC
+
+
+<strong>
+
+N/A
+
+</strong>
+
+
+</div>
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+<br>
+
+
+
+
+
+<div class="gps-info">
+
+
+
+<div>
+
+
+DEVICE 01
+
+
+<strong>
+
+ANT-A01
+
+</strong>
+
+
+</div>
+
+
+
+
+
+<div>
+
+
+DEVICE 02
+
+
+<strong>
+
+ANT-A02
+
+</strong>
+
+
+</div>
+
+
+
+
+
+
+<div>
+
+
+STATUS
+
+
+<strong>
+
+--
+
+</strong>
+
+
+</div>
+
+
+
+
+</div>
+
 
 
 
@@ -627,17 +733,10 @@ REAL TIME TREND
 
 
 
-
 </main>
 
 
-
-
-
-
-
 </div>
-
 
 
 
