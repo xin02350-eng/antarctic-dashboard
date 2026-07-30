@@ -1,180 +1,276 @@
-let DATA=[];
-
-let trendChart=null;
-
+let DATA = [];
+let chart = null;
 
 
-// ==========================
-// LOAD JSON
-// ==========================
+// =========================
+// 读取数据
+// =========================
 
 async function loadData(){
 
-try{
+    try{
 
+        const res = await fetch("./data.json");
 
-const res =
-await fetch("../data.json");
+        DATA = await res.json();
 
+        updateAll();
 
-DATA =
-await res.json();
+    }catch(e){
 
+        console.log("DATA ERROR",e);
 
-
-updateDashboard();
-
-updateLocation();
-
-updateSensors();
-
-updateTelemetry();
-
-createTrendChart();
-
-
-}
-
-catch(e){
-
-console.error(
-"DATA ERROR:",
-e
-);
-
-}
+    }
 
 }
 
 
 
+// =========================
+// NULL显示
+// =========================
 
+function value(v,unit=""){
 
+    if(v === null || v === undefined){
 
+        return "NULL";
 
-// ==========================
-// FORMAT
-// ==========================
+    }
 
-function show(v,unit=""){
-
-
-if(v===null || v===undefined){
-
-return "NULL";
-
-}
-
-
-return v+unit;
-
+    return v + unit;
 
 }
 
 
 
-
-
-
+// =========================
+// 最新数据
+// =========================
 
 function latest(){
 
-
-if(DATA.length===0)
-
-return null;
-
-
-
-return DATA[DATA.length-1];
-
+    return DATA[DATA.length-1];
 
 }
 
 
 
+// =========================
+// GPS最近有效
+// =========================
 
+function gpsData(){
 
-
-
-
-
-// ==========================
-// GPS ONLY
-// 最近有效
-// ==========================
-
-function latestGPS(){
-
-
-return [...DATA]
-
-.reverse()
-
-.find(d=>
-
-d.x!==null &&
-
-d.y!==null
-
-);
-
+    return [...DATA]
+    .reverse()
+    .find(
+        d =>
+        d.x !== null &&
+        d.y !== null
+    );
 
 }
 
 
 
-
-
-
-
-
-
-// ==========================
-// BATTERY
-// ==========================
-
+// =========================
+// 电池百分比
+// =========================
 
 function battery(v){
 
 
-if(v===null || v===undefined)
+    if(v===null || v===undefined){
 
-return "NULL";
+        return "NULL";
 
-
-
-if(v>=12.7)
-
-return 100;
+    }
 
 
+    if(v>=12.7) return 100;
 
-if(v>=12.5)
+    if(v>=12.5) return 85;
 
-return 85;
+    if(v>=12.3) return 65;
+
+    if(v>=12.1) return 45;
+
+    if(v>=11.9) return 25;
+
+    return 10;
 
 
-
-if(v>=12.3)
-
-return 65;
-
-
-
-if(v>=12.1)
-
-return 45;
+}
 
 
 
-if(v>=11.9)
 
-return 25;
+// =========================
+// 首页
+// =========================
+
+function dashboard(){
+
+
+    let d = latest();
+
+    if(!d)return;
 
 
 
-return 10;
+    let ids={
+
+        currentTemp:
+        value(d.t," ℃"),
+
+        voltage:
+        value(d.v," V"),
+
+        current:
+        value(d.a),
+
+        solar:
+        value(d.s),
+
+        insideTemp:
+        value(d.t),
+
+        insideHum:
+        value(d.h),
+
+        outsideTemp:
+        value(d.j)
+
+    };
+
+
+
+    for(let id in ids){
+
+        let el=document.getElementById(id);
+
+        if(el){
+
+            el.innerHTML=ids[id];
+
+        }
+
+    }
+
+
+
+
+
+    let soc=battery(d.v);
+
+
+    let socEl=document.getElementById(
+        "batterySOC"
+    );
+
+
+    if(socEl){
+
+        socEl.innerHTML=
+        soc==="NULL"
+        ?
+        "NULL"
+        :
+        soc+"%";
+
+    }
+
+
+
+
+    let bar=document.getElementById(
+        "batteryProgress"
+    );
+
+
+    if(bar && soc!=="NULL"){
+
+        bar.style.width=soc+"%";
+
+    }
+
+
+
+}
+
+
+
+
+
+
+
+// =========================
+// GPS
+// =========================
+
+function updateGPS(){
+
+
+    let d=gpsData();
+
+
+    if(!d)return;
+
+
+
+    let list={
+
+
+        latitude:
+        d.x.toFixed(6)+"°",
+
+
+        longitude:
+        d.y.toFixed(6)+"°",
+
+
+        latitudePage:
+        d.x.toFixed(6)+"°",
+
+
+        longitudePage:
+        d.y.toFixed(6)+"°",
+
+
+        satellites:
+        value(d.n),
+
+
+        satellitesPage:
+        value(d.n),
+
+
+        gpsStatusPage:
+        value(d.g),
+
+
+        modePage:
+        value(d.mode)
+
+
+    };
+
+
+
+
+    for(let id in list){
+
+        let el=document.getElementById(id);
+
+        if(el){
+
+            el.innerHTML=list[id];
+
+        }
+
+    }
+
 
 
 }
@@ -187,12 +283,12 @@ return 10;
 
 
 
-// ==========================
-// DASHBOARD
-// ==========================
+// =========================
+// sensors页面
+// =========================
 
 
-function updateDashboard(){
+function sensors(){
 
 
 let d=latest();
@@ -202,103 +298,38 @@ if(!d)return;
 
 
 
+let data={
 
 
-document.getElementById(
-"currentTemp"
-).innerHTML=
+outTempPage:value(d.j),
 
-show(d.t," ℃");
+outHumPage:value(d.k),
 
+inTempPage:value(d.t),
 
+inHumPage:value(d.h),
 
+solarPage:value(d.s),
 
-
-document.getElementById(
-"voltage"
-).innerHTML=
-
-show(d.v," V");
+currentPage:value(d.a)
 
 
-
-
-
-let soc=battery(d.v);
+};
 
 
 
-document.getElementById(
-"batterySOC"
-).innerHTML=
+for(let id in data){
 
-soc==="NULL"
+let el=document.getElementById(id);
 
-?
+if(el){
 
-"NULL"
+el.innerHTML=data[id];
 
-:
-
-soc+"%";
+}
 
 
-
-
-
-if(soc!=="NULL")
-
-document.getElementById(
-"batteryProgress"
-).style.width=
-
-soc+"%";
-
-
-
-
-
-document.getElementById(
-"current"
-).innerHTML=
-
-show(d.a);
-
-
-
-
-document.getElementById(
-"solar"
-).innerHTML=
-
-show(d.s);
-
-
-
-
-document.getElementById(
-"insideTemp"
-).innerHTML=
-
-show(d.t);
-
-
-
-
-document.getElementById(
-"insideHum"
-).innerHTML=
-
-show(d.h);
-
-
-
-
-document.getElementById(
-"outsideTemp"
-).innerHTML=
-
-show(d.j);
+}
 
 
 
@@ -311,196 +342,12 @@ show(d.j);
 
 
 
+// =========================
+// telemetry
+// =========================
 
-// ==========================
-// LOCATION
-// ==========================
 
-
-function updateLocation(){
-
-
-let d=latestGPS();
-
-
-if(!d)return;
-
-
-
-
-let ids=[
-
-["latitude",d.x],
-["longitude",d.y],
-["latitudePage",d.x],
-["longitudePage",d.y]
-
-];
-
-
-
-ids.forEach(item=>{
-
-
-let el=document.getElementById(item[0]);
-
-
-if(el)
-
-el.innerHTML=
-
-item[1].toFixed(6)+"°";
-
-
-});
-
-
-
-
-
-
-let sat=document.getElementById(
-"satellites"
-);
-
-
-
-if(sat)
-
-sat.innerHTML=
-
-show(d.n);
-
-
-
-
-
-let sat2=document.getElementById(
-"satellitesPage"
-);
-
-
-
-if(sat2)
-
-sat2.innerHTML=
-
-show(d.n);
-
-
-
-
-
-let gps=document.getElementById(
-"gpsStatusPage"
-);
-
-
-
-if(gps)
-
-gps.innerHTML=
-
-show(d.g);
-
-
-
-
-
-let mode=document.getElementById(
-"modePage"
-);
-
-
-
-if(mode)
-
-mode.innerHTML=
-
-show(d.mode);
-
-
-
-}
-
-
-
-
-
-
-
-
-
-// ==========================
-// SENSOR PAGE
-// ==========================
-
-
-function updateSensors(){
-
-
-let d=latest();
-
-
-if(!d)return;
-
-
-
-
-let list=[
-
-
-["outTempPage",d.j],
-
-["outHumPage",d.k],
-
-["inTempPage",d.t],
-
-["inHumPage",d.h],
-
-["solarPage",d.s],
-
-["currentPage",d.a]
-
-
-];
-
-
-
-list.forEach(x=>{
-
-
-let el=document.getElementById(x[0]);
-
-
-if(el)
-
-el.innerHTML=
-
-show(x[1]);
-
-
-});
-
-
-
-}
-
-
-
-
-
-
-
-
-
-// ==========================
-// TELEMETRY
-// ==========================
-
-
-function updateTelemetry(){
-
+function telemetry(){
 
 
 let box=document.getElementById(
@@ -508,10 +355,7 @@ let box=document.getElementById(
 );
 
 
-
-if(!box)
-
-return;
+if(!box)return;
 
 
 
@@ -519,26 +363,15 @@ box.innerHTML="";
 
 
 
-
-
 DATA.slice(-10)
-
 .reverse()
-
 .forEach(d=>{
 
 
-
-let row=document.createElement(
-"div"
-);
+let row=document.createElement("div");
 
 
-
-row.className=
-"telemetry-row";
-
-
+row.className="telemetry-row";
 
 
 
@@ -546,22 +379,22 @@ row.innerHTML=`
 
 <div>${d.time.substring(11,19)}</div>
 
-<div>${show(d.v," V")}</div>
+<div>${value(d.v," V")}</div>
 
-<div>${show(d.a," mA")}</div>
+<div>${value(d.a," mA")}</div>
 
-<div>${show(d.s," W/m²")}</div>
+<div>${value(d.s," W/m²")}</div>
 
-<div>${show(d.j," ℃")}</div>
+<div>${value(d.j," ℃")}</div>
 
-<div>${show(d.k," %")}</div>
+<div>${value(d.k," %")}</div>
 
-<div>${show(d.t," ℃")}</div>
+<div>${value(d.t," ℃")}</div>
 
-<div>${show(d.h," %")}</div>
+<div>${value(d.h," %")}</div>
+
 
 `;
-
 
 
 
@@ -582,35 +415,33 @@ box.appendChild(row);
 
 
 
-
-// ==========================
-// CHART
-// ==========================
-
-
-function createTrendChart(){
+// =========================
+// 图表
+// =========================
 
 
+function createChart(){
 
-let c=document.getElementById(
+
+
+let canvas=document.getElementById(
 "trendChart"
 );
 
 
-
-if(!c)return;
-
-
-
-if(trendChart)
-
-trendChart.destroy();
+if(!canvas)return;
 
 
 
+if(chart){
+
+chart.destroy();
+
+}
 
 
-trendChart=new Chart(c,{
+
+chart=new Chart(canvas,{
 
 type:"line",
 
@@ -620,17 +451,13 @@ data:{
 
 labels:
 
-DATA.map(d=>
-
-d.time.substring(11,16)
-
+DATA.map(
+d=>d.time.substring(11,16)
 ),
 
 
 
-
 datasets:[
-
 
 
 {
@@ -674,12 +501,10 @@ borderColor:"#F59E0B"
 }
 
 
-
 ]
 
 
 },
-
 
 
 
@@ -694,13 +519,11 @@ maintainAspectRatio:false,
 
 scales:{
 
-
 y:{
 
 beginAtZero:true
 
 }
-
 
 }
 
@@ -721,77 +544,22 @@ beginAtZero:true
 
 
 
-function clock(){
 
+function updateAll(){
 
-let el=document.getElementById(
-"time"
-);
+dashboard();
 
+updateGPS();
 
-if(el)
+sensors();
 
-el.innerHTML=
+telemetry();
 
-new Date().toLocaleTimeString();
-
+createChart();
 
 
 }
-
-
-
-setInterval(clock,1000);
 
 
 
 window.onload=loadData;
-.device{
-
-display:flex;
-
-flex-direction:column;
-
-align-items:center;
-
-gap:20px;
-
-padding:50px;
-
-}
-
-
-
-.module{
-
-width:260px;
-
-padding:30px;
-
-text-align:center;
-
-background:#f8fafc;
-
-border:
-
-2px solid #1769AA;
-
-border-radius:12px;
-
-font-weight:600;
-
-color:#0B2A4A;
-
-}
-
-
-
-.line{
-
-width:3px;
-
-height:40px;
-
-background:#94a3b8;
-
-}
