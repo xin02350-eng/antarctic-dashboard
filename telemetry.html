@@ -1,13 +1,18 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 
 <head>
 
+<meta charset="UTF-8">
+
 <title>
-TELEMETRY
+ANTARCTIC NEXUS Ω - TELEMETRY
 </title>
 
+<link rel="icon" href="data:,">
+
 <link rel="stylesheet" href="./css/style.css">
+
 
 </head>
 
@@ -15,26 +20,196 @@ TELEMETRY
 <body>
 
 
+<div class="app">
+
+
+
+<aside class="sidebar">
+
+
+<div class="brand">
+
+<div class="logo">
+Ω
+</div>
+
+
+<div>
+
 <h1>
-REAL TIME SENSOR DATA
+ANTARCTIC<br>
+NEXUS Ω
 </h1>
 
+<p>
+AUTONOMOUS POLAR MONITORING
+</p>
 
-<div class="telemetry-head">
-
-<div>TIME</div>
-<div>VOLTAGE</div>
-<div>CURRENT</div>
-<div>SOLAR</div>
-<div>OUT TEMP</div>
-<div>OUT HUM</div>
-<div>IN TEMP</div>
-<div>IN HUM</div>
+</div>
 
 </div>
 
 
-<div id="telemetryData"></div>
+
+
+
+<nav>
+
+
+<a href="./index.html">
+Dashboard
+</a>
+
+
+<a href="./location.html">
+Location
+</a>
+
+
+<a href="./sensors.html">
+Sensors
+</a>
+
+
+<a class="active">
+Telemetry
+</a>
+
+
+<a href="./hardware.html">
+Hardware
+</a>
+
+
+<a href="./analysis.html">
+Analysis
+</a>
+
+
+</nav>
+
+
+
+</aside>
+
+
+
+
+
+
+
+
+
+
+<main>
+
+
+<header class="topbar">
+
+
+<div>
+
+DATA STREAM
+
+<strong>
+ONLINE
+</strong>
+
+</div>
+
+
+</header>
+
+
+
+
+
+
+
+
+<section class="title">
+
+<h2>
+REAL TIME SENSOR DATA
+</h2>
+
+<p>
+Live telemetry acquisition record
+</p>
+
+</section>
+
+
+
+
+
+
+
+
+
+<div class="panel">
+
+
+<div class="panel-title">
+
+SENSOR STREAM
+
+</div>
+
+
+
+
+
+<div class="telemetry-head">
+
+
+<div>TIME</div>
+
+<div>VOLTAGE</div>
+
+<div>CURRENT</div>
+
+<div>SOLAR</div>
+
+<div>OUT TEMP</div>
+
+<div>OUT HUM</div>
+
+<div>IN TEMP</div>
+
+<div>IN HUM</div>
+
+
+</div>
+
+
+
+
+
+
+<div id="telemetryData">
+
+
+</div>
+
+
+
+
+</div>
+
+
+
+
+
+
+
+</main>
+
+
+</div>
+
+
+
 
 
 <script src="./js/main.js"></script>
