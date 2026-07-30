@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 
+
 <head>
 
 
@@ -16,9 +17,6 @@ ANTARCTIC NEXUS Ω - ANALYSIS
 
 
 <link rel="stylesheet" href="./css/style.css">
-
-
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 
 </head>
@@ -37,8 +35,11 @@ ANTARCTIC NEXUS Ω - ANALYSIS
 
 <div class="brand">
 
+
 <div class="logo">
+
 Ω
+
 </div>
 
 
@@ -64,40 +65,55 @@ AUTONOMOUS POLAR MONITORING
 
 
 
+
 <nav>
 
 
 <a href="./index.html">
+
 Dashboard
+
 </a>
 
 
 <a href="./location.html">
+
 Location
+
 </a>
 
 
 <a href="./sensors.html">
+
 Sensors
+
 </a>
 
 
 <a href="./telemetry.html">
+
 Telemetry
+
 </a>
 
 
 <a href="./hardware.html">
+
 Hardware
+
 </a>
 
 
 <a class="active">
+
 Analysis
+
 </a>
 
 
+
 </nav>
+
 
 
 </aside>
@@ -114,16 +130,21 @@ Analysis
 
 
 
+
+
 <header class="topbar">
 
 
 <div>
 
-DATA ANALYSIS
+SYSTEM ANALYSIS
 
 <strong>
+
 ONLINE
+
 </strong>
+
 
 </div>
 
@@ -136,16 +157,21 @@ ONLINE
 
 
 
+
 <section class="title">
 
 
 <h2>
-DATA ANALYSIS
+
+SYSTEM ANALYTICS
+
 </h2>
 
 
 <p>
-Historical environmental trend
+
+Long-term operation statistics
+
 </p>
 
 
@@ -159,44 +185,34 @@ Historical environmental trend
 
 
 
-<div class="panel">
+<section class="analysis-grid">
 
 
-<div class="panel-title">
-
-TEMPERATURE TREND
-
-</div>
 
 
-<canvas id="analysisTemp">
 
-</canvas>
+<div class="analysis-card">
 
+
+<div class="analysis-label">
+
+STABLE OPERATION
 
 </div>
 
 
 
+<div class="analysis-value" id="runDays">
 
-
-
-
-
-
-<div class="panel">
-
-
-<div class="panel-title">
-
-SOLAR IRRADIANCE TREND
+--
 
 </div>
 
 
-<canvas id="analysisSolar">
 
-</canvas>
+<p>
+DAYS
+</p>
 
 
 </div>
@@ -209,22 +225,74 @@ SOLAR IRRADIANCE TREND
 
 
 
-<div class="panel">
+<div class="analysis-card">
 
 
-<div class="panel-title">
+<div class="analysis-label">
 
-VOLTAGE TREND
+DATA RECORDS
+
+</div>
+
+
+
+<div class="analysis-value" id="dataCount">
+
+--
 
 </div>
 
 
-<canvas id="analysisVoltage">
 
-</canvas>
+<p>
+TOTAL SAMPLES
+</p>
 
 
 </div>
+
+
+
+
+
+
+
+
+
+<div class="analysis-card">
+
+
+<div class="analysis-label">
+
+LAST UPDATE
+
+</div>
+
+
+
+<div class="analysis-value" id="lastUpdate">
+
+--
+
+</div>
+
+
+
+<p>
+LATEST ACQUISITION
+</p>
+
+
+</div>
+
+
+
+
+
+
+</section>
+
+
 
 
 
@@ -235,16 +303,14 @@ VOLTAGE TREND
 </main>
 
 
+
 </div>
 
 
 
 
 
-
-
 <script src="./js/main.js"></script>
-
 
 
 </body>
