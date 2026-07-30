@@ -1,61 +1,48 @@
 let DATA = [];
-
-let chart = null;
-
+let charts = [];
 
 
-// ===============================
-// LOAD DATA
-// ===============================
+
+// =============================
+// LOAD JSON
+// =============================
 
 async function loadData(){
-
 
     try{
 
 
-        const response = await fetch("./data.json");
+        const res = await fetch("./data.json");
 
 
-        if(!response.ok){
+        if(!res.ok){
 
             throw new Error(
-                "data.json load failed"
+                "data.json ERROR"
             );
 
         }
 
 
-
-        DATA = await response.json();
+        DATA = await res.json();
 
 
         console.log(
-            "DATA:",
+            "DATA LOADED",
             DATA
         );
 
 
-        updateDashboard();
 
-        updateLocation();
-
-        updateSensors();
-
-        updateTelemetry();
-
-        createChart();
+        updateAll();
 
 
 
-    }catch(error){
+    }catch(err){
 
-
-        console.error(error);
-
+        console.error(err);
 
     }
-
 
 
 }
@@ -66,25 +53,35 @@ async function loadData(){
 
 
 
-// ===============================
-// FORMAT
-// ===============================
+// =============================
+// COMMON
+// =============================
 
 
-function show(value,unit=""){
+function latest(){
+
+    return DATA.length
+    ?
+    DATA[DATA.length-1]
+    :
+    null;
+
+}
 
 
-    if(
-        value === null ||
-        value === undefined
-    ){
+
+
+function show(v,unit=""){
+
+
+    if(v===null || v===undefined){
 
         return "NULL";
 
     }
 
 
-    return value + unit;
+    return v + unit;
 
 
 }
@@ -93,30 +90,19 @@ function show(value,unit=""){
 
 
 
+function set(id,value){
 
 
+    let el=document.getElementById(id);
 
 
-// ===============================
-// LAST DATA
-// ===============================
+    if(el){
 
-
-function latest(){
-
-
-    if(DATA.length===0){
-
-        return null;
+        el.innerHTML=value;
 
     }
 
 
-    return DATA[
-        DATA.length-1
-    ];
-
-
 }
 
 
@@ -125,12 +111,50 @@ function latest(){
 
 
 
+// =============================
+// TIME
+// =============================
 
 
-// ===============================
-// GPS ONLY
-// 最近有效
-// ===============================
+function updateClock(){
+
+
+    let now=new Date();
+
+
+    let text=
+
+    now.getFullYear()+"-"+
+    String(now.getMonth()+1).padStart(2,"0")+"-"+
+    String(now.getDate()).padStart(2,"0")+" "+
+    now.toLocaleTimeString();
+
+
+    set(
+        "time",
+        text
+    );
+
+
+}
+
+
+setInterval(
+    updateClock,
+    1000
+);
+
+
+
+
+
+
+
+
+
+// =============================
+// GPS
+// =============================
 
 
 function latestGPS(){
@@ -140,127 +164,36 @@ function latestGPS(){
 
     .reverse()
 
-    .find(item =>
+    .find(d=>
 
-        item.x !== null &&
-
-        item.y !== null
+        d.x!==null &&
+        d.y!==null
 
     );
 
-
 }
 
 
 
 
+function gpsStatus(v){
 
 
+    if(v==="O"){
 
-
-
-// ===============================
-// BATTERY
-// 不计算SOC
-// ===============================
-
-
-function batterySOC(){
-
-
-    return "N/A";
-
-
-}
-
-
-
-
-
-
-
-
-
-// ===============================
-// DASHBOARD
-// ===============================
-
-
-function updateDashboard(){
-
-
-
-    let d = latest();
-
-
-    if(!d){
-
-        return;
+        return "ONLINE";
 
     }
 
 
+    if(v==="N"){
+
+        return "NO FIX";
+
+    }
 
 
-
-    setText(
-        "currentTemp",
-        show(d.t," ℃")
-    );
-
-
-
-    setText(
-        "voltage",
-        show(d.v," V")
-    );
-
-
-
-    setText(
-        "current",
-        show(d.a," mA")
-    );
-
-
-
-    setText(
-        "solar",
-        show(d.s," W/m²")
-    );
-
-
-
-    setText(
-        "insideTemp",
-        show(d.t," ℃")
-    );
-
-
-
-    setText(
-        "insideHum",
-        show(d.h," %")
-    );
-
-
-
-    setText(
-        "outsideTemp",
-        show(d.j," ℃")
-    );
-
-
-
-    setText(
-        "batterySOC",
-        batterySOC()
-    );
-
-
-
-
-    updateGPS();
+    return show(v);
 
 
 }
@@ -271,22 +204,16 @@ function updateDashboard(){
 
 
 
-
-
-// ===============================
-// GPS UPDATE
-// ===============================
 
 
 function updateGPS(){
 
 
-    let gps =
-    latestGPS();
+
+    let g=latestGPS();
 
 
-
-    if(!gps){
+    if(!g){
 
         return;
 
@@ -294,58 +221,55 @@ function updateGPS(){
 
 
 
-    setText(
+    set(
         "latitude",
-        gps.x.toFixed(6)
+        g.x.toFixed(6)+"°"
     );
 
 
-    setText(
+    set(
         "longitude",
-        gps.y.toFixed(6)
+        g.y.toFixed(6)+"°"
     );
 
 
-    setText(
+    set(
         "satellites",
-        show(gps.n)
+        show(g.n)
     );
 
 
 
-
-
-    setText(
+    set(
         "latitudePage",
-        gps.x.toFixed(6)
+        g.x.toFixed(6)+"°"
     );
 
 
-    setText(
+    set(
         "longitudePage",
-        gps.y.toFixed(6)
+        g.y.toFixed(6)+"°"
     );
 
 
-    setText(
+    set(
         "satellitesPage",
-        show(gps.n)
+        show(g.n)
     );
 
 
 
-    setText(
+    set(
         "gpsStatusPage",
-        show(gps.g)
+        gpsStatus(g.g)
     );
 
 
 
-    setText(
+    set(
         "modePage",
-        show(gps.mode)
+        show(g.mode)
     );
-
 
 
 }
@@ -358,12 +282,13 @@ function updateGPS(){
 
 
 
-// ===============================
-// SENSOR PAGE
-// ===============================
+// =============================
+// DASHBOARD
+// =============================
 
 
-function updateSensors(){
+function updateDashboard(){
+
 
 
     let d=latest();
@@ -377,42 +302,118 @@ function updateSensors(){
 
 
 
-    setText(
-        "outTempPage",
+    set(
+        "currentTemp",
+        show(d.t," ℃")
+    );
+
+
+
+    set(
+        "voltage",
+        show(d.v," V")
+    );
+
+
+
+    set(
+        "current",
+        show(d.a," mA")
+    );
+
+
+
+    set(
+        "solar",
+        show(d.s," W/m²")
+    );
+
+
+
+    set(
+        "insideTemp",
+        show(d.t," ℃")
+    );
+
+
+
+    set(
+        "insideHum",
+        show(d.h," %")
+    );
+
+
+
+    set(
+        "outsideTemp",
         show(d.j," ℃")
     );
 
 
 
-    setText(
+    set(
+        "batterySOC",
+        "N/A"
+    );
+
+
+}
+
+
+
+
+
+
+
+
+
+// =============================
+// SENSOR PAGE
+// =============================
+
+
+function updateSensors(){
+
+
+    let d=latest();
+
+
+    if(!d)return;
+
+
+
+    set(
+        "outTempPage",
+        show(d.j," ℃")
+    );
+
+
+    set(
         "outHumPage",
         show(d.k," %")
     );
 
 
 
-    setText(
+    set(
         "inTempPage",
         show(d.t," ℃")
     );
 
 
-
-    setText(
+    set(
         "inHumPage",
         show(d.h," %")
     );
 
 
-
-    setText(
+    set(
         "solarPage",
         show(d.s," W/m²")
     );
 
 
-
-    setText(
+    set(
         "currentPage",
         show(d.a," mA")
     );
@@ -429,19 +430,18 @@ function updateSensors(){
 
 
 
-// ===============================
+// =============================
 // TELEMETRY
-// ===============================
+// =============================
 
 
 function updateTelemetry(){
 
 
-    let box =
-    document.getElementById(
+
+    let box=document.getElementById(
         "telemetryData"
     );
-
 
 
     if(!box){
@@ -456,69 +456,40 @@ function updateTelemetry(){
 
 
 
-
-
     DATA.slice(-10)
 
     .reverse()
 
-    .forEach(item=>{
+    .forEach(d=>{
 
 
-        let row =
-        document.createElement(
+        let row=document.createElement(
             "div"
         );
 
 
-
-        row.className =
+        row.className=
         "telemetry-row";
 
 
 
-        row.innerHTML = `
+        row.innerHTML=`
 
+        <div>${d.time.substring(11,19)}</div>
 
-        <div>
-        ${item.time.substring(11,19)}
-        </div>
+        <div>${show(d.v," V")}</div>
 
+        <div>${show(d.a," mA")}</div>
 
-        <div>
-        ${show(item.v," V")}
-        </div>
+        <div>${show(d.s," W/m²")}</div>
 
+        <div>${show(d.j," ℃")}</div>
 
-        <div>
-        ${show(item.a," mA")}
-        </div>
+        <div>${show(d.k," %")}</div>
 
+        <div>${show(d.t," ℃")}</div>
 
-        <div>
-        ${show(item.s," W/m²")}
-        </div>
-
-
-        <div>
-        ${show(item.j," ℃")}
-        </div>
-
-
-        <div>
-        ${show(item.k," %")}
-        </div>
-
-
-        <div>
-        ${show(item.t," ℃")}
-        </div>
-
-
-        <div>
-        ${show(item.h," %")}
-        </div>
-
+        <div>${show(d.h," %")}</div>
 
         `;
 
@@ -542,20 +513,16 @@ function updateTelemetry(){
 
 
 
-// ===============================
+// =============================
 // CHART
-// ===============================
+// =============================
 
 
-function createChart(){
+function createChart(id,title,labels,data){
 
 
 
-    let canvas =
-    document.getElementById(
-        "trendChart"
-    );
-
+    let canvas=document.getElementById(id);
 
 
     if(!canvas){
@@ -567,24 +534,9 @@ function createChart(){
 
 
 
-    if(chart){
-
-        chart.destroy();
-
-    }
-
-
-
-
-
-
-    chart = new Chart(
-
+    let c=new Chart(
         canvas,
-
-
         {
-
 
         type:"line",
 
@@ -592,130 +544,47 @@ function createChart(){
         data:{
 
 
-
-        labels:
-
-        DATA.map(item=>
-
-            item.time.substring(11,16)
-
-        ),
+            labels:labels,
 
 
+            datasets:[
+
+            {
+
+            label:title,
+
+            data:data,
+
+            borderColor:"#4DB9E8",
+
+            tension:.3
+
+            }
 
 
-        datasets:[
-
-
-
-        {
-
-
-        label:"Cabin Temperature",
-
-
-        data:
-
-        DATA.map(item=>
-
-            item.t
-
-        ),
-
-
-
-        borderColor:"#4DB9E8",
-
-
-        tension:.3
-
+            ]
 
 
         },
-
-
-
-
-
-        {
-
-
-        label:"Solar",
-
-
-        data:
-
-        DATA.map(item=>
-
-            item.s
-
-        ),
-
-
-        borderColor:"#4FD18B",
-
-
-        tension:.3
-
-
-        },
-
-
-
-
-
-        {
-
-
-        label:"Voltage",
-
-
-        data:
-
-        DATA.map(item=>
-
-            item.v
-
-        ),
-
-
-        borderColor:"#FFB84D",
-
-
-        tension:.3
-
-
-        }
-
-
-
-
-
-        ]
-
-
-
-        },
-
-
 
 
         options:{
 
 
-        responsive:true,
+            responsive:true,
 
 
-        maintainAspectRatio:false,
+            maintainAspectRatio:false,
 
 
-        scales:{
+            scales:{
 
 
-            y:{
+                y:{
 
+                    beginAtZero:true
 
-                beginAtZero:true
+                }
 
 
             }
@@ -724,13 +593,89 @@ function createChart(){
         }
 
 
-
-        }
-
+    });
 
 
 
-        }
+    charts.push(c);
+
+
+}
+
+
+
+
+
+
+
+
+
+function createCharts(){
+
+
+
+    let labels=
+
+    DATA.map(d=>
+
+        d.time.substring(11,16)
+
+    );
+
+
+
+    createChart(
+
+        "trendChart",
+
+        "Temperature",
+
+        labels,
+
+        DATA.map(d=>d.t)
+
+    );
+
+
+
+
+    createChart(
+
+        "analysisTemp",
+
+        "Cabin Temperature",
+
+        labels,
+
+        DATA.map(d=>d.t)
+
+    );
+
+
+
+    createChart(
+
+        "analysisSolar",
+
+        "Solar Irradiance",
+
+        labels,
+
+        DATA.map(d=>d.s)
+
+    );
+
+
+
+    createChart(
+
+        "analysisVoltage",
+
+        "Voltage",
+
+        labels,
+
+        DATA.map(d=>d.v)
 
     );
 
@@ -746,27 +691,31 @@ function createChart(){
 
 
 
-// ===============================
-// SET TEXT
-// ===============================
+// =============================
+// UPDATE ALL
+// =============================
 
 
-function setText(id,value){
+function updateAll(){
 
 
-
-    let el =
-    document.getElementById(id);
+    updateClock();
 
 
-
-    if(el){
-
-
-        el.innerHTML=value;
+    updateDashboard();
 
 
-    }
+    updateGPS();
+
+
+    updateSensors();
+
+
+    updateTelemetry();
+
+
+    createCharts();
+
 
 
 }
@@ -775,19 +724,8 @@ function setText(id,value){
 
 
 
-
-
-
-
-// ===============================
-// START
-// ===============================
-
-
 window.onload=function(){
 
-
     loadData();
-
 
 };

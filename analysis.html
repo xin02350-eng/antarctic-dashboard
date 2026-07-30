@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="zh-CN">
 
 <head>
@@ -26,9 +25,7 @@ ANTARCTIC NEXUS Ω - ANALYSIS
 
 
 
-
 <body>
-
 
 
 <div class="app">
@@ -41,14 +38,11 @@ ANTARCTIC NEXUS Ω - ANALYSIS
 <div class="brand">
 
 <div class="logo">
-
 Ω
-
 </div>
 
 
 <div>
-
 
 <h1>
 ANTARCTIC<br>
@@ -65,7 +59,6 @@ AUTONOMOUS POLAR MONITORING
 
 
 </div>
-
 
 
 
@@ -104,11 +97,11 @@ Analysis
 </a>
 
 
-
 </nav>
 
 
 </aside>
+
 
 
 
@@ -132,7 +125,6 @@ DATA ANALYSIS
 ONLINE
 </strong>
 
-
 </div>
 
 
@@ -144,17 +136,16 @@ ONLINE
 
 
 
-
 <section class="title">
 
 
 <h2>
-ENVIRONMENT ANALYSIS
+DATA ANALYSIS
 </h2>
 
 
 <p>
-Historical sensor trend analysis
+Historical environmental trend
 </p>
 
 
@@ -173,19 +164,68 @@ Historical sensor trend analysis
 
 <div class="panel-title">
 
-TEMPERATURE / SOLAR / VOLTAGE TREND
+TEMPERATURE TREND
 
 </div>
 
 
-
-<canvas id="trendChart">
+<canvas id="analysisTemp">
 
 </canvas>
 
 
+</div>
+
+
+
+
+
+
+
+
+
+<div class="panel">
+
+
+<div class="panel-title">
+
+SOLAR IRRADIANCE TREND
 
 </div>
+
+
+<canvas id="analysisSolar">
+
+</canvas>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<div class="panel">
+
+
+<div class="panel-title">
+
+VOLTAGE TREND
+
+</div>
+
+
+<canvas id="analysisVoltage">
+
+</canvas>
+
+
+</div>
+
 
 
 
@@ -202,10 +242,12 @@ TEMPERATURE / SOLAR / VOLTAGE TREND
 
 
 
+
 <script src="./js/main.js"></script>
 
 
 
 </body>
+
 
 </html>
