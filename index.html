@@ -1,24 +1,35 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 
+
 <head>
 
+
 <meta charset="UTF-8">
+
+
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
 
 <title>
 ANTARCTIC NEXUS Ω
 </title>
 
 
+
 <link rel="icon" href="data:,">
 
+
 <link rel="stylesheet" href="./css/style.css">
+
 
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 
 </head>
+
+
 
 
 
@@ -29,32 +40,48 @@ ANTARCTIC NEXUS Ω
 
 
 
+
+
+<!-- =====================
+SIDEBAR
+===================== -->
+
+
 <aside class="sidebar">
+
 
 
 <div class="brand">
 
+
 <div class="logo">
+
 Ω
+
 </div>
 
 
+
 <div>
+
 
 <h1>
 ANTARCTIC<br>
 NEXUS Ω
 </h1>
 
+
 <p>
-Autonomous Monitoring System
+AUTONOMOUS POLAR MONITORING
 </p>
 
 
+
 </div>
 
 
 </div>
+
 
 
 
@@ -64,27 +91,53 @@ Autonomous Monitoring System
 
 
 <a class="active" href="./index.html">
+
 Dashboard
+
 </a>
 
 
 <a href="./location.html">
+
 Location
+
 </a>
 
 
 <a href="./sensors.html">
+
 Sensors
+
+</a>
+
+
+<a href="./telemetry.html">
+
+Telemetry
+
+</a>
+
+
+<a href="./hardware.html">
+
+Hardware
+
 </a>
 
 
 <a href="./analysis.html">
+
 Analysis
+
 </a>
 
 
 
 </nav>
+
+
+
+
 
 
 </aside>
@@ -97,35 +150,56 @@ Analysis
 
 
 
+<!-- =====================
+MAIN
+===================== -->
+
+
 <main>
+
+
+
+
 
 
 <header class="topbar">
 
 
+
 <div>
+
 
 LOCAL TIME
 
+
 <strong id="time">
+
 --
+
 </strong>
+
 
 </div>
 
 
 
 
+
 <div>
 
-CURRENT TEMPERATURE
+
+CABIN TEMPERATURE
+
 
 <strong id="currentTemp">
+
 NULL
+
 </strong>
 
 
 </div>
+
 
 
 
@@ -133,17 +207,24 @@ NULL
 
 <div>
 
-STATION
+
+STATION ID
+
 
 <strong>
+
 ANT-A01
+
 </strong>
 
 
 </div>
+
 
 
 </header>
+
+
 
 
 
@@ -155,13 +236,18 @@ ANT-A01
 
 
 <h2>
+
 DASHBOARD
+
 </h2>
 
 
 <p>
-Real-time monitoring system
+
+Autonomous Antarctic Environmental Monitoring Platform
+
 </p>
+
 
 
 </section>
@@ -172,39 +258,57 @@ Real-time monitoring system
 
 
 
+
+
+<!-- =====================
+STATUS CARDS
+===================== -->
 
 
 <section class="cards">
 
 
 
+
+
 <div class="card">
 
+
 <h3>
-BATTERY
+BATTERY VOLTAGE
 </h3>
 
 
+
 <div class="number" id="voltage">
+
 NULL
+
 </div>
 
 
-<p id="batterySOC">
-NULL
+
+<p>
+STATE OF CHARGE : N/A
 </p>
 
 
+
 <div class="battery-bar">
+
 
 <div id="batteryProgress">
 
 </div>
 
+
 </div>
 
 
+
 </div>
+
+
 
 
 
@@ -213,21 +317,33 @@ NULL
 
 
 <div class="card">
+
 
 <h3>
 CURRENT
 </h3>
 
+
+
 <div class="number" id="current">
+
 NULL
+
 </div>
+
+
 
 <p>
 mA
+
 </p>
 
 
+
 </div>
+
+
+
 
 
 
@@ -236,17 +352,27 @@ mA
 
 <div class="card">
 
+
 <h3>
-SOLAR
+SOLAR IRRADIANCE
+
 </h3>
 
+
+
 <div class="number" id="solar">
+
 NULL
+
 </div>
+
+
 
 <p>
 W/m²
+
 </p>
+
 
 
 </div>
@@ -257,24 +383,36 @@ W/m²
 
 
 
+
+
 <div class="card">
+
 
 <h3>
 CABIN TEMP
+
 </h3>
+
 
 
 <div class="number" id="insideTemp">
+
 NULL
+
 </div>
+
 
 
 <p>
-℃
+RS485
+
 </p>
 
 
+
 </div>
+
+
 
 
 
@@ -284,22 +422,32 @@ NULL
 
 <div class="card">
 
+
 <h3>
-CABIN HUM
+CABIN HUMIDITY
+
 </h3>
+
 
 
 <div class="number" id="insideHum">
+
 NULL
+
 </div>
+
 
 
 <p>
-%
+RS485
+
 </p>
 
 
+
 </div>
+
+
 
 
 
@@ -309,22 +457,34 @@ NULL
 
 <div class="card">
 
+
 <h3>
 OUTSIDE TEMP
+
 </h3>
 
 
+
 <div class="number" id="outsideTemp">
+
 NULL
+
 </div>
+
 
 
 <p>
 SHT35
+
 </p>
 
 
+
 </div>
+
+
+
+
 
 
 
@@ -338,22 +498,35 @@ SHT35
 
 
 
+<!-- =====================
+MAIN CONTENT
+===================== -->
+
+
 <section class="main-grid">
+
+
+
+
 
 
 
 <div class="panel">
 
 
+
 <div class="panel-title">
 
-GPS LOCATION
+GPS POSITION
 
 </div>
 
 
 
+
+
 <div class="map-box">
+
 
 
 <div class="location-point">
@@ -366,46 +539,71 @@ GPS LOCATION
 
 
 
+
+
+
+
 <div class="gps-info">
 
 
+
 <div>
 
-LAT
+LATITUDE
 
 <strong id="latitude">
+
 NULL
+
 </strong>
+
 
 </div>
 
 
+
+
 <div>
 
-LON
+LONGITUDE
 
 <strong id="longitude">
+
 NULL
+
 </strong>
 
+
 </div>
+
+
 
 
 <div>
 
-SAT
+SATELLITES
 
 <strong id="satellites">
+
 NULL
+
 </strong>
 
-</div>
-
 
 </div>
 
 
+
+
+
 </div>
+
+
+
+</div>
+
+
+
 
 
 
@@ -422,16 +620,24 @@ NULL
 
 REAL TIME TREND
 
+
 </div>
 
 
 
 <canvas id="trendChart">
 
+
 </canvas>
 
 
+
 </div>
+
+
+
+
+
 
 
 
@@ -441,7 +647,13 @@ REAL TIME TREND
 
 
 
+
+
+
+
 </main>
+
+
 
 
 </div>
@@ -450,7 +662,10 @@ REAL TIME TREND
 
 
 
+
+
 <script src="./js/main.js"></script>
+
 
 
 </body>
