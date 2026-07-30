@@ -9,7 +9,9 @@
 ANTARCTIC NEXUS Ω - TELEMETRY
 </title>
 
+
 <link rel="icon" href="data:,">
+
 
 <link rel="stylesheet" href="./css/style.css">
 
@@ -31,24 +33,32 @@ ANTARCTIC NEXUS Ω - TELEMETRY
 <div class="brand">
 
 <div class="logo">
+
 Ω
+
 </div>
 
 
 <div>
 
 <h1>
+
 ANTARCTIC<br>
+
 NEXUS Ω
+
 </h1>
 
 
 <p>
-AUTONOMOUS POLAR MONITORING
+
+POLAR AUTONOMOUS OBSERVATORY
+
 </p>
 
 
 </div>
+
 
 </div>
 
@@ -60,37 +70,54 @@ AUTONOMOUS POLAR MONITORING
 
 
 <a href="./index.html">
+
 Dashboard
+
 </a>
+
 
 
 <a href="./location.html">
+
 Location
+
 </a>
+
 
 
 <a href="./sensors.html">
+
 Sensors
+
 </a>
+
 
 
 <a class="active">
+
 Telemetry
+
 </a>
+
 
 
 <a href="./hardware.html">
+
 Hardware
+
 </a>
+
 
 
 <a href="./analysis.html">
+
 Analysis
+
 </a>
 
 
-</nav>
 
+</nav>
 
 
 </aside>
@@ -106,19 +133,40 @@ Analysis
 <main>
 
 
-<header class="topbar">
+
+
+
+<header class="mission-header">
 
 
 <div>
 
-DATA STREAM
+<h2>
 
-<strong>
-ONLINE
-</strong>
+REAL TIME TELEMETRY
+
+</h2>
+
+
+<p>
+
+Autonomous sensor data transmission stream
+
+</p>
 
 
 </div>
+
+
+
+<div class="system-online">
+
+<span></span>
+
+DATA LINK
+
+</div>
+
 
 
 </header>
@@ -131,36 +179,13 @@ ONLINE
 
 
 
-<section class="title">
-
-
-<h2>
-REAL TIME TELEMETRY
-</h2>
-
-
-<p>
-Latest 20 acquisition records
-</p>
-
-
-</section>
-
-
-
-
-
-
-
-
-
-<div class="panel">
+<section class="panel">
 
 
 
 <div class="panel-title">
 
-SENSOR DATA STREAM
+LATEST 20 RECORDS
 
 </div>
 
@@ -168,40 +193,7 @@ SENSOR DATA STREAM
 
 
 
-<div class="telemetry-box">
-
-
-
-<div class="telemetry-head">
-
-
-<div>TIME</div>
-
-<div>VOLTAGE</div>
-
-<div>CURRENT</div>
-
-<div>SOLAR</div>
-
-<div>OUT TEMP</div>
-
-<div>OUT HUM</div>
-
-<div>IN TEMP</div>
-
-<div>IN HUM</div>
-
-
-</div>
-
-
-
-
-
-<div id="telemetryData">
-
-</div>
-
+<div class="telemetry-stream" id="telemetryData">
 
 
 
@@ -209,8 +201,8 @@ SENSOR DATA STREAM
 
 
 
-</div>
 
+</section>
 
 
 
@@ -228,9 +220,13 @@ SENSOR DATA STREAM
 
 
 
+
+
+
 <script src="./js/main.js"></script>
 
 
 </body>
+
 
 </html>
