@@ -1,18 +1,39 @@
-let DATA=[];
+let DATA = [];
 
-let chart=null;
+let chart = null;
 
 
+
+// ===============================
+// LOAD DATA
+// ===============================
 
 async function loadData(){
 
+
     try{
 
-        const res=await fetch("./data.json");
 
-        DATA=await res.json();
+        const response = await fetch("./data.json");
 
-        console.log(DATA);
+
+        if(!response.ok){
+
+            throw new Error(
+                "data.json load failed"
+            );
+
+        }
+
+
+
+        DATA = await response.json();
+
+
+        console.log(
+            "DATA:",
+            DATA
+        );
 
 
         updateDashboard();
@@ -26,11 +47,16 @@ async function loadData(){
         createChart();
 
 
-    }catch(e){
 
-        console.log(e);
+    }catch(error){
+
+
+        console.error(error);
+
 
     }
+
+
 
 }
 
@@ -38,71 +64,58 @@ async function loadData(){
 
 
 
-function show(v,unit=""){
 
-    if(v===null || v===undefined){
+
+// ===============================
+// FORMAT
+// ===============================
+
+
+function show(value,unit=""){
+
+
+    if(
+        value === null ||
+        value === undefined
+    ){
 
         return "NULL";
 
     }
 
-    return v+unit;
+
+    return value + unit;
+
 
 }
 
 
+
+
+
+
+
+
+
+// ===============================
+// LAST DATA
+// ===============================
 
 
 function latest(){
 
-    return DATA[DATA.length-1];
 
-}
+    if(DATA.length===0){
 
-
-
-
-
-function latestGPS(){
-
-    return [...DATA]
-    .reverse()
-    .find(d=>
-
-        d.x!==null &&
-        d.y!==null
-
-    );
-
-}
-
-
-
-
-
-
-// 电池百分比
-
-function battery(v){
-
-    if(v===null || v===undefined){
-
-        return "NULL";
+        return null;
 
     }
 
 
-    if(v>=12.7)return 100;
+    return DATA[
+        DATA.length-1
+    ];
 
-    if(v>=12.5)return 95;
-
-    if(v>=12.0)return 90;
-
-    if(v>=11.4)return 85;
-
-    if(v>=10.8)return 80;
-
-    return 70;
 
 }
 
@@ -112,104 +125,142 @@ function battery(v){
 
 
 
+
+
+// ===============================
+// GPS ONLY
+// 最近有效
+// ===============================
+
+
+function latestGPS(){
+
+
+    return [...DATA]
+
+    .reverse()
+
+    .find(item =>
+
+        item.x !== null &&
+
+        item.y !== null
+
+    );
+
+
+}
+
+
+
+
+
+
+
+
+
+// ===============================
+// BATTERY
+// 不计算SOC
+// ===============================
+
+
+function batterySOC(){
+
+
+    return "N/A";
+
+
+}
+
+
+
+
+
+
+
+
+
+// ===============================
+// DASHBOARD
+// ===============================
 
 
 function updateDashboard(){
 
 
-let d=latest();
 
-if(!d)return;
-
+    let d = latest();
 
 
-let map={
+    if(!d){
 
+        return;
 
-currentTemp:
-show(d.t," ℃"),
-
-
-voltage:
-show(d.v," V"),
-
-
-current:
-show(d.a),
-
-
-solar:
-show(d.s),
-
-
-insideTemp:
-show(d.t),
-
-
-insideHum:
-show(d.h),
-
-
-outsideTemp:
-show(d.j)
-
-
-
-};
-
-
-
-for(let id in map){
-
-let el=document.getElementById(id);
-
-if(el){
-
-el.innerHTML=map[id];
-
-}
-
-}
+    }
 
 
 
 
 
-let soc=battery(d.v);
-
-
-let socEl=document.getElementById(
-"batterySOC"
-);
-
-
-if(socEl){
-
-socEl.innerHTML=
-
-soc==="NULL"
-?
-"NULL"
-:
-soc+"%";
-
-}
+    setText(
+        "currentTemp",
+        show(d.t," ℃")
+    );
 
 
 
-let bar=document.getElementById(
-"batteryProgress"
-);
+    setText(
+        "voltage",
+        show(d.v," V")
+    );
 
 
-if(bar && soc!=="NULL"){
 
-bar.style.width=soc+"%";
+    setText(
+        "current",
+        show(d.a," mA")
+    );
 
-}
 
 
-updateGPS();
+    setText(
+        "solar",
+        show(d.s," W/m²")
+    );
+
+
+
+    setText(
+        "insideTemp",
+        show(d.t," ℃")
+    );
+
+
+
+    setText(
+        "insideHum",
+        show(d.h," %")
+    );
+
+
+
+    setText(
+        "outsideTemp",
+        show(d.j," ℃")
+    );
+
+
+
+    setText(
+        "batterySOC",
+        batterySOC()
+    );
+
+
+
+
+    updateGPS();
 
 
 }
@@ -220,72 +271,85 @@ updateGPS();
 
 
 
+
+
+// ===============================
+// GPS UPDATE
+// ===============================
 
 
 function updateGPS(){
 
 
-let g=latestGPS();
-
-
-if(!g)return;
-
-
-
-let data={
-
-
-latitude:
-g.x.toFixed(6),
-
-
-longitude:
-g.y.toFixed(6),
-
-
-satellites:
-show(g.n),
-
-
-latitudePage:
-g.x.toFixed(6),
-
-
-longitudePage:
-g.y.toFixed(6),
-
-
-satellitesPage:
-show(g.n),
-
-
-gpsStatusPage:
-show(g.g),
-
-
-modePage:
-show(g.mode)
+    let gps =
+    latestGPS();
 
 
 
-};
+    if(!gps){
+
+        return;
+
+    }
 
 
 
-for(let id in data){
+    setText(
+        "latitude",
+        gps.x.toFixed(6)
+    );
 
-let el=document.getElementById(id);
 
-if(el){
+    setText(
+        "longitude",
+        gps.y.toFixed(6)
+    );
 
-el.innerHTML=data[id];
+
+    setText(
+        "satellites",
+        show(gps.n)
+    );
+
+
+
+
+
+    setText(
+        "latitudePage",
+        gps.x.toFixed(6)
+    );
+
+
+    setText(
+        "longitudePage",
+        gps.y.toFixed(6)
+    );
+
+
+    setText(
+        "satellitesPage",
+        show(gps.n)
+    );
+
+
+
+    setText(
+        "gpsStatusPage",
+        show(gps.g)
+    );
+
+
+
+    setText(
+        "modePage",
+        show(gps.mode)
+    );
+
+
 
 }
 
-}
-
-
-}
 
 
 
@@ -294,64 +358,64 @@ el.innerHTML=data[id];
 
 
 
+// ===============================
+// SENSOR PAGE
+// ===============================
 
 
 function updateSensors(){
 
 
-let d=latest();
+    let d=latest();
 
 
-if(!d)return;
+    if(!d){
 
+        return;
 
-
-let data={
-
-
-outTempPage:
-show(d.j),
-
-
-outHumPage:
-show(d.k),
-
-
-inTempPage:
-show(d.t),
-
-
-inHumPage:
-show(d.h),
-
-
-solarPage:
-show(d.s),
-
-
-currentPage:
-show(d.a)
+    }
 
 
 
-};
+    setText(
+        "outTempPage",
+        show(d.j," ℃")
+    );
 
 
 
-for(let id in data){
+    setText(
+        "outHumPage",
+        show(d.k," %")
+    );
 
 
-let el=document.getElementById(id);
+
+    setText(
+        "inTempPage",
+        show(d.t," ℃")
+    );
 
 
-if(el){
 
-el.innerHTML=data[id];
+    setText(
+        "inHumPage",
+        show(d.h," %")
+    );
 
-}
 
 
-}
+    setText(
+        "solarPage",
+        show(d.s," W/m²")
+    );
+
+
+
+    setText(
+        "currentPage",
+        show(d.a," mA")
+    );
 
 
 
@@ -364,62 +428,108 @@ el.innerHTML=data[id];
 
 
 
+
+// ===============================
+// TELEMETRY
+// ===============================
 
 
 function updateTelemetry(){
 
 
-let box=document.getElementById(
-"telemetryData"
-);
-
-
-if(!box)return;
-
-
-
-box.innerHTML="";
+    let box =
+    document.getElementById(
+        "telemetryData"
+    );
 
 
 
-DATA.slice(-10)
-.reverse()
-.forEach(d=>{
+    if(!box){
 
+        return;
 
-let row=document.createElement(
-"div"
-);
-
-
-row.className="telemetry-row";
-
-
-row.innerHTML=`
-
-<div>${d.time.substring(11,19)}</div>
-
-<div>${show(d.v,"V")}</div>
-
-<div>${show(d.a,"mA")}</div>
-
-<div>${show(d.s,"W/m²")}</div>
-
-<div>${show(d.j,"℃")}</div>
-
-<div>${show(d.k,"%")}</div>
-
-<div>${show(d.t,"℃")}</div>
-
-<div>${show(d.h,"%")}</div>
-
-`;
-
-box.appendChild(row);
+    }
 
 
 
-});
+    box.innerHTML="";
+
+
+
+
+
+    DATA.slice(-10)
+
+    .reverse()
+
+    .forEach(item=>{
+
+
+        let row =
+        document.createElement(
+            "div"
+        );
+
+
+
+        row.className =
+        "telemetry-row";
+
+
+
+        row.innerHTML = `
+
+
+        <div>
+        ${item.time.substring(11,19)}
+        </div>
+
+
+        <div>
+        ${show(item.v," V")}
+        </div>
+
+
+        <div>
+        ${show(item.a," mA")}
+        </div>
+
+
+        <div>
+        ${show(item.s," W/m²")}
+        </div>
+
+
+        <div>
+        ${show(item.j," ℃")}
+        </div>
+
+
+        <div>
+        ${show(item.k," %")}
+        </div>
+
+
+        <div>
+        ${show(item.t," ℃")}
+        </div>
+
+
+        <div>
+        ${show(item.h," %")}
+        </div>
+
+
+        `;
+
+
+
+        box.appendChild(row);
+
+
+
+    });
+
 
 
 }
@@ -430,84 +540,254 @@ box.appendChild(row);
 
 
 
+
+
+// ===============================
+// CHART
+// ===============================
 
 
 function createChart(){
 
 
-let c=document.getElementById(
-"trendChart"
-);
+
+    let canvas =
+    document.getElementById(
+        "trendChart"
+    );
 
 
-if(!c)return;
+
+    if(!canvas){
+
+        return;
+
+    }
 
 
 
-chart=new Chart(c,{
 
-type:"line",
+    if(chart){
 
+        chart.destroy();
 
-data:{
-
-
-labels:
-
-DATA.map(d=>
-
-d.time.substring(11,16)
-
-),
+    }
 
 
-datasets:[
-
-{
-
-label:"Temperature",
-
-data:DATA.map(d=>d.t)
-
-},
 
 
-{
-
-label:"Solar",
-
-data:DATA.map(d=>d.s)
-
-},
 
 
-{
+    chart = new Chart(
 
-label:"Voltage",
+        canvas,
 
-data:DATA.map(d=>d.v)
+
+        {
+
+
+        type:"line",
+
+
+        data:{
+
+
+
+        labels:
+
+        DATA.map(item=>
+
+            item.time.substring(11,16)
+
+        ),
+
+
+
+
+        datasets:[
+
+
+
+        {
+
+
+        label:"Cabin Temperature",
+
+
+        data:
+
+        DATA.map(item=>
+
+            item.t
+
+        ),
+
+
+
+        borderColor:"#4DB9E8",
+
+
+        tension:.3
+
+
+
+        },
+
+
+
+
+
+        {
+
+
+        label:"Solar",
+
+
+        data:
+
+        DATA.map(item=>
+
+            item.s
+
+        ),
+
+
+        borderColor:"#4FD18B",
+
+
+        tension:.3
+
+
+        },
+
+
+
+
+
+        {
+
+
+        label:"Voltage",
+
+
+        data:
+
+        DATA.map(item=>
+
+            item.v
+
+        ),
+
+
+        borderColor:"#FFB84D",
+
+
+        tension:.3
+
+
+        }
+
+
+
+
+
+        ]
+
+
+
+        },
+
+
+
+
+        options:{
+
+
+        responsive:true,
+
+
+        maintainAspectRatio:false,
+
+
+        scales:{
+
+
+            y:{
+
+
+                beginAtZero:true
+
+
+            }
+
+
+        }
+
+
+
+        }
+
+
+
+
+        }
+
+    );
+
+
 
 }
 
 
-]
+
+
+
+
+
+
+
+// ===============================
+// SET TEXT
+// ===============================
+
+
+function setText(id,value){
+
+
+
+    let el =
+    document.getElementById(id);
+
+
+
+    if(el){
+
+
+        el.innerHTML=value;
+
+
+    }
 
 
 }
 
 
 
-});
-
-
-
-}
 
 
 
 
 
 
+// ===============================
+// START
+// ===============================
 
 
-window.onload=loadData;
+window.onload=function(){
+
+
+    loadData();
+
+
+};
