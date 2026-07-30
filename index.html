@@ -19,10 +19,18 @@ ANTARCTIC NEXUS Ω
 <link rel="stylesheet" href="./css/style.css">
 
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<!-- Leaflet地图 -->
+<link rel="stylesheet"
+href="https://unpkg.com/leaflet/dist/leaflet.css">
+
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js">
+</script>
 
 
 </head>
+
+
 
 
 
@@ -35,27 +43,40 @@ ANTARCTIC NEXUS Ω
 
 
 
+<!-- ======================
+SIDEBAR
+====================== -->
+
+
 <aside class="sidebar">
+
 
 
 <div class="brand">
 
 
 <div class="logo">
+
 Ω
+
 </div>
 
 
 <div>
 
 <h1>
+
 ANTARCTIC<br>
+
 NEXUS Ω
+
 </h1>
 
 
 <p>
-AUTONOMOUS POLAR MONITORING
+
+POLAR AUTONOMOUS OBSERVATORY
+
 </p>
 
 
@@ -72,7 +93,7 @@ AUTONOMOUS POLAR MONITORING
 <nav>
 
 
-<a class="active" href="./index.html">
+<a class="active">
 
 Dashboard
 
@@ -114,8 +135,8 @@ Analysis
 </a>
 
 
-
 </nav>
+
 
 
 </aside>
@@ -128,12 +149,68 @@ Analysis
 
 
 
+<!-- ======================
+MAIN
+====================== -->
+
 
 <main>
 
 
 
-<header class="topbar">
+
+
+<header class="mission-header">
+
+
+<div>
+
+
+<h2>
+
+ANTARCTIC NEXUS Ω
+
+</h2>
+
+
+<p>
+
+AUTONOMOUS ENVIRONMENTAL MONITORING PLATFORM
+
+</p>
+
+
+</div>
+
+
+
+
+
+<div class="system-online">
+
+
+<span></span>
+
+SYSTEM ONLINE
+
+
+</div>
+
+
+
+
+</header>
+
+
+
+
+
+
+
+
+
+<section class="mission-info">
+
 
 
 <div>
@@ -145,6 +222,7 @@ LOCAL TIME
 --
 
 </strong>
+
 
 </div>
 
@@ -161,6 +239,7 @@ ANT-A01
 
 </strong>
 
+
 </div>
 
 
@@ -169,7 +248,7 @@ ANT-A01
 
 <div>
 
-SYSTEM MODE
+MODE
 
 <strong id="systemMode">
 
@@ -177,254 +256,9 @@ SYSTEM MODE
 
 </strong>
 
-</div>
-
-
-
-</header>
-
-
-
-
-
-
-
-
-
-<section class="title">
-
-
-<h2>
-
-MISSION DASHBOARD
-
-</h2>
-
-
-<p>
-
-Autonomous Antarctic Environmental Monitoring System
-
-</p>
-
-
-</section>
-
-
-
-
-
-
-
-
-
-<!-- =================
-SYSTEM STATUS
-================= -->
-
-
-
-<section class="cards">
-
-
-
-
-
-<div class="card">
-
-
-<h3>
-
-BATTERY VOLTAGE
-
-</h3>
-
-
-<div class="number" id="voltage">
-
-NULL
 
 </div>
 
-
-<p>
-
-Power System
-
-</p>
-
-
-</div>
-
-
-
-
-
-
-
-
-
-<div class="card">
-
-
-<h3>
-
-CURRENT
-
-</h3>
-
-
-<div class="number" id="current">
-
-NULL
-
-</div>
-
-
-<p>
-
-mA
-
-</p>
-
-
-</div>
-
-
-
-
-
-
-
-
-
-<div class="card">
-
-
-<h3>
-
-SOLAR IRRADIANCE
-
-</h3>
-
-
-<div class="number" id="solar">
-
-NULL
-
-</div>
-
-
-<p>
-
-W/m²
-
-</p>
-
-
-</div>
-
-
-
-
-
-
-
-
-
-<div class="card">
-
-
-<h3>
-
-CABIN TEMP
-
-</h3>
-
-
-<div class="number" id="insideTemp">
-
-NULL
-
-</div>
-
-
-<p>
-
-RS485
-
-</p>
-
-
-</div>
-
-
-
-
-
-
-
-
-
-<div class="card">
-
-
-<h3>
-
-OUTSIDE TEMP
-
-</h3>
-
-
-<div class="number" id="outsideTemp">
-
-NULL
-
-</div>
-
-
-<p>
-
-SHT35
-
-</p>
-
-
-</div>
-
-
-
-
-
-
-
-
-
-<div class="card">
-
-
-<h3>
-
-CABIN HUMIDITY
-
-</h3>
-
-
-<div class="number" id="insideHum">
-
-NULL
-
-</div>
-
-
-<p>
-
-RS485
-
-</p>
-
-
-</div>
 
 
 
@@ -438,43 +272,25 @@ RS485
 
 
 
-<!-- =================
-MAP + STATUS
-================= -->
+<!-- ======================
+MAP CENTER
+====================== -->
 
 
-
-<section class="main-grid">
-
-
-
-
-
-
-
-<div class="panel">
+<section class="map-panel">
 
 
 <div class="panel-title">
 
-GLOBAL POSITION
+
+GLOBAL POSITIONING SYSTEM
+
 
 </div>
 
 
 
-
-
-<div class="map-box">
-
-
-<!--
-这里后续接真实世界地图
--->
-
-<div class="location-point">
-
-</div>
+<div id="worldMap">
 
 
 </div>
@@ -482,21 +298,161 @@ GLOBAL POSITION
 
 
 
+<div class="map-overlay">
 
 
-<div class="gps-info">
+<h3>
 
+ANT-A01
+
+</h3>
+
+
+<p>
+
+LAT
+
+<span id="latitude">
+
+--
+
+</span>
+
+</p>
+
+
+
+<p>
+
+LON
+
+<span id="longitude">
+
+--
+
+</span>
+
+</p>
+
+
+
+<p>
+
+SATELLITES
+
+<span id="satellites">
+
+--
+
+</span>
+
+</p>
+
+
+</div>
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<!-- ======================
+STATUS
+====================== -->
+
+
+
+<section class="status-grid">
+
+
+
+
+
+
+<div class="status-card">
+
+
+<div class="status-title">
+
+POWER SYSTEM
+
+</div>
+
+
+
+<div class="big-number"
+
+id="voltage">
+
+--
+
+</div>
+
+
+
+<p>
+
+BATTERY VOLTAGE
+
+</p>
+
+
+
+<div class="sub-data">
+
+
+SOLAR
+
+<span id="solar">
+
+--
+
+</span>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<div class="status-card">
+
+
+<div class="status-title">
+
+ENVIRONMENT
+
+</div>
+
+
+
+<div class="environment">
 
 
 <div>
 
+CABIN
 
-LATITUDE
 
+<strong id="insideTemp">
 
-<strong id="latitude">
-
-NULL
+--
 
 </strong>
 
@@ -505,19 +461,31 @@ NULL
 
 
 
-
-
 <div>
 
+OUTSIDE
 
-LONGITUDE
 
+<strong id="outsideTemp">
 
-<strong id="longitude">
-
-NULL
+--
 
 </strong>
+
+
+</div>
+
+
+</div>
+
+
+
+
+<p>
+
+RS485 / SHT35
+
+</p>
 
 
 </div>
@@ -526,195 +494,52 @@ NULL
 
 
 
-<div>
+
+
+
+
+<div class="status-card">
+
+
+<div class="status-title">
+
+COMMUNICATION
+
+</div>
+
+
+
+<div class="big-number"
+
+id="gpsStatusPage">
+
+--
+
+</div>
+
+
+
+<p>
+
+GPS LINK STATUS
+
+</p>
+
+
+
+<div class="sub-data">
 
 
 SATELLITES
 
-
-<strong id="satellites">
-
-NULL
-
-</strong>
-
-
-</div>
-
-
-
-</div>
-
-
-
-
-
-</div>
-
-
-
-
-
-
-
-
-
-<div class="panel">
-
-
-<div class="panel-title">
-
-SYSTEM OVERVIEW
-
-</div>
-
-
-
-
-
-
-
-<div class="gps-info">
-
-
-
-<div>
-
-
-GPS STATUS
-
-
-<strong id="gpsStatusPage">
-
-NULL
-
-</strong>
-
-
-</div>
-
-
-
-
-
-<div>
-
-
-MODE
-
-
-<strong id="systemMode">
-
-NULL
-
-</strong>
-
-
-</div>
-
-
-
-
-
-
-<div>
-
-
-SOC
-
-
-<strong>
-
-N/A
-
-</strong>
-
-
-</div>
-
-
-
-
-
-</div>
-
-
-
-
-
-
-
-
-<br>
-
-
-
-
-
-<div class="gps-info">
-
-
-
-<div>
-
-
-DEVICE 01
-
-
-<strong>
-
-ANT-A01
-
-</strong>
-
-
-</div>
-
-
-
-
-
-<div>
-
-
-DEVICE 02
-
-
-<strong>
-
-ANT-A02
-
-</strong>
-
-
-</div>
-
-
-
-
-
-
-<div>
-
-
-STATUS
-
-
-<strong>
+<span id="satelliteSmall">
 
 --
 
-</strong>
+</span>
 
 
 </div>
-
-
-
-
-</div>
-
-
 
 
 
@@ -727,6 +552,63 @@ STATUS
 
 
 </section>
+
+
+
+
+
+
+
+
+
+<!-- ======================
+MISSION STREAM
+====================== -->
+
+
+<section class="stream-panel">
+
+
+<div class="panel-title">
+
+MISSION STREAM
+
+</div>
+
+
+
+<div class="stream">
+
+
+<div>
+
+● ENVIRONMENT DATA ACQUISITION ACTIVE
+
+</div>
+
+
+<div>
+
+● SATELLITE POSITIONING ACTIVE
+
+</div>
+
+
+<div>
+
+● LONG TERM MONITORING MODE
+
+</div>
+
+
+</div>
+
+
+
+</section>
+
+
+
 
 
 
@@ -736,13 +618,21 @@ STATUS
 </main>
 
 
+
 </div>
 
 
 
 
 
+
+
+
+
 <script src="./js/main.js"></script>
+
+
+<script src="./js/map.js"></script>
 
 
 
