@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>
+ANTARCTIC NEXUS Ω - SENSORS
+</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap" rel="stylesheet">
+
+</head>
+
+
+<body>
+
+
+<div class="app">
+
+
+<aside class="sidebar">
+
+<div class="brand">
+
+<div class="logo">
+Ω
+</div>
+
+
+<div>
+
+<h1>
+ANTARCTIC<br>
+NEXUS Ω
+</h1>
+
+<p>
+Autonomous Monitoring System
+</p>
+
+</div>
+
+
+</div>
+
+
+<nav>
+
+<a href="index.html">
+Dashboard
+</a>
+
+<a href="location.html">
+Location
+</a>
+
+<a class="active">
+Sensors
+</a>
+
+<a href="telemetry.html">
+Telemetry
+</a>
+
+<a href="hardware.html">
+Hardware
+</a>
+
+<a href="analysis.html">
+Analysis
+</a>
+
+
+</nav>
+
+
+</aside>
+
+
+
+
+
+<main>
+
+
+<header class="topbar">
+
+<div>
+
+SENSOR SYSTEM
+
+<strong>
+ACTIVE
+</strong>
+
+</div>
+
+
+</header>
+
+
+
+
+
+<section class="title">
+
+<h2>
+ENVIRONMENT MONITORING
+</h2>
+
+<p>
+Multi-sensor acquisition system
+</p>
+
+
+</section>
+
+
+
+
+
+
+<section class="sensor-layout">
+
+
+
+
+
+<div class="sensor-panel">
+
+
+<h3>
+OUTSIDE ENVIRONMENT
+</h3>
+
+
+<span>
+SHT35
+</span>
+
+
+
+<div class="sensor-value">
+
+<strong id="outTempPage">
+NULL
+</strong>
+
+℃
+
+</div>
+
+
+
+<div class="sensor-item">
+
+Humidity
+
+<strong id="outHumPage">
+NULL
+</strong>
+
+%
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<div class="sensor-panel">
+
+
+<h3>
+INSIDE CABIN
+</h3>
+
+
+<span>
+RS485
+</span>
+
+
+
+<div class="sensor-value">
+
+<strong id="inTempPage">
+NULL
+</strong>
+
+℃
+
+</div>
+
+
+
+<div class="sensor-item">
+
+Humidity
+
+<strong id="inHumPage">
+NULL
+</strong>
+
+%
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<div class="sensor-panel">
+
+
+<h3>
+POWER MONITORING
+</h3>
+
+
+<span>
+SYSTEM
+</span>
+
+
+
+<div class="sensor-item">
+
+Solar Irradiance
+
+
+<strong id="solarPage">
+NULL
+</strong>
+
+W/m²
+
+
+</div>
+
+
+
+<div class="sensor-item">
+
+Current
+
+
+<strong id="currentPage">
+NULL
+</strong>
+
+mA
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+</section>
+
+
+
+
+
+</main>
+
+
+
+</div>
+
+
+
+<script src="js/main.js"></script>
+
+</body>
+
+</html>/* SENSOR PAGE */
+
+
+.sensor-layout{
+
+display:grid;
+
+grid-template-columns:
+
+repeat(3,1fr);
+
+gap:25px;
+
+}
+
+
+
+.sensor-panel{
+
+background:white;
+
+border:
+
+1px solid var(--border);
+
+border-radius:16px;
+
+padding:30px;
+
+min-height:250px;
+
+}
+
+
+
+.sensor-panel h3{
+
+color:var(--navy);
+
+font-size:18px;
+
+}
+
+
+
+.sensor-panel span{
+
+font-size:12px;
+
+color:var(--gray);
+
+}
+
+
+
+.sensor-value{
+
+font-size:38px;
+
+margin-top:35px;
+
+color:var(--navy);
+
+}
+
+
+
+.sensor-item{
+
+margin-top:25px;
+
+padding-top:15px;
+
+border-top:
+
+1px solid var(--border);
+
+display:flex;
+
+justify-content:space-between;
+
+color:var(--gray);
+
+}
+
+
+
+.sensor-item strong{
+
+font-family:
+
+"IBM Plex Mono";
+
+color:var(--navy);
+
+}/* TELEMETRY */
+
+
+.telemetry-box{
+
+background:white;
+
+border:
+
+1px solid var(--border);
+
+border-radius:16px;
+
+padding:25px;
+
+}
+
+
+
+.telemetry-head,
+.telemetry-row{
+
+
+display:grid;
+
+
+grid-template-columns:
+
+160px
+120px
+120px
+120px
+120px
+100px
+120px
+100px;
+
+
+align-items:center;
+
+font-family:
+
+"IBM Plex Mono";
+
+font-size:13px;
+
+
+}
+
+
+
+
+
+.telemetry-head{
+
+background:#F1F5F9;
+
+padding:15px;
+
+border-radius:8px;
+
+color:var(--gray);
+
+}
+
+
+
+
+
+.telemetry-scroll{
+
+height:500px;
+
+overflow-y:auto;
+
+}
+
+
+
+
+
+.telemetry-row{
+
+padding:15px;
+
+border-bottom:
+
+1px solid #edf2f7;
+
+}
+
+
+
+.telemetry-row:hover{
+
+background:#f8fafc;
+
+}
