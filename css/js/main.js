@@ -1,57 +1,48 @@
-let DATA = [];
+let DATA=[];
 
-let trendChart = null;
+let trendChart=null;
 
 
 
-// ===============================
-// 加载数据
-// ===============================
+// ==========================
+// LOAD JSON
+// ==========================
 
 async function loadData(){
 
-    try{
-
-        const response = await fetch("../data.json");
-
-        DATA = await response.json();
+try{
 
 
-        updateDashboard();
+const res =
+await fetch("../data.json");
 
-        createTrendChart();
+
+DATA =
+await res.json();
 
 
-    }catch(error){
 
-        console.error(
-            "DATA LOAD ERROR:",
-            error
-        );
+updateDashboard();
 
-    }
+updateLocation();
+
+updateSensors();
+
+updateTelemetry();
+
+createTrendChart();
+
 
 }
 
+catch(e){
 
+console.error(
+"DATA ERROR:",
+e
+);
 
-
-
-// ===============================
-// NULL处理
-// ===============================
-
-function formatValue(value, unit=""){
-
-
-    if(value === null || value === undefined){
-
-        return "NULL";
-
-    }
-
-
-    return value + unit;
+}
 
 }
 
@@ -60,22 +51,22 @@ function formatValue(value, unit=""){
 
 
 
-// ===============================
-// 获取最新数据
-// ===============================
+
+// ==========================
+// FORMAT
+// ==========================
+
+function show(v,unit=""){
 
 
-function getLatest(){
+if(v===null || v===undefined){
+
+return "NULL";
+
+}
 
 
-    if(DATA.length === 0){
-
-        return null;
-
-    }
-
-
-    return DATA[DATA.length-1];
+return v+unit;
 
 
 }
@@ -86,36 +77,16 @@ function getLatest(){
 
 
 
-
-// ===============================
-// GPS专用
-// 最近有效GPS
-// ===============================
+function latest(){
 
 
-function getLatestGPS(){
+if(DATA.length===0)
+
+return null;
 
 
 
-    return [...DATA]
-
-    .reverse()
-
-    .find(item=>
-
-
-        item.x !== null &&
-
-        item.x !== undefined &&
-
-
-        item.y !== null &&
-
-        item.y !== undefined
-
-
-    );
-
+return DATA[DATA.length-1];
 
 
 }
@@ -128,61 +99,25 @@ function getLatestGPS(){
 
 
 
-// ===============================
-// 电池SOC计算
-// v为空保持NULL
-// ===============================
+// ==========================
+// GPS ONLY
+// 最近有效
+// ==========================
+
+function latestGPS(){
 
 
-function calculateBattery(voltage){
+return [...DATA]
 
+.reverse()
 
+.find(d=>
 
-    if(voltage===null || voltage===undefined){
+d.x!==null &&
 
-        return "NULL";
+d.y!==null
 
-    }
-
-
-
-    if(voltage>=12.7){
-
-        return 100;
-
-    }
-
-
-    if(voltage>=12.5){
-
-        return 85;
-
-    }
-
-
-    if(voltage>=12.3){
-
-        return 65;
-
-    }
-
-
-    if(voltage>=12.1){
-
-        return 45;
-
-    }
-
-
-    if(voltage>=11.9){
-
-        return 25;
-
-    }
-
-
-    return 10;
-
+);
 
 
 }
@@ -195,188 +130,175 @@ function calculateBattery(voltage){
 
 
 
-// ===============================
-// 首页数据更新
-// ===============================
+// ==========================
+// BATTERY
+// ==========================
+
+
+function battery(v){
+
+
+if(v===null || v===undefined)
+
+return "NULL";
+
+
+
+if(v>=12.7)
+
+return 100;
+
+
+
+if(v>=12.5)
+
+return 85;
+
+
+
+if(v>=12.3)
+
+return 65;
+
+
+
+if(v>=12.1)
+
+return 45;
+
+
+
+if(v>=11.9)
+
+return 25;
+
+
+
+return 10;
+
+
+}
+
+
+
+
+
+
+
+
+
+// ==========================
+// DASHBOARD
+// ==========================
 
 
 function updateDashboard(){
 
 
+let d=latest();
 
-    const last = getLatest();
 
+if(!d)return;
 
-    if(!last){
 
-        return;
 
-    }
 
 
+document.getElementById(
+"currentTemp"
+).innerHTML=
 
+show(d.t," ℃");
 
 
-    // 当前温度
-    // 仓内温度 t
 
-    document.getElementById(
-        "currentTemp"
-    ).innerHTML =
 
-    formatValue(
-        last.t,
-        " ℃"
-    );
 
+document.getElementById(
+"voltage"
+).innerHTML=
 
+show(d.v," V");
 
 
 
-    // 电压
 
-    document.getElementById(
-        "voltage"
-    ).innerHTML =
 
-    formatValue(
-        last.v,
-        " V"
-    );
+let soc=battery(d.v);
 
 
 
+document.getElementById(
+"batterySOC"
+).innerHTML=
 
+soc==="NULL"
 
-    // 电池百分比
+?
 
-    let soc = calculateBattery(last.v);
+"NULL"
 
+:
 
+soc+"%";
 
-    document.getElementById(
-        "batterySOC"
-    ).innerHTML =
 
-    soc==="NULL"
 
-    ?
 
-    "NULL"
 
-    :
+if(soc!=="NULL")
 
-    soc+"%";
+document.getElementById(
+"batteryProgress"
+).style.width=
 
+soc+"%";
 
 
 
 
 
-    if(soc!=="NULL"){
+document.getElementById(
+"current"
+).innerHTML=
 
+show(d.a);
 
-        document.getElementById(
-            "batteryProgress"
-        ).style.width =
 
-        soc+"%";
 
 
-    }
+document.getElementById(
+"solar"
+).innerHTML=
 
+show(d.s);
 
 
 
 
-    // 电流
+document.getElementById(
+"insideTemp"
+).innerHTML=
 
-    document.getElementById(
-        "current"
-    ).innerHTML =
+show(d.t);
 
-    formatValue(
-        last.a,
-        ""
-    );
 
 
 
+document.getElementById(
+"insideHum"
+).innerHTML=
 
+show(d.h);
 
 
-    // 太阳辐射
 
-    document.getElementById(
-        "solar"
-    ).innerHTML =
 
-    formatValue(
-        last.s,
-        ""
-    );
+document.getElementById(
+"outsideTemp"
+).innerHTML=
 
-
-
-
-
-
-
-    // 仓内温度
-
-    document.getElementById(
-        "insideTemp"
-    ).innerHTML =
-
-    formatValue(
-        last.t,
-        ""
-    );
-
-
-
-
-
-
-
-    // 仓内湿度
-
-    document.getElementById(
-        "insideHum"
-    ).innerHTML =
-
-    formatValue(
-        last.h,
-        ""
-    );
-
-
-
-
-
-
-    // 舱外温度 SHT35
-
-    document.getElementById(
-        "outsideTemp"
-    ).innerHTML =
-
-    formatValue(
-        last.j,
-        ""
-    );
-
-
-
-
-
-
-
-
-
-    // GPS
-
-    updateGPS();
+show(d.j);
 
 
 
@@ -390,285 +312,404 @@ function updateDashboard(){
 
 
 
-// ===============================
-// GPS更新
-// ===============================
+// ==========================
+// LOCATION
+// ==========================
 
 
-function updateGPS(){
+function updateLocation(){
 
 
-
-    let gps = getLatestGPS();
-
+let d=latestGPS();
 
 
-    if(!gps){
-
-        return;
-
-    }
+if(!d)return;
 
 
 
 
+let ids=[
 
-    document.getElementById(
-        "latitude"
-    ).innerHTML =
+["latitude",d.x],
+["longitude",d.y],
+["latitudePage",d.x],
+["longitudePage",d.y]
 
-
-    gps.x.toFixed(6)+"°";
-
-
-
+];
 
 
 
-
-    document.getElementById(
-        "longitude"
-    ).innerHTML =
+ids.forEach(item=>{
 
 
-    gps.y.toFixed(6)+"°";
+let el=document.getElementById(item[0]);
 
 
+if(el)
+
+el.innerHTML=
+
+item[1].toFixed(6)+"°";
 
 
-
-
-
-    document.getElementById(
-        "satellites"
-    ).innerHTML =
-
-
-    formatValue(
-        gps.n
-    );
-
-
-
-}
+});
 
 
 
 
 
 
-
-
-
-// ===============================
-// 时间
-// ===============================
-
-
-function updateClock(){
-
-
-    let now = new Date();
-
-
-    document.getElementById(
-        "time"
-    ).innerHTML =
-
-
-    now.toLocaleTimeString();
-
-
-
-}
-
-
-
-setInterval(
-    updateClock,
-    1000
+let sat=document.getElementById(
+"satellites"
 );
 
 
 
+if(sat)
+
+sat.innerHTML=
+
+show(d.n);
 
 
 
 
 
-// ===============================
-// 趋势图
-// ===============================
+let sat2=document.getElementById(
+"satellitesPage"
+);
+
+
+
+if(sat2)
+
+sat2.innerHTML=
+
+show(d.n);
+
+
+
+
+
+let gps=document.getElementById(
+"gpsStatusPage"
+);
+
+
+
+if(gps)
+
+gps.innerHTML=
+
+show(d.g);
+
+
+
+
+
+let mode=document.getElementById(
+"modePage"
+);
+
+
+
+if(mode)
+
+mode.innerHTML=
+
+show(d.mode);
+
+
+
+}
+
+
+
+
+
+
+
+
+
+// ==========================
+// SENSOR PAGE
+// ==========================
+
+
+function updateSensors(){
+
+
+let d=latest();
+
+
+if(!d)return;
+
+
+
+
+let list=[
+
+
+["outTempPage",d.j],
+
+["outHumPage",d.k],
+
+["inTempPage",d.t],
+
+["inHumPage",d.h],
+
+["solarPage",d.s],
+
+["currentPage",d.a]
+
+
+];
+
+
+
+list.forEach(x=>{
+
+
+let el=document.getElementById(x[0]);
+
+
+if(el)
+
+el.innerHTML=
+
+show(x[1]);
+
+
+});
+
+
+
+}
+
+
+
+
+
+
+
+
+
+// ==========================
+// TELEMETRY
+// ==========================
+
+
+function updateTelemetry(){
+
+
+
+let box=document.getElementById(
+"telemetryData"
+);
+
+
+
+if(!box)
+
+return;
+
+
+
+box.innerHTML="";
+
+
+
+
+
+DATA.slice(-10)
+
+.reverse()
+
+.forEach(d=>{
+
+
+
+let row=document.createElement(
+"div"
+);
+
+
+
+row.className=
+"telemetry-row";
+
+
+
+
+
+row.innerHTML=`
+
+<div>${d.time.substring(11,19)}</div>
+
+<div>${show(d.v," V")}</div>
+
+<div>${show(d.a," mA")}</div>
+
+<div>${show(d.s," W/m²")}</div>
+
+<div>${show(d.j," ℃")}</div>
+
+<div>${show(d.k," %")}</div>
+
+<div>${show(d.t," ℃")}</div>
+
+<div>${show(d.h," %")}</div>
+
+`;
+
+
+
+
+box.appendChild(row);
+
+
+
+});
+
+
+
+}
+
+
+
+
+
+
+
+
+
+// ==========================
+// CHART
+// ==========================
 
 
 function createTrendChart(){
 
 
 
-    const canvas = document.getElementById(
-        "trendChart"
-    );
+let c=document.getElementById(
+"trendChart"
+);
 
 
 
-    if(!canvas){
+if(!c)return;
 
-        return;
 
-    }
 
+if(trendChart)
 
+trendChart.destroy();
 
 
-    if(trendChart){
 
-        trendChart.destroy();
 
-    }
 
+trendChart=new Chart(c,{
 
+type:"line",
 
 
+data:{
 
-    trendChart = new Chart(
 
-        canvas,
+labels:
 
-        {
+DATA.map(d=>
 
+d.time.substring(11,16)
 
-        type:"line",
+),
 
 
 
-        data:{
 
+datasets:[
 
-            labels:
 
-            DATA.map(item=>
 
-                item.time.substring(11,16)
+{
 
-            ),
+label:"Cabin Temp",
 
+data:
 
+DATA.map(d=>d.t),
 
+borderColor:"#1769AA"
 
-            datasets:[
+},
 
 
 
-            {
+{
 
-            label:"Cabin Temperature",
+label:"Voltage",
 
-            data:
+data:
 
-            DATA.map(item=>
+DATA.map(d=>d.v),
 
-                item.t
+borderColor:"#1F9D68"
 
-            ),
+},
 
-            borderColor:"#1769AA",
 
-            tension:.3
 
+{
 
-            },
+label:"Solar",
 
+data:
 
+DATA.map(d=>d.s),
 
-            {
+borderColor:"#F59E0B"
 
+}
 
-            label:"Voltage",
 
-            data:
 
-            DATA.map(item=>
+]
 
-                item.v
 
-            ),
+},
 
 
-            borderColor:"#1F9D68",
 
 
-            tension:.3
+options:{
 
 
-            },
+responsive:true,
 
 
+maintainAspectRatio:false,
 
-            {
 
+scales:{
 
-            label:"Solar",
 
+y:{
 
-            data:
+beginAtZero:true
 
-            DATA.map(item=>
+}
 
-                item.s
 
-            ),
+}
 
 
+}
 
-            borderColor:"#F59E0B",
 
 
-
-            tension:.3
-
-
-            }
-
-
-            ]
-
-        },
-
-
-
-
-        options:{
-
-
-            responsive:true,
-
-
-            maintainAspectRatio:false,
-
-
-
-            scales:{
-
-
-
-                y:{
-
-
-                    beginAtZero:true
-
-
-                }
-
-
-
-            }
-
-
-
-        }
-
-
-    });
+});
 
 
 }
@@ -680,11 +721,28 @@ function createTrendChart(){
 
 
 
+function clock(){
 
-window.onload=function(){
+
+let el=document.getElementById(
+"time"
+);
 
 
-    loadData();
+if(el)
+
+el.innerHTML=
+
+new Date().toLocaleTimeString();
+
 
 
 }
+
+
+
+setInterval(clock,1000);
+
+
+
+window.onload=loadData;
