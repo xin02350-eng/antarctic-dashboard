@@ -9,15 +9,13 @@
 
 
 <title>
-ANTARCTIC NEXUS Ω - HARDWARE
+ANTARCTIC NEXUS Ω - HARDWARE DIGITAL TWIN
 </title>
 
 
 <link rel="icon" href="data:,">
 
-
 <link rel="stylesheet" href="./css/style.css">
-
 
 </head>
 
@@ -30,13 +28,7 @@ ANTARCTIC NEXUS Ω - HARDWARE
 
 
 
-<!-- ======================
- SIDEBAR
-====================== -->
-
-
 <aside class="sidebar">
-
 
 
 <div class="brand">
@@ -61,7 +53,6 @@ NEXUS Ω
 </h1>
 
 
-
 <p>
 
 POLAR AUTONOMOUS OBSERVATORY
@@ -78,61 +69,41 @@ POLAR AUTONOMOUS OBSERVATORY
 
 
 
-
-
 <nav>
 
 
 <a href="./index.html">
-
 Dashboard
-
 </a>
-
 
 
 <a href="./location.html">
-
 Location
-
 </a>
-
 
 
 <a href="./sensors.html">
-
 Sensors
-
 </a>
-
 
 
 <a href="./telemetry.html">
-
 Telemetry
-
 </a>
-
 
 
 <a class="active">
-
 Hardware
-
 </a>
 
 
-
 <a href="./analysis.html">
-
 Analysis
-
 </a>
 
 
 
 </nav>
-
 
 
 </aside>
@@ -143,11 +114,6 @@ Analysis
 
 
 
-
-
-<!-- ======================
- MAIN
-====================== -->
 
 
 <main>
@@ -161,13 +127,11 @@ Analysis
 
 <div>
 
-
 <h2>
 
-DIGITAL TWIN
+HARDWARE DIGITAL TWIN
 
 </h2>
-
 
 
 <p>
@@ -181,12 +145,11 @@ ANT-A01 AUTONOMOUS POLAR MONITORING NODE
 
 
 
-
 <div class="system-online">
 
 <span></span>
 
-DEVICE ONLINE
+ONLINE
 
 </div>
 
@@ -202,136 +165,108 @@ DEVICE ONLINE
 
 
 
-<!-- ======================
- DIGITAL TWIN
-====================== -->
-
-
-<section class="twin-stage">
-
-
-
-
-
-<!-- 扫描环 -->
-
-
-<div class="scan-ring ring-one"></div>
-
-<div class="scan-ring ring-two"></div>
+<section class="hardware-v7">
 
 
 
 
 
 
+<!-- 左侧工程信息 -->
 
 
-
-<!-- 左侧数据 -->
-
-
-
-<div class="floating-card left-card">
-
+<div class="engineering-panel">
 
 
 <h3>
 
-POWER SYSTEM
+SYSTEM ARCHITECTURE
 
 </h3>
 
 
 
+<div class="tech-line">
 
-
-<div class="hud-row">
-
-<span>
-
-VOLTAGE
-
-</span>
-
-
-<b id="hardwareVoltage">
-
-NULL
-
-</b>
-
-
-</div>
-
-
-
-
-
-
-<div class="hud-row">
-
+MODEL
 
 <span>
-
-SOLAR
-
-</span>
-
-
-
-<b id="hardwareSolar">
-
-NULL
-
-</b>
-
-
-
-</div>
-
-
-
-
-
-<div class="hud-status">
-
-● ENERGY LINK ACTIVE
-
-</div>
-
-
-
-</div>
-
-
-
-
-
-
-
-
-
-<!-- ======================
- DEVICE MODEL
-====================== -->
-
-
-
-<div class="device-scene">
-
-
-
-
-
-<div class="device-name">
-
 
 ANT-A01
 
+</span>
+
+</div>
+
+
+
+<div class="tech-line">
+
+TYPE
+
+<span>
+
+POLAR NODE
+
+</span>
+
+</div>
+
+
+
+<div class="tech-line">
+
+DEPLOYMENT
+
+<span>
+
+ANTARCTICA
+
+</span>
+
+</div>
+
+
+
+<div class="tech-line">
+
+STATUS
+
+<span class="green">
+
+ACTIVE
+
+</span>
+
+</div>
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<!-- 中央 SVG设备 -->
+
+
+
+<div class="device-svg-area">
+
+
+
+<div class="device-title-v7">
+
+ANT-A01
 
 <br>
-
 
 <span>
 
@@ -339,7 +274,6 @@ AUTONOMOUS POLAR NODE
 
 </span>
 
-
 </div>
 
 
@@ -347,25 +281,99 @@ AUTONOMOUS POLAR NODE
 
 
 
+<svg
+class="polar-device"
+viewBox="0 0 500 800"
+>
 
 
 
 <!-- solar panel -->
 
 
-<div class="solar-array">
+<defs>
 
 
-<div></div>
+<linearGradient
+id="metal"
+x1="0"
+y1="0"
+x2="1"
+y2="1">
 
-<div></div>
+<stop offset="0%" stop-color="#dff8ff"/>
 
-<div></div>
+<stop offset="35%" stop-color="#527080"/>
 
-<div></div>
+<stop offset="100%" stop-color="#102532"/>
+
+</linearGradient>
 
 
-</div>
+
+<linearGradient
+id="glass"
+x1="0"
+y1="0"
+x2="1"
+y2="1">
+
+
+<stop offset="0%" stop-color="#62d9ff" stop-opacity=".35"/>
+
+<stop offset="100%" stop-color="#062033" stop-opacity=".8"/>
+
+
+</linearGradient>
+
+
+
+</defs>
+
+
+
+
+
+
+
+
+
+<!-- solar array -->
+
+<g>
+
+
+<polygon
+points="
+120,120
+380,120
+330,40
+170,40
+"
+fill="#12394f"
+stroke="#62d9ff"
+stroke-width="3"
+/>
+
+
+
+<line x1="170" y1="45" x2="170" y2="115"
+stroke="#62d9ff"/>
+
+
+<line x1="220" y1="45" x2="220" y2="115"
+stroke="#62d9ff"/>
+
+
+<line x1="270" y1="45" x2="270" y2="115"
+stroke="#62d9ff"/>
+
+
+<line x1="320" y1="45" x2="320" y2="115"
+stroke="#62d9ff"/>
+
+
+</g>
 
 
 
@@ -378,56 +386,99 @@ AUTONOMOUS POLAR NODE
 <!-- main enclosure -->
 
 
+<rect
 
-<div class="device-shell">
+x="130"
+
+y="180"
+
+width="240"
+
+height="250"
+
+rx="25"
+
+fill="url(#glass)"
+
+stroke="#62d9ff"
+
+stroke-width="4"
+
+/>
 
 
 
 
 
-<div class="circuit c1"></div>
-
-<div class="circuit c2"></div>
-
-<div class="circuit c3"></div>
 
 
+<!-- internal modules -->
 
 
+<rect
+
+x="190"
+
+y="220"
+
+width="120"
+
+height="45"
+
+rx="8"
+
+fill="#16445f"
+
+stroke="#62d9ff"
+
+/>
 
 
-
-
-
-<div class="hardware-module module-mcu">
-
+<text
+x="250"
+y="248"
+fill="white"
+text-anchor="middle"
+font-size="16">
 
 MCU
 
-<br>
-
-CONTROL
-
-
-</div>
+</text>
 
 
 
 
 
 
+<rect
 
-<div class="hardware-module module-battery">
+x="190"
 
+y="290"
+
+width="120"
+
+height="55"
+
+rx="8"
+
+fill="#16445f"
+
+stroke="#62d9ff"
+
+/>
+
+
+<text
+x="250"
+y="323"
+fill="white"
+text-anchor="middle"
+font-size="16">
 
 BATTERY
 
-<br>
-
-12V
-
-
-</div>
+</text>
 
 
 
@@ -436,42 +487,71 @@ BATTERY
 
 
 
-<div class="hardware-module module-sensor">
+<rect
 
+x="170"
+
+y="370"
+
+width="80"
+
+height="35"
+
+rx="6"
+
+fill="#16445f"
+
+stroke="#62d9ff"
+
+/>
+
+
+<text
+x="210"
+y="394"
+fill="white"
+text-anchor="middle"
+font-size="12">
 
 SHT35
 
-<br>
+</text>
+
+
+
+
+
+
+<rect
+
+x="260"
+
+y="370"
+
+width="80"
+
+height="35"
+
+rx="6"
+
+fill="#16445f"
+
+stroke="#62d9ff"
+
+/>
+
+
+<text
+x="300"
+y="394"
+fill="white"
+text-anchor="middle"
+font-size="12">
 
 RS485
 
+</text>
 
-</div>
-
-
-
-
-
-
-
-<div class="hardware-module module-gps">
-
-
-GPS
-
-<br>
-
-LINK
-
-
-</div>
-
-
-
-
-
-
-</div>
 
 
 
@@ -484,7 +564,85 @@ LINK
 <!-- pole -->
 
 
-<div class="support-pole">
+<rect
+
+x="235"
+
+y="430"
+
+width="30"
+
+height="190"
+
+fill="url(#metal)"
+
+/>
+
+
+
+
+
+
+<!-- base -->
+
+<polygon
+
+points="
+120,650
+380,650
+330,720
+170,720
+"
+
+fill="#dff8ff"
+
+/>
+
+
+<polygon
+
+points="
+140,720
+360,720
+330,770
+170,770
+"
+
+fill="#24708e"
+
+/>
+
+
+
+<text
+
+x="250"
+
+y="745"
+
+fill="white"
+
+font-size="14"
+
+text-anchor="middle"
+
+>
+
+ICE ANCHOR
+
+</text>
+
+
+
+
+
+</svg>
+
+
+
+
+
+
 
 </div>
 
@@ -496,67 +654,15 @@ LINK
 
 
 
-<!-- ice -->
+<!-- 右侧实时数据 -->
 
 
-<div class="ice-foundation">
-
-
-<div class="snow">
-
-SNOW
-
-</div>
-
-
-<div class="ice">
-
-ICE
-
-</div>
-
-
-
-<div class="anchor">
-
-ANCHOR
-
-</div>
-
-
-
-</div>
-
-
-
-
-
-
-</div>
-
-
-
-
-
-
-
-
-
-<!-- ======================
- RIGHT DATA
-====================== -->
-
-
-
-<div class="floating-card right-card">
-
-
-
+<div class="engineering-panel">
 
 
 <h3>
 
-ENVIRONMENT
+LIVE PARAMETERS
 
 </h3>
 
@@ -564,22 +670,17 @@ ENVIRONMENT
 
 
 
-<div class="hud-row">
+<div class="data-block">
 
 
-<span>
-
-CABIN TEMP
-
-</span>
+SOLAR IRRADIANCE
 
 
-
-<b id="hardwareTemp">
+<strong id="hardwareSolar">
 
 NULL
 
-</b>
+</strong>
 
 
 </div>
@@ -588,24 +689,37 @@ NULL
 
 
 
+<div class="data-block">
 
 
-<div class="hud-row">
+BATTERY VOLTAGE
 
 
-<span>
-
-GPS
-
-</span>
-
-
-<b id="hardwareGPS">
+<strong id="hardwareVoltage">
 
 NULL
 
-</b>
+</strong>
 
+
+</div>
+
+
+
+
+
+
+<div class="data-block">
+
+
+CABIN TEMPERATURE
+
+
+<strong id="hardwareTemp">
+
+NULL
+
+</strong>
 
 
 </div>
@@ -616,16 +730,28 @@ NULL
 
 
 
-<div class="hud-status">
+<div class="data-block">
 
-● SENSOR NETWORK ACTIVE
+
+GPS LINK
+
+
+<strong id="hardwareGPS">
+
+NULL
+
+</strong>
+
 
 </div>
 
 
 
 
+
 </div>
+
+
 
 
 
@@ -641,147 +767,63 @@ NULL
 
 
 
-<!-- ======================
- ENERGY FLOW
-====================== -->
-
-
-<section class="energy-flow">
+<section class="energy-chain">
 
 
 
-
-
-
-<div class="energy-node">
-
-
-<div class="node-icon">
+<div>
 
 ☀
 
-</div>
-
+<br>
 
 SOLAR ARRAY
 
-
 </div>
 
-
-
-
-
-
-
-<div class="energy-link">
 
 <span></span>
 
-</div>
 
-
-
-
-
-
-
-
-<div class="energy-node">
-
+<div>
 
 POWER MANAGEMENT
 
-
 </div>
 
-
-
-
-
-
-<div class="energy-link">
 
 <span></span>
 
-</div>
 
-
-
-
-
-
-
-
-<div class="energy-node">
-
+<div>
 
 BATTERY
 
-
 </div>
 
-
-
-
-
-
-
-<div class="energy-link">
 
 <span></span>
 
-</div>
 
-
-
-
-
-
-
-<div class="energy-node">
-
+<div>
 
 SENSOR HUB
 
-
 </div>
 
-
-
-
-
-
-
-<div class="energy-link">
 
 <span></span>
 
-</div>
 
+<div>
 
-
-
-
-
-
-<div class="energy-node">
-
-
-GPS COMMUNICATION
-
+GPS
 
 </div>
-
-
-
-
 
 
 
 </section>
-
-
 
 
 
@@ -792,11 +834,7 @@ GPS COMMUNICATION
 </main>
 
 
-
 </div>
-
-
-
 
 
 
@@ -806,5 +844,6 @@ GPS COMMUNICATION
 
 
 </body>
+
 
 </html>
