@@ -12,10 +12,21 @@ ANTARCTIC NEXUS Ω - LOCATION
 
 <link rel="icon" href="data:,">
 
+
 <link rel="stylesheet" href="./css/style.css">
 
 
+<link rel="stylesheet"
+href="https://unpkg.com/leaflet/dist/leaflet.css">
+
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js">
+</script>
+
+
 </head>
+
+
 
 
 <body>
@@ -24,10 +35,12 @@ ANTARCTIC NEXUS Ω - LOCATION
 <div class="app">
 
 
+
 <aside class="sidebar">
 
 
 <div class="brand">
+
 
 <div class="logo">
 Ω
@@ -43,14 +56,14 @@ NEXUS Ω
 
 
 <p>
-AUTONOMOUS POLAR MONITORING
+POLAR AUTONOMOUS OBSERVATORY
 </p>
 
 
 </div>
 
-</div>
 
+</div>
 
 
 
@@ -59,32 +72,49 @@ AUTONOMOUS POLAR MONITORING
 
 
 <a href="./index.html">
+
 Dashboard
+
 </a>
+
 
 
 <a class="active">
+
 Location
+
 </a>
+
 
 
 <a href="./sensors.html">
+
 Sensors
+
 </a>
+
 
 
 <a href="./telemetry.html">
+
 Telemetry
+
 </a>
+
 
 
 <a href="./hardware.html">
+
 Hardware
+
 </a>
 
 
+
 <a href="./analysis.html">
+
 Analysis
+
 </a>
 
 
@@ -99,35 +129,41 @@ Analysis
 
 
 
+
+
 <main>
 
 
 
-<header class="topbar">
+<header class="mission-header">
 
 
 <div>
 
-GPS STATUS
 
-<strong id="gpsStatusPage">
+<h2>
 
---
+GLOBAL POSITIONING
 
-</strong>
+</h2>
+
+
+<p>
+
+Satellite navigation and deployment location
+
+</p>
+
 
 </div>
 
 
-<div>
 
-DEVICE
+<div class="system-online">
 
-<strong>
+<span></span>
 
-ANT-A01
-
-</strong>
+GPS LINK
 
 </div>
 
@@ -141,17 +177,24 @@ ANT-A01
 
 
 
-<section class="title">
+
+<section class="map-panel">
 
 
-<h2>
-GLOBAL POSITION
-</h2>
+<div class="panel-title">
+
+REAL WORLD MAP
+
+</div>
 
 
-<p>
-Satellite positioning system
-</p>
+
+<div id="worldMap">
+
+
+</div>
+
+
 
 
 </section>
@@ -164,139 +207,100 @@ Satellite positioning system
 
 
 
-<section class="main-grid">
+<section class="status-grid">
 
 
 
 
 
-<div class="panel">
+<div class="status-card">
 
 
-<div class="panel-title">
+<div class="status-title">
 
-WORLD MAP
-
-</div>
-
-
-
-
-<div class="map-box">
-
-
-<!--
-这里接真实世界地图
--->
-
-<div class="location-point">
-
-</div>
-
+ANT-A01 POSITION
 
 </div>
 
 
 
+<div class="sub-data">
 
-</div>
-
-
-
-
-
-
-
-
-<div class="panel">
-
-
-<div class="panel-title">
-
-POSITION DATA
-
-</div>
-
-
-
-
-
-
-<div class="gps-info">
-
-
-
-<div>
 
 LATITUDE
 
-<strong id="latitudePage">
+<span id="latitudePage">
 
-NULL
+--
 
-</strong>
+</span>
 
 
 </div>
 
 
+<div class="sub-data">
 
-<div>
 
 LONGITUDE
 
-<strong id="longitudePage">
+<span id="longitudePage">
 
-NULL
+--
 
-</strong>
+</span>
 
 
 </div>
 
 
+<div class="sub-data">
 
-<div>
 
 SATELLITES
 
-<strong id="satellitesPage">
+<span id="satellitesPage">
 
-NULL
+--
 
-</strong>
+</span>
+
+
+</div>
 
 
 </div>
 
 
 
+
+
+
+
+
+
+<div class="status-card">
+
+
+<div class="status-title">
+
+DEPLOYMENT NODES
+
 </div>
 
 
 
 
+<div class="sub-data">
 
-
-<br>
-
-
-
-
-
-<div class="gps-info">
-
-
-
-<div>
-
-DEVICE 01
-
-<strong>
 
 ANT-A01
 
-</strong>
+<span>
+
+ONLINE
+
+</span>
 
 
 </div>
@@ -304,16 +308,16 @@ ANT-A01
 
 
 
+<div class="sub-data">
 
-<div>
 
-DEVICE 02
+ANT-A02
 
-<strong>
+<span>
 
 --
 
-</strong>
+</span>
 
 
 </div>
@@ -321,16 +325,19 @@ DEVICE 02
 
 
 
+<div class="sub-data">
 
-<div>
 
 LINK
 
-<strong>
+<span>
 
 --
 
-</strong>
+</span>
+
+
+</div>
 
 
 </div>
@@ -338,21 +345,46 @@ LINK
 
 
 
+
+
+
+
+
+<div class="status-card">
+
+
+<div class="status-title">
+
+GPS STATUS
+
+</div>
+
+
+<div class="big-number"
+
+id="gpsStatusPage">
+
+--
+
 </div>
 
 
 
+<p>
+
+POSITION FIX
+
+</p>
 
 
 </div>
-
-
-
 
 
 
 
 </section>
+
+
 
 
 
@@ -363,8 +395,10 @@ LINK
 </main>
 
 
-
 </div>
+
+
+
 
 
 

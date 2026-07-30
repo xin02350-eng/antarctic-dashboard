@@ -1,14 +1,17 @@
 let DATA = [];
 
-let charts = [];
+let map = null;
+
+let markerA01 = null;
 
 
 
 
 
-// ===============================
+// =============================
 // LOAD DATA
-// ===============================
+// =============================
+
 
 async function loadData(){
 
@@ -16,8 +19,18 @@ async function loadData(){
 try{
 
 
-let res =
+const res =
 await fetch("./data.json");
+
+
+if(!res.ok){
+
+throw new Error(
+"data.json error"
+);
+
+}
+
 
 
 DATA =
@@ -26,13 +39,19 @@ await res.json();
 
 
 console.log(
-"DATA:",
+"Loaded:",
 DATA.length
 );
 
 
 
-updateAll();
+updateDashboard();
+
+
+updateMap();
+
+
+updateStatistics();
 
 
 
@@ -51,6 +70,9 @@ console.error(e);
 
 
 
+// =============================
+// COMMON
+// =============================
 
 
 function latest(){
@@ -61,6 +83,25 @@ return DATA.length
 DATA[DATA.length-1]
 :
 null;
+
+
+}
+
+
+
+function setText(id,value){
+
+
+let el =
+document.getElementById(id);
+
+
+
+if(el){
+
+el.innerHTML=value;
+
+}
 
 
 }
@@ -87,72 +128,59 @@ return v+u;
 
 
 
-function setText(id,value){
-
-
-let el=document.getElementById(id);
-
-
-if(el){
-
-el.innerHTML=value;
-
-}
-
-
-}
 
 
 
 
-
-
-
-
-
-// ===============================
+// =============================
 // CLOCK
-// ===============================
+// =============================
 
 
-function clock(){
+function updateClock(){
 
 
-let d=new Date();
+let now =
+new Date();
+
+
+
+let str =
+
+now.getFullYear()
++"-"+
+String(now.getMonth()+1).padStart(2,"0")
++"-"+
+String(now.getDate()).padStart(2,"0")
++" "+
+now.toLocaleTimeString();
+
 
 
 setText(
-
 "time",
-
-d.getFullYear()
-+"-"+
-String(d.getMonth()+1).padStart(2,"0")
-+"-"+
-String(d.getDate()).padStart(2,"0")
-+" "+
-d.toLocaleTimeString()
-
+str
 );
 
 
 }
 
 
-
-setInterval(clock,1000);
-
-
-
-
+setInterval(
+updateClock,
+1000
+);
 
 
 
 
 
-// ===============================
+
+
+
+// =============================
 // GPS
-// ===============================
+// =============================
 
 
 function latestGPS(){
@@ -176,586 +204,395 @@ d.y!==null
 
 
 
-function updateGPS(){
 
 
 
-let g=latestGPS();
+
+// =============================
+// REAL MAP
+// =============================
+
+
+function initMap(){
 
 
 
-if(!g)return;
+if(!document.getElementById(
+"worldMap"
+)){
 
-
-
-setText(
-"latitude",
-g.x.toFixed(6)+"°"
-);
-
-
-
-setText(
-"longitude",
-g.y.toFixed(6)+"°"
-);
-
-
-
-setText(
-"satellites",
-show(g.n)
-);
-
-
-
-setText(
-"latitudePage",
-g.x.toFixed(6)+"°"
-);
-
-
-
-setText(
-"longitudePage",
-g.y.toFixed(6)+"°"
-);
-
-
-
-setText(
-"satellitesPage",
-show(g.n)
-);
-
-
-
-setText(
-"gpsStatusPage",
-
-g.g==="O"
-?
-"ONLINE"
-:
-g.g==="N"
-?
-"NO FIX"
-:
-show(g.g)
-
-);
-
+return;
 
 }
 
 
 
+let gps =
+latestGPS();
+
+
+
+let lat =
+gps?
+gps.x:
+0;
+
+
+
+let lon =
+gps?
+gps.y:
+0;
 
 
 
 
+map =
+L.map(
+"worldMap"
+)
 
-
-// ===============================
-// DASHBOARD
-// ===============================
-
-
-function updateDashboard(){
-
-
-let d=latest();
-
-
-if(!d)return;
-
-
-
-
-setText(
-"voltage",
-show(d.v," V")
-);
-
-
-
-setText(
-"current",
-show(d.a," mA")
-);
-
-
-
-setText(
-"solar",
-show(d.s," W/m²")
-);
-
-
-
-setText(
-"currentTemp",
-show(d.t," ℃")
-);
-
-
-
-// RS485 仓内
-
-setText(
-"insideTemp",
-show(d.t," ℃")
-);
-
-
-
-setText(
-"insideHum",
-show(d.h," %")
-);
-
-
-
-// SHT35 仓外
-
-setText(
-"outsideTemp",
-show(d.j," ℃")
-);
-
-
-
-setText(
-"outsideHum",
-show(d.k," %")
+.setView(
+[
+lat,
+lon
+],
+5
 );
 
 
 
 
-// N/S/E状态
 
-setText(
-"systemMode",
-show(d.mode)
-);
+L.tileLayer(
 
-
-}
-
-
-
-
-
-
-
-
-
-// ===============================
-// SENSORS
-// ===============================
-
-
-function createLine(id,title,data,zero=false){
-
-
-
-let c=document.getElementById(id);
-
-
-
-if(!c)return;
-
-
-
-let chart=new Chart(
-
-c,
+"https://tile.openstreetmap.org/{z}/{x}/{y}.png",
 
 {
 
-type:"line",
+maxZoom:18,
 
-
-data:{
-
-
-labels:
-
-DATA.map(d=>
-
-d.time.substring(11,16)
-
-),
-
-
-
-datasets:[{
-
-
-label:title,
-
-
-data:data,
-
-
-borderColor:"#4DB9E8",
-
-
-tension:.3
-
-
-}]
-
-
-},
-
-
-
-options:{
-
-
-responsive:true,
-
-
-maintainAspectRatio:false,
-
-
-scales:{
-
-
-y:{
-
-
-beginAtZero:zero
-
+attribution:
+"© OpenStreetMap"
 
 }
 
+)
 
-}
+.addTo(map);
 
 
 
-}
-
-
-
-}
-
-);
-
-
-
-charts.push(chart);
-
-
-
-}
-
-
-
-
-
-
-
-
-function createSensorCharts(){
-
-
-
-if(charts.length>0)return;
-
-
-
-createLine(
-"chartInTemp",
-"Cabin Temperature",
-DATA.map(d=>d.t)
-);
-
-
-
-createLine(
-"chartInHum",
-"Cabin Humidity",
-DATA.map(d=>d.h)
-);
-
-
-
-createLine(
-"chartOutTemp",
-"Outside Temperature",
-DATA.map(d=>d.j)
-);
-
-
-
-createLine(
-"chartOutHum",
-"Outside Humidity",
-DATA.map(d=>d.k)
-);
-
-
-
-createLine(
-"chartSolar",
-"Solar Irradiance",
-DATA.map(d=>d.s),
-true
-);
-
-
-
-createLine(
-"chartCurrent",
-"Current",
-DATA.map(d=>d.a),
-true
-);
-
-
-
-createLine(
-"chartVoltage",
-"Voltage",
-DATA.map(d=>d.v)
-);
-
-
-
-createLine(
-"chartWind",
-"Wind Speed",
-DATA.map(d=>null),
-true
-);
-
-
-
-}
-
-
-
-
-
-
-
-
-
-// ===============================
-// TELEMETRY
-// ===============================
-
-
-function updateTelemetry(){
-
-
-let box=document.getElementById(
-"telemetryData"
-);
-
-
-
-if(!box)return;
-
-
-
-box.innerHTML="";
-
-
-
-DATA.slice(-20)
-
-.reverse()
-
-.forEach(d=>{
-
-
-let row=document.createElement("div");
-
-
-row.className="telemetry-row";
-
-
-
-row.innerHTML=`
-
-<div>
-${d.time.substring(5,16)}
-</div>
-
-<div>
-${show(d.v," V")}
-</div>
-
-<div>
-${show(d.a," mA")}
-</div>
-
-<div>
-${show(d.s," W/m²")}
-</div>
-
-<div>
-${show(d.j," ℃")}
-</div>
-
-<div>
-${show(d.k," %")}
-</div>
-
-<div>
-${show(d.t," ℃")}
-</div>
-
-<div>
-${show(d.h," %")}
-</div>
-
-`;
-
-
-
-box.appendChild(row);
-
-
-
-});
-
-
-}
-
-
-
-
-
-
-
-
-
-// ===============================
-// HARDWARE
-// ===============================
-
-
-function updateHardware(){
-
-
-let d=latest();
-
-
-if(!d)return;
-
-
-
-setText(
-"hardwareSolar",
-show(d.s," W/m²")
-);
-
-
-
-setText(
-"hardwareVoltage",
-show(d.v," V")
-);
-
-
-
-setText(
-"hardwareTemp",
-show(d.t," ℃")
-);
-
-
-
-let gps=latestGPS();
 
 
 
 if(gps){
 
 
+markerA01 =
+
+L.marker(
+[
+gps.x,
+gps.y
+]
+
+)
+
+.addTo(map);
+
+
+
+markerA01.bindPopup(
+
+`
+
+<b>ANT-A01</b><br>
+
+Latitude:
+${gps.x}<br>
+
+Longitude:
+${gps.y}
+
+`
+
+);
+
+
+
+}
+
+
+
+}
+
+
+
+
+
+
+
+
+
+function updateMap(){
+
+
+let gps =
+latestGPS();
+
+
+
+if(!gps){
+
+return;
+
+}
+
+
+
+
 setText(
-"hardwareGPS",
+"latitude",
+gps.x.toFixed(6)+"°"
+);
+
+
+
+setText(
+"longitude",
+gps.y.toFixed(6)+"°"
+);
+
+
+
+setText(
+"satellites",
+show(gps.n)
+);
+
+
+
+
+
+if(map===null){
+
+
+setTimeout(
+initMap,
+300
+);
+
+
+}
+
+else{
+
+
+markerA01
+.setLatLng(
+[
+gps.x,
+gps.y
+]
+);
+
+
+
+map.setView(
+
+[
+gps.x,
+gps.y
+]
+
+);
+
+
+}
+
+
+
+
+
+let status =
+gps.g==="O"
+?
 "ONLINE"
+:
+gps.g==="N"
+?
+"NO FIX"
+:
+show(gps.g);
+
+
+
+setText(
+
+"gpsStatusPage",
+
+status
+
 );
+
 
 
 }
 
 
 
+
+
+
+
+
+
+// =============================
+// DASHBOARD
+// =============================
+
+
+function updateDashboard(){
+
+
+
+let d =
+latest();
+
+
+
+if(!d){
+
+return;
+
 }
 
 
 
 
 
-
-
-
-
-// ===============================
-// ANALYSIS
-// ===============================
-
-
-function updateAnalysis(){
-
-
-
 setText(
 
-"dataCount",
+"systemMode",
 
-DATA.length
+show(d.mode)
 
 );
 
 
 
-if(DATA.length){
-
 
 
 setText(
 
-"lastUpdate",
+"voltage",
 
-latest().time
+show(d.v," V")
 
 );
 
 
 
-let start=
+setText(
 
+"solar",
+
+show(d.s," W/m²")
+
+);
+
+
+
+
+
+setText(
+
+"insideTemp",
+
+show(d.t," ℃")
+
+);
+
+
+
+setText(
+
+"outsideTemp",
+
+show(d.j," ℃")
+
+);
+
+
+
+setText(
+
+"current",
+
+show(d.a," mA")
+
+);
+
+
+
+
+
+}
+
+
+
+
+
+// =============================
+// STATISTICS
+// =============================
+
+
+function updateStatistics(){
+
+
+
+if(DATA.length===0){
+
+return;
+
+}
+
+
+
+
+let first =
 new Date(
 DATA[0].time
 );
 
 
 
-let end=
-
+let last =
 new Date(
-latest().time
+DATA[DATA.length-1].time
 );
 
 
 
-let days=
+let days =
 
 Math.floor(
 
-(end-start)
-/
-86400000
+(last-first)
 
+/
+
+(1000*60*60*24)
+
+);
+
+
+
+console.log(
+"days:",
+days
 );
 
 
@@ -770,54 +607,26 @@ days
 
 
 
-}
+setText(
 
+"dataCount",
 
-}
-
-
-
-
-
-
-
-
-
-// ===============================
-// ALL
-// ===============================
-
-
-function updateAll(){
-
-
-clock();
-
-
-updateDashboard();
-
-
-updateGPS();
-
-
-updateTelemetry();
-
-
-updateHardware();
-
-
-updateAnalysis();
-
-
-setTimeout(
-
-createSensorCharts,
-
-500
+DATA.length
 
 );
 
 
+
+setText(
+
+"lastUpdate",
+
+DATA[DATA.length-1].time
+
+);
+
+
+
 }
 
 
@@ -825,4 +634,21 @@ createSensorCharts,
 
 
 
-window.onload=loadData;
+
+
+
+// =============================
+// START
+// =============================
+
+
+window.onload=function(){
+
+
+updateClock();
+
+
+loadData();
+
+
+};
