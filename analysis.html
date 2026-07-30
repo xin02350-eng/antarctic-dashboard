@@ -1,20 +1,15 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 
-
 <head>
 
-
 <meta charset="UTF-8">
-
 
 <title>
 ANTARCTIC NEXUS Ω - ANALYSIS
 </title>
 
-
 <link rel="icon" href="data:,">
-
 
 <link rel="stylesheet" href="./css/style.css">
 
@@ -37,9 +32,7 @@ ANTARCTIC NEXUS Ω - ANALYSIS
 
 
 <div class="logo">
-
 Ω
-
 </div>
 
 
@@ -52,7 +45,7 @@ NEXUS Ω
 
 
 <p>
-AUTONOMOUS POLAR MONITORING
+POLAR AUTONOMOUS OBSERVATORY
 </p>
 
 
@@ -76,11 +69,13 @@ Dashboard
 </a>
 
 
+
 <a href="./location.html">
 
 Location
 
 </a>
+
 
 
 <a href="./sensors.html">
@@ -90,6 +85,7 @@ Sensors
 </a>
 
 
+
 <a href="./telemetry.html">
 
 Telemetry
@@ -97,11 +93,13 @@ Telemetry
 </a>
 
 
+
 <a href="./hardware.html">
 
 Hardware
 
 </a>
+
 
 
 <a class="active">
@@ -113,7 +111,6 @@ Analysis
 
 
 </nav>
-
 
 
 </aside>
@@ -130,21 +127,35 @@ Analysis
 
 
 
-
-
-<header class="topbar">
+<header class="mission-header">
 
 
 <div>
 
-SYSTEM ANALYSIS
 
-<strong>
+<h2>
 
-ONLINE
+MISSION ANALYTICS
 
-</strong>
+</h2>
 
+
+<p>
+
+Long-term autonomous operation statistics
+
+</p>
+
+
+</div>
+
+
+
+<div class="system-online">
+
+<span></span>
+
+STABLE
 
 </div>
 
@@ -158,60 +169,38 @@ ONLINE
 
 
 
-<section class="title">
 
-
-<h2>
-
-SYSTEM ANALYTICS
-
-</h2>
-
-
-<p>
-
-Long-term operation statistics
-
-</p>
-
-
-</section>
+<section class="status-grid">
 
 
 
 
 
+<div class="status-card">
 
 
+<div class="status-title">
 
-
-<section class="analysis-grid">
-
-
-
-
-
-<div class="analysis-card">
-
-
-<div class="analysis-label">
-
-STABLE OPERATION
+MISSION DURATION
 
 </div>
 
 
+<div class="big-number">
 
-<div class="analysis-value" id="runDays">
+<span id="runDays">
 
---
+0
+
+</span>
 
 </div>
 
 
-
 <p>
+
 DAYS
+
 </p>
 
 
@@ -225,27 +214,31 @@ DAYS
 
 
 
-<div class="analysis-card">
+<div class="status-card">
 
 
-<div class="analysis-label">
+<div class="status-title">
 
-DATA RECORDS
-
-</div>
-
-
-
-<div class="analysis-value" id="dataCount">
-
---
+DATA ACQUIRED
 
 </div>
 
+
+<div class="big-number">
+
+<span id="dataCount">
+
+0
+
+</span>
+
+</div>
 
 
 <p>
-TOTAL SAMPLES
+
+RECORDS
+
 </p>
 
 
@@ -259,27 +252,31 @@ TOTAL SAMPLES
 
 
 
-<div class="analysis-card">
+<div class="status-card">
 
 
-<div class="analysis-label">
+<div class="status-title">
 
 LAST UPDATE
 
 </div>
 
 
+<div class="big-number"
 
-<div class="analysis-value" id="lastUpdate">
+style="font-size:22px"
+
+id="lastUpdate">
 
 --
 
 </div>
 
 
-
 <p>
-LATEST ACQUISITION
+
+LATEST TELEMETRY
+
 </p>
 
 
@@ -287,11 +284,77 @@ LATEST ACQUISITION
 
 
 
+</section>
+
+
+
+
+
+
+
+
+
+<section class="panel">
+
+
+<div class="panel-title">
+
+SYSTEM RELIABILITY
+
+</div>
+
+
+
+
+<div class="sub-data">
+
+
+DATA QUALITY
+
+<span>
+
+98%
+
+</span>
+
+
+</div>
+
+
+
+<div class="sub-data">
+
+
+COMMUNICATION
+
+<span>
+
+ONLINE
+
+</span>
+
+
+</div>
+
+
+
+<div class="sub-data">
+
+
+SENSOR STATUS
+
+<span>
+
+ACTIVE
+
+</span>
+
+
+</div>
 
 
 
 </section>
-
 
 
 
@@ -305,6 +368,8 @@ LATEST ACQUISITION
 
 
 </div>
+
+
 
 
 
