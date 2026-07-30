@@ -1,31 +1,21 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 
-
 <head>
 
-
 <meta charset="UTF-8">
-
-
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-
 
 <title>
 ANTARCTIC NEXUS Ω - LOCATION
 </title>
 
 
+<link rel="icon" href="data:,">
 
-<link rel="stylesheet" href="css/style.css">
-
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./css/style.css">
 
 
 </head>
-
-
 
 
 
@@ -35,8 +25,6 @@ ANTARCTIC NEXUS Ω - LOCATION
 <div class="app">
 
 
-
-<!-- SIDEBAR -->
 
 <aside class="sidebar">
 
@@ -49,7 +37,6 @@ ANTARCTIC NEXUS Ω - LOCATION
 </div>
 
 
-
 <div>
 
 <h1>
@@ -59,7 +46,7 @@ NEXUS Ω
 
 
 <p>
-Autonomous Monitoring System
+AUTONOMOUS POLAR MONITORING
 </p>
 
 
@@ -72,12 +59,10 @@ Autonomous Monitoring System
 
 
 
-
-
 <nav>
 
 
-<a href="index.html">
+<a href="./index.html">
 Dashboard
 </a>
 
@@ -87,22 +72,22 @@ Location
 </a>
 
 
-<a href="sensors.html">
+<a href="./sensors.html">
 Sensors
 </a>
 
 
-<a href="telemetry.html">
+<a href="./telemetry.html">
 Telemetry
 </a>
 
 
-<a href="hardware.html">
+<a href="./hardware.html">
 Hardware
 </a>
 
 
-<a href="analysis.html">
+<a href="./analysis.html">
 Analysis
 </a>
 
@@ -112,43 +97,12 @@ Analysis
 
 
 
-
-
-
-<div class="system-status">
-
-
-<p>
-SYSTEM STATUS
-</p>
-
-
-<strong>
-● ONLINE
-</strong>
-
-
-<span>
-GPS MONITORING
-</span>
-
-
-
-</div>
-
-
 </aside>
 
 
 
 
 
-
-
-
-
-
-<!-- MAIN -->
 
 
 <main>
@@ -160,14 +114,14 @@ GPS MONITORING
 
 <div>
 
-LOCATION SERVICE
+GPS STATUS
 
 <strong>
-GPS ACTIVE
+ACTIVE
 </strong>
 
-</div>
 
+</div>
 
 
 <div>
@@ -190,7 +144,6 @@ ANT-A01
 
 
 
-
 <section class="title">
 
 
@@ -200,9 +153,8 @@ POLAR LOCATION
 
 
 <p>
-Real-time positioning and navigation information
+Real-time positioning system
 </p>
-
 
 
 </section>
@@ -214,14 +166,11 @@ Real-time positioning and navigation information
 
 
 
-
-<section class="location-layout">
-
+<section class="main-grid">
 
 
 
 
-<!-- MAP -->
 
 <div class="panel">
 
@@ -230,42 +179,22 @@ Real-time positioning and navigation information
 
 GPS MAP
 
-<span>
-LIVE POSITION
-</span>
-
 </div>
 
 
 
 
 
-<div class="large-map">
+<div class="map-box">
 
 
-<div class="grid-layer"></div>
-
-
-
-<div class="map-center">
-
-
-ANT-A01
+<div class="location-point">
 
 </div>
 
 
-
-
-
-<div class="gps-marker">
-
-
 </div>
 
-
-
-</div>
 
 
 
@@ -276,10 +205,6 @@ ANT-A01
 
 
 
-
-
-
-<!-- INFO -->
 
 
 <div class="panel">
@@ -289,70 +214,54 @@ ANT-A01
 
 POSITION DATA
 
-<span>
-GPS
-
-</span>
-
 </div>
 
 
 
 
 
-<div class="position-card">
+<div class="gps-info">
 
 
-<label>
+<div>
+
 LATITUDE
-</label>
-
 
 <strong id="latitudePage">
-NULL
-</strong>
 
+NULL
+
+</strong>
 
 
 </div>
 
 
 
+<div>
 
-
-<div class="position-card">
-
-
-<label>
 LONGITUDE
-</label>
-
 
 <strong id="longitudePage">
-NULL
-</strong>
 
+NULL
+
+</strong>
 
 
 </div>
 
 
 
+<div>
 
-
-
-<div class="position-card">
-
-
-<label>
 SATELLITES
-</label>
-
 
 <strong id="satellitesPage">
-NULL
-</strong>
 
+NULL
+
+</strong>
 
 
 </div>
@@ -360,45 +269,38 @@ NULL
 
 
 
+<div>
 
-
-<div class="position-card">
-
-
-<label>
 GPS STATUS
-</label>
-
 
 <strong id="gpsStatusPage">
-NULL
-</strong>
 
+NULL
+
+</strong>
 
 
 </div>
 
 
 
+<div>
 
-
-
-
-<div class="position-card">
-
-
-<label>
 MODE
-</label>
-
 
 <strong id="modePage">
+
 NULL
+
 </strong>
+
+
+</div>
 
 
 
 </div>
+
 
 
 
@@ -410,6 +312,9 @@ NULL
 
 
 </section>
+
+
+
 
 
 
@@ -421,9 +326,7 @@ NULL
 
 
 
-
-
-<script src="js/main.js"></script>
+<script src="./js/main.js"></script>
 
 
 </body>
