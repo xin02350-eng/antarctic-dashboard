@@ -148,27 +148,15 @@
   if (!box) return;
   var rendering = false;
 
-  /* 字段定义：标签 / 解释 / 数据键（gps 为合成字段） */
-  var CELLS = [
-    { label: 'VOLTAGE',            desc: 'BATTERY BUS (V)',       key: 'v' },
-    { label: 'CURRENT',            desc: 'LOAD CURRENT (A)',      key: 'a' },
-    { label: 'SOLAR IRRADIANCE',   desc: 'PYRANOMETER (W/m²)',    key: 's' },
-    { label: 'INSIDE TEMPERATURE', desc: 'CABIN SENSOR (°C)',     key: 't' },
-    { label: 'INSIDE HUMIDITY',    desc: 'CABIN SENSOR (%RH)',    key: 'h' },
-    { label: 'OUTSIDE TEMPERATURE',desc: 'SHT35 EXTERNAL (°C)',   key: 'j' },
-    { label: 'OUTSIDE HUMIDITY',   desc: 'SHT35 EXTERNAL (%RH)',  key: 'k' },
-    { label: 'LATITUDE',           desc: 'GPS FIX (°N)',          key: 'x' },
-    { label: 'LONGITUDE',          desc: 'GPS FIX (°E)',          key: 'y' },
-    { label: 'SATELLITES',         desc: 'SATELLITES IN VIEW',    key: 'n' }
+  /* 表头：13 个通道（与页面标题一致） */
+  var HEADERS = [
+    'TIME', 'MODE', 'VOLTAGE', 'CURRENT', 'SOLAR',
+    'INSIDE TEMP', 'INSIDE HUMIDITY', 'OUTSIDE TEMP', 'OUTSIDE HUMIDITY',
+    'LATITUDE', 'LONGITUDE', 'SATELLITES', 'GPS STATUS'
   ];
 
-  /* 空值语义：不伪造数据，按科研设备显示 NO SIGNAL */
-  function cellHtml(label, desc, value, nullCls) {
-    return '<div class="tel-cell">' +
-      '<span class="tel-key">' + label + '<em>' + desc + '</em></span>' +
-      '<span class="tel-val' + (nullCls ? ' null-val' : '') + '">' + value + '</span>' +
-      '</div>';
-  }
+  /* 数据列与 data.json 字段对应（SOLAR 即 SOLAR IRRADIANCE） */
+  var CELL_KEYS = ['v', 'a', 's', 't', 'h', 'j', 'k', 'x', 'y', 'n'];
 
   function render() {
     if (rendering) return;
@@ -177,7 +165,10 @@
 
     /* 与 main.js 保持一致：取最后 20 条并倒序 */
     var list = DATA.slice(Math.max(0, DATA.length - 20)).reverse();
-    var html = '';
+    var html = '<div class="tel-scroll"><table class="tel-table"><thead><tr>';
+
+    HEADERS.forEach(function (h) { html += '<th>' + h + '</th>'; });
+    html += '</tr></thead><tbody>';
 
     list.forEach(function (d) {
       var modeRaw = (d.mode !== null && d.mode !== undefined) ? d.mode : 'N';
@@ -185,30 +176,31 @@
       var modeCls = modeRaw === 'E' ? 'm-emergency' : (modeRaw === 'S' ? 'm-standby' : 'm-normal');
       var gpsOk = d.x !== null && d.x !== undefined && d.y !== null && d.y !== undefined;
 
-      /* 记录状态：异常红 / 待机黄 / 正常绿 */
+      /* 行状态：异常红 / 待机黄 / 正常绿 */
       var recCls = (modeRaw === 'E' || !gpsOk) ? 'tel-alert' : (modeRaw === 'S' ? 'tel-warn' : 'tel-ok');
       var time = (typeof formatTelemetryTime === 'function')
         ? formatTelemetryTime(d.time)
         : (d.time || '--');
 
-      html += '<div class="tel-record ' + recCls + '">';
-      html += '<div class="tel-head">' +
-        '<span class="tel-time">' + time + '</span>' +
-        '<span class="tel-mode ' + modeCls + '">' + modeSt + '</span>' +
-        '</div>';
-      html += '<div class="tel-grid">';
+      html += '<tr class="' + recCls + '">';
+      html += '<td class="tel-time">' + time + '</td>';
+      html += '<td><span class="tel-mode ' + modeCls + '">' + modeSt + '</span></td>';
 
-      CELLS.forEach(function (c) {
-        var v = d[c.key];
+      CELL_KEYS.forEach(function (k) {
+        var v = d[k];
         var nullCls = (v === null || v === undefined || v === '');
-        html += cellHtml(c.label, c.desc, nullCls ? 'NO SIGNAL' : v, nullCls);
+        html += '<td class="tel-val' + (nullCls ? ' null-val' : '') + '">' + (nullCls ? 'NO SIGNAL' : v) + '</td>';
       });
 
       /* GPS 状态为合成字段：有有效经纬度才显示 ONLINE */
-      html += cellHtml('GPS STATUS', 'POSITION FIX', gpsOk ? 'ONLINE' : 'NO FIX', !gpsOk);
-      html += '</div></div>';
+      html += '<td class="tel-val' + (gpsOk ? '' : ' null-val') + '">' + (gpsOk ? 'ONLINE' : 'NO FIX') + '</td>';
+      html += '</tr>';
     });
 
+    html += '</tbody></table></div>';
+
+    /* 防死循环：内容未变化时不再写 DOM（修复 MutationObserver 自触发导致的空白） */
+    if (box.innerHTML === html) { rendering = false; return; }
     box.innerHTML = html;
     rendering = false;
   }
