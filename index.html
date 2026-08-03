@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <meta name="color-scheme" content="dark">
-  <title>ANTARCTIC NEXUS 惟</title>
+  <title>ANTARCTIC NEXUS</title>
   <link rel="icon" href="data:,">
   <link rel="stylesheet" href="./css/style.css">
 
@@ -21,9 +21,9 @@
   <!-- ====================== 侧边导航 ====================== -->
   <aside class="sidebar">
     <div class="brand">
-      <div class="logo">惟</div>
+      <div class="logo">AN</div>
       <div>
-        <h1>ANTARCTIC<br>NEXUS 惟</h1>
+        <h1>ANTARCTIC<br>NEXUS</h1>
         <p>POLAR AUTONOMOUS OBSERVATORY</p>
       </div>
     </div>
@@ -221,8 +221,8 @@
   </main>
 </div>
 
-<!-- 克制版雪花层（纯 canvas，性能优先） -->
-<canvas id="snowField" aria-hidden="true"></canvas>
+<!-- 全站暴风雪模块（模块化，自动创建背景/前景画布） -->
+<script src="./js/ambient.js"></script>
 
 <!-- 页面级扫描线与设备编号铭牌（氛围层，不拦截交互） -->
 <div class="polar-scan" aria-hidden="true"></div>
@@ -242,83 +242,6 @@
 
   /* 用户开启“减少动态效果”时，关闭雪花与所有装饰动画 */
   var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  /* =========================================================
-     1. 雪花粒子：数量 24（上限 30），小尺寸、慢速、半透明
-  ========================================================= */
-  var snow = document.getElementById('snowField');
-  if (snow && !reduced) {
-    var snowCtx = snow.getContext('2d');
-    var snowDpr = Math.min(window.devicePixelRatio || 1, 1.5); // 限制 DPR，保证性能
-    var flakes = [];
-    var FLAKE_COUNT = 70; /* 60-80 区间：加强雪花但不遮挡内容 */
-    var snowRunning = true;
-
-    /* 初始化/重置画布与粒子 */
-    function initSnow() {
-      var w = window.innerWidth;
-      var h = window.innerHeight;
-      snow.width = Math.round(w * snowDpr);
-      snow.height = Math.round(h * snowDpr);
-      snow.style.width = w + 'px';
-      snow.style.height = h + 'px';
-      snowCtx.setTransform(snowDpr, 0, 0, snowDpr, 0, 0);
-      flakes = [];
-      for (var i = 0; i < FLAKE_COUNT; i++) {
-        flakes.push({
-          x: Math.random() * w,
-          y: Math.random() * h,
-          r: 0.6 + Math.random() * 1.8,           // 随机大小
-          vy: 0.1 + Math.random() * 0.28,         // 缓慢下降
-          phase: Math.random() * Math.PI * 2,     // 左右飘摆相位
-          sway: 0.12 + Math.random() * 0.22,      // 飘摆幅度
-          a: 0.16 + Math.random() * 0.34,         // 随机透明度，保持克制
-          ice: (i % 10 === 0)                     // 约 1/10 为冰晶粒子
-        });
-      }
-    }
-
-    /* 逐帧绘制（页面隐藏时 rAF 自动暂停，另加显式开关） */
-    function tickSnow() {
-      if (!snowRunning) return;
-      var w = window.innerWidth;
-      var h = window.innerHeight;
-      snowCtx.clearRect(0, 0, w, h);
-      for (var i = 0; i < flakes.length; i++) {
-        var f = flakes[i];
-        f.y += f.vy;
-        f.phase += 0.008;
-        f.x += Math.sin(f.phase) * f.sway;
-        if (f.y > h + 4) { f.y = -4; f.x = Math.random() * w; }
-        if (f.x < -4) f.x = w + 4;
-        if (f.x > w + 4) f.x = -4;
-        if (f.ice && f.r > 1.2) {
-          /* 冰晶：四向细线，微弱可见 */
-          var len = f.r * 3;
-          snowCtx.strokeStyle = 'rgba(205,238,255,' + (f.a * 0.45).toFixed(3) + ')';
-          snowCtx.lineWidth = 0.5;
-          snowCtx.beginPath();
-          snowCtx.moveTo(f.x - len, f.y); snowCtx.lineTo(f.x + len, f.y);
-          snowCtx.moveTo(f.x, f.y - len); snowCtx.lineTo(f.x, f.y + len);
-          snowCtx.stroke();
-        } else {
-          snowCtx.beginPath();
-          snowCtx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
-          snowCtx.fillStyle = 'rgba(210,240,255,' + f.a.toFixed(3) + ')';
-          snowCtx.fill();
-        }
-      }
-      window.requestAnimationFrame(tickSnow);
-    }
-
-    window.addEventListener('resize', initSnow);
-    document.addEventListener('visibilitychange', function () {
-      snowRunning = !document.hidden;
-      if (snowRunning) window.requestAnimationFrame(tickSnow);
-    });
-    initSnow();
-    tickSnow();
-  }
 
   /* =========================================================
      2. 地图装饰层（仅在 Dashboard 页面生效）

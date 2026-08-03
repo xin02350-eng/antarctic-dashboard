@@ -1,5 +1,5 @@
 /* =====================================================
- ANTARCTIC NEXUS Ω
+ ANTARCTIC NEXUS
  V7 FINAL STYLE SYSTEM
 
  PART 1 / 3
@@ -6778,6 +6778,825 @@ animation:hwCable 6s linear infinite;
 to{
 
 stroke-dashoffset:-104;
+
+}
+
+}
+
+
+/* =========================================================
+   V0.4 · POLAR OPERATIONS SUITE
+   全站版本标记 / 模块化暴风雪 / Hardware 档案页 / Analysis 分析中心
+========================================================= */
+
+/* 全站版本标记：V0.4（侧栏品牌行追加，无旧版本残留） */
+.brand p::after{
+
+content:" · V0.4";
+
+color:#8ceaff;
+
+}
+
+
+/* 暴风雪画布（模块 js/ambient.js 创建） */
+body.polar-ambient #snowBack,
+
+body.polar-ambient #snowFront{
+
+position:fixed;
+
+inset:0;
+
+width:100%;
+
+height:100%;
+
+pointer-events:none;
+
+}
+
+
+/* 背景层在内容之下：文字区域天然不被覆盖 */
+body.polar-ambient #snowBack{
+
+z-index:1;
+
+opacity:.9;
+
+}
+
+
+/* 前景层稀疏低透明，仅作近景大雪粒氛围 */
+body.polar-ambient #snowFront{
+
+z-index:1200;
+
+opacity:.45;
+
+}
+
+
+/* 风雪方向感：背景追加斜向风雪线（覆盖早期极光纹理层） */
+body.polar-ambient::before{
+
+background:
+repeating-linear-gradient(112deg, rgba(220,245,255,.012) 0 1px, transparent 1px 64px),
+repeating-linear-gradient(115deg, transparent 38%, rgba(98,217,255,.05) 50%, transparent 62%);
+
+}
+
+
+/* =========================================================
+   HARDWARE DOCUMENTATION（照片展示档案页）
+========================================================= */
+
+body.hardware-page main{
+
+height:100vh;
+
+overflow:hidden;
+
+padding:10px 16px;
+
+display:flex;
+
+flex-direction:column;
+
+gap:10px;
+
+}
+
+
+body.hardware-page .mission-header{
+
+background:transparent;
+
+border:0;
+
+box-shadow:none;
+
+padding:6px 10px;
+
+}
+
+
+body.hardware-page .mission-header h2{
+
+font-size:19px;
+
+letter-spacing:4px;
+
+color:#eafcff;
+
+}
+
+
+body.hardware-page .mission-header p{
+
+font-size:9px;
+
+letter-spacing:2px;
+
+color:rgba(127,163,181,.55);
+
+}
+
+
+/* 档案页主体：中央照片区 60%-70% + 两侧信息 */
+.hardware-page .doc-single{
+
+flex:1 1 auto;
+
+min-height:0;
+
+display:grid;
+
+grid-template-columns:200px minmax(0,1fr) 200px;
+
+gap:14px;
+
+}
+
+
+.hardware-page .doc-side{
+
+display:flex;
+
+flex-direction:column;
+
+gap:6px;
+
+min-height:0;
+
+overflow:hidden;
+
+padding:2px 2px;
+
+}
+
+
+.hardware-page .doc-side h3{
+
+font-size:9px;
+
+letter-spacing:3px;
+
+color:rgba(140,234,255,.55);
+
+border-bottom:1px solid rgba(98,217,255,.12);
+
+margin:6px 0 2px;
+
+padding-bottom:4px;
+
+}
+
+
+.hardware-page .doc-side h3:first-child{
+
+margin-top:0;
+
+}
+
+
+/* 中央照片展示区 */
+.hardware-page .doc-stage{
+
+display:flex;
+
+flex-direction:column;
+
+min-width:0;
+
+min-height:0;
+
+border:1px solid rgba(140,234,255,.16);
+
+border-radius:8px;
+
+background:linear-gradient(180deg, rgba(5,19,32,.6), rgba(3,12,22,.5));
+
+overflow:hidden;
+
+}
+
+
+.hardware-page .doc-stage-head,
+
+.hardware-page .doc-stage-foot{
+
+flex:none;
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+gap:10px;
+
+padding:7px 12px;
+
+font-size:8px;
+
+letter-spacing:2px;
+
+color:rgba(140,234,255,.55);
+
+border-bottom:1px solid rgba(98,217,255,.1);
+
+}
+
+
+.hardware-page .doc-stage-foot{
+
+border-bottom:0;
+
+border-top:1px solid rgba(98,217,255,.1);
+
+color:rgba(110,150,170,.55);
+
+}
+
+
+.hardware-page .doc-file{
+
+font-family:Consolas,"Courier New",monospace;
+
+color:rgba(110,150,170,.55);
+
+}
+
+
+/* 照片占位：真实设备照片替换区（不绘制设备） */
+.hardware-page .doc-photo{
+
+flex:1 1 auto;
+
+min-height:0;
+
+position:relative;
+
+background:
+linear-gradient(rgba(98,217,255,.035) 1px, transparent 1px),
+linear-gradient(90deg, rgba(98,217,255,.035) 1px, transparent 1px);
+
+background-size:36px 36px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+}
+
+
+.hardware-page .photo-placeholder{
+
+width:72%;
+
+max-width:520px;
+
+aspect-ratio:16/10;
+
+border:1px dashed rgba(140,234,255,.3);
+
+border-radius:6px;
+
+background:rgba(4,16,27,.55);
+
+display:flex;
+
+flex-direction:column;
+
+align-items:center;
+
+justify-content:center;
+
+gap:10px;
+
+text-align:center;
+
+}
+
+
+.hardware-page .photo-placeholder svg{
+
+width:44px;
+
+height:44px;
+
+color:rgba(140,234,255,.45);
+
+}
+
+
+.hardware-page .photo-placeholder p{
+
+font-size:11px;
+
+letter-spacing:3px;
+
+color:rgba(190,235,255,.6);
+
+}
+
+
+.hardware-page .photo-placeholder .photo-sub{
+
+font-size:8px;
+
+letter-spacing:2px;
+
+color:rgba(110,150,170,.45);
+
+}
+
+
+/* 实时遥测行（透明 HUD） */
+.hardware-page .hud-card{
+
+background:transparent;
+
+border:0;
+
+border-left:1px solid rgba(140,234,255,.22);
+
+border-bottom:1px solid rgba(98,217,255,.07);
+
+border-radius:0;
+
+padding:4px 8px;
+
+}
+
+
+.hardware-page .hc-name{
+
+font-size:8px;
+
+letter-spacing:1.8px;
+
+}
+
+
+.hardware-page .hc-val{
+
+font-size:17px;
+
+}
+
+
+.hardware-page .hc-dot{
+
+width:4px;
+
+height:4px;
+
+background:#00e5a8;
+
+box-shadow:none;
+
+animation:dashBreathe 4s ease-in-out infinite;
+
+}
+
+
+.hardware-page .hud-card.st-off .hc-dot{
+
+background:#ff5263;
+
+box-shadow:none;
+
+}
+
+
+.hardware-page .hud-card.st-off .hc-val{
+
+color:rgba(255,150,160,.8);
+
+font-size:13px;
+
+}
+
+
+/* 底部状态线 */
+.hardware-page .hw-strip{
+
+background:transparent;
+
+border:0;
+
+border-top:1px solid rgba(98,217,255,.12);
+
+border-radius:0;
+
+padding:4px 8px;
+
+}
+
+
+/* =========================================================
+   MISSION ANALYTICS（任务数据分析中心）
+========================================================= */
+
+body.analysis-page{
+
+height:100vh;
+
+overflow:hidden;
+
+}
+
+
+body.analysis-page main{
+
+height:100vh;
+
+overflow:hidden;
+
+padding:10px 16px;
+
+display:flex;
+
+flex-direction:column;
+
+gap:10px;
+
+}
+
+
+body.analysis-page .mission-header{
+
+background:transparent;
+
+border:0;
+
+box-shadow:none;
+
+padding:6px 10px;
+
+}
+
+
+body.analysis-page .mission-header h2{
+
+font-size:19px;
+
+letter-spacing:4px;
+
+color:#eafcff;
+
+}
+
+
+body.analysis-page .mission-header p{
+
+font-size:9px;
+
+letter-spacing:2px;
+
+color:rgba(127,163,181,.55);
+
+}
+
+
+.analysis-page .an-grid{
+
+flex:1 1 auto;
+
+min-height:0;
+
+display:grid;
+
+grid-template-columns:repeat(2,minmax(0,1fr));
+
+grid-template-rows:repeat(2,minmax(0,1fr));
+
+gap:12px;
+
+}
+
+
+.analysis-page .an-panel{
+
+border:1px solid rgba(140,234,255,.14);
+
+border-radius:8px;
+
+background:linear-gradient(165deg, rgba(9,28,44,.55), rgba(5,16,28,.45));
+
+padding:12px 14px;
+
+display:flex;
+
+flex-direction:column;
+
+min-height:0;
+
+overflow:hidden;
+
+}
+
+
+.analysis-page .an-panel h3{
+
+flex:none;
+
+font-size:9px;
+
+letter-spacing:3px;
+
+color:rgba(140,234,255,.6);
+
+border-bottom:1px solid rgba(98,217,255,.12);
+
+padding-bottom:5px;
+
+margin-bottom:8px;
+
+}
+
+
+/* MISSION PERFORMANCE 指标行 */
+.analysis-page .metric{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:baseline;
+
+padding:6px 2px;
+
+border-bottom:1px solid rgba(98,217,255,.07);
+
+font-size:9px;
+
+letter-spacing:2px;
+
+color:rgba(127,163,181,.65);
+
+}
+
+
+.analysis-page .metric b{
+
+font-size:20px;
+
+font-weight:600;
+
+color:#eafcff;
+
+font-variant-numeric:tabular-nums;
+
+letter-spacing:.5px;
+
+}
+
+
+.analysis-page .metric em{
+
+font-style:normal;
+
+font-size:9px;
+
+color:rgba(110,150,170,.55);
+
+margin-left:5px;
+
+}
+
+
+/* DATA TREND 迷你趋势图 */
+.analysis-page .trend-block{
+
+flex:1 1 auto;
+
+min-height:0;
+
+display:flex;
+
+flex-direction:column;
+
+gap:2px;
+
+}
+
+
+.analysis-page .trend-row{
+
+flex:1 1 auto;
+
+min-height:0;
+
+display:flex;
+
+align-items:center;
+
+gap:10px;
+
+}
+
+
+.analysis-page .trend-name{
+
+flex:none;
+
+width:74px;
+
+font-size:7.5px;
+
+letter-spacing:1.5px;
+
+color:rgba(110,150,170,.6);
+
+}
+
+
+.analysis-page .spark{
+
+flex:1 1 auto;
+
+width:100%;
+
+height:100%;
+
+min-height:0;
+
+}
+
+
+.analysis-page .spark polyline{
+
+fill:none;
+
+stroke-width:1.4;
+
+vector-effect:non-scaling-stroke;
+
+}
+
+
+/* SYSTEM HEALTH 仪表 */
+.analysis-page .health-wrap{
+
+flex:1 1 auto;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+gap:16px;
+
+min-height:0;
+
+}
+
+
+.analysis-page .health-gauge{
+
+width:132px;
+
+height:132px;
+
+flex:none;
+
+}
+
+
+.analysis-page .health-num{
+
+font-size:34px;
+
+font-weight:700;
+
+color:#eafcff;
+
+font-variant-numeric:tabular-nums;
+
+}
+
+
+.analysis-page .health-num em{
+
+font-style:normal;
+
+font-size:13px;
+
+color:rgba(110,150,170,.55);
+
+}
+
+
+.analysis-page .health-meta{
+
+font-size:8px;
+
+letter-spacing:2px;
+
+color:rgba(110,150,170,.55);
+
+margin-top:4px;
+
+}
+
+
+/* MISSION TIMELINE */
+.analysis-page .timeline-svg{
+
+flex:1 1 auto;
+
+width:100%;
+
+min-height:0;
+
+}
+
+
+.analysis-page .tl-line{
+
+stroke:rgba(98,217,255,.35);
+
+stroke-width:1.5;
+
+}
+
+
+.analysis-page .tl-dot{
+
+fill:#8ceaff;
+
+}
+
+
+.analysis-page .tl-label{
+
+fill:rgba(160,220,240,.6);
+
+font-size:8px;
+
+letter-spacing:1px;
+
+}
+
+
+@media (max-width:1100px){
+
+.hardware-page .doc-single{
+
+grid-template-columns:170px minmax(0,1fr) 170px;
+
+}
+
+}
+
+
+@media (max-width:900px){
+
+.hardware-page .doc-single{
+
+grid-template-columns:1fr;
+
+grid-template-rows:auto 1fr auto;
+
+}
+
+.hardware-page .doc-side{
+
+flex-direction:row;
+
+flex-wrap:wrap;
+
+}
+
+body.hardware-page main,
+
+body.analysis-page main{
+
+height:auto;
+
+min-height:100vh;
+
+overflow:auto;
+
+}
+
+body.analysis-page{
+
+overflow:auto;
+
+}
+
+.analysis-page .an-grid{
+
+grid-template-columns:1fr;
+
+grid-template-rows:repeat(4,minmax(180px,1fr));
 
 }
 

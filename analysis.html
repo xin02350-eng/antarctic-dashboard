@@ -1,384 +1,258 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-
 <head>
-
-<meta charset="UTF-8">
-
-<title>
-ANTARCTIC NEXUS Ω - ANALYSIS
-</title>
-
-<link rel="icon" href="data:,">
-
-<link rel="stylesheet" href="./css/style.css">
-
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>ANTARCTIC NEXUS - MISSION ANALYTICS</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./css/style.css">
 </head>
 
-
-
-<body>
-
+<body class="polar-ambient analysis-page">
 
 <div class="app">
 
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="logo">AN</div>
+      <div>
+        <h1>ANTARCTIC<br>NEXUS</h1>
+        <p>POLAR AUTONOMOUS OBSERVATORY</p>
+      </div>
+    </div>
+    <nav>
+      <a href="./index.html">Dashboard</a>
+      <a href="./location.html">Location</a>
+      <a href="./sensors.html">Sensors</a>
+      <a href="./telemetry.html">Telemetry</a>
+      <a href="./hardware.html">Hardware</a>
+      <a class="active">Analysis</a>
+    </nav>
+  </aside>
 
+  <!-- 任务数据分析中心 -->
+  <main>
 
-<aside class="sidebar">
+    <header class="mission-header">
+      <div>
+        <h2>MISSION ANALYTICS</h2>
+        <p>POLAR MISSION DATA ANALYSIS CENTER</p>
+      </div>
+      <div class="system-online"><span></span>DATA CENTER</div>
+    </header>
 
+    <section class="an-grid">
 
-<div class="brand">
+      <!-- MISSION PERFORMANCE -->
+      <div class="an-panel">
+        <h3>MISSION PERFORMANCE</h3>
+        <div class="metric">OPERATION DAYS <b id="runDays">--</b><em>DAYS</em></div>
+        <div class="metric">DATA RECORDS <b id="dataCount">--</b><em>SAMPLES</em></div>
+        <div class="metric">SYSTEM RELIABILITY <b id="relScore">--</b><em>%</em></div>
+        <div class="metric">GPS AVAILABILITY <b id="gpsAvail">--</b><em>% · FIX <span id="gpsValidCount">--</span></em></div>
+      </div>
 
+      <!-- DATA TREND -->
+      <div class="an-panel">
+        <h3>DATA TREND</h3>
+        <div class="trend-block">
+          <div class="trend-row"><span class="trend-name">TEMPERATURE</span><svg id="trendTemp" class="spark" viewBox="0 0 300 60" preserveAspectRatio="none"></svg></div>
+          <div class="trend-row"><span class="trend-name">VOLTAGE</span><svg id="trendVolt" class="spark" viewBox="0 0 300 60" preserveAspectRatio="none"></svg></div>
+          <div class="trend-row"><span class="trend-name">SOLAR RADIATION</span><svg id="trendSolar" class="spark" viewBox="0 0 300 60" preserveAspectRatio="none"></svg></div>
+        </div>
+      </div>
 
-<div class="logo">
-Ω
+      <!-- SYSTEM HEALTH -->
+      <div class="an-panel">
+        <h3>SYSTEM HEALTH</h3>
+        <div class="health-wrap">
+          <svg id="healthGauge" class="health-gauge" viewBox="0 0 120 120">
+            <circle cx="60" cy="60" r="52" fill="none" stroke="rgba(98,217,255,.12)" stroke-width="8"/>
+            <circle class="gauge-arc" cx="60" cy="60" r="52" fill="none" stroke="#00e5a8" stroke-width="8" stroke-linecap="round" transform="rotate(-90 60 60)" stroke-dasharray="0 326.7"/>
+          </svg>
+          <div>
+            <div class="health-num"><span id="healthScore">--</span><em>/100</em></div>
+            <div class="health-meta">SYSTEM STATE: NOMINAL</div>
+            <div class="health-meta">LAST UPDATE <span id="lastUpdate">--</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MISSION TIMELINE -->
+      <div class="an-panel">
+        <h3>MISSION TIMELINE</h3>
+        <svg id="missionTimeline" class="timeline-svg" viewBox="0 0 640 86" preserveAspectRatio="none"></svg>
+      </div>
+
+    </section>
+
+  </main>
 </div>
 
+<!-- 全站暴风雪模块（模块化） -->
+<script src="./js/ambient.js"></script>
 
-<div>
-
-<h1>
-ANTARCTIC<br>
-NEXUS Ω
-</h1>
-
-
-<p>
-POLAR AUTONOMOUS OBSERVATORY
-</p>
-
-
-</div>
-
-
-</div>
-
-
-
-
-
-
-<nav>
-
-
-<a href="./index.html">
-
-Dashboard
-
-</a>
-
-
-
-<a href="./location.html">
-
-Location
-
-</a>
-
-
-
-<a href="./sensors.html">
-
-Sensors
-
-</a>
-
-
-
-<a href="./telemetry.html">
-
-Telemetry
-
-</a>
-
-
-
-<a href="./hardware.html">
-
-Hardware
-
-</a>
-
-
-
-<a class="active">
-
-Analysis
-
-</a>
-
-
-
-</nav>
-
-
-</aside>
-
-
-
-
-
-
-
-
-
-<main>
-
-
-
-<header class="mission-header">
-
-
-<div>
-
-
-<h2>
-
-MISSION ANALYTICS
-
-</h2>
-
-
-<p>
-
-Long-term autonomous operation statistics
-
-</p>
-
-
-</div>
-
-
-
-<div class="system-online">
-
-<span></span>
-
-STABLE
-
-</div>
-
-
-</header>
-
-
-
-
-
-
-
-
-
-<section class="status-grid">
-
-
-
-
-
-<div class="status-card">
-
-
-<div class="status-title">
-
-MISSION DURATION
-
-</div>
-
-
-<div class="big-number">
-
-<span id="runDays">
-
-0
-
-</span>
-
-</div>
-
-
-<p>
-
-DAYS
-
-</p>
-
-
-</div>
-
-
-
-
-
-
-
-
-
-<div class="status-card">
-
-
-<div class="status-title">
-
-DATA ACQUIRED
-
-</div>
-
-
-<div class="big-number">
-
-<span id="dataCount">
-
-0
-
-</span>
-
-</div>
-
-
-<p>
-
-RECORDS
-
-</p>
-
-
-</div>
-
-
-
-
-
-
-
-
-
-<div class="status-card">
-
-
-<div class="status-title">
-
-LAST UPDATE
-
-</div>
-
-
-<div class="big-number"
-
-style="font-size:22px"
-
-id="lastUpdate">
-
---
-
-</div>
-
-
-<p>
-
-LATEST TELEMETRY
-
-</p>
-
-
-</div>
-
-
-
-</section>
-
-
-
-
-
-
-
-
-
-<section class="panel">
-
-
-<div class="panel-title">
-
-SYSTEM RELIABILITY
-
-</div>
-
-
-
-
-<div class="sub-data">
-
-
-GPS VALID RECORDS
-
-<span id="gpsValidCount">
-
-0
-
-</span>
-
-
-</div>
-
-
-
-<div class="sub-data">
-
-
-DATA SOURCE
-
-<span>
-
-data.json
-
-</span>
-
-
-</div>
-
-
-
-<div class="sub-data">
-
-
-SENSOR PAYLOAD
-
-<span>
-
-RAW
-
-</span>
-
-
-</div>
-
-
-
-</section>
-
-
-
-
-
-
-
-
-</main>
-
-
-
-</div>
-
-
-
-
-
-
-
+<!-- 数据核心（main.js 保持不变） -->
 <script src="./js/main.js"></script>
 
+<!-- =========================================================
+     分析中心辅助层（纯显示逻辑，不影响 main.js）
+     - 可靠性 / GPS 可用率 / 健康评分（由真实数据计算）
+     - 三通道迷你趋势图 + 任务时间轴（SVG 原生绘制）
+========================================================= -->
+<script>
+(function () {
+  'use strict';
+  var NS = 'http://www.w3.org/2000/svg';
+  var tries = 0;
 
+  function ready() {
+    try { return typeof DATA !== 'undefined' && DATA && DATA.length; } catch (e) { return false; }
+  }
+
+  function setText(id, t) {
+    var el = document.getElementById(id);
+    if (el) el.textContent = t;
+  }
+
+  /* 数据采样：最多 max 个点 */
+  function sample(key, max) {
+    var out = [];
+    DATA.forEach(function (d) {
+      var v = d[key];
+      if (v !== null && v !== undefined) out.push(v);
+    });
+    if (out.length <= max) return out;
+    var step = (out.length - 1) / (max - 1);
+    var r = [];
+    for (var i = 0; i < max; i++) r.push(out[Math.round(i * step)]);
+    return r;
+  }
+
+  /* 迷你趋势图 */
+  function drawSpark(id, key, color) {
+    var svg = document.getElementById(id);
+    if (!svg) return;
+    var vals = sample(key, 120);
+    if (vals.length < 2) return;
+    var W = 300, H = 60, pad = 3;
+    var min = Math.min.apply(null, vals);
+    var max = Math.max.apply(null, vals);
+    if (max === min) max = min + 1;
+    var pts = [];
+    for (var i = 0; i < vals.length; i++) {
+      var x = pad + (i / (vals.length - 1)) * (W - 2 * pad);
+      var y = H - pad - ((vals[i] - min) / (max - min)) * (H - 2 * pad);
+      pts.push(x.toFixed(1) + ',' + y.toFixed(1));
+    }
+    var line = svg.querySelector('.spark-line');
+    if (!line) {
+      line = document.createElementNS(NS, 'polyline');
+      line.setAttribute('class', 'spark-line');
+      svg.appendChild(line);
+    }
+    line.setAttribute('points', pts.join(' '));
+    line.setAttribute('stroke', color);
+
+    var area = svg.querySelector('.spark-area');
+    if (!area) {
+      area = document.createElementNS(NS, 'polygon');
+      area.setAttribute('class', 'spark-area');
+      svg.appendChild(area);
+    }
+    var first = pts[0].split(',')[0];
+    var last = pts[pts.length - 1].split(',')[0];
+    area.setAttribute('points', first + ',60 ' + pts.join(' ') + ' ' + last + ',60');
+    area.setAttribute('fill', color);
+    area.setAttribute('opacity', '0.12');
+  }
+
+  /* 健康仪表 */
+  function drawGauge(score) {
+    var arc = document.querySelector('#healthGauge .gauge-arc');
+    if (!arc) return;
+    var r = 52;
+    var c = 2 * Math.PI * r;
+    arc.setAttribute('stroke-dasharray', ((score / 100) * c).toFixed(1) + ' ' + c.toFixed(1));
+  }
+
+  /* 任务时间轴 */
+  function drawTimeline() {
+    var svg = document.getElementById('missionTimeline');
+    if (!svg) return;
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+    var W = 640, padL = 16, padR = 16, y = 44;
+    var start = new Date(DATA[0].time).getTime();
+    var end = new Date(DATA[DATA.length - 1].time).getTime();
+    var span = (end - start) || 1;
+    function xf(t) { return padL + ((t - start) / span) * (W - padL - padR); }
+
+    var line = document.createElementNS(NS, 'line');
+    line.setAttribute('class', 'tl-line');
+    line.setAttribute('x1', padL); line.setAttribute('y1', y);
+    line.setAttribute('x2', W - padR); line.setAttribute('y2', y);
+    svg.appendChild(line);
+
+    var events = [{ t: start, label: 'START' }];
+    for (var i = 0; i < DATA.length; i++) {
+      if (DATA[i].x !== null && DATA[i].x !== undefined) {
+        events.push({ t: new Date(DATA[i].time).getTime(), label: 'GPS FIX' });
+        break;
+      }
+    }
+    var modeS = false, modeE = false;
+    for (var j = 0; j < DATA.length; j++) {
+      if (!modeS && DATA[j].mode === 'S') { modeS = true; events.push({ t: new Date(DATA[j].time).getTime(), label: 'MODE S' }); }
+      if (!modeE && DATA[j].mode === 'E') { modeE = true; events.push({ t: new Date(DATA[j].time).getTime(), label: 'MODE E' }); }
+    }
+    events.push({ t: end, label: 'LAST' });
+
+    events.forEach(function (ev) {
+      var x = xf(ev.t);
+      var dot = document.createElementNS(NS, 'circle');
+      dot.setAttribute('class', 'tl-dot');
+      dot.setAttribute('cx', x); dot.setAttribute('cy', y); dot.setAttribute('r', '2.6');
+      svg.appendChild(dot);
+      var label = document.createElementNS(NS, 'text');
+      label.setAttribute('class', 'tl-label');
+      label.setAttribute('x', x); label.setAttribute('y', y - 10);
+      label.setAttribute('text-anchor', 'middle');
+      label.textContent = ev.label;
+      svg.appendChild(label);
+    });
+  }
+
+  function render() {
+    if (!ready()) return;
+    var n = DATA.length;
+    var vOk = 0, gOk = 0, tOk = 0, sOk = 0;
+    DATA.forEach(function (d) {
+      if (d.v !== null && d.v !== undefined) vOk++;
+      if (d.x !== null && d.x !== undefined && d.y !== null && d.y !== undefined) gOk++;
+      if (d.t !== null && d.t !== undefined) tOk++;
+      if (d.s !== null && d.s !== undefined) sOk++;
+    });
+    var rel = Math.round((vOk / n) * 100);
+    var gps = Math.round((gOk / n) * 100);
+    var comp = Math.round(((tOk + vOk + sOk) / (3 * n)) * 100);
+    var health = Math.round(comp * 0.5 + rel * 0.3 + gps * 0.2);
+
+    setText('relScore', rel + '%');
+    setText('gpsAvail', gps + '%');
+    setText('healthScore', health);
+    drawGauge(health);
+    drawSpark('trendTemp', 't', '#8ceaff');
+    drawSpark('trendVolt', 'v', '#00e5a8');
+    drawSpark('trendSolar', 's', '#f5b942');
+    drawTimeline();
+  }
+
+  render();
+  var poll = setInterval(function () {
+    render();
+    if (++tries > 60) clearInterval(poll);
+  }, 500);
+})();
+</script>
 </body>
-
-
 </html>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>ANTARCTIC NEXUS 惟 - SENSORS</title>
+  <title>ANTARCTIC NEXUS - SENSORS</title>
   <link rel="icon" href="data:,">
   <link rel="stylesheet" href="./css/style.css">
 
@@ -18,9 +18,9 @@
 
   <aside class="sidebar">
     <div class="brand">
-      <div class="logo">惟</div>
+      <div class="logo">AN</div>
       <div>
-        <h1>ANTARCTIC<br>NEXUS 惟</h1>
+        <h1>ANTARCTIC<br>NEXUS</h1>
         <p>POLAR AUTONOMOUS OBSERVATORY</p>
       </div>
     </div>
@@ -93,7 +93,8 @@
 </div>
 
 <!-- 极地氛围层：雪花画布 / 页面扫描线 / 设备编号铭牌 -->
-<canvas id="snowField" aria-hidden="true"></canvas>
+<!-- 全站暴风雪模块（模块化，自动创建背景/前景画布） -->
+<script src="./js/ambient.js"></script>
 <div class="polar-scan" aria-hidden="true"></div>
 <div class="polar-badge">ANT-A01 · POLAR STATION · REMOTE SENSOR NODE</div>
 
@@ -161,86 +162,6 @@
   /* 保留 Chart.js 静态接口，避免影响其他页面逻辑 */
   window.Chart.register = RealChart.register;
   window.Chart.unregister = RealChart.unregister;
-})();
-</script>
-
-<!-- =========================================================
-     极地氛围辅助层：雪花 + 冰晶（纯 canvas，不影响数据链路）
-========================================================= -->
-<script>
-(function () {
-  'use strict';
-  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  var cv = document.getElementById('snowField');
-  if (!cv) return;
-  var ctx = cv.getContext('2d');
-  var dpr = Math.min(window.devicePixelRatio || 1, 1.5);
-  var N = 60;                 /* 60 个粒子（60-80 区间），克制不遮挡内容 */
-  var flakes = [];
-  var running = true;
-
-  function init() {
-    var w = window.innerWidth;
-    var h = window.innerHeight;
-    cv.width = Math.round(w * dpr);
-    cv.height = Math.round(h * dpr);
-    cv.style.width = w + 'px';
-    cv.style.height = h + 'px';
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    flakes = [];
-    for (var i = 0; i < N; i++) {
-      flakes.push({
-        x: Math.random() * w,
-        y: Math.random() * h,
-        r: 0.6 + Math.random() * 1.8,   /* 随机大小 */
-        vy: 0.1 + Math.random() * 0.25, /* 缓慢下降 */
-        ph: Math.random() * 6.28,
-        sw: 0.12 + Math.random() * 0.2,
-        a: 0.16 + Math.random() * 0.3,  /* 随机透明度 */
-        ice: i % 10 === 0               /* 约 1/10 为冰晶粒子 */
-      });
-    }
-  }
-
-  function tick() {
-    if (!running) return;
-    var w = window.innerWidth;
-    var h = window.innerHeight;
-    ctx.clearRect(0, 0, w, h);
-    for (var i = 0; i < flakes.length; i++) {
-      var f = flakes[i];
-      f.y += f.vy;
-      f.ph += 0.006;
-      f.x += Math.sin(f.ph) * f.sw;
-      if (f.y > h + 5) { f.y = -5; f.x = Math.random() * w; }
-      if (f.x < -5) f.x = w + 5;
-      if (f.x > w + 5) f.x = -5;
-      if (f.ice && f.r > 1.2) {
-        /* 冰晶：四向细线，微弱可见 */
-        var L = f.r * 3;
-        ctx.strokeStyle = 'rgba(205,238,255,' + (f.a * 0.45).toFixed(3) + ')';
-        ctx.lineWidth = 0.5;
-        ctx.beginPath();
-        ctx.moveTo(f.x - L, f.y); ctx.lineTo(f.x + L, f.y);
-        ctx.moveTo(f.x, f.y - L); ctx.lineTo(f.x, f.y + L);
-        ctx.stroke();
-      } else {
-        ctx.beginPath();
-        ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(210,240,255,' + f.a.toFixed(3) + ')';
-        ctx.fill();
-      }
-    }
-    window.requestAnimationFrame(tick);
-  }
-
-  window.addEventListener('resize', init);
-  document.addEventListener('visibilitychange', function () {
-    running = !document.hidden;
-    if (running) window.requestAnimationFrame(tick);
-  });
-  init();
-  tick();
 })();
 </script>
 
