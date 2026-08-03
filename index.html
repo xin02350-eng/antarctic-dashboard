@@ -13,8 +13,8 @@
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 </head>
 
-<!-- dashboard-page：所有新版大屏样式均以该作用域隔离，不影响其他页面 -->
-<body class="dashboard-page">
+<!-- dashboard-page：Dashboard 专属样式作用域；polar-ambient：全局极地氛围 -->
+<body class="dashboard-page polar-ambient">
 
 <div class="app">
 
@@ -221,8 +221,12 @@
   </main>
 </div>
 
-<!-- 克制版雪花层（≤30 粒，纯 canvas，性能优先） -->
+<!-- 克制版雪花层（纯 canvas，性能优先） -->
 <canvas id="snowField" aria-hidden="true"></canvas>
+
+<!-- 页面级扫描线与设备编号铭牌（氛围层，不拦截交互） -->
+<div class="polar-scan" aria-hidden="true"></div>
+<div class="polar-badge">ANT-A01 · POLAR STATION · REMOTE SENSOR NODE</div>
 
 <!-- 数据核心与地图初始化（不允许修改） -->
 <script src="./js/main.js"></script>
@@ -247,7 +251,7 @@
     var snowCtx = snow.getContext('2d');
     var snowDpr = Math.min(window.devicePixelRatio || 1, 1.5); // 限制 DPR，保证性能
     var flakes = [];
-    var FLAKE_COUNT = 24;
+    var FLAKE_COUNT = 70; /* 60-80 区间：加强雪花但不遮挡内容 */
     var snowRunning = true;
 
     /* 初始化/重置画布与粒子 */
@@ -264,11 +268,12 @@
         flakes.push({
           x: Math.random() * w,
           y: Math.random() * h,
-          r: 0.6 + Math.random() * 1.4,
-          vy: 0.12 + Math.random() * 0.28,        // 慢速下落
-          phase: Math.random() * Math.PI * 2,      // 左右飘摆相位
-          sway: 0.15 + Math.random() * 0.25,       // 飘摆幅度
-          a: 0.20 + Math.random() * 0.32           // 低透明度，保持克制
+          r: 0.6 + Math.random() * 1.8,           // 随机大小
+          vy: 0.1 + Math.random() * 0.28,         // 缓慢下降
+          phase: Math.random() * Math.PI * 2,     // 左右飘摆相位
+          sway: 0.12 + Math.random() * 0.22,      // 飘摆幅度
+          a: 0.16 + Math.random() * 0.34,         // 随机透明度，保持克制
+          ice: (i % 10 === 0)                     // 约 1/10 为冰晶粒子
         });
       }
     }
@@ -287,10 +292,21 @@
         if (f.y > h + 4) { f.y = -4; f.x = Math.random() * w; }
         if (f.x < -4) f.x = w + 4;
         if (f.x > w + 4) f.x = -4;
-        snowCtx.beginPath();
-        snowCtx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
-        snowCtx.fillStyle = 'rgba(210,240,255,' + f.a + ')';
-        snowCtx.fill();
+        if (f.ice && f.r > 1.2) {
+          /* 冰晶：四向细线，微弱可见 */
+          var len = f.r * 3;
+          snowCtx.strokeStyle = 'rgba(205,238,255,' + (f.a * 0.45).toFixed(3) + ')';
+          snowCtx.lineWidth = 0.5;
+          snowCtx.beginPath();
+          snowCtx.moveTo(f.x - len, f.y); snowCtx.lineTo(f.x + len, f.y);
+          snowCtx.moveTo(f.x, f.y - len); snowCtx.lineTo(f.x, f.y + len);
+          snowCtx.stroke();
+        } else {
+          snowCtx.beginPath();
+          snowCtx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
+          snowCtx.fillStyle = 'rgba(210,240,255,' + f.a.toFixed(3) + ')';
+          snowCtx.fill();
+        }
       }
       window.requestAnimationFrame(tickSnow);
     }
