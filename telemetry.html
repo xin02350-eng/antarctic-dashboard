@@ -73,7 +73,7 @@
 
   /* 表头：13 个通道（与页面标题一致） */
   var HEADERS = [
-    'TIME', 'MODE', 'VOLTAGE', 'CURRENT', 'SOLAR',
+    'TIME', 'MODE', 'VOLTAGE', 'CURRENT (mA)', 'SOLAR',
     'INSIDE TEMP', 'INSIDE HUMIDITY', 'OUTSIDE TEMP', 'OUTSIDE HUMIDITY',
     'LATITUDE', 'LONGITUDE', 'SATELLITES', 'GPS STATUS'
   ];
@@ -112,7 +112,10 @@
       CELL_KEYS.forEach(function (k) {
         var v = d[k];
         var nullCls = (v === null || v === undefined || v === '');
-        html += '<td class="tel-val' + (nullCls ? ' null-val' : '') + '">' + (nullCls ? 'NO SIGNAL' : v) + '</td>';
+        var disp = nullCls ? 'NO SIGNAL' : v;
+        /* 电流数值直接以 mA 显示，不换算 */
+        if (!nullCls && k === 'a') disp = v + ' mA';
+        html += '<td class="tel-val' + (nullCls ? ' null-val' : '') + '">' + disp + '</td>';
       });
 
       html += '<td class="tel-val' + (gpsOk ? '' : ' null-val') + '">' + (gpsOk ? 'ONLINE' : 'NO FIX') + '</td>';

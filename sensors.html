@@ -73,7 +73,7 @@
       </div>
 
       <div class="panel">
-        <div class="panel-title">CURRENT</div>
+        <div class="panel-title">CURRENT (mA)</div>
         <canvas id="chartCurrent"></canvas>
       </div>
 
@@ -112,6 +112,25 @@
   if (typeof RealChart !== 'function') return;
 
   window.Chart = function (ctx, cfg) {
+    /* CURRENT 通道：单位 mA（数值直接展示，不换算） */
+    if (ctx && ctx.id === 'chartCurrent' && cfg) {
+      cfg.options = cfg.options || {};
+      cfg.options.scales = cfg.options.scales || {};
+      cfg.options.scales.y = cfg.options.scales.y || {};
+      cfg.options.scales.y.title = {
+        display: true,
+        text: 'CURRENT (mA)',
+        color: '#6f93a8',
+        font: { size: 10 }
+      };
+      cfg.options.plugins = cfg.options.plugins || {};
+      cfg.options.plugins.tooltip = cfg.options.plugins.tooltip || {};
+      cfg.options.plugins.tooltip.callbacks = cfg.options.plugins.tooltip.callbacks || {};
+      cfg.options.plugins.tooltip.callbacks.label = function (context) {
+        return context.parsed.y + ' mA';
+      };
+    }
+
     /* 仅对 SOLAR IRRADIANCE 通道应用科研仪表风格 */
     if (ctx && ctx.id === 'chartSolar' && cfg) {
       cfg.options = cfg.options || {};
