@@ -6856,6 +6856,33 @@ opacity:.8;
 }
 
 
+/* 修复：全局 canvas{height:260px!important}（Chart.js 用）会压缩雪画布，
+   这里以更高优先级强制雪画布铺满整个视口 */
+body.polar-ambient #snowFog,
+
+body.polar-ambient #snowFar,
+
+body.polar-ambient #snowMid,
+
+body.polar-ambient #snowFront{
+
+position:fixed!important;
+
+inset:0!important;
+
+width:100vw!important;
+
+height:100vh!important;
+
+display:block!important;
+
+pointer-events:none!important;
+
+z-index:-1!important;
+
+}
+
+
 /* 风雪方向感：背景追加斜向风雪线（覆盖早期极光纹理层） */
 body.polar-ambient::before{
 
