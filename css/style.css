@@ -6754,6 +6754,37 @@ display:none;
 
 
 /* =========================================================
+   HARDWARE V10 · 3D EXPLODED VIEW
+   爆炸视图：模块独立悬浮，数据流线低速流动
+========================================================= */
+
+.hardware-page .hw-cable{
+
+fill:none;
+
+stroke:rgba(140,234,255,.22);
+
+stroke-width:1;
+
+stroke-dasharray:4 9;
+
+animation:hwCable 6s linear infinite;
+
+}
+
+
+@keyframes hwCable{
+
+to{
+
+stroke-dashoffset:-104;
+
+}
+
+}
+
+
+/* =========================================================
    HARDWARE V7 · DIGITAL TWIN SHOWCASE
    等边三棱柱三面太阳能结构 / 严格图层分层 / 设备中央 80%
 ========================================================= */
