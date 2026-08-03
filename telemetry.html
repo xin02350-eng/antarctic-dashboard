@@ -8,7 +8,6 @@
   <link rel="stylesheet" href="./css/style.css">
 </head>
 
-<!-- polar-ambient：极地氛围；telemetry-page：遥测终端专属样式 -->
 <body class="polar-ambient telemetry-page">
 
 <div class="app">
@@ -41,7 +40,7 @@
       <div class="system-online"><span></span>DATA LINK</div>
     </header>
 
-    <!-- 遥测终端（hud-frame 提供面板角标；#telemetryData 由 main.js 与辅助层共同管理） -->
+    <!-- 遥测数据容器：id 必须保持 telemetryData（main.js 依赖此 ID） -->
     <section class="panel hud-frame">
       <div class="panel-title">LATEST 20 RECORDS · 13 CHANNELS</div>
       <div class="telemetry-stream" id="telemetryData"></div>
@@ -55,9 +54,7 @@
 <div class="polar-scan" aria-hidden="true"></div>
 <div class="polar-badge">ANT-A01 · POLAR STATION · REMOTE SENSOR NODE</div>
 
-<!-- =========================================================
-     极地氛围辅助层：雪花 + 冰晶（纯 canvas，不影响数据链路）
-========================================================= -->
+<!-- 极地氛围辅助层：雪花 + 冰晶（纯 canvas，不影响数据链路） -->
 <script>
 (function () {
   'use strict';
@@ -134,19 +131,21 @@
 })();
 </script>
 
-<!-- 数据核心（main.js 保持不变，负责写入原始数据） -->
+<!-- 数据核心（main.js 保持不变：负责读取 data.json 并写入 #telemetryData） -->
 <script src="./js/main.js"></script>
 
 <!-- =========================================================
-     遥测终端辅助渲染层（纯显示逻辑，不拦截 main.js）
-     最近 20 条，13 个关键字段全量展示，终端/表格混合风格
+     Telemetry 最小数据渲染层（纯显示逻辑，不改 main.js）
+     - 无 MutationObserver，无自触发，杜绝死循环
+     - 每 0.5 秒检查一次 main.js 的全局 DATA，就绪后渲染一次
+     - 若 main.js 数据 3 秒内未就绪，自行读取 data.json 兜底
+     - 表头 13 通道，最近 20 条，不写死任何数据
 ========================================================= -->
 <script>
 (function () {
   'use strict';
   var box = document.getElementById('telemetryData');
   if (!box) return;
-  var rendering = false;
 
   /* 表头：13 个通道（与页面标题一致） */
   var HEADERS = [
@@ -158,32 +157,32 @@
   /* 数据列与 data.json 字段对应（SOLAR 即 SOLAR IRRADIANCE） */
   var CELL_KEYS = ['v', 'a', 's', 't', 'h', 'j', 'k', 'x', 'y', 'n'];
 
-  function render() {
-    if (rendering) return;
-    if (typeof DATA === 'undefined' || !DATA || !DATA.length) return;
-    rendering = true;
+  /* 本地时间格式化（不依赖 main.js 内部函数） */
+  function fmtTime(t) {
+    if (!t) return 'NO SIGNAL';
+    var d = new Date(t);
+    if (isNaN(d.getTime())) return String(t);
+    function p(n) { return String(n).padStart(2, '0'); }
+    return d.getFullYear() + '-' + p(d.getMonth() + 1) + '-' + p(d.getDate()) +
+      ' ' + p(d.getHours()) + ':' + p(d.getMinutes()) + ':' + p(d.getSeconds());
+  }
 
-    /* 与 main.js 保持一致：取最后 20 条并倒序 */
-    var list = DATA.slice(Math.max(0, DATA.length - 20)).reverse();
+  /* 构建表格 HTML（最近 20 条，倒序，与 main.js 逻辑一致） */
+  function buildHtml(list) {
     var html = '<div class="tel-scroll"><table class="tel-table"><thead><tr>';
-
     HEADERS.forEach(function (h) { html += '<th>' + h + '</th>'; });
     html += '</tr></thead><tbody>';
 
-    list.forEach(function (d) {
+    var rows = list.slice(Math.max(0, list.length - 20)).reverse();
+    rows.forEach(function (d) {
       var modeRaw = (d.mode !== null && d.mode !== undefined) ? d.mode : 'N';
       var modeSt = modeRaw === 'E' ? 'EMERGENCY' : (modeRaw === 'S' ? 'STANDBY' : 'NORMAL');
       var modeCls = modeRaw === 'E' ? 'm-emergency' : (modeRaw === 'S' ? 'm-standby' : 'm-normal');
       var gpsOk = d.x !== null && d.x !== undefined && d.y !== null && d.y !== undefined;
-
-      /* 行状态：异常红 / 待机黄 / 正常绿 */
       var recCls = (modeRaw === 'E' || !gpsOk) ? 'tel-alert' : (modeRaw === 'S' ? 'tel-warn' : 'tel-ok');
-      var time = (typeof formatTelemetryTime === 'function')
-        ? formatTelemetryTime(d.time)
-        : (d.time || '--');
 
       html += '<tr class="' + recCls + '">';
-      html += '<td class="tel-time">' + time + '</td>';
+      html += '<td class="tel-time">' + fmtTime(d.time) + '</td>';
       html += '<td><span class="tel-mode ' + modeCls + '">' + modeSt + '</span></td>';
 
       CELL_KEYS.forEach(function (k) {
@@ -192,29 +191,44 @@
         html += '<td class="tel-val' + (nullCls ? ' null-val' : '') + '">' + (nullCls ? 'NO SIGNAL' : v) + '</td>';
       });
 
-      /* GPS 状态为合成字段：有有效经纬度才显示 ONLINE */
       html += '<td class="tel-val' + (gpsOk ? '' : ' null-val') + '">' + (gpsOk ? 'ONLINE' : 'NO FIX') + '</td>';
       html += '</tr>';
     });
 
     html += '</tbody></table></div>';
-
-    /* 防死循环：内容未变化时不再写 DOM（修复 MutationObserver 自触发导致的空白） */
-    if (box.innerHTML === html) { rendering = false; return; }
-    box.innerHTML = html;
-    rendering = false;
+    return html;
   }
 
-  /* main.js 写入后由 MutationObserver 触发重渲染（rendering 标志防自触发） */
-  if (window.MutationObserver) {
-    new MutationObserver(render).observe(box, { childList: true, subtree: true });
+  /* 渲染入口：已存在表格则跳过（幂等，无循环） */
+  function render(list) {
+    if (!list || !list.length) return;
+    if (box.querySelector('.tel-table')) return;
+    box.innerHTML = buildHtml(list);
   }
 
-  /* 兜底轮询：等待 main.js 数据就绪（最长约 30 秒） */
+  /* 优先使用 main.js 的全局 DATA */
+  function readData() {
+    try {
+      if (typeof DATA !== 'undefined' && DATA && DATA.length) return DATA;
+    } catch (e) { /* DATA 未就绪时忽略 */ }
+    return null;
+  }
+
   var tries = 0;
-  var poll = setInterval(function () {
-    render();
-    if (++tries > 60) clearInterval(poll);
+  var fallbackSent = false;
+  var timer = setInterval(function () {
+    var data = readData();
+    if (data) {
+      render(data);
+    } else if (!fallbackSent && tries === 6) {
+      /* main.js 数据 3 秒未就绪：自行读取 data.json 兜底（不改 main.js / data.json） */
+      fallbackSent = true;
+      fetch('./data.json?v=' + Date.now())
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (d) { if (d && d.length) render(d); })
+        .catch(function () { /* 网络失败保持空容器，由 main.js 报错 */ });
+    }
+    if (++tries > 60) clearInterval(timer);
   }, 500);
 })();
 </script>
