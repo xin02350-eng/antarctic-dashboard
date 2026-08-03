@@ -1,849 +1,357 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-
 <head>
-
-<meta charset="UTF-8">
-
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-
-
-<title>
-ANTARCTIC NEXUS Ω - HARDWARE DIGITAL TWIN
-</title>
-
-
-<link rel="icon" href="data:,">
-
-<link rel="stylesheet" href="./css/style.css">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>ANTARCTIC NEXUS 惟 - HARDWARE DIGITAL TWIN</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./css/style.css">
 </head>
 
-
-
-<body>
-
+<!-- polar-ambient：极地氛围；hardware-page：数字孪生专属样式 -->
+<body class="polar-ambient hardware-page">
 
 <div class="app">
 
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="logo">惟</div>
+      <div>
+        <h1>ANTARCTIC<br>NEXUS 惟</h1>
+        <p>POLAR AUTONOMOUS OBSERVATORY</p>
+      </div>
+    </div>
+    <nav>
+      <a href="./index.html">Dashboard</a>
+      <a href="./location.html">Location</a>
+      <a href="./sensors.html">Sensors</a>
+      <a href="./telemetry.html">Telemetry</a>
+      <a class="active">Hardware</a>
+      <a href="./analysis.html">Analysis</a>
+    </nav>
+  </aside>
 
+  <main>
 
-<aside class="sidebar">
+    <header class="mission-header">
+      <div>
+        <h2>HARDWARE DIGITAL TWIN</h2>
+        <p>ANT-A01 AUTONOMOUS POLAR MONITORING NODE</p>
+      </div>
+      <div class="system-online"><span></span>ONLINE</div>
+    </header>
 
+    <!-- 数字孪生：左信息面板 + 中央等距 SVG 设备 + 右子系统矩阵 -->
+    <section class="hw-twin">
 
-<div class="brand">
+      <!-- 左侧：系统架构 + 实时参数（main.js 写入的 4 个 ID 保留） -->
+      <aside class="hw-panel hud-frame">
+        <h3>SYSTEM ARCHITECTURE</h3>
 
+        <div class="tech-line">MODEL <span>ANT-A01</span></div>
+        <div class="tech-line">TYPE <span>POLAR NODE</span></div>
+        <div class="tech-line">DEPLOYMENT <span>ANTARCTICA</span></div>
+        <div class="tech-line">STATUS <span class="green">ACTIVE</span></div>
 
-<div class="logo">
+        <h3>LIVE PARAMETERS</h3>
 
-Ω
+        <div class="data-block">SOLAR IRRADIANCE<strong id="hardwareSolar">NULL</strong></div>
+        <div class="data-block">BATTERY VOLTAGE<strong id="hardwareVoltage">NULL</strong></div>
+        <div class="data-block">CABIN TEMPERATURE<strong id="hardwareTemp">NULL</strong></div>
+        <div class="data-block">GPS LINK<strong id="hardwareGPS">NULL</strong></div>
+      </aside>
 
+      <!-- 中央：等距三维 SVG 设备主体（纯 SVG + CSS 动画，无 Three.js） -->
+      <div class="hw-device hud-frame">
+        <div class="hw-title">ANT-A01<span>AUTONOMOUS POLAR NODE</span></div>
+
+        <svg class="hw-svg" viewBox="0 0 560 900" aria-label="ANT-A01 hardware digital twin">
+          <defs>
+            <!-- 金属 / 玻璃 / 冰层材质渐变 -->
+            <linearGradient id="hwMetal" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#dff8ff"/>
+              <stop offset="35%" stop-color="#527080"/>
+              <stop offset="100%" stop-color="#102532"/>
+            </linearGradient>
+            <linearGradient id="hwGlass" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#62d9ff" stop-opacity=".30"/>
+              <stop offset="100%" stop-color="#062033" stop-opacity=".82"/>
+            </linearGradient>
+            <linearGradient id="hwIce" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#0e3a52"/>
+              <stop offset="100%" stop-color="#062033"/>
+            </linearGradient>
+            <linearGradient id="hwSolar" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#16445f"/>
+              <stop offset="100%" stop-color="#0b2536"/>
+            </linearGradient>
+          </defs>
+
+          <!-- ==================== 顶部：SOLAR PANEL ==================== -->
+          <g class="hw-part">
+            <text x="280" y="18" text-anchor="middle" class="hw-label">SOLAR PANEL</text>
+            <polygon points="160,90 400,90 350,26 210,26" fill="url(#hwSolar)" stroke="#62d9ff" stroke-width="2"/>
+            <line x1="210" y1="32" x2="210" y2="85" class="hw-grid"/>
+            <line x1="245" y1="32" x2="245" y2="85" class="hw-grid"/>
+            <line x1="280" y1="32" x2="280" y2="85" class="hw-grid"/>
+            <line x1="315" y1="32" x2="315" y2="85" class="hw-grid"/>
+            <line x1="350" y1="32" x2="350" y2="85" class="hw-grid"/>
+            <line x1="162" y1="58" x2="398" y2="58" class="hw-grid"/>
+            <text x="280" y="112" text-anchor="middle" class="hw-live"><tspan id="svgSolar">--</tspan> W/m²</text>
+          </g>
+
+          <!-- ============ 能量流：SOLAR → POWER MANAGEMENT ============ -->
+          <line class="hw-flow hw-flow-energy" x1="280" y1="120" x2="280" y2="178"/>
+          <circle class="hw-pulse" cx="280" cy="134" r="3"/>
+          <circle class="hw-pulse hw-pulse-2" cx="280" cy="160" r="3"/>
+
+          <!-- ==================== 中部：PROTECTIVE ENCLOSURE ==================== -->
+          <text transform="rotate(-90 108 370)" x="108" y="374" text-anchor="middle" class="hw-label">PROTECTIVE ENCLOSURE</text>
+          <g class="hw-part">
+            <rect x="120" y="180" width="320" height="380" rx="12" fill="url(#hwGlass)" stroke="#62d9ff" stroke-width="2.5"/>
+            <rect x="132" y="192" width="296" height="356" rx="8" fill="rgba(3,14,26,.55)" stroke="rgba(140,234,255,.15)"/>
+          </g>
+
+          <!-- 通信天线 + 数据上传波纹 -->
+          <g class="hw-part">
+            <line x1="450" y1="200" x2="482" y2="96" stroke="#62d9ff" stroke-width="2"/>
+            <circle class="hw-ripple" cx="484" cy="90" r="5" fill="none" stroke="#62d9ff" stroke-width="1.5"/>
+            <circle class="hw-ripple hw-ripple-2" cx="484" cy="90" r="5" fill="none" stroke="#62d9ff" stroke-width="1.5"/>
+            <text x="492" y="82" class="hw-tag">UPLINK</text>
+          </g>
+
+          <!-- ==================== 内部模块：POWER MANAGEMENT ==================== -->
+          <g class="hw-module">
+            <rect class="hw-module-body" x="150" y="202" width="260" height="58" rx="6"/>
+            <rect class="hw-module-glow" x="150" y="202" width="260" height="58" rx="6"/>
+            <text x="280" y="227" text-anchor="middle" class="hw-module-label">POWER MANAGEMENT</text>
+            <text x="398" y="222" text-anchor="end" class="hw-code">PWR-01</text>
+          </g>
+
+          <!-- ==================== 内部模块：MCU CONTROL UNIT ==================== -->
+          <g class="hw-module">
+            <rect class="hw-module-body" x="150" y="274" width="260" height="58" rx="6"/>
+            <rect class="hw-module-glow" x="150" y="274" width="260" height="58" rx="6"/>
+            <text x="280" y="299" text-anchor="middle" class="hw-module-label">MCU CONTROL UNIT</text>
+            <text x="398" y="294" text-anchor="end" class="hw-code">MCU-02</text>
+          </g>
+
+          <!-- ==================== 内部模块：BATTERY PACK ==================== -->
+          <g class="hw-module">
+            <rect class="hw-module-body" x="150" y="346" width="118" height="82" rx="6"/>
+            <rect class="hw-module-glow" x="150" y="346" width="118" height="82" rx="6"/>
+            <text x="209" y="372" text-anchor="middle" class="hw-module-label">BATTERY PACK</text>
+            <text x="209" y="392" text-anchor="middle" class="hw-live"><tspan id="svgVoltage">--</tspan> V</text>
+            <text x="256" y="368" text-anchor="end" class="hw-code">BAT-03</text>
+            <!-- 电量状态动画：三条竖向电量条 -->
+            <rect class="hw-battery-bar" x="160" y="400" width="8" height="18" rx="2"/>
+            <rect class="hw-battery-bar hw-battery-bar-2" x="172" y="400" width="8" height="18" rx="2"/>
+            <rect class="hw-battery-bar hw-battery-bar-3" x="184" y="400" width="8" height="18" rx="2"/>
+          </g>
+
+          <!-- ==================== 内部模块：SENSOR HUB ==================== -->
+          <g class="hw-module">
+            <rect class="hw-module-body" x="292" y="346" width="118" height="82" rx="6"/>
+            <rect class="hw-module-glow" x="292" y="346" width="118" height="82" rx="6"/>
+            <text x="351" y="372" text-anchor="middle" class="hw-module-label">SENSOR HUB</text>
+            <text x="351" y="392" text-anchor="middle" class="hw-live"><tspan id="svgTemp">--</tspan> °C</text>
+            <text x="398" y="368" text-anchor="end" class="hw-code">SEN-04</text>
+            <circle class="hw-sensor-pulse" cx="320" cy="410" r="4"/>
+          </g>
+
+          <!-- ==================== 内部模块：GPS MODULE ==================== -->
+          <g class="hw-module">
+            <rect class="hw-module-body" x="150" y="442" width="118" height="64" rx="6"/>
+            <rect class="hw-module-glow" x="150" y="442" width="118" height="64" rx="6"/>
+            <text x="209" y="468" text-anchor="middle" class="hw-module-label">GPS MODULE</text>
+            <text x="209" y="486" text-anchor="middle" class="hw-live"><tspan id="svgGps">--</tspan> FIX</text>
+            <text x="256" y="464" text-anchor="end" class="hw-code">GPS-05</text>
+          </g>
+
+          <!-- ==================== 内部模块：COMMUNICATION MODULE ==================== -->
+          <g class="hw-module">
+            <rect class="hw-module-body" x="292" y="442" width="118" height="64" rx="6"/>
+            <rect class="hw-module-glow" x="292" y="442" width="118" height="64" rx="6"/>
+            <text x="351" y="468" text-anchor="middle" class="hw-module-label">COMMUNICATION</text>
+            <text x="351" y="486" text-anchor="middle" class="hw-module-label2">MODULE</text>
+            <text x="398" y="464" text-anchor="end" class="hw-code">COM-06</text>
+          </g>
+
+          <!-- ==================== 内部能量流 / 数据流 ==================== -->
+          <line class="hw-flow hw-flow-power" x1="180" y1="260" x2="180" y2="344"/>
+          <line class="hw-flow hw-flow-data" x1="280" y1="260" x2="280" y2="272"/>
+          <line class="hw-flow hw-flow-data" x1="230" y1="344" x2="230" y2="334"/>
+          <line class="hw-flow hw-flow-data" x1="340" y1="332" x2="352" y2="344"/>
+          <line class="hw-flow hw-flow-data" x1="352" y1="428" x2="352" y2="440"/>
+          <line class="hw-flow hw-flow-data" x1="338" y1="428" x2="320" y2="440"/>
+          <line class="hw-flow hw-flow-data" x1="410" y1="478" x2="452" y2="214"/>
+
+          <!-- ==================== 底部：STEEL SUPPORT POLE ==================== -->
+          <g class="hw-part">
+            <rect x="245" y="560" width="70" height="150" fill="url(#hwMetal)" stroke="rgba(140,234,255,.25)"/>
+            <line x1="245" y1="590" x2="315" y2="590" class="hw-grid"/>
+            <line x1="245" y1="620" x2="315" y2="620" class="hw-grid"/>
+            <line x1="245" y1="650" x2="315" y2="650" class="hw-grid"/>
+            <text transform="rotate(-90 280 636)" x="280" y="640" text-anchor="middle" class="hw-label">STEEL SUPPORT POLE</text>
+          </g>
+
+          <!-- ==================== 底部：ICE ANCHOR BASE ==================== -->
+          <g class="hw-part">
+            <polygon points="150,710 410,710 360,780 200,780" fill="url(#hwIce)" stroke="#62d9ff" stroke-width="2"/>
+            <polygon points="170,780 390,780 350,830 210,830" fill="#0a2a40" stroke="rgba(98,217,255,.35)"/>
+            <line x1="172" y1="742" x2="388" y2="742" class="hw-grid"/>
+            <line x1="182" y1="762" x2="378" y2="762" class="hw-grid"/>
+            <text x="280" y="758" text-anchor="middle" class="hw-label">ICE ANCHOR BASE</text>
+            <text x="280" y="812" text-anchor="middle" class="hw-tag">FROZEN GROUND</text>
+          </g>
+        </svg>
+      </div>
+
+      <!-- 右侧：子系统矩阵 + 能量/数据流图例 -->
+      <aside class="hw-panel hud-frame">
+        <h3>SUBSYSTEM MATRIX</h3>
+
+        <ul class="hw-subsys">
+          <li class="on"><i class="hw-dot"></i>SOLAR PANEL<b>PWR</b></li>
+          <li class="on"><i class="hw-dot"></i>POWER MANAGEMENT<b>PWR</b></li>
+          <li class="on"><i class="hw-dot"></i>BATTERY PACK<b>BAT</b></li>
+          <li class="on"><i class="hw-dot"></i>MCU CONTROL UNIT<b>MCU</b></li>
+          <li class="on"><i class="hw-dot"></i>SENSOR HUB<b>SEN</b></li>
+          <li class="on"><i class="hw-dot"></i>GPS MODULE<b>GPS</b></li>
+          <li class="on"><i class="hw-dot"></i>COMMUNICATION MODULE<b>COM</b></li>
+        </ul>
+
+        <h3>ENERGY / DATA FLOW</h3>
+        <div class="hw-legend"><span class="lg-line lg-energy"></span>ENERGY FLOW</div>
+        <div class="hw-legend"><span class="lg-line lg-data"></span>DATA FLOW</div>
+        <div class="hw-legend"><span class="lg-line lg-power"></span>POWER DISTRIBUTION</div>
+      </aside>
+    </section>
+
+  </main>
 </div>
 
-
-
-<div>
-
-<h1>
-
-ANTARCTIC<br>
-
-NEXUS Ω
-
-</h1>
-
-
-<p>
-
-POLAR AUTONOMOUS OBSERVATORY
-
-</p>
-
-
-</div>
-
-
-</div>
-
-
-
-
-
-<nav>
-
-
-<a href="./index.html">
-Dashboard
-</a>
-
-
-<a href="./location.html">
-Location
-</a>
-
-
-<a href="./sensors.html">
-Sensors
-</a>
-
-
-<a href="./telemetry.html">
-Telemetry
-</a>
-
-
-<a class="active">
-Hardware
-</a>
-
-
-<a href="./analysis.html">
-Analysis
-</a>
-
-
-
-</nav>
-
-
-</aside>
-
-
-
-
-
-
-
-
-
-<main>
-
-
-
-
-
-<header class="mission-header">
-
-
-<div>
-
-<h2>
-
-HARDWARE DIGITAL TWIN
-
-</h2>
-
-
-<p>
-
-ANT-A01 AUTONOMOUS POLAR MONITORING NODE
-
-</p>
-
-
-</div>
-
-
-
-<div class="system-online">
-
-<span></span>
-
-ONLINE
-
-</div>
-
-
-
-</header>
-
-
-
-
-
-
-
-
-
-<section class="hardware-v7">
-
-
-
-
-
-
-<!-- 左侧工程信息 -->
-
-
-<div class="engineering-panel">
-
-
-<h3>
-
-SYSTEM ARCHITECTURE
-
-</h3>
-
-
-
-<div class="tech-line">
-
-MODEL
-
-<span>
-
-ANT-A01
-
-</span>
-
-</div>
-
-
-
-<div class="tech-line">
-
-TYPE
-
-<span>
-
-POLAR NODE
-
-</span>
-
-</div>
-
-
-
-<div class="tech-line">
-
-DEPLOYMENT
-
-<span>
-
-ANTARCTICA
-
-</span>
-
-</div>
-
-
-
-<div class="tech-line">
-
-STATUS
-
-<span class="green">
-
-ACTIVE
-
-</span>
-
-</div>
-
-
-
-
-
-</div>
-
-
-
-
-
-
-
-
-
-<!-- 中央 SVG设备 -->
-
-
-
-<div class="device-svg-area">
-
-
-
-<div class="device-title-v7">
-
-ANT-A01
-
-<br>
-
-<span>
-
-AUTONOMOUS POLAR NODE
-
-</span>
-
-</div>
-
-
-
-
-
-
-<svg
-class="polar-device"
-viewBox="0 0 500 800"
->
-
-
-
-<!-- solar panel -->
-
-
-<defs>
-
-
-<linearGradient
-id="metal"
-x1="0"
-y1="0"
-x2="1"
-y2="1">
-
-<stop offset="0%" stop-color="#dff8ff"/>
-
-<stop offset="35%" stop-color="#527080"/>
-
-<stop offset="100%" stop-color="#102532"/>
-
-</linearGradient>
-
-
-
-<linearGradient
-id="glass"
-x1="0"
-y1="0"
-x2="1"
-y2="1">
-
-
-<stop offset="0%" stop-color="#62d9ff" stop-opacity=".35"/>
-
-<stop offset="100%" stop-color="#062033" stop-opacity=".8"/>
-
-
-</linearGradient>
-
-
-
-</defs>
-
-
-
-
-
-
-
-
-
-<!-- solar array -->
-
-<g>
-
-
-<polygon
-points="
-120,120
-380,120
-330,40
-170,40
-"
-fill="#12394f"
-stroke="#62d9ff"
-stroke-width="3"
-/>
-
-
-
-<line x1="170" y1="45" x2="170" y2="115"
-stroke="#62d9ff"/>
-
-
-<line x1="220" y1="45" x2="220" y2="115"
-stroke="#62d9ff"/>
-
-
-<line x1="270" y1="45" x2="270" y2="115"
-stroke="#62d9ff"/>
-
-
-<line x1="320" y1="45" x2="320" y2="115"
-stroke="#62d9ff"/>
-
-
-</g>
-
-
-
-
-
-
-
-
-
-<!-- main enclosure -->
-
-
-<rect
-
-x="130"
-
-y="180"
-
-width="240"
-
-height="250"
-
-rx="25"
-
-fill="url(#glass)"
-
-stroke="#62d9ff"
-
-stroke-width="4"
-
-/>
-
-
-
-
-
-
-
-<!-- internal modules -->
-
-
-<rect
-
-x="190"
-
-y="220"
-
-width="120"
-
-height="45"
-
-rx="8"
-
-fill="#16445f"
-
-stroke="#62d9ff"
-
-/>
-
-
-<text
-x="250"
-y="248"
-fill="white"
-text-anchor="middle"
-font-size="16">
-
-MCU
-
-</text>
-
-
-
-
-
-
-<rect
-
-x="190"
-
-y="290"
-
-width="120"
-
-height="55"
-
-rx="8"
-
-fill="#16445f"
-
-stroke="#62d9ff"
-
-/>
-
-
-<text
-x="250"
-y="323"
-fill="white"
-text-anchor="middle"
-font-size="16">
-
-BATTERY
-
-</text>
-
-
-
-
-
-
-
-
-<rect
-
-x="170"
-
-y="370"
-
-width="80"
-
-height="35"
-
-rx="6"
-
-fill="#16445f"
-
-stroke="#62d9ff"
-
-/>
-
-
-<text
-x="210"
-y="394"
-fill="white"
-text-anchor="middle"
-font-size="12">
-
-SHT35
-
-</text>
-
-
-
-
-
-
-<rect
-
-x="260"
-
-y="370"
-
-width="80"
-
-height="35"
-
-rx="6"
-
-fill="#16445f"
-
-stroke="#62d9ff"
-
-/>
-
-
-<text
-x="300"
-y="394"
-fill="white"
-text-anchor="middle"
-font-size="12">
-
-RS485
-
-</text>
-
-
-
-
-
-
-
-
-
-
-<!-- pole -->
-
-
-<rect
-
-x="235"
-
-y="430"
-
-width="30"
-
-height="190"
-
-fill="url(#metal)"
-
-/>
-
-
-
-
-
-
-<!-- base -->
-
-<polygon
-
-points="
-120,650
-380,650
-330,720
-170,720
-"
-
-fill="#dff8ff"
-
-/>
-
-
-<polygon
-
-points="
-140,720
-360,720
-330,770
-170,770
-"
-
-fill="#24708e"
-
-/>
-
-
-
-<text
-
-x="250"
-
-y="745"
-
-fill="white"
-
-font-size="14"
-
-text-anchor="middle"
-
->
-
-ICE ANCHOR
-
-</text>
-
-
-
-
-
-</svg>
-
-
-
-
-
-
-
-</div>
-
-
-
-
-
-
-
-
-
-<!-- 右侧实时数据 -->
-
-
-<div class="engineering-panel">
-
-
-<h3>
-
-LIVE PARAMETERS
-
-</h3>
-
-
-
-
-
-<div class="data-block">
-
-
-SOLAR IRRADIANCE
-
-
-<strong id="hardwareSolar">
-
-NULL
-
-</strong>
-
-
-</div>
-
-
-
-
-
-<div class="data-block">
-
-
-BATTERY VOLTAGE
-
-
-<strong id="hardwareVoltage">
-
-NULL
-
-</strong>
-
-
-</div>
-
-
-
-
-
-
-<div class="data-block">
-
-
-CABIN TEMPERATURE
-
-
-<strong id="hardwareTemp">
-
-NULL
-
-</strong>
-
-
-</div>
-
-
-
-
-
-
-
-<div class="data-block">
-
-
-GPS LINK
-
-
-<strong id="hardwareGPS">
-
-NULL
-
-</strong>
-
-
-</div>
-
-
-
-
-
-</div>
-
-
-
-
-
-
-
-</section>
-
-
-
-
-
-
-
-
-
-<section class="energy-chain">
-
-
-
-<div>
-
-☀
-
-<br>
-
-SOLAR ARRAY
-
-</div>
-
-
-<span></span>
-
-
-<div>
-
-POWER MANAGEMENT
-
-</div>
-
-
-<span></span>
-
-
-<div>
-
-BATTERY
-
-</div>
-
-
-<span></span>
-
-
-<div>
-
-SENSOR HUB
-
-</div>
-
-
-<span></span>
-
-
-<div>
-
-GPS
-
-</div>
-
-
-
-</section>
-
-
-
-
-
-
-
-</main>
-
-
-</div>
-
-
-
-
-
+<!-- 极地氛围层：雪花画布 / 页面扫描线 / 设备编号铭牌 -->
+<canvas id="snowField" aria-hidden="true"></canvas>
+<div class="polar-scan" aria-hidden="true"></div>
+<div class="polar-badge">ANT-A01 · POLAR STATION · REMOTE SENSOR NODE</div>
+
+<!-- =========================================================
+     极地氛围辅助层：雪花 + 冰晶（纯 canvas，不影响数据链路）
+========================================================= -->
+<script>
+(function () {
+  'use strict';
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var cv = document.getElementById('snowField');
+  if (!cv) return;
+  var ctx = cv.getContext('2d');
+  var dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+  var N = 60;
+  var flakes = [];
+  var running = true;
+
+  function init() {
+    var w = window.innerWidth;
+    var h = window.innerHeight;
+    cv.width = Math.round(w * dpr);
+    cv.height = Math.round(h * dpr);
+    cv.style.width = w + 'px';
+    cv.style.height = h + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    flakes = [];
+    for (var i = 0; i < N; i++) {
+      flakes.push({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        r: 0.6 + Math.random() * 1.8,
+        vy: 0.1 + Math.random() * 0.25,
+        ph: Math.random() * 6.28,
+        sw: 0.12 + Math.random() * 0.2,
+        a: 0.16 + Math.random() * 0.3,
+        ice: i % 10 === 0
+      });
+    }
+  }
+
+  function tick() {
+    if (!running) return;
+    var w = window.innerWidth;
+    var h = window.innerHeight;
+    ctx.clearRect(0, 0, w, h);
+    for (var i = 0; i < flakes.length; i++) {
+      var f = flakes[i];
+      f.y += f.vy;
+      f.ph += 0.006;
+      f.x += Math.sin(f.ph) * f.sw;
+      if (f.y > h + 5) { f.y = -5; f.x = Math.random() * w; }
+      if (f.x < -5) f.x = w + 5;
+      if (f.x > w + 5) f.x = -5;
+      if (f.ice && f.r > 1.2) {
+        var L = f.r * 3;
+        ctx.strokeStyle = 'rgba(205,238,255,' + (f.a * 0.45).toFixed(3) + ')';
+        ctx.lineWidth = 0.5;
+        ctx.beginPath();
+        ctx.moveTo(f.x - L, f.y); ctx.lineTo(f.x + L, f.y);
+        ctx.moveTo(f.x, f.y - L); ctx.lineTo(f.x, f.y + L);
+        ctx.stroke();
+      } else {
+        ctx.beginPath();
+        ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(210,240,255,' + f.a.toFixed(3) + ')';
+        ctx.fill();
+      }
+    }
+    window.requestAnimationFrame(tick);
+  }
+
+  window.addEventListener('resize', init);
+  document.addEventListener('visibilitychange', function () {
+    running = !document.hidden;
+    if (running) window.requestAnimationFrame(tick);
+  });
+  init();
+  tick();
+})();
+</script>
+
+<!-- 数据核心（main.js 保持不变） -->
 <script src="./js/main.js"></script>
 
+<!-- =========================================================
+     数字孪生实时值镜像（纯显示辅助）
+     把 main.js 写入侧栏的 4 个实时值同步到 SVG 对应模块旁
+========================================================= -->
+<script>
+(function () {
+  'use strict';
+  var PAIRS = [
+    ['hardwareSolar', 'svgSolar'],
+    ['hardwareVoltage', 'svgVoltage'],
+    ['hardwareTemp', 'svgTemp'],
+    ['hardwareGPS', 'svgGps']
+  ];
 
+  function sync() {
+    PAIRS.forEach(function (pair) {
+      var src = document.getElementById(pair[0]);
+      var dst = document.getElementById(pair[1]);
+      if (!src || !dst) return;
+      var t = (src.textContent || '').trim();
+      if (!t || t === '--' || /^null$/i.test(t)) t = 'NO SIGNAL';
+      if (dst.textContent !== t) dst.textContent = t;
+    });
+  }
+
+  sync();
+  if (window.MutationObserver) {
+    var ob = new MutationObserver(sync);
+    PAIRS.forEach(function (pair) {
+      var el = document.getElementById(pair[0]);
+      if (el) ob.observe(el, { childList: true, subtree: true, characterData: true });
+    });
+  }
+})();
+</script>
 </body>
-
-
 </html>
