@@ -8165,6 +8165,45 @@ height:34px;
 
 
 /* =========================================================
+   V0.4.3 · 独立雪花系统（js/snow.js 创建 #snowCanvas）
+   层叠：背景 → 雪花画布 → 页面内容（.app）
+========================================================= */
+
+/* 雪画布：固定全屏；ID + !important 覆盖全局 canvas 260px 规则 */
+body #snowCanvas{
+
+position:fixed!important;
+
+top:0!important;
+
+left:0!important;
+
+width:100vw!important;
+
+height:100vh!important;
+
+z-index:0!important;
+
+pointer-events:none!important;
+
+display:block!important;
+
+}
+
+
+/* 页面内容（.app）置于雪花之上：
+   z-index:0 的雪画布在 body 背景之上、静态内容之上；
+   为保持“雪花低于内容”，让 .app 创建更高层叠上下文 */
+.app{
+
+position:relative;
+
+z-index:1;
+
+}
+
+
+/* =========================================================
    HARDWARE V7 · DIGITAL TWIN SHOWCASE
    等边三棱柱三面太阳能结构 / 严格图层分层 / 设备中央 80%
 ========================================================= */
