@@ -30,75 +30,131 @@
     </nav>
   </aside>
 
-  <!-- 任务数据分析中心 -->
+  <!-- ANTARCTIC MISSION SUMMARY：任务总结展示页 -->
   <main>
 
-    <header class="mission-header">
+    <!-- MISSION OVERVIEW -->
+    <header class="mission-header an-head">
       <div>
+        <div class="an-kicker">ANTARCTIC AUTONOMOUS MONITORING MISSION SUMMARY</div>
         <h2>MISSION ANALYTICS</h2>
-        <p>POLAR MISSION DATA ANALYSIS CENTER</p>
       </div>
-      <div class="system-online"><span></span>DATA CENTER</div>
+      <div class="an-meta">
+        <span>MISSION ID <b>ANT-A01</b></span>
+        <span>VERSION <b>V0.4</b></span>
+        <span>STATUS <b class="ok">OPERATIONAL</b></span>
+      </div>
     </header>
 
-    <section class="an-grid">
-
-      <!-- MISSION PERFORMANCE -->
-      <div class="an-panel">
-        <h3>MISSION PERFORMANCE</h3>
-        <div class="metric">OPERATION DAYS <b id="runDays">--</b><em>DAYS</em></div>
-        <div class="metric">DATA RECORDS <b id="dataCount">--</b><em>SAMPLES</em></div>
-        <div class="metric">SYSTEM RELIABILITY <b id="relScore">--</b><em>%</em></div>
-        <div class="metric">GPS AVAILABILITY <b id="gpsAvail">--</b><em>% · FIX <span id="gpsValidCount">--</span></em></div>
+    <!-- KEY PERFORMANCE INDICATORS -->
+    <section class="an-kpi">
+      <div class="kpi-block" id="kpi0">
+        <span class="kpi-label">MISSION DAYS</span>
+        <span class="kpi-num"><b id="runDays">--</b><em>DAYS</em></span>
+        <svg class="kpi-spark" viewBox="0 0 120 26" preserveAspectRatio="none"></svg>
       </div>
+      <div class="kpi-block" id="kpi1">
+        <span class="kpi-label">DATA RECORDS</span>
+        <span class="kpi-num"><b id="dataCount">--</b><em>REC</em></span>
+        <svg class="kpi-spark" viewBox="0 0 120 26" preserveAspectRatio="none"></svg>
+      </div>
+      <div class="kpi-block" id="kpi2">
+        <span class="kpi-label">GPS AVAILABILITY</span>
+        <span class="kpi-num"><b id="gpsAvail">--</b><em>%</em></span>
+        <svg class="kpi-spark" viewBox="0 0 120 26" preserveAspectRatio="none"></svg>
+      </div>
+      <div class="kpi-block" id="kpi3">
+        <span class="kpi-label">SYSTEM RELIABILITY</span>
+        <span class="kpi-num"><b id="relScore">--</b><em>%</em></span>
+        <svg class="kpi-spark" viewBox="0 0 120 26" preserveAspectRatio="none"></svg>
+      </div>
+      <div class="kpi-block" id="kpi4">
+        <span class="kpi-label">ENERGY PERFORMANCE</span>
+        <span class="kpi-num"><b id="energyPerf">--</b><em>%</em></span>
+        <svg class="kpi-spark" viewBox="0 0 120 26" preserveAspectRatio="none"></svg>
+      </div>
+    </section>
 
-      <!-- DATA TREND -->
-      <div class="an-panel">
-        <h3>DATA TREND</h3>
-        <div class="trend-block">
-          <div class="trend-row"><span class="trend-name">TEMPERATURE</span><svg id="trendTemp" class="spark" viewBox="0 0 300 60" preserveAspectRatio="none"></svg></div>
-          <div class="trend-row"><span class="trend-name">VOLTAGE</span><svg id="trendVolt" class="spark" viewBox="0 0 300 60" preserveAspectRatio="none"></svg></div>
-          <div class="trend-row"><span class="trend-name">SOLAR RADIATION</span><svg id="trendSolar" class="spark" viewBox="0 0 300 60" preserveAspectRatio="none"></svg></div>
+    <!-- MISSION DATA PROFILE -->
+    <section class="an-profile">
+      <h3>MISSION DATA PROFILE</h3>
+      <div class="profile-grid">
+        <div class="profile-row" id="profile0">
+          <span class="profile-name">TEMPERATURE MONITORING</span>
+          <span class="profile-bar"><i id="barTemp"></i></span>
+          <svg class="profile-spark" viewBox="0 0 100 22" preserveAspectRatio="none"></svg>
+          <b class="profile-pct" id="pctTemp">--</b>
+        </div>
+        <div class="profile-row" id="profile1">
+          <span class="profile-name">POWER MONITORING</span>
+          <span class="profile-bar"><i id="barVolt"></i></span>
+          <svg class="profile-spark" viewBox="0 0 100 22" preserveAspectRatio="none"></svg>
+          <b class="profile-pct" id="pctVolt">--</b>
+        </div>
+        <div class="profile-row" id="profile2">
+          <span class="profile-name">SOLAR MONITORING</span>
+          <span class="profile-bar"><i id="barSolar"></i></span>
+          <svg class="profile-spark" viewBox="0 0 100 22" preserveAspectRatio="none"></svg>
+          <b class="profile-pct" id="pctSolar">--</b>
+        </div>
+        <div class="profile-row" id="profile3">
+          <span class="profile-name">GPS TRACKING</span>
+          <span class="profile-bar"><i id="barGps"></i></span>
+          <svg class="profile-spark" viewBox="0 0 100 22" preserveAspectRatio="none"></svg>
+          <b class="profile-pct" id="pctGps">--</b>
+        </div>
+        <div class="profile-row" id="profile4">
+          <span class="profile-name">COMMUNICATION</span>
+          <span class="profile-bar"><i id="barComm"></i></span>
+          <svg class="profile-spark" viewBox="0 0 100 22" preserveAspectRatio="none"></svg>
+          <b class="profile-pct" id="pctComm">--</b>
         </div>
       </div>
+    </section>
 
-      <!-- SYSTEM HEALTH -->
-      <div class="an-panel">
-        <h3>SYSTEM HEALTH</h3>
-        <div class="health-wrap">
-          <svg id="healthGauge" class="health-gauge" viewBox="0 0 120 120">
-            <circle cx="60" cy="60" r="52" fill="none" stroke="rgba(98,217,255,.12)" stroke-width="8"/>
-            <circle class="gauge-arc" cx="60" cy="60" r="52" fill="none" stroke="#00e5a8" stroke-width="8" stroke-linecap="round" transform="rotate(-90 60 60)" stroke-dasharray="0 326.7"/>
-          </svg>
-          <div>
-            <div class="health-num"><span id="healthScore">--</span><em>/100</em></div>
-            <div class="health-meta">SYSTEM STATE: NOMINAL</div>
-            <div class="health-meta">LAST UPDATE <span id="lastUpdate">--</span></div>
-          </div>
+    <!-- SYSTEM HEALTH -->
+    <section class="an-health">
+      <h3>SYSTEM HEALTH</h3>
+      <div class="health-grid">
+        <div class="hitem">
+          <svg class="hring" viewBox="0 0 40 40"><circle class="hr-base" cx="20" cy="20" r="16"/><circle class="hr-arc" id="ringPower" cx="20" cy="20" r="16"/></svg>
+          <div><b>POWER SYSTEM</b><span>NORMAL</span></div>
+        </div>
+        <div class="hitem">
+          <svg class="hring" viewBox="0 0 40 40"><circle class="hr-base" cx="20" cy="20" r="16"/><circle class="hr-arc" id="ringSensor" cx="20" cy="20" r="16"/></svg>
+          <div><b>SENSOR NETWORK</b><span>ACTIVE</span></div>
+        </div>
+        <div class="hitem">
+          <svg class="hring" viewBox="0 0 40 40"><circle class="hr-base" cx="20" cy="20" r="16"/><circle class="hr-arc" id="ringComm" cx="20" cy="20" r="16"/></svg>
+          <div><b>COMMUNICATION</b><span>ONLINE</span></div>
+        </div>
+        <div class="hitem">
+          <svg class="hring" viewBox="0 0 40 40"><circle class="hr-base" cx="20" cy="20" r="16"/><circle class="hr-arc" id="ringGps" cx="20" cy="20" r="16"/></svg>
+          <div><b>GPS</b><span>AVAILABLE</span></div>
         </div>
       </div>
+    </section>
 
-      <!-- MISSION TIMELINE -->
-      <div class="an-panel">
-        <h3>MISSION TIMELINE</h3>
-        <svg id="missionTimeline" class="timeline-svg" viewBox="0 0 640 86" preserveAspectRatio="none"></svg>
-      </div>
-
+    <!-- MISSION TIMELINE -->
+    <section class="an-timeline">
+      <h3>MISSION TIMELINE</h3>
+      <svg id="missionTimeline" class="timeline-svg" viewBox="0 0 720 84" preserveAspectRatio="none"></svg>
+      <div class="tl-foot">LAST CONTACT <span id="lastUpdate">--</span> · FIX <span id="gpsValidCount">--</span></div>
     </section>
 
   </main>
 </div>
 
-<!-- 全站暴风雪模块（模块化） -->
+<!-- 全站暴风雪模块（三层：远景雪雾 / 中景主雪 / 前景大粒） -->
 <script src="./js/ambient.js"></script>
 
 <!-- 数据核心（main.js 保持不变） -->
 <script src="./js/main.js"></script>
 
 <!-- =========================================================
-     分析中心辅助层（纯显示逻辑，不影响 main.js）
-     - 可靠性 / GPS 可用率 / 健康评分（由真实数据计算）
-     - 三通道迷你趋势图 + 任务时间轴（SVG 原生绘制）
+     任务总结辅助层（纯显示逻辑，不影响 main.js）
+     - KPI：运行天数/记录数来自 main.js，其余由真实数据计算
+     - 覆盖率进度条、健康环、任务时间轴（SVG 原生绘制）
 ========================================================= -->
 <script>
 (function () {
@@ -115,135 +171,162 @@
     if (el) el.textContent = t;
   }
 
-  /* 数据采样：最多 max 个点 */
-  function sample(key, max) {
-    var out = [];
+  function cov(key) {
+    var n = 0;
     DATA.forEach(function (d) {
-      var v = d[key];
-      if (v !== null && v !== undefined) out.push(v);
+      if (d[key] !== null && d[key] !== undefined) n++;
     });
-    if (out.length <= max) return out;
-    var step = (out.length - 1) / (max - 1);
-    var r = [];
-    for (var i = 0; i < max; i++) r.push(out[Math.round(i * step)]);
-    return r;
+    return (n / DATA.length) * 100;
   }
 
-  /* 迷你趋势图 */
-  function drawSpark(id, key, color) {
-    var svg = document.getElementById(id);
-    if (!svg) return;
-    var vals = sample(key, 120);
-    if (vals.length < 2) return;
-    var W = 300, H = 60, pad = 3;
-    var min = Math.min.apply(null, vals);
-    var max = Math.max.apply(null, vals);
-    if (max === min) max = min + 1;
+  /* 分桶覆盖率趋势（用于迷你趋势线与进度条） */
+  function bucketTrend(fn, buckets) {
+    var b = buckets || 40;
+    var counts = new Array(b).fill(0);
+    var totals = new Array(b).fill(0);
+    DATA.forEach(function (d, i) {
+      var k = Math.min(b - 1, Math.floor((i / DATA.length) * b));
+      totals[k]++;
+      if (fn(d)) counts[k]++;
+    });
+    var out = [];
+    for (var i = 0; i < b; i++) out.push(totals[i] ? (counts[i] / totals[i]) * 100 : 0);
+    return out;
+  }
+
+  function drawTrend(svg, values, color) {
+    if (!svg || !values || values.length < 2) return;
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+    var W = parseFloat(svg.getAttribute('viewBox').split(' ')[2]);
+    var H = parseFloat(svg.getAttribute('viewBox').split(' ')[3]);
+    var pad = 2;
+    var min = 0;
+    var max = Math.max.apply(null, values) || 1;
     var pts = [];
-    for (var i = 0; i < vals.length; i++) {
-      var x = pad + (i / (vals.length - 1)) * (W - 2 * pad);
-      var y = H - pad - ((vals[i] - min) / (max - min)) * (H - 2 * pad);
+    for (var i = 0; i < values.length; i++) {
+      var x = pad + (i / (values.length - 1)) * (W - 2 * pad);
+      var y = H - pad - ((values[i] - min) / (max - min)) * (H - 2 * pad);
       pts.push(x.toFixed(1) + ',' + y.toFixed(1));
     }
-    var line = svg.querySelector('.spark-line');
-    if (!line) {
-      line = document.createElementNS(NS, 'polyline');
-      line.setAttribute('class', 'spark-line');
-      svg.appendChild(line);
-    }
+    var line = document.createElementNS(NS, 'polyline');
     line.setAttribute('points', pts.join(' '));
+    line.setAttribute('fill', 'none');
     line.setAttribute('stroke', color);
-
-    var area = svg.querySelector('.spark-area');
-    if (!area) {
-      area = document.createElementNS(NS, 'polygon');
-      area.setAttribute('class', 'spark-area');
-      svg.appendChild(area);
-    }
-    var first = pts[0].split(',')[0];
-    var last = pts[pts.length - 1].split(',')[0];
-    area.setAttribute('points', first + ',60 ' + pts.join(' ') + ' ' + last + ',60');
-    area.setAttribute('fill', color);
-    area.setAttribute('opacity', '0.12');
+    line.setAttribute('stroke-width', '1.4');
+    line.setAttribute('vector-effect', 'non-scaling-stroke');
+    svg.appendChild(line);
   }
 
-  /* 健康仪表 */
-  function drawGauge(score) {
-    var arc = document.querySelector('#healthGauge .gauge-arc');
+  function drawRing(id, pct) {
+    var arc = document.getElementById(id);
     if (!arc) return;
-    var r = 52;
-    var c = 2 * Math.PI * r;
-    arc.setAttribute('stroke-dasharray', ((score / 100) * c).toFixed(1) + ' ' + c.toFixed(1));
+    var c = 2 * Math.PI * 16;
+    arc.setAttribute('stroke-dasharray', ((pct / 100) * c).toFixed(1) + ' ' + c.toFixed(1));
+    arc.setAttribute('stroke', pct >= 80 ? '#00e5a8' : (pct >= 50 ? '#f5b942' : '#ff5263'));
   }
 
-  /* 任务时间轴 */
+  function fmtDate(t) {
+    var d = new Date(t);
+    function p(n) { return String(n).padStart(2, '0'); }
+    return p(d.getMonth() + 1) + '-' + p(d.getDate());
+  }
+
   function drawTimeline() {
     var svg = document.getElementById('missionTimeline');
     if (!svg) return;
     while (svg.firstChild) svg.removeChild(svg.firstChild);
-    var W = 640, padL = 16, padR = 16, y = 44;
+    var W = 720, H = 84, y = 48;
     var start = new Date(DATA[0].time).getTime();
     var end = new Date(DATA[DATA.length - 1].time).getTime();
     var span = (end - start) || 1;
-    function xf(t) { return padL + ((t - start) / span) * (W - padL - padR); }
+    var firstGps = end;
+    for (var i = 0; i < DATA.length; i++) {
+      if (DATA[i].x !== null && DATA[i].x !== undefined) { firstGps = new Date(DATA[i].time).getTime(); break; }
+    }
+    var phases = [
+      { t: start, label: 'DEPLOYMENT' },
+      { t: start + span * 0.12, label: 'DATA COLLECTION' },
+      { t: firstGps, label: 'MONITORING' },
+      { t: end, label: 'CURRENT STATUS' }
+    ];
+    var xs = [70, 270, 460, 650];
 
     var line = document.createElementNS(NS, 'line');
     line.setAttribute('class', 'tl-line');
-    line.setAttribute('x1', padL); line.setAttribute('y1', y);
-    line.setAttribute('x2', W - padR); line.setAttribute('y2', y);
+    line.setAttribute('x1', 70); line.setAttribute('y1', y);
+    line.setAttribute('x2', 650); line.setAttribute('y2', y);
     svg.appendChild(line);
 
-    var events = [{ t: start, label: 'START' }];
-    for (var i = 0; i < DATA.length; i++) {
-      if (DATA[i].x !== null && DATA[i].x !== undefined) {
-        events.push({ t: new Date(DATA[i].time).getTime(), label: 'GPS FIX' });
-        break;
-      }
-    }
-    var modeS = false, modeE = false;
-    for (var j = 0; j < DATA.length; j++) {
-      if (!modeS && DATA[j].mode === 'S') { modeS = true; events.push({ t: new Date(DATA[j].time).getTime(), label: 'MODE S' }); }
-      if (!modeE && DATA[j].mode === 'E') { modeE = true; events.push({ t: new Date(DATA[j].time).getTime(), label: 'MODE E' }); }
-    }
-    events.push({ t: end, label: 'LAST' });
-
-    events.forEach(function (ev) {
-      var x = xf(ev.t);
+    phases.forEach(function (ph, idx) {
+      var x = xs[idx];
       var dot = document.createElementNS(NS, 'circle');
       dot.setAttribute('class', 'tl-dot');
-      dot.setAttribute('cx', x); dot.setAttribute('cy', y); dot.setAttribute('r', '2.6');
+      dot.setAttribute('cx', x); dot.setAttribute('cy', y); dot.setAttribute('r', '3');
       svg.appendChild(dot);
       var label = document.createElementNS(NS, 'text');
       label.setAttribute('class', 'tl-label');
-      label.setAttribute('x', x); label.setAttribute('y', y - 10);
+      label.setAttribute('x', x); label.setAttribute('y', y - 12);
       label.setAttribute('text-anchor', 'middle');
-      label.textContent = ev.label;
+      label.textContent = ph.label;
       svg.appendChild(label);
+      var date = document.createElementNS(NS, 'text');
+      date.setAttribute('class', 'tl-label');
+      date.setAttribute('x', x); date.setAttribute('y', y + 18);
+      date.setAttribute('text-anchor', 'middle');
+      date.textContent = fmtDate(ph.t);
+      svg.appendChild(date);
     });
   }
 
   function render() {
     if (!ready()) return;
-    var n = DATA.length;
-    var vOk = 0, gOk = 0, tOk = 0, sOk = 0;
-    DATA.forEach(function (d) {
-      if (d.v !== null && d.v !== undefined) vOk++;
-      if (d.x !== null && d.x !== undefined && d.y !== null && d.y !== undefined) gOk++;
-      if (d.t !== null && d.t !== undefined) tOk++;
-      if (d.s !== null && d.s !== undefined) sOk++;
-    });
-    var rel = Math.round((vOk / n) * 100);
-    var gps = Math.round((gOk / n) * 100);
-    var comp = Math.round(((tOk + vOk + sOk) / (3 * n)) * 100);
-    var health = Math.round(comp * 0.5 + rel * 0.3 + gps * 0.2);
+    var tCov = cov('t');
+    var vCov = cov('v');
+    var sCov = cov('s');
+    var gCov = cov('x');
+    var mCov = cov('mode');
+    var energy = Math.round((vCov + sCov) / 2);
+    var rel = Math.round(vCov);
+    var gps = Math.round(gCov);
 
-    setText('relScore', rel + '%');
-    setText('gpsAvail', gps + '%');
-    setText('healthScore', health);
-    drawGauge(health);
-    drawSpark('trendTemp', 't', '#8ceaff');
-    drawSpark('trendVolt', 'v', '#00e5a8');
-    drawSpark('trendSolar', 's', '#f5b942');
+    setText('gpsAvail', gps);
+    setText('relScore', rel);
+    setText('energyPerf', energy);
+
+    /* 五个 KPI 迷你趋势线 */
+    drawTrend(document.querySelector('#kpi0 .kpi-spark'), (function () {
+      var out = []; DATA.forEach(function (d, i) { if (i % 12 === 0) out.push((i / DATA.length) * 100); }); return out;
+    })(), '#8ceaff');
+    drawTrend(document.querySelector('#kpi1 .kpi-spark'), (function () {
+      var out = []; var n = DATA.length; for (var i = 0; i < n; i++) { if (i % 12 === 0) out.push((i / n) * 100); } return out;
+    })(), '#8ceaff');
+    drawTrend(document.querySelector('#kpi2 .kpi-spark'), bucketTrend(function (d) { return d.x !== null && d.x !== undefined; }), '#8ceaff');
+    drawTrend(document.querySelector('#kpi3 .kpi-spark'), bucketTrend(function (d) { return d.v !== null && d.v !== undefined; }), '#00e5a8');
+    drawTrend(document.querySelector('#kpi4 .kpi-spark'), bucketTrend(function (d) { return (d.v !== null && d.v !== undefined) || (d.s !== null && d.s !== undefined); }), '#f5b942');
+
+    /* 数据覆盖进度条 */
+    function setBar(id, pct) {
+      var el = document.getElementById(id);
+      if (el) el.style.width = pct.toFixed(1) + '%';
+    }
+    setBar('barTemp', tCov); setText('pctTemp', Math.round(tCov) + '%');
+    setBar('barVolt', vCov); setText('pctVolt', Math.round(vCov) + '%');
+    setBar('barSolar', sCov); setText('pctSolar', Math.round(sCov) + '%');
+    setBar('barGps', gCov); setText('pctGps', Math.round(gCov) + '%');
+    setBar('barComm', mCov); setText('pctComm', Math.round(mCov) + '%');
+
+    drawTrend(document.querySelector('#profile0 .profile-spark'), bucketTrend(function (d) { return d.t !== null && d.t !== undefined; }, 30), '#8ceaff');
+    drawTrend(document.querySelector('#profile1 .profile-spark'), bucketTrend(function (d) { return d.v !== null && d.v !== undefined; }, 30), '#00e5a8');
+    drawTrend(document.querySelector('#profile2 .profile-spark'), bucketTrend(function (d) { return d.s !== null && d.s !== undefined; }, 30), '#f5b942');
+    drawTrend(document.querySelector('#profile3 .profile-spark'), bucketTrend(function (d) { return d.x !== null && d.x !== undefined; }, 30), '#8ceaff');
+    drawTrend(document.querySelector('#profile4 .profile-spark'), bucketTrend(function (d) { return d.mode !== null && d.mode !== undefined; }, 30), '#00e5a8');
+
+    /* 健康环 */
+    drawRing('ringPower', vCov);
+    drawRing('ringSensor', (tCov + cov('h') + cov('j') + cov('k')) / 4);
+    drawRing('ringComm', mCov);
+    drawRing('ringGps', gCov);
+
     drawTimeline();
   }
 

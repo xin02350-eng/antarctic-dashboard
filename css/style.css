@@ -7604,6 +7604,521 @@ grid-template-rows:repeat(4,minmax(180px,1fr));
 
 
 /* =========================================================
+   V0.4.1 · ANTARCTIC MISSION SUMMARY（任务总结屏）
+   MISSION OVERVIEW → KPI → DATA PROFILE → SYSTEM HEALTH → TIMELINE
+========================================================= */
+
+body.analysis-page main{
+
+height:100vh;
+
+overflow:hidden;
+
+padding:8px 14px;
+
+display:flex;
+
+flex-direction:column;
+
+gap:8px;
+
+}
+
+
+/* 顶部：任务报告标题区 */
+.analysis-page .an-head{
+
+flex:none;
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+gap:16px;
+
+background:transparent;
+
+border:0;
+
+box-shadow:none;
+
+padding:6px 10px;
+
+}
+
+
+.analysis-page .an-kicker{
+
+font-size:9px;
+
+letter-spacing:3px;
+
+color:rgba(140,234,255,.55);
+
+margin-bottom:4px;
+
+}
+
+
+.analysis-page .an-head h2{
+
+font-size:21px;
+
+letter-spacing:5px;
+
+color:#eafcff;
+
+}
+
+
+.analysis-page .an-meta{
+
+display:flex;
+
+gap:18px;
+
+font-size:8px;
+
+letter-spacing:2px;
+
+color:rgba(110,150,170,.6);
+
+}
+
+
+.analysis-page .an-meta b{
+
+display:block;
+
+margin-top:3px;
+
+font-size:11px;
+
+letter-spacing:2px;
+
+color:#dff6ff;
+
+}
+
+
+.analysis-page .an-meta b.ok{
+
+color:#00e5a8;
+
+}
+
+
+/* KEY PERFORMANCE INDICATORS：大型科研数据面板 */
+.analysis-page .an-kpi{
+
+flex:1 1 0;
+
+min-height:0;
+
+display:grid;
+
+grid-template-columns:repeat(5,1fr);
+
+gap:10px;
+
+}
+
+
+.analysis-page .kpi-block{
+
+display:flex;
+
+flex-direction:column;
+
+justify-content:space-between;
+
+min-width:0;
+
+padding:6px 10px;
+
+border-left:1px solid rgba(98,217,255,.18);
+
+background:linear-gradient(165deg, rgba(9,28,44,.45), rgba(5,16,28,.35));
+
+border-radius:6px;
+
+}
+
+
+.analysis-page .kpi-label{
+
+font-size:8px;
+
+letter-spacing:2px;
+
+color:rgba(127,163,181,.6);
+
+}
+
+
+.analysis-page .kpi-num b{
+
+font-size:27px;
+
+font-weight:700;
+
+color:#eafcff;
+
+font-variant-numeric:tabular-nums;
+
+}
+
+
+.analysis-page .kpi-num em{
+
+font-style:normal;
+
+font-size:9px;
+
+color:rgba(110,150,170,.55);
+
+margin-left:4px;
+
+}
+
+
+.analysis-page .kpi-spark{
+
+width:100%;
+
+height:26px;
+
+}
+
+
+/* MISSION DATA PROFILE：水平进度条 + 趋势线 */
+.analysis-page .an-profile,
+
+.analysis-page .an-health,
+
+.analysis-page .an-timeline{
+
+border:1px solid rgba(140,234,255,.12);
+
+border-radius:8px;
+
+background:linear-gradient(165deg, rgba(9,28,44,.5), rgba(5,16,28,.42));
+
+padding:8px 12px;
+
+display:flex;
+
+flex-direction:column;
+
+min-height:0;
+
+}
+
+
+.analysis-page .an-profile{
+
+flex:1.35 1 0;
+
+}
+
+
+.analysis-page .an-health{
+
+flex:1 1 0;
+
+}
+
+
+.analysis-page .an-timeline{
+
+flex:1.1 1 0;
+
+}
+
+
+.analysis-page .an-profile h3,
+
+.analysis-page .an-health h3,
+
+.analysis-page .an-timeline h3{
+
+flex:none;
+
+font-size:9px;
+
+letter-spacing:3px;
+
+color:rgba(140,234,255,.6);
+
+border-bottom:1px solid rgba(98,217,255,.12);
+
+padding-bottom:4px;
+
+margin-bottom:6px;
+
+}
+
+
+.analysis-page .profile-grid{
+
+flex:1 1 auto;
+
+min-height:0;
+
+display:flex;
+
+flex-direction:column;
+
+justify-content:space-evenly;
+
+gap:3px;
+
+}
+
+
+.analysis-page .profile-row{
+
+display:grid;
+
+grid-template-columns:150px minmax(60px,1fr) 90px 44px;
+
+align-items:center;
+
+gap:10px;
+
+font-size:8px;
+
+letter-spacing:1.5px;
+
+color:rgba(127,163,181,.65);
+
+}
+
+
+.analysis-page .profile-bar{
+
+height:5px;
+
+background:rgba(98,217,255,.1);
+
+border-radius:3px;
+
+overflow:hidden;
+
+}
+
+
+.analysis-page .profile-bar i{
+
+display:block;
+
+height:100%;
+
+width:0;
+
+background:linear-gradient(90deg, #62d9ff, #8ceaff);
+
+border-radius:3px;
+
+transition:width .8s ease;
+
+}
+
+
+.analysis-page .profile-spark{
+
+width:100%;
+
+height:22px;
+
+}
+
+
+.analysis-page .profile-pct{
+
+font-size:11px;
+
+color:#dff6ff;
+
+text-align:right;
+
+font-variant-numeric:tabular-nums;
+
+}
+
+
+/* SYSTEM HEALTH：状态环 */
+.analysis-page .health-grid{
+
+flex:1 1 auto;
+
+min-height:0;
+
+display:grid;
+
+grid-template-columns:repeat(4,1fr);
+
+gap:10px;
+
+align-items:center;
+
+}
+
+
+.analysis-page .hitem{
+
+display:flex;
+
+align-items:center;
+
+gap:10px;
+
+}
+
+
+.analysis-page .hring{
+
+width:40px;
+
+height:40px;
+
+flex:none;
+
+}
+
+
+.analysis-page .hr-base{
+
+fill:none;
+
+stroke:rgba(98,217,255,.12);
+
+stroke-width:4;
+
+}
+
+
+.analysis-page .hr-arc{
+
+fill:none;
+
+stroke:#00e5a8;
+
+stroke-width:4;
+
+stroke-linecap:round;
+
+transform:rotate(-90 20 20);
+
+stroke-dasharray:0 100.5;
+
+}
+
+
+.analysis-page .hitem b{
+
+display:block;
+
+font-size:9px;
+
+letter-spacing:1.5px;
+
+color:#dff6ff;
+
+}
+
+
+.analysis-page .hitem span{
+
+display:block;
+
+margin-top:3px;
+
+font-size:8px;
+
+letter-spacing:2px;
+
+color:rgba(0,229,168,.8);
+
+}
+
+
+/* MISSION TIMELINE */
+.analysis-page .timeline-svg{
+
+flex:1 1 auto;
+
+width:100%;
+
+min-height:0;
+
+}
+
+
+.analysis-page .tl-foot{
+
+flex:none;
+
+font-size:8px;
+
+letter-spacing:2px;
+
+color:rgba(110,150,170,.55);
+
+}
+
+
+/* 矮屏压缩（1366×768 内视口更小时仍单屏） */
+@media (max-height:760px){
+
+.analysis-page .an-kicker{
+
+display:none;
+
+}
+
+.analysis-page .an-head h2{
+
+font-size:18px;
+
+}
+
+.analysis-page .kpi-num b{
+
+font-size:22px;
+
+}
+
+.analysis-page .an-profile,
+
+.analysis-page .an-health,
+
+.analysis-page .an-timeline{
+
+padding:6px 10px;
+
+}
+
+.analysis-page .profile-row{
+
+grid-template-columns:130px minmax(50px,1fr) 70px 38px;
+
+}
+
+.analysis-page .hring{
+
+width:34px;
+
+height:34px;
+
+}
+
+}
+
+
+/* =========================================================
    HARDWARE V7 · DIGITAL TWIN SHOWCASE
    等边三棱柱三面太阳能结构 / 严格图层分层 / 设备中央 80%
 ========================================================= */
