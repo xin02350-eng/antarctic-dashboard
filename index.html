@@ -66,10 +66,13 @@
         <strong class="cmd-value" id="time">--</strong>
         <span class="cmd-sub">LOCAL TIME</span>
       </div>
-      <div class="cmd-cell">
+      <div class="cmd-cell" id="modeCell">
         <span class="cmd-label">OPERATION MODE</span>
-        <strong class="cmd-value" id="systemMode">--</strong>
-        <span class="cmd-sub">AUTONOMOUS</span>
+        <strong class="cmd-value">
+          <i class="cmd-led mode-led"></i><span class="mode-text" id="modeDisplay">--</span>
+          <span id="systemMode" class="mode-raw" aria-hidden="true">--</span>
+        </strong>
+        <span class="cmd-sub" id="modeSub">AUTONOMOUS</span>
       </div>
     </section>
 
@@ -122,10 +125,10 @@
         </div>
 
         <div class="map-status-grid">
-          <div class="map-cell"><span>GPS STATUS</span><strong>TRACKING</strong></div>
-          <div class="map-cell"><span>MODE</span><strong>N/S/E</strong></div>
-          <div class="map-cell"><span>POWER</span><strong>SOLAR + BATTERY</strong></div>
-          <div class="map-cell"><span>COMMS</span><strong>DATA LINK</strong></div>
+          <div class="map-cell"><span>GPS STATUS</span><strong>TRACKING</strong><i class="map-cell-led"></i></div>
+          <div class="map-cell" id="mapModeCell"><span>MODE</span><strong id="mapModeValue">--</strong><i class="map-cell-led"></i></div>
+          <div class="map-cell"><span>POWER</span><strong>SOLAR + BATTERY</strong><i class="map-cell-led"></i></div>
+          <div class="map-cell"><span>COMMS</span><strong>DATA LINK</strong><i class="map-cell-led"></i></div>
         </div>
 
         <!-- #worldMap 由 main.js 创建真实 Leaflet 地图；以下装饰层均为 pointer-events:none，不影响拖拽缩放 -->
@@ -526,31 +529,125 @@
   }, 400);
 
   /* =========================================================
-     3. 状态灯同步：数值为 NULL / 占位符时，卡片进入 NO DATA 状态
-        仅读取 DOM，不修改 main.js 的数据逻辑
+     3. 状态显示辅助层（纯 DOM 展示逻辑，不影响 main.js 数据刷新）
+        - MODE: N/S/E → NORMAL / STANDBY / EMERGENCY + 状态灯颜色
+        - NULL: 按设备语义显示 NO SIGNAL / WAITING DATA / NO TELEMETRY / NO FIX
+        - 状态灯: 有效=绿 / 等待=黄 / 无信号=红（仅 opacity 呼吸）
   ========================================================= */
-  var ledIds = ['voltage', 'current', 'insideTemp', 'humidity', 'solar', 'gpsStatusPage'];
 
-  function syncLeds() {
-    ledIds.forEach(function (id) {
-      var el = document.getElementById(id);
-      if (!el) return;
-      var card = el.closest('.sensor-card');
-      if (!card) return;
-      var txt = (el.textContent || '').trim();
-      var bad = !txt || txt === '--' || /null/i.test(txt);
-      card.classList.toggle('no-data', bad);
-      var state = card.querySelector('.sensor-state');
-      if (state) state.textContent = bad ? 'NO DATA' : 'NOMINAL';
-    });
+  /* MODE 状态映射（N / S / E → 科研设备状态标签） */
+  var MODE_STATES = {
+    N:    { label: 'NORMAL',       sub: 'NORMAL OPERATION',  cls: 'mode-normal' },
+    S:    { label: 'STANDBY',      sub: 'LOW POWER STANDBY', cls: 'mode-standby' },
+    E:    { label: 'EMERGENCY',    sub: 'PROTECTIVE MODE',   cls: 'mode-emergency' },
+    '--': { label: 'WAITING DATA', sub: 'MODE UNKNOWN',      cls: 'mode-wait' },
+    NULL: { label: 'NO SIGNAL',    sub: 'MODE UNKNOWN',      cls: 'mode-off' }
+  };
+  var MODE_CLASSES = ['mode-normal', 'mode-standby', 'mode-emergency', 'mode-wait', 'mode-off'];
+
+  /* 根据 main.js 写入的原始 mode 值渲染状态标签（#systemMode 保留为隐藏原始值） */
+  function renderMode() {
+    var rawEl = document.getElementById('systemMode');
+    var cell = document.getElementById('modeCell');
+    var disp = document.getElementById('modeDisplay');
+    var sub = document.getElementById('modeSub');
+    var mapCell = document.getElementById('mapModeCell');
+    var mapVal = document.getElementById('mapModeValue');
+    if (!rawEl || !disp) return;
+    var raw = (rawEl.textContent || '').trim().toUpperCase();
+    if (raw === '') raw = '--';
+    var st = MODE_STATES[raw] || MODE_STATES.NULL;
+    disp.textContent = st.label;
+    if (sub) sub.textContent = st.sub;
+    if (cell) {
+      MODE_CLASSES.forEach(function (c) { cell.classList.remove(c); });
+      cell.classList.add(st.cls);
+    }
+    if (mapVal) mapVal.textContent = st.label;
+    if (mapCell) {
+      MODE_CLASSES.forEach(function (c) { mapCell.classList.remove(c); });
+      mapCell.classList.add(st.cls);
+    }
   }
 
-  syncLeds();
+  /* 数值空态文案（按设备语义选择，不伪造数据） */
+  var VALUE_LABELS = {
+    voltage:         'NO SIGNAL',
+    current:         'NO SIGNAL',
+    insideTemp:      'NO TELEMETRY',
+    outsideTemp:     'NO TELEMETRY',
+    humidity:        'NO SIGNAL',
+    outsideHumidity: 'NO SIGNAL',
+    solar:           'WAITING DATA',
+    gpsStatusPage:   'NO FIX',
+    satelliteSmall:  'NO FIX',
+    satellites:      'NO FIX',
+    latitude:        'NO FIX',
+    longitude:       'NO FIX'
+  };
+  var VALUE_IDS = Object.keys(VALUE_LABELS);
+
+  /* 只有主数值控制整卡状态；次级数值（外部温度/湿度/卫星数）只更新自身显示 */
+  var CARD_IDS = {
+    voltage: 1, current: 1, insideTemp: 1, humidity: 1, solar: 1, gpsStatusPage: 1
+  };
+
+  function refreshValue(el, id) {
+    if (!el) return;
+    var txt = (el.textContent || '').trim();
+    var state;
+    var label;
+
+    /* 若当前文字仍是本层渲染的占位文案，保持原状态（避免自触发死循环） */
+    if (el.dataset.state && txt === (el.dataset.label || '')) {
+      state = el.dataset.state;
+      label = txt;
+    } else if (txt === '--' || txt === '') {
+      state = 'wait';
+      label = 'WAITING DATA';
+    } else if (/^null$/i.test(txt)) {
+      state = 'off';
+      label = VALUE_LABELS[id] || 'NO SIGNAL';
+    } else {
+      state = 'ok';
+      label = '';
+    }
+
+    var card = CARD_IDS[id] ? el.closest('.sensor-card') : null;
+    if (card) {
+      card.classList.toggle('st-wait', state === 'wait');
+      card.classList.toggle('st-off', state === 'off');
+      card.classList.toggle('st-ok', state === 'ok');
+      var chip = card.querySelector('.sensor-state');
+      if (chip) {
+        chip.textContent = state === 'ok' ? 'NOMINAL' : (state === 'wait' ? 'AWAITING SENSOR' : 'SENSOR OFFLINE');
+      }
+    }
+
+    el.classList.remove('st-wait', 'st-off', 'st-ok');
+    if (label) {
+      if (el.textContent !== label) el.textContent = label;
+      el.dataset.state = state;
+      el.dataset.label = label;
+      el.classList.add('st-' + state);
+    } else {
+      delete el.dataset.state;
+      delete el.dataset.label;
+    }
+  }
+
+  function syncStatus() {
+    renderMode();
+    VALUE_IDS.forEach(function (id) { refreshValue(document.getElementById(id), id); });
+  }
+
+  syncStatus();
   if (window.MutationObserver) {
-    var ledObserver = new MutationObserver(syncLeds);
-    ledIds.forEach(function (id) {
+    var statusObserver = new MutationObserver(syncStatus);
+    var statusIds = VALUE_IDS.concat(['systemMode']);
+    statusIds.forEach(function (id) {
       var el = document.getElementById(id);
-      if (el) ledObserver.observe(el, { childList: true, subtree: true, characterData: true });
+      if (el) statusObserver.observe(el, { childList: true, subtree: true, characterData: true });
     });
   }
 })();
