@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>ANTARCTIC NEXUS 惟 - HARDWARE DIGITAL TWIN</title>
+  <title>ANTARCTIC NEXUS - HARDWARE DOCUMENTATION</title>
   <link rel="icon" href="data:,">
   <link rel="stylesheet" href="./css/style.css">
 </head>
@@ -14,9 +14,9 @@
 
   <aside class="sidebar">
     <div class="brand">
-      <div class="logo">惟</div>
+      <div class="logo">AN</div>
       <div>
-        <h1>ANTARCTIC<br>NEXUS 惟</h1>
+        <h1>ANTARCTIC<br>NEXUS</h1>
         <p>POLAR AUTONOMOUS OBSERVATORY</p>
       </div>
     </div>
@@ -30,19 +30,67 @@
     </nav>
   </aside>
 
-  <!-- 数字孪生控制台：3D Exploded View 爆炸视图 -->
+  <!-- ANT-A01 HARDWARE DOCUMENTATION：真实设备照片展示档案 -->
   <main>
 
-    <section class="hw-single">
+    <header class="mission-header">
+      <div>
+        <h2>ANT-A01 HARDWARE DOCUMENTATION</h2>
+        <p>POLAR AUTONOMOUS MONITORING NODE · ENGINEERING FILE</p>
+      </div>
+      <div class="system-online"><span></span>ACTIVE</div>
+    </header>
 
-      <!-- 左 HUD：SYSTEM STATUS（main.js 写入的 4 个实时 ID 保留） -->
-      <aside class="hw-status">
-        <h3>SYSTEM STATUS</h3>
+    <section class="doc-single">
+
+      <!-- 左侧：识别与规格（NASA 工程档案风格） -->
+      <aside class="doc-side">
+        <h3>IDENTIFICATION</h3>
+        <div class="tech-line">DESIGNATION <span>ANT-A01</span></div>
+        <div class="tech-line">TYPE <span>POLAR NODE</span></div>
+        <div class="tech-line">VERSION <span>V0.4</span></div>
+        <div class="tech-line">STATUS <span class="green">ACTIVE</span></div>
+
+        <h3>SPECIFICATIONS</h3>
+        <div class="tech-line">ENCLOSURE <span>IP66</span></div>
+        <div class="tech-line">POWER <span>SOLAR + LI-ION</span></div>
+        <div class="tech-line">SENSORS <span>TEMP · HUM · PRESS · RAD</span></div>
+        <div class="tech-line">COMMS <span>GPS · LoRa</span></div>
+      </aside>
+
+      <!-- 中央：大型设备照片展示区（真实照片占位） -->
+      <div class="doc-stage">
+        <div class="doc-stage-head">
+          <span>DEVICE PHOTOGRAPH · FIELD DEPLOYMENT</span>
+          <span class="doc-file">FILE: ANT-A01_001 · REV V0.4</span>
+        </div>
+
+        <div class="doc-photo">
+          <div class="photo-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true">
+              <path d="M4 7h3l2-3h6l2 3h3v13H4V7z"/>
+              <circle cx="12" cy="13" r="4"/>
+            </svg>
+            <p>REAL DEVICE PHOTO</p>
+            <p class="photo-sub">IMAGE SLOT · REPLACE WITH FIELD PHOTOGRAPH</p>
+          </div>
+        </div>
+
+        <div class="doc-stage-foot">
+          <span>CAPTURED: PENDING</span>
+          <span>LOCATION: ANTARCTIC FIELD SITE</span>
+          <span>DOC: HARDWARE ARCHIVE</span>
+        </div>
+      </div>
+
+      <!-- 右侧：实时遥测 + 部署信息 -->
+      <aside class="doc-side">
+        <h3>LIVE TELEMETRY</h3>
 
         <div class="hud-card">
           <i class="hc-dot"></i>
           <div class="hc-body">
-            <span class="hc-name">POWER</span>
+            <span class="hc-name">POWER · SOLAR</span>
             <span class="hc-val" id="hardwareSolar">NULL</span><span class="hc-unit">W/m²</span>
           </div>
         </div>
@@ -58,7 +106,7 @@
         <div class="hud-card">
           <i class="hc-dot"></i>
           <div class="hc-body">
-            <span class="hc-name">SENSOR</span>
+            <span class="hc-name">SENSOR · CABIN</span>
             <span class="hc-val" id="hardwareTemp">NULL</span><span class="hc-unit">°C</span>
           </div>
         </div>
@@ -70,358 +118,22 @@
             <span class="hc-val" id="hardwareGPS">NULL</span>
           </div>
         </div>
-      </aside>
 
-      <!-- 中央：ANT-A01 爆炸视图（模块独立悬浮 + 空间关联） -->
-      <div class="hw-device">
-        <svg class="hw-svg" viewBox="0 0 640 640" aria-label="ANT-A01 exploded view">
-          <defs>
-            <linearGradient id="xMetal" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#cfe9f5"/>
-              <stop offset="20%" stop-color="#4d7187"/>
-              <stop offset="60%" stop-color="#16364d"/>
-              <stop offset="100%" stop-color="#071a29"/>
-            </linearGradient>
-            <linearGradient id="xMetalSoft" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#9cc8da" stop-opacity=".9"/>
-              <stop offset="45%" stop-color="#1d4359" stop-opacity=".9"/>
-              <stop offset="100%" stop-color="#0a2030" stop-opacity=".95"/>
-            </linearGradient>
-            <linearGradient id="xSilicon" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stop-color="#1a4a66" stop-opacity=".55"/>
-              <stop offset="100%" stop-color="#081c2c" stop-opacity=".65"/>
-            </linearGradient>
-            <linearGradient id="xGlass" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#8ceaff" stop-opacity=".15"/>
-              <stop offset="100%" stop-color="#062033" stop-opacity=".55"/>
-            </linearGradient>
-            <linearGradient id="xSnow" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#cfe4f0" stop-opacity=".5"/>
-              <stop offset="60%" stop-color="#8fb4c8" stop-opacity=".22"/>
-              <stop offset="100%" stop-color="#5d8298" stop-opacity=".13"/>
-            </linearGradient>
-            <linearGradient id="xIceField" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#dff6ff" stop-opacity=".05"/>
-              <stop offset="100%" stop-color="#dff6ff" stop-opacity="0"/>
-            </linearGradient>
-            <linearGradient id="xAurora" x1="0" y1="0" x2="1" y2="0">
-              <stop offset="0%" stop-color="#62d9ff" stop-opacity="0"/>
-              <stop offset="40%" stop-color="#62d9ff" stop-opacity=".04"/>
-              <stop offset="70%" stop-color="#00e5a8" stop-opacity=".02"/>
-              <stop offset="100%" stop-color="#62d9ff" stop-opacity="0"/>
-            </linearGradient>
-            <radialGradient id="xCoreGlow" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stop-color="#62d9ff" stop-opacity=".14"/>
-              <stop offset="100%" stop-color="#62d9ff" stop-opacity="0"/>
-            </radialGradient>
-            <radialGradient id="xStage" cx="50%" cy="45%" r="55%">
-              <stop offset="0%" stop-color="#62d9ff" stop-opacity=".07"/>
-              <stop offset="100%" stop-color="#62d9ff" stop-opacity="0"/>
-            </radialGradient>
-            <radialGradient id="xSnowGlow" cx="50%" cy="0%" r="90%">
-              <stop offset="0%" stop-color="#dff6ff" stop-opacity=".08"/>
-              <stop offset="100%" stop-color="#dff6ff" stop-opacity="0"/>
-            </radialGradient>
-            <filter id="xSoft" x="-40%" y="-40%" width="180%" height="180%">
-              <feGaussianBlur stdDeviation="8"/>
-            </filter>
-          </defs>
-
-          <!-- ===== 背景：南极暴风雪（低存在感） ===== -->
-          <ellipse cx="320" cy="330" rx="310" ry="250" fill="url(#xStage)"/>
-          <rect x="0" y="470" width="640" height="90" fill="url(#xIceField)"/>
-          <line x1="0" y1="470" x2="640" y2="470" stroke="rgba(220,245,255,.06)"/>
-          <g class="hw-silhouette" filter="url(#xSoft)" opacity=".45">
-            <polygon points="-10,430 70,300 150,430" fill="url(#xIceField)"/>
-            <polygon points="60,420 120,340 180,420" fill="url(#xIceField)"/>
-            <polygon points="490,430 560,300 640,430" fill="url(#xIceField)"/>
-            <polygon points="540,420 600,340 640,420" fill="url(#xIceField)"/>
-          </g>
-          <g filter="url(#xSoft)" opacity=".3">
-            <path d="M -40 100 C 120 50 240 160 420 90 S 620 140 680 80" stroke="url(#xAurora)" stroke-width="30" fill="none"/>
-          </g>
-          <g class="hw-streak" opacity=".5">
-            <line x1="30" y1="90" x2="86" y2="108"/>
-            <line x1="130" y1="160" x2="178" y2="176"/>
-            <line x1="60" y1="250" x2="104" y2="264"/>
-            <line x1="470" y1="120" x2="522" y2="138"/>
-            <line x1="540" y1="210" x2="588" y2="226"/>
-            <circle cx="90" cy="140" r="1"/>
-            <circle cx="160" cy="220" r="1.1"/>
-            <circle cx="500" cy="170" r="1"/>
-            <circle cx="580" cy="280" r="1.1"/>
-          </g>
-          <ellipse cx="320" cy="520" rx="300" ry="54" fill="url(#xSnowGlow)"/>
-
-          <!-- ===== 模块间数据流（低速，先画在模块下方） ===== -->
-          <path class="hw-cable" d="M 244,322 Q 218,430 282,452"/>
-          <path class="hw-cable" d="M 466,306 Q 420,390 352,486"/>
-          <path class="hw-cable" d="M 320,430 L 320,400"/>
-          <path class="hw-cable" d="M 384,336 Q 408,344 430,366"/>
-          <path class="hw-cable" d="M 480,392 Q 470,240 354,148"/>
-          <!-- 静态系留线 -->
-          <line x1="238" y1="290" x2="256" y2="296" stroke="rgba(140,234,255,.18)" stroke-width="1"/>
-          <line x1="386" y1="276" x2="390" y2="280" stroke="rgba(140,234,255,.18)" stroke-width="1"/>
-          <line x1="338" y1="158" x2="322" y2="212" stroke="rgba(140,234,255,.18)" stroke-width="1"/>
-
-          <!-- ===== 底部：POWER SYSTEM（电源系统） ===== -->
-          <g>
-            <rect x="272" y="432" width="96" height="30" rx="3" fill="#0c2834" stroke="rgba(120,210,235,.5)"/>
-            <rect x="280" y="438" width="28" height="18" rx="2" fill="#123a52" stroke="rgba(140,210,235,.5)"/>
-            <circle cx="316" cy="447" r="4" fill="none" stroke="rgba(140,210,235,.5)"/>
-            <circle cx="326" cy="447" r="4" fill="none" stroke="rgba(140,210,235,.5)"/>
-            <polyline points="282,444 300,444 300,452 312,452" class="hw-trace"/>
-            <rect x="278" y="470" width="20" height="36" rx="4" fill="#14465c" stroke="rgba(120,210,235,.4)"/>
-            <rect x="302" y="470" width="20" height="36" rx="4" fill="#14465c" stroke="rgba(120,210,235,.4)"/>
-            <rect x="326" y="470" width="20" height="36" rx="4" fill="#14465c" stroke="rgba(120,210,235,.4)"/>
-            <rect x="350" y="470" width="20" height="36" rx="4" fill="#14465c" stroke="rgba(120,210,235,.4)"/>
-            <circle cx="288" cy="480" r="2" fill="#8ceaff"/>
-            <circle cx="312" cy="480" r="2" fill="#8ceaff"/>
-            <circle cx="336" cy="480" r="2" fill="#8ceaff"/>
-            <circle cx="360" cy="480" r="2" fill="#8ceaff"/>
-            <line x1="288" y1="470" x2="288" y2="462" stroke="rgba(140,210,235,.4)" stroke-width="1"/>
-            <line x1="360" y1="470" x2="360" y2="462" stroke="rgba(140,210,235,.4)" stroke-width="1"/>
-            <text x="376" y="455" text-anchor="start" class="hw-live"><tspan id="svgVoltage">--</tspan> V</text>
-            <!-- 雪地固定 -->
-            <ellipse cx="320" cy="540" rx="92" ry="14" fill="#142c3c" stroke="rgba(160,225,245,.22)"/>
-            <path d="M 240,558 Q 320,516 400,558 Q 410,578 320,580 Q 230,578 240,558 Z" fill="url(#xSnow)"/>
-            <text x="320" y="572" text-anchor="middle" class="hw-tag">ICE ANCHOR</text>
-          </g>
-
-          <!-- ===== 右侧下方：SENSOR SYSTEM（传感器系统） ===== -->
-          <g>
-            <rect x="432" y="362" width="90" height="36" rx="3" fill="#0c2834" stroke="rgba(120,210,235,.5)"/>
-            <rect x="438" y="368" width="6" height="6" fill="#1c4a5e" stroke="rgba(140,210,235,.5)"/>
-            <rect x="448" y="368" width="6" height="6" fill="#1c4a5e" stroke="rgba(140,210,235,.5)"/>
-            <rect x="458" y="368" width="6" height="6" fill="#1c4a5e" stroke="rgba(140,210,235,.5)"/>
-            <rect x="468" y="368" width="6" height="6" fill="#1c4a5e" stroke="rgba(140,210,235,.5)"/>
-            <polyline points="442,380 452,420 452,428" class="hw-trace"/>
-            <polyline points="462,386 490,424 490,434" class="hw-trace"/>
-            <polyline points="482,390 521,422 521,432" class="hw-trace"/>
-            <polyline points="470,396 466,458 466,470" class="hw-trace"/>
-            <!-- 四个独立探头 -->
-            <rect x="440" y="432" width="24" height="18" rx="3" fill="#123a52" stroke="rgba(140,210,235,.55)"/>
-            <circle cx="452" cy="426" r="2.5" fill="#8ceaff"/>
-            <rect x="478" y="438" width="24" height="18" rx="3" fill="#123a52" stroke="rgba(140,210,235,.55)"/>
-            <circle cx="490" cy="432" r="2.5" fill="#8ceaff"/>
-            <rect x="510" y="436" width="22" height="18" rx="3" fill="#123a52" stroke="rgba(140,210,235,.55)"/>
-            <circle cx="521" cy="430" r="2.5" fill="#8ceaff"/>
-            <rect x="452" y="474" width="28" height="20" rx="3" fill="#123a52" stroke="rgba(140,210,235,.55)"/>
-            <path d="M 458 482 L 474 482 M 466 474 L 466 490" stroke="rgba(160,235,250,.5)" stroke-width="1"/>
-            <text x="528" y="380" text-anchor="start" class="hw-live"><tspan id="svgTemp">--</tspan> °C</text>
-          </g>
-
-          <!-- ===== 右侧上方：SOLAR ARRAY RIGHT ===== -->
-          <g>
-            <polygon points="390,196 530,232 510,318 370,282" fill="url(#xSilicon)"/>
-            <line x1="415" y1="205" x2="398" y2="291" class="hw-cell"/>
-            <line x1="440" y1="214" x2="425" y2="300" class="hw-cell"/>
-            <line x1="465" y1="223" x2="453" y2="309" class="hw-cell"/>
-            <line x1="490" y1="232" x2="481" y2="318" class="hw-cell"/>
-            <line x1="397" y1="240" x2="519" y2="268" class="hw-cell"/>
-            <line x1="383" y1="270" x2="525" y2="300" class="hw-cell"/>
-            <polygon points="390,196 530,232 510,318 370,282" fill="#ffffff" opacity=".04"/>
-            <line x1="390" y1="196" x2="530" y2="232" stroke="url(#xMetal)" stroke-width="3"/>
-            <line x1="530" y1="232" x2="510" y2="318" stroke="url(#xMetal)" stroke-width="3"/>
-            <line x1="510" y1="318" x2="370" y2="282" stroke="url(#xMetal)" stroke-width="3"/>
-            <line x1="370" y1="282" x2="390" y2="196" stroke="url(#xMetal)" stroke-width="3"/>
-            <line x1="420" y1="300" x2="500" y2="230" stroke="rgba(180,225,240,.18)" stroke-width="2"/>
-            <circle class="hw-bolt" cx="390" cy="196" r="2.2"/>
-            <circle class="hw-bolt" cx="530" cy="232" r="2.2"/>
-            <circle class="hw-bolt" cx="510" cy="318" r="2.2"/>
-            <circle class="hw-bolt" cx="370" cy="282" r="2.2"/>
-          </g>
-
-          <!-- ===== 左侧：SOLAR ARRAY LEFT ===== -->
-          <g>
-            <polygon points="86,232 226,196 248,318 108,354" fill="url(#xSilicon)"/>
-            <line x1="121" y1="223" x2="143" y2="345" class="hw-cell"/>
-            <line x1="156" y1="214" x2="178" y2="336" class="hw-cell"/>
-            <line x1="191" y1="205" x2="213" y2="327" class="hw-cell"/>
-            <line x1="91" y1="263" x2="232" y2="227" class="hw-cell"/>
-            <line x1="97" y1="293" x2="237" y2="257" class="hw-cell"/>
-            <line x1="103" y1="324" x2="243" y2="288" class="hw-cell"/>
-            <polygon points="86,232 226,196 248,318 108,354" fill="#ffffff" opacity=".04"/>
-            <line x1="86" y1="232" x2="226" y2="196" stroke="url(#xMetal)" stroke-width="3"/>
-            <line x1="226" y1="196" x2="248" y2="318" stroke="url(#xMetal)" stroke-width="3"/>
-            <line x1="248" y1="318" x2="108" y2="354" stroke="url(#xMetal)" stroke-width="3"/>
-            <line x1="108" y1="354" x2="86" y2="232" stroke="url(#xMetal)" stroke-width="3"/>
-            <line x1="110" y1="340" x2="220" y2="212" stroke="rgba(180,225,240,.18)" stroke-width="2"/>
-            <circle class="hw-bolt" cx="86" cy="232" r="2.2"/>
-            <circle class="hw-bolt" cx="226" cy="196" r="2.2"/>
-            <circle class="hw-bolt" cx="248" cy="318" r="2.2"/>
-            <circle class="hw-bolt" cx="108" cy="354" r="2.2"/>
-            <text x="120" y="380" text-anchor="middle" class="hw-live"><tspan id="svgSolar">--</tspan> W/m²</text>
-          </g>
-
-          <!-- ===== 顶部：GPS / LoRa ===== -->
-          <g>
-            <line x1="338" y1="150" x2="338" y2="104" stroke="url(#xMetal)" stroke-width="4"/>
-            <path d="M 316,150 Q 338,100 360,150 Z" fill="url(#xMetalSoft)" stroke="rgba(180,225,245,.4)"/>
-            <ellipse cx="338" cy="150" rx="26" ry="6" fill="#0e2a3c" stroke="rgba(160,225,245,.3)"/>
-            <line x1="366" y1="152" x2="356" y2="58" stroke="url(#xMetalSoft)" stroke-width="2.5"/>
-            <circle cx="355" cy="56" r="2" fill="#cfecf7"/>
-            <circle class="hw-ripple hw-gps" cx="338" cy="92" r="4" fill="none" stroke="#8ceaff" stroke-width="1"/>
-            <circle class="hw-ripple hw-gps hw-gps-2" cx="338" cy="92" r="4" fill="none" stroke="#8ceaff" stroke-width="1"/>
-            <circle class="hw-ripple hw-lora" cx="356" cy="52" r="3" fill="none" stroke="#bfefff" stroke-width="1"/>
-            <circle class="hw-ripple hw-lora hw-lora-2" cx="356" cy="52" r="3" fill="none" stroke="#bfefff" stroke-width="1"/>
-            <text x="300" y="118" text-anchor="end" class="hw-live"><tspan id="svgGps">--</tspan> FIX</text>
-          </g>
-
-          <!-- ===== 中央：MAIN CORE UNIT（精密电子舱） ===== -->
-          <g>
-            <ellipse cx="320" cy="305" rx="95" ry="80" fill="url(#xCoreGlow)"/>
-            <rect x="252" y="212" width="136" height="186" rx="8" fill="url(#xGlass)" stroke="rgba(180,240,255,.4)"/>
-            <rect x="256" y="216" width="128" height="178" rx="6" fill="#071b26" opacity=".93"/>
-            <!-- MCU 主控板 -->
-            <rect x="262" y="224" width="90" height="66" rx="3" fill="#0c2834" stroke="rgba(120,210,235,.5)"/>
-            <polyline points="268,232 288,232 288,252" class="hw-trace"/>
-            <polyline points="312,232 312,252" class="hw-trace"/>
-            <polyline points="268,258 280,258 280,278" class="hw-trace"/>
-            <rect x="268" y="234" width="60" height="22" rx="2" fill="#123a52" stroke="rgba(140,210,235,.6)"/>
-            <line x1="274" y1="234" x2="274" y2="244" stroke="rgba(180,230,245,.3)"/>
-            <line x1="281" y1="234" x2="281" y2="244" stroke="rgba(180,230,245,.3)"/>
-            <line x1="288" y1="234" x2="288" y2="244" stroke="rgba(180,230,245,.3)"/>
-            <line x1="295" y1="234" x2="295" y2="244" stroke="rgba(180,230,245,.3)"/>
-            <line x1="302" y1="234" x2="302" y2="244" stroke="rgba(180,230,245,.3)"/>
-            <line x1="309" y1="234" x2="309" y2="244" stroke="rgba(180,230,245,.3)"/>
-            <line x1="316" y1="234" x2="316" y2="244" stroke="rgba(180,230,245,.3)"/>
-            <line x1="323" y1="234" x2="323" y2="244" stroke="rgba(180,230,245,.3)"/>
-            <text x="298" y="251" text-anchor="middle" class="hw-code">MCU</text>
-            <!-- 电源转换与稳压 -->
-            <rect x="268" y="264" width="60" height="22" rx="2" fill="#123a52" stroke="rgba(140,210,235,.5)"/>
-            <circle cx="284" cy="275" r="4" fill="none" stroke="rgba(140,210,235,.5)"/>
-            <circle cx="296" cy="275" r="3" fill="none" stroke="rgba(140,210,235,.45)"/>
-            <text x="298" y="281" text-anchor="middle" class="hw-code">PWR</text>
-            <!-- 保护电路 -->
-            <rect x="268" y="292" width="30" height="14" rx="2" fill="#123a52" stroke="rgba(140,210,235,.45)"/>
-            <text x="283" y="302" text-anchor="middle" class="hw-code">PRT</text>
-            <!-- 接口 -->
-            <rect x="356" y="224" width="26" height="66" rx="3" fill="#0c2834" stroke="rgba(120,210,235,.5)"/>
-            <rect x="360" y="230" width="6" height="6" fill="#1c4a5e" stroke="rgba(140,210,235,.5)"/>
-            <rect x="360" y="242" width="6" height="6" fill="#1c4a5e" stroke="rgba(140,210,235,.5)"/>
-            <rect x="360" y="254" width="6" height="6" fill="#1c4a5e" stroke="rgba(140,210,235,.5)"/>
-            <rect x="360" y="266" width="6" height="6" fill="#1c4a5e" stroke="rgba(140,210,235,.5)"/>
-            <rect x="360" y="278" width="6" height="6" fill="#1c4a5e" stroke="rgba(140,210,235,.5)"/>
-            <!-- 传感器接口 -->
-            <rect x="356" y="300" width="26" height="60" rx="3" fill="#0c2834" stroke="rgba(120,210,235,.5)"/>
-            <rect x="360" y="308" width="6" height="6" fill="#1c4a5e" stroke="rgba(140,210,235,.5)"/>
-            <rect x="360" y="320" width="6" height="6" fill="#1c4a5e" stroke="rgba(140,210,235,.5)"/>
-            <rect x="360" y="332" width="6" height="6" fill="#1c4a5e" stroke="rgba(140,210,235,.5)"/>
-            <rect x="360" y="344" width="6" height="6" fill="#1c4a5e" stroke="rgba(140,210,235,.5)"/>
-            <!-- 状态灯 -->
-            <circle cx="262" cy="220" r="1.6" fill="#00e5a8"/>
-            <circle cx="270" cy="220" r="1.6" fill="#8ceaff"/>
-            <circle cx="278" cy="220" r="1.6" fill="#f5b942"/>
-            <!-- 内部蓝色电子光 -->
-            <line x1="352" y1="292" x2="352" y2="362" stroke="rgba(120,210,235,.35)" stroke-width="1"/>
-            <rect x="256" y="368" width="128" height="18" rx="3" fill="#0a2030" opacity=".8"/>
-            <line x1="260" y1="374" x2="380" y2="374" stroke="rgba(140,210,235,.25)" stroke-width="1"/>
-          </g>
-
-          <!-- 数据流粒子（缓慢） -->
-          <circle r="1.6" fill="#bfefff">
-            <animateMotion dur="6s" repeatCount="indefinite" path="M 244,322 Q 218,430 282,452"/>
-          </circle>
-          <circle r="1.4" fill="#8ceaff">
-            <animateMotion dur="7s" repeatCount="indefinite" begin="2.5s" path="M 466,306 Q 420,390 352,486"/>
-          </circle>
-          <circle r="1.4" fill="#8ceaff">
-            <animateMotion dur="4.5s" repeatCount="indefinite" path="M 320,430 L 320,400"/>
-          </circle>
-          <circle r="1.3" fill="#bfefff">
-            <animateMotion dur="5.5s" repeatCount="indefinite" begin="1.8s" path="M 480,392 Q 470,240 354,148"/>
-          </circle>
-
-          <!-- HUD 标题与系统状态 -->
-          <text x="24" y="30" class="hw-device-id">ANT-A01 · DIGITAL TWIN</text>
-          <text x="24" y="46" class="hw-tag">POLAR AUTONOMOUS MONITORING NODE</text>
-          <circle cx="560" cy="26" r="2.2" fill="#00e5a8"/>
-          <text x="570" y="30" class="hw-hud-status">SYSTEM ONLINE</text>
-
-          <!-- 模块跟随标签（5 个） -->
-          <g class="hw-hud">
-            <circle cx="92" cy="240" r="1.6"/>
-            <line x1="94" y1="239" x2="140" y2="206"/>
-            <text x="144" y="202">SOLAR ARRAY</text>
-          </g>
-          <g class="hw-hud">
-            <circle cx="320" cy="214" r="1.6"/>
-            <line x1="320" y1="212" x2="320" y2="192"/>
-            <text x="320" y="184" text-anchor="middle">CORE SYSTEM</text>
-          </g>
-          <g class="hw-hud">
-            <circle cx="524" cy="380" r="1.6"/>
-            <line x1="526" y1="379" x2="576" y2="364"/>
-            <text x="580" y="360">SENSOR HUB</text>
-          </g>
-          <g class="hw-hud">
-            <circle cx="316" cy="120" r="1.6"/>
-            <line x1="314" y1="119" x2="260" y2="96"/>
-            <text x="256" y="92" text-anchor="end">GPS</text>
-          </g>
-          <g class="hw-hud">
-            <circle cx="360" cy="120" r="1.6"/>
-            <line x1="362" y1="119" x2="420" y2="96"/>
-            <text x="424" y="92">LoRa</text>
-          </g>
-
-          <!-- 舞台四角十字准星 -->
-          <g class="hw-cross">
-            <path d="M 18 30 V 38 M 14 34 H 22"/>
-            <path d="M 622 30 V 38 M 618 34 H 626"/>
-            <path d="M 18 610 V 618 M 14 614 H 22"/>
-            <path d="M 622 610 V 618 M 618 614 H 626"/>
-          </g>
-        </svg>
-      </div>
-
-      <!-- 右 HUD：CORE STATUS（每侧最多 4 项） -->
-      <aside class="hw-status">
-        <h3>CORE STATUS</h3>
-
-        <div class="hud-card">
-          <i class="hc-dot"></i>
-          <div class="hc-body">
-            <span class="hc-name">MCU</span>
-            <span class="hc-val">NOMINAL</span>
-          </div>
-        </div>
-
-        <div class="hud-card">
-          <i class="hc-dot"></i>
-          <div class="hc-body">
-            <span class="hc-name">POWER MGMT</span>
-            <span class="hc-val">NOMINAL</span>
-          </div>
-        </div>
-
-        <div class="hud-card">
-          <i class="hc-dot"></i>
-          <div class="hc-body">
-            <span class="hc-name">BATTERY</span>
-            <span class="hc-val">OK</span>
-          </div>
-        </div>
-
-        <div class="hud-card">
-          <i class="hc-dot"></i>
-          <div class="hc-body">
-            <span class="hc-name">LORA RF</span>
-            <span class="hc-val">LINK</span>
-          </div>
-        </div>
+        <h3>DEPLOYMENT</h3>
+        <div class="tech-line">SITE <span>ANTARCTICA</span></div>
+        <div class="tech-line">MOUNT <span>ICE ANCHOR</span></div>
+        <div class="tech-line">LINK <span>LoRa UPLINK</span></div>
       </aside>
     </section>
 
-    <!-- 底部状态线 -->
+    <!-- 底部实时状态线 -->
     <footer class="hw-strip">
       <div class="hw-chain">
+        <span class="hc-node on">ANT-A01</span><i class="hc-arrow">→</i>
         <span class="hc-node on">SOLAR</span><i class="hc-arrow">→</i>
-        <span class="hc-node on">PWR</span><i class="hc-arrow">→</i>
-        <span class="hc-node on">BAT</span><i class="hc-arrow">→</i>
+        <span class="hc-node on">BATTERY</span><i class="hc-arrow">→</i>
         <span class="hc-node on">MCU</span><i class="hc-arrow">→</i>
-        <span class="hc-node on">SEN</span><i class="hc-arrow">→</i>
+        <span class="hc-node on">SENSOR</span><i class="hc-arrow">→</i>
         <span class="hc-node on">GPS / LORA</span>
       </div>
       <div class="hw-chips">
@@ -435,103 +147,21 @@
   </main>
 </div>
 
-<!-- 极地氛围层：雪花画布 / 设备编号铭牌 -->
-<canvas id="snowField" aria-hidden="true"></canvas>
-<div class="polar-badge">ANT-A01 · POLAR STATION · REMOTE SENSOR NODE</div>
-
-<!-- 极地氛围辅助层：雪花（低透明度，不遮挡设备） -->
-<script>
-(function () {
-  'use strict';
-  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  var cv = document.getElementById('snowField');
-  if (!cv) return;
-  var ctx = cv.getContext('2d');
-  var dpr = Math.min(window.devicePixelRatio || 1, 1.5);
-  var N = 60;
-  var flakes = [];
-  var running = true;
-
-  function init() {
-    var w = window.innerWidth;
-    var h = window.innerHeight;
-    cv.width = Math.round(w * dpr);
-    cv.height = Math.round(h * dpr);
-    cv.style.width = w + 'px';
-    cv.style.height = h + 'px';
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    flakes = [];
-    for (var i = 0; i < N; i++) {
-      flakes.push({
-        x: Math.random() * w,
-        y: Math.random() * h,
-        r: 0.5 + Math.random() * 1.4,
-        vy: 0.12 + Math.random() * 0.24,
-        ph: Math.random() * 6.28,
-        sw: 0.1 + Math.random() * 0.16,
-        a: 0.10 + Math.random() * 0.18,
-        ice: i % 12 === 0
-      });
-    }
-  }
-
-  function tick() {
-    if (!running) return;
-    var w = window.innerWidth;
-    var h = window.innerHeight;
-    ctx.clearRect(0, 0, w, h);
-    for (var i = 0; i < flakes.length; i++) {
-      var f = flakes[i];
-      f.y += f.vy;
-      f.ph += 0.005;
-      f.x += Math.sin(f.ph) * f.sw;
-      if (f.y > h + 5) { f.y = -5; f.x = Math.random() * w; }
-      if (f.x < -5) f.x = w + 5;
-      if (f.x > w + 5) f.x = -5;
-      if (f.ice && f.r > 1.1) {
-        var L = f.r * 3;
-        ctx.strokeStyle = 'rgba(205,238,255,' + (f.a * 0.4).toFixed(3) + ')';
-        ctx.lineWidth = 0.5;
-        ctx.beginPath();
-        ctx.moveTo(f.x - L, f.y); ctx.lineTo(f.x + L, f.y);
-        ctx.moveTo(f.x, f.y - L); ctx.lineTo(f.x, f.y + L);
-        ctx.stroke();
-      } else {
-        ctx.beginPath();
-        ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(210,240,255,' + f.a.toFixed(3) + ')';
-        ctx.fill();
-      }
-    }
-    window.requestAnimationFrame(tick);
-  }
-
-  window.addEventListener('resize', init);
-  document.addEventListener('visibilitychange', function () {
-    running = !document.hidden;
-    if (running) window.requestAnimationFrame(tick);
-  });
-  init();
-  tick();
-})();
-</script>
+<!-- 全站暴风雪模块（模块化，自动创建背景/前景画布） -->
+<script src="./js/ambient.js"></script>
 
 <!-- 数据核心（main.js 保持不变） -->
 <script src="./js/main.js"></script>
 
 <!-- =========================================================
-     孪生辅助层（纯显示逻辑，不影响 main.js）
-     - 把 main.js 写入的 4 个实时值镜像到 SVG 与底部状态线
+     档案页辅助层（纯显示逻辑，不影响 main.js）
+     - 把 main.js 写入的 4 个实时值镜像到底部状态线
      - NULL / -- 显示为 NO SIGNAL，HUD 行进入 st-off 状态
 ========================================================= -->
 <script>
 (function () {
   'use strict';
   var PAIRS = [
-    ['hardwareSolar', 'svgSolar'],
-    ['hardwareVoltage', 'svgVoltage'],
-    ['hardwareTemp', 'svgTemp'],
-    ['hardwareGPS', 'svgGps'],
     ['hardwareSolar', 'hwStripSolar'],
     ['hardwareVoltage', 'hwStripVoltage'],
     ['hardwareTemp', 'hwStripTemp'],
