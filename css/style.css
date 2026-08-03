@@ -6754,6 +6754,115 @@ display:none;
 
 
 /* =========================================================
+   HARDWARE V7 · DIGITAL TWIN SHOWCASE
+   等边三棱柱三面太阳能结构 / 严格图层分层 / 设备中央 80%
+========================================================= */
+
+/* 中央列最大化，两侧 HUD 极窄但字号放大 */
+.hardware-page .hw-single{
+
+grid-template-columns:140px minmax(0,1fr) 140px;
+
+gap:12px;
+
+}
+
+
+.hardware-page .hw-status{
+
+padding:2px;
+
+gap:7px;
+
+}
+
+
+.hardware-page .hw-status h3{
+
+font-size:10px;
+
+letter-spacing:3px;
+
+margin:4px 0 2px;
+
+padding-bottom:4px;
+
+}
+
+
+.hardware-page .hud-card{
+
+padding:5px 8px;
+
+gap:7px;
+
+}
+
+
+.hardware-page .hc-name{
+
+font-size:9px;
+
+letter-spacing:2px;
+
+}
+
+
+.hardware-page .hc-val{
+
+font-size:18px;
+
+}
+
+
+.hardware-page .hud-card.st-off .hc-val{
+
+font-size:13px;
+
+}
+
+
+/* 设备边缘冰蓝轮廓光（静态，突出主体） */
+.hardware-page .hw-rim{
+
+stroke:rgba(220,250,255,.55);
+
+stroke-width:1.2;
+
+fill:none;
+
+}
+
+
+/* 状态灯：静态，不闪烁 */
+.hardware-page .hw-led{
+
+animation:none;
+
+}
+
+
+/* 顶部 SYSTEM ONLINE 状态字 */
+.hardware-page .hw-hud-status{
+
+fill:rgba(170,235,210,.7);
+
+font-size:9px;
+
+letter-spacing:2.5px;
+
+}
+
+
+/* 底部状态线压缩 */
+.hardware-page .hw-strip{
+
+padding:3px 8px;
+
+}
+
+
+/* =========================================================
    HARDWARE V6 · DIGITAL TWIN CONTROL VIEW
    数字孪生控制系统：设备 70%+ 视觉权重，UI 降为辅助 HUD
 ========================================================= */
