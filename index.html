@@ -1,642 +1,559 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="color-scheme" content="dark">
+  <title>ANTARCTIC NEXUS 惟</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./css/style.css">
 
-<meta charset="UTF-8">
-
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-
-
-<title>
-ANTARCTIC NEXUS Ω
-</title>
-
-
-<link rel="icon" href="data:,">
-
-
-<link rel="stylesheet" href="./css/style.css">
-
-
-<!-- Leaflet地图 -->
-<link rel="stylesheet"
-href="https://unpkg.com/leaflet/dist/leaflet.css">
-
-
-<script src="https://unpkg.com/leaflet/dist/leaflet.js">
-</script>
-
-
+  <!-- Leaflet 地图（真实地图，由 main.js 初始化） -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 </head>
 
-
-
-
-
-<body>
-
+<!-- dashboard-page：所有新版大屏样式均以该作用域隔离，不影响其他页面 -->
+<body class="dashboard-page">
 
 <div class="app">
 
+  <!-- ====================== 侧边导航 ====================== -->
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="logo">惟</div>
+      <div>
+        <h1>ANTARCTIC<br>NEXUS 惟</h1>
+        <p>POLAR AUTONOMOUS OBSERVATORY</p>
+      </div>
+    </div>
 
+    <nav>
+      <a class="active">Dashboard</a>
+      <a href="./location.html">Location</a>
+      <a href="./sensors.html">Sensors</a>
+      <a href="./telemetry.html">Telemetry</a>
+      <a href="./hardware.html">Hardware</a>
+      <a href="./analysis.html">Analysis</a>
+    </nav>
+  </aside>
 
+  <!-- ====================== 主区域 ====================== -->
+  <main>
 
+    <!-- 顶部：任务标题区 -->
+    <header class="mission-header dashboard-hero">
+      <div class="hero-main">
+        <div class="dashboard-kicker">POLAR DIGITAL TWIN · MISSION CONTROL</div>
+        <div class="dashboard-title">ANTARCTIC AUTONOMOUS MONITORING SYSTEM</div>
+        <div class="hero-sub">AUTONOMOUS ENVIRONMENTAL MONITORING PLATFORM · STATION ANT-A01</div>
+      </div>
+      <div class="hero-status">
+        <div class="system-online"><span></span>SYSTEM ONLINE</div>
+        <div class="hero-station">STATION ANT-A01</div>
+      </div>
+    </header>
 
-<!-- ======================
-SIDEBAR
-====================== -->
+    <!-- 顶部：任务状态栏（MISSION STATUS / CURRENT TIME / OPERATION MODE） -->
+    <section class="mission-info dashboard-command-strip">
+      <div class="cmd-cell">
+        <span class="cmd-label">MISSION STATUS</span>
+        <strong class="cmd-value"><i class="cmd-led"></i>NOMINAL</strong>
+        <span class="cmd-sub">ALL SYSTEMS CHECK</span>
+      </div>
+      <div class="cmd-cell">
+        <span class="cmd-label">CURRENT TIME</span>
+        <strong class="cmd-value" id="time">--</strong>
+        <span class="cmd-sub">LOCAL TIME</span>
+      </div>
+      <div class="cmd-cell">
+        <span class="cmd-label">OPERATION MODE</span>
+        <strong class="cmd-value" id="systemMode">--</strong>
+        <span class="cmd-sub">AUTONOMOUS</span>
+      </div>
+    </section>
 
+    <!-- 中部：大地图 + 两侧科研数据面板（非卡片堆叠） -->
+    <section class="mission-grid">
 
-<aside class="sidebar">
+      <!-- 左侧面板：电力 / 环境 -->
+      <aside class="side-panel side-left">
+        <div class="side-panel-title">POWER &amp; ENVIRONMENT</div>
 
+        <div class="status-card sensor-card">
+          <div class="sensor-head">
+            <svg class="sensor-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4.8 13.4h5.2L9 22l9.2-11.6H13z"/></svg>
+            <span class="sensor-name">VOLTAGE</span>
+            <span class="sensor-led"></span>
+          </div>
+          <div class="sensor-value"><strong id="voltage">--</strong><span class="sensor-unit">V</span></div>
+          <div class="sensor-meta"><span>BATTERY BUS</span><span class="sensor-state">NOMINAL</span></div>
+          <span class="sensor-index">01</span>
+        </div>
 
+        <div class="status-card sensor-card">
+          <div class="sensor-head">
+            <svg class="sensor-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h3l2-6 4 12 2-6h7"/></svg>
+            <span class="sensor-name">CURRENT</span>
+            <span class="sensor-led"></span>
+          </div>
+          <div class="sensor-value"><strong id="current">--</strong><span class="sensor-unit">A</span></div>
+          <div class="sensor-meta"><span>LOAD DRAW</span><span class="sensor-state">NOMINAL</span></div>
+          <span class="sensor-index">02</span>
+        </div>
 
-<div class="brand">
+        <div class="status-card sensor-card">
+          <div class="sensor-head">
+            <svg class="sensor-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 4a2 2 0 1 1 4 0v9.5a4 4 0 1 1-4 0V4z"/><path d="M12 9v7"/></svg>
+            <span class="sensor-name">TEMPERATURE</span>
+            <span class="sensor-led"></span>
+          </div>
+          <div class="sensor-value"><strong id="insideTemp">--</strong><span class="sensor-unit">°C</span></div>
+          <div class="sensor-meta"><span>CABIN</span><span>OUTSIDE <b id="outsideTemp">--</b>°C</span></div>
+          <span class="sensor-index">03</span>
+        </div>
+      </aside>
 
+      <!-- 中部：地图战区（视觉中心） -->
+      <section class="map-panel">
+        <div class="map-panel-head">
+          <div class="panel-title">ANTARCTIC POSITIONING · GPS TRACKING</div>
+          <div class="panel-title-tag">LIVE TELEMETRY FEED</div>
+        </div>
 
-<div class="logo">
+        <div class="map-status-grid">
+          <div class="map-cell"><span>GPS STATUS</span><strong>TRACKING</strong></div>
+          <div class="map-cell"><span>MODE</span><strong>N/S/E</strong></div>
+          <div class="map-cell"><span>POWER</span><strong>SOLAR + BATTERY</strong></div>
+          <div class="map-cell"><span>COMMS</span><strong>DATA LINK</strong></div>
+        </div>
 
-Ω
+        <!-- #worldMap 由 main.js 创建真实 Leaflet 地图；以下装饰层均为 pointer-events:none，不影响拖拽缩放 -->
+        <div id="worldMap">
+          <div class="map-layer map-tint" aria-hidden="true"></div>
+          <canvas id="mapGraticule" class="map-layer map-graticule" aria-hidden="true"></canvas>
+          <div class="map-layer map-scan" aria-hidden="true"></div>
+          <div class="map-layer map-radar" aria-hidden="true"><i></i></div>
+          <div class="map-layer gps-rings" aria-hidden="true"><i></i><i></i><i></i></div>
+          <div class="map-layer gps-core" aria-hidden="true"></div>
+        </div>
 
+        <!-- 坐标信息浮层 -->
+        <div class="map-overlay">
+          <h3>ANT-A01</h3>
+          <p>LAT <span id="latitude">--</span></p>
+          <p>LON <span id="longitude">--</span></p>
+          <p>SATELLITES <span id="satellites">--</span></p>
+        </div>
+      </section>
+
+      <!-- 右侧面板：气候 / 通信 -->
+      <aside class="side-panel side-right">
+        <div class="side-panel-title">CLIMATE &amp; COMMS</div>
+
+        <div class="status-card sensor-card">
+          <div class="sensor-head">
+            <svg class="sensor-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3s6 6.4 6 11a6 6 0 0 1-12 0c0-4.6 6-11 6-11z"/></svg>
+            <span class="sensor-name">HUMIDITY</span>
+            <span class="sensor-led"></span>
+          </div>
+          <div class="sensor-value"><strong id="humidity">--</strong><span class="sensor-unit">%RH</span></div>
+          <div class="sensor-meta"><span>CABIN</span><span>OUTSIDE <b id="outsideHumidity">--</b>%RH</span></div>
+          <span class="sensor-index">04</span>
+        </div>
+
+        <div class="status-card sensor-card">
+          <div class="sensor-head">
+            <svg class="sensor-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M19.1 4.9l-1.8 1.8M6.7 17.3l-1.8 1.8"/></svg>
+            <span class="sensor-name">SOLAR RADIATION</span>
+            <span class="sensor-led"></span>
+          </div>
+          <div class="sensor-value"><strong id="solar">--</strong><span class="sensor-unit">W/m²</span></div>
+          <div class="sensor-meta"><span>PYRANOMETER</span><span class="sensor-state">NOMINAL</span></div>
+          <span class="sensor-index">05</span>
+        </div>
+
+        <div class="status-card sensor-card">
+          <div class="sensor-head">
+            <svg class="sensor-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20a12 12 0 0 1 16 0"/><path d="M8 16a8 8 0 0 1 8 0"/><circle cx="12" cy="12" r="1.6"/></svg>
+            <span class="sensor-name">DATA LINK</span>
+            <span class="sensor-led"></span>
+          </div>
+          <div class="sensor-value"><strong id="gpsStatusPage">--</strong><span class="sensor-unit">FIX</span></div>
+          <div class="sensor-meta"><span>SATELLITES <b id="satelliteSmall">--</b></span><span class="sensor-state">NOMINAL</span></div>
+          <span class="sensor-index">06</span>
+        </div>
+      </aside>
+    </section>
+
+    <!-- 底部：任务统计（任务闭环） -->
+    <section class="operation-grid">
+      <div class="operation-card">
+        <span class="op-label">OPERATION DAYS</span>
+        <strong id="runDays">--</strong>
+        <span class="op-sub">CONTINUOUS RUN</span>
+      </div>
+      <div class="operation-card">
+        <span class="op-label">DATA RECORDS</span>
+        <strong id="dataCount">--</strong>
+        <span class="op-sub">TELEMETRY SAMPLES</span>
+      </div>
+      <div class="operation-card">
+        <span class="op-label">LAST UPDATE</span>
+        <strong id="lastUpdate">--</strong>
+        <span class="op-sub">LAST DATA CONTACT</span>
+      </div>
+    </section>
+
+    <!-- 底部：任务流状态 -->
+    <section class="stream-panel">
+      <div class="panel-title">MISSION STREAM</div>
+      <div class="stream">
+        <div class="stream-row"><i class="stream-dot"></i><span>ENVIRONMENT DATA ACQUISITION ACTIVE</span><em>RUNNING</em></div>
+        <div class="stream-row"><i class="stream-dot"></i><span>SATELLITE POSITIONING ACTIVE</span><em>RUNNING</em></div>
+        <div class="stream-row"><i class="stream-dot"></i><span>LONG TERM MONITORING MODE</span><em>RUNNING</em></div>
+      </div>
+    </section>
+
+  </main>
 </div>
 
+<!-- 克制版雪花层（≤30 粒，纯 canvas，性能优先） -->
+<canvas id="snowField" aria-hidden="true"></canvas>
 
-<div>
-
-<h1>
-
-ANTARCTIC<br>
-
-NEXUS Ω
-
-</h1>
-
-
-<p>
-
-POLAR AUTONOMOUS OBSERVATORY
-
-</p>
-
-
-</div>
-
-
-</div>
-
-
-
-
-
-
-<nav>
-
-
-<a class="active">
-
-Dashboard
-
-</a>
-
-
-<a href="./location.html">
-
-Location
-
-</a>
-
-
-<a href="./sensors.html">
-
-Sensors
-
-</a>
-
-
-<a href="./telemetry.html">
-
-Telemetry
-
-</a>
-
-
-<a href="./hardware.html">
-
-Hardware
-
-</a>
-
-
-<a href="./analysis.html">
-
-Analysis
-
-</a>
-
-
-</nav>
-
-
-
-</aside>
-
-
-
-
-
-
-
-
-
-<!-- ======================
-MAIN
-====================== -->
-
-
-<main>
-
-
-
-
-
-<header class="mission-header">
-
-
-<div>
-
-
-<h2>
-
-ANTARCTIC NEXUS Ω
-
-</h2>
-
-
-<p>
-
-AUTONOMOUS ENVIRONMENTAL MONITORING PLATFORM
-
-</p>
-
-
-</div>
-
-
-
-
-
-<div class="system-online">
-
-
-<span></span>
-
-SYSTEM ONLINE
-
-
-</div>
-
-
-
-
-</header>
-
-
-
-
-
-
-
-
-
-<section class="mission-info">
-
-
-
-<div>
-
-LOCAL TIME
-
-<strong id="time">
-
---
-
-</strong>
-
-
-</div>
-
-
-
-
-<div>
-
-STATION
-
-<strong>
-
-ANT-A01
-
-</strong>
-
-
-</div>
-
-
-
-
-
-<div>
-
-MODE
-
-<strong id="systemMode">
-
---
-
-</strong>
-
-
-</div>
-
-
-
-
-</section>
-
-
-
-
-
-
-
-
-
-<!-- ======================
-MAP CENTER
-====================== -->
-
-
-<section class="map-panel">
-
-
-<div class="panel-title">
-
-
-GLOBAL POSITIONING SYSTEM
-
-
-</div>
-
-
-
-<div id="worldMap">
-
-
-</div>
-
-
-
-
-<div class="map-overlay">
-
-
-<h3>
-
-ANT-A01
-
-</h3>
-
-
-<p>
-
-LAT
-
-<span id="latitude">
-
---
-
-</span>
-
-</p>
-
-
-
-<p>
-
-LON
-
-<span id="longitude">
-
---
-
-</span>
-
-</p>
-
-
-
-<p>
-
-SATELLITES
-
-<span id="satellites">
-
---
-
-</span>
-
-</p>
-
-
-</div>
-
-
-
-</section>
-
-
-
-
-
-
-
-
-
-<!-- ======================
-STATUS
-====================== -->
-
-
-
-<section class="status-grid">
-
-
-
-
-
-
-<div class="status-card">
-
-
-<div class="status-title">
-
-POWER SYSTEM
-
-</div>
-
-
-
-<div class="big-number"
-
-id="voltage">
-
---
-
-</div>
-
-
-
-<p>
-
-BATTERY VOLTAGE
-
-</p>
-
-
-
-<div class="sub-data">
-
-
-SOLAR
-
-<span id="solar">
-
---
-
-</span>
-
-
-</div>
-
-
-
-</div>
-
-
-
-
-
-
-
-
-
-<div class="status-card">
-
-
-<div class="status-title">
-
-ENVIRONMENT
-
-</div>
-
-
-
-<div class="environment">
-
-
-<div>
-
-CABIN
-
-
-<strong id="insideTemp">
-
---
-
-</strong>
-
-
-</div>
-
-
-
-<div>
-
-OUTSIDE
-
-
-<strong id="outsideTemp">
-
---
-
-</strong>
-
-
-</div>
-
-
-</div>
-
-
-
-
-<p>
-
-RS485 / SHT35
-
-</p>
-
-
-</div>
-
-
-
-
-
-
-
-
-
-<div class="status-card">
-
-
-<div class="status-title">
-
-COMMUNICATION
-
-</div>
-
-
-
-<div class="big-number"
-
-id="gpsStatusPage">
-
---
-
-</div>
-
-
-
-<p>
-
-GPS LINK STATUS
-
-</p>
-
-
-
-<div class="sub-data">
-
-
-SATELLITES
-
-<span id="satelliteSmall">
-
---
-
-</span>
-
-
-</div>
-
-
-
-</div>
-
-
-
-
-
-
-
-</section>
-
-
-
-
-
-
-
-
-
-<!-- ======================
-MISSION STREAM
-====================== -->
-
-
-<section class="stream-panel">
-
-
-<div class="panel-title">
-
-MISSION STREAM
-
-</div>
-
-
-
-<div class="stream">
-
-
-<div>
-
-● ENVIRONMENT DATA ACQUISITION ACTIVE
-
-</div>
-
-
-<div>
-
-● SATELLITE POSITIONING ACTIVE
-
-</div>
-
-
-<div>
-
-● LONG TERM MONITORING MODE
-
-</div>
-
-
-</div>
-
-
-
-</section>
-
-
-
-
-
-
-
-
-
-</main>
-
-
-
-</div>
-
-
-
-
-
-
-
-
-
+<!-- 数据核心与地图初始化（不允许修改） -->
 <script src="./js/main.js"></script>
 
+<!-- =========================================================
+     Dashboard 专属前端装饰层（纯原生 JavaScript）
+     - 不读取、不修改 main.js 的任何逻辑
+     - 只负责：雪花粒子、地图经纬网、南极强调、GPS 扫描定位、状态灯同步
+========================================================= -->
+<script>
+(function () {
+  'use strict';
 
-<script src="./js/map.js"></script>
+  /* 用户开启“减少动态效果”时，关闭雪花与所有装饰动画 */
+  var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  /* =========================================================
+     1. 雪花粒子：数量 24（上限 30），小尺寸、慢速、半透明
+  ========================================================= */
+  var snow = document.getElementById('snowField');
+  if (snow && !reduced) {
+    var snowCtx = snow.getContext('2d');
+    var snowDpr = Math.min(window.devicePixelRatio || 1, 1.5); // 限制 DPR，保证性能
+    var flakes = [];
+    var FLAKE_COUNT = 24;
+    var snowRunning = true;
 
+    /* 初始化/重置画布与粒子 */
+    function initSnow() {
+      var w = window.innerWidth;
+      var h = window.innerHeight;
+      snow.width = Math.round(w * snowDpr);
+      snow.height = Math.round(h * snowDpr);
+      snow.style.width = w + 'px';
+      snow.style.height = h + 'px';
+      snowCtx.setTransform(snowDpr, 0, 0, snowDpr, 0, 0);
+      flakes = [];
+      for (var i = 0; i < FLAKE_COUNT; i++) {
+        flakes.push({
+          x: Math.random() * w,
+          y: Math.random() * h,
+          r: 0.6 + Math.random() * 1.4,
+          vy: 0.12 + Math.random() * 0.28,        // 慢速下落
+          phase: Math.random() * Math.PI * 2,      // 左右飘摆相位
+          sway: 0.15 + Math.random() * 0.25,       // 飘摆幅度
+          a: 0.20 + Math.random() * 0.32           // 低透明度，保持克制
+        });
+      }
+    }
 
+    /* 逐帧绘制（页面隐藏时 rAF 自动暂停，另加显式开关） */
+    function tickSnow() {
+      if (!snowRunning) return;
+      var w = window.innerWidth;
+      var h = window.innerHeight;
+      snowCtx.clearRect(0, 0, w, h);
+      for (var i = 0; i < flakes.length; i++) {
+        var f = flakes[i];
+        f.y += f.vy;
+        f.phase += 0.008;
+        f.x += Math.sin(f.phase) * f.sway;
+        if (f.y > h + 4) { f.y = -4; f.x = Math.random() * w; }
+        if (f.x < -4) f.x = w + 4;
+        if (f.x > w + 4) f.x = -4;
+        snowCtx.beginPath();
+        snowCtx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
+        snowCtx.fillStyle = 'rgba(210,240,255,' + f.a + ')';
+        snowCtx.fill();
+      }
+      window.requestAnimationFrame(tickSnow);
+    }
+
+    window.addEventListener('resize', initSnow);
+    document.addEventListener('visibilitychange', function () {
+      snowRunning = !document.hidden;
+      if (snowRunning) window.requestAnimationFrame(tickSnow);
+    });
+    initSnow();
+    tickSnow();
+  }
+
+  /* =========================================================
+     2. 地图装饰层（仅在 Dashboard 页面生效）
+        - 经纬网：按地图真实投影逐格绘制，随缩放/拖动重绘
+        - 南极强调：极圈虚线 + 光晕，视口进入南半球时自动出现
+        - GPS 扫描：扫描线、雷达扫掠、扩散光圈跟随真实定位点
+        - 所有装饰层 pointer-events:none，不影响拖拽与缩放
+  ========================================================= */
+  var graticule = document.getElementById('mapGraticule');
+  var radar = document.querySelector('.map-radar');
+  var rings = document.querySelector('.gps-rings');
+  var core = document.querySelector('.gps-core');
+  var mapDpr = Math.min(window.devicePixelRatio || 1, 1.5);
+  var rafPending = false;
+
+  /* 画布尺寸对齐容器 */
+  function fitCanvas() {
+    if (!graticule) return;
+    var box = graticule.parentElement;
+    var w = box.clientWidth;
+    var h = box.clientHeight;
+    graticule.width = Math.round(w * mapDpr);
+    graticule.height = Math.round(h * mapDpr);
+    graticule.style.width = w + 'px';
+    graticule.style.height = h + 'px';
+  }
+
+  /* 两点距离 */
+  function dist(a, b) {
+    return Math.sqrt((a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y));
+  }
+
+  /* 绘制一条折线 */
+  function strokePath(ctx, pts, alpha, dash) {
+    if (!pts || pts.length < 2) return;
+    ctx.beginPath();
+    ctx.moveTo(pts[0].x, pts[0].y);
+    for (var i = 1; i < pts.length; i++) ctx.lineTo(pts[i].x, pts[i].y);
+    ctx.strokeStyle = 'rgba(140,234,255,' + alpha + ')';
+    ctx.lineWidth = 1;
+    ctx.setLineDash(dash || []);
+    ctx.stroke();
+    ctx.setLineDash([]);
+  }
+
+  /* 在路径上寻找一个可见点，用于绘制经纬度标注 */
+  function findLabelPoint(pts, w, h, preferBottom) {
+    for (var i = 0; i < pts.length; i++) {
+      var p = pts[i];
+      if (p.x >= 12 && p.x <= w - 46 && p.y >= 10 && p.y <= h - 10) return p;
+    }
+    if (preferBottom) {
+      for (var j = 0; j < pts.length; j++) {
+        var q = pts[j];
+        if (q.x >= 12 && q.x <= w - 12 && q.y >= h - 12 && q.y <= h + 60) return q;
+      }
+    }
+    return null;
+  }
+
+  /* 经纬网：步长随缩放级别自适应，保证任何缩放下网格都清晰可见 */
+  function drawGraticule(map, ctx, w, h) {
+    ctx.clearRect(0, 0, w, h);
+    var b = map.getBounds();
+    var z = map.getZoom();
+    var baseStep = z >= 10 ? 0.25 : z >= 8 ? 0.5 : z >= 6 ? 1 : z >= 4 ? 5 : 10;
+
+    /* 纬线（横向） */
+    var latStart = Math.ceil(b.getSouth() / baseStep) * baseStep;
+    for (var lat = latStart; lat <= b.getNorth(); lat += baseStep) {
+      var major = (Math.abs(lat % (baseStep * 5)) < baseStep / 2) || (Math.abs(lat) % 30 === 0);
+      var pts = [];
+      var lonSample = Math.max((b.getEast() - b.getWest()) / 8, 0.05);
+      for (var lon = b.getWest(); lon <= b.getEast(); lon += lonSample) {
+        pts.push(map.latLngToContainerPoint([lat, lon]));
+      }
+      strokePath(ctx, pts, major ? 0.30 : 0.15);
+      /* 主纬线标注，如 75°S */
+      if (major && Math.abs(lat) % 5 === 0) {
+        var lp = findLabelPoint(pts, w, h, false);
+        if (lp) {
+          ctx.fillStyle = 'rgba(140,234,255,.5)';
+          ctx.font = '8px "Segoe UI", sans-serif';
+          ctx.fillText(Math.abs(lat) + '°' + (lat < 0 ? 'S' : 'N'), lp.x + 4, lp.y - 3);
+        }
+      }
+    }
+
+    /* 经线（纵向） */
+    var lonStart = Math.ceil(b.getWest() / baseStep) * baseStep;
+    for (var lon2 = lonStart; lon2 <= b.getEast(); lon2 += baseStep) {
+      var major2 = (Math.abs(lon2 % (baseStep * 5)) < baseStep / 2) || (Math.abs(lon2) % 60 === 0);
+      var pts2 = [];
+      var latSample = Math.max((b.getNorth() - b.getSouth()) / 8, 0.05);
+      for (var lat2 = b.getSouth(); lat2 <= b.getNorth(); lat2 += latSample) {
+        pts2.push(map.latLngToContainerPoint([lat2, lon2]));
+      }
+      strokePath(ctx, pts2, major2 ? 0.30 : 0.15);
+      if (major2 && Math.abs(lon2) % 30 === 0) {
+        var lp2 = findLabelPoint(pts2, w, h, true);
+        if (lp2) {
+          ctx.fillStyle = 'rgba(140,234,255,.45)';
+          ctx.font = '8px "Segoe UI", sans-serif';
+          ctx.fillText(Math.abs(lon2) + '°' + (lon2 < 0 ? 'W' : 'E'), lp2.x + 3, h - 3);
+        }
+      }
+    }
+  }
+
+  /* 南极区域强调：光晕 + 60/70/80°S 极圈虚线（视口进入南半球才绘制） */
+  function drawPolarEmphasis(map, ctx, w, h) {
+    var pole = map.latLngToContainerPoint([-85, 0]);
+    if (pole.x < -800 || pole.x > w + 800 || pole.y < -800 || pole.y > h + 800) return;
+
+    var r60 = dist(pole, map.latLngToContainerPoint([-60, 0]));
+    var r70 = dist(pole, map.latLngToContainerPoint([-70, 0]));
+    var r80 = dist(pole, map.latLngToContainerPoint([-80, 0]));
+
+    /* 极地光晕（微弱，非廉价发光） */
+    var g = ctx.createRadialGradient(pole.x, pole.y, 0, pole.x, pole.y, r60);
+    g.addColorStop(0, 'rgba(98,217,255,.10)');
+    g.addColorStop(0.7, 'rgba(98,217,255,.045)');
+    g.addColorStop(1, 'rgba(98,217,255,0)');
+    ctx.fillStyle = g;
+    ctx.beginPath();
+    ctx.arc(pole.x, pole.y, r60, 0, Math.PI * 2);
+    ctx.fill();
+
+    /* 极圈虚线 */
+    ctx.setLineDash([6, 4]);
+    ctx.strokeStyle = 'rgba(140,234,255,.40)';
+    ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.arc(pole.x, pole.y, r60, 0, Math.PI * 2); ctx.stroke();
+    ctx.setLineDash([4, 4]);
+    ctx.strokeStyle = 'rgba(140,234,255,.26)';
+    ctx.beginPath(); ctx.arc(pole.x, pole.y, r70, 0, Math.PI * 2); ctx.stroke();
+    ctx.setLineDash([3, 4]);
+    ctx.strokeStyle = 'rgba(140,234,255,.16)';
+    ctx.beginPath(); ctx.arc(pole.x, pole.y, r80, 0, Math.PI * 2); ctx.stroke();
+    ctx.setLineDash([]);
+
+    ctx.fillStyle = 'rgba(140,234,255,.45)';
+    ctx.font = '8px "Segoe UI", sans-serif';
+    ctx.fillText('60°S · ANTARCTIC SECTOR', pole.x + 6, pole.y - r60 - 4);
+  }
+
+  /* 站区作业圈：以真实定位点为中心，半径约 300km 的虚线圆 */
+  function drawStationZone(map, ctx, w, h) {
+    var marker = window.deviceMarker;
+    if (!marker) return;
+    var ll = marker.getLatLng();
+    var p = map.latLngToContainerPoint(ll);
+    if (p.x < -500 || p.x > w + 500 || p.y < -500 || p.y > h + 500) return;
+
+    /* 以经度差估算 300km 半径（装饰性量级） */
+    var east = map.latLngToContainerPoint([ll.lat, ll.lng + 3.2]);
+    var r = dist(p, east);
+    if (r < 8 || r > 1400) return;
+
+    ctx.setLineDash([3, 5]);
+    ctx.strokeStyle = 'rgba(98,217,255,.22)';
+    ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.arc(p.x, p.y, r, 0, Math.PI * 2); ctx.stroke();
+    ctx.setLineDash([]);
+
+    ctx.fillStyle = 'rgba(98,217,255,.4)';
+    ctx.font = '8px "Segoe UI", sans-serif';
+    ctx.fillText('R≈300KM · ANT-A01 ZONE', p.x + 5, p.y - r - 3);
+  }
+
+  /* 将雷达扫掠 / 扩散光圈 / 定位核心移动到真实标记点 */
+  function positionOverlays(map) {
+    var marker = window.deviceMarker;
+    var visible = marker ? 1 : 0;
+    if (marker) {
+      var p = map.latLngToContainerPoint(marker.getLatLng());
+      var x = p.x;
+      var y = p.y;
+      if (radar) { radar.style.left = x + 'px'; radar.style.top = y + 'px'; }
+      if (rings) { rings.style.left = x + 'px'; rings.style.top = y + 'px'; }
+      if (core) { core.style.left = x + 'px'; core.style.top = y + 'px'; }
+    }
+    if (radar) radar.style.opacity = visible;
+    if (rings) rings.style.opacity = visible;
+    if (core) core.style.opacity = visible;
+  }
+
+  /* 统一重绘：网格 + 南极强调 + 站区圈 + 定位叠层（rAF 节流） */
+  function drawMapOverlays() {
+    var map = window.deviceMap;
+    if (!map || !graticule) return;
+    fitCanvas();
+    var ctx = graticule.getContext('2d');
+    var w = graticule.clientWidth;
+    var h = graticule.clientHeight;
+    ctx.setTransform(mapDpr, 0, 0, mapDpr, 0, 0);
+    drawGraticule(map, ctx, w, h);
+    drawPolarEmphasis(map, ctx, w, h);
+    drawStationZone(map, ctx, w, h);
+    positionOverlays(map);
+  }
+
+  function scheduleDraw() {
+    if (rafPending) return;
+    rafPending = true;
+    window.requestAnimationFrame(function () {
+      rafPending = false;
+      drawMapOverlays();
+    });
+  }
+
+  /* main.js 异步创建地图，轮询等待其就绪后再挂接重绘事件 */
+  function attachToMap() {
+    var map = window.deviceMap;
+    if (!map) return false;
+    map.on('move zoomend resize', scheduleDraw);
+    window.addEventListener('resize', scheduleDraw);
+    drawMapOverlays();
+    return true;
+  }
+  var tries = 0;
+  var poll = setInterval(function () {
+    if (attachToMap() || tries++ > 75) clearInterval(poll); // 最长等待约 30 秒
+  }, 400);
+
+  /* =========================================================
+     3. 状态灯同步：数值为 NULL / 占位符时，卡片进入 NO DATA 状态
+        仅读取 DOM，不修改 main.js 的数据逻辑
+  ========================================================= */
+  var ledIds = ['voltage', 'current', 'insideTemp', 'humidity', 'solar', 'gpsStatusPage'];
+
+  function syncLeds() {
+    ledIds.forEach(function (id) {
+      var el = document.getElementById(id);
+      if (!el) return;
+      var card = el.closest('.sensor-card');
+      if (!card) return;
+      var txt = (el.textContent || '').trim();
+      var bad = !txt || txt === '--' || /null/i.test(txt);
+      card.classList.toggle('no-data', bad);
+      var state = card.querySelector('.sensor-state');
+      if (state) state.textContent = bad ? 'NO DATA' : 'NOMINAL';
+    });
+  }
+
+  syncLeds();
+  if (window.MutationObserver) {
+    var ledObserver = new MutationObserver(syncLeds);
+    ledIds.forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) ledObserver.observe(el, { childList: true, subtree: true, characterData: true });
+    });
+  }
+})();
+</script>
 </body>
-
-
 </html>

@@ -32,6 +32,368 @@
 
 
 
+/* =====================================================
+ DASHBOARD SHOWCASE UPGRADE
+===================================================== */
+
+
+.dashboard-hero{
+
+position:relative;
+
+padding:28px 32px;
+
+border:1px solid rgba(183,239,255,.22);
+
+border-radius:26px;
+
+background:
+linear-gradient(135deg,rgba(5,20,34,.82),rgba(10,42,62,.48)),
+radial-gradient(circle at 80% 10%,rgba(98,217,255,.16),transparent 38%);
+
+box-shadow:
+0 0 0 1px rgba(255,255,255,.03) inset,
+0 28px 80px rgba(0,0,0,.35),
+0 0 45px rgba(98,217,255,.12);
+
+overflow:hidden;
+
+}
+
+
+.dashboard-hero::after{
+
+content:"";
+
+position:absolute;
+
+left:0;
+
+right:0;
+
+bottom:0;
+
+height:1px;
+
+background:linear-gradient(90deg,transparent,var(--blue),transparent);
+
+opacity:.7;
+
+}
+
+
+.dashboard-kicker{
+
+font-size:12px;
+
+letter-spacing:3px;
+
+color:var(--blue);
+
+margin-bottom:10px;
+
+}
+
+
+.dashboard-title{
+
+font-size:38px;
+
+line-height:1.08;
+
+font-weight:800;
+
+letter-spacing:3px;
+
+color:white;
+
+text-shadow:0 0 28px rgba(98,217,255,.45);
+
+}
+
+
+.dashboard-hero h2{
+
+display:none;
+
+}
+
+
+.dashboard-command-strip{
+
+grid-template-columns:1.25fr .7fr .7fr;
+
+}
+
+
+.dashboard-command-strip div,
+.operation-card,
+.map-status-grid div,
+.dashboard-data-grid .status-card{
+
+position:relative;
+
+overflow:hidden;
+
+background:
+linear-gradient(145deg,rgba(9,31,49,.72),rgba(10,51,72,.34));
+
+border:1px solid rgba(183,239,255,.24);
+
+box-shadow:
+0 0 0 1px rgba(255,255,255,.035) inset,
+0 18px 45px rgba(0,0,0,.32),
+0 0 30px rgba(98,217,255,.09);
+
+}
+
+
+.dashboard-command-strip div::before,
+.operation-card::before,
+.map-status-grid div::before,
+.dashboard-data-grid .status-card::before{
+
+content:"";
+
+position:absolute;
+
+inset:0;
+
+background:linear-gradient(120deg,rgba(255,255,255,.08),transparent 36%);
+
+pointer-events:none;
+
+}
+
+
+.map-panel{
+
+background:
+linear-gradient(180deg,rgba(4,16,28,.88),rgba(7,31,48,.62)),
+radial-gradient(circle at 50% 0,rgba(98,217,255,.13),transparent 40%);
+
+border-color:rgba(183,239,255,.26);
+
+box-shadow:
+0 28px 90px rgba(0,0,0,.42),
+0 0 55px rgba(98,217,255,.14);
+
+}
+
+
+.map-status-grid{
+
+display:grid;
+
+grid-template-columns:repeat(4,1fr);
+
+gap:14px;
+
+margin:18px 0 22px;
+
+}
+
+
+.map-status-grid div{
+
+padding:16px 18px;
+
+border-radius:18px;
+
+color:var(--sub);
+
+font-size:12px;
+
+letter-spacing:2px;
+
+}
+
+
+.map-status-grid strong{
+
+display:block;
+
+margin-top:8px;
+
+font-size:15px;
+
+letter-spacing:1px;
+
+color:white;
+
+}
+
+
+#worldMap{
+
+height:560px;
+
+border:1px solid rgba(183,239,255,.18);
+
+box-shadow:
+0 0 0 1px rgba(255,255,255,.04) inset,
+0 0 45px rgba(98,217,255,.1);
+
+}
+
+
+.map-overlay{
+
+box-shadow:
+0 0 0 1px rgba(255,255,255,.04) inset,
+0 18px 50px rgba(0,0,0,.42),
+0 0 35px rgba(98,217,255,.2);
+
+}
+
+
+.dashboard-data-grid{
+
+grid-template-columns:repeat(3,minmax(0,1fr));
+
+}
+
+
+.dashboard-data-grid .status-card{
+
+border-radius:18px;
+
+min-height:230px;
+
+}
+
+
+.dashboard-data-grid .status-card:hover{
+
+border-color:rgba(183,239,255,.42);
+
+box-shadow:
+0 0 0 1px rgba(255,255,255,.04) inset,
+0 24px 60px rgba(0,0,0,.38),
+0 0 45px rgba(98,217,255,.18);
+
+}
+
+
+.dashboard-data-grid .big-number,
+.environment strong{
+
+color:#f7fdff;
+
+text-shadow:0 0 24px rgba(98,217,255,.42);
+
+}
+
+
+.operation-grid{
+
+display:grid;
+
+grid-template-columns:repeat(3,1fr);
+
+gap:22px;
+
+margin-top:30px;
+
+}
+
+
+.operation-card{
+
+padding:24px 28px;
+
+border-radius:18px;
+
+}
+
+
+.operation-card span{
+
+display:block;
+
+font-size:12px;
+
+letter-spacing:2px;
+
+color:var(--sub);
+
+}
+
+
+.operation-card strong{
+
+display:block;
+
+margin-top:12px;
+
+font-size:28px;
+
+line-height:1.2;
+
+color:white;
+
+text-shadow:0 0 22px rgba(98,217,255,.4);
+
+}
+
+
+.stream-panel{
+
+margin-top:30px;
+
+}
+
+
+@media(max-width:1200px){
+
+.map-status-grid,
+.dashboard-data-grid,
+.operation-grid{
+
+grid-template-columns:repeat(2,1fr);
+
+}
+
+}
+
+
+@media(max-width:700px){
+
+.dashboard-title{
+
+font-size:28px;
+
+}
+
+.dashboard-command-strip,
+.map-status-grid,
+.dashboard-data-grid,
+.operation-grid{
+
+grid-template-columns:1fr;
+
+}
+
+#worldMap{
+
+height:420px;
+
+}
+
+.map-overlay{
+
+position:static;
+
+width:auto;
+
+margin-top:16px;
+
+}
+
+}
+
+
+
 *{
 
 margin:0;
@@ -2557,5 +2919,1936 @@ height:50px;
 }
 
 
+
+}
+
+
+
+/* Dashboard final layer */
+
+.mission-header.dashboard-hero{
+
+padding:28px 32px;
+
+border:1px solid rgba(183,239,255,.22);
+
+border-radius:26px;
+
+background:
+linear-gradient(135deg,rgba(5,20,34,.82),rgba(10,42,62,.48)),
+radial-gradient(circle at 80% 10%,rgba(98,217,255,.16),transparent 38%);
+
+box-shadow:
+0 0 0 1px rgba(255,255,255,.03) inset,
+0 28px 80px rgba(0,0,0,.35),
+0 0 45px rgba(98,217,255,.12);
+
+}
+
+
+.mission-info.dashboard-command-strip div{
+
+background:
+linear-gradient(145deg,rgba(9,31,49,.72),rgba(10,51,72,.34));
+
+border:1px solid rgba(183,239,255,.24);
+
+box-shadow:
+0 0 0 1px rgba(255,255,255,.035) inset,
+0 18px 45px rgba(0,0,0,.32),
+0 0 30px rgba(98,217,255,.09);
+
+}
+
+
+.mission-info.dashboard-command-strip strong{
+
+font-size:26px;
+
+text-shadow:0 0 22px rgba(98,217,255,.35);
+
+}
+
+
+.map-panel{
+
+background:
+linear-gradient(180deg,rgba(4,16,28,.88),rgba(7,31,48,.62)),
+radial-gradient(circle at 50% 0,rgba(98,217,255,.13),transparent 40%);
+
+border-color:rgba(183,239,255,.26);
+
+box-shadow:
+0 28px 90px rgba(0,0,0,.42),
+0 0 55px rgba(98,217,255,.14);
+
+}
+
+
+#worldMap{
+
+height:560px;
+
+border:1px solid rgba(183,239,255,.18);
+
+box-shadow:
+0 0 0 1px rgba(255,255,255,.04) inset,
+0 0 45px rgba(98,217,255,.1);
+
+}
+
+
+@media(max-width:700px){
+
+#worldMap{
+
+height:420px;
+
+}
+
+.map-overlay{
+
+position:static;
+
+width:auto;
+
+margin-top:16px;
+
+}
+
+}
+
+
+/* =========================================================
+   DASHBOARD V8 · POLAR MISSION CONTROL
+   全部规则以 body.dashboard-page 作用域隔离，
+   只影响 Dashboard 一页，不波及 location/analysis 等页面。
+   风格关键词：industrial / scientific / polar station / mission control
+========================================================= */
+
+
+/* =========================================================
+   一、整体氛围：深海蓝 + 冰川蓝 + 极光青
+   深色极地空间 + 冰层纹理，克制发光，不使用大圆角
+========================================================= */
+
+body.dashboard-page{
+
+background:
+radial-gradient(ellipse 1200px 620px at 50% -12%, rgba(38,105,150,.16), transparent 62%),
+radial-gradient(ellipse 900px 520px at 84% 16%, rgba(98,217,255,.07), transparent 55%),
+linear-gradient(160deg,#020911 0%,#041525 46%,#03101d 100%);
+
+}
+
+
+/* 极光与冰层纹理（只增强 Dashboard，背景层由全局 ::before 延续） */
+body.dashboard-page::before{
+
+background:
+repeating-linear-gradient(112deg, rgba(140,234,255,.018) 0 1px, transparent 1px 110px),
+linear-gradient(115deg, transparent 38%, rgba(98,217,255,.08) 50%, transparent 62%);
+
+animation:aurora 24s infinite alternate;
+
+}
+
+
+/* 关闭旧版 CSS 雪花，改用 canvas 雪花（数量受控、更流畅） */
+body.dashboard-page::after{
+
+display:none;
+
+}
+
+
+/* =========================================================
+   二、侧边导航：科研设备风格，去掉大发光与厚重圆角
+========================================================= */
+
+body.dashboard-page .sidebar{
+
+width:250px;
+
+padding:24px 18px;
+
+background:linear-gradient(180deg, rgba(3,13,24,.96), rgba(4,18,32,.92));
+
+border-right:1px solid rgba(98,217,255,.14);
+
+}
+
+
+body.dashboard-page .logo{
+
+width:46px;
+
+height:46px;
+
+border-radius:6px;
+
+font-size:26px;
+
+background:linear-gradient(150deg,#0d3c58,#0a2438);
+
+border:1px solid rgba(140,234,255,.35);
+
+box-shadow:0 0 18px rgba(98,217,255,.18);
+
+}
+
+
+body.dashboard-page .brand{
+
+margin-bottom:42px;
+
+}
+
+
+body.dashboard-page .brand h1{
+
+font-size:17px;
+
+letter-spacing:2px;
+
+}
+
+
+body.dashboard-page .brand p{
+
+font-size:9px;
+
+letter-spacing:1px;
+
+}
+
+
+body.dashboard-page nav a{
+
+font-size:11px;
+
+letter-spacing:2px;
+
+padding:12px 14px;
+
+border-radius:4px;
+
+border-left:2px solid transparent;
+
+color:#87a6ba;
+
+}
+
+
+body.dashboard-page nav a:hover,
+
+body.dashboard-page nav a.active{
+
+background:rgba(98,217,255,.08);
+
+border-left-color:#62d9ff;
+
+color:#eafcff;
+
+}
+
+
+body.dashboard-page main{
+
+margin-left:250px;
+
+width:calc(100% - 250px);
+
+padding:24px 30px;
+
+}
+
+
+/* =========================================================
+   三、顶部任务标题区
+========================================================= */
+
+body.dashboard-page .mission-header.dashboard-hero{
+
+position:relative;
+
+padding:22px 26px;
+
+border:1px solid rgba(140,234,255,.18);
+
+border-radius:8px;
+
+background:
+linear-gradient(135deg, rgba(6,22,36,.82), rgba(8,30,46,.5)),
+radial-gradient(circle at 82% 0%, rgba(98,217,255,.10), transparent 42%);
+
+box-shadow:0 18px 50px rgba(0,0,0,.35), inset 0 0 0 1px rgba(255,255,255,.02);
+
+overflow:hidden;
+
+}
+
+
+/* 左上 / 右下 HUD 角标，取代廉价发光 */
+body.dashboard-page .dashboard-hero::before{
+
+content:"";
+
+position:absolute;
+
+top:0;
+
+left:0;
+
+width:28px;
+
+height:28px;
+
+border-top:1px solid rgba(140,234,255,.5);
+
+border-left:1px solid rgba(140,234,255,.5);
+
+}
+
+
+body.dashboard-page .dashboard-hero::after{
+
+content:"";
+
+position:absolute;
+
+right:0;
+
+bottom:0;
+
+width:28px;
+
+height:28px;
+
+border-right:1px solid rgba(140,234,255,.5);
+
+border-bottom:1px solid rgba(140,234,255,.5);
+
+background:none;
+
+}
+
+
+body.dashboard-page .dashboard-kicker{
+
+font-size:10px;
+
+letter-spacing:4px;
+
+color:#8ceaff;
+
+margin-bottom:10px;
+
+}
+
+
+body.dashboard-page .dashboard-title{
+
+font-size:34px;
+
+line-height:1.1;
+
+font-weight:700;
+
+letter-spacing:2px;
+
+color:#f2fbff;
+
+text-shadow:0 1px 18px rgba(98,217,255,.25);
+
+}
+
+
+body.dashboard-page .hero-sub{
+
+margin-top:10px;
+
+font-size:11px;
+
+letter-spacing:1.5px;
+
+color:#7f9fb2;
+
+}
+
+
+body.dashboard-page .hero-status{
+
+display:flex;
+
+flex-direction:column;
+
+align-items:flex-end;
+
+gap:10px;
+
+}
+
+
+body.dashboard-page .hero-station{
+
+font-size:10px;
+
+letter-spacing:2.5px;
+
+color:#6f93a8;
+
+border:1px solid rgba(140,234,255,.18);
+
+padding:6px 10px;
+
+border-radius:4px;
+
+}
+
+
+body.dashboard-page .system-online{
+
+gap:8px;
+
+font-size:11px;
+
+letter-spacing:2.5px;
+
+color:#9fd8c2;
+
+}
+
+
+body.dashboard-page .system-online span{
+
+width:8px;
+
+height:8px;
+
+background:#3fe0a0;
+
+box-shadow:0 0 8px rgba(63,224,160,.55);
+
+animation:dashBreathe 2.6s ease-in-out infinite;
+
+}
+
+
+/* =========================================================
+   四、顶部任务状态栏：MISSION STATUS / CURRENT TIME / OPERATION MODE
+========================================================= */
+
+body.dashboard-page .mission-info.dashboard-command-strip{
+
+grid-template-columns:1.15fr .9fr .9fr;
+
+gap:14px;
+
+margin-top:16px;
+
+}
+
+
+body.dashboard-page .dashboard-command-strip .cmd-cell{
+
+position:relative;
+
+padding:14px 18px;
+
+border-radius:6px;
+
+border:1px solid rgba(140,234,255,.14);
+
+border-left:2px solid rgba(98,217,255,.55);
+
+background:linear-gradient(160deg, rgba(10,28,44,.6), rgba(5,16,28,.5));
+
+overflow:hidden;
+
+}
+
+
+/* 隐藏全局旧版玻璃高光伪元素 */
+body.dashboard-page .dashboard-command-strip .cmd-cell::before{
+
+display:none;
+
+}
+
+
+body.dashboard-page .cmd-label{
+
+display:block;
+
+font-size:10px;
+
+letter-spacing:2.5px;
+
+color:#6f93a8;
+
+}
+
+
+body.dashboard-page .cmd-value{
+
+display:flex;
+
+align-items:center;
+
+gap:8px;
+
+margin-top:8px;
+
+font-size:24px;
+
+font-weight:600;
+
+letter-spacing:1px;
+
+color:#eafcff;
+
+font-variant-numeric:tabular-nums;
+
+}
+
+
+body.dashboard-page .cmd-sub{
+
+display:block;
+
+margin-top:4px;
+
+font-size:9px;
+
+letter-spacing:1.5px;
+
+color:#4f7188;
+
+}
+
+
+body.dashboard-page .cmd-led{
+
+width:7px;
+
+height:7px;
+
+border-radius:50%;
+
+background:#3fe0a0;
+
+box-shadow:0 0 6px rgba(63,224,160,.5);
+
+animation:dashBreathe 2.6s ease-in-out infinite;
+
+flex:none;
+
+}
+
+
+/* =========================================================
+   五、中部布局：大地图 + 两侧数据面板（非卡片堆叠）
+========================================================= */
+
+body.dashboard-page .mission-grid{
+
+display:grid;
+
+grid-template-columns:270px minmax(0,1fr) 270px;
+
+gap:16px;
+
+align-items:stretch;
+
+margin-top:18px;
+
+}
+
+
+/* 侧边数据面板：纵向三等分 */
+body.dashboard-page .side-panel{
+
+display:grid;
+
+grid-template-rows:auto repeat(3,minmax(0,1fr));
+
+gap:12px;
+
+min-width:0;
+
+}
+
+
+body.dashboard-page .side-panel-title{
+
+display:flex;
+
+align-items:center;
+
+gap:8px;
+
+font-size:10px;
+
+letter-spacing:3px;
+
+color:#8ceaff;
+
+padding:2px 2px 10px;
+
+}
+
+
+body.dashboard-page .side-panel-title::before{
+
+content:"";
+
+width:14px;
+
+height:1px;
+
+background:#62d9ff;
+
+}
+
+
+/* =========================================================
+   六、数据卡片：玻璃拟态 + 科研设备风格
+   半透明背景 / 细线边缘 / 小型图标 / 状态灯 / 数据流动丝
+========================================================= */
+
+body.dashboard-page .sensor-card{
+
+position:relative;
+
+display:flex;
+
+flex-direction:column;
+
+justify-content:space-between;
+
+min-height:158px;
+
+padding:14px 16px 12px;
+
+border-radius:6px;
+
+border:1px solid rgba(140,234,255,.14);
+
+background:linear-gradient(165deg, rgba(9,28,44,.72), rgba(5,17,29,.55));
+
+backdrop-filter:blur(8px);
+
+box-shadow:0 10px 30px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.03);
+
+overflow:hidden;
+
+transition:border-color .3s;
+
+}
+
+
+body.dashboard-page .sensor-card:hover{
+
+border-color:rgba(140,234,255,.28);
+
+}
+
+
+/* 顶部细光丝（数据流动感起点） */
+body.dashboard-page .sensor-card::before{
+
+content:"";
+
+position:absolute;
+
+left:0;
+
+right:0;
+
+top:0;
+
+height:1px;
+
+background:linear-gradient(90deg, transparent, rgba(140,234,255,.55), transparent);
+
+opacity:.65;
+
+}
+
+
+/* 数据流动光点（transform 动画，性能友好） */
+body.dashboard-page .sensor-card::after{
+
+content:"";
+
+position:absolute;
+
+left:0;
+
+top:0;
+
+width:80px;
+
+height:1px;
+
+background:linear-gradient(90deg, transparent, rgba(255,255,255,.65), transparent);
+
+opacity:.5;
+
+transform:translateX(-90px);
+
+animation:dashFlow 3.8s linear infinite;
+
+}
+
+
+body.dashboard-page .sensor-head{
+
+display:flex;
+
+align-items:center;
+
+gap:8px;
+
+}
+
+
+body.dashboard-page .sensor-icon{
+
+width:18px;
+
+height:18px;
+
+color:#8ceaff;
+
+opacity:.9;
+
+flex:none;
+
+}
+
+
+body.dashboard-page .sensor-name{
+
+font-size:10px;
+
+letter-spacing:2px;
+
+color:#9fc3d6;
+
+}
+
+
+/* 状态指示灯：默认青色呼吸灯，NO DATA 时转红 */
+body.dashboard-page .sensor-led{
+
+margin-left:auto;
+
+width:6px;
+
+height:6px;
+
+border-radius:50%;
+
+background:#3fe0a0;
+
+box-shadow:0 0 6px rgba(63,224,160,.5);
+
+animation:dashBreathe 2.6s ease-in-out infinite;
+
+flex:none;
+
+}
+
+
+body.dashboard-page .sensor-card.no-data .sensor-led{
+
+background:#ff5f5f;
+
+box-shadow:0 0 6px rgba(255,95,95,.5);
+
+animation:none;
+
+}
+
+
+body.dashboard-page .sensor-value{
+
+display:flex;
+
+align-items:baseline;
+
+gap:6px;
+
+margin:8px 0 4px;
+
+}
+
+
+body.dashboard-page .sensor-value strong{
+
+font-size:30px;
+
+font-weight:600;
+
+line-height:1;
+
+letter-spacing:.5px;
+
+color:#f2fbff;
+
+font-variant-numeric:tabular-nums;
+
+text-shadow:none;
+
+}
+
+
+body.dashboard-page .sensor-unit{
+
+font-size:11px;
+
+letter-spacing:1px;
+
+color:#6f93a8;
+
+}
+
+
+body.dashboard-page .sensor-meta{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+gap:8px;
+
+font-size:9px;
+
+letter-spacing:1.2px;
+
+color:#6f93a8;
+
+border-top:1px solid rgba(140,234,255,.1);
+
+padding-top:8px;
+
+}
+
+
+body.dashboard-page .sensor-meta b{
+
+color:#dff6ff;
+
+font-weight:600;
+
+font-variant-numeric:tabular-nums;
+
+}
+
+
+body.dashboard-page .sensor-state{
+
+color:#3fe0a0;
+
+}
+
+
+body.dashboard-page .sensor-card.no-data .sensor-state{
+
+color:#ff7a7a;
+
+}
+
+
+body.dashboard-page .sensor-index{
+
+position:absolute;
+
+right:10px;
+
+bottom:6px;
+
+font-size:8px;
+
+letter-spacing:1px;
+
+color:rgba(140,234,255,.22);
+
+}
+
+
+/* =========================================================
+   七、地图战区：真实 Leaflet + 深蓝覆盖层 + 经纬网 + 扫描
+========================================================= */
+
+body.dashboard-page .map-panel{
+
+position:relative;
+
+margin-top:0;
+
+padding:16px;
+
+border-radius:8px;
+
+border:1px solid rgba(140,234,255,.18);
+
+background:
+linear-gradient(180deg, rgba(6,22,36,.82), rgba(4,15,26,.66)),
+radial-gradient(circle at 50% 0%, rgba(98,217,255,.08), transparent 45%);
+
+box-shadow:0 22px 60px rgba(0,0,0,.38);
+
+min-width:0;
+
+}
+
+
+/* 地图面板 HUD 角标 */
+body.dashboard-page .map-panel::before{
+
+content:"";
+
+position:absolute;
+
+top:0;
+
+left:0;
+
+width:22px;
+
+height:22px;
+
+border-top:1px solid rgba(140,234,255,.4);
+
+border-left:1px solid rgba(140,234,255,.4);
+
+pointer-events:none;
+
+}
+
+
+body.dashboard-page .map-panel::after{
+
+content:"";
+
+position:absolute;
+
+right:0;
+
+bottom:0;
+
+width:22px;
+
+height:22px;
+
+border-right:1px solid rgba(140,234,255,.4);
+
+border-bottom:1px solid rgba(140,234,255,.4);
+
+pointer-events:none;
+
+}
+
+
+body.dashboard-page .map-panel-head{
+
+display:flex;
+
+align-items:center;
+
+justify-content:space-between;
+
+gap:10px;
+
+margin-bottom:12px;
+
+}
+
+
+body.dashboard-page .panel-title{
+
+font-size:13px;
+
+letter-spacing:3px;
+
+color:#8ceaff;
+
+}
+
+
+body.dashboard-page .panel-title-tag{
+
+font-size:9px;
+
+letter-spacing:2px;
+
+color:#4f7188;
+
+white-space:nowrap;
+
+}
+
+
+/* 地图上方的四格状态条（细长科研风格） */
+body.dashboard-page .map-status-grid{
+
+display:grid;
+
+grid-template-columns:repeat(4,1fr);
+
+gap:10px;
+
+margin:0 0 12px;
+
+}
+
+
+body.dashboard-page .map-status-grid .map-cell{
+
+padding:8px 12px;
+
+border-radius:4px;
+
+border:1px solid rgba(140,234,255,.12);
+
+border-left:2px solid rgba(98,217,255,.45);
+
+background:rgba(6,22,36,.45);
+
+overflow:hidden;
+
+}
+
+
+body.dashboard-page .map-status-grid .map-cell::before{
+
+display:none;
+
+}
+
+
+body.dashboard-page .map-cell span{
+
+display:block;
+
+font-size:9px;
+
+letter-spacing:2px;
+
+color:#6f93a8;
+
+}
+
+
+body.dashboard-page .map-cell strong{
+
+display:block;
+
+margin-top:5px;
+
+font-size:13px;
+
+letter-spacing:1px;
+
+color:#eafcff;
+
+font-weight:600;
+
+}
+
+
+/* 地图容器：深色底，由 main.js 初始化真实 Leaflet 地图 */
+body.dashboard-page #worldMap{
+
+position:relative;
+
+height:600px;
+
+border-radius:6px;
+
+border:1px solid rgba(140,234,255,.16);
+
+overflow:hidden;
+
+background:#04101d;
+
+box-shadow:none;
+
+}
+
+
+body.dashboard-page .leaflet-container{
+
+background:#04101d!important;
+
+font-family:inherit;
+
+}
+
+
+/* 深色瓦片：反色 + 色相偏移（真实地图仍在，仅换皮肤） */
+body.dashboard-page .leaflet-tile-pane{
+
+filter:invert(1) hue-rotate(185deg) brightness(.86) contrast(.92) saturate(.7);
+
+opacity:.95;
+
+}
+
+
+/* 定位标记改为冰川蓝 */
+body.dashboard-page .leaflet-marker-icon{
+
+filter:hue-rotate(150deg) saturate(1.1) drop-shadow(0 0 4px rgba(98,217,255,.6));
+
+}
+
+
+/* 弹窗：深色玻璃 */
+body.dashboard-page .leaflet-popup-content-wrapper{
+
+background:rgba(4,17,29,.92);
+
+color:#dff6ff;
+
+border:1px solid rgba(98,217,255,.35);
+
+border-radius:4px;
+
+box-shadow:0 8px 24px rgba(0,0,0,.45);
+
+}
+
+
+body.dashboard-page .leaflet-popup-content{
+
+font-size:11px;
+
+letter-spacing:1px;
+
+margin:10px 12px;
+
+}
+
+
+body.dashboard-page .leaflet-popup-tip{
+
+background:#041625;
+
+border:1px solid rgba(98,217,255,.3);
+
+}
+
+
+body.dashboard-page .leaflet-popup-close-button{
+
+color:#7f9fb2!important;
+
+}
+
+
+body.dashboard-page .leaflet-control-attribution{
+
+background:rgba(2,12,22,.72)!important;
+
+color:#6f93a8!important;
+
+font-size:9px!important;
+
+}
+
+
+body.dashboard-page .leaflet-control-attribution a{
+
+color:#62d9ff!important;
+
+}
+
+
+/* 所有地图装饰层：绝对定位、不拦截任何鼠标事件（不影响拖拽缩放） */
+body.dashboard-page #worldMap .map-layer{
+
+position:absolute;
+
+pointer-events:none;
+
+}
+
+
+/* 半透明深蓝覆盖层：让地图呈现南极任务地图质感 */
+body.dashboard-page .map-tint{
+
+inset:0;
+
+z-index:430;
+
+background:
+radial-gradient(ellipse at 50% 42%, rgba(14,52,78,.12), rgba(3,14,26,.34) 62%, rgba(1,7,14,.5) 100%),
+linear-gradient(180deg, rgba(6,26,44,.28), rgba(2,10,20,.42)),
+repeating-linear-gradient(112deg, rgba(140,234,255,.020) 0 1px, transparent 1px 90px);
+
+}
+
+
+/* 经纬网 canvas */
+body.dashboard-page .map-graticule{
+
+inset:0;
+
+z-index:460;
+
+}
+
+
+/* 数据扫描线：缓慢下扫，微弱光带 */
+body.dashboard-page .map-scan{
+
+left:0;
+
+right:0;
+
+top:0;
+
+height:130px;
+
+z-index:470;
+
+background:linear-gradient(180deg, transparent, rgba(98,217,255,.045) 40%, rgba(140,234,255,.12) 50%, rgba(98,217,255,.045) 60%, transparent);
+
+animation:dashScan 9s linear infinite;
+
+will-change:transform;
+
+}
+
+
+/* 雷达扫掠：围绕真实定位点缓慢旋转 */
+body.dashboard-page .map-radar{
+
+width:620px;
+
+height:620px;
+
+left:50%;
+
+top:50%;
+
+margin:-310px 0 0 -310px;
+
+z-index:480;
+
+opacity:0;
+
+transition:opacity .4s;
+
+}
+
+
+body.dashboard-page .map-radar i{
+
+position:absolute;
+
+inset:0;
+
+border-radius:50%;
+
+background:conic-gradient(from 0deg, rgba(98,217,255,.16), rgba(98,217,255,.03) 65deg, transparent 95deg);
+
+animation:dashRadarSpin 14s linear infinite;
+
+}
+
+
+/* GPS 定位光圈：三圈扩散波纹 */
+body.dashboard-page .gps-rings{
+
+width:130px;
+
+height:130px;
+
+left:50%;
+
+top:50%;
+
+margin:-65px 0 0 -65px;
+
+z-index:490;
+
+opacity:0;
+
+transition:opacity .4s;
+
+}
+
+
+body.dashboard-page .gps-rings i{
+
+position:absolute;
+
+inset:0;
+
+border-radius:50%;
+
+border:1px solid rgba(140,234,255,.6);
+
+animation:dashRing 3.4s ease-out infinite;
+
+}
+
+
+body.dashboard-page .gps-rings i:nth-child(2){
+
+animation-delay:1.13s;
+
+}
+
+
+body.dashboard-page .gps-rings i:nth-child(3){
+
+animation-delay:2.26s;
+
+}
+
+
+/* 定位核心：十字准星 */
+body.dashboard-page .gps-core{
+
+width:8px;
+
+height:8px;
+
+left:50%;
+
+top:50%;
+
+margin:-4px 0 0 -4px;
+
+z-index:510;
+
+border-radius:50%;
+
+background:#bfefff;
+
+box-shadow:0 0 10px rgba(98,217,255,.55);
+
+opacity:0;
+
+transition:opacity .4s;
+
+}
+
+
+body.dashboard-page .gps-core::before,
+
+body.dashboard-page .gps-core::after{
+
+content:"";
+
+position:absolute;
+
+background:rgba(140,234,255,.45);
+
+}
+
+
+body.dashboard-page .gps-core::before{
+
+left:50%;
+
+top:-9px;
+
+width:1px;
+
+height:26px;
+
+}
+
+
+body.dashboard-page .gps-core::after{
+
+left:-9px;
+
+top:50%;
+
+width:26px;
+
+height:1px;
+
+}
+
+
+/* 坐标信息浮层 */
+body.dashboard-page .map-overlay{
+
+right:20px;
+
+bottom:20px;
+
+width:230px;
+
+padding:16px 18px;
+
+border-radius:6px;
+
+border:1px solid rgba(140,234,255,.18);
+
+border-left:2px solid rgba(98,217,255,.55);
+
+background:rgba(3,14,25,.82);
+
+backdrop-filter:blur(10px);
+
+box-shadow:0 14px 40px rgba(0,0,0,.4);
+
+}
+
+
+body.dashboard-page .map-overlay h3{
+
+font-size:18px;
+
+letter-spacing:2px;
+
+color:#f2fbff;
+
+}
+
+
+body.dashboard-page .map-overlay p{
+
+display:flex;
+
+justify-content:space-between;
+
+margin-top:9px;
+
+font-size:10px;
+
+letter-spacing:1.5px;
+
+color:#6f93a8;
+
+}
+
+
+body.dashboard-page .map-overlay span{
+
+color:#dff6ff;
+
+font-variant-numeric:tabular-nums;
+
+}
+
+
+/* =========================================================
+   八、底部任务统计（Operation Days / Data Records / Last Update）
+========================================================= */
+
+body.dashboard-page .operation-grid{
+
+gap:14px;
+
+margin-top:18px;
+
+}
+
+
+body.dashboard-page .operation-card{
+
+position:relative;
+
+padding:16px 20px 14px;
+
+border-radius:6px;
+
+border:1px solid rgba(140,234,255,.14);
+
+border-top:2px solid rgba(98,217,255,.45);
+
+background:linear-gradient(165deg, rgba(9,28,44,.6), rgba(5,16,28,.5));
+
+overflow:hidden;
+
+}
+
+
+/* 隐藏全局旧版玻璃高光 */
+body.dashboard-page .operation-card::before{
+
+display:none;
+
+}
+
+
+body.dashboard-page .op-label{
+
+display:block;
+
+font-size:10px;
+
+letter-spacing:2.5px;
+
+color:#6f93a8;
+
+}
+
+
+body.dashboard-page .operation-card strong{
+
+display:block;
+
+margin-top:10px;
+
+font-size:30px;
+
+font-weight:600;
+
+line-height:1.1;
+
+color:#f2fbff;
+
+font-variant-numeric:tabular-nums;
+
+text-shadow:none;
+
+}
+
+
+body.dashboard-page .op-sub{
+
+display:block;
+
+margin-top:4px;
+
+font-size:9px;
+
+letter-spacing:1.5px;
+
+color:#4f7188;
+
+}
+
+
+/* =========================================================
+   九、任务流（MISSION STREAM）
+========================================================= */
+
+body.dashboard-page .stream-panel{
+
+margin-top:16px;
+
+padding:16px 20px;
+
+border-radius:6px;
+
+border:1px solid rgba(140,234,255,.14);
+
+background:linear-gradient(165deg, rgba(9,28,44,.55), rgba(5,16,28,.45));
+
+}
+
+
+body.dashboard-page .stream-row{
+
+display:flex;
+
+align-items:center;
+
+gap:10px;
+
+padding:9px 0;
+
+font-size:11px;
+
+letter-spacing:1.5px;
+
+color:#9fc3d6;
+
+border-bottom:1px solid rgba(140,234,255,.07);
+
+}
+
+
+body.dashboard-page .stream-row:last-child{
+
+border-bottom:0;
+
+}
+
+
+body.dashboard-page .stream-dot{
+
+width:5px;
+
+height:5px;
+
+border-radius:50%;
+
+background:#3fe0a0;
+
+box-shadow:0 0 6px rgba(63,224,160,.5);
+
+animation:dashBreathe 3s ease-in-out infinite;
+
+flex:none;
+
+}
+
+
+body.dashboard-page .stream-row em{
+
+margin-left:auto;
+
+font-style:normal;
+
+font-size:9px;
+
+letter-spacing:2px;
+
+color:#5d8ba0;
+
+}
+
+
+/* =========================================================
+   十、雪花层（canvas，固定全屏，不拦截交互）
+========================================================= */
+
+body.dashboard-page #snowField{
+
+position:fixed;
+
+inset:0;
+
+z-index:1200;
+
+pointer-events:none;
+
+opacity:.75;
+
+}
+
+
+/* =========================================================
+   十一、动画关键帧（名称加 dash 前缀，避免与旧样式冲突）
+========================================================= */
+
+@keyframes dashBreathe{
+
+0%,100%{
+
+opacity:.45;
+
+}
+
+50%{
+
+opacity:1;
+
+}
+
+}
+
+
+@keyframes dashFlow{
+
+from{
+
+transform:translateX(-90px);
+
+}
+
+to{
+
+transform:translateX(340px);
+
+}
+
+}
+
+
+@keyframes dashScan{
+
+from{
+
+transform:translateY(-130px);
+
+}
+
+to{
+
+transform:translateY(620px);
+
+}
+
+}
+
+
+@keyframes dashRadarSpin{
+
+to{
+
+transform:rotate(360deg);
+
+}
+
+}
+
+
+@keyframes dashRing{
+
+0%{
+
+transform:scale(.3);
+
+opacity:.85;
+
+}
+
+100%{
+
+transform:scale(1.7);
+
+opacity:0;
+
+}
+
+}
+
+
+/* =========================================================
+   十二、响应式（Dashboard 专属断点）
+========================================================= */
+
+@media (max-width:1440px){
+
+body.dashboard-page .mission-grid{
+
+grid-template-columns:240px minmax(0,1fr) 240px;
+
+}
+
+body.dashboard-page #worldMap{
+
+height:560px;
+
+}
+
+}
+
+
+@media (max-width:1280px){
+
+/* 左面板 + 地图并排，右面板转为下方三列 */
+body.dashboard-page .mission-grid{
+
+grid-template-columns:235px minmax(0,1fr);
+
+}
+
+body.dashboard-page .side-left{
+
+grid-column:1;
+
+grid-row:1;
+
+}
+
+body.dashboard-page .map-panel{
+
+grid-column:2;
+
+grid-row:1;
+
+}
+
+body.dashboard-page .side-right{
+
+grid-column:1 / -1;
+
+grid-row:2;
+
+grid-template-rows:none;
+
+grid-template-columns:repeat(3,minmax(0,1fr));
+
+}
+
+/* 窄屏时侧栏标题横跨整行，避免占掉卡片网格格位 */
+body.dashboard-page .side-right .side-panel-title{
+
+grid-column:1 / -1;
+
+}
+
+body.dashboard-page .side-right .sensor-card{
+
+min-height:118px;
+
+}
+
+body.dashboard-page .map-status-grid{
+
+grid-template-columns:repeat(2,1fr);
+
+}
+
+}
+
+
+@media (max-width:1200px){
+
+body.dashboard-page .operation-grid{
+
+grid-template-columns:repeat(2,1fr);
+
+}
+
+}
+
+
+@media (max-width:900px){
+
+/* 地图优先显示，两侧面板转为三列 */
+body.dashboard-page .mission-grid{
+
+grid-template-columns:1fr;
+
+}
+
+body.dashboard-page .map-panel{
+
+order:-1;
+
+grid-column:1;
+
+grid-row:1;
+
+}
+
+body.dashboard-page .side-left{
+
+grid-column:1;
+
+grid-row:2;
+
+grid-template-rows:none;
+
+grid-template-columns:repeat(3,minmax(0,1fr));
+
+}
+
+body.dashboard-page .side-right{
+
+grid-column:1;
+
+grid-row:3;
+
+grid-template-columns:repeat(3,minmax(0,1fr));
+
+}
+
+body.dashboard-page .side-left .side-panel-title,
+
+body.dashboard-page .side-right .side-panel-title{
+
+grid-column:1 / -1;
+
+}
+
+body.dashboard-page .sensor-card{
+
+min-height:118px;
+
+}
+
+body.dashboard-page #worldMap{
+
+height:480px;
+
+}
+
+}
+
+
+@media (max-width:700px){
+
+body.dashboard-page .dashboard-command-strip{
+
+grid-template-columns:1fr;
+
+}
+
+body.dashboard-page .side-left,
+
+body.dashboard-page .side-right{
+
+grid-template-columns:1fr;
+
+}
+
+body.dashboard-page .sensor-card{
+
+min-height:118px;
+
+}
+
+body.dashboard-page .map-status-grid{
+
+grid-template-columns:1fr;
+
+}
+
+body.dashboard-page .operation-grid{
+
+grid-template-columns:1fr;
+
+}
+
+body.dashboard-page #worldMap{
+
+height:420px;
+
+}
+
+/* 小屏关闭高开销雷达扫掠，保留其余效果 */
+body.dashboard-page .map-radar{
+
+display:none;
+
+}
+
+body.dashboard-page .map-panel-head{
+
+flex-direction:column;
+
+align-items:flex-start;
+
+gap:6px;
+
+}
+
+}
+
+
+/* 用户开启“减少动态效果”时，整体关闭装饰动画 */
+@media (prefers-reduced-motion: reduce){
+
+body.dashboard-page *,
+
+body.dashboard-page *::before,
+
+body.dashboard-page *::after{
+
+animation:none!important;
+
+transition:none!important;
+
+}
 
 }

@@ -17,7 +17,11 @@ let gpsData = {
 
 lat:null,
 
-lng:null
+lng:null,
+
+sat:null,
+
+status:null
 
 };
 
@@ -75,7 +79,7 @@ processData();
 
 
 
-refresh();
+fullRefresh();
 
 
 
@@ -168,6 +172,10 @@ gpsData.lat=d.x;
 
 gpsData.lng=d.y;
 
+gpsData.sat=d.n;
+
+gpsData.status=d.g;
+
 
 break;
 
@@ -240,6 +248,10 @@ function updateClock(){
 let el =
 document.getElementById(
 "localTime"
+)
+||
+document.getElementById(
+"time"
 );
 
 
@@ -500,6 +512,10 @@ let temp =
 
 document.getElementById(
 "temperature"
+)
+||
+document.getElementById(
+"insideTemp"
 );
 
 
@@ -541,6 +557,85 @@ showValue(d.h);
 }
 
 
+let outsideTemp =
+
+document.getElementById(
+"outsideTemp"
+);
+
+
+if(outsideTemp){
+
+outsideTemp.innerHTML=
+showValue(d.j);
+
+}
+
+
+let outsideHumidity =
+
+document.getElementById(
+"outsideHumidity"
+);
+
+
+if(outsideHumidity){
+
+outsideHumidity.innerHTML=
+showValue(d.k);
+
+}
+
+
+let solar =
+
+document.getElementById(
+"solar"
+);
+
+
+if(solar){
+
+solar.innerHTML=
+showValue(d.s);
+
+}
+
+
+let gpsStatus =
+
+document.getElementById(
+"gpsStatusPage"
+);
+
+
+if(gpsStatus){
+
+gpsStatus.innerHTML=
+gpsData.lat!==null && gpsData.lng!==null
+?
+"ONLINE"
+:
+"NULL";
+
+}
+
+
+let satelliteSmall =
+
+document.getElementById(
+"satelliteSmall"
+);
+
+
+if(satelliteSmall){
+
+satelliteSmall.innerHTML=
+showValue(gpsData.sat);
+
+}
+
+
 
 
 
@@ -557,6 +652,10 @@ let mode =
 
 document.getElementById(
 "mode"
+)
+||
+document.getElementById(
+"systemMode"
 );
 
 
@@ -751,6 +850,10 @@ let lat=
 
 document.getElementById(
 "latitude"
+)
+||
+document.getElementById(
+"latitudePage"
 );
 
 
@@ -759,6 +862,10 @@ let lng=
 
 document.getElementById(
 "longitude"
+)
+||
+document.getElementById(
+"longitudePage"
 );
 
 
@@ -767,6 +874,10 @@ let sat=
 
 document.getElementById(
 "satellites"
+)
+||
+document.getElementById(
+"satellitesPage"
 );
 
 
@@ -811,11 +922,7 @@ if(sat){
 sat.innerHTML=
 
 showValue(
-latest
-?
-latest.n
-:
-null
+gpsData.sat
 
 );
 
@@ -1080,16 +1187,30 @@ updateMap();
 let sensorConfig = [
 
 {
-id:"chartTemp",
+id:"chartInTemp",
 key:"t",
-name:"CABIN TEMPERATURE"
+name:"INSIDE TEMPERATURE"
 },
 
 
 {
-id:"chartHumidity",
+id:"chartInHum",
 key:"h",
-name:"HUMIDITY"
+name:"INSIDE HUMIDITY"
+},
+
+
+{
+id:"chartOutTemp",
+key:"j",
+name:"OUTSIDE TEMPERATURE"
+},
+
+
+{
+id:"chartOutHum",
+key:"k",
+name:"OUTSIDE HUMIDITY"
 },
 
 
@@ -1118,21 +1239,6 @@ name:"VOLTAGE"
 id:"chartWind",
 key:"wind",
 name:"WIND SPEED"
-},
-
-
-{
-id:"chartPressure",
-key:"pressure",
-name:"PRESSURE"
-},
-
-
-{
-id:"chartBattery",
-key:"battery",
-name:"BATTERY"
-
 }
 
 ];
@@ -1168,7 +1274,10 @@ new Date(time);
 
 return (
 
+String(
 d.getMonth()+1
+)
+.padStart(2,"0")
 
 )
 
@@ -1178,7 +1287,10 @@ d.getMonth()+1
 
 +
 
+String(
 d.getDate()
+)
+.padStart(2,"0")
 
 +
 
@@ -1549,6 +1661,12 @@ document.getElementById(
 
 "telemetryList"
 
+)
+||
+document.getElementById(
+
+"telemetryData"
+
 );
 
 
@@ -1743,7 +1861,7 @@ d.getFullYear()
 
 +
 
-"/"
+"-"
 
 +
 
@@ -1753,7 +1871,7 @@ d.getMonth()+1
 
 +
 
-"/"
+"-"
 
 +
 
@@ -1766,8 +1884,21 @@ d.getDate()
 " "
 
 +
-
-d.toLocaleTimeString()
+String(
+d.getHours()
+).padStart(2,"0")
++
+":"
++
+String(
+d.getMinutes()
+).padStart(2,"0")
++
+":"
++
+String(
+d.getSeconds()
+).padStart(2,"0")
 
 );
 
@@ -1848,6 +1979,12 @@ document.getElementById(
 
 "missionDays"
 
+)
+||
+document.getElementById(
+
+"runDays"
+
 );
 
 
@@ -1876,6 +2013,12 @@ document.getElementById(
 
 "totalRecords"
 
+)
+||
+document.getElementById(
+
+"dataCount"
+
 );
 
 
@@ -1902,6 +2045,12 @@ document.getElementById(
 
 "lastContact"
 
+)
+||
+document.getElementById(
+
+"lastUpdate"
+
 );
 
 
@@ -1919,6 +2068,32 @@ latest.time
 
 );
 
+
+}
+
+
+let gpsValid =
+
+document.getElementById(
+
+"gpsValidCount"
+
+);
+
+
+if(gpsValid){
+
+gpsValid.innerHTML=
+DATA.filter(
+d=>
+d.x!==null
+&&
+d.x!==undefined
+&&
+d.y!==null
+&&
+d.y!==undefined
+).length;
 
 }
 
