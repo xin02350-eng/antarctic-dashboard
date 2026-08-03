@@ -6799,8 +6799,17 @@ color:#8ceaff;
 }
 
 
-/* 暴风雪画布（模块 js/ambient.js 创建） */
-body.polar-ambient #snowBack,
+/* =========================================================
+   V0.4.2 · 四层暴风雪画布（js/ambient.js 创建）
+   z 顺序：背景 → 雪雾 → 远景雪 → 中景雪 → 前景雪 → 页面内容
+   全部 z-index:-1，位于内容之下，绝不遮挡文字/卡片/地图/图表
+========================================================= */
+
+body.polar-ambient #snowFog,
+
+body.polar-ambient #snowFar,
+
+body.polar-ambient #snowMid,
 
 body.polar-ambient #snowFront{
 
@@ -6814,25 +6823,35 @@ height:100%;
 
 pointer-events:none;
 
+z-index:-1;
+
 }
 
 
-/* 背景层在内容之下：文字区域天然不被覆盖 */
-body.polar-ambient #snowBack{
-
-z-index:1;
+body.polar-ambient #snowFog{
 
 opacity:.9;
 
 }
 
 
-/* 前景层稀疏低透明，仅作近景大雪粒氛围 */
+body.polar-ambient #snowFar{
+
+opacity:.85;
+
+}
+
+
+body.polar-ambient #snowMid{
+
+opacity:.9;
+
+}
+
+
 body.polar-ambient #snowFront{
 
-z-index:1200;
-
-opacity:.45;
+opacity:.8;
 
 }
 
