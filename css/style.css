@@ -6754,6 +6754,590 @@ display:none;
 
 
 /* =========================================================
+   HARDWARE V5 · ANTARCTIC FIELD NODE
+   真实极地节点形象：顶部 GPS/LoRa 天线、三棱柱太阳能、
+   透明核心舱、防腐蚀支撑杆、雪地固定结构
+========================================================= */
+
+/* 晶硅纹理网格与面板标记 */
+.hardware-page .hw-cell{
+
+stroke:rgba(170,225,240,.20);
+
+stroke-width:1;
+
+}
+
+
+.hardware-page .hw-cell-tag{
+
+fill:rgba(190,235,255,.35);
+
+font-size:7px;
+
+letter-spacing:1px;
+
+}
+
+
+/* 舱内模块微型编码 */
+.hardware-page .hw-code{
+
+fill:rgba(190,235,255,.7);
+
+font-size:5.5px;
+
+letter-spacing:1px;
+
+font-family:Consolas,monospace;
+
+}
+
+
+/* 暴风雪颗粒与风雪线（静态，克制） */
+.hardware-page .hw-streak line{
+
+stroke:rgba(223,246,255,.16);
+
+stroke-width:1;
+
+}
+
+
+.hardware-page .hw-streak circle{
+
+fill:rgba(223,246,255,.3);
+
+}
+
+
+/* GPS 定位信号（慢速波纹） */
+.hardware-page .hw-gps{
+
+animation:hwRipple 5.5s ease-out infinite;
+
+transform-box:fill-box;
+
+transform-origin:center;
+
+}
+
+
+.hardware-page .hw-gps-2{
+
+animation-delay:2.75s;
+
+}
+
+
+/* LoRa 通信波纹（慢速） */
+.hardware-page .hw-lora{
+
+animation:hwRipple 4.5s ease-out infinite;
+
+transform-box:fill-box;
+
+transform-origin:center;
+
+}
+
+
+.hardware-page .hw-lora-2{
+
+animation-delay:2.25s;
+
+}
+
+
+/* 内部状态灯：错峰呼吸 */
+.hardware-page .hw-led-2{
+
+animation-delay:1.4s;
+
+}
+
+
+.hardware-page .hw-led-3{
+
+animation-delay:2.8s;
+
+}
+
+
+/* 数据流与能量流：低频缓慢 */
+.hardware-page .hw-flow{
+
+animation-duration:4.5s;
+
+}
+
+
+.hardware-page .hw-scan{
+
+stroke:rgba(160,235,250,.35);
+
+stroke-width:1;
+
+}
+
+
+.hardware-page .hw-sensor-pulse{
+
+fill:#8ceaff;
+
+animation:hwPulse 6s ease-in-out infinite;
+
+transform-box:fill-box;
+
+transform-origin:center;
+
+}
+
+
+/* =========================================================
+   HARDWARE V4 · PREMIUM SHOWCASE
+   展示厅级数字孪生投影：产品摄影灯光 / 磨砂金属 / 透明 HUD
+   保留单屏锁定，动画仅 4 类（能源粒子 / 呼吸光 / 扫描线 / 雪尘）
+========================================================= */
+
+body.hardware-page{
+
+height:100vh;
+
+overflow:hidden;
+
+}
+
+
+body.hardware-page main{
+
+height:100vh;
+
+overflow:hidden;
+
+padding:8px 14px;
+
+gap:8px;
+
+}
+
+
+/* 极简标题：无面板感 */
+body.hardware-page .mission-header{
+
+background:transparent;
+
+border:0;
+
+box-shadow:none;
+
+padding:4px 8px;
+
+}
+
+
+body.hardware-page .mission-header h2{
+
+font-size:16px;
+
+letter-spacing:4px;
+
+color:#eafcff;
+
+}
+
+
+body.hardware-page .mission-header p{
+
+font-size:8px;
+
+letter-spacing:2px;
+
+color:rgba(127,163,181,.55);
+
+}
+
+
+body.hardware-page .system-online{
+
+font-size:9px;
+
+color:rgba(160,220,235,.7);
+
+}
+
+
+/* 中部：设备 > 信息（信息面板透明化、低存在感） */
+.hardware-page .hw-single{
+
+grid-template-columns:172px minmax(0,1fr) 172px;
+
+gap:16px;
+
+}
+
+
+.hardware-page .hw-status{
+
+background:transparent;
+
+border:0;
+
+padding:2px 4px;
+
+}
+
+
+.hardware-page .hw-status h3{
+
+font-size:8px;
+
+letter-spacing:3px;
+
+color:rgba(140,234,255,.55);
+
+border-bottom:1px solid rgba(98,217,255,.12);
+
+margin:6px 0 2px;
+
+padding-bottom:4px;
+
+}
+
+
+/* HUD 行：无厚卡片，仅细线与状态点 */
+.hardware-page .hud-card{
+
+background:transparent;
+
+border:0;
+
+border-left:1px solid rgba(140,234,255,.22);
+
+border-bottom:1px solid rgba(98,217,255,.07);
+
+border-radius:0;
+
+padding:4px 8px;
+
+}
+
+
+.hardware-page .hc-dot{
+
+width:4px;
+
+height:4px;
+
+background:#00e5a8;
+
+box-shadow:none;
+
+animation:dashBreathe 4s ease-in-out infinite;
+
+}
+
+
+.hardware-page .hud-card.st-off .hc-dot{
+
+background:#ff5263;
+
+box-shadow:none;
+
+}
+
+
+.hardware-page .hc-name{
+
+color:rgba(127,163,181,.55);
+
+font-size:7px;
+
+letter-spacing:1.6px;
+
+}
+
+
+.hardware-page .hc-val{
+
+font-size:14px;
+
+color:rgba(235,250,255,.92);
+
+}
+
+
+.hardware-page .hud-card.st-off .hc-val{
+
+color:rgba(255,150,160,.8);
+
+font-size:11px;
+
+}
+
+
+.hardware-page .hc-unit{
+
+color:rgba(110,150,170,.5);
+
+font-size:8px;
+
+}
+
+
+/* 中央设备：无边框投影舞台 */
+.hardware-page .hw-device{
+
+background:transparent;
+
+border:0;
+
+box-shadow:none;
+
+padding:0;
+
+}
+
+
+/* 设备占页面 40%-50%（通过 SVG 视口与中心列比例自然控制） */
+.hardware-page .hw-svg{
+
+width:auto;
+
+height:auto;
+
+max-width:100%;
+
+max-height:100%;
+
+}
+
+
+/* 悬浮标注：无框线，仅引导线与文字 */
+.hardware-page .hw-hud line{
+
+stroke:rgba(140,234,255,.20);
+
+stroke-width:1;
+
+}
+
+
+.hardware-page .hw-hud circle{
+
+fill:rgba(160,225,245,.45);
+
+}
+
+
+.hardware-page .hw-hud text{
+
+fill:rgba(190,235,255,.55);
+
+font-size:8px;
+
+letter-spacing:2.5px;
+
+}
+
+
+/* 材质与灯光细节 */
+.hardware-page .hw-trace{
+
+fill:none;
+
+stroke:rgba(120,210,235,.40);
+
+stroke-width:1;
+
+}
+
+
+.hardware-page .hw-live{
+
+font-size:8px;
+
+letter-spacing:1px;
+
+fill:rgba(140,234,255,.5);
+
+}
+
+
+.hardware-page .hw-tag{
+
+font-size:7px;
+
+letter-spacing:3px;
+
+fill:rgba(130,170,190,.5);
+
+}
+
+
+.hardware-page .hw-device-id{
+
+font-size:15px;
+
+font-weight:600;
+
+letter-spacing:7px;
+
+fill:rgba(240,252,255,.85);
+
+}
+
+
+.hardware-page .hw-engrave{
+
+font-size:7px;
+
+letter-spacing:3px;
+
+fill:rgba(160,220,240,.3);
+
+}
+
+
+/* 动画：仅保留 4 类高级动态，全部低频 */
+.hardware-page .hw-module-glow{
+
+fill:none;
+
+stroke:rgba(120,220,245,.35);
+
+stroke-width:1;
+
+opacity:.15;
+
+animation:hwBreath 6s ease-in-out infinite;
+
+}
+
+
+.hardware-page .hw-scan{
+
+stroke:rgba(160,235,250,.5);
+
+stroke-width:1;
+
+}
+
+
+.hardware-page .hw-led{
+
+fill:#00e5a8;
+
+animation:dashBreathe 4.5s ease-in-out infinite;
+
+}
+
+
+/* 背景层：冰山 / 冰尘 / 反射 */
+.hardware-page .hw-silhouette,
+
+.hardware-page .hw-reflect,
+
+.hardware-page .hw-dust{
+
+pointer-events:none;
+
+}
+
+
+.hardware-page .hw-dust circle{
+
+fill:rgba(210,240,255,.35);
+
+}
+
+
+/* 底部状态线：透明，仅顶部发丝线 */
+.hardware-page .hw-strip{
+
+background:transparent;
+
+border:0;
+
+border-top:1px solid rgba(98,217,255,.12);
+
+border-radius:0;
+
+padding:4px 6px;
+
+}
+
+
+.hardware-page .hw-chain{
+
+font-size:8px;
+
+letter-spacing:2px;
+
+color:rgba(110,150,170,.55);
+
+}
+
+
+.hardware-page .hc-node.on{
+
+color:rgba(160,225,245,.7);
+
+}
+
+
+.hardware-page .hc-arrow{
+
+color:rgba(80,120,140,.4);
+
+}
+
+
+.hardware-page .hw-chip{
+
+background:transparent;
+
+border:1px solid rgba(98,217,255,.12);
+
+color:rgba(110,150,170,.6);
+
+font-size:7px;
+
+padding:2px 7px;
+
+}
+
+
+.hardware-page .hw-chip b{
+
+color:rgba(225,245,255,.85);
+
+}
+
+
+.hardware-page .hw-legend{
+
+font-size:8px;
+
+letter-spacing:2px;
+
+color:rgba(110,150,170,.55);
+
+padding:3px 0;
+
+}
+
+
+.hardware-page .lg-line{
+
+height:2px;
+
+width:26px;
+
+}
+
+
+/* =========================================================
    十三、状态系统视觉（MODE 标签 / 任务状态条 / 空态文案）
    仅展示层样式，不影响数据链路与地图逻辑
 ========================================================= */
