@@ -17,7 +17,11 @@ let gpsData = {
 
 lat:null,
 
-lng:null
+lng:null,
+
+sat:null,
+
+status:null
 
 };
 
