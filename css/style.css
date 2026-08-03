@@ -3326,9 +3326,9 @@ width:8px;
 
 height:8px;
 
-background:#3fe0a0;
+background:#00e5a8;
 
-box-shadow:0 0 8px rgba(63,224,160,.55);
+box-shadow:0 0 8px rgba(0,229,168,.5);
 
 animation:dashBreathe 2.6s ease-in-out infinite;
 
@@ -3436,9 +3436,9 @@ height:7px;
 
 border-radius:50%;
 
-background:#3fe0a0;
+background:#00e5a8;
 
-box-shadow:0 0 6px rgba(63,224,160,.5);
+box-shadow:0 0 6px rgba(0,229,168,.45);
 
 animation:dashBreathe 2.6s ease-in-out infinite;
 
@@ -3640,7 +3640,7 @@ color:#9fc3d6;
 }
 
 
-/* 状态指示灯：默认青色呼吸灯，NO DATA 时转红 */
+/* 状态指示灯：默认绿色呼吸灯 */
 body.dashboard-page .sensor-led{
 
 margin-left:auto;
@@ -3651,9 +3651,9 @@ height:6px;
 
 border-radius:50%;
 
-background:#3fe0a0;
+background:#00e5a8;
 
-box-shadow:0 0 6px rgba(63,224,160,.5);
+box-shadow:0 0 6px rgba(0,229,168,.45);
 
 animation:dashBreathe 2.6s ease-in-out infinite;
 
@@ -3662,13 +3662,36 @@ flex:none;
 }
 
 
-body.dashboard-page .sensor-card.no-data .sensor-led{
+/* 状态灯：有效=绿 / 等待=黄 / 无信号=红（仅 opacity 呼吸，无高频闪烁） */
+body.dashboard-page .sensor-card.st-off .sensor-led{
 
-background:#ff5f5f;
+background:#ff5263;
 
-box-shadow:0 0 6px rgba(255,95,95,.5);
+box-shadow:0 0 6px rgba(255,82,99,.45);
 
-animation:none;
+animation:dashBreathe 4s ease-in-out infinite;
+
+}
+
+
+body.dashboard-page .sensor-card.st-wait .sensor-led{
+
+background:#f5b942;
+
+box-shadow:0 0 6px rgba(245,185,66,.4);
+
+animation:dashBreathe 3.2s ease-in-out infinite;
+
+}
+
+
+body.dashboard-page .sensor-card.st-ok .sensor-led{
+
+background:#00e5a8;
+
+box-shadow:0 0 6px rgba(0,229,168,.45);
+
+animation:dashBreathe 2.8s ease-in-out infinite;
 
 }
 
@@ -3752,14 +3775,21 @@ font-variant-numeric:tabular-nums;
 
 body.dashboard-page .sensor-state{
 
-color:#3fe0a0;
+color:#00e5a8;
 
 }
 
 
-body.dashboard-page .sensor-card.no-data .sensor-state{
+body.dashboard-page .sensor-card.st-off .sensor-state{
 
-color:#ff7a7a;
+color:#ff8b97;
+
+}
+
+
+body.dashboard-page .sensor-card.st-wait .sensor-state{
+
+color:#f5b942;
 
 }
 
@@ -4489,9 +4519,9 @@ height:5px;
 
 border-radius:50%;
 
-background:#3fe0a0;
+background:#00e5a8;
 
-box-shadow:0 0 6px rgba(63,224,160,.5);
+box-shadow:0 0 6px rgba(0,229,168,.45);
 
 animation:dashBreathe 3s ease-in-out infinite;
 
@@ -4850,5 +4880,203 @@ animation:none!important;
 transition:none!important;
 
 }
+
+}
+
+
+/* =========================================================
+   十三、状态系统视觉（MODE 标签 / 任务状态条 / 空态文案）
+   仅展示层样式，不影响数据链路与地图逻辑
+========================================================= */
+
+
+/* main.js 写入的原始 MODE 值（N/S/E）隐藏，由辅助层渲染状态标签 */
+body.dashboard-page .mode-raw{
+
+display:none;
+
+}
+
+
+body.dashboard-page .mode-text{
+
+letter-spacing:1.5px;
+
+}
+
+
+/* MODE 状态灯颜色：N=绿 / S=黄 / E=红（呼吸仅动画 opacity） */
+body.dashboard-page #modeCell.mode-normal .cmd-led{
+
+background:#00e5a8;
+
+box-shadow:0 0 8px rgba(0,229,168,.45);
+
+}
+
+
+body.dashboard-page #modeCell.mode-standby .cmd-led{
+
+background:#f5b942;
+
+box-shadow:0 0 8px rgba(245,185,66,.4);
+
+}
+
+
+body.dashboard-page #modeCell.mode-emergency .cmd-led{
+
+background:#ff5263;
+
+box-shadow:0 0 8px rgba(255,82,99,.45);
+
+}
+
+
+body.dashboard-page #modeCell.mode-wait .cmd-led{
+
+background:#f5b942;
+
+box-shadow:0 0 6px rgba(245,185,66,.35);
+
+}
+
+
+body.dashboard-page #modeCell.mode-off .cmd-led{
+
+background:#ff5263;
+
+box-shadow:0 0 6px rgba(255,82,99,.4);
+
+}
+
+
+/* 地图上方任务状态条：右侧微型状态灯（左侧状态线沿用 .map-cell） */
+body.dashboard-page .map-cell{
+
+position:relative;
+
+}
+
+
+body.dashboard-page .map-cell-led{
+
+position:absolute;
+
+top:10px;
+
+right:10px;
+
+width:5px;
+
+height:5px;
+
+border-radius:50%;
+
+background:#00e5a8;
+
+box-shadow:0 0 5px rgba(0,229,168,.4);
+
+animation:dashBreathe 3s ease-in-out infinite;
+
+}
+
+
+body.dashboard-page #mapModeCell.mode-normal .map-cell-led{
+
+background:#00e5a8;
+
+box-shadow:0 0 5px rgba(0,229,168,.4);
+
+}
+
+
+body.dashboard-page #mapModeCell.mode-standby .map-cell-led{
+
+background:#f5b942;
+
+box-shadow:0 0 5px rgba(245,185,66,.4);
+
+}
+
+
+body.dashboard-page #mapModeCell.mode-emergency .map-cell-led{
+
+background:#ff5263;
+
+box-shadow:0 0 5px rgba(255,82,99,.45);
+
+}
+
+
+body.dashboard-page #mapModeCell.mode-wait .map-cell-led{
+
+background:#f5b942;
+
+box-shadow:0 0 5px rgba(245,185,66,.35);
+
+}
+
+
+body.dashboard-page #mapModeCell.mode-off .map-cell-led{
+
+background:#ff5263;
+
+box-shadow:0 0 5px rgba(255,82,99,.4);
+
+}
+
+
+/* 空态文案：科研设备风格（NO SIGNAL / WAITING DATA / NO TELEMETRY / NO FIX） */
+body.dashboard-page .sensor-card.st-off .sensor-value strong,
+
+body.dashboard-page .sensor-card.st-wait .sensor-value strong{
+
+font-size:22px;
+
+letter-spacing:1.5px;
+
+}
+
+
+body.dashboard-page .sensor-card.st-off .sensor-value strong{
+
+color:#ff9aa4;
+
+}
+
+
+body.dashboard-page .sensor-card.st-wait .sensor-value strong{
+
+color:#ffd68a;
+
+}
+
+
+body.dashboard-page .sensor-meta b.st-off{
+
+color:#ff9aa4;
+
+}
+
+
+body.dashboard-page .sensor-meta b.st-wait{
+
+color:#ffd68a;
+
+}
+
+
+/* 地图浮层坐标空态（NO FIX） */
+body.dashboard-page .map-overlay span.st-off{
+
+color:#ff9aa4;
+
+}
+
+
+body.dashboard-page .map-overlay span.st-wait{
+
+color:#ffd68a;
 
 }
