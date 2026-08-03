@@ -6754,6 +6754,199 @@ display:none;
 
 
 /* =========================================================
+   HARDWARE V6 · DIGITAL TWIN CONTROL VIEW
+   数字孪生控制系统：设备 70%+ 视觉权重，UI 降为辅助 HUD
+========================================================= */
+
+body.hardware-page main{
+
+padding:6px 12px;
+
+gap:6px;
+
+}
+
+
+/* 中央列更大，两侧 HUD 更窄 */
+.hardware-page .hw-single{
+
+grid-template-columns:150px minmax(0,1fr) 150px;
+
+gap:14px;
+
+}
+
+
+.hardware-page .hw-status{
+
+padding:2px 2px;
+
+gap:5px;
+
+}
+
+
+.hardware-page .hw-status h3{
+
+font-size:8px;
+
+letter-spacing:3px;
+
+margin:4px 0 1px;
+
+padding-bottom:3px;
+
+}
+
+
+.hardware-page .hud-card{
+
+padding:3px 6px;
+
+gap:6px;
+
+}
+
+
+.hardware-page .hc-name{
+
+font-size:7px;
+
+letter-spacing:1.8px;
+
+}
+
+
+.hardware-page .hc-val{
+
+font-size:14px;
+
+}
+
+
+.hardware-page .hud-card.st-off .hc-val{
+
+font-size:11px;
+
+}
+
+
+/* 底部状态线进一步压缩 */
+.hardware-page .hw-strip{
+
+padding:3px 8px;
+
+}
+
+
+/* 三棱柱金属框架螺栓 */
+.hardware-page .hw-bolt{
+
+fill:#9cc8da;
+
+stroke:#16364d;
+
+stroke-width:.8;
+
+}
+
+
+/* 舱内线束（软连接） */
+.hardware-page .hw-harness{
+
+fill:none;
+
+stroke:rgba(140,210,235,.30);
+
+stroke-width:1;
+
+stroke-dasharray:2 3;
+
+}
+
+
+/* 半透明扫描环 */
+.hardware-page .hw-scanring{
+
+pointer-events:none;
+
+}
+
+
+/* 工程测量刻度 */
+.hardware-page .hw-tick line{
+
+stroke:rgba(160,225,245,.28);
+
+stroke-width:1;
+
+}
+
+
+.hardware-page .hw-tick text{
+
+fill:rgba(160,220,240,.42);
+
+font-size:8px;
+
+letter-spacing:1px;
+
+}
+
+
+/* 实时状态投影：流向微标签 */
+.hardware-page .hw-flowtag line{
+
+stroke:rgba(140,234,255,.22);
+
+stroke-width:1;
+
+}
+
+
+.hardware-page .hw-flowtag text{
+
+fill:rgba(140,234,255,.38);
+
+font-size:6.5px;
+
+letter-spacing:1.5px;
+
+}
+
+
+/* 舞台四角十字准星 */
+.hardware-page .hw-cross path{
+
+stroke:rgba(160,225,245,.32);
+
+stroke-width:1;
+
+fill:none;
+
+}
+
+
+/* HUD 标题（控制台式小字，非海报大字） */
+.hardware-page .hw-hud .hw-device-id{
+
+fill:rgba(225,245,255,.78);
+
+font-size:12px;
+
+letter-spacing:3px;
+
+}
+
+
+.hardware-page .hw-hud .hw-tag{
+
+fill:rgba(130,170,190,.45);
+
+}
+
+
+/* =========================================================
    HARDWARE V5 · ANTARCTIC FIELD NODE
    真实极地节点形象：顶部 GPS/LoRa 天线、三棱柱太阳能、
    透明核心舱、防腐蚀支撑杆、雪地固定结构
