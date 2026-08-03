@@ -30,22 +30,22 @@
     </nav>
   </aside>
 
-  <!-- 单屏布局：Header + 左状态面板 + 中央设备 + 右子系统 + 底部数据条（100vh 内） -->
+  <!-- 单屏投影布局：标题 + 中央大型三维设备 + 左右状态 + 底部系统状态栏（100vh 锁定） -->
   <main>
 
     <header class="mission-header">
       <div>
         <h2>HARDWARE DIGITAL TWIN</h2>
-        <p>ANT-A01 AUTONOMOUS POLAR MONITORING NODE</p>
+        <p>ANT-A01 · AUTONOMOUS POLAR MONITORING NODE</p>
       </div>
       <div class="system-online"><span></span>ONLINE</div>
     </header>
 
     <section class="hw-single">
 
-      <!-- 左侧：SYSTEM STATUS（main.js 写入的 4 个实时 ID 保留） -->
+      <!-- 左侧：实时遥测 + 设备身份 -->
       <aside class="hw-status hud-frame">
-        <h3>SYSTEM STATUS</h3>
+        <h3>LIVE TELEMETRY</h3>
 
         <div class="hud-card">
           <i class="hc-dot"></i>
@@ -79,146 +79,275 @@
           </div>
         </div>
 
-        <div class="hud-card">
-          <i class="hc-dot"></i>
-          <div class="hc-body">
-            <span class="hc-name">COMMS · DATA LINK</span>
-            <span class="hc-val">UPLINK</span>
-          </div>
-        </div>
-
         <h3>IDENTITY</h3>
         <div class="tech-line">MODEL <span>ANT-A01</span></div>
         <div class="tech-line">STATUS <span class="green">ACTIVE</span></div>
       </aside>
 
-      <!-- 中央：等距三维设备（纯 SVG + CSS 动画，无 Three.js） -->
+      <!-- 中央：大型等距三维设备投影（SVG + CSS + SMIL，无 Three.js / WebGL） -->
       <div class="hw-device hud-frame">
-        <span class="hw-device-tag">ANT-A01 · AUTONOMOUS POLAR NODE</span>
-
-        <svg class="hw-svg" viewBox="0 0 480 520" aria-label="ANT-A01 hardware digital twin">
+        <svg class="hw-svg" viewBox="0 0 620 640" aria-label="ANT-A01 digital twin projection">
           <defs>
-            <linearGradient id="hwMetal" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stop-color="#dff8ff"/>
-              <stop offset="35%" stop-color="#527080"/>
-              <stop offset="100%" stop-color="#102532"/>
+            <!-- 材质：金属 / 玻璃 / 晶硅 / 冰层 -->
+            <linearGradient id="v3Metal" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#e2f9ff"/>
+              <stop offset="38%" stop-color="#5b7d90"/>
+              <stop offset="100%" stop-color="#0e2230"/>
             </linearGradient>
-            <linearGradient id="hwGlass" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stop-color="#62d9ff" stop-opacity=".28"/>
-              <stop offset="100%" stop-color="#062033" stop-opacity=".82"/>
+            <linearGradient id="v3GlassTop" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#8ceaff" stop-opacity=".32"/>
+              <stop offset="100%" stop-color="#0a2a44" stop-opacity=".72"/>
             </linearGradient>
-            <linearGradient id="hwIce" x1="0" y1="0" x2="0" y2="1">
+            <linearGradient id="v3GlassSide" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#62d9ff" stop-opacity=".18"/>
+              <stop offset="100%" stop-color="#062033" stop-opacity=".78"/>
+            </linearGradient>
+            <linearGradient id="v3Silicon" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#123a52"/>
+              <stop offset="100%" stop-color="#081c2c"/>
+            </linearGradient>
+            <linearGradient id="v3Ice" x1="0" y1="0" x2="0" y2="1">
               <stop offset="0%" stop-color="#0e3a52"/>
-              <stop offset="100%" stop-color="#062033"/>
+              <stop offset="100%" stop-color="#051a2b"/>
             </linearGradient>
-            <linearGradient id="hwSolar" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#16445f"/>
-              <stop offset="100%" stop-color="#0b2536"/>
-            </linearGradient>
+            <radialGradient id="v3Glow" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#62d9ff" stop-opacity=".16"/>
+              <stop offset="60%" stop-color="#62d9ff" stop-opacity=".05"/>
+              <stop offset="100%" stop-color="#62d9ff" stop-opacity="0"/>
+            </radialGradient>
+            <radialGradient id="v3Chip" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#8ceaff" stop-opacity=".28"/>
+              <stop offset="100%" stop-color="#8ceaff" stop-opacity="0"/>
+            </radialGradient>
+            <clipPath id="v3IceClip">
+              <rect x="0" y="520" width="620" height="120"/>
+            </clipPath>
+
+            <!-- 设备主体（正常 + 冰面反射共用） -->
+            <g id="v3Device">
+              <!-- 冷色环境光 -->
+              <ellipse cx="310" cy="330" rx="265" ry="205" fill="url(#v3Glow)"/>
+
+              <!-- ===== SOLAR ARRAY（深色晶硅纹理） ===== -->
+              <polygon points="160,96 460,96 420,28 200,28" fill="url(#v3Silicon)" stroke="#62d9ff" stroke-width="2"/>
+              <polygon points="160,108 460,108 420,40 200,40" fill="#081c2c" stroke="rgba(98,217,255,.3)"/>
+              <line x1="205" y1="33" x2="205" y2="91" class="hw-grid"/>
+              <line x1="235" y1="33" x2="235" y2="91" class="hw-grid"/>
+              <line x1="265" y1="33" x2="265" y2="91" class="hw-grid"/>
+              <line x1="295" y1="33" x2="295" y2="91" class="hw-grid"/>
+              <line x1="325" y1="33" x2="325" y2="91" class="hw-grid"/>
+              <line x1="355" y1="33" x2="355" y2="91" class="hw-grid"/>
+              <line x1="385" y1="33" x2="385" y2="91" class="hw-grid"/>
+              <line x1="415" y1="33" x2="415" y2="91" class="hw-grid"/>
+              <line x1="165" y1="48" x2="455" y2="48" class="hw-grid"/>
+              <line x1="163" y1="63" x2="457" y2="63" class="hw-grid"/>
+              <line x1="161" y1="78" x2="459" y2="78" class="hw-grid"/>
+              <line x1="160" y1="93" x2="460" y2="93" class="hw-edge"/>
+
+              <!-- 支撑桅杆 -->
+              <line x1="298" y1="108" x2="298" y2="178" stroke="url(#v3Metal)" stroke-width="5"/>
+              <line x1="322" y1="108" x2="322" y2="178" stroke="url(#v3Metal)" stroke-width="5"/>
+              <line x1="298" y1="130" x2="322" y2="130" stroke="rgba(140,234,255,.35)"/>
+              <line x1="298" y1="152" x2="322" y2="152" stroke="rgba(140,234,255,.35)"/>
+
+              <!-- 能量粒子流入（SMIL 低频运动） -->
+              <circle class="hw-pulse" r="2.5" fill="#bfefff">
+                <animateMotion dur="2.8s" repeatCount="indefinite" path="M 310 110 L 310 176"/>
+              </circle>
+              <circle class="hw-pulse" r="2" fill="#8ceaff">
+                <animateMotion dur="3.6s" repeatCount="indefinite" begin="1.6s" path="M 310 110 L 310 176"/>
+              </circle>
+
+              <!-- 太阳能实时值 -->
+              <text x="310" y="124" text-anchor="middle" class="hw-live"><tspan id="svgSolar">--</tspan> W/m²</text>
+
+              <!-- ===== PROTECTIVE CABIN（等距玻璃舱） ===== -->
+              <polygon points="310,215 405,267 310,320 215,267" fill="url(#v3GlassTop)" stroke="rgba(220,250,255,.55)" stroke-width="1.2"/>
+              <polygon points="215,267 310,320 310,425 215,372" fill="url(#v3GlassSide)" stroke="rgba(98,217,255,.4)"/>
+              <polygon points="310,320 405,267 405,372 310,425" fill="url(#v3GlassSide)" stroke="rgba(98,217,255,.4)"/>
+              <!-- 边缘高光 -->
+              <line x1="310" y1="215" x2="405" y2="267" class="hw-edge"/>
+              <line x1="215" y1="267" x2="310" y2="320" class="hw-edge"/>
+              <line x1="310" y1="215" x2="215" y2="267" class="hw-edge"/>
+
+              <!-- 内部发光电路芯片：POWER CORE -->
+              <circle cx="310" cy="252" r="34" fill="url(#v3Chip)"/>
+              <g class="hw-module">
+                <polygon points="310,236 336,250 310,264 284,250" fill="#123a52" stroke="#62d9ff" stroke-width="1"/>
+                <polygon points="284,250 310,264 310,280 284,266" fill="#0d2b40" stroke="rgba(98,217,255,.5)"/>
+                <polygon points="310,264 336,250 336,266 310,280" fill="#0d2b40" stroke="rgba(98,217,255,.5)"/>
+                <rect class="hw-module-glow" x="280" y="232" width="60" height="52" rx="6"/>
+              </g>
+
+              <!-- 内部发光电路芯片：MCU CONTROL -->
+              <circle cx="310" cy="302" r="30" fill="url(#v3Chip)"/>
+              <g class="hw-module">
+                <polygon points="310,286 336,300 310,314 284,300" fill="#123a52" stroke="#62d9ff" stroke-width="1"/>
+                <polygon points="284,300 310,314 310,330 284,316" fill="#0d2b40" stroke="rgba(98,217,255,.5)"/>
+                <polygon points="310,314 336,300 336,316 310,330" fill="#0d2b40" stroke="rgba(98,217,255,.5)"/>
+                <rect class="hw-module-glow" x="280" y="282" width="60" height="52" rx="6"/>
+              </g>
+
+              <!-- 内部发光电路芯片：BATTERY PACK（电量循环） -->
+              <circle cx="250" cy="342" r="30" fill="url(#v3Chip)"/>
+              <g class="hw-module">
+                <polygon points="250,326 276,340 250,354 224,340" fill="#123a52" stroke="#62d9ff" stroke-width="1"/>
+                <polygon points="224,340 250,354 250,370 224,356" fill="#0d2b40" stroke="rgba(98,217,255,.5)"/>
+                <polygon points="250,354 276,340 276,356 250,370" fill="#0d2b40" stroke="rgba(98,217,255,.5)"/>
+                <rect class="hw-battery-bar" x="234" y="358" width="5" height="10" rx="1"/>
+                <rect class="hw-battery-bar hw-battery-bar-2" x="242" y="358" width="5" height="10" rx="1"/>
+                <rect class="hw-battery-bar hw-battery-bar-3" x="250" y="358" width="5" height="10" rx="1"/>
+                <rect class="hw-module-glow" x="220" y="322" width="60" height="52" rx="6"/>
+              </g>
+              <text x="250" y="384" text-anchor="middle" class="hw-live"><tspan id="svgVoltage">--</tspan> V</text>
+
+              <!-- 内部发光电路芯片：SENSOR HUB（采样扫描） -->
+              <circle cx="370" cy="342" r="30" fill="url(#v3Chip)"/>
+              <g class="hw-module">
+                <polygon points="370,326 396,340 370,354 344,340" fill="#123a52" stroke="#62d9ff" stroke-width="1"/>
+                <polygon points="344,340 370,354 370,370 344,356" fill="#0d2b40" stroke="rgba(98,217,255,.5)"/>
+                <polygon points="370,354 396,340 396,356 370,370" fill="#0d2b40" stroke="rgba(98,217,255,.5)"/>
+                <line class="hw-scan" x1="348" y1="348" x2="392" y2="348">
+                  <animate attributeName="x1" values="348;392;348" dur="5s" repeatCount="indefinite"/>
+                  <animate attributeName="x2" values="392;348;392" dur="5s" repeatCount="indefinite"/>
+                </line>
+                <circle class="hw-sensor-pulse" cx="370" cy="360" r="3"/>
+                <rect class="hw-module-glow" x="340" y="322" width="60" height="52" rx="6"/>
+              </g>
+              <text x="370" y="384" text-anchor="middle" class="hw-live"><tspan id="svgTemp">--</tspan> °C</text>
+
+              <!-- 内部能量 / 数据流 -->
+              <line class="hw-flow hw-flow-power" x1="292" y1="280" x2="258" y2="328"/>
+              <line class="hw-flow hw-flow-data" x1="328" y1="280" x2="362" y2="328"/>
+              <line class="hw-flow hw-flow-data" x1="310" y1="330" x2="310" y2="428"/>
+              <circle class="hw-pulse" cx="275" cy="304" r="2.5"/>
+              <circle class="hw-pulse" cx="345" cy="304" r="2.5"/>
+
+              <!-- 底部：GPS / COMMUNICATION MODULE -->
+              <g class="hw-module">
+                <polygon points="310,435 365,465 310,495 255,465" fill="#123a52" stroke="#62d9ff" stroke-width="1.2"/>
+                <polygon points="255,465 310,495 310,515 255,485" fill="#0d2b40" stroke="rgba(98,217,255,.5)"/>
+                <polygon points="310,495 365,465 365,485 310,515" fill="#0d2b40" stroke="rgba(98,217,255,.5)"/>
+                <rect class="hw-module-glow" x="250" y="430" width="120" height="70" rx="6"/>
+              </g>
+              <text x="310" y="524" text-anchor="middle" class="hw-live"><tspan id="svgGps">--</tspan> FIX</text>
+              <rect x="306" y="424" width="8" height="12" fill="url(#v3Metal)"/>
+
+              <!-- 通信天线 + 数据上传波纹 -->
+              <line x1="372" y1="478" x2="502" y2="188" stroke="#62d9ff" stroke-width="2"/>
+              <circle class="hw-ripple" cx="506" cy="180" r="4" fill="none" stroke="#62d9ff" stroke-width="1.5"/>
+              <circle class="hw-ripple hw-ripple-2" cx="506" cy="180" r="4" fill="none" stroke="#62d9ff" stroke-width="1.5"/>
+              <text x="512" y="172" class="hw-tag">UPLINK</text>
+
+              <!-- 冰雪固定结构（小面积） -->
+              <polygon points="190,510 430,510 480,540 240,540" fill="url(#v3Ice)" stroke="#62d9ff" stroke-width="1.5"/>
+              <polygon points="190,510 240,540 240,570 190,540" fill="#0a2a40" stroke="rgba(98,217,255,.35)"/>
+              <polygon points="430,510 480,540 480,570 430,540" fill="#0a2a40" stroke="rgba(98,217,255,.35)"/>
+              <line x1="200" y1="526" x2="420" y2="526" class="hw-grid"/>
+              <text x="310" y="556" text-anchor="middle" class="hw-tag">ICE ANCHOR</text>
+            </g>
           </defs>
 
-          <!-- ============ 顶部：SOLAR ARRAY ============ -->
-          <text x="240" y="16" text-anchor="middle" class="hw-label">SOLAR ARRAY</text>
-          <polygon points="140,78 340,78 310,28 170,28" fill="url(#hwSolar)" stroke="#62d9ff" stroke-width="2"/>
-          <line x1="175" y1="32" x2="175" y2="72" class="hw-grid"/>
-          <line x1="205" y1="32" x2="205" y2="72" class="hw-grid"/>
-          <line x1="235" y1="32" x2="235" y2="72" class="hw-grid"/>
-          <line x1="265" y1="32" x2="265" y2="72" class="hw-grid"/>
-          <line x1="295" y1="32" x2="295" y2="72" class="hw-grid"/>
-          <line x1="142" y1="53" x2="338" y2="53" class="hw-grid"/>
-          <text x="240" y="100" text-anchor="middle" class="hw-live"><tspan id="svgSolar">--</tspan> W/m²</text>
+          <!-- 地面冰面 -->
+          <ellipse class="hw-ground" cx="310" cy="565" rx="270" ry="76"/>
 
-          <!-- ============ 能量流：SOLAR → POWER CORE ============ -->
-          <line class="hw-flow hw-flow-energy" x1="240" y1="104" x2="240" y2="146"/>
-          <circle class="hw-pulse" cx="240" cy="116" r="3"/>
-          <circle class="hw-pulse hw-pulse-2" cx="240" cy="134" r="3"/>
-
-          <!-- ============ 主体：PROTECTIVE ENCLOSURE（玻璃剖视） ============ -->
-          <text x="240" y="146" text-anchor="middle" class="hw-tag">PROTECTIVE ENCLOSURE</text>
-          <rect x="100" y="150" width="280" height="246" rx="12" fill="url(#hwGlass)" stroke="#62d9ff" stroke-width="2.5"/>
-          <rect x="110" y="160" width="260" height="226" rx="8" fill="rgba(3,14,26,.55)" stroke="rgba(140,234,255,.15)"/>
-
-          <!-- 内部模块 1：POWER CORE -->
-          <g class="hw-module">
-            <rect class="hw-module-body" x="122" y="170" width="236" height="46" rx="5"/>
-            <rect class="hw-module-glow" x="122" y="170" width="236" height="46" rx="5"/>
-            <text x="240" y="188" text-anchor="middle" class="hw-module-label">POWER CORE</text>
-            <text x="346" y="186" text-anchor="end" class="hw-code">PWR-01</text>
+          <!-- 冰面反射（镜像设备，低透明度） -->
+          <g class="hw-reflect" clip-path="url(#v3IceClip)">
+            <use href="#v3Device" transform="translate(0,1040) scale(1,-1)" opacity=".09"/>
           </g>
 
-          <!-- 内部模块 2：MCU CONTROL -->
-          <g class="hw-module">
-            <rect class="hw-module-body" x="122" y="226" width="236" height="46" rx="5"/>
-            <rect class="hw-module-glow" x="122" y="226" width="236" height="46" rx="5"/>
-            <text x="240" y="244" text-anchor="middle" class="hw-module-label">MCU CONTROL</text>
-            <text x="346" y="242" text-anchor="end" class="hw-code">MCU-02</text>
+          <!-- 环形扫描光圈（地面，缓慢旋转） -->
+          <g>
+            <ellipse class="hw-ring" cx="310" cy="565" rx="300" ry="82">
+              <animateTransform attributeName="transform" type="rotate" from="0 310 565" to="360 310 565" dur="26s" repeatCount="indefinite"/>
+            </ellipse>
+            <ellipse class="hw-ring hw-ring-2" cx="310" cy="565" rx="248" ry="70"/>
           </g>
 
-          <!-- 内部模块 3：BATTERY PACK（电量条动画） -->
-          <g class="hw-module">
-            <rect class="hw-module-body" x="122" y="282" width="112" height="58" rx="5"/>
-            <rect class="hw-module-glow" x="122" y="282" width="112" height="58" rx="5"/>
-            <text x="178" y="300" text-anchor="middle" class="hw-module-label2">BATTERY PACK</text>
-            <text x="178" y="316" text-anchor="middle" class="hw-live"><tspan id="svgVoltage">--</tspan> V</text>
-            <text x="222" y="298" text-anchor="end" class="hw-code">BAT-03</text>
-            <rect class="hw-battery-bar" x="128" y="320" width="7" height="14" rx="2"/>
-            <rect class="hw-battery-bar hw-battery-bar-2" x="138" y="320" width="7" height="14" rx="2"/>
-            <rect class="hw-battery-bar hw-battery-bar-3" x="148" y="320" width="7" height="14" rx="2"/>
+          <!-- 设备主体 -->
+          <use href="#v3Device"/>
+
+          <!-- 设备编号铭牌 -->
+          <text x="310" y="18" text-anchor="middle" class="hw-device-id">ANT-A01</text>
+          <text x="310" y="32" text-anchor="middle" class="hw-tag">POLAR AUTONOMOUS NODE</text>
+
+          <!-- 悬浮 HUD 标注（最多 6 个标签） -->
+          <g class="hw-hud">
+            <line x1="148" y1="86" x2="192" y2="92"/>
+            <rect x="74" y="68" width="74" height="17" rx="3"/>
+            <text x="111" y="80" text-anchor="middle">SOLAR ARRAY</text>
           </g>
-
-          <!-- 内部模块 4：SENSOR HUB（采样脉冲） -->
-          <g class="hw-module">
-            <rect class="hw-module-body" x="246" y="282" width="112" height="58" rx="5"/>
-            <rect class="hw-module-glow" x="246" y="282" width="112" height="58" rx="5"/>
-            <text x="302" y="300" text-anchor="middle" class="hw-module-label2">SENSOR HUB</text>
-            <text x="302" y="316" text-anchor="middle" class="hw-live"><tspan id="svgTemp">--</tspan> °C</text>
-            <text x="346" y="298" text-anchor="end" class="hw-code">SEN-04</text>
-            <circle class="hw-sensor-pulse" cx="268" cy="324" r="3.5"/>
+          <g class="hw-hud">
+            <line x1="96" y1="252" x2="272" y2="252"/>
+            <rect x="16" y="243" width="80" height="17" rx="3"/>
+            <text x="56" y="255" text-anchor="middle">POWER CORE</text>
           </g>
-
-          <!-- 内部能量/数据流 -->
-          <line class="hw-flow hw-flow-energy" x1="240" y1="152" x2="240" y2="168"/>
-          <line class="hw-flow hw-flow-power" x1="170" y1="216" x2="170" y2="280"/>
-          <line class="hw-flow hw-flow-data" x1="240" y1="216" x2="240" y2="224"/>
-          <line class="hw-flow hw-flow-data" x1="220" y1="282" x2="220" y2="272"/>
-          <line class="hw-flow hw-flow-data" x1="300" y1="272" x2="304" y2="282"/>
-          <line class="hw-flow hw-flow-data" x1="330" y1="340" x2="330" y2="408"/>
-          <circle class="hw-pulse" cx="330" cy="360" r="2.5"/>
-
-          <!-- ============ 底部：GPS / COMMUNICATION MODULE ============ -->
-          <g class="hw-module">
-            <rect class="hw-module-body" x="122" y="410" width="236" height="34" rx="5"/>
-            <rect class="hw-module-glow" x="122" y="410" width="236" height="34" rx="5"/>
-            <text x="180" y="431" text-anchor="middle" class="hw-module-label2">GPS / COMMS</text>
-            <text x="310" y="432" text-anchor="middle" class="hw-live"><tspan id="svgGps">--</tspan> FIX</text>
-            <text x="346" y="428" text-anchor="end" class="hw-code">COM-06</text>
+          <g class="hw-hud">
+            <line x1="524" y1="300" x2="350" y2="300"/>
+            <rect x="506" y="291" width="78" height="17" rx="3"/>
+            <text x="545" y="303" text-anchor="middle">MCU CONTROL</text>
           </g>
-
-          <!-- 通信上行：天线 + 波纹 -->
-          <line x1="352" y1="430" x2="430" y2="180" stroke="#62d9ff" stroke-width="2"/>
-          <circle class="hw-ripple" cx="434" cy="172" r="4" fill="none" stroke="#62d9ff" stroke-width="1.5"/>
-          <circle class="hw-ripple hw-ripple-2" cx="434" cy="172" r="4" fill="none" stroke="#62d9ff" stroke-width="1.5"/>
-          <text x="440" y="164" class="hw-tag">UPLINK</text>
-
-          <!-- ============ 底部：短连接 + 冰层基础（小面积） ============ -->
-          <rect x="230" y="444" width="20" height="26" fill="url(#hwMetal)" stroke="rgba(140,234,255,.25)"/>
-          <polygon points="190,470 290,470 278,505 202,505" fill="url(#hwIce)" stroke="#62d9ff" stroke-width="1.5"/>
-          <text x="240" y="489" text-anchor="middle" class="hw-tag">ICE ANCHOR</text>
+          <g class="hw-hud">
+            <line x1="96" y1="352" x2="218" y2="352"/>
+            <rect x="16" y="343" width="80" height="17" rx="3"/>
+            <text x="56" y="355" text-anchor="middle">BATTERY PACK</text>
+          </g>
+          <g class="hw-hud">
+            <line x1="524" y1="352" x2="402" y2="352"/>
+            <rect x="508" y="343" width="76" height="17" rx="3"/>
+            <text x="546" y="355" text-anchor="middle">SENSOR HUB</text>
+          </g>
+          <g class="hw-hud">
+            <line x1="134" y1="470" x2="248" y2="470"/>
+            <rect x="42" y="461" width="92" height="17" rx="3"/>
+            <text x="88" y="473" text-anchor="middle">GPS / COMMS</text>
+          </g>
         </svg>
       </div>
 
-      <!-- 右侧：子系统矩阵 + 能量/数据流图例 -->
+      <!-- 右侧：MISSION HARDWARE STATUS -->
       <aside class="hw-status hud-frame">
-        <h3>SUBSYSTEM MATRIX</h3>
+        <h3>MISSION HARDWARE STATUS</h3>
 
-        <ul class="hw-subsys">
-          <li class="on"><i class="hw-dot"></i>SOLAR ARRAY<b>PWR</b></li>
-          <li class="on"><i class="hw-dot"></i>POWER CORE<b>PWR</b></li>
-          <li class="on"><i class="hw-dot"></i>MCU CONTROL<b>MCU</b></li>
-          <li class="on"><i class="hw-dot"></i>BATTERY PACK<b>BAT</b></li>
-          <li class="on"><i class="hw-dot"></i>SENSOR HUB<b>SEN</b></li>
-          <li class="on"><i class="hw-dot"></i>GPS / COMMS<b>COM</b></li>
-        </ul>
+        <div class="hud-card">
+          <i class="hc-dot"></i>
+          <div class="hc-body">
+            <span class="hc-name">POWER</span>
+            <span class="hc-val" id="hwMsnPower">--</span><span class="hc-unit">W/m²</span>
+          </div>
+        </div>
+
+        <div class="hud-card">
+          <i class="hc-dot"></i>
+          <div class="hc-body">
+            <span class="hc-name">BATTERY</span>
+            <span class="hc-val" id="hwMsnBattery">--</span><span class="hc-unit">V</span>
+          </div>
+        </div>
+
+        <div class="hud-card">
+          <i class="hc-dot"></i>
+          <div class="hc-body">
+            <span class="hc-name">SENSOR</span>
+            <span class="hc-val" id="hwMsnSensor">--</span><span class="hc-unit">°C</span>
+          </div>
+        </div>
+
+        <div class="hud-card">
+          <i class="hc-dot"></i>
+          <div class="hc-body">
+            <span class="hc-name">GPS</span>
+            <span class="hc-val" id="hwMsnGps">--</span>
+          </div>
+        </div>
+
+        <div class="hud-card">
+          <i class="hc-dot"></i>
+          <div class="hc-body">
+            <span class="hc-name">COMMUNICATION</span>
+            <span class="hc-val">UPLINK</span>
+          </div>
+        </div>
 
         <h3>ENERGY / DATA FLOW</h3>
         <div class="hw-legend"><span class="lg-line lg-energy"></span>ENERGY FLOW</div>
@@ -227,7 +356,7 @@
       </aside>
     </section>
 
-    <!-- 底部数据状态：子系统链路 + 实时值 -->
+    <!-- 底部系统状态栏：子系统链路 + 实时值 -->
     <footer class="hw-strip hud-frame">
       <div class="hw-chain">
         <span class="hc-node on">SOLAR ARRAY</span><i class="hc-arrow">→</i>
@@ -334,9 +463,9 @@
 <script src="./js/main.js"></script>
 
 <!-- =========================================================
-     单屏孪生辅助层（纯显示逻辑，不影响 main.js）
-     - 把 main.js 写入的 4 个实时值镜像到 SVG 模块与底部状态条
-     - NULL / -- 显示为 NO SIGNAL，卡片进入 st-off 状态
+     孪生辅助层（纯显示逻辑，不影响 main.js）
+     - 把 main.js 写入的 4 个实时值镜像到 SVG、底部条与右侧面板
+     - NULL / -- 显示为 NO SIGNAL，HUD 卡片进入 st-off 状态
 ========================================================= -->
 <script>
 (function () {
@@ -349,8 +478,14 @@
     ['hardwareSolar', 'hwStripSolar'],
     ['hardwareVoltage', 'hwStripVoltage'],
     ['hardwareTemp', 'hwStripTemp'],
-    ['hardwareGPS', 'hwStripGps']
+    ['hardwareGPS', 'hwStripGps'],
+    ['hardwareSolar', 'hwMsnPower'],
+    ['hardwareVoltage', 'hwMsnBattery'],
+    ['hardwareTemp', 'hwMsnSensor'],
+    ['hardwareGPS', 'hwMsnGps']
   ];
+  var SOURCES = ['hardwareSolar', 'hardwareVoltage', 'hardwareTemp', 'hardwareGPS'];
+  var TARGETS = ['hwMsnPower', 'hwMsnBattery', 'hwMsnSensor', 'hwMsnGps'];
 
   function normalize(t) {
     t = (t || '').trim();
@@ -368,7 +503,7 @@
     });
 
     /* HUD 卡片状态：有效=绿，无信号=红 */
-    ['hardwareSolar', 'hardwareVoltage', 'hardwareTemp', 'hardwareGPS'].forEach(function (id) {
+    SOURCES.concat(TARGETS).forEach(function (id) {
       var el = document.getElementById(id);
       if (!el) return;
       var raw = (el.textContent || '').trim();
@@ -393,7 +528,7 @@
   sync();
   if (window.MutationObserver) {
     var ob = new MutationObserver(sync);
-    ['hardwareSolar', 'hardwareVoltage', 'hardwareTemp', 'hardwareGPS'].forEach(function (id) {
+    SOURCES.forEach(function (id) {
       var el = document.getElementById(id);
       if (el) ob.observe(el, { childList: true, subtree: true, characterData: true });
     });

@@ -6407,6 +6407,353 @@ align-items:flex-start;
 
 
 /* =========================================================
+   HARDWARE V3 · DIGITAL TWIN SHOWCASE
+   项目核心展示页：强制单屏 + 等距三维设备投影
+========================================================= */
+
+/* 更强的高度锁定：页面永不出现滚动条 */
+body.hardware-page{
+
+height:100vh;
+
+overflow:hidden;
+
+}
+
+
+body.hardware-page main{
+
+height:100vh;
+
+overflow:hidden;
+
+padding:10px 16px;
+
+gap:8px;
+
+}
+
+
+body.hardware-page .mission-header{
+
+padding:8px 14px;
+
+}
+
+
+body.hardware-page .mission-header h2{
+
+font-size:18px;
+
+}
+
+
+body.hardware-page .mission-header p{
+
+font-size:9px;
+
+}
+
+
+/* 中部网格：左右信息 + 中央设备（设备占绝对主体） */
+.hardware-page .hw-single{
+
+grid-template-columns:205px minmax(0,1fr) 205px;
+
+gap:10px;
+
+}
+
+
+.hardware-page .hw-status{
+
+padding:10px 12px;
+
+gap:7px;
+
+}
+
+
+.hardware-page .hw-status h3{
+
+font-size:9px;
+
+margin:6px 0 1px;
+
+padding-bottom:4px;
+
+}
+
+
+/* HUD 卡片进一步压缩 */
+.hardware-page .hud-card{
+
+padding:6px 9px;
+
+gap:8px;
+
+}
+
+
+.hardware-page .hc-name{
+
+font-size:7px;
+
+}
+
+
+.hardware-page .hc-val{
+
+font-size:15px;
+
+}
+
+
+.hardware-page .hud-card.st-off .hc-val{
+
+font-size:12px;
+
+}
+
+
+/* 中央设备区：设备占满可用空间（60%-70% 视觉面积） */
+.hardware-page .hw-device{
+
+padding:4px;
+
+}
+
+
+/* 等距三维设备：投影光效 / 地面 / 扫描环 / 反射 */
+.hardware-page .hw-ground{
+
+fill:rgba(98,217,255,.045);
+
+stroke:rgba(98,217,255,.18);
+
+stroke-width:1;
+
+}
+
+
+.hardware-page .hw-ring{
+
+fill:none;
+
+stroke:rgba(98,217,255,.28);
+
+stroke-width:1.5;
+
+stroke-dasharray:16 12;
+
+}
+
+
+.hardware-page .hw-ring-2{
+
+stroke:rgba(98,217,255,.14);
+
+stroke-dasharray:4 14;
+
+animation:hwDash 40s linear infinite;
+
+}
+
+
+@keyframes hwDash{
+
+to{
+
+stroke-dashoffset:-720;
+
+}
+
+}
+
+
+.hardware-page .hw-reflect{
+
+pointer-events:none;
+
+}
+
+
+/* 材质细节：边缘高光 */
+.hardware-page .hw-edge{
+
+stroke:rgba(225,250,255,.55);
+
+stroke-width:1.2;
+
+}
+
+
+/* 传感器采样扫描线 */
+.hardware-page .hw-scan{
+
+stroke:#8ceaff;
+
+stroke-width:1;
+
+opacity:.55;
+
+}
+
+
+/* 设备编号铭牌 */
+.hardware-page .hw-device-id{
+
+font-size:15px;
+
+font-weight:700;
+
+letter-spacing:4px;
+
+fill:#f2fbff;
+
+}
+
+
+/* 悬浮 HUD 标注：引导线 + 小标签 */
+.hardware-page .hw-hud line{
+
+stroke:rgba(140,234,255,.35);
+
+stroke-width:1;
+
+stroke-dasharray:3 4;
+
+}
+
+
+.hardware-page .hw-hud rect{
+
+fill:rgba(4,17,29,.82);
+
+stroke:rgba(140,234,255,.3);
+
+stroke-width:1;
+
+}
+
+
+.hardware-page .hw-hud text{
+
+fill:#bfe9ff;
+
+font-size:9px;
+
+letter-spacing:1.5px;
+
+}
+
+
+/* 底部系统状态栏压缩 */
+.hardware-page .hw-strip{
+
+padding:6px 12px;
+
+gap:10px;
+
+}
+
+
+.hardware-page .hw-chain{
+
+font-size:8px;
+
+gap:6px;
+
+}
+
+
+.hardware-page .hw-chip{
+
+font-size:7px;
+
+padding:2px 6px;
+
+}
+
+
+/* 低分辨率档位进一步压缩，保证 1366×768 无滚动 */
+@media (max-width:1280px){
+
+.hardware-page .hw-single{
+
+grid-template-columns:190px minmax(0,1fr) 190px;
+
+}
+
+.hardware-page .hw-svg{
+
+max-height:calc(100vh - 132px);
+
+}
+
+}
+
+
+@media (max-height:740px){
+
+body.hardware-page main{
+
+padding:6px 12px;
+
+gap:6px;
+
+}
+
+body.hardware-page .mission-header{
+
+padding:6px 12px;
+
+}
+
+body.hardware-page .mission-header h2{
+
+font-size:16px;
+
+}
+
+.hardware-page .hw-single{
+
+grid-template-columns:180px minmax(0,1fr) 180px;
+
+gap:8px;
+
+}
+
+.hardware-page .hw-status{
+
+padding:8px 10px;
+
+gap:5px;
+
+}
+
+.hardware-page .hud-card{
+
+padding:4px 8px;
+
+}
+
+.hardware-page .hw-strip{
+
+padding:4px 10px;
+
+}
+
+.hardware-page .hw-chain{
+
+display:none;
+
+}
+
+}
+
+
+/* =========================================================
    十三、状态系统视觉（MODE 标签 / 任务状态条 / 空态文案）
    仅展示层样式，不影响数据链路与地图逻辑
 ========================================================= */
