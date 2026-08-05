@@ -12228,6 +12228,8 @@ flex-direction:column;
 
 gap:2px;
 
+width:78vw;
+
 width:min(78vw,320px);
 
 max-height:none;
@@ -12269,6 +12271,14 @@ body .nav-overlay{
 display:none;
 
 position:fixed;
+
+top:0;
+
+left:0;
+
+right:0;
+
+bottom:0;
 
 inset:0;
 
@@ -12385,6 +12395,40 @@ body .nav-toggle-btn{
 width:42px!important;
 
 height:42px!important;
+
+}
+
+}
+
+
+/* =========================================================
+   V2.3 · EXTREME SHORT VIEWPORT FALLBACK
+   极矮视口（如 150% 缩放的 1366 笔记本 / 小尺寸窗口）：
+   Hardware 与 Analysis 允许纵向滚动，避免内容被压得过紧。
+   1366×768 及以上高度不受影响。
+========================================================= */
+@media (max-height:560px) and (max-width:1200px){
+
+body.hardware-page,
+
+body.analysis-page{
+
+height:auto;
+
+overflow:auto;
+
+}
+
+
+body.hardware-page main,
+
+body.analysis-page main{
+
+height:auto;
+
+min-height:100vh;
+
+overflow:visible;
 
 }
 

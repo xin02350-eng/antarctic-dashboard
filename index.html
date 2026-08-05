@@ -33,7 +33,7 @@
       <a class="nav-item active">Dashboard</a>
       <a class="nav-item" href="./location.html">Location</a>
       <a class="nav-item" href="./sensors.html">Sensors</a>
-      <a class="nav-item" href="./telemetry.html">Telemetry</a>
+      <a class="nav-item" href="./telemetry.html">DATA</a>
       <a class="nav-item" href="./hardware.html">Hardware</a>
       <a class="nav-item" href="./analysis.html">Analysis</a>
     </nav>
@@ -220,8 +220,21 @@
       </div>
     </section>
 
-  </main>
+</main>
 </div>
+
+<!-- 地图：窗口/断点变化后刷新尺寸，避免空白（仅本页，不改 main.js） -->
+<script>
+(function () {
+  var t = null;
+  window.addEventListener('resize', function () {
+    clearTimeout(t);
+    t = setTimeout(function () {
+      try { if (window.deviceMap) window.deviceMap.invalidateSize(); } catch (e) {}
+    }, 150);
+  });
+})();
+</script>
 
 <!-- 全站暴风雪模块（模块化，自动创建背景/前景画布） -->
 <script src="./js/ambient.js"></script>
