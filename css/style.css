@@ -8899,6 +8899,262 @@ grid-template-rows:auto;
 }
 
 
+/* =========================================================
+   V0.6 · FINAL UI POLISH
+   允许自然滚动；用 clamp/vh/minmax 自动适应屏幕高度，
+   任何分辨率下模块不重叠、比例协调
+========================================================= */
+
+/* 放开强制单屏锁：高度不足时自然滚动，而不是裁切/重叠 */
+body.dashboard-page main,
+
+body.sensors-page main,
+
+body.telemetry-page main,
+
+body.location-page main{
+
+height:auto;
+
+min-height:100vh;
+
+overflow:visible;
+
+}
+
+
+/* ---------- Dashboard：流式高度与间距 ---------- */
+body.dashboard-page main{
+
+gap:clamp(8px,1.2vh,16px);
+
+padding:clamp(10px,1.6vh,22px) clamp(14px,1.6vw,26px);
+
+}
+
+
+body.dashboard-page .dashboard-hero{
+
+padding:clamp(10px,1.5vh,18px) clamp(14px,1.6vw,22px);
+
+}
+
+
+body.dashboard-page .dashboard-title{
+
+font-size:clamp(16px,2vw,30px);
+
+}
+
+
+body.dashboard-page .dashboard-command-strip{
+
+gap:clamp(8px,1vh,12px);
+
+}
+
+
+body.dashboard-page .mission-grid{
+
+gap:clamp(8px,1.2vh,14px);
+
+}
+
+
+body.dashboard-page #worldMap{
+
+height:clamp(240px,42vh,600px);
+
+}
+
+
+body.dashboard-page .sensor-card{
+
+min-height:clamp(96px,14vh,150px);
+
+}
+
+
+body.dashboard-page .operation-grid{
+
+margin-top:clamp(6px,1vh,14px);
+
+gap:clamp(8px,1vh,12px);
+
+}
+
+
+body.dashboard-page .stream-panel{
+
+margin-top:clamp(6px,1vh,14px);
+
+}
+
+
+/* 矮屏进一步收紧（笔记本常见内视口） */
+@media (max-height:820px){
+
+body.dashboard-page .dashboard-hero{
+
+padding:9px 14px;
+
+}
+
+body.dashboard-page .dashboard-kicker{
+
+font-size:9px;
+
+margin-bottom:4px;
+
+}
+
+body.dashboard-page .dashboard-title{
+
+font-size:clamp(16px,2.4vw,24px);
+
+}
+
+body.dashboard-page .hero-sub{
+
+font-size:9px;
+
+margin-top:4px;
+
+}
+
+body.dashboard-page .dashboard-command-strip .cmd-cell{
+
+padding:8px 12px;
+
+}
+
+body.dashboard-page .cmd-value{
+
+font-size:17px;
+
+margin-top:3px;
+
+}
+
+body.dashboard-page #worldMap{
+
+height:clamp(220px,36vh,480px);
+
+}
+
+body.dashboard-page .sensor-card{
+
+min-height:clamp(88px,12.5vh,130px);
+
+padding:8px 10px 8px;
+
+}
+
+body.dashboard-page .sensor-value strong{
+
+font-size:clamp(18px,2vw,24px);
+
+}
+
+body.dashboard-page .operation-card{
+
+padding:8px 14px;
+
+}
+
+body.dashboard-page .operation-card strong{
+
+font-size:20px;
+
+}
+
+body.dashboard-page .stream-row{
+
+padding:4px 0;
+
+font-size:10px;
+
+}
+
+}
+
+
+/* ---------- Sensors：图表自动缩放，允许自然滚动 ---------- */
+body.sensors-page .sensor-grid{
+
+grid-template-rows:auto;
+
+}
+
+
+body.sensors-page .sensor-grid canvas{
+
+height:clamp(120px,24vh,240px)!important;
+
+}
+
+
+/* ---------- Telemetry：终端最小高度，超高时页内滚动 ---------- */
+body.telemetry-page .telemetry-stream{
+
+min-height:clamp(280px,52vh,680px);
+
+}
+
+
+/* ---------- Location：地图保持最大视觉权重 ---------- */
+body.location-page #worldMap{
+
+height:clamp(300px,46vh,600px);
+
+flex:none;
+
+}
+
+
+body.location-page .status-card{
+
+padding:12px 14px;
+
+}
+
+
+/* ---------- System Health：完整绿色指示灯圆 ---------- */
+.analysis-page .status-circle{
+
+width:16px;
+
+height:16px;
+
+background:#00e5a8;
+
+opacity:.9;
+
+box-shadow:0 0 12px rgba(0,229,168,.45);
+
+animation:statusBreath 3s ease-in-out infinite;
+
+}
+
+
+/* 状态圆浅呼吸：透明度保持 0.8-1 */
+@keyframes statusBreath{
+
+0%,100%{
+
+opacity:.8;
+
+}
+
+50%{
+
+opacity:1;
+
+}
+
+}
+
+
 /* 页面内容（.app）置于雪花之上：
    z-index:0 的雪画布在 body 背景之上、静态内容之上；
    为保持“雪花低于内容”，让 .app 创建更高层叠上下文 */

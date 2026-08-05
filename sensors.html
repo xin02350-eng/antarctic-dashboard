@@ -149,23 +149,42 @@
 
       var ds = cfg.data.datasets[0];
       ds.borderColor = color;
-      ds.borderWidth = 1.5;
-      ds.tension = 0.4;
-      ds.pointRadius = 1.2;
-      ds.pointHoverRadius = 3;
+      ds.borderWidth = 2;
+      ds.tension = 0.45;
+      ds.pointRadius = 0;        /* 隐藏常规数据点，仅 hover 显示 */
+      ds.pointHoverRadius = 4;
       ds.pointBackgroundColor = color;
       ds.pointBorderWidth = 0;
       ds.pointHitRadius = 4;
+      ds.spanGaps = true;
       ds.fill = true;
       ds.backgroundColor = function (context) {
         var chart = context.chart;
         var area = chart.chartArea;
         if (!area) return hexToRgba(color, 0.10);
         var g = chart.ctx.createLinearGradient(0, area.top, 0, area.bottom);
-        g.addColorStop(0, hexToRgba(color, 0.28));
+        g.addColorStop(0, hexToRgba(color, 0.24));
         g.addColorStop(1, hexToRgba(color, 0));
         return g;
       };
+      /* 低存在感网格 */
+      cfg.options.scales.x.grid = { color: 'rgba(98,217,255,.05)' };
+      cfg.options.scales.y.grid = { color: 'rgba(98,217,255,.06)' };
+      cfg.options.scales.x.border = { color: 'rgba(98,217,255,.15)' };
+      cfg.options.scales.y.border = { color: 'rgba(98,217,255,.15)' };
+      /* 轻微数据流动感 + NASA 风格提示框 */
+      cfg.options.animation = cfg.options.animation || {};
+      cfg.options.animation.duration = 800;
+      cfg.options.plugins = cfg.options.plugins || {};
+      cfg.options.plugins.tooltip = cfg.options.plugins.tooltip || {};
+      var tt = cfg.options.plugins.tooltip;
+      tt.backgroundColor = 'rgba(4,17,29,.92)';
+      tt.borderColor = 'rgba(98,217,255,.35)';
+      tt.borderWidth = 1;
+      tt.titleColor = '#bfe9ff';
+      tt.bodyColor = '#dff6ff';
+      tt.padding = 8;
+      tt.cornerRadius = 4;
     }
 
     /* CURRENT 通道：单位 mA（数值直接展示，不换算） */

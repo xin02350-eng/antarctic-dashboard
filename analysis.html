@@ -118,22 +118,18 @@
       <div class="health-grid">
         <div class="hitem">
           <i class="status-circle"></i>
-          <svg class="hring" viewBox="0 0 40 40"><circle class="hr-base" cx="20" cy="20" r="16"/><circle class="hr-arc" id="ringPower" cx="20" cy="20" r="16"/></svg>
           <div><b>POWER SYSTEM</b><span>NORMAL</span></div>
         </div>
         <div class="hitem">
           <i class="status-circle"></i>
-          <svg class="hring" viewBox="0 0 40 40"><circle class="hr-base" cx="20" cy="20" r="16"/><circle class="hr-arc" id="ringSensor" cx="20" cy="20" r="16"/></svg>
           <div><b>SENSOR NETWORK</b><span>ACTIVE</span></div>
         </div>
         <div class="hitem">
           <i class="status-circle"></i>
-          <svg class="hring" viewBox="0 0 40 40"><circle class="hr-base" cx="20" cy="20" r="16"/><circle class="hr-arc" id="ringComm" cx="20" cy="20" r="16"/></svg>
           <div><b>COMMUNICATION</b><span>ONLINE</span></div>
         </div>
         <div class="hitem">
           <i class="status-circle"></i>
-          <svg class="hring" viewBox="0 0 40 40"><circle class="hr-base" cx="20" cy="20" r="16"/><circle class="hr-arc" id="ringGps" cx="20" cy="20" r="16"/></svg>
           <div><b>GPS</b><span>AVAILABLE</span></div>
         </div>
       </div>
@@ -324,12 +320,6 @@
     drawTrend(document.querySelector('#profile2 .profile-spark'), bucketTrend(function (d) { return d.s !== null && d.s !== undefined; }, 30), '#f5b942');
     drawTrend(document.querySelector('#profile3 .profile-spark'), bucketTrend(function (d) { return d.x !== null && d.x !== undefined; }, 30), '#8ceaff');
     drawTrend(document.querySelector('#profile4 .profile-spark'), bucketTrend(function (d) { return d.mode !== null && d.mode !== undefined; }, 30), '#00e5a8');
-
-    /* 健康环 */
-    drawRing('ringPower', vCov);
-    drawRing('ringSensor', (tCov + cov('h') + cov('j') + cov('k')) / 4);
-    drawRing('ringComm', mCov);
-    drawRing('ringGps', gCov);
 
     drawTimeline();
   }
