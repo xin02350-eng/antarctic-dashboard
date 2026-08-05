@@ -12228,6 +12228,8 @@ flex-direction:column;
 
 gap:2px;
 
+width:78vw;
+
 width:min(78vw,320px);
 
 max-height:none;
@@ -12269,6 +12271,14 @@ body .nav-overlay{
 display:none;
 
 position:fixed;
+
+top:0;
+
+left:0;
+
+right:0;
+
+bottom:0;
 
 inset:0;
 

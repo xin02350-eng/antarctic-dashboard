@@ -407,6 +407,19 @@ POSITION FIX
 
 
 
+<!-- 地图：窗口/断点变化后刷新尺寸，避免空白（仅本页，不改 main.js） -->
+<script>
+(function () {
+  var t = null;
+  window.addEventListener('resize', function () {
+    clearTimeout(t);
+    t = setTimeout(function () {
+      try { if (window.deviceMap) window.deviceMap.invalidateSize(); } catch (e) {}
+    }, 150);
+  });
+})();
+</script>
+
 <!-- 全站暴风雪模块（模块化） -->
 <script src="./js/ambient.js"></script>
 
