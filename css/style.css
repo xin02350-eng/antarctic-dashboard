@@ -12306,3 +12306,86 @@ border-radius:6px;
 }
 
 }
+
+
+/* =========================================================
+   V1.7 · MOBILE HOME TOP BAR FIX（手机端首页顶部修复）
+   - 清除桌面固定侧栏继承的 bottom:0，避免顶部导航条被拉伸到全屏
+   - 品牌区缩小、左上角显示；汉堡按钮固定右上角并放大
+========================================================= */
+@media (max-width:768px){
+
+body .sidebar,
+
+body.dashboard-page .sidebar{
+
+bottom:auto;
+
+height:auto;
+
+min-height:0;
+
+backdrop-filter:none;
+
+-webkit-backdrop-filter:none;
+
+}
+
+
+body .sidebar .brand,
+
+body.dashboard-page .sidebar .brand{
+
+margin-bottom:0!important;
+
+gap:8px!important;
+
+}
+
+
+body .sidebar .logo,
+
+body.dashboard-page .sidebar .logo{
+
+width:34px!important;
+
+height:34px!important;
+
+font-size:15px!important;
+
+border-radius:8px!important;
+
+}
+
+
+body .sidebar .brand h1,
+
+body.dashboard-page .sidebar .brand h1{
+
+font-size:13px!important;
+
+line-height:1.2!important;
+
+letter-spacing:1.5px!important;
+
+}
+
+
+body .sidebar .brand p,
+
+body.dashboard-page .sidebar .brand p{
+
+display:none!important;
+
+}
+
+
+body .nav-toggle-btn{
+
+width:42px!important;
+
+height:42px!important;
+
+}
+
+}
