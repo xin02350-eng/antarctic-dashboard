@@ -20,6 +20,8 @@
         <p>POLAR AUTONOMOUS OBSERVATORY</p>
       </div>
     </div>
+    <input type="checkbox" id="navToggle" class="nav-toggle" aria-hidden="true">
+    <label for="navToggle" class="nav-toggle-btn" aria-label="MENU"><span></span><span></span><span></span></label>
     <nav class="sidebar-menu">
       <a class="nav-item" href="./index.html">Dashboard</a>
       <a class="nav-item" href="./location.html">Location</a>
@@ -343,8 +345,8 @@
 
   /* 垂直时间轴（移动端） */
   function drawTimelineVertical(svg, phases) {
-    svg.setAttribute('viewBox', '0 0 300 250');
-    var W = 300, H = 250, x = 44;
+    svg.setAttribute('viewBox', '0 0 300 280');
+    var W = 300, H = 280, x = 44;
     var line = document.createElementNS(NS, 'line');
     line.setAttribute('class', 'tl-line');
     line.setAttribute('x1', x); line.setAttribute('y1', 18);
