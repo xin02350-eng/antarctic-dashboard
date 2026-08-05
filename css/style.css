@@ -12518,3 +12518,32 @@ z-index:0!important;
 }
 
 }
+
+
+/* =========================================================
+   V2.1 · MOBILE CONTENT TOP SPACING UNIFY（全页面顶距统一）
+   location/sensors/telemetry 各自页面级 main 内边距规则
+   覆盖了通用 padding-top:64px，导致手机端正文被顶部导航遮挡。
+   这里在末尾统一补上，仅 ≤768px 生效。
+========================================================= */
+@media (max-width:768px){
+
+body main,
+
+body.dashboard-page main,
+
+body.sensors-page main,
+
+body.telemetry-page main,
+
+body.location-page main,
+
+body.hardware-page main,
+
+body.analysis-page main{
+
+padding-top:64px;
+
+}
+
+}
