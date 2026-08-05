@@ -32,8 +32,9 @@
       color:#6f93a8;
       font-weight:400;
     }
-    /* ============ 极地终端滚动组件（Chrome/Edge/WebKit） ============ */
-    /* 实际滚动容器统一为 .tel-scroll；.telemetry-stream 不再产生第二套滚动条 */
+    /* ============ 极地终端自定义滚动组件 ============ */
+    /* 原生滚动条彻底隐藏（避免系统白色样式），视觉完全由网页控制；
+       滚轮 / 触控板 / 触摸滚动仍由 overflow:auto 提供 */
     @media (min-width:769px){
       body.telemetry-page{
         height:100vh;
@@ -54,52 +55,80 @@
       padding-right:0;
     }
     .telemetry-page .tel-scroll{
-      scrollbar-width:thin;
-      scrollbar-color:rgba(98,217,255,.5) rgba(6,20,34,.4);
+      position:relative;
+      scrollbar-width:none;
+      -ms-overflow-style:none;
+      padding-right:10px;
+      padding-bottom:10px;
     }
     .telemetry-page .tel-scroll::-webkit-scrollbar,
     .telemetry-page .telemetry-stream::-webkit-scrollbar{
-      width:8px;
-      height:8px;
+      width:0;
+      height:0;
+      display:none;
     }
-    .telemetry-page .tel-scroll::-webkit-scrollbar-track,
-    .telemetry-page .telemetry-stream::-webkit-scrollbar-track{
+    .telemetry-page .tel-scroll-wrap{
+      position:relative;
+    }
+    .telemetry-page .tel-sb{
+      position:absolute;
+      z-index:5;
+      opacity:0;
+      pointer-events:none;
+      transition:opacity .25s ease;
       background:linear-gradient(180deg, rgba(8,26,42,.55), rgba(5,16,28,.4));
       border:1px solid rgba(98,217,255,.07);
       border-radius:5px;
       box-shadow:inset 0 0 6px rgba(2,10,18,.5);
     }
-    .telemetry-page .tel-scroll::-webkit-scrollbar-thumb,
-    .telemetry-page .telemetry-stream::-webkit-scrollbar-thumb{
+    .telemetry-page .tel-sb-v{
+      top:2px;
+      right:2px;
+      bottom:2px;
+      width:8px;
+    }
+    .telemetry-page .tel-sb-h{
+      left:2px;
+      right:2px;
+      bottom:2px;
+      height:8px;
+    }
+    .telemetry-page .tel-sb-thumb{
+      position:absolute;
+      left:1px;
+      top:0;
       background:linear-gradient(135deg, rgba(98,217,255,.65), rgba(140,234,255,.35));
       border:1px solid rgba(140,234,255,.18);
-      border-radius:5px;
+      border-radius:10px;
       box-shadow:inset 0 1px 1px rgba(255,255,255,.12), 0 0 4px rgba(98,217,255,.12);
     }
-    .telemetry-page .tel-scroll::-webkit-scrollbar-thumb:hover,
-    .telemetry-page .telemetry-stream::-webkit-scrollbar-thumb:hover{
+    .telemetry-page .tel-sb-v .tel-sb-thumb{
+      width:100%;
+    }
+    .telemetry-page .tel-sb-h .tel-sb-thumb{
+      left:0;
+      top:1px;
+      height:100%;
+    }
+    .telemetry-page .tel-sb-thumb:hover{
       background:linear-gradient(135deg, rgba(140,234,255,.85), rgba(98,217,255,.5));
       box-shadow:inset 0 1px 1px rgba(255,255,255,.18), 0 0 6px rgba(98,217,255,.18);
     }
-    .telemetry-page .tel-scroll::-webkit-scrollbar-thumb:active,
-    .telemetry-page .telemetry-stream::-webkit-scrollbar-thumb:active{
+    .telemetry-page .tel-sb-thumb:active{
       background:linear-gradient(135deg, rgba(160,240,255,.9), rgba(120,225,255,.55));
       box-shadow:inset 0 1px 1px rgba(255,255,255,.22), 0 0 8px rgba(98,217,255,.22);
     }
-    .telemetry-page .tel-scroll::-webkit-scrollbar-corner,
-    .telemetry-page .telemetry-stream::-webkit-scrollbar-corner{
-      background:rgba(6,20,34,.5);
-      border:1px solid rgba(98,217,255,.06);
+    /* 鼠标移入显示，移出隐藏 */
+    .telemetry-page .tel-scroll-wrap:hover .tel-sb{
+      opacity:1;
+      pointer-events:auto;
     }
     @media (max-width:768px){
-      .telemetry-page .tel-scroll::-webkit-scrollbar,
-      .telemetry-page .telemetry-stream::-webkit-scrollbar{
+      .telemetry-page .tel-sb-v{
         width:6px;
-        height:6px;
       }
-      .telemetry-page .tel-scroll::-webkit-scrollbar-thumb,
-      .telemetry-page .telemetry-stream::-webkit-scrollbar-thumb{
-        border-width:0;
+      .telemetry-page .tel-sb-h{
+        height:6px;
       }
     }
     .telemetry-page .gps-ok{ color:#00e5a8; }
@@ -288,13 +317,17 @@
   }
 
   function buildShell(keys) {
-    var html = '<div class="tel-scroll"><table class="tel-table"><thead><tr>';
+    var html = '<div class="tel-scroll-wrap">';
+    html += '<div class="tel-scroll"><table class="tel-table"><thead><tr>';
     html += '<th>TIME</th><th>MODE</th>';
     keys.forEach(function (k) {
       var m = metaOf(k);
       html += '<th>' + m.label + (m.unit ? '<em>(' + m.unit + ')</em>' : '') + '</th>';
     });
     html += '</tr></thead><tbody></tbody></table></div>';
+    html += '<div class="tel-sb tel-sb-v"><div class="tel-sb-thumb" data-dir="v"></div></div>';
+    html += '<div class="tel-sb tel-sb-h"><div class="tel-sb-thumb" data-dir="h"></div></div>';
+    html += '</div>';
     html += '<div class="tel-loading">LOADING HISTORY…</div>';
     return html;
   }
@@ -323,6 +356,67 @@
     } else if (loadEl) {
       loadEl.textContent = 'HISTORY ' + renderedCount + ' / ' + rowsHtml.length;
     }
+    updateSb();
+  }
+
+  /* 自定义滚动条：隐藏原生滚动条，视觉完全由网页控制 */
+  function updateSb() {
+    var sc = box.querySelector('.tel-scroll');
+    var tv = box.querySelector('.tel-sb-v .tel-sb-thumb');
+    var th = box.querySelector('.tel-sb-h .tel-sb-thumb');
+    if (!sc || !tv || !th) return;
+    var sy = sc.scrollHeight, cy = sc.clientHeight, st = sc.scrollTop;
+    var sx = sc.scrollWidth, cx = sc.clientWidth, sl = sc.scrollLeft;
+    if (sy > cy + 1) {
+      var hh = Math.max(26, Math.round(cy * cy / sy));
+      tv.style.height = hh + 'px';
+      tv.style.top = Math.round((cy - hh) * (st / (sy - cy))) + 'px';
+      tv.style.display = 'block';
+    } else {
+      tv.style.display = 'none';
+    }
+    if (sx > cx + 1) {
+      var hw = Math.max(26, Math.round(cx * cx / sx));
+      th.style.width = hw + 'px';
+      th.style.left = Math.round((cx - hw) * (sl / (sx - cx))) + 'px';
+      th.style.display = 'block';
+    } else {
+      th.style.display = 'none';
+    }
+  }
+
+  function initSb() {
+    var sc = box.querySelector('.tel-scroll');
+    if (!sc) return;
+    sc.addEventListener('scroll', updateSb, { passive: true });
+    window.addEventListener('resize', function () { setTimeout(updateSb, 60); });
+    /* 滑块拖拽（鼠标 / 触摸） */
+    box.querySelectorAll('.tel-sb-thumb').forEach(function (thumb) {
+      thumb.addEventListener('pointerdown', function (ev) {
+        ev.preventDefault();
+        var dir = thumb.getAttribute('data-dir');
+        var startX = ev.clientX, startY = ev.clientY;
+        var st0 = sc.scrollTop, sl0 = sc.scrollLeft;
+        function move(mv) {
+          if (dir === 'v') {
+            var hh = thumb.offsetHeight;
+            var maxTop = Math.max(1, sc.clientHeight - hh);
+            sc.scrollTop = st0 + (mv.clientY - startY) / maxTop * (sc.scrollHeight - sc.clientHeight);
+          } else {
+            var ww = thumb.offsetWidth;
+            var maxLeft = Math.max(1, sc.clientWidth - ww);
+            sc.scrollLeft = sl0 + (mv.clientX - startX) / maxLeft * (sc.scrollWidth - sc.clientWidth);
+          }
+        }
+        function up() {
+          window.removeEventListener('pointermove', move);
+          window.removeEventListener('pointerup', up);
+        }
+        window.addEventListener('pointermove', move);
+        window.addEventListener('pointerup', up);
+      });
+    });
+    updateSb();
   }
 
   /* 首屏未填满时自动继续加载 */
@@ -361,6 +455,7 @@
     allDone = false;
     appendBatch();
     wireScroll();
+    initSb();
     requestAnimationFrame(ensureFill);
   }
 
