@@ -188,6 +188,98 @@
       tt.bodyColor = '#dff6ff';
       tt.padding = 8;
       tt.cornerRadius = 4;
+
+      /* ---------- 自适应时间刻度（按真实数据跨度） ---------- */
+      function pad2(n) { return String(n).padStart(2, '0'); }
+
+      /* 原始时间序列：优先读全局 DATA（与图表标签同序），否则从标签解析 */
+      var rawTimes = [];
+      try {
+        if (typeof DATA !== 'undefined' && DATA && DATA.length) {
+          DATA.forEach(function (dd) {
+            rawTimes.push(dd && dd.time ? new Date(dd.time).getTime() : null);
+          });
+        }
+      } catch (e) { rawTimes = []; }
+
+      if (!rawTimes.length && cfg.data && cfg.data.labels && cfg.data.labels.length) {
+        var yearNow = new Date().getFullYear();
+        cfg.data.labels.forEach(function (lb) {
+          var m = /(\d{2})\/(\d{2})\s+(\d{2})/.exec(String(lb));
+          if (m) {
+            var dt = new Date(yearNow, +m[1] - 1, +m[2], +m[3]);
+            if (dt.getTime() > Date.now() + 15552000000) dt.setFullYear(yearNow - 1);
+            rawTimes.push(dt.getTime());
+          } else {
+            rawTimes.push(null);
+          }
+        });
+      }
+
+      var validT = rawTimes.filter(function (t) { return t; });
+      var spanMs = 0;
+      if (validT.length > 1) {
+        spanMs = Math.max.apply(null, validT) - Math.min.apply(null, validT);
+      }
+
+      function fmtTick(ts) {
+        if (!ts) return '';
+        var d = new Date(ts);
+        var hh = pad2(d.getHours());
+        if (spanMs <= 86400000) return hh;                       /* ≤24h：HH */
+        if (spanMs <= 604800000) return pad2(d.getMonth() + 1) + '-' + pad2(d.getDate()) + ' ' + hh; /* ≤7d：MM-DD HH */
+        return pad2(d.getMonth() + 1) + '-' + pad2(d.getDate()); /* >7d：MM-DD */
+      }
+
+      /* 标签 → 原始时间 映射（不依赖刻度索引，避免 autoSkip 后错位） */
+      var labelTs = {};
+      if (cfg.data && cfg.data.labels) {
+        cfg.data.labels.forEach(function (lb, idx) {
+          if (rawTimes[idx]) labelTs[String(lb)] = rawTimes[idx];
+        });
+      }
+      cfg.options.scales.x.ticks.callback = function (value) {
+        var ts = labelTs[String(value)];
+        if (ts) return fmtTick(ts);
+        return String(value).replace(/:00$/, '');
+      };
+
+      /* 手机/桌面刻度密度自适应 */
+      var canvasW = ctx.canvas ? ctx.canvas.clientWidth : 0;
+      var narrow = canvasW > 0 ? canvasW < 560 : (window.innerWidth || 0) < 768;
+      cfg.options.scales.x.ticks.maxTicksLimit = narrow ? 6 : 12;
+      cfg.options.scales.x.ticks.autoSkip = true;
+      cfg.options.scales.x.ticks.maxRotation = 0;
+      cfg.options.scales.x.ticks.minRotation = 0;
+
+      /* ---------- Tooltip：完整时间 + 自动单位 ---------- */
+      var units = {
+        chartInTemp: ' °C',
+        chartOutTemp: ' °C',
+        chartInHum: ' %',
+        chartOutHum: ' %',
+        chartSolar: ' W/m²',
+        chartCurrent: ' mA',
+        chartVoltage: ' V',
+        chartWind: ' m/s'
+      };
+      tt.callbacks = tt.callbacks || {};
+      tt.callbacks.title = function (items) {
+        var it = items && items[0];
+        var idx = it ? it.dataIndex : -1;
+        var ts = rawTimes && rawTimes[idx];
+        if (ts) {
+          var d = new Date(ts);
+          return d.getFullYear() + '-' + pad2(d.getMonth() + 1) + '-' + pad2(d.getDate()) +
+            ' ' + pad2(d.getHours()) + ':' + pad2(d.getMinutes());
+        }
+        return (it && it.label) || '';
+      };
+      tt.callbacks.label = function (context) {
+        var v = context.parsed && context.parsed.y;
+        if (typeof v !== 'number' || isNaN(v)) return 'NO DATA';
+        return parseFloat(v.toFixed(2)) + (units[ctx.id] || '');
+      };
     }
 
     /* CURRENT 通道：单位 mA（数值直接展示，不换算） */
