@@ -90,8 +90,9 @@
     var d = new Date(t);
     if (isNaN(d.getTime())) return String(t);
     function p(n) { return String(n).padStart(2, '0'); }
-    /* 统一整点格式：MM/DD HH（删除分钟） */
-    return p(d.getMonth() + 1) + '/' + p(d.getDate()) + ' ' + p(d.getHours());
+    /* REAL TIME TELEMETRY 精确到分钟：YYYY-MM-DD HH:mm（删除秒） */
+    return d.getFullYear() + '-' + p(d.getMonth() + 1) + '-' + p(d.getDate()) +
+      ' ' + p(d.getHours()) + ':' + p(d.getMinutes());
   }
 
   /* 构建表格 HTML（最近 20 条，倒序，与 main.js 逻辑一致） */
