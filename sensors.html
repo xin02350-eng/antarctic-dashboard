@@ -143,7 +143,8 @@
       cfg.options.scales.x.ticks = cfg.options.scales.x.ticks || {};
       cfg.options.scales.x.ticks.color = '#6f93a8';
       cfg.options.scales.x.ticks.callback = function (value) {
-        return String(value).replace(/:00$/, '');
+        var label = (this && this.getLabelForValue) ? this.getLabelForValue(value) : String(value);
+        return String(label).replace(/:00$/, '');
       };
       cfg.options.scales.x.grid = { color: 'rgba(98,217,255,.07)' };
       cfg.options.scales.y.grid = { color: 'rgba(98,217,255,.09)' };
@@ -231,18 +232,14 @@
         return pad2(d.getMonth() + 1) + '-' + pad2(d.getDate()); /* >7d：MM-DD */
       }
 
-      /* 标签 → 原始时间 映射（不依赖刻度索引，避免 autoSkip 后错位） */
-      var labelTs = {};
-      if (cfg.data && cfg.data.labels) {
-        cfg.data.labels.forEach(function (lb, idx) {
-          if (rawTimes[idx]) labelTs[String(lb)] = rawTimes[idx];
+      /* 直接重写标签为自适应格式（Chart.js 分类轴会原样渲染标签，
+         避免刻度回调收到索引而非标签导致时间轴显示数字） */
+      if (cfg.data && cfg.data.labels && cfg.data.labels.length &&
+          rawTimes.length === cfg.data.labels.length) {
+        cfg.data.labels = cfg.data.labels.map(function (lb, idx) {
+          return rawTimes[idx] ? fmtTick(rawTimes[idx]) : String(lb).replace(/:00$/, '');
         });
       }
-      cfg.options.scales.x.ticks.callback = function (value) {
-        var ts = labelTs[String(value)];
-        if (ts) return fmtTick(ts);
-        return String(value).replace(/:00$/, '');
-      };
 
       /* 手机/桌面刻度密度自适应 */
       var canvasW = ctx.canvas ? ctx.canvas.clientWidth : 0;
