@@ -12159,3 +12159,150 @@ width:100%;
 }
 
 }
+
+
+/* =========================================================
+   V1.6 · MOBILE DRAWER NAV（手机端抽屉导航 + 遮罩）
+   默认关闭；点击 ☰ 展开 70%-80% 宽抽屉；点击遮罩关闭
+   全部限制在 ≤768px，桌面端 sidebar 完全不受影响
+========================================================= */
+.nav-overlay{
+
+display:none;
+
+}
+
+
+@media (max-width:768px){
+
+/* 顶部导航条保持不变：LOGO 左侧、☰ 右侧 */
+body .sidebar,
+
+body.dashboard-page .sidebar{
+
+position:fixed;
+
+top:0;
+
+left:0;
+
+right:0;
+
+z-index:120;
+
+width:100%;
+
+height:auto;
+
+min-height:0;
+
+display:flex;
+
+flex-direction:row;
+
+align-items:center;
+
+gap:10px;
+
+padding:8px 12px;
+
+}
+
+
+/* 抽屉：默认隐藏，从左侧滑入 */
+body .sidebar-menu,
+
+body.dashboard-page .sidebar-menu{
+
+position:fixed;
+
+top:0;
+
+left:0;
+
+bottom:0;
+
+display:flex;
+
+flex-direction:column;
+
+gap:2px;
+
+width:min(78vw,320px);
+
+max-height:none;
+
+padding:64px 12px 18px;
+
+overflow-y:auto;
+
+background:rgba(3,13,24,.98);
+
+border-right:1px solid rgba(98,217,255,.18);
+
+transform:translateX(-102%);
+
+visibility:hidden;
+
+transition:transform .28s ease,visibility .28s;
+
+z-index:220;
+
+}
+
+
+/* 展开状态 */
+body .nav-toggle:checked ~ .sidebar-menu,
+
+body.dashboard-page .nav-toggle:checked ~ .sidebar-menu{
+
+transform:translateX(0)!important;
+
+visibility:visible!important;
+
+}
+
+
+/* 遮罩：覆盖剩余区域，点击关闭 */
+body .nav-overlay{
+
+display:none;
+
+position:fixed;
+
+inset:0;
+
+z-index:180;
+
+background:rgba(2,8,18,.58);
+
+backdrop-filter:blur(1px);
+
+cursor:pointer;
+
+}
+
+
+body .nav-toggle:checked ~ .nav-overlay{
+
+display:block;
+
+}
+
+
+/* 抽屉内导航项统一 */
+body .sidebar-menu .nav-item,
+
+body.dashboard-page .sidebar-menu .nav-item{
+
+padding:11px 14px!important;
+
+font-size:12px!important;
+
+letter-spacing:2px!important;
+
+border-radius:6px;
+
+}
+
+}
