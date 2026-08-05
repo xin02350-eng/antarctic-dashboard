@@ -8191,6 +8191,714 @@ display:block!important;
 }
 
 
+/* =========================================================
+   V0.5 · UI UNIFICATION（全站视觉统一）
+   全局设计变量 / LOGO 与菜单统一 / 单屏布局 / 流式尺寸
+========================================================= */
+
+/* 全局设计变量 */
+:root{
+
+--font-main:"Segoe UI","Microsoft YaHei",Arial,sans-serif;
+
+--text-primary:#f2fbff;
+
+--text-secondary:#6f93a8;
+
+--panel-radius:8px;
+
+--accent-color:#62d9ff;
+
+--glow-color:rgba(98,217,255,.35);
+
+}
+
+
+body{
+
+font-family:var(--font-main);
+
+color:var(--text-primary);
+
+}
+
+
+/* 统一圆角 */
+body .panel,
+
+body .status-card,
+
+body .map-panel,
+
+body .an-panel{
+
+border-radius:var(--panel-radius);
+
+}
+
+
+/* ---------- LOGO 与品牌全站统一 ---------- */
+body .logo,
+
+body.dashboard-page .logo{
+
+width:44px;
+
+height:44px;
+
+border-radius:8px;
+
+font-size:20px;
+
+font-weight:700;
+
+letter-spacing:1px;
+
+color:#eafcff;
+
+background:linear-gradient(150deg,#0d3c58,#0a2438);
+
+border:1px solid rgba(140,234,255,.35);
+
+box-shadow:0 0 14px rgba(98,217,255,.14);
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+}
+
+
+body .brand,
+
+body.dashboard-page .brand{
+
+gap:12px;
+
+margin-bottom:34px;
+
+}
+
+
+body .brand h1,
+
+body.dashboard-page .brand h1{
+
+font-size:17px;
+
+letter-spacing:2px;
+
+color:var(--text-primary);
+
+font-weight:700;
+
+line-height:1.3;
+
+}
+
+
+body .brand p,
+
+body.dashboard-page .brand p{
+
+font-size:9px;
+
+letter-spacing:1.2px;
+
+color:var(--text-secondary);
+
+margin-top:6px;
+
+}
+
+
+/* ---------- 侧栏与菜单全站统一 ---------- */
+body .sidebar,
+
+body.dashboard-page .sidebar{
+
+width:250px;
+
+padding:22px 16px;
+
+background:linear-gradient(180deg, rgba(3,13,24,.96), rgba(4,18,32,.92));
+
+border-right:1px solid rgba(98,217,255,.14);
+
+}
+
+
+body main,
+
+body.dashboard-page main{
+
+margin-left:250px;
+
+width:calc(100% - 250px);
+
+}
+
+
+body .sidebar-menu,
+
+body.dashboard-page .sidebar-menu{
+
+display:flex;
+
+flex-direction:column;
+
+gap:10px;
+
+}
+
+
+body .sidebar-menu .nav-item,
+
+body.dashboard-page .sidebar-menu .nav-item{
+
+display:block;
+
+font-size:11px;
+
+font-weight:500;
+
+letter-spacing:2px;
+
+padding:11px 14px;
+
+border-radius:4px;
+
+border-left:2px solid transparent;
+
+color:#87a6ba;
+
+text-decoration:none;
+
+transition:background .25s,color .25s,border-color .25s;
+
+}
+
+
+body .sidebar-menu .nav-item:hover,
+
+body .sidebar-menu .nav-item.active{
+
+background:rgba(98,217,255,.08);
+
+border-left-color:var(--accent-color);
+
+color:#eafcff;
+
+}
+
+
+/* ---------- 修复 Dashboard 标题下方异常竖线 ---------- */
+body.dashboard-page .dashboard-hero::before,
+
+body.dashboard-page .dashboard-hero::after{
+
+display:none;
+
+}
+
+
+/* ---------- Analysis 完整绿色状态圆（12-16px 实心 + 呼吸） ---------- */
+.analysis-page .status-circle{
+
+width:14px;
+
+height:14px;
+
+border-radius:50%;
+
+background:#00e5a8;
+
+box-shadow:0 0 10px rgba(0,229,168,.35);
+
+animation:dashBreathe 3s ease-in-out infinite;
+
+flex:none;
+
+display:block;
+
+}
+
+
+/* =========================================================
+   单屏布局：Dashboard / Sensors / Telemetry / Location
+   使用 Flex + clamp + vh，避免固定大量 px 高度
+========================================================= */
+
+/* ---------- Dashboard ---------- */
+body.dashboard-page main{
+
+height:100vh;
+
+overflow:hidden;
+
+display:flex;
+
+flex-direction:column;
+
+gap:10px;
+
+padding:14px 22px;
+
+}
+
+
+body.dashboard-page .dashboard-hero{
+
+flex:none;
+
+padding:14px 20px;
+
+}
+
+
+body.dashboard-page .dashboard-kicker{
+
+margin-bottom:6px;
+
+}
+
+
+body.dashboard-page .dashboard-title{
+
+font-size:clamp(18px,2.2vw,32px);
+
+}
+
+
+body.dashboard-page .hero-sub{
+
+margin-top:6px;
+
+font-size:10px;
+
+}
+
+
+body.dashboard-page .dashboard-command-strip{
+
+flex:none;
+
+margin-top:0;
+
+gap:10px;
+
+}
+
+
+body.dashboard-page .dashboard-command-strip .cmd-cell{
+
+padding:10px 14px;
+
+}
+
+
+body.dashboard-page .cmd-value{
+
+font-size:20px;
+
+margin-top:5px;
+
+}
+
+
+body.dashboard-page .cmd-sub{
+
+margin-top:2px;
+
+}
+
+
+body.dashboard-page .mission-grid{
+
+flex:1 1 auto;
+
+min-height:0;
+
+margin-top:0;
+
+gap:12px;
+
+}
+
+
+body.dashboard-page .sensor-card{
+
+min-height:clamp(84px,12vh,140px);
+
+padding:10px 12px 9px;
+
+}
+
+
+body.dashboard-page .sensor-value strong{
+
+font-size:clamp(20px,2vw,28px);
+
+}
+
+
+body.dashboard-page #worldMap{
+
+height:clamp(220px,40vh,600px);
+
+}
+
+
+body.dashboard-page .map-panel{
+
+padding:12px;
+
+}
+
+
+body.dashboard-page .map-status-grid{
+
+margin-bottom:8px;
+
+}
+
+
+body.dashboard-page .operation-grid{
+
+flex:none;
+
+margin-top:0;
+
+gap:10px;
+
+}
+
+
+body.dashboard-page .operation-card{
+
+padding:10px 16px;
+
+}
+
+
+body.dashboard-page .operation-card strong{
+
+font-size:24px;
+
+margin-top:6px;
+
+}
+
+
+body.dashboard-page .stream-panel{
+
+flex:none;
+
+margin-top:0;
+
+padding:8px 16px;
+
+}
+
+
+body.dashboard-page .stream-row{
+
+padding:5px 0;
+
+}
+
+
+/* ---------- Sensors ---------- */
+body.sensors-page main{
+
+height:100vh;
+
+overflow:hidden;
+
+display:flex;
+
+flex-direction:column;
+
+gap:10px;
+
+padding:14px 20px;
+
+}
+
+
+body.sensors-page .mission-header{
+
+padding:10px 16px;
+
+}
+
+
+body.sensors-page .sensor-grid{
+
+flex:1 1 auto;
+
+min-height:0;
+
+margin-top:0;
+
+display:grid;
+
+grid-template-columns:repeat(4,minmax(0,1fr));
+
+grid-template-rows:repeat(2,minmax(0,1fr));
+
+gap:10px;
+
+}
+
+
+body.sensors-page .sensor-grid .panel{
+
+padding:10px 12px;
+
+min-height:0;
+
+display:flex;
+
+flex-direction:column;
+
+}
+
+
+body.sensors-page .sensor-grid canvas{
+
+height:clamp(110px,22vh,220px)!important;
+
+width:100%!important;
+
+}
+
+
+/* ---------- Telemetry ---------- */
+body.telemetry-page main{
+
+height:100vh;
+
+overflow:hidden;
+
+display:flex;
+
+flex-direction:column;
+
+gap:10px;
+
+padding:14px 20px;
+
+}
+
+
+body.telemetry-page .mission-header{
+
+padding:10px 16px;
+
+}
+
+
+body.telemetry-page .panel{
+
+flex:1 1 auto;
+
+min-height:0;
+
+display:flex;
+
+flex-direction:column;
+
+padding:12px 16px;
+
+}
+
+
+body.telemetry-page .telemetry-stream{
+
+flex:1 1 auto;
+
+min-height:0;
+
+}
+
+
+/* ---------- Location ---------- */
+body.location-page main{
+
+height:100vh;
+
+overflow:hidden;
+
+display:flex;
+
+flex-direction:column;
+
+gap:12px;
+
+padding:16px 24px;
+
+}
+
+
+body.location-page .mission-header{
+
+padding:10px 16px;
+
+}
+
+
+body.location-page .map-panel{
+
+flex:1 1 auto;
+
+min-height:0;
+
+margin-top:0;
+
+display:flex;
+
+flex-direction:column;
+
+padding:14px;
+
+}
+
+
+body.location-page #worldMap{
+
+flex:1 1 auto;
+
+min-height:0;
+
+height:auto;
+
+}
+
+
+body.location-page .status-grid{
+
+flex:none;
+
+grid-template-columns:repeat(3,1fr);
+
+gap:12px;
+
+margin-top:0;
+
+}
+
+
+body.location-page .status-card{
+
+padding:14px 16px;
+
+min-height:0;
+
+}
+
+
+/* =========================================================
+   响应式：大屏 / 笔记本档位
+========================================================= */
+
+@media (max-width:1500px){
+
+body.dashboard-page .mission-grid{
+
+grid-template-columns:220px minmax(0,1fr) 220px;
+
+}
+
+}
+
+
+@media (max-width:1366px){
+
+body.dashboard-page .mission-grid{
+
+grid-template-columns:190px minmax(0,1fr) 190px;
+
+}
+
+body.dashboard-page #worldMap{
+
+height:clamp(200px,34vh,520px);
+
+}
+
+}
+
+
+@media (max-width:1100px){
+
+body.sensors-page .sensor-grid{
+
+grid-template-columns:repeat(2,minmax(0,1fr));
+
+grid-template-rows:repeat(4,minmax(0,1fr));
+
+}
+
+}
+
+
+/* 小屏 / 移动端：允许纵向滚动，保证内容完整可读 */
+@media (max-width:900px){
+
+body main,
+
+body.dashboard-page main,
+
+body.sensors-page main,
+
+body.telemetry-page main,
+
+body.location-page main{
+
+margin-left:0;
+
+width:100%;
+
+height:auto;
+
+min-height:100vh;
+
+overflow:auto;
+
+}
+
+body.dashboard-page .mission-grid{
+
+grid-template-columns:1fr;
+
+}
+
+body.dashboard-page #worldMap{
+
+height:300px;
+
+}
+
+body.location-page .status-grid{
+
+grid-template-columns:1fr;
+
+}
+
+body.sensors-page .sensor-grid{
+
+grid-template-columns:1fr;
+
+grid-template-rows:auto;
+
+}
+
+}
+
+
 /* 页面内容（.app）置于雪花之上：
    z-index:0 的雪画布在 body 背景之上、静态内容之上；
    为保持“雪花低于内容”，让 .app 创建更高层叠上下文 */

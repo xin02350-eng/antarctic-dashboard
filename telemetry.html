@@ -20,13 +20,13 @@
         <p>POLAR AUTONOMOUS OBSERVATORY</p>
       </div>
     </div>
-    <nav>
-      <a href="./index.html">Dashboard</a>
-      <a href="./location.html">Location</a>
-      <a href="./sensors.html">Sensors</a>
-      <a class="active">Telemetry</a>
-      <a href="./hardware.html">Hardware</a>
-      <a href="./analysis.html">Analysis</a>
+    <nav class="sidebar-menu">
+      <a class="nav-item" href="./index.html">Dashboard</a>
+      <a class="nav-item" href="./location.html">Location</a>
+      <a class="nav-item" href="./sensors.html">Sensors</a>
+      <a class="nav-item active">Telemetry</a>
+      <a class="nav-item" href="./hardware.html">Hardware</a>
+      <a class="nav-item" href="./analysis.html">Analysis</a>
     </nav>
   </aside>
 
@@ -87,8 +87,8 @@
     var d = new Date(t);
     if (isNaN(d.getTime())) return String(t);
     function p(n) { return String(n).padStart(2, '0'); }
-    return d.getFullYear() + '-' + p(d.getMonth() + 1) + '-' + p(d.getDate()) +
-      ' ' + p(d.getHours()) + ':' + p(d.getMinutes()) + ':' + p(d.getSeconds());
+    /* 统一整点格式：MM/DD HH（删除分钟） */
+    return p(d.getMonth() + 1) + '/' + p(d.getDate()) + ' ' + p(d.getHours());
   }
 
   /* 构建表格 HTML（最近 20 条，倒序，与 main.js 逻辑一致） */

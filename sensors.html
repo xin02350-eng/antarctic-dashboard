@@ -24,13 +24,13 @@
         <p>POLAR AUTONOMOUS OBSERVATORY</p>
       </div>
     </div>
-    <nav>
-      <a href="./index.html">Dashboard</a>
-      <a href="./location.html">Location</a>
-      <a class="active">Sensors</a>
-      <a href="./telemetry.html">Telemetry</a>
-      <a href="./hardware.html">Hardware</a>
-      <a href="./analysis.html">Analysis</a>
+    <nav class="sidebar-menu">
+      <a class="nav-item" href="./index.html">Dashboard</a>
+      <a class="nav-item" href="./location.html">Location</a>
+      <a class="nav-item active">Sensors</a>
+      <a class="nav-item" href="./telemetry.html">Telemetry</a>
+      <a class="nav-item" href="./hardware.html">Hardware</a>
+      <a class="nav-item" href="./analysis.html">Analysis</a>
     </nav>
   </aside>
 
@@ -111,7 +111,63 @@
   var RealChart = window.Chart;
   if (typeof RealChart !== 'function') return;
 
+  /* 十六进制颜色 → rgba（用于渐变填充） */
+  function hexToRgba(hex, a) {
+    var n = parseInt(hex.slice(1), 16);
+    return 'rgba(' + ((n >> 16) & 255) + ',' + ((n >> 8) & 255) + ',' + (n & 255) + ',' + a + ')';
+  }
+
   window.Chart = function (ctx, cfg) {
+    /* 全图表统一科研风格：细线、圆滑曲线、小尺寸低透明数据点、渐变填充 */
+    if (ctx && cfg && ctx.id && ctx.id.indexOf('chart') === 0) {
+      var palette = {
+        chartInTemp: '#8ceaff',
+        chartOutTemp: '#8ceaff',
+        chartInHum: '#7fd8c9',
+        chartOutHum: '#7fd8c9',
+        chartSolar: '#f5b942',
+        chartCurrent: '#00e5a8',
+        chartVoltage: '#62d9ff',
+        chartWind: '#9fb8c8'
+      };
+      var color = palette[ctx.id] || '#8ceaff';
+      cfg.options = cfg.options || {};
+      cfg.options.scales = cfg.options.scales || {};
+      cfg.options.scales.x = cfg.options.scales.x || {};
+      cfg.options.scales.y = cfg.options.scales.y || {};
+
+      /* 统一时间刻度：MM/DD HH（删除 :00 分钟） */
+      cfg.options.scales.x.ticks = cfg.options.scales.x.ticks || {};
+      cfg.options.scales.x.ticks.color = '#6f93a8';
+      cfg.options.scales.x.ticks.callback = function (value) {
+        return String(value).replace(/:00$/, '');
+      };
+      cfg.options.scales.x.grid = { color: 'rgba(98,217,255,.07)' };
+      cfg.options.scales.y.grid = { color: 'rgba(98,217,255,.09)' };
+      cfg.options.scales.y.ticks = cfg.options.scales.y.ticks || {};
+      cfg.options.scales.y.ticks.color = '#6f93a8';
+
+      var ds = cfg.data.datasets[0];
+      ds.borderColor = color;
+      ds.borderWidth = 1.5;
+      ds.tension = 0.4;
+      ds.pointRadius = 1.2;
+      ds.pointHoverRadius = 3;
+      ds.pointBackgroundColor = color;
+      ds.pointBorderWidth = 0;
+      ds.pointHitRadius = 4;
+      ds.fill = true;
+      ds.backgroundColor = function (context) {
+        var chart = context.chart;
+        var area = chart.chartArea;
+        if (!area) return hexToRgba(color, 0.10);
+        var g = chart.ctx.createLinearGradient(0, area.top, 0, area.bottom);
+        g.addColorStop(0, hexToRgba(color, 0.28));
+        g.addColorStop(1, hexToRgba(color, 0));
+        return g;
+      };
+    }
+
     /* CURRENT 通道：单位 mA（数值直接展示，不换算） */
     if (ctx && ctx.id === 'chartCurrent' && cfg) {
       cfg.options = cfg.options || {};
