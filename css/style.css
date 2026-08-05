@@ -9555,6 +9555,411 @@ color:#eafcff!important;
 }
 
 
+/* =========================================================
+   V1.0 · CROSS-DEVICE AUDIT（最终跨设备适配）
+   桌面端保持现状；手机/平板通过媒体查询重新适配
+========================================================= */
+
+/* 图片 / 地图 / 画布：禁止拉伸 */
+img{
+
+max-width:100%;
+
+height:auto;
+
+}
+
+
+body #worldMap,
+
+body .leaflet-container{
+
+max-width:100%;
+
+}
+
+
+/* 字体响应式 clamp（桌面端当前值为上限，不改变现有观感） */
+body .panel-title{
+
+font-size:clamp(11px,1.3vw,14px);
+
+}
+
+
+body .sensor-name{
+
+font-size:clamp(9px,1.05vw,11px);
+
+}
+
+
+body .cmd-label{
+
+font-size:clamp(9px,1vw,11px);
+
+}
+
+
+body .kpi-label{
+
+font-size:clamp(7px,0.8vw,9px);
+
+}
+
+
+body .kpi-num b{
+
+font-size:clamp(18px,2.2vw,27px);
+
+}
+
+
+body .op-label{
+
+font-size:clamp(9px,1vw,11px);
+
+}
+
+
+body .op-sub{
+
+font-size:clamp(8px,0.9vw,10px);
+
+}
+
+
+body .stream-row{
+
+font-size:clamp(10px,1.1vw,12px);
+
+}
+
+
+body.telemetry-page .tel-time{
+
+font-size:clamp(10px,1.2vw,13px);
+
+}
+
+
+body.telemetry-page .tel-val{
+
+font-size:clamp(11px,1.25vw,13px);
+
+}
+
+
+body .tech-line{
+
+font-size:clamp(9px,1vw,11px);
+
+}
+
+
+/* 手机 / 平板：sidebar 转为顶部菜单（折叠横向滚动） */
+@media (max-width:900px){
+
+.app{
+
+display:block;
+
+}
+
+
+body .sidebar,
+
+body.dashboard-page .sidebar{
+
+position:static;
+
+display:flex!important;
+
+width:100%;
+
+height:auto;
+
+flex-direction:row;
+
+align-items:center;
+
+gap:12px;
+
+padding:10px 14px;
+
+border-right:0;
+
+border-bottom:1px solid rgba(98,217,255,.14);
+
+z-index:40;
+
+}
+
+
+body .sidebar .brand,
+
+body.dashboard-page .sidebar .brand{
+
+margin-bottom:0;
+
+flex:none;
+
+gap:8px;
+
+}
+
+
+body .sidebar .logo,
+
+body.dashboard-page .sidebar .logo{
+
+width:34px;
+
+height:34px;
+
+font-size:15px;
+
+}
+
+
+body .sidebar .brand h1,
+
+body.dashboard-page .sidebar .brand h1{
+
+font-size:13px;
+
+letter-spacing:1.5px;
+
+line-height:1.2;
+
+}
+
+
+body .sidebar .brand p,
+
+body.dashboard-page .sidebar .brand p{
+
+display:none;
+
+}
+
+
+body .sidebar-menu,
+
+body.dashboard-page .sidebar-menu{
+
+flex:1;
+
+flex-direction:row;
+
+gap:4px;
+
+overflow-x:auto;
+
+padding-bottom:2px;
+
+}
+
+
+body .sidebar-menu .nav-item,
+
+body.dashboard-page .sidebar-menu .nav-item{
+
+padding:8px 10px!important;
+
+font-size:10px!important;
+
+letter-spacing:1.5px!important;
+
+white-space:nowrap;
+
+flex:none;
+
+}
+
+
+body main,
+
+body.dashboard-page main{
+
+margin-left:0!important;
+
+width:100%!important;
+
+padding:14px;
+
+}
+
+}
+
+
+/* 手机（≤700px）：单列布局，地图/照片优先，时间轴垂直 */
+@media (max-width:700px){
+
+body.dashboard-page .dashboard-title{
+
+font-size:clamp(16px,5.2vw,22px);
+
+}
+
+
+body.dashboard-page .hero-sub{
+
+font-size:9px;
+
+}
+
+
+body.dashboard-page .mission-grid{
+
+grid-template-columns:1fr;
+
+}
+
+
+body.dashboard-page #worldMap{
+
+height:clamp(220px,42vh,360px);
+
+min-height:220px;
+
+}
+
+
+body.dashboard-page .sensor-card{
+
+min-height:0;
+
+}
+
+
+body.dashboard-page .operation-grid{
+
+grid-template-columns:1fr;
+
+}
+
+
+body.sensors-page .sensor-grid{
+
+grid-template-columns:1fr;
+
+}
+
+
+body.sensors-page .sensor-grid canvas{
+
+height:clamp(150px,30vh,220px)!important;
+
+}
+
+
+body.location-page .map-panel{
+
+padding:10px;
+
+}
+
+
+body.location-page #worldMap{
+
+min-height:240px;
+
+height:clamp(240px,42vh,380px);
+
+}
+
+
+.analysis-page .an-head{
+
+flex-direction:column;
+
+align-items:flex-start;
+
+gap:8px;
+
+}
+
+
+.analysis-page .an-meta{
+
+gap:10px;
+
+flex-wrap:wrap;
+
+}
+
+
+.analysis-page .an-kpi{
+
+grid-template-columns:repeat(2,minmax(0,1fr));
+
+}
+
+
+.analysis-page .health-grid{
+
+grid-template-columns:repeat(2,minmax(0,1fr));
+
+}
+
+
+.analysis-page .timeline-svg{
+
+height:260px;
+
+}
+
+
+/* Hardware：照片区域优先 */
+.hardware-page .doc-stage{
+
+order:-1;
+
+}
+
+
+.hardware-page .photo-placeholder{
+
+width:90%;
+
+}
+
+
+body .hw-strip{
+
+flex-direction:column;
+
+align-items:flex-start;
+
+gap:6px;
+
+}
+
+
+}
+
+
+/* 小屏手机（≤560px）：遥测表格单列、KPI 单列 */
+@media (max-width:560px){
+
+body.telemetry-page .tel-grid{
+
+grid-template-columns:1fr;
+
+}
+
+
+.analysis-page .an-kpi{
+
+grid-template-columns:1fr;
+
+}
+
+
+}
+
+
 /* 页面内容（.app）置于雪花之上：
    z-index:0 的雪画布在 body 背景之上、静态内容之上；
    为保持“雪花低于内容”，让 .app 创建更高层叠上下文 */
