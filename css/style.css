@@ -12447,3 +12447,33 @@ min-width:0;
 }
 
 }
+
+
+/* =========================================================
+   V1.9 · HARDWARE MOBILE NAV UNIFY（Hardware 手机导航统一）
+   body.hardware-page .sidebar{width:250px} 是桌面专用规则，
+   优先级高于通用移动导航规则，导致 Hardware 顶部条宽度/观感与其他页面不一致。
+   这里在移动端用同优先级选择器覆盖，并保证抽屉高度与滚动行为一致。
+========================================================= */
+@media (max-width:768px){
+
+body.hardware-page .sidebar{
+
+width:100%;
+
+}
+
+
+body .sidebar-menu,
+
+body.dashboard-page .sidebar-menu{
+
+min-height:80vh;
+
+max-height:none;
+
+overflow-y:auto;
+
+}
+
+}
