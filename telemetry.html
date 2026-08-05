@@ -6,6 +6,74 @@
   <title>ANTARCTIC NEXUS - TELEMETRY</title>
   <link rel="icon" href="data:,">
   <link rel="stylesheet" href="./css/style.css">
+
+  <!-- REAL TIME TELEMETRY：科研表格 + 移动卡片（仅本页） -->
+  <style>
+    .telemetry-page .tel-toggle{
+      width:24px;height:24px;border:1px solid rgba(98,217,255,.25);border-radius:4px;
+      background:rgba(9,28,44,.6);color:#8ceaff;font-size:11px;cursor:pointer;line-height:1;
+    }
+    .telemetry-page .tel-toggle:hover{ background:rgba(16,46,66,.8); color:#d8f6ff; }
+    .telemetry-page .tel-row .tel-toggle-cell{ text-align:center; }
+
+    /* 展开详情行：默认隐藏，点击后显示 */
+    .telemetry-page .tel-detail{ display:none; }
+    .telemetry-page .tel-row.open + .tel-detail{ display:table-row; }
+    .telemetry-page .tel-detail td{
+      background:rgba(5,18,30,.55);
+      border-bottom:1px solid rgba(98,217,255,.12);
+    }
+    .telemetry-page .tel-detail-grid{
+      display:flex;flex-wrap:wrap;gap:6px 18px;padding:8px 6px;
+    }
+    .telemetry-page .td-item{
+      display:flex;gap:6px;align-items:baseline;font-size:10px;letter-spacing:1px;
+      min-width:120px;
+    }
+    .telemetry-page .td-item b{ color:#6f93a8; font-weight:500; }
+    .telemetry-page .td-item i{ font-style:normal; color:#dff6ff; }
+
+    /* GPS 状态颜色 */
+    .telemetry-page .gps-ok{ color:#00e5a8; }
+    .telemetry-page .gps-bad{ color:#ff9aa4; }
+
+    /* 移动卡片：默认隐藏（桌面用表格） */
+    .telemetry-page .tel-cards{ display:none; }
+
+    @media (max-width:768px){
+      .telemetry-page .tel-table{ display:none!important; }
+      .telemetry-page .tel-cards{
+        display:flex;flex-direction:column;gap:10px;
+      }
+      .telemetry-page .tel-card{
+        border:1px solid rgba(98,217,255,.16);border-radius:8px;
+        background:linear-gradient(165deg,rgba(9,28,44,.6),rgba(5,16,28,.5));
+        padding:10px 12px;
+      }
+      .telemetry-page .tel-card-head{
+        display:flex;align-items:center;gap:8px;
+      }
+      .telemetry-page .tel-card-head .tel-time{
+        font-size:11px;letter-spacing:1px;color:#dff6ff;flex:1;min-width:0;
+        white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+      }
+      .telemetry-page .tel-card-core{
+        display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;margin-top:8px;
+      }
+      .telemetry-page .tc-chip{
+        display:flex;flex-direction:column;gap:2px;padding:6px 8px;border-radius:5px;
+        background:rgba(5,18,30,.5);border:1px solid rgba(98,217,255,.08);
+      }
+      .telemetry-page .tc-chip b{ font-size:8px;letter-spacing:1.5px;color:#6f93a8;font-weight:500; }
+      .telemetry-page .tc-chip i{ font-style:normal;font-size:13px;color:#eafcff; }
+      .telemetry-page .tel-card-detail{
+        display:none;margin-top:8px;padding-top:8px;
+        border-top:1px solid rgba(98,217,255,.12);
+        flex-wrap:wrap;gap:6px 14px;
+      }
+      .telemetry-page .tel-card.open .tel-card-detail{ display:flex; }
+    }
+  </style>
 </head>
 
 <body class="polar-ambient telemetry-page">
@@ -74,60 +142,169 @@
   var box = document.getElementById('telemetryData');
   if (!box) return;
 
-  /* 表头：13 个通道（与页面标题一致） */
-  var HEADERS = [
-    'TIME', 'MODE', 'VOLTAGE', 'CURRENT (mA)', 'SOLAR',
-    'INSIDE TEMP', 'INSIDE HUMIDITY', 'OUTSIDE TEMP', 'OUTSIDE HUMIDITY',
-    'LATITUDE', 'LONGITUDE', 'SATELLITES', 'GPS STATUS'
-  ];
+  /* ============ 字段元数据：动态读取 data.json 全部字段 ============ */
+  var FIELD_META = {
+    v:    { label: 'VOLTAGE',          unit: 'V' },
+    a:    { label: 'CURRENT',          unit: 'mA' },
+    s:    { label: 'SOLAR IRRADIANCE', unit: 'W/m²' },
+    t:    { label: 'INSIDE TEMP',      unit: '°C' },
+    h:    { label: 'INSIDE HUMIDITY',  unit: '%RH' },
+    j:    { label: 'OUTSIDE TEMP',     unit: '°C' },
+    k:    { label: 'OUTSIDE HUMIDITY', unit: '%RH' },
+    x:    { label: 'LATITUDE',         unit: '°' },
+    y:    { label: 'LONGITUDE',        unit: '°' },
+    n:    { label: 'SATELLITES',       unit: '' },
+    g:    { label: 'GPS STATUS',       unit: '' },
+    mode: { label: 'MODE',             unit: '' }
+  };
+  var KNOWN_ORDER = ['v', 'a', 's', 't', 'h', 'j', 'k', 'x', 'y', 'n', 'g', 'mode'];
 
-  /* 数据列与 data.json 字段对应（SOLAR 即 SOLAR IRRADIANCE） */
-  var CELL_KEYS = ['v', 'a', 's', 't', 'h', 'j', 'k', 'x', 'y', 'n'];
+  /* 动态收集所有字段（含 i/q/r/e 等未知字段），保持稳定顺序 */
+  function collectKeys(list) {
+    var keys = [];
+    var seen = {};
+    list.forEach(function (r) {
+      Object.keys(r).forEach(function (k) {
+        if (k === 'time' || seen[k]) return;
+        seen[k] = true;
+        keys.push(k);
+      });
+    });
+    keys.sort(function (a, b) {
+      var ia = KNOWN_ORDER.indexOf(a), ib = KNOWN_ORDER.indexOf(b);
+      if (ia >= 0 && ib >= 0) return ia - ib;
+      if (ia >= 0) return -1;
+      if (ib >= 0) return 1;
+      return a < b ? -1 : (a > b ? 1 : 0);
+    });
+    return keys;
+  }
 
-  /* 本地时间格式化（不依赖 main.js 内部函数） */
+  function metaOf(k) {
+    return FIELD_META[k] || { label: k.toUpperCase(), unit: '' };
+  }
+
+  /* 本地时间格式化：YYYY-MM-DD HH:mm（保留分钟，不依赖 main.js） */
   function fmtTime(t) {
-    if (!t) return 'NO SIGNAL';
+    if (!t) return '--';
     var d = new Date(t);
     if (isNaN(d.getTime())) return String(t);
     function p(n) { return String(n).padStart(2, '0'); }
-    /* REAL TIME TELEMETRY 精确到分钟：YYYY-MM-DD HH:mm（删除秒） */
     return d.getFullYear() + '-' + p(d.getMonth() + 1) + '-' + p(d.getDate()) +
       ' ' + p(d.getHours()) + ':' + p(d.getMinutes());
   }
 
-  /* 构建表格 HTML（最近 20 条，倒序，与 main.js 逻辑一致） */
+  /* NULL 一律显示 --，不补 0、不插值 */
+  function fmtVal(v, unit) {
+    if (v === null || v === undefined || v === '') return '--';
+    var n = (typeof v === 'number') ? parseFloat(v.toFixed(2)) : v;
+    return unit ? n + ' ' + unit : String(n);
+  }
+
+  function modeInfo(m) {
+    var raw = (m === null || m === undefined || m === '') ? 'N' : String(m);
+    return {
+      st: raw === 'E' ? 'EMERGENCY' : (raw === 'S' ? 'STANDBY' : 'NORMAL'),
+      cls: raw === 'E' ? 'm-emergency' : (raw === 'S' ? 'm-standby' : 'm-normal')
+    };
+  }
+
+  function gpsInfo(d) {
+    var g = d.g;
+    if (g === null || g === undefined || g === '') return { text: '--', cls: '' };
+    var ok = g === 'O' || g === 'OK' || g === 1 || g === '1' || g === true;
+    return ok ? { text: 'ONLINE', cls: 'gps-ok' } : { text: 'NO FIX', cls: 'gps-bad' };
+  }
+
+  /* 构建桌面表格 + 移动卡片（最近 20 条，倒序） */
   function buildHtml(list) {
-    var html = '<div class="tel-scroll"><table class="tel-table"><thead><tr>';
-    HEADERS.forEach(function (h) { html += '<th>' + h + '</th>'; });
-    html += '</tr></thead><tbody>';
-
+    var keys = collectKeys(list);
     var rows = list.slice(Math.max(0, list.length - 20)).reverse();
-    rows.forEach(function (d) {
-      var modeRaw = (d.mode !== null && d.mode !== undefined) ? d.mode : 'N';
-      var modeSt = modeRaw === 'E' ? 'EMERGENCY' : (modeRaw === 'S' ? 'STANDBY' : 'NORMAL');
-      var modeCls = modeRaw === 'E' ? 'm-emergency' : (modeRaw === 'S' ? 'm-standby' : 'm-normal');
-      var gpsOk = d.x !== null && d.x !== undefined && d.y !== null && d.y !== undefined;
-      var recCls = (modeRaw === 'E' || !gpsOk) ? 'tel-alert' : (modeRaw === 'S' ? 'tel-warn' : 'tel-ok');
 
-      html += '<tr class="' + recCls + '">';
+    /* ---- 桌面科研表格：核心列 + 展开完整字段 ---- */
+    var html = '<div class="tel-scroll"><table class="tel-table"><thead><tr>' +
+      '<th>TIME</th><th>MODE</th><th>VOLTAGE</th><th>CURRENT</th>' +
+      '<th>INSIDE TEMP</th><th>SOLAR</th><th>GPS</th><th></th>' +
+      '</tr></thead><tbody>';
+
+    rows.forEach(function (d, idx) {
+      var mi = modeInfo(d.mode);
+      var gi = gpsInfo(d);
+      var recCls = (mi.st === 'EMERGENCY' || gi.text === 'NO FIX') ? 'tel-alert' :
+        (mi.st === 'STANDBY' ? 'tel-warn' : 'tel-ok');
+
+      html += '<tr class="tel-row ' + recCls + '" data-i="' + idx + '">';
       html += '<td class="tel-time">' + fmtTime(d.time) + '</td>';
-      html += '<td><span class="tel-mode ' + modeCls + '">' + modeSt + '</span></td>';
-
-      CELL_KEYS.forEach(function (k) {
-        var v = d[k];
-        var nullCls = (v === null || v === undefined || v === '');
-        var disp = nullCls ? 'NO SIGNAL' : v;
-        /* 电流数值直接以 mA 显示，不换算 */
-        if (!nullCls && k === 'a') disp = v + ' mA';
-        html += '<td class="tel-val' + (nullCls ? ' null-val' : '') + '">' + disp + '</td>';
-      });
-
-      html += '<td class="tel-val' + (gpsOk ? '' : ' null-val') + '">' + (gpsOk ? 'ONLINE' : 'NO FIX') + '</td>';
+      html += '<td><span class="tel-mode ' + mi.cls + '">' + mi.st + '</span></td>';
+      html += '<td class="tel-val">' + fmtVal(d.v, 'V') + '</td>';
+      html += '<td class="tel-val">' + fmtVal(d.a, 'mA') + '</td>';
+      html += '<td class="tel-val">' + fmtVal(d.t, '°C') + '</td>';
+      html += '<td class="tel-val">' + fmtVal(d.s, 'W/m²') + '</td>';
+      html += '<td class="tel-val ' + gi.cls + '">' + gi.text + '</td>';
+      html += '<td class="tel-toggle-cell"><button type="button" class="tel-toggle" data-i="' + idx + '" aria-label="EXPAND">▸</button></td>';
       html += '</tr>';
-    });
 
+      html += '<tr class="tel-detail" data-i="' + idx + '"><td colspan="8"><div class="tel-detail-grid">';
+      keys.forEach(function (k) {
+        var m = metaOf(k);
+        html += '<span class="td-item"><b>' + m.label + '</b><i>' +
+          (k === 'mode' ? modeInfo(d[k]).st : fmtVal(d[k], m.unit)) + '</i></span>';
+      });
+      html += '</div></td></tr>';
+    });
     html += '</tbody></table></div>';
+
+    /* ---- 移动卡片：时间 + 核心数据 + 展开全部字段 ---- */
+    html += '<div class="tel-cards">';
+    rows.forEach(function (d, idx) {
+      var mi = modeInfo(d.mode);
+      var gi = gpsInfo(d);
+      html += '<div class="tel-card ' + (mi.st === 'EMERGENCY' || gi.text === 'NO FIX' ? 'tel-alert' : (mi.st === 'STANDBY' ? 'tel-warn' : 'tel-ok')) + '" data-i="' + idx + '">';
+      html += '<div class="tel-card-head"><span class="tel-time">' + fmtTime(d.time) + '</span>' +
+        '<span class="tel-mode ' + mi.cls + '">' + mi.st + '</span>' +
+        '<button type="button" class="tel-toggle" data-i="' + idx + '" aria-label="EXPAND">▸</button></div>';
+      html += '<div class="tel-card-core">' +
+        '<span class="tc-chip"><b>VOLTAGE</b><i>' + fmtVal(d.v, 'V') + '</i></span>' +
+        '<span class="tc-chip"><b>CURRENT</b><i>' + fmtVal(d.a, 'mA') + '</i></span>' +
+        '<span class="tc-chip"><b>TEMP</b><i>' + fmtVal(d.t, '°C') + '</i></span>' +
+        '<span class="tc-chip"><b>SOLAR</b><i>' + fmtVal(d.s, 'W/m²') + '</i></span>' +
+        '<span class="tc-chip ' + gi.cls + '"><b>GPS</b><i>' + gi.text + '</i></span>' +
+        '</div>';
+      html += '<div class="tel-card-detail">';
+      keys.forEach(function (k) {
+        var m = metaOf(k);
+        html += '<span class="td-item"><b>' + m.label + '</b><i>' +
+          (k === 'mode' ? modeInfo(d[k]).st : fmtVal(d[k], m.unit)) + '</i></span>';
+      });
+      html += '</div></div>';
+    });
+    html += '</div>';
+
     return html;
+  }
+
+  /* 展开/收起：同一 data-i 的表格详情与卡片详情同步切换 */
+  function wireToggle() {
+    box.addEventListener('click', function (ev) {
+      var btn = ev.target && ev.target.closest ? ev.target.closest('.tel-toggle') : null;
+      if (!btn) return;
+      var idx = btn.getAttribute('data-i');
+      var els = box.querySelectorAll('[data-i="' + idx + '"]');
+      var open = false;
+      Array.prototype.forEach.call(els, function (el) {
+        if (el.classList.contains('tel-toggle')) {
+          open = !el.classList.contains('open');
+        }
+      });
+      Array.prototype.forEach.call(els, function (el) {
+        if (el.classList.contains('tel-toggle')) {
+          el.classList.toggle('open', open);
+          el.textContent = open ? '▾' : '▸';
+        } else {
+          el.classList.toggle('open', open);
+        }
+      });
+    });
   }
 
   /* 渲染入口：已存在表格则跳过（幂等，无循环） */
@@ -135,6 +312,7 @@
     if (!list || !list.length) return;
     if (box.querySelector('.tel-table')) return;
     box.innerHTML = buildHtml(list);
+    wireToggle();
   }
 
   /* 优先使用 main.js 的全局 DATA */
