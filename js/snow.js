@@ -26,7 +26,8 @@
     var ctx = c.getContext('2d');
   var dpr = Math.min(window.devicePixelRatio || 1, 1.25); /* CPU 控制 */
   var mobile = window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
-  var scale = (mobile || window.innerWidth < 768) ? 0.35 : 1; /* 手机/窄屏自动降载 */
+  var pageScale = (typeof window.__antSnowScale === 'number' && window.__antSnowScale > 0) ? window.__antSnowScale : 1;
+  var scale = (mobile || window.innerWidth < 768) ? 0.35 * pageScale : pageScale; /* 手机/窄屏自动降载；页面可额外降载（如 Telemetry 大量表格） */
     var particles = [];
     var running = true;
     var gustPhase = 0;

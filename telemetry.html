@@ -34,7 +34,17 @@
     }
     .telemetry-page .gps-ok{ color:#00e5a8; }
     .telemetry-page .gps-bad{ color:#ff9aa4; }
+    .telemetry-page .tel-loading{
+      font-size:9px;
+      letter-spacing:2px;
+      color:#6f93a8;
+      text-align:center;
+      padding:8px 0 2px;
+    }
   </style>
+
+  <!-- Telemetry 大量表格：雪花降载至 50%（不关闭） -->
+  <script>window.__antSnowScale = 0.5;</script>
 </head>
 
 <body class="polar-ambient telemetry-page">
@@ -177,48 +187,109 @@
     return ok ? { text: 'ONLINE', cls: 'gps-ok' } : { text: 'NO FIX', cls: 'gps-bad' };
   }
 
-  /* 构建纯表格：一行一条记录（data.json 全部历史，最新在上） */
-  function buildHtml(list) {
-    var keys = collectKeys(list);
-    var rows = list.slice().reverse();
+  /* ============ 高性能分批渲染：不全量创建 DOM ============ */
+  var BATCH = 50;
+  var rowsHtml = [];
+  var renderedCount = 0;
+  var allDone = false;
+  var loadingBusy = false;
+  var scrollEl = null;
+  var tbodyEl = null;
+  var loadEl = null;
 
+  function rowHtml(d, keys) {
+    var mi = modeInfo(d.mode);
+    var gi = gpsInfo(d);
+    var recCls = (mi.st === 'EMERGENCY' || gi.text === 'NO FIX') ? 'tel-alert' :
+      (mi.st === 'STANDBY' ? 'tel-warn' : 'tel-ok');
+    var html = '<tr class="' + recCls + '">';
+    html += '<td class="tel-time">' + fmtTime(d.time) + '</td>';
+    html += '<td><span class="tel-mode ' + mi.cls + '">' + mi.st + '</span></td>';
+    keys.forEach(function (k) {
+      var m = metaOf(k);
+      var val = (k === 'mode') ? modeInfo(d[k]).st :
+        (k === 'g' ? gi.text : fmtVal(d[k], m.unit));
+      var cls = (k === 'g' ? gi.cls : '');
+      if (val === '--') cls += ' null-val';
+      html += '<td class="tel-val ' + cls.trim() + '">' + val + '</td>';
+    });
+    html += '</tr>';
+    return html;
+  }
+
+  function buildShell(keys) {
     var html = '<div class="tel-scroll"><table class="tel-table"><thead><tr>';
     html += '<th>TIME</th><th>MODE</th>';
     keys.forEach(function (k) {
       var m = metaOf(k);
       html += '<th>' + m.label + (m.unit ? '<em>(' + m.unit + ')</em>' : '') + '</th>';
     });
-    html += '</tr></thead><tbody>';
-
-    rows.forEach(function (d) {
-      var mi = modeInfo(d.mode);
-      var gi = gpsInfo(d);
-      var recCls = (mi.st === 'EMERGENCY' || gi.text === 'NO FIX') ? 'tel-alert' :
-        (mi.st === 'STANDBY' ? 'tel-warn' : 'tel-ok');
-
-      html += '<tr class="' + recCls + '">';
-      html += '<td class="tel-time">' + fmtTime(d.time) + '</td>';
-      html += '<td><span class="tel-mode ' + mi.cls + '">' + mi.st + '</span></td>';
-      keys.forEach(function (k) {
-        var m = metaOf(k);
-        var val = (k === 'mode') ? modeInfo(d[k]).st :
-          (k === 'g' ? gi.text : fmtVal(d[k], m.unit));
-        var cls = (k === 'g' ? gi.cls : '');
-        if (val === '--') cls += ' null-val';
-        html += '<td class="tel-val ' + cls.trim() + '">' + val + '</td>';
-      });
-      html += '</tr>';
-    });
-
-    html += '</tbody></table></div>';
+    html += '</tr></thead><tbody></tbody></table></div>';
+    html += '<div class="tel-loading">LOADING HISTORY…</div>';
     return html;
+  }
+
+  /* 追加一批（50 条），使用 DocumentFragment 批量挂载 */
+  function appendBatch() {
+    if (loadingBusy || allDone) return;
+    loadingBusy = true;
+    var batch = rowsHtml.slice(renderedCount, renderedCount + BATCH);
+    if (!batch.length) {
+      allDone = true;
+      loadingBusy = false;
+      if (loadEl) loadEl.textContent = 'ALL HISTORY LOADED · ' + renderedCount + ' RECORDS';
+      return;
+    }
+    var frag = document.createDocumentFragment();
+    var tmp = document.createElement('tbody');
+    tmp.innerHTML = batch.join('');
+    while (tmp.firstChild) frag.appendChild(tmp.firstChild);
+    tbodyEl.appendChild(frag);
+    renderedCount += batch.length;
+    loadingBusy = false;
+    if (renderedCount >= rowsHtml.length) {
+      allDone = true;
+      if (loadEl) loadEl.textContent = 'ALL HISTORY LOADED · ' + renderedCount + ' RECORDS';
+    } else if (loadEl) {
+      loadEl.textContent = 'HISTORY ' + renderedCount + ' / ' + rowsHtml.length;
+    }
+  }
+
+  /* 首屏未填满时自动继续加载 */
+  function ensureFill() {
+    if (!scrollEl || allDone) return;
+    if (tbodyEl.scrollHeight <= scrollEl.clientHeight + 2 && !loadingBusy) {
+      appendBatch();
+      if (!allDone) requestAnimationFrame(ensureFill);
+    }
+  }
+
+  /* 滚动接近底部时继续加载下一批 */
+  function wireScroll() {
+    if (!scrollEl) return;
+    scrollEl.addEventListener('scroll', function () {
+      if (allDone || loadingBusy) return;
+      if (scrollEl.scrollTop + scrollEl.clientHeight >= scrollEl.scrollHeight - 160) {
+        appendBatch();
+      }
+    }, { passive: true });
   }
 
   /* 渲染入口：已存在表格则跳过（幂等，无循环） */
   function render(list) {
     if (!list || !list.length) return;
     if (box.querySelector('.tel-table')) return;
-    box.innerHTML = buildHtml(list);
+    var keys = collectKeys(list);
+    box.innerHTML = buildShell(keys);
+    scrollEl = box.querySelector('.tel-scroll');
+    tbodyEl = box.querySelector('.tel-table tbody');
+    loadEl = box.querySelector('.tel-loading');
+    rowsHtml = list.slice().reverse().map(function (d) { return rowHtml(d, keys); });
+    renderedCount = 0;
+    allDone = false;
+    appendBatch();
+    wireScroll();
+    requestAnimationFrame(ensureFill);
   }
 
   /* 优先使用 main.js 的全局 DATA */
