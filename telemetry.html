@@ -32,6 +32,35 @@
       color:#6f93a8;
       font-weight:400;
     }
+    /* 极地科研终端滚动条（Chrome/Edge/新 WebKit；Firefox 走 scrollbar-width/color） */
+    .telemetry-page .tel-scroll{
+      scrollbar-width:thin;
+      scrollbar-color:rgba(98,217,255,.55) rgba(255,255,255,.05);
+    }
+    .telemetry-page .tel-scroll::-webkit-scrollbar{
+      width:8px;
+      height:8px;
+    }
+    .telemetry-page .tel-scroll::-webkit-scrollbar-track{
+      background:rgba(255,255,255,.05);
+      border-radius:4px;
+    }
+    .telemetry-page .tel-scroll::-webkit-scrollbar-thumb{
+      background:rgba(98,217,255,.55);
+      border-radius:4px;
+    }
+    .telemetry-page .tel-scroll::-webkit-scrollbar-thumb:hover{
+      background:rgba(140,234,255,.8);
+    }
+    .telemetry-page .tel-scroll::-webkit-scrollbar-corner{
+      background:rgba(255,255,255,.03);
+    }
+    @media (max-width:768px){
+      .telemetry-page .tel-scroll::-webkit-scrollbar{
+        width:6px;
+        height:6px;
+      }
+    }
     .telemetry-page .gps-ok{ color:#00e5a8; }
     .telemetry-page .gps-bad{ color:#ff9aa4; }
     .telemetry-page .tel-loading{
@@ -84,7 +113,7 @@
 
     <!-- 遥测数据容器：id 必须保持 telemetryData（main.js 依赖此 ID） -->
     <section class="panel hud-frame">
-      <div class="panel-title">LATEST 20 RECORDS · 13 CHANNELS</div>
+        <div class="panel-title" id="dataPanelTitle">LATEST 20 RECORDS · 13 CHANNELS</div>
       <div class="telemetry-stream" id="telemetryData"></div>
     </section>
 
@@ -280,6 +309,8 @@
     if (!list || !list.length) return;
     if (box.querySelector('.tel-table')) return;
     var keys = collectKeys(list);
+    var titleEl = document.getElementById('dataPanelTitle');
+    if (titleEl) titleEl.textContent = 'LATEST ' + list.length + ' RECORDS · 13 CHANNELS';
     box.innerHTML = buildShell(keys);
     scrollEl = box.querySelector('.tel-scroll');
     tbodyEl = box.querySelector('.tel-table tbody');
