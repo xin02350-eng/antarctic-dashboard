@@ -9960,6 +9960,619 @@ grid-template-columns:1fr;
 }
 
 
+/* =========================================================
+   V1.1 · RESPONSIVE ADAPTIVE FINISH
+   间距 / 字体变量体系；手机端 Dashboard 顺序（地图优先）；
+   极窄屏（320px）适配；移动端背景动画降载
+========================================================= */
+
+:root{
+
+/* 间距体系 */
+--space-xs:clamp(4px,0.4vw,8px);
+
+--space-sm:clamp(6px,0.6vw,10px);
+
+--space-md:clamp(8px,0.8vw,12px);
+
+--space-lg:clamp(10px,1vw,14px);
+
+/* 字体体系（桌面端当前值为上限，1920 视觉不变） */
+--fs-title:clamp(18px,2.2vw,34px);
+
+--fs-num:clamp(16px,2vw,27px);
+
+--fs-label:clamp(7px,0.8vw,11px);
+
+--fs-body:clamp(12px,1vw,16px);
+
+}
+
+
+/* 引用间距/字体变量（大屏保持原值，中小屏自动收紧） */
+body .mission-header h2{
+
+font-size:var(--fs-title);
+
+}
+
+
+body .kpi-num b{
+
+font-size:var(--fs-num);
+
+}
+
+
+body.sensors-page .sensor-grid,
+
+body.dashboard-page .map-status-grid{
+
+gap:var(--space-sm);
+
+}
+
+
+body.dashboard-page .mission-grid,
+
+.analysis-page .an-grid{
+
+gap:var(--space-md);
+
+}
+
+
+.hardware-page .doc-single{
+
+gap:var(--space-lg);
+
+}
+
+
+/* 手机端 Dashboard 顺序：标题 → 状态 → 地图 → 数据卡 → 任务信息 */
+@media (max-width:700px){
+
+body.dashboard-page .mission-grid{
+
+display:flex;
+
+flex-direction:column;
+
+}
+
+
+body.dashboard-page .mission-grid .map-panel{
+
+order:-1;
+
+}
+
+
+body.dashboard-page .side-left{
+
+order:0;
+
+}
+
+
+body.dashboard-page .side-right{
+
+order:1;
+
+}
+
+}
+
+
+/* 移动端背景性能：关闭扫描线与极光动画 */
+@media (max-width:900px){
+
+.polar-scan{
+
+display:none;
+
+}
+
+
+body.polar-ambient::before{
+
+animation:none;
+
+}
+
+}
+
+
+/* 极窄屏（≤360px）：进一步收紧字体与留白 */
+@media (max-width:360px){
+
+body main,
+
+body.dashboard-page main{
+
+padding:10px;
+
+}
+
+
+body.dashboard-page .dashboard-title{
+
+font-size:16px;
+
+letter-spacing:1px;
+
+}
+
+
+body .hc-val{
+
+font-size:14px;
+
+}
+
+
+body .kpi-num b{
+
+font-size:18px;
+
+}
+
+
+}
+
+
+/* =========================================================
+   V1.2 · MOBILE DEDICATED LAYOUT（手机/小平板独立布局）
+   全部规则位于 @media(max-width:768px)，桌面端完全不受影响
+========================================================= */
+
+@media (max-width:768px){
+
+/* ---------- Sidebar：极简顶部导航（低垂直占用） ---------- */
+body .sidebar,
+
+body.dashboard-page .sidebar{
+
+gap:8px;
+
+padding:8px 10px;
+
+}
+
+
+body .sidebar .logo,
+
+body.dashboard-page .sidebar .logo{
+
+width:30px;
+
+height:30px;
+
+font-size:13px;
+
+border-radius:6px;
+
+}
+
+
+body .sidebar .brand h1,
+
+body.dashboard-page .sidebar .brand h1{
+
+font-size:12px;
+
+letter-spacing:1px;
+
+}
+
+
+body .sidebar-menu .nav-item,
+
+body.dashboard-page .sidebar-menu .nav-item{
+
+padding:7px 9px!important;
+
+font-size:10px!important;
+
+letter-spacing:1px!important;
+
+}
+
+
+/* ---------- Dashboard：标题 → 状态 → 地图 → 卡片 → 任务信息 ---------- */
+body.dashboard-page .dashboard-hero{
+
+padding:12px 14px;
+
+}
+
+
+body.dashboard-page .dashboard-kicker{
+
+font-size:9px;
+
+letter-spacing:2px;
+
+margin-bottom:5px;
+
+}
+
+
+body.dashboard-page .dashboard-title{
+
+font-size:clamp(16px,5.5vw,22px);
+
+letter-spacing:1.5px;
+
+line-height:1.15;
+
+}
+
+
+body.dashboard-page .hero-sub{
+
+font-size:9px;
+
+}
+
+
+body.dashboard-page .dashboard-command-strip{
+
+grid-template-columns:1fr;
+
+gap:8px;
+
+}
+
+
+body.dashboard-page .cmd-cell{
+
+padding:10px 12px;
+
+}
+
+
+body.dashboard-page .cmd-label{
+
+font-size:10px;
+
+letter-spacing:2px;
+
+}
+
+
+body.dashboard-page .cmd-value{
+
+font-size:clamp(17px,5vw,22px);
+
+}
+
+
+body.dashboard-page .mission-grid{
+
+display:flex;
+
+flex-direction:column;
+
+gap:12px;
+
+}
+
+
+body.dashboard-page .mission-grid .map-panel{
+
+order:-1;
+
+}
+
+
+/* 地图：宽度 100%，aspect-ratio 自适应高度 */
+body.dashboard-page #worldMap{
+
+width:100%;
+
+height:auto;
+
+aspect-ratio:16/10;
+
+min-height:220px;
+
+max-height:48vh;
+
+}
+
+
+/* 数据卡：2 列网格（≤400px 自动单列），padding 充足 */
+body.dashboard-page .side-left,
+
+body.dashboard-page .side-right{
+
+display:grid;
+
+grid-template-columns:repeat(2,minmax(0,1fr));
+
+grid-template-rows:none;
+
+gap:10px;
+
+}
+
+
+body.dashboard-page .sensor-card{
+
+min-height:118px;
+
+padding:12px 14px;
+
+}
+
+
+body.dashboard-page .sensor-value strong{
+
+font-size:clamp(22px,7vw,30px);
+
+}
+
+
+body.dashboard-page .sensor-name{
+
+font-size:10px;
+
+letter-spacing:1.5px;
+
+}
+
+
+body.dashboard-page .sensor-meta{
+
+font-size:9px;
+
+}
+
+
+body.dashboard-page .operation-grid{
+
+grid-template-columns:1fr;
+
+gap:8px;
+
+}
+
+
+body.dashboard-page .operation-card{
+
+padding:12px 16px;
+
+}
+
+
+body.dashboard-page .operation-card strong{
+
+font-size:clamp(20px,6vw,26px);
+
+}
+
+
+body.dashboard-page .stream-panel{
+
+padding:10px 14px;
+
+}
+
+
+body.dashboard-page .stream-row{
+
+font-size:11px;
+
+padding:6px 0;
+
+}
+
+
+/* ---------- Sensors：单列滚动，每张图完整显示 ---------- */
+body.sensors-page .sensor-grid{
+
+grid-template-columns:1fr;
+
+gap:12px;
+
+}
+
+
+body.sensors-page .sensor-grid canvas{
+
+height:clamp(200px,36vh,280px)!important;
+
+}
+
+
+body.sensors-page .panel-title{
+
+font-size:12px;
+
+}
+
+
+/* ---------- Telemetry：表格横向滚动，不挤压 ---------- */
+body.telemetry-page .tel-table{
+
+min-width:860px;
+
+}
+
+
+body.telemetry-page .tel-time{
+
+font-size:11px;
+
+}
+
+
+body.telemetry-page .tel-val{
+
+font-size:12px;
+
+}
+
+
+/* ---------- Hardware：照片优先，信息下置，无左右布局 ---------- */
+.hardware-page .doc-single{
+
+display:flex;
+
+flex-direction:column;
+
+gap:12px;
+
+}
+
+
+.hardware-page .doc-stage{
+
+order:-1;
+
+}
+
+
+.hardware-page .doc-side{
+
+flex-direction:column;
+
+gap:8px;
+
+}
+
+
+.hardware-page .doc-photo{
+
+min-height:220px;
+
+}
+
+
+.hardware-page .hc-val{
+
+font-size:clamp(16px,5vw,20px);
+
+}
+
+
+/* ---------- Analysis：指标单列，时间轴纵向 ---------- */
+.analysis-page .an-head{
+
+flex-direction:column;
+
+align-items:flex-start;
+
+gap:8px;
+
+}
+
+
+.analysis-page .an-kpi{
+
+grid-template-columns:1fr;
+
+gap:8px;
+
+}
+
+
+.analysis-page .kpi-num b{
+
+font-size:clamp(20px,7vw,26px);
+
+}
+
+
+.analysis-page .health-grid{
+
+grid-template-columns:1fr 1fr;
+
+gap:10px;
+
+}
+
+
+.analysis-page .timeline-svg{
+
+height:260px;
+
+}
+
+
+/* ---------- Location：地图自适应 + 信息卡单列 ---------- */
+body.location-page .map-panel{
+
+padding:10px;
+
+}
+
+
+body.location-page #worldMap{
+
+width:100%;
+
+height:auto;
+
+aspect-ratio:16/10;
+
+min-height:240px;
+
+max-height:52vh;
+
+}
+
+
+body.location-page .status-grid{
+
+grid-template-columns:1fr;
+
+gap:10px;
+
+}
+
+
+/* ---------- 移动端字体体系（不继承桌面字号） ---------- */
+body .panel-title{
+
+font-size:clamp(12px,3.5vw,14px);
+
+}
+
+
+body .tech-line{
+
+font-size:10px;
+
+}
+
+
+}
+
+
+/* 极窄手机（≤400px）：数据卡单列，避免拥挤 */
+@media (max-width:400px){
+
+body.dashboard-page .side-left,
+
+body.dashboard-page .side-right{
+
+grid-template-columns:1fr;
+
+}
+
+
+.analysis-page .health-grid{
+
+grid-template-columns:1fr;
+
+}
+
+
+}
+
+
 /* 页面内容（.app）置于雪花之上：
    z-index:0 的雪画布在 body 背景之上、静态内容之上；
    为保持“雪花低于内容”，让 .app 创建更高层叠上下文 */
