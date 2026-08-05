@@ -12389,3 +12389,61 @@ height:42px!important;
 }
 
 }
+
+
+/* =========================================================
+   V1.8 · MOBILE COMMAND STRIP FIX（手机端任务状态条修复）
+   桌面选择器带 .mission-info 优先级更高，导致手机单列规则失效；
+   这里用同优先级选择器在末尾覆盖，仅 ≤768px 生效
+========================================================= */
+@media (max-width:768px){
+
+body.dashboard-page .mission-info.dashboard-command-strip{
+
+grid-template-columns:1fr;
+
+gap:8px;
+
+}
+
+
+body.dashboard-page .mission-info.dashboard-command-strip .cmd-cell{
+
+width:100%;
+
+min-width:0;
+
+padding:10px 12px;
+
+}
+
+
+body.dashboard-page .mission-info.dashboard-command-strip .cmd-value{
+
+flex-wrap:wrap;
+
+min-width:0;
+
+}
+
+
+body.dashboard-page .mission-info.dashboard-command-strip strong{
+
+font-size:clamp(18px,5.5vw,24px);
+
+margin-top:5px;
+
+}
+
+
+body.dashboard-page .mission-info.dashboard-command-strip .mode-text{
+
+white-space:normal;
+
+overflow-wrap:anywhere;
+
+min-width:0;
+
+}
+
+}
