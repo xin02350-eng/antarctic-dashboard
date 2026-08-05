@@ -168,7 +168,7 @@
 
       /* 统一时间刻度：MM/DD HH（删除 :00 分钟） */
       cfg.options.scales.x.ticks = cfg.options.scales.x.ticks || {};
-      cfg.options.scales.x.ticks.color = '#6f93a8';
+      cfg.options.scales.x.ticks.color = '#8FA8B8';
       cfg.options.scales.x.ticks.callback = function (value) {
         var label = (this && this.getLabelForValue) ? this.getLabelForValue(value) : String(value);
         return String(label).replace(/:00$/, '');
