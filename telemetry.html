@@ -216,10 +216,10 @@
     return ok ? { text: 'ONLINE', cls: 'gps-ok' } : { text: 'NO FIX', cls: 'gps-bad' };
   }
 
-  /* 构建桌面表格 + 移动卡片（最近 20 条，倒序） */
+  /* 构建桌面表格 + 移动卡片（data.json 全部历史记录，最新在上） */
   function buildHtml(list) {
     var keys = collectKeys(list);
-    var rows = list.slice(Math.max(0, list.length - 20)).reverse();
+    var rows = list.slice().reverse();
 
     /* ---- 桌面科研表格：核心列 + 展开完整字段 ---- */
     var html = '<div class="tel-scroll"><table class="tel-table"><thead><tr>' +
