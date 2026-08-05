@@ -12402,6 +12402,40 @@ height:42px!important;
 
 
 /* =========================================================
+   V2.3 · EXTREME SHORT VIEWPORT FALLBACK
+   极矮视口（如 150% 缩放的 1366 笔记本 / 小尺寸窗口）：
+   Hardware 与 Analysis 允许纵向滚动，避免内容被压得过紧。
+   1366×768 及以上高度不受影响。
+========================================================= */
+@media (max-height:560px) and (max-width:1200px){
+
+body.hardware-page,
+
+body.analysis-page{
+
+height:auto;
+
+overflow:auto;
+
+}
+
+
+body.hardware-page main,
+
+body.analysis-page main{
+
+height:auto;
+
+min-height:100vh;
+
+overflow:visible;
+
+}
+
+}
+
+
+/* =========================================================
    V1.8 · MOBILE COMMAND STRIP FIX（手机端任务状态条修复）
    桌面选择器带 .mission-info 优先级更高，导致手机单列规则失效；
    这里用同优先级选择器在末尾覆盖，仅 ≤768px 生效
