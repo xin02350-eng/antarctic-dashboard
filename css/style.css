@@ -12436,6 +12436,194 @@ overflow:visible;
 
 
 /* =========================================================
+   V3.0 · DESKTOP ADAPTIVE TIERS（桌面三档自适应体系）
+   ≥1800px：保持当前展示效果（不触发任何压缩）
+   1280–1799px：轻压缩间距 / 卡片内边距 / 标题字号
+   高度 <800px：压缩纵向留白与非核心装饰，保证第一屏完整
+   全部为比例调整，不改变结构与配色
+========================================================= */
+
+/* 标准屏（1280–1799px）：轻压缩 */
+@media (min-width:1280px) and (max-width:1799px){
+
+body.dashboard-page main{
+
+gap:clamp(10px,1.4vh,14px);
+
+padding:clamp(14px,1.8vh,20px) clamp(20px,1.9vw,26px);
+
+}
+
+
+body .dashboard-hero{
+
+padding:18px 24px;
+
+}
+
+
+body .dashboard-title{
+
+font-size:clamp(20px,1.7vw,28px);
+
+}
+
+
+body .dashboard-kicker{
+
+font-size:10px;
+
+}
+
+
+body .hero-sub{
+
+font-size:10px;
+
+}
+
+
+body.dashboard-page .mission-grid{
+
+gap:14px;
+
+}
+
+
+body .sensor-card{
+
+padding:14px 16px;
+
+}
+
+
+body .panel{
+
+padding:12px 14px;
+
+}
+
+
+body .mission-header{
+
+padding-bottom:14px;
+
+}
+
+
+body .mission-header h2{
+
+font-size:clamp(16px,1.35vw,20px);
+
+}
+
+
+body .kpi-num b{
+
+font-size:clamp(20px,1.6vw,26px);
+
+}
+
+
+.hardware-page .doc-single{
+
+grid-template-columns:180px minmax(0,1fr) 180px;
+
+gap:12px;
+
+}
+
+}
+
+
+/* 低高度屏（<800px，桌面）：压缩纵向留白与装饰 */
+@media (max-height:799px) and (min-width:769px){
+
+body.dashboard-page main,
+
+body.sensors-page main,
+
+body.telemetry-page main,
+
+body.location-page main{
+
+padding-top:12px;
+
+padding-bottom:12px;
+
+gap:10px;
+
+}
+
+
+body .dashboard-hero{
+
+padding:14px 20px;
+
+}
+
+
+body .mission-header{
+
+padding-bottom:10px;
+
+}
+
+
+body .mission-header p{
+
+margin-top:4px;
+
+}
+
+
+body .dashboard-command-strip{
+
+gap:8px;
+
+}
+
+
+body .cmd-cell{
+
+padding:10px 14px;
+
+}
+
+
+body .sensor-card{
+
+padding:12px 14px;
+
+min-height:0;
+
+}
+
+
+body .panel{
+
+padding:10px 12px;
+
+}
+
+
+body .kpi-block{
+
+padding:6px 10px;
+
+}
+
+
+.polar-scan{
+
+display:none;
+
+}
+
+}
+
+
+/* =========================================================
    V1.8 · MOBILE COMMAND STRIP FIX（手机端任务状态条修复）
    桌面选择器带 .mission-info 优先级更高，导致手机单列规则失效；
    这里用同优先级选择器在末尾覆盖，仅 ≤768px 生效
