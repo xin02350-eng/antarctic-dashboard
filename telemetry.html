@@ -6,6 +6,45 @@
   <title>ANTARCTIC NEXUS - TELEMETRY</title>
   <link rel="icon" href="data:,">
   <link rel="stylesheet" href="./css/style.css">
+
+  <!-- REAL TIME TELEMETRY：纯表格 + 固定表头（仅本页） -->
+  <style>
+    .telemetry-page .tel-scroll{
+      max-height:calc(100vh - 210px);
+      overflow:auto;
+      border:1px solid rgba(98,217,255,.14);
+      border-radius:8px;
+      background:rgba(4,16,27,.45);
+    }
+    .telemetry-page .tel-table{ min-width:1080px; }
+    .telemetry-page .tel-table thead th{
+      position:sticky;
+      top:0;
+      z-index:2;
+      background:#081b2c;
+      border-bottom:1px solid rgba(98,217,255,.2);
+    }
+    .telemetry-page .tel-table thead th em{
+      display:block;
+      font-style:normal;
+      font-size:8px;
+      letter-spacing:1px;
+      color:#6f93a8;
+      font-weight:400;
+    }
+    .telemetry-page .gps-ok{ color:#00e5a8; }
+    .telemetry-page .gps-bad{ color:#ff9aa4; }
+    .telemetry-page .tel-loading{
+      font-size:9px;
+      letter-spacing:2px;
+      color:#6f93a8;
+      text-align:center;
+      padding:8px 0 2px;
+    }
+  </style>
+
+  <!-- Telemetry 大量表格：雪花降载至 50%（不关闭） -->
+  <script>window.__antSnowScale = 0.5;</script>
 </head>
 
 <body class="polar-ambient telemetry-page">
@@ -74,67 +113,183 @@
   var box = document.getElementById('telemetryData');
   if (!box) return;
 
-  /* 表头：13 个通道（与页面标题一致） */
-  var HEADERS = [
-    'TIME', 'MODE', 'VOLTAGE', 'CURRENT (mA)', 'SOLAR',
-    'INSIDE TEMP', 'INSIDE HUMIDITY', 'OUTSIDE TEMP', 'OUTSIDE HUMIDITY',
-    'LATITUDE', 'LONGITUDE', 'SATELLITES', 'GPS STATUS'
-  ];
+  /* ============ 字段元数据：动态读取 data.json 全部字段 ============ */
+  var FIELD_META = {
+    v:    { label: 'VOLTAGE',          unit: 'V' },
+    a:    { label: 'CURRENT',          unit: 'mA' },
+    s:    { label: 'SOLAR IRRADIANCE', unit: 'W/m²' },
+    t:    { label: 'INSIDE TEMP',      unit: '°C' },
+    h:    { label: 'INSIDE HUMIDITY',  unit: '%RH' },
+    j:    { label: 'OUTSIDE TEMP',     unit: '°C' },
+    k:    { label: 'OUTSIDE HUMIDITY', unit: '%RH' },
+    x:    { label: 'LATITUDE',         unit: '°' },
+    y:    { label: 'LONGITUDE',        unit: '°' },
+    n:    { label: 'SATELLITES',       unit: '' },
+    g:    { label: 'GPS STATUS',       unit: '' },
+    mode: { label: 'MODE',             unit: '' }
+  };
+  var KNOWN_ORDER = ['v', 'a', 's', 't', 'h', 'j', 'k', 'x', 'y', 'n', 'g', 'mode'];
 
-  /* 数据列与 data.json 字段对应（SOLAR 即 SOLAR IRRADIANCE） */
-  var CELL_KEYS = ['v', 'a', 's', 't', 'h', 'j', 'k', 'x', 'y', 'n'];
+  /* 动态收集所有字段（含 i/q/r/e 等未知字段），保持稳定顺序 */
+  function collectKeys(list) {
+    var keys = [];
+    var seen = {};
+    list.forEach(function (r) {
+      Object.keys(r).forEach(function (k) {
+        if (k === 'time' || seen[k]) return;
+        seen[k] = true;
+        keys.push(k);
+      });
+    });
+    keys.sort(function (a, b) {
+      var ia = KNOWN_ORDER.indexOf(a), ib = KNOWN_ORDER.indexOf(b);
+      if (ia >= 0 && ib >= 0) return ia - ib;
+      if (ia >= 0) return -1;
+      if (ib >= 0) return 1;
+      return a < b ? -1 : (a > b ? 1 : 0);
+    });
+    return keys;
+  }
 
-  /* 本地时间格式化（不依赖 main.js 内部函数） */
+  function metaOf(k) {
+    return FIELD_META[k] || { label: k.toUpperCase(), unit: '' };
+  }
+
+  /* 本地时间格式化：YYYY-MM-DD HH:mm（保留分钟，不依赖 main.js） */
   function fmtTime(t) {
-    if (!t) return 'NO SIGNAL';
+    if (!t) return '--';
     var d = new Date(t);
     if (isNaN(d.getTime())) return String(t);
     function p(n) { return String(n).padStart(2, '0'); }
-    /* REAL TIME TELEMETRY 精确到分钟：YYYY-MM-DD HH:mm（删除秒） */
     return d.getFullYear() + '-' + p(d.getMonth() + 1) + '-' + p(d.getDate()) +
       ' ' + p(d.getHours()) + ':' + p(d.getMinutes());
   }
 
-  /* 构建表格 HTML（最近 20 条，倒序，与 main.js 逻辑一致） */
-  function buildHtml(list) {
-    var html = '<div class="tel-scroll"><table class="tel-table"><thead><tr>';
-    HEADERS.forEach(function (h) { html += '<th>' + h + '</th>'; });
-    html += '</tr></thead><tbody>';
+  /* NULL 一律显示 --，不补 0、不插值 */
+  function fmtVal(v, unit) {
+    if (v === null || v === undefined || v === '') return '--';
+    var n = (typeof v === 'number') ? parseFloat(v.toFixed(2)) : v;
+    return unit ? n + ' ' + unit : String(n);
+  }
 
-    var rows = list.slice(Math.max(0, list.length - 20)).reverse();
-    rows.forEach(function (d) {
-      var modeRaw = (d.mode !== null && d.mode !== undefined) ? d.mode : 'N';
-      var modeSt = modeRaw === 'E' ? 'EMERGENCY' : (modeRaw === 'S' ? 'STANDBY' : 'NORMAL');
-      var modeCls = modeRaw === 'E' ? 'm-emergency' : (modeRaw === 'S' ? 'm-standby' : 'm-normal');
-      var gpsOk = d.x !== null && d.x !== undefined && d.y !== null && d.y !== undefined;
-      var recCls = (modeRaw === 'E' || !gpsOk) ? 'tel-alert' : (modeRaw === 'S' ? 'tel-warn' : 'tel-ok');
+  function modeInfo(m) {
+    var raw = (m === null || m === undefined || m === '') ? 'N' : String(m);
+    return {
+      st: raw === 'E' ? 'EMERGENCY' : (raw === 'S' ? 'STANDBY' : 'NORMAL'),
+      cls: raw === 'E' ? 'm-emergency' : (raw === 'S' ? 'm-standby' : 'm-normal')
+    };
+  }
 
-      html += '<tr class="' + recCls + '">';
-      html += '<td class="tel-time">' + fmtTime(d.time) + '</td>';
-      html += '<td><span class="tel-mode ' + modeCls + '">' + modeSt + '</span></td>';
+  function gpsInfo(d) {
+    var g = d.g;
+    if (g === null || g === undefined || g === '') return { text: '--', cls: '' };
+    var ok = g === 'O' || g === 'OK' || g === 1 || g === '1' || g === true;
+    return ok ? { text: 'ONLINE', cls: 'gps-ok' } : { text: 'NO FIX', cls: 'gps-bad' };
+  }
 
-      CELL_KEYS.forEach(function (k) {
-        var v = d[k];
-        var nullCls = (v === null || v === undefined || v === '');
-        var disp = nullCls ? 'NO SIGNAL' : v;
-        /* 电流数值直接以 mA 显示，不换算 */
-        if (!nullCls && k === 'a') disp = v + ' mA';
-        html += '<td class="tel-val' + (nullCls ? ' null-val' : '') + '">' + disp + '</td>';
-      });
+  /* ============ 高性能分批渲染：不全量创建 DOM ============ */
+  var BATCH = 50;
+  var rowsHtml = [];
+  var renderedCount = 0;
+  var allDone = false;
+  var loadingBusy = false;
+  var scrollEl = null;
+  var tbodyEl = null;
+  var loadEl = null;
 
-      html += '<td class="tel-val' + (gpsOk ? '' : ' null-val') + '">' + (gpsOk ? 'ONLINE' : 'NO FIX') + '</td>';
-      html += '</tr>';
+  function rowHtml(d, keys) {
+    var mi = modeInfo(d.mode);
+    var gi = gpsInfo(d);
+    var recCls = (mi.st === 'EMERGENCY' || gi.text === 'NO FIX') ? 'tel-alert' :
+      (mi.st === 'STANDBY' ? 'tel-warn' : 'tel-ok');
+    var html = '<tr class="' + recCls + '">';
+    html += '<td class="tel-time">' + fmtTime(d.time) + '</td>';
+    html += '<td><span class="tel-mode ' + mi.cls + '">' + mi.st + '</span></td>';
+    keys.forEach(function (k) {
+      var m = metaOf(k);
+      var val = (k === 'mode') ? modeInfo(d[k]).st :
+        (k === 'g' ? gi.text : fmtVal(d[k], m.unit));
+      var cls = (k === 'g' ? gi.cls : '');
+      if (val === '--') cls += ' null-val';
+      html += '<td class="tel-val ' + cls.trim() + '">' + val + '</td>';
     });
-
-    html += '</tbody></table></div>';
+    html += '</tr>';
     return html;
+  }
+
+  function buildShell(keys) {
+    var html = '<div class="tel-scroll"><table class="tel-table"><thead><tr>';
+    html += '<th>TIME</th><th>MODE</th>';
+    keys.forEach(function (k) {
+      var m = metaOf(k);
+      html += '<th>' + m.label + (m.unit ? '<em>(' + m.unit + ')</em>' : '') + '</th>';
+    });
+    html += '</tr></thead><tbody></tbody></table></div>';
+    html += '<div class="tel-loading">LOADING HISTORY…</div>';
+    return html;
+  }
+
+  /* 追加一批（50 条），使用 DocumentFragment 批量挂载 */
+  function appendBatch() {
+    if (loadingBusy || allDone) return;
+    loadingBusy = true;
+    var batch = rowsHtml.slice(renderedCount, renderedCount + BATCH);
+    if (!batch.length) {
+      allDone = true;
+      loadingBusy = false;
+      if (loadEl) loadEl.textContent = 'ALL HISTORY LOADED · ' + renderedCount + ' RECORDS';
+      return;
+    }
+    var frag = document.createDocumentFragment();
+    var tmp = document.createElement('tbody');
+    tmp.innerHTML = batch.join('');
+    while (tmp.firstChild) frag.appendChild(tmp.firstChild);
+    tbodyEl.appendChild(frag);
+    renderedCount += batch.length;
+    loadingBusy = false;
+    if (renderedCount >= rowsHtml.length) {
+      allDone = true;
+      if (loadEl) loadEl.textContent = 'ALL HISTORY LOADED · ' + renderedCount + ' RECORDS';
+    } else if (loadEl) {
+      loadEl.textContent = 'HISTORY ' + renderedCount + ' / ' + rowsHtml.length;
+    }
+  }
+
+  /* 首屏未填满时自动继续加载 */
+  function ensureFill() {
+    if (!scrollEl || allDone) return;
+    if (tbodyEl.scrollHeight <= scrollEl.clientHeight + 2 && !loadingBusy) {
+      appendBatch();
+      if (!allDone) requestAnimationFrame(ensureFill);
+    }
+  }
+
+  /* 滚动接近底部时继续加载下一批 */
+  function wireScroll() {
+    if (!scrollEl) return;
+    scrollEl.addEventListener('scroll', function () {
+      if (allDone || loadingBusy) return;
+      if (scrollEl.scrollTop + scrollEl.clientHeight >= scrollEl.scrollHeight - 160) {
+        appendBatch();
+      }
+    }, { passive: true });
   }
 
   /* 渲染入口：已存在表格则跳过（幂等，无循环） */
   function render(list) {
     if (!list || !list.length) return;
     if (box.querySelector('.tel-table')) return;
-    box.innerHTML = buildHtml(list);
+    var keys = collectKeys(list);
+    box.innerHTML = buildShell(keys);
+    scrollEl = box.querySelector('.tel-scroll');
+    tbodyEl = box.querySelector('.tel-table tbody');
+    loadEl = box.querySelector('.tel-loading');
+    rowsHtml = list.slice().reverse().map(function (d) { return rowHtml(d, keys); });
+    renderedCount = 0;
+    allDone = false;
+    appendBatch();
+    wireScroll();
+    requestAnimationFrame(ensureFill);
   }
 
   /* 优先使用 main.js 的全局 DATA */
