@@ -1,131 +1,4 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>ANTARCTIC NEXUS - SENSORS</title>
-  <link rel="icon" href="data:,">
-  <link rel="stylesheet" href="./css/style.css">
 
-  <!-- Chart.js（图表引擎） -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-  <!-- Sensors 图表面板：右侧 REAL TIME 状态标（仅本页） -->
-  <style>
-    .sensors-page .sensor-grid .panel-title{
-      position:relative;
-      padding-right:64px;
-    }
-    .sensors-page .sensor-grid .panel-title::after{
-      content:"REAL TIME";
-      position:absolute;
-      right:0;
-      top:2px;
-      font-size:8px;
-      letter-spacing:1.5px;
-      color:#6f93a8;
-    }
-  </style>
-</head>
-
-<!-- polar-ambient：极地氛围（极光/雾效/雪花/扫描线）；sensors-page：本页专属样式 -->
-<body class="polar-ambient sensors-page">
-
-<div class="app">
-
-  <aside class="sidebar">
-    <div class="brand">
-      <div class="logo">AN</div>
-      <div>
-        <h1>ANTARCTIC<br>NEXUS</h1>
-        <p>POLAR AUTONOMOUS OBSERVATORY</p>
-      </div>
-    </div>
-    <input type="checkbox" id="navToggle" class="nav-toggle" aria-hidden="true">
-    <label for="navToggle" class="nav-toggle-btn" aria-label="MENU"><span></span><span></span><span></span></label>
-    <nav class="sidebar-menu">
-      <a class="nav-item" href="./index.html">Dashboard</a>
-      <a class="nav-item" href="./location.html">Location</a>
-      <a class="nav-item active">Sensors</a>
-      <a class="nav-item" href="./telemetry.html">Telemetry</a>
-      <a class="nav-item" href="./hardware.html">Hardware</a>
-      <a class="nav-item" href="./analysis.html">Analysis</a>
-    </nav>
-    <label for="navToggle" class="nav-overlay" aria-hidden="true"></label>
-  </aside>
-
-  <main>
-
-    <header class="mission-header">
-      <div>
-        <h2>ENVIRONMENT MONITORING</h2>
-        <p>Multi-channel sensor acquisition system</p>
-      </div>
-      <div class="system-online"><span></span>SENSOR ARRAY</div>
-    </header>
-
-    <!-- 八通道传感器曲线（hud-frame 提供面板角标） -->
-    <section class="sensor-grid hud-frame">
-
-      <div class="panel">
-        <div class="panel-title">CABIN TEMPERATURE<br>RS485</div>
-        <canvas id="chartInTemp"></canvas>
-      </div>
-
-      <div class="panel">
-        <div class="panel-title">CABIN HUMIDITY<br>RS485</div>
-        <canvas id="chartInHum"></canvas>
-      </div>
-
-      <div class="panel">
-        <div class="panel-title">OUTSIDE TEMPERATURE<br>SHT35</div>
-        <canvas id="chartOutTemp"></canvas>
-      </div>
-
-      <div class="panel">
-        <div class="panel-title">OUTSIDE HUMIDITY<br>SHT35</div>
-        <canvas id="chartOutHum"></canvas>
-      </div>
-
-      <div class="panel">
-        <div class="panel-title">SOLAR IRRADIANCE<br>PYRANOMETER · W/m²</div>
-        <canvas id="chartSolar"></canvas>
-      </div>
-
-      <div class="panel">
-        <div class="panel-title">CURRENT (mA)</div>
-        <canvas id="chartCurrent"></canvas>
-      </div>
-
-      <div class="panel">
-        <div class="panel-title">VOLTAGE</div>
-        <canvas id="chartVoltage"></canvas>
-      </div>
-
-      <div class="panel">
-        <div class="panel-title">WIND SPEED<br>NO DATA AVAILABLE</div>
-        <canvas id="chartWind"></canvas>
-      </div>
-
-    </section>
-
-  </main>
-</div>
-
-<!-- 极地氛围层：雪花画布 / 页面扫描线 / 设备编号铭牌 -->
-<!-- 全站暴风雪模块（模块化，自动创建背景/前景画布） -->
-<script src="./js/ambient.js"></script>
-<div class="polar-scan" aria-hidden="true"></div>
-<div class="polar-badge">ANT-A01 · POLAR STATION · REMOTE SENSOR NODE</div>
-
-<!-- =========================================================
-     SOLAR IRRADIANCE 图表辅助配置（纯显示层）
-     不改 main.js：仅在创建 chartSolar 时接管呈现参数
-     - Y 轴强制 beginAtZero:true
-     - 根据真实数据最大值自动计算顶部空间（suggestedMax）
-     - 浅蓝曲线 + 面积渐变填充 + 细化网格线
-========================================================= -->
-<script>
 (function () {
   'use strict';
   var RealChart = window.Chart;
@@ -168,7 +41,7 @@
 
       /* 统一时间刻度：MM/DD HH（删除 :00 分钟） */
       cfg.options.scales.x.ticks = cfg.options.scales.x.ticks || {};
-      cfg.options.scales.x.ticks.color = '#8FA8B8';
+      cfg.options.scales.x.ticks.color = '#6f93a8';
       cfg.options.scales.x.ticks.callback = function (value) {
         var label = (this && this.getLabelForValue) ? this.getLabelForValue(value) : String(value);
         return String(label).replace(/:00$/, '');
@@ -407,9 +280,3 @@
   window.Chart.register = RealChart.register;
   window.Chart.unregister = RealChart.unregister;
 })();
-</script>
-
-<!-- 数据核心与图表创建（main.js 保持不变） -->
-<script src="./js/main.js"></script>
-</body>
-</html>
