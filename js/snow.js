@@ -24,9 +24,9 @@
     document.body.appendChild(c);
 
     var ctx = c.getContext('2d');
-    var dpr = Math.min(window.devicePixelRatio || 1, 1.25); /* CPU 控制 */
-    var mobile = window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
-    var scale = mobile ? 0.5 : 1;                           /* 移动端降载 */
+  var dpr = Math.min(window.devicePixelRatio || 1, 1.25); /* CPU 控制 */
+  var mobile = window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
+  var scale = (mobile || window.innerWidth < 768) ? 0.35 : 1; /* 手机/窄屏自动降载 */
     var particles = [];
     var running = true;
     var gustPhase = 0;

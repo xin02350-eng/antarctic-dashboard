@@ -255,7 +255,6 @@
     var svg = document.getElementById('missionTimeline');
     if (!svg) return;
     while (svg.firstChild) svg.removeChild(svg.firstChild);
-    var W = 720, H = 96, y = 46;
     var start = new Date(DATA[0].time).getTime();
     var end = new Date(DATA[DATA.length - 1].time).getTime();
     var span = (end - start) || 1;
@@ -268,6 +267,14 @@
       { t: start + span * 0.5, name: 'MONITORING PERIOD', status: 'ACTIVE', time: days + ' DAYS OPERATION', desc: 'CONTINUOUS RUN', mark: '', cls: 'active' },
       { t: end, name: 'LATEST DATA UPDATE', status: 'LATEST', time: fmtFull(end, true), desc: 'LAST CONTACT', mark: 'E', cls: 'latest' }
     ];
+
+    /* 手机/窄屏：时间轴垂直排列 */
+    if (window.innerWidth < 768) {
+      drawTimelineVertical(svg, phases);
+      return;
+    }
+
+    var W = 720, H = 96, y = 46;
 
     /* 按真实时间映射，保证最小间距避免文字重叠 */
     var xs = phases.map(function (ph) {
@@ -328,6 +335,53 @@
       var desc = document.createElementNS(NS, 'text');
       desc.setAttribute('x', x); desc.setAttribute('y', y + 34);
       desc.setAttribute('text-anchor', 'middle');
+      desc.setAttribute('class', 'tl-desc');
+      desc.textContent = ph.desc;
+      svg.appendChild(desc);
+    });
+  }
+
+  /* 垂直时间轴（移动端） */
+  function drawTimelineVertical(svg, phases) {
+    svg.setAttribute('viewBox', '0 0 300 250');
+    var W = 300, H = 250, x = 44;
+    var line = document.createElementNS(NS, 'line');
+    line.setAttribute('class', 'tl-line');
+    line.setAttribute('x1', x); line.setAttribute('y1', 18);
+    line.setAttribute('x2', x); line.setAttribute('y2', H - 18);
+    svg.appendChild(line);
+
+    phases.forEach(function (ph, idx) {
+      var y = 30 + idx * ((H - 60) / 3);
+      var dot = document.createElementNS(NS, 'circle');
+      dot.setAttribute('cx', x); dot.setAttribute('cy', y); dot.setAttribute('r', '5');
+      dot.setAttribute('class', 'tl-node ' + ph.cls);
+      svg.appendChild(dot);
+      if (ph.mark) {
+        var mark = document.createElementNS(NS, 'text');
+        mark.setAttribute('x', x); mark.setAttribute('y', y + 2.5);
+        mark.setAttribute('text-anchor', 'middle');
+        mark.setAttribute('class', 'tl-mark');
+        mark.textContent = ph.mark;
+        svg.appendChild(mark);
+      }
+      var status = document.createElementNS(NS, 'text');
+      status.setAttribute('x', x + 16); status.setAttribute('y', y - 8);
+      status.setAttribute('class', 'tl-status');
+      status.textContent = ph.status;
+      svg.appendChild(status);
+      var name = document.createElementNS(NS, 'text');
+      name.setAttribute('x', x + 16); name.setAttribute('y', y + 5);
+      name.setAttribute('class', 'tl-name');
+      name.textContent = ph.name;
+      svg.appendChild(name);
+      var time = document.createElementNS(NS, 'text');
+      time.setAttribute('x', x + 16); time.setAttribute('y', y + 19);
+      time.setAttribute('class', 'tl-time');
+      time.textContent = ph.time;
+      svg.appendChild(time);
+      var desc = document.createElementNS(NS, 'text');
+      desc.setAttribute('x', x + 16); desc.setAttribute('y', y + 31);
       desc.setAttribute('class', 'tl-desc');
       desc.textContent = ph.desc;
       svg.appendChild(desc);
