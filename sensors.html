@@ -181,7 +181,7 @@
       var ds = cfg.data.datasets[0];
       ds.borderColor = color;
       ds.borderWidth = 2;
-      ds.tension = 0.45;
+      ds.tension = 0.35;
       ds.pointRadius = 0;        /* 隐藏常规数据点，仅 hover 显示 */
       ds.pointHoverRadius = 5;
       ds.pointBackgroundColor = color;
@@ -192,7 +192,7 @@
       ds.hoverBorderColor = lighten(color, 0.35);
       ds.hoverBorderWidth = 2;
       ds.pointHitRadius = 4;
-      ds.spanGaps = true;
+      ds.spanGaps = false;       /* 严格真实数据：NULL 处断开，不插值、不连虚假线 */
       ds.fill = true;
       ds.backgroundColor = function (context) {
         var chart = context.chart;
@@ -380,7 +380,7 @@
       cfg.options.scales.y.ticks.color = '#6f93a8';
       cfg.options.scales.x.grid = { color: 'rgba(98,217,255,.07)' };
       cfg.options.scales.x.ticks = cfg.options.scales.x.ticks || {};
-      cfg.options.scales.x.ticks.color = '#6f93a8';
+      cfg.options.scales.x.ticks.color = '#8FA8B8';
 
       /* 4. 浅蓝曲线 + 面积渐变填充 */
       var ds = cfg.data.datasets[0];
@@ -388,7 +388,8 @@
       ds.borderWidth = 2;
       ds.pointRadius = 0;
       ds.pointBackgroundColor = '#ffe9b8';
-      ds.tension = 0.45;
+      ds.tension = 0.35;
+      ds.spanGaps = false;
       ds.fill = true;
       ds.backgroundColor = function (context) {
         var chart = context.chart;
