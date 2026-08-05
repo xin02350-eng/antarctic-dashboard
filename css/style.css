@@ -9155,6 +9155,171 @@ opacity:1;
 }
 
 
+/* =========================================================
+   V0.7 · RESPONSIVE MAP FINAL
+   地图自动填充可用空间（不固定 px 高度），消除下方空白
+   断点：大屏 ≥1600 / 桌面 1200-1600 / 笔记本 900-1200 / 小屏 <900
+========================================================= */
+
+/* Dashboard 地图区：面板纵向弹性，地图 flex 填充剩余空间 */
+body.dashboard-page .map-panel{
+
+display:flex;
+
+flex-direction:column;
+
+}
+
+
+body.dashboard-page .map-panel-head,
+
+body.dashboard-page .map-status-grid{
+
+flex:none;
+
+}
+
+
+body.dashboard-page #worldMap{
+
+height:auto;
+
+flex:1 1 auto;
+
+min-height:clamp(240px,40vh,600px);
+
+}
+
+
+/* Location REAL WORLD MAP 同样自适应 */
+body.location-page #worldMap{
+
+height:auto;
+
+flex:1 1 auto;
+
+min-height:clamp(300px,46vh,600px);
+
+}
+
+
+/* 字体与组件统一 clamp 缩放（大屏不小、小屏不挤） */
+body .mission-header h2{
+
+font-size:clamp(18px,2.2vw,34px);
+
+}
+
+
+body.dashboard-page .operation-card strong{
+
+font-size:clamp(20px,2vw,30px);
+
+}
+
+
+body .hc-val{
+
+font-size:clamp(14px,1.5vw,20px);
+
+}
+
+
+body.dashboard-page .cmd-value{
+
+font-size:clamp(17px,1.6vw,26px);
+
+}
+
+
+/* 大型屏幕（≥1600px）：增加间距、字体与留白 */
+@media (min-width:1600px){
+
+body.dashboard-page main{
+
+gap:clamp(12px,1.6vh,22px);
+
+padding:clamp(18px,2vh,30px) clamp(24px,2.4vw,40px);
+
+}
+
+body.dashboard-page .dashboard-title{
+
+font-size:clamp(26px,2vw,38px);
+
+}
+
+body.dashboard-page #worldMap{
+
+min-height:clamp(360px,46vh,720px);
+
+}
+
+body.dashboard-page .sensor-card{
+
+min-height:clamp(130px,16vh,190px);
+
+}
+
+body.dashboard-page .operation-card{
+
+padding:14px 22px;
+
+}
+
+body.sensors-page main,
+
+body.telemetry-page main,
+
+body.location-page main{
+
+gap:clamp(12px,1.6vh,20px);
+
+padding:clamp(18px,2vh,28px) clamp(22px,2vw,36px);
+
+}
+
+}
+
+
+/* 笔记本档（900-1200px）：收窄侧栏、图表两列、地图适度收缩 */
+@media (min-width:901px) and (max-width:1200px){
+
+body.dashboard-page .mission-grid{
+
+grid-template-columns:170px minmax(0,1fr) 170px;
+
+}
+
+body.dashboard-page #worldMap{
+
+min-height:clamp(220px,36vh,460px);
+
+}
+
+body.sensors-page .sensor-grid{
+
+grid-template-columns:repeat(2,minmax(0,1fr));
+
+grid-template-rows:repeat(4,auto);
+
+}
+
+}
+
+
+/* 矮屏（内视口高度不足 820px）：进一步收紧地图与间距 */
+@media (max-height:820px){
+
+body.dashboard-page #worldMap{
+
+min-height:clamp(200px,34vh,480px);
+
+}
+
+}
+
+
 /* 页面内容（.app）置于雪花之上：
    z-index:0 的雪画布在 body 背景之上、静态内容之上；
    为保持“雪花低于内容”，让 .app 创建更高层叠上下文 */
