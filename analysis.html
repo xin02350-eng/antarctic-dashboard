@@ -138,7 +138,8 @@
     <!-- MISSION TIMELINE -->
     <section class="an-timeline">
       <h3>MISSION TIMELINE</h3>
-      <svg id="missionTimeline" class="timeline-svg" viewBox="0 0 720 84" preserveAspectRatio="none"></svg>
+      <div class="an-tl-sub">MISSION OPERATION HISTORY</div>
+      <svg id="missionTimeline" class="timeline-svg" viewBox="0 0 720 96" preserveAspectRatio="xMidYMid meet"></svg>
       <div class="tl-foot">LAST CONTACT <span id="lastUpdate">--</span> · FIX <span id="gpsValidCount">--</span></div>
     </section>
 
@@ -225,56 +226,111 @@
     arc.setAttribute('stroke', pct >= 80 ? '#00e5a8' : (pct >= 50 ? '#f5b942' : '#ff5263'));
   }
 
-  function fmtDate(t) {
+  /* 完整时间格式（可选秒） */
+  function fmtFull(t, withSec) {
     var d = new Date(t);
     function p(n) { return String(n).padStart(2, '0'); }
-    return p(d.getMonth() + 1) + '-' + p(d.getDate());
+    var base = d.getFullYear() + '-' + p(d.getMonth() + 1) + '-' + p(d.getDate()) +
+      ' ' + p(d.getHours()) + ':' + p(d.getMinutes());
+    return withSec ? base + ':' + p(d.getSeconds()) : base;
   }
 
+  /* 第一次有效传感器数据时间（任一主通道非空） */
+  function firstValidTime() {
+    var start = new Date(DATA[0].time).getTime();
+    for (var i = 0; i < DATA.length; i++) {
+      var d = DATA[i];
+      if ((d.t !== null && d.t !== undefined) ||
+          (d.v !== null && d.v !== undefined) ||
+          (d.s !== null && d.s !== undefined) ||
+          (d.h !== null && d.h !== undefined)) {
+        return new Date(d.time).getTime();
+      }
+    }
+    return start;
+  }
+
+  /* 真实任务生命周期时间轴（NASA Mission Timeline 风格） */
   function drawTimeline() {
     var svg = document.getElementById('missionTimeline');
     if (!svg) return;
     while (svg.firstChild) svg.removeChild(svg.firstChild);
-    var W = 720, H = 84, y = 48;
+    var W = 720, H = 96, y = 46;
     var start = new Date(DATA[0].time).getTime();
     var end = new Date(DATA[DATA.length - 1].time).getTime();
     var span = (end - start) || 1;
-    var firstGps = end;
-    for (var i = 0; i < DATA.length; i++) {
-      if (DATA[i].x !== null && DATA[i].x !== undefined) { firstGps = new Date(DATA[i].time).getTime(); break; }
-    }
+    var acq = firstValidTime();
+    var days = Math.max(1, Math.round((end - start) / 86400000));
+
     var phases = [
-      { t: start, label: 'DEPLOYMENT' },
-      { t: start + span * 0.12, label: 'DATA COLLECTION' },
-      { t: firstGps, label: 'MONITORING' },
-      { t: end, label: 'CURRENT STATUS' }
+      { t: start, name: 'MISSION START', status: 'START', time: fmtFull(start), desc: 'FIRST RECORD', mark: '', cls: 'start' },
+      { t: acq, name: 'DATA ACQUISITION START', status: 'ACTIVE', time: fmtFull(acq), desc: 'FIRST VALID SENSOR DATA', mark: 'S', cls: 'active' },
+      { t: start + span * 0.5, name: 'MONITORING PERIOD', status: 'ACTIVE', time: days + ' DAYS OPERATION', desc: 'CONTINUOUS RUN', mark: '', cls: 'active' },
+      { t: end, name: 'LATEST DATA UPDATE', status: 'LATEST', time: fmtFull(end, true), desc: 'LAST CONTACT', mark: 'E', cls: 'latest' }
     ];
-    var xs = [70, 270, 460, 650];
+
+    /* 按真实时间映射，保证最小间距避免文字重叠 */
+    var xs = phases.map(function (ph) {
+      return 70 + ((ph.t - start) / span) * (W - 140);
+    });
+    var minGap = 90;
+    for (var i = 1; i < xs.length; i++) {
+      if (xs[i] - xs[i - 1] < minGap) xs[i] = xs[i - 1] + minGap;
+    }
+    if (xs[3] > W - 16) {
+      var shift = xs[3] - (W - 16);
+      for (var j = 1; j < 4; j++) xs[j] -= shift;
+    }
 
     var line = document.createElementNS(NS, 'line');
     line.setAttribute('class', 'tl-line');
-    line.setAttribute('x1', 70); line.setAttribute('y1', y);
-    line.setAttribute('x2', 650); line.setAttribute('y2', y);
+    line.setAttribute('x1', xs[0]); line.setAttribute('y1', y);
+    line.setAttribute('x2', xs[3]); line.setAttribute('y2', y);
     svg.appendChild(line);
 
     phases.forEach(function (ph, idx) {
       var x = xs[idx];
+      /* 节点：圆形状态点（S/E 节点带字母标记） */
       var dot = document.createElementNS(NS, 'circle');
-      dot.setAttribute('class', 'tl-dot');
-      dot.setAttribute('cx', x); dot.setAttribute('cy', y); dot.setAttribute('r', '3');
+      dot.setAttribute('cx', x); dot.setAttribute('cy', y); dot.setAttribute('r', '5');
+      dot.setAttribute('class', 'tl-node ' + ph.cls);
       svg.appendChild(dot);
-      var label = document.createElementNS(NS, 'text');
-      label.setAttribute('class', 'tl-label');
-      label.setAttribute('x', x); label.setAttribute('y', y - 12);
-      label.setAttribute('text-anchor', 'middle');
-      label.textContent = ph.label;
-      svg.appendChild(label);
-      var date = document.createElementNS(NS, 'text');
-      date.setAttribute('class', 'tl-label');
-      date.setAttribute('x', x); date.setAttribute('y', y + 18);
-      date.setAttribute('text-anchor', 'middle');
-      date.textContent = fmtDate(ph.t);
-      svg.appendChild(date);
+      if (ph.mark) {
+        var mark = document.createElementNS(NS, 'text');
+        mark.setAttribute('x', x); mark.setAttribute('y', y + 2.5);
+        mark.setAttribute('text-anchor', 'middle');
+        mark.setAttribute('class', 'tl-mark');
+        mark.textContent = ph.mark;
+        svg.appendChild(mark);
+      }
+      /* 状态：START / ACTIVE / LATEST */
+      var status = document.createElementNS(NS, 'text');
+      status.setAttribute('x', x); status.setAttribute('y', y - 22);
+      status.setAttribute('text-anchor', 'middle');
+      status.setAttribute('class', 'tl-status');
+      status.textContent = ph.status;
+      svg.appendChild(status);
+      /* 名称 */
+      var name = document.createElementNS(NS, 'text');
+      name.setAttribute('x', x); name.setAttribute('y', y - 11);
+      name.setAttribute('text-anchor', 'middle');
+      name.setAttribute('class', 'tl-name');
+      name.textContent = ph.name;
+      svg.appendChild(name);
+      /* 时间（突出显示） */
+      var time = document.createElementNS(NS, 'text');
+      time.setAttribute('x', x); time.setAttribute('y', y + 22);
+      time.setAttribute('text-anchor', 'middle');
+      time.setAttribute('class', 'tl-time');
+      time.textContent = ph.time;
+      svg.appendChild(time);
+      /* 说明（小字体） */
+      var desc = document.createElementNS(NS, 'text');
+      desc.setAttribute('x', x); desc.setAttribute('y', y + 34);
+      desc.setAttribute('text-anchor', 'middle');
+      desc.setAttribute('class', 'tl-desc');
+      desc.textContent = ph.desc;
+      svg.appendChild(desc);
     });
   }
 

@@ -9320,6 +9320,120 @@ min-height:clamp(200px,34vh,480px);
 }
 
 
+/* =========================================================
+   V0.8 · MISSION TIMELINE（真实任务生命周期）
+   节点：START / ACTIVE / LATEST，S/E 标记，NASA 风格
+========================================================= */
+
+.analysis-page .an-tl-sub{
+
+font-size:8px;
+
+letter-spacing:2.5px;
+
+color:rgba(110,150,170,.55);
+
+margin:-3px 0 5px;
+
+}
+
+
+.analysis-page .timeline-svg{
+
+height:clamp(92px,12vh,140px);
+
+width:100%;
+
+}
+
+
+.analysis-page .tl-node{
+
+stroke:rgba(4,17,29,.9);
+
+stroke-width:1;
+
+}
+
+
+.analysis-page .tl-node.start{
+
+fill:#8ceaff;
+
+}
+
+
+.analysis-page .tl-node.active{
+
+fill:#00e5a8;
+
+}
+
+
+.analysis-page .tl-node.latest{
+
+fill:#bfefff;
+
+}
+
+
+.analysis-page .tl-mark{
+
+fill:#062033;
+
+font-size:6.5px;
+
+font-weight:700;
+
+font-family:Consolas,monospace;
+
+}
+
+
+.analysis-page .tl-status{
+
+fill:rgba(140,234,255,.65);
+
+font-size:6.5px;
+
+letter-spacing:2px;
+
+}
+
+
+.analysis-page .tl-name{
+
+fill:rgba(190,235,255,.75);
+
+font-size:8px;
+
+letter-spacing:1.2px;
+
+}
+
+
+.analysis-page .tl-time{
+
+fill:#eafcff;
+
+font-size:9px;
+
+font-weight:600;
+
+}
+
+
+.analysis-page .tl-desc{
+
+fill:rgba(110,150,170,.55);
+
+font-size:6.5px;
+
+letter-spacing:1px;
+
+}
+
+
 /* 页面内容（.app）置于雪花之上：
    z-index:0 的雪画布在 body 背景之上、静态内容之上；
    为保持“雪花低于内容”，让 .app 创建更高层叠上下文 */
