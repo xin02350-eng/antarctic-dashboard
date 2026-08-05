@@ -12477,3 +12477,44 @@ overflow-y:auto;
 }
 
 }
+
+
+/* =========================================================
+   V2.0 · HARDWARE MOBILE HEADER LAYER FIX
+   - Hardware 正文顶部增加安全间距，Header 不再覆盖标题
+   - 明确雪花在背景、内容在上、Header 在最上层（仅手机端）
+========================================================= */
+@media (max-width:768px){
+
+body.hardware-page main{
+
+padding:64px 14px 20px;
+
+}
+
+
+body.hardware-page .app{
+
+position:relative;
+
+z-index:10;
+
+}
+
+
+body.hardware-page .sidebar{
+
+z-index:100;
+
+width:100%;
+
+}
+
+
+body.hardware-page #snowCanvas{
+
+z-index:0!important;
+
+}
+
+}
