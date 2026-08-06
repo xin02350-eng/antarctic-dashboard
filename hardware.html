@@ -228,6 +228,9 @@
     function apply(lang) {
       document.documentElement.setAttribute('data-lang', lang);
       document.documentElement.setAttribute('lang', lang === 'zh' ? 'zh-CN' : 'en');
+      document.querySelectorAll('[data-lang]').forEach(function (el) {
+        el.style.display = (el.getAttribute('data-lang') === lang) ? '' : 'none';
+      });
       document.querySelectorAll('.lang-switch button').forEach(function (b) {
         var on = b.getAttribute('data-lang') === lang;
         b.classList.toggle('active', on);
