@@ -29,6 +29,209 @@ status:null
 let charts = {};
 
 
+/* ==========================
+ V1.1 轻量国际化字典（不引入框架）
+========================== */
+window.ANX_I18N = {
+en:{
+null:"NULL",
+online:"ONLINE",
+no_fix:"NO FIX",
+no_signal:"NO SIGNAL",
+waiting_data:"WAITING DATA",
+no_telemetry:"NO TELEMETRY",
+mode_unknown:"MODE UNKNOWN",
+normal:"NORMAL",
+standby:"STANDBY",
+emergency:"EMERGENCY",
+nominal:"NOMINAL",
+awaiting_sensor:"AWAITING SENSOR",
+sensor_offline:"SENSOR OFFLINE",
+normal_operation:"NORMAL OPERATION",
+low_power_standby:"LOW POWER STANDBY",
+protective_mode:"PROTECTIVE MODE",
+running:"RUNNING",
+mission_status:"MISSION STATUS",
+all_systems_check:"ALL SYSTEMS CHECK",
+battery_bus:"BATTERY BUS",
+load_draw:"LOAD DRAW",
+pyranometer:"PYRANOMETER",
+satellites:"SATELLITES",
+power:"POWER",
+solar_battery:"SOLAR + BATTERY",
+comms:"COMMS",
+data_link:"DATA LINK",
+fix:"FIX",
+operation_days:"OPERATION DAYS",
+data_records:"DATA RECORDS",
+last_update:"LAST UPDATE",
+stream_env:"ENVIRONMENT DATA ACQUISITION ACTIVE",
+stream_gps:"SATELLITE POSITIONING ACTIVE",
+stream_long:"LONG TERM MONITORING MODE",
+time:"TIME",
+mode:"MODE",
+current_time:"CURRENT TIME",
+local_time:"LOCAL TIME",
+operation_mode:"OPERATION MODE",
+autonomous:"AUTONOMOUS",
+voltage:"VOLTAGE",
+current:"CURRENT",
+solar_irradiance:"SOLAR IRRADIANCE",
+inside_temp:"INSIDE TEMP",
+inside_humidity:"INSIDE HUMIDITY",
+outside_temp:"OUTSIDE TEMP",
+outside_humidity:"OUTSIDE HUMIDITY",
+latitude:"LATITUDE",
+longitude:"LONGITUDE",
+gps_status:"GPS STATUS",
+loading_history:"LOADING HISTORY…",
+all_loaded:"ALL HISTORY LOADED · {n} RECORDS",
+history_progress:"HISTORY {a} / {b}",
+latest_records:"LATEST {n} RECORDS · {c} CHANNELS",
+cabin_temperature:"CABIN TEMPERATURE",
+cabin_humidity:"CABIN HUMIDITY",
+outside_temperature:"OUTSIDE TEMPERATURE",
+outside_humidity:"OUTSIDE HUMIDITY",
+solar_radiation:"SOLAR IRRADIANCE",
+wind_speed:"WIND SPEED",
+no_data:"NO DATA",
+no_data_available:"NO DATA AVAILABLE",
+real_time:"REAL TIME",
+current_ma:"CURRENT (mA)",
+voltage_title:"VOLTAGE",
+power_environment:"POWER & ENVIRONMENT",
+climate_comms:"CLIMATE & COMMS",
+antarctic_positioning:"ANTARCTIC POSITIONING · GPS TRACKING",
+live_telemetry_feed:"LIVE TELEMETRY FEED",
+tracking:"TRACKING",
+temperature:"TEMPERATURE",
+cabin:"CABIN",
+outside:"OUTSIDE",
+continuous_run:"CONTINUOUS RUN",
+telemetry_samples:"TELEMETRY SAMPLES",
+last_data_contact:"LAST DATA CONTACT",
+mission_stream:"MISSION STREAM",
+solar_radiation_label:"SOLAR RADIATION",
+lat:"LAT",
+lon:"LON"
+},
+zh:{
+null:"无数据",
+online:"在线",
+no_fix:"未定位",
+no_signal:"无信号",
+waiting_data:"等待数据",
+no_telemetry:"无遥测",
+mode_unknown:"模式未知",
+normal:"正常",
+standby:"待机",
+emergency:"应急",
+nominal:"正常",
+awaiting_sensor:"等待传感器",
+sensor_offline:"传感器离线",
+normal_operation:"正常运行",
+low_power_standby:"低功耗待机",
+protective_mode:"保护模式",
+running:"运行中",
+mission_status:"任务状态",
+all_systems_check:"全系统自检",
+battery_bus:"电池母线",
+load_draw:"负载电流",
+pyranometer:"太阳辐射计",
+satellites:"卫星数",
+power:"供电",
+solar_battery:"太阳能 + 电池",
+comms:"通信",
+data_link:"数据链路",
+fix:"定位",
+operation_days:"运行天数",
+data_records:"数据记录",
+last_update:"最近更新",
+stream_env:"环境数据采集运行中",
+stream_gps:"卫星定位运行中",
+stream_long:"长期监测模式",
+time:"时间",
+mode:"模式",
+current_time:"当前时间",
+local_time:"本地时间",
+operation_mode:"运行模式",
+autonomous:"自动",
+voltage:"电压",
+current:"电流",
+solar_irradiance:"太阳辐射",
+inside_temp:"舱内温度",
+inside_humidity:"舱内湿度",
+outside_temp:"舱外温度",
+outside_humidity:"舱外湿度",
+latitude:"纬度",
+longitude:"经度",
+gps_status:"GPS 状态",
+loading_history:"正在加载历史…",
+all_loaded:"全部历史已加载 · {n} 条",
+history_progress:"已加载 {a} / {b}",
+latest_records:"最新 {n} 条记录 · {c} 通道",
+cabin_temperature:"舱内温度",
+cabin_humidity:"舱内湿度",
+outside_temperature:"舱外温度",
+outside_humidity:"舱外湿度",
+solar_radiation:"太阳辐射",
+wind_speed:"风速",
+no_data:"无数据",
+no_data_available:"暂无数据",
+real_time:"实时",
+current_ma:"电流 (mA)",
+voltage_title:"电压",
+power_environment:"供电与环境",
+climate_comms:"气候与通信",
+antarctic_positioning:"南极定位 · GPS 跟踪",
+live_telemetry_feed:"实时遥测流",
+tracking:"跟踪中",
+temperature:"温度",
+cabin:"舱内",
+outside:"舱外",
+continuous_run:"持续运行",
+telemetry_samples:"遥测样本",
+last_data_contact:"最近数据联系",
+mission_stream:"任务流",
+solar_radiation_label:"太阳辐射",
+lat:"纬度",
+lon:"经度"
+}
+};
+
+window.ANX_LANG = "en";
+window.ANX_T = function (key, params) {
+  var dict = (window.ANX_I18N && window.ANX_I18N[window.ANX_LANG]) || (window.ANX_I18N && window.ANX_I18N.en) || {};
+  var text = dict[key] !== undefined ? dict[key] : key;
+  if (params) {
+    Object.keys(params).forEach(function (k) {
+      text = String(text).split("{" + k + "}").join(params[k]);
+    });
+  }
+  return text;
+};
+window.ANX_APPLY_I18N = function (lang) {
+  window.ANX_LANG = lang === "zh" ? "zh" : "en";
+  document.querySelectorAll("[data-i18n]").forEach(function (el) {
+    var key = el.getAttribute("data-i18n");
+    if (key) el.textContent = window.ANX_T(key);
+  });
+};
+window.ANX_PARSE_TIME = function (t) {
+  if (!t) return null;
+  if (t instanceof Date) return isNaN(t.getTime()) ? null : t;
+  if (typeof t === "number") return new Date(t);
+  var d = new Date(t);
+  if (!isNaN(d.getTime())) return d;
+  var m = /^(\d{4})-(\d{1,2})-(\d{1,2})[ T](\d{1,2}):(\d{2})(?::(\d{2}))?/.exec(String(t));
+  if (m) {
+    var dt = new Date(+m[1], +m[2] - 1, +m[3], +m[4], +m[5], +(m[6] || 0));
+    return isNaN(dt.getTime()) ? null : dt;
+  }
+  return null;
+};
+
+
 
 
 
@@ -40,10 +243,10 @@ let charts = {};
 async function loadData(){
 
 
+var delays = [1000, 2000, 4000];
+for (var attempt = 0; attempt <= delays.length; attempt++) {
 try{
-
-
-let url = "./data.json?v=" + Date.now();
+let url = "./data.json?v=" + Date.now() + "&try=" + attempt;
 
 
 
@@ -64,6 +267,9 @@ res.status
 
 
 DATA = await res.json();
+if(!Array.isArray(DATA)){
+throw new Error("data.json format invalid");
+}
 
 
 
@@ -80,6 +286,7 @@ processData();
 
 
 fullRefresh();
+return;
 
 
 
@@ -88,14 +295,17 @@ catch(err){
 
 
 console.error(
-"DATA LOAD ERROR:",
+"DATA LOAD ERROR (attempt " + (attempt + 1) + "):",
 err
 );
+if (attempt < delays.length) {
+await new Promise(function (resolve) { setTimeout(resolve, delays[attempt]); });
+}
 
 
 
 }
-
+}
 }
 
 
@@ -216,7 +426,7 @@ v===""
 ){
 
 
-return "NULL";
+return window.ANX_T ? window.ANX_T("null") : "NULL";
 
 
 }
@@ -396,7 +606,7 @@ function getMode(){
 
 if(!latest){
 
-return "NULL";
+return window.ANX_T ? window.ANX_T("null") : "NULL";
 
 
 }
@@ -614,9 +824,9 @@ if(gpsStatus){
 gpsStatus.innerHTML=
 gpsData.lat!==null && gpsData.lng!==null
 ?
-"ONLINE"
+window.ANX_T ? window.ANX_T("online") : "ONLINE"
 :
-"NULL";
+window.ANX_T ? window.ANX_T("null") : "NULL";
 
 }
 
@@ -805,7 +1015,7 @@ gpsData.lng!==null
 ){
 
 
-gps.innerHTML="ONLINE";
+gps.innerHTML=window.ANX_T ? window.ANX_T("online") : "ONLINE";
 
 
 }
@@ -813,7 +1023,7 @@ gps.innerHTML="ONLINE";
 else{
 
 
-gps.innerHTML="NULL";
+gps.innerHTML=window.ANX_T ? window.ANX_T("null") : "NULL";
 
 
 }
@@ -1268,7 +1478,10 @@ return "";
 
 
 let d =
-new Date(time);
+window.ANX_PARSE_TIME ? window.ANX_PARSE_TIME(time) : new Date(time);
+if(!d || isNaN(d.getTime())){
+return "";
+}
 
 
 
@@ -1755,7 +1968,7 @@ ${formatTelemetryTime(d.time)}
 
 <p>
 
-VOLTAGE:
+${window.ANX_T ? window.ANX_T("voltage") : "VOLTAGE"}:
 
 ${showValue(d.v)}
 
@@ -1765,7 +1978,7 @@ ${showValue(d.v)}
 
 <p>
 
-TEMP:
+${window.ANX_T ? window.ANX_T("inside_temp") : "TEMP"}:
 
 ${showValue(d.t)}
 
@@ -1775,7 +1988,7 @@ ${showValue(d.t)}
 
 <p>
 
-HUMIDITY:
+${window.ANX_T ? window.ANX_T("inside_humidity") : "HUMIDITY"}:
 
 ${showValue(d.h)}
 
@@ -1785,7 +1998,7 @@ ${showValue(d.h)}
 
 <p>
 
-CURRENT:
+${window.ANX_T ? window.ANX_T("current") : "CURRENT"}:
 
 ${showValue(d.a)}
 
@@ -1795,7 +2008,7 @@ ${showValue(d.a)}
 
 <p>
 
-MODE:
+${window.ANX_T ? window.ANX_T("mode") : "MODE"}:
 
 ${showValue(d.mode)}
 
@@ -1842,7 +2055,7 @@ function formatTelemetryTime(t){
 
 if(!t){
 
-return "NULL";
+return window.ANX_T ? window.ANX_T("null") : "NULL";
 
 }
 
@@ -1850,7 +2063,10 @@ return "NULL";
 
 let d=
 
-new Date(t);
+window.ANX_PARSE_TIME ? window.ANX_PARSE_TIME(t) : new Date(t);
+if(!d || isNaN(d.getTime())){
+return "NULL";
+}
 
 
 
