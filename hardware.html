@@ -41,7 +41,10 @@
         <h2>ANT-A01 HARDWARE DOCUMENTATION</h2>
         <p>POLAR AUTONOMOUS MONITORING NODE · ENGINEERING FILE</p>
       </div>
-      <div class="system-online"><span></span>ACTIVE</div>
+      <div class="header-right">
+        <div class="system-online"><span></span>ACTIVE</div>
+        <div class="lang-switch"><button type="button" data-lang="zh">中文</button><button type="button" data-lang="en" class="active">EN</button></div>
+      </div>
     </header>
 
     <section class="doc-single">
@@ -219,5 +222,24 @@
   }
 })();
 </script>
+  <!-- 语言切换（全站统一） -->
+  <script>
+  (function () {
+    function apply(lang) {
+      document.documentElement.setAttribute('data-lang', lang);
+      document.querySelectorAll('.lang-switch button').forEach(function (b) {
+        b.classList.toggle('active', b.getAttribute('data-lang') === lang);
+      });
+      try { localStorage.setItem('anx-lang', lang); } catch (e) {}
+    }
+    var saved = null;
+    try { saved = localStorage.getItem('anx-lang'); } catch (e) {}
+    apply(saved === 'zh' ? 'zh' : 'en');
+    document.addEventListener('click', function (ev) {
+      var b = ev.target && ev.target.closest ? ev.target.closest('.lang-switch button') : null;
+      if (b) apply(b.getAttribute('data-lang'));
+    });
+  })();
+  </script>
 </body>
 </html>

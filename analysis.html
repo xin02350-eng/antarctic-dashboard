@@ -6,6 +6,183 @@
   <title>ANTARCTIC NEXUS - MISSION ANALYTICS</title>
   <link rel="icon" href="data:,">
   <link rel="stylesheet" href="./css/style.css">
+  <style>
+    /* Analysis 重构：页面允许滚动，新模块样式（仅本页） */
+    body.analysis-page{
+      height:auto;
+      overflow:auto;
+    }
+    body.analysis-page main{
+      height:auto;
+      min-height:100vh;
+      overflow:visible;
+      padding:64px 18px 26px;
+      gap:12px;
+    }
+    .an-sub{
+      font-size:9px;
+      letter-spacing:1.5px;
+      color:#6f93a8;
+      margin-top:4px;
+    }
+    .analysis-page .an-summary{
+      display:grid;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:10px;
+    }
+    .analysis-page .an-summary .kpi-block{
+      min-height:92px;
+    }
+    .an-note{
+      font-size:10px;
+      letter-spacing:.5px;
+      color:#6f93a8;
+      line-height:1.6;
+      padding:6px 10px;
+      margin:8px 0 2px;
+      border-left:2px solid rgba(98,217,255,.35);
+    }
+    .an-summary-foot{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px 18px;
+      font-size:9px;
+      letter-spacing:1.5px;
+      color:#6f93a8;
+      padding:6px 10px;
+    }
+    .an-summary-foot b{
+      color:#dff6ff;
+      margin-left:4px;
+    }
+    .analysis-page .an-chronicle{
+      position:relative;
+      padding:6px 0 2px 22px;
+    }
+    .analysis-page .an-chronicle::before{
+      content:'';
+      position:absolute;
+      left:7px;
+      top:12px;
+      bottom:12px;
+      width:1px;
+      background:linear-gradient(180deg, rgba(98,217,255,.5), rgba(98,217,255,.08));
+    }
+    .chr-node{
+      position:relative;
+      padding:8px 0 12px 12px;
+    }
+    .chr-dot{
+      position:absolute;
+      left:-20px;
+      top:14px;
+      width:9px;
+      height:9px;
+      border-radius:50%;
+      background:#62d9ff;
+      box-shadow:0 0 8px rgba(98,217,255,.5);
+    }
+    .chr-node.last .chr-dot{
+      background:#00e5a8;
+      box-shadow:0 0 8px rgba(0,229,168,.5);
+    }
+    .chr-head{
+      display:flex;
+      align-items:baseline;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .chr-head b{
+      font-size:11px;
+      letter-spacing:1.5px;
+      color:#dff6ff;
+    }
+    .chr-date{
+      font-size:10px;
+      letter-spacing:1px;
+      color:#8ceaff;
+    }
+    .chr-time{
+      display:block;
+      font-size:9px;
+      color:#6f93a8;
+      margin-top:2px;
+    }
+    .chr-body p{
+      margin:3px 0 0;
+      font-size:9.5px;
+      color:#7f9fb2;
+      line-height:1.5;
+    }
+    .analysis-page .an-achievements{
+      margin-top:14px;
+    }
+    .ach-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
+      gap:10px;
+    }
+    .ach-item{
+      border:1px solid rgba(140,234,255,.12);
+      border-radius:8px;
+      background:linear-gradient(165deg, rgba(9,28,44,.5), rgba(5,16,28,.42));
+      padding:12px 14px;
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+    }
+    .ach-ico{
+      font-style:normal;
+      font-size:16px;
+      color:#8ceaff;
+    }
+    .ach-item b{
+      font-size:10px;
+      letter-spacing:1.5px;
+      color:#dff6ff;
+    }
+    .ach-item span{
+      font-size:9.5px;
+      color:#7f9fb2;
+      line-height:1.5;
+    }
+    .analysis-page .an-quality{
+      margin-top:14px;
+      border:1px solid rgba(140,234,255,.12);
+      border-radius:8px;
+      background:linear-gradient(165deg, rgba(9,28,44,.45), rgba(5,16,28,.4));
+      padding:12px 14px;
+    }
+    .an-quality h3,
+    .analysis-page .an-timeline h3,
+    .analysis-page .an-achievements h3{
+      font-size:10px;
+      letter-spacing:3px;
+      color:rgba(140,234,255,.65);
+      border-bottom:1px solid rgba(98,217,255,.12);
+      padding-bottom:6px;
+      margin-bottom:10px;
+    }
+    .an-quality p{
+      font-size:10px;
+      color:#7f9fb2;
+      line-height:1.7;
+      margin:0;
+    }
+    @media (max-width:900px){
+      .analysis-page .an-summary{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+      }
+    }
+    @media (max-width:560px){
+      .analysis-page .an-summary{
+        grid-template-columns:1fr;
+      }
+      .ach-grid{
+        grid-template-columns:1fr;
+      }
+    }
+  </style>
 </head>
 
 <body class="polar-ambient analysis-page">
@@ -33,7 +210,6 @@
     <label for="navToggle" class="nav-overlay" aria-hidden="true"></label>
   </aside>
 
-  <!-- ANTARCTIC MISSION SUMMARY：任务总结展示页 -->
   <main>
 
     <!-- MISSION OVERVIEW -->
@@ -41,109 +217,96 @@
       <div>
         <div class="an-kicker">ANTARCTIC AUTONOMOUS MONITORING MISSION SUMMARY</div>
         <h2>MISSION ANALYTICS</h2>
+        <div class="an-sub" data-lang="en">An autonomous Antarctic monitoring node · deployed to collect and transmit long-term field data.</div>
+        <div class="an-sub" data-lang="zh">南极自主环境监测节点 · 长期采集并稳定回传现场数据。</div>
       </div>
       <div class="an-meta">
         <span>MISSION ID <b>ANT-A01</b></span>
         <span>VERSION <b>V0.4</b></span>
         <span>STATUS <b class="ok">OPERATIONAL</b></span>
+        <div class="lang-switch"><button type="button" data-lang="zh">中文</button><button type="button" data-lang="en" class="active">EN</button></div>
       </div>
     </header>
 
-    <!-- KEY PERFORMANCE INDICATORS -->
-    <section class="an-kpi">
-      <div class="kpi-block" id="kpi0">
-        <span class="kpi-label">MISSION DAYS</span>
-        <span class="kpi-num"><b id="runDays">--</b><em>DAYS</em></span>
-        <svg class="kpi-spark" viewBox="0 0 120 26" preserveAspectRatio="none"></svg>
-      </div>
-      <div class="kpi-block" id="kpi1">
+    <!-- 第一行：数据成果总结 -->
+    <section class="an-summary">
+      <div class="kpi-block">
         <span class="kpi-label">DATA RECORDS</span>
-        <span class="kpi-num"><b id="dataCount">--</b><em>REC</em></span>
-        <svg class="kpi-spark" viewBox="0 0 120 26" preserveAspectRatio="none"></svg>
+        <span class="kpi-num"><b id="sumRecords">--</b><em>REC</em></span>
       </div>
-      <div class="kpi-block" id="kpi2">
-        <span class="kpi-label">GPS AVAILABILITY</span>
-        <span class="kpi-num"><b id="gpsAvail">--</b><em>%</em></span>
-        <svg class="kpi-spark" viewBox="0 0 120 26" preserveAspectRatio="none"></svg>
+      <div class="kpi-block">
+        <span class="kpi-label">SENSOR CHANNELS</span>
+        <span class="kpi-num"><b id="sumChannels">--</b><em>CH</em></span>
       </div>
-      <div class="kpi-block" id="kpi3">
-        <span class="kpi-label">SYSTEM RELIABILITY</span>
-        <span class="kpi-num"><b id="relScore">--</b><em>%</em></span>
-        <svg class="kpi-spark" viewBox="0 0 120 26" preserveAspectRatio="none"></svg>
+      <div class="kpi-block">
+        <span class="kpi-label">DATA TRANSMISSION RATE</span>
+        <span class="kpi-num"><b id="sumRate">--</b><em>%</em></span>
       </div>
-      <div class="kpi-block" id="kpi4">
-        <span class="kpi-label">ENERGY PERFORMANCE</span>
-        <span class="kpi-num"><b id="energyPerf">--</b><em>%</em></span>
-        <svg class="kpi-spark" viewBox="0 0 120 26" preserveAspectRatio="none"></svg>
+      <div class="kpi-block">
+        <span class="kpi-label">BATTERY SOC</span>
+        <span class="kpi-num"><b id="sumSoc">--</b><em>%</em></span>
       </div>
     </section>
 
-    <!-- MISSION DATA PROFILE -->
-    <section class="an-profile">
-      <h3>MISSION DATA PROFILE</h3>
-      <div class="profile-grid">
-        <div class="profile-row" id="profile0">
-          <span class="profile-name">TEMPERATURE MONITORING</span>
-          <span class="profile-bar"><i id="barTemp"></i></span>
-          <svg class="profile-spark" viewBox="0 0 100 22" preserveAspectRatio="none"></svg>
-          <b class="profile-pct" id="pctTemp">--</b>
-        </div>
-        <div class="profile-row" id="profile1">
-          <span class="profile-name">POWER MONITORING</span>
-          <span class="profile-bar"><i id="barVolt"></i></span>
-          <svg class="profile-spark" viewBox="0 0 100 22" preserveAspectRatio="none"></svg>
-          <b class="profile-pct" id="pctVolt">--</b>
-        </div>
-        <div class="profile-row" id="profile2">
-          <span class="profile-name">SOLAR MONITORING</span>
-          <span class="profile-bar"><i id="barSolar"></i></span>
-          <svg class="profile-spark" viewBox="0 0 100 22" preserveAspectRatio="none"></svg>
-          <b class="profile-pct" id="pctSolar">--</b>
-        </div>
-        <div class="profile-row" id="profile3">
-          <span class="profile-name">GPS TRACKING</span>
-          <span class="profile-bar"><i id="barGps"></i></span>
-          <svg class="profile-spark" viewBox="0 0 100 22" preserveAspectRatio="none"></svg>
-          <b class="profile-pct" id="pctGps">--</b>
-        </div>
-        <div class="profile-row" id="profile4">
-          <span class="profile-name">COMMUNICATION</span>
-          <span class="profile-bar"><i id="barComm"></i></span>
-          <svg class="profile-spark" viewBox="0 0 100 22" preserveAspectRatio="none"></svg>
-          <b class="profile-pct" id="pctComm">--</b>
-        </div>
-      </div>
-    </section>
+    <div class="an-note">
+      <span data-lang="en">Transmission rate = successfully transmitted records / all scheduled sampling events. SOC shows the latest reported battery level; it stays "--" until the SOC channel provides data.</span>
+      <span data-lang="zh">传输率 = 成功上传的数据次数 ÷ 计划总采样次数。SOC 显示最近一次上报的剩余电量；在 SOC 通道提供数据前显示“--”。</span>
+    </div>
 
-    <!-- SYSTEM HEALTH -->
-    <section class="an-health">
-      <h3>SYSTEM HEALTH</h3>
-      <div class="health-grid">
-        <div class="hitem">
-          <i class="status-circle"></i>
-          <div><b>POWER SYSTEM</b><span>NORMAL</span></div>
-        </div>
-        <div class="hitem">
-          <i class="status-circle"></i>
-          <div><b>SENSOR NETWORK</b><span>ACTIVE</span></div>
-        </div>
-        <div class="hitem">
-          <i class="status-circle"></i>
-          <div><b>COMMUNICATION</b><span>ONLINE</span></div>
-        </div>
-        <div class="hitem">
-          <i class="status-circle"></i>
-          <div><b>GPS</b><span>AVAILABLE</span></div>
-        </div>
-      </div>
-    </section>
+    <div class="an-summary-foot">
+      <span>OPERATION DAYS <b id="sumDays">--</b></span>
+      <span>LATEST UPDATE <b id="sumLatest">--</b></span>
+      <span>GPS AVAILABILITY <b id="sumGps">--</b></span>
+    </div>
 
-    <!-- MISSION TIMELINE -->
+    <!-- 第二行：科研任务编年历 -->
     <section class="an-timeline">
-      <h3>MISSION TIMELINE</h3>
-      <div class="an-tl-sub">MISSION OPERATION HISTORY</div>
-      <svg id="missionTimeline" class="timeline-svg" viewBox="0 0 720 96" preserveAspectRatio="xMidYMid meet"></svg>
-      <div class="tl-foot">LAST CONTACT <span id="lastUpdate">--</span> · FIX <span id="gpsValidCount">--</span></div>
+      <h3>MISSION TIMELINE · 任务编年历</h3>
+      <div class="an-chronicle" id="anChronicle"></div>
+    </section>
+
+    <!-- 第三行：技术创新能力 -->
+    <section class="an-achievements">
+      <h3>MISSION ACHIEVEMENTS · 系统能力</h3>
+      <div class="ach-grid">
+        <div class="ach-item">
+          <i class="ach-ico">◈</i>
+          <b>AUTONOMOUS DATA COLLECTION</b>
+          <span data-lang="en">24/7 unattended sampling at the Antarctic field site.</span>
+          <span data-lang="zh">在南极现场无人值守，全天候自动采样。</span>
+        </div>
+        <div class="ach-item">
+          <i class="ach-ico">▣</i>
+          <b>MULTI-SENSOR INTEGRATION</b>
+          <span data-lang="en">Temperature, humidity, solar, power and GPS channels in one node.</span>
+          <span data-lang="zh">单节点集成温度、湿度、太阳辐射、电源与 GPS 等多类传感器。</span>
+        </div>
+        <div class="ach-item">
+          <i class="ach-ico">⚡</i>
+          <b>LOW-POWER OPERATION</b>
+          <span data-lang="en">Solar powered with battery buffering for long-term polar operation.</span>
+          <span data-lang="zh">太阳能供电加电池缓冲，支持极地长期低功耗运行。</span>
+        </div>
+        <div class="ach-item">
+          <i class="ach-ico">⌁</i>
+          <b>LONG-RANGE LoRa COMMUNICATION</b>
+          <span data-lang="en">Low-power long-range radio uplink for remote data retrieval.</span>
+          <span data-lang="zh">低功耗远距离 LoRa 无线链路，远程回传数据。</span>
+        </div>
+        <div class="ach-item">
+          <i class="ach-ico">✛</i>
+          <b>GPS POSITIONING</b>
+          <span data-lang="en">Autonomous satellite positioning for deployment tracking.</span>
+          <span data-lang="zh">自主卫星定位，记录部署位置与运行轨迹。</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 底部：数据质量说明 -->
+    <section class="an-quality">
+      <h3>DATA QUALITY NOTE · 数据质量说明</h3>
+      <p data-lang="en">All metrics are computed directly from the recorded dataset. Missing values are preserved and displayed as "--"; no synthetic data is generated.</p>
+      <p data-lang="zh">所有指标均基于实际记录数据计算；缺失值如实保留并显示为“--”，不生成任何模拟数据。</p>
     </section>
 
   </main>
@@ -155,294 +318,140 @@
 <!-- 数据核心（main.js 保持不变） -->
 <script src="./js/main.js"></script>
 
-<!-- =========================================================
-     任务总结辅助层（纯显示逻辑，不影响 main.js）
-     - KPI：运行天数/记录数来自 main.js，其余由真实数据计算
-     - 覆盖率进度条、健康环、任务时间轴（SVG 原生绘制）
-========================================================= -->
+<!-- 任务成果分析层（纯显示逻辑，不影响 main.js / data.json） -->
 <script>
 (function () {
   'use strict';
-  var NS = 'http://www.w3.org/2000/svg';
   var tries = 0;
 
   function ready() {
     try { return typeof DATA !== 'undefined' && DATA && DATA.length; } catch (e) { return false; }
   }
 
-  function setText(id, t) {
-    var el = document.getElementById(id);
-    if (el) el.textContent = t;
+  function $(id) { return document.getElementById(id); }
+  function setTxt(id, t) { var el = $(id); if (el) el.textContent = t; }
+  function pad(n) { return String(n).padStart(2, '0'); }
+  function fmtDate(ts) {
+    var d = new Date(ts);
+    return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate());
+  }
+  function fmtFull(ts) {
+    var d = new Date(ts);
+    return fmtDate(ts) + ' ' + pad(d.getHours()) + ':' + pad(d.getMinutes());
   }
 
-  function cov(key) {
-    var n = 0;
-    DATA.forEach(function (d) {
-      if (d[key] !== null && d[key] !== undefined) n++;
+  function compute() {
+    if (!ready()) return;
+    var data = DATA;
+    var total = data.length;
+    if (!total) return;
+
+    /* 通道数：实际字段（不含 time） */
+    var keys = {};
+    data.forEach(function (r) {
+      Object.keys(r).forEach(function (k) { if (k !== 'time') keys[k] = true; });
     });
-    return (n / DATA.length) * 100;
-  }
+    var channels = Object.keys(keys).length;
 
-  /* 分桶覆盖率趋势（用于迷你趋势线与进度条） */
-  function bucketTrend(fn, buckets) {
-    var b = buckets || 40;
-    var counts = new Array(b).fill(0);
-    var totals = new Array(b).fill(0);
-    DATA.forEach(function (d, i) {
-      var k = Math.min(b - 1, Math.floor((i / DATA.length) * b));
-      totals[k]++;
-      if (fn(d)) counts[k]++;
-    });
-    var out = [];
-    for (var i = 0; i < b; i++) out.push(totals[i] ? (counts[i] / totals[i]) * 100 : 0);
-    return out;
-  }
+    /* 传输率：主传感器通道至少一个有效的记录数 / 总采样数 */
+    var sensorKeys = ['v', 'a', 's', 't', 'h', 'j', 'k'];
+    var ok = data.filter(function (r) {
+      return sensorKeys.some(function (k) { return r[k] !== null && r[k] !== undefined; });
+    }).length;
+    var rate = total ? (ok / total * 100) : 0;
 
-  function drawTrend(svg, values, color) {
-    if (!svg || !values || values.length < 2) return;
-    while (svg.firstChild) svg.removeChild(svg.firstChild);
-    var W = parseFloat(svg.getAttribute('viewBox').split(' ')[2]);
-    var H = parseFloat(svg.getAttribute('viewBox').split(' ')[3]);
-    var pad = 2;
-    var min = 0;
-    var max = Math.max.apply(null, values) || 1;
-    var pts = [];
-    for (var i = 0; i < values.length; i++) {
-      var x = pad + (i / (values.length - 1)) * (W - 2 * pad);
-      var y = H - pad - ((values[i] - min) / (max - min)) * (H - 2 * pad);
-      pts.push(x.toFixed(1) + ',' + y.toFixed(1));
-    }
-    var line = document.createElementNS(NS, 'polyline');
-    line.setAttribute('points', pts.join(' '));
-    line.setAttribute('fill', 'none');
-    line.setAttribute('stroke', color);
-    line.setAttribute('stroke-width', '1.4');
-    line.setAttribute('vector-effect', 'non-scaling-stroke');
-    svg.appendChild(line);
-  }
-
-  function drawRing(id, pct) {
-    var arc = document.getElementById(id);
-    if (!arc) return;
-    var c = 2 * Math.PI * 16;
-    arc.setAttribute('stroke-dasharray', ((pct / 100) * c).toFixed(1) + ' ' + c.toFixed(1));
-    arc.setAttribute('stroke', pct >= 80 ? '#00e5a8' : (pct >= 50 ? '#f5b942' : '#ff5263'));
-  }
-
-  /* 完整时间格式（可选秒） */
-  function fmtFull(t, withSec) {
-    var d = new Date(t);
-    function p(n) { return String(n).padStart(2, '0'); }
-    var base = d.getFullYear() + '-' + p(d.getMonth() + 1) + '-' + p(d.getDate()) +
-      ' ' + p(d.getHours()) + ':' + p(d.getMinutes());
-    return withSec ? base + ':' + p(d.getSeconds()) : base;
-  }
-
-  /* 第一次有效传感器数据时间（任一主通道非空） */
-  function firstValidTime() {
-    var start = new Date(DATA[0].time).getTime();
-    for (var i = 0; i < DATA.length; i++) {
-      var d = DATA[i];
-      if ((d.t !== null && d.t !== undefined) ||
-          (d.v !== null && d.v !== undefined) ||
-          (d.s !== null && d.s !== undefined) ||
-          (d.h !== null && d.h !== undefined)) {
-        return new Date(d.time).getTime();
-      }
-    }
-    return start;
-  }
-
-  /* 真实任务生命周期时间轴（NASA Mission Timeline 风格） */
-  function drawTimeline() {
-    var svg = document.getElementById('missionTimeline');
-    if (!svg) return;
-    while (svg.firstChild) svg.removeChild(svg.firstChild);
-    var start = new Date(DATA[0].time).getTime();
-    var end = new Date(DATA[DATA.length - 1].time).getTime();
-    var span = (end - start) || 1;
-    var acq = firstValidTime();
+    /* 时间范围 */
+    var times = data.map(function (r) { return new Date(r.time).getTime(); })
+      .filter(function (t) { return !isNaN(t); })
+      .sort(function (a, b) { return a - b; });
+    var start = times[0];
+    var end = times[times.length - 1];
     var days = Math.max(1, Math.round((end - start) / 86400000));
 
-    var phases = [
-      { t: start, name: 'MISSION START', status: 'START', time: fmtFull(start), desc: 'FIRST RECORD', mark: '', cls: 'start' },
-      { t: acq, name: 'DATA ACQUISITION START', status: 'ACTIVE', time: fmtFull(acq), desc: 'FIRST VALID SENSOR DATA', mark: 'S', cls: 'active' },
-      { t: start + span * 0.5, name: 'MONITORING PERIOD', status: 'ACTIVE', time: days + ' DAYS OPERATION', desc: 'CONTINUOUS RUN', mark: '', cls: 'active' },
-      { t: end, name: 'LATEST DATA UPDATE', status: 'LATEST', time: fmtFull(end, true), desc: 'LAST CONTACT', mark: 'E', cls: 'latest' }
+    /* SOC：最新非空值（data.json 暂无 soc 字段则显示 --，不造数据） */
+    var soc = null;
+    for (var i = data.length - 1; i >= 0; i--) {
+      if (data[i].soc !== null && data[i].soc !== undefined) { soc = data[i].soc; break; }
+    }
+
+    /* 首次采样断档：相邻时间间隔 > 3 小时 */
+    var gapStart = null;
+    for (var g = 1; g < times.length; g++) {
+      if (times[g] - times[g - 1] > 10800000) { gapStart = times[g - 1]; break; }
+    }
+
+    /* 首次 S / N 状态 */
+    var firstS = null, firstN = null;
+    for (var m = 0; m < data.length; m++) {
+      var md = String(data[m].mode === null || data[m].mode === undefined ? '' : data[m].mode).trim().toUpperCase();
+      if (firstS === null && md === 'S') firstS = new Date(data[m].time).getTime();
+      if (firstN === null && md === 'N') firstN = new Date(data[m].time).getTime();
+    }
+
+    /* GPS 有效率 */
+    var gpsOk = data.filter(function (r) {
+      return (r.x !== null && r.x !== undefined) && (r.y !== null && r.y !== undefined);
+    }).length;
+
+    setTxt('sumRecords', total);
+    setTxt('sumChannels', channels);
+    setTxt('sumRate', rate.toFixed(1));
+    setTxt('sumSoc', soc === null ? '--' : (typeof soc === 'number' ? soc.toFixed(0) : soc));
+    setTxt('sumDays', days);
+    setTxt('sumLatest', fmtFull(end));
+    setTxt('sumGps', (gpsOk / total * 100).toFixed(1) + '%');
+
+    /* 编年历节点 */
+    var nodes = [
+      { t: start, name: 'MISSION START', en: 'The node began recording environmental data.', zh: '系统开始记录环境数据。' },
+      { t: firstS, name: 'FIRST S SIGNAL', en: 'First record with standby (S) operating mode.', zh: '首次接收到待机（S）状态数据。' },
+      { t: firstN, name: 'FIRST N SIGNAL', en: 'First record with normal (N) operating mode.', zh: '首次接收到正常运行（N）状态数据。' },
+      { t: gapStart, name: 'DATA INTERRUPTION', en: 'First detected gap in the sampling timeline.', zh: '首次检测到的采样时间断档。' },
+      { t: end, name: 'LATEST DATA', en: 'Most recent successful data synchronization.', zh: '最近一次成功的数据同步。' }
     ];
 
-    /* 手机/窄屏：时间轴垂直排列 */
-    if (window.innerWidth <= 768) {
-      drawTimelineVertical(svg, phases);
-      return;
-    }
-
-    var W = 720, H = 96, y = 46;
-
-    /* 按真实时间映射，保证最小间距避免文字重叠 */
-    var xs = phases.map(function (ph) {
-      return 70 + ((ph.t - start) / span) * (W - 140);
+    var html = '';
+    nodes.forEach(function (n, idx) {
+      html += '<div class="chr-node' + (idx === nodes.length - 1 ? ' last' : '') + '">';
+      html += '<i class="chr-dot"></i>';
+      html += '<div class="chr-body">';
+      html += '<div class="chr-head"><b>' + n.name + '</b><span class="chr-date">' + (n.t ? fmtDate(n.t) : '--') + '</span></div>';
+      html += '<span class="chr-time">' + (n.t ? fmtFull(n.t) : '--') + '</span>';
+      html += '<p data-lang="en">' + n.en + '</p>';
+      html += '<p data-lang="zh">' + n.zh + '</p>';
+      html += '</div></div>';
     });
-    var minGap = 90;
-    for (var i = 1; i < xs.length; i++) {
-      if (xs[i] - xs[i - 1] < minGap) xs[i] = xs[i - 1] + minGap;
-    }
-    if (xs[3] > W - 16) {
-      var shift = xs[3] - (W - 16);
-      for (var j = 1; j < 4; j++) xs[j] -= shift;
-    }
-
-    var line = document.createElementNS(NS, 'line');
-    line.setAttribute('class', 'tl-line');
-    line.setAttribute('x1', xs[0]); line.setAttribute('y1', y);
-    line.setAttribute('x2', xs[3]); line.setAttribute('y2', y);
-    svg.appendChild(line);
-
-    phases.forEach(function (ph, idx) {
-      var x = xs[idx];
-      /* 节点：圆形状态点（S/E 节点带字母标记） */
-      var dot = document.createElementNS(NS, 'circle');
-      dot.setAttribute('cx', x); dot.setAttribute('cy', y); dot.setAttribute('r', '5');
-      dot.setAttribute('class', 'tl-node ' + ph.cls);
-      svg.appendChild(dot);
-      if (ph.mark) {
-        var mark = document.createElementNS(NS, 'text');
-        mark.setAttribute('x', x); mark.setAttribute('y', y + 2.5);
-        mark.setAttribute('text-anchor', 'middle');
-        mark.setAttribute('class', 'tl-mark');
-        mark.textContent = ph.mark;
-        svg.appendChild(mark);
-      }
-      /* 状态：START / ACTIVE / LATEST */
-      var status = document.createElementNS(NS, 'text');
-      status.setAttribute('x', x); status.setAttribute('y', y - 22);
-      status.setAttribute('text-anchor', 'middle');
-      status.setAttribute('class', 'tl-status');
-      status.textContent = ph.status;
-      svg.appendChild(status);
-      /* 名称 */
-      var name = document.createElementNS(NS, 'text');
-      name.setAttribute('x', x); name.setAttribute('y', y - 11);
-      name.setAttribute('text-anchor', 'middle');
-      name.setAttribute('class', 'tl-name');
-      name.textContent = ph.name;
-      svg.appendChild(name);
-      /* 时间（突出显示） */
-      var time = document.createElementNS(NS, 'text');
-      time.setAttribute('x', x); time.setAttribute('y', y + 22);
-      time.setAttribute('text-anchor', 'middle');
-      time.setAttribute('class', 'tl-time');
-      time.textContent = ph.time;
-      svg.appendChild(time);
-      /* 说明（小字体） */
-      var desc = document.createElementNS(NS, 'text');
-      desc.setAttribute('x', x); desc.setAttribute('y', y + 34);
-      desc.setAttribute('text-anchor', 'middle');
-      desc.setAttribute('class', 'tl-desc');
-      desc.textContent = ph.desc;
-      svg.appendChild(desc);
-    });
+    var box = $('anChronicle');
+    if (box) box.innerHTML = html;
   }
 
-  /* 垂直时间轴（移动端） */
-  function drawTimelineVertical(svg, phases) {
-    svg.setAttribute('viewBox', '0 0 300 280');
-    var W = 300, H = 280, x = 44;
-    var line = document.createElementNS(NS, 'line');
-    line.setAttribute('class', 'tl-line');
-    line.setAttribute('x1', x); line.setAttribute('y1', 18);
-    line.setAttribute('x2', x); line.setAttribute('y2', H - 18);
-    svg.appendChild(line);
-
-    phases.forEach(function (ph, idx) {
-      var y = 30 + idx * ((H - 60) / 3);
-      var dot = document.createElementNS(NS, 'circle');
-      dot.setAttribute('cx', x); dot.setAttribute('cy', y); dot.setAttribute('r', '5');
-      dot.setAttribute('class', 'tl-node ' + ph.cls);
-      svg.appendChild(dot);
-      if (ph.mark) {
-        var mark = document.createElementNS(NS, 'text');
-        mark.setAttribute('x', x); mark.setAttribute('y', y + 2.5);
-        mark.setAttribute('text-anchor', 'middle');
-        mark.setAttribute('class', 'tl-mark');
-        mark.textContent = ph.mark;
-        svg.appendChild(mark);
-      }
-      var status = document.createElementNS(NS, 'text');
-      status.setAttribute('x', x + 16); status.setAttribute('y', y - 8);
-      status.setAttribute('class', 'tl-status');
-      status.textContent = ph.status;
-      svg.appendChild(status);
-      var name = document.createElementNS(NS, 'text');
-      name.setAttribute('x', x + 16); name.setAttribute('y', y + 5);
-      name.setAttribute('class', 'tl-name');
-      name.textContent = ph.name;
-      svg.appendChild(name);
-      var time = document.createElementNS(NS, 'text');
-      time.setAttribute('x', x + 16); time.setAttribute('y', y + 19);
-      time.setAttribute('class', 'tl-time');
-      time.textContent = ph.time;
-      svg.appendChild(time);
-      var desc = document.createElementNS(NS, 'text');
-      desc.setAttribute('x', x + 16); desc.setAttribute('y', y + 31);
-      desc.setAttribute('class', 'tl-desc');
-      desc.textContent = ph.desc;
-      svg.appendChild(desc);
-    });
-  }
-
-  function render() {
-    if (!ready()) return;
-    var tCov = cov('t');
-    var vCov = cov('v');
-    var sCov = cov('s');
-    var gCov = cov('x');
-    var mCov = cov('mode');
-    var energy = Math.round((vCov + sCov) / 2);
-    var rel = Math.round(vCov);
-    var gps = Math.round(gCov);
-
-    setText('gpsAvail', gps);
-    setText('relScore', rel);
-    setText('energyPerf', energy);
-
-    /* 五个 KPI 迷你趋势线 */
-    drawTrend(document.querySelector('#kpi0 .kpi-spark'), (function () {
-      var out = []; DATA.forEach(function (d, i) { if (i % 12 === 0) out.push((i / DATA.length) * 100); }); return out;
-    })(), '#8ceaff');
-    drawTrend(document.querySelector('#kpi1 .kpi-spark'), (function () {
-      var out = []; var n = DATA.length; for (var i = 0; i < n; i++) { if (i % 12 === 0) out.push((i / n) * 100); } return out;
-    })(), '#8ceaff');
-    drawTrend(document.querySelector('#kpi2 .kpi-spark'), bucketTrend(function (d) { return d.x !== null && d.x !== undefined; }), '#8ceaff');
-    drawTrend(document.querySelector('#kpi3 .kpi-spark'), bucketTrend(function (d) { return d.v !== null && d.v !== undefined; }), '#00e5a8');
-    drawTrend(document.querySelector('#kpi4 .kpi-spark'), bucketTrend(function (d) { return (d.v !== null && d.v !== undefined) || (d.s !== null && d.s !== undefined); }), '#f5b942');
-
-    /* 数据覆盖进度条 */
-    function setBar(id, pct) {
-      var el = document.getElementById(id);
-      if (el) el.style.width = pct.toFixed(1) + '%';
-    }
-    setBar('barTemp', tCov); setText('pctTemp', Math.round(tCov) + '%');
-    setBar('barVolt', vCov); setText('pctVolt', Math.round(vCov) + '%');
-    setBar('barSolar', sCov); setText('pctSolar', Math.round(sCov) + '%');
-    setBar('barGps', gCov); setText('pctGps', Math.round(gCov) + '%');
-    setBar('barComm', mCov); setText('pctComm', Math.round(mCov) + '%');
-
-    drawTrend(document.querySelector('#profile0 .profile-spark'), bucketTrend(function (d) { return d.t !== null && d.t !== undefined; }, 30), '#8ceaff');
-    drawTrend(document.querySelector('#profile1 .profile-spark'), bucketTrend(function (d) { return d.v !== null && d.v !== undefined; }, 30), '#00e5a8');
-    drawTrend(document.querySelector('#profile2 .profile-spark'), bucketTrend(function (d) { return d.s !== null && d.s !== undefined; }, 30), '#f5b942');
-    drawTrend(document.querySelector('#profile3 .profile-spark'), bucketTrend(function (d) { return d.x !== null && d.x !== undefined; }, 30), '#8ceaff');
-    drawTrend(document.querySelector('#profile4 .profile-spark'), bucketTrend(function (d) { return d.mode !== null && d.mode !== undefined; }, 30), '#00e5a8');
-
-    drawTimeline();
-  }
-
-  render();
-  var poll = setInterval(function () {
+  function render() { if (ready()) compute(); }
+  var timer = setInterval(function () {
     render();
-    if (++tries > 60) clearInterval(poll);
+    if (++tries > 60) clearInterval(timer);
   }, 500);
 })();
 </script>
+
+<!-- 语言切换（全站统一） -->
+<script>
+(function () {
+  function apply(lang) {
+    document.documentElement.setAttribute('data-lang', lang);
+    document.querySelectorAll('.lang-switch button').forEach(function (b) {
+      b.classList.toggle('active', b.getAttribute('data-lang') === lang);
+    });
+    try { localStorage.setItem('anx-lang', lang); } catch (e) {}
+  }
+  var saved = null;
+  try { saved = localStorage.getItem('anx-lang'); } catch (e) {}
+  apply(saved === 'zh' ? 'zh' : 'en');
+  document.addEventListener('click', function (ev) {
+    var b = ev.target && ev.target.closest ? ev.target.closest('.lang-switch button') : null;
+    if (b) apply(b.getAttribute('data-lang'));
+  });
+})();
+</script>
+
 </body>
 </html>

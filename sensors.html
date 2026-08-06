@@ -61,7 +61,10 @@
         <h2>ENVIRONMENT MONITORING</h2>
         <p>Multi-channel sensor acquisition system</p>
       </div>
-      <div class="system-online"><span></span>SENSOR ARRAY</div>
+      <div class="header-right">
+        <div class="system-online"><span></span>SENSOR ARRAY</div>
+        <div class="lang-switch"><button type="button" data-lang="zh">中文</button><button type="button" data-lang="en" class="active">EN</button></div>
+      </div>
     </header>
 
     <!-- 八通道传感器曲线（hud-frame 提供面板角标） -->
@@ -412,5 +415,24 @@
 
 <!-- 数据核心与图表创建（main.js 保持不变） -->
 <script src="./js/main.js"></script>
+  <!-- 语言切换（全站统一） -->
+  <script>
+  (function () {
+    function apply(lang) {
+      document.documentElement.setAttribute('data-lang', lang);
+      document.querySelectorAll('.lang-switch button').forEach(function (b) {
+        b.classList.toggle('active', b.getAttribute('data-lang') === lang);
+      });
+      try { localStorage.setItem('anx-lang', lang); } catch (e) {}
+    }
+    var saved = null;
+    try { saved = localStorage.getItem('anx-lang'); } catch (e) {}
+    apply(saved === 'zh' ? 'zh' : 'en');
+    document.addEventListener('click', function (ev) {
+      var b = ev.target && ev.target.closest ? ev.target.closest('.lang-switch button') : null;
+      if (b) apply(b.getAttribute('data-lang'));
+    });
+  })();
+  </script>
 </body>
 </html>

@@ -178,7 +178,10 @@
         <h2>DATA</h2>
         <p>Autonomous sensor data transmission stream</p>
       </div>
-      <div class="system-online"><span></span>DATA LINK</div>
+      <div class="header-right">
+        <div class="system-online"><span></span>DATA LINK</div>
+        <div class="lang-switch"><button type="button" data-lang="zh">中文</button><button type="button" data-lang="en" class="active">EN</button></div>
+      </div>
     </header>
 
     <!-- 遥测数据容器：id 必须保持 telemetryData（main.js 依赖此 ID） -->
@@ -485,5 +488,24 @@
   }, 500);
 })();
 </script>
+  <!-- 语言切换（全站统一） -->
+  <script>
+  (function () {
+    function apply(lang) {
+      document.documentElement.setAttribute('data-lang', lang);
+      document.querySelectorAll('.lang-switch button').forEach(function (b) {
+        b.classList.toggle('active', b.getAttribute('data-lang') === lang);
+      });
+      try { localStorage.setItem('anx-lang', lang); } catch (e) {}
+    }
+    var saved = null;
+    try { saved = localStorage.getItem('anx-lang'); } catch (e) {}
+    apply(saved === 'zh' ? 'zh' : 'en');
+    document.addEventListener('click', function (ev) {
+      var b = ev.target && ev.target.closest ? ev.target.closest('.lang-switch button') : null;
+      if (b) apply(b.getAttribute('data-lang'));
+    });
+  })();
+  </script>
 </body>
 </html>
