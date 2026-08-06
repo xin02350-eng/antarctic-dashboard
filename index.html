@@ -612,18 +612,26 @@
   (function () {
     function apply(lang) {
       document.documentElement.setAttribute('data-lang', lang);
+      document.documentElement.setAttribute('lang', lang === 'zh' ? 'zh-CN' : 'en');
       document.querySelectorAll('.lang-switch button').forEach(function (b) {
-        b.classList.toggle('active', b.getAttribute('data-lang') === lang);
+        var on = b.getAttribute('data-lang') === lang;
+        b.classList.toggle('active', on);
+        if (b.hasAttribute('aria-pressed')) b.setAttribute('aria-pressed', String(on));
       });
       try { localStorage.setItem('anx-lang', lang); } catch (e) {}
+    }
+    function bind() {
+      document.querySelectorAll('.lang-switch button').forEach(function (b) {
+        b.addEventListener('click', function (ev) {
+          ev.preventDefault();
+          apply(b.getAttribute('data-lang'));
+        });
+      });
     }
     var saved = null;
     try { saved = localStorage.getItem('anx-lang'); } catch (e) {}
     apply(saved === 'zh' ? 'zh' : 'en');
-    document.addEventListener('click', function (ev) {
-      var b = ev.target && ev.target.closest ? ev.target.closest('.lang-switch button') : null;
-      if (b) apply(b.getAttribute('data-lang'));
-    });
+    bind();
   })();
   </script>
 </body>
