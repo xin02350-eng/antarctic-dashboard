@@ -7,7 +7,7 @@
   <link rel="icon" href="data:,">
   <link rel="stylesheet" href="./css/style.css">
   <style>
-    /* Analysis 重构：页面允许滚动，新模块样式（仅本页） */
+    /* Analysis v2：成果分析页（仅本页样式） */
     body.analysis-page{
       height:auto;
       overflow:auto;
@@ -25,14 +25,175 @@
       color:#6f93a8;
       margin-top:4px;
     }
-    .analysis-page .an-summary{
+
+    /* 顶部核心成果区域 */
+    .analysis-page .an-sec-title{
+      font-size:10px;
+      letter-spacing:3px;
+      color:rgba(140,234,255,.65);
+      border-bottom:1px solid rgba(98,217,255,.12);
+      padding-bottom:6px;
+      margin:0 0 10px;
+    }
+    .analysis-page .an-sec-sub{
+      font-size:9px;
+      letter-spacing:1px;
+      color:#6f93a8;
+      margin:-4px 0 10px;
+    }
+    .analysis-page .an-overview{
       display:grid;
-      grid-template-columns:repeat(4,minmax(0,1fr));
+      grid-template-columns:1fr 1fr 1.4fr;
+      gap:12px;
+      align-items:stretch;
+    }
+    .analysis-page .an-overview .kpi-block{
+      min-height:150px;
+      justify-content:center;
+    }
+    .soc-module{
+      position:relative;
+      border:1px solid rgba(140,234,255,.18);
+      border-radius:10px;
+      background:linear-gradient(165deg, rgba(9,28,44,.62), rgba(5,16,28,.5));
+      padding:14px 10px 12px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      gap:4px;
+      overflow:hidden;
+    }
+    .soc-module::before{
+      content:'';
+      position:absolute;
+      width:170px;
+      height:170px;
+      border-radius:50%;
+      background:radial-gradient(circle, rgba(98,217,255,.10), transparent 62%);
+      pointer-events:none;
+    }
+    .soc-wrap{
+      position:relative;
+      width:132px;
+      height:132px;
+    }
+    .soc-ring{
+      width:132px;
+      height:132px;
+      transform:rotate(-90deg);
+    }
+    .soc-ring circle{
+      fill:none;
+      stroke-width:8;
+    }
+    .soc-track{
+      stroke:rgba(98,217,255,.12);
+    }
+    .soc-arc{
+      stroke:#62d9ff;
+      stroke-linecap:round;
+      stroke-dasharray:0 999;
+      filter:drop-shadow(0 0 6px rgba(98,217,255,.35));
+      transition:stroke-dasharray .8s ease, stroke .4s ease;
+    }
+    .soc-center{
+      position:absolute;
+      inset:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:2px;
+      font-variant-numeric:tabular-nums;
+    }
+    .soc-center b{
+      font-size:30px;
+      font-weight:700;
+      color:#eafcff;
+      letter-spacing:1px;
+    }
+    .soc-center span{
+      font-size:13px;
+      color:#8ceaff;
+      margin-top:6px;
+    }
+    .soc-center em{
+      position:absolute;
+      bottom:24px;
+      font-style:normal;
+      font-size:8px;
+      letter-spacing:2px;
+      color:#6f93a8;
+    }
+    .soc-label{
+      font-size:9px;
+      letter-spacing:2px;
+      color:rgba(140,234,255,.7);
+      margin-top:2px;
+    }
+    .soc-module p{
+      margin:0;
+      font-size:8.5px;
+      color:#6f93a8;
+      text-align:center;
+      line-height:1.4;
+    }
+
+    /* 传感器数据返回率（逐通道真实覆盖） */
+    .sr-list{
+      display:flex;
+      flex-direction:column;
+      gap:7px;
+      padding:2px 0;
+    }
+    .sr-row{
+      display:grid;
+      grid-template-columns:minmax(90px,180px) 92px minmax(60px,1fr) 52px;
+      align-items:center;
       gap:10px;
+      padding:6px 10px;
+      border-radius:6px;
+      background:rgba(6,20,34,.35);
     }
-    .analysis-page .an-summary .kpi-block{
-      min-height:92px;
+    .sr-name{
+      font-size:9px;
+      letter-spacing:1.5px;
+      color:#b8dcec;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
     }
+    .sr-ratio{
+      font-size:10px;
+      color:#dff6ff;
+      font-variant-numeric:tabular-nums;
+    }
+    .sr-bar{
+      height:4px;
+      border-radius:3px;
+      background:rgba(98,217,255,.10);
+      overflow:hidden;
+    }
+    .sr-bar i{
+      display:block;
+      height:100%;
+      border-radius:3px;
+      background:linear-gradient(90deg, rgba(98,217,255,.5), rgba(140,234,255,.85));
+      transition:width .6s ease;
+    }
+    .sr-pct{
+      font-size:10px;
+      color:#8ceaff;
+      text-align:right;
+      font-variant-numeric:tabular-nums;
+    }
+    .sr-note{
+      font-size:9px;
+      color:#6f93a8;
+      margin:8px 2px 0;
+      line-height:1.5;
+    }
+
     .an-note{
       font-size:10px;
       letter-spacing:.5px;
@@ -55,71 +216,14 @@
       color:#dff6ff;
       margin-left:4px;
     }
-    .analysis-page .an-chronicle{
-      position:relative;
-      padding:6px 0 2px 22px;
-    }
-    .analysis-page .an-chronicle::before{
-      content:'';
-      position:absolute;
-      left:7px;
-      top:12px;
-      bottom:12px;
-      width:1px;
-      background:linear-gradient(180deg, rgba(98,217,255,.5), rgba(98,217,255,.08));
-    }
-    .chr-node{
-      position:relative;
-      padding:8px 0 12px 12px;
-    }
-    .chr-dot{
-      position:absolute;
-      left:-20px;
-      top:14px;
-      width:9px;
-      height:9px;
-      border-radius:50%;
-      background:#62d9ff;
-      box-shadow:0 0 8px rgba(98,217,255,.5);
-    }
-    .chr-node.last .chr-dot{
-      background:#00e5a8;
-      box-shadow:0 0 8px rgba(0,229,168,.5);
-    }
-    .chr-head{
-      display:flex;
-      align-items:baseline;
-      gap:10px;
-      flex-wrap:wrap;
-    }
-    .chr-head b{
-      font-size:11px;
-      letter-spacing:1.5px;
-      color:#dff6ff;
-    }
-    .chr-date{
-      font-size:10px;
-      letter-spacing:1px;
-      color:#8ceaff;
-    }
-    .chr-time{
-      display:block;
-      font-size:9px;
-      color:#6f93a8;
-      margin-top:2px;
-    }
-    .chr-body p{
-      margin:3px 0 0;
-      font-size:9.5px;
-      color:#7f9fb2;
-      line-height:1.5;
-    }
+
+    /* 系统能力 */
     .analysis-page .an-achievements{
       margin-top:14px;
     }
     .ach-grid{
       display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
+      grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
       gap:10px;
     }
     .ach-item{
@@ -146,7 +250,81 @@
       color:#7f9fb2;
       line-height:1.5;
     }
-    .analysis-page .an-quality{
+
+    /* 横向紧凑任务时间轴（页面底部，不超屏不滚动） */
+    .analysis-page .an-timeline{
+      margin-top:14px;
+    }
+    .tl-hwrap{
+      overflow:visible;
+      padding:20px 2px 8px;
+    }
+    .tl-track{
+      position:relative;
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      height:118px;
+    }
+    .tl-track::before{
+      content:'';
+      position:absolute;
+      left:4%;
+      right:4%;
+      top:5px;
+      height:2px;
+      background:linear-gradient(90deg, rgba(98,217,255,.12), rgba(98,217,255,.55), rgba(98,217,255,.12));
+      border-radius:2px;
+    }
+    .tl-node{
+      position:relative;
+      flex:1;
+      min-width:0;
+      text-align:center;
+    }
+    .tl-node .dot{
+      width:12px;
+      height:12px;
+      border-radius:50%;
+      background:#62d9ff;
+      box-shadow:0 0 8px rgba(98,217,255,.55);
+      margin:0 auto 8px;
+      display:block;
+    }
+    .tl-node.last .dot{
+      background:#00e5a8;
+      box-shadow:0 0 8px rgba(0,229,168,.55);
+    }
+    .tl-node .date{
+      font-size:8.5px;
+      letter-spacing:1px;
+      color:#8ceaff;
+      display:block;
+    }
+    .tl-node b{
+      display:block;
+      font-size:9px;
+      letter-spacing:1px;
+      color:#dff6ff;
+      margin-top:2px;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+    .tl-node p{
+      font-size:8px;
+      color:#7f9fb2;
+      margin:2px 0 0;
+      line-height:1.4;
+    }
+    .tl-hint{
+      font-size:9px;
+      letter-spacing:1px;
+      color:#6f93a8;
+      margin:2px 2px 0;
+    }
+
+    .an-quality{
       margin-top:14px;
       border:1px solid rgba(140,234,255,.12);
       border-radius:8px;
@@ -169,17 +347,51 @@
       line-height:1.7;
       margin:0;
     }
-    @media (max-width:900px){
-      .analysis-page .an-summary{
-        grid-template-columns:repeat(2,minmax(0,1fr));
+
+    @media (max-width:1100px){
+      .analysis-page .an-overview{
+        grid-template-columns:1fr 1fr;
+      }
+      .soc-module{
+        grid-column:1 / -1;
+        flex-direction:row;
+        gap:14px;
+        justify-content:center;
+      }
+      .sr-row{
+        grid-template-columns:minmax(80px,130px) 80px minmax(50px,1fr) 48px;
       }
     }
-    @media (max-width:560px){
-      .analysis-page .an-summary{
+    @media (max-width:700px){
+      .analysis-page .an-overview{
+        grid-template-columns:1fr 1fr;
+      }
+      .soc-module{
+        grid-column:1 / -1;
+      }
+    }
+    @media (max-width:420px){
+      .analysis-page .an-overview{
         grid-template-columns:1fr;
       }
       .ach-grid{
         grid-template-columns:1fr;
+      }
+      .sr-row{
+        grid-template-columns:1fr 1fr;
+        gap:5px 8px;
+      }
+      .sr-bar{
+        grid-column:1 / 3;
+      }
+      .sr-pct{
+        text-align:left;
+      }
+      .tl-node p{
+        display:none;
+      }
+      .tl-node b{
+        white-space:normal;
       }
     }
   </style>
@@ -206,6 +418,7 @@
       <a class="nav-item" href="./telemetry.html">DATA</a>
       <a class="nav-item" href="./hardware.html">Hardware</a>
       <a class="nav-item active">Analysis</a>
+      <div class="lang-switch"><button type="button" data-lang="zh">中文</button><button type="button" data-lang="en" class="active">EN</button></div>
     </nav>
     <label for="navToggle" class="nav-overlay" aria-hidden="true"></label>
   </aside>
@@ -215,96 +428,125 @@
     <!-- MISSION OVERVIEW -->
     <header class="mission-header an-head">
       <div>
-        <div class="an-kicker">ANTARCTIC AUTONOMOUS MONITORING MISSION SUMMARY</div>
-        <h2>MISSION ANALYTICS</h2>
-        <div class="an-sub" data-lang="en">An autonomous Antarctic monitoring node · deployed to collect and transmit long-term field data.</div>
-        <div class="an-sub" data-lang="zh">南极自主环境监测节点 · 长期采集并稳定回传现场数据。</div>
+        <div class="an-kicker" data-lang="en">ANTARCTIC AUTONOMOUS MONITORING MISSION SUMMARY</div>
+        <div class="an-kicker" data-lang="zh">南极自主无人监测系统 · 任务成果分析</div>
+        <h2 data-lang="en">MISSION ANALYTICS</h2>
+        <h2 data-lang="zh">任务成果分析</h2>
+        <div class="an-sub" data-lang="en">An autonomous Antarctic monitoring node · long-term environmental data collection and transmission.</div>
+        <div class="an-sub" data-lang="zh">南极自主无人监测节点 · 长期采集并稳定回传环境数据。</div>
       </div>
       <div class="an-meta">
-        <span>MISSION ID <b>ANT-A01</b></span>
-        <span>VERSION <b>V0.4</b></span>
-        <span>STATUS <b class="ok">OPERATIONAL</b></span>
-        <div class="lang-switch"><button type="button" data-lang="zh">中文</button><button type="button" data-lang="en" class="active">EN</button></div>
+        <span data-lang="en">MISSION ID <b>ANT-A01</b></span>
+        <span data-lang="zh">任务编号 <b>ANT-A01</b></span>
+        <span data-lang="en">VERSION <b>V0.4</b></span>
+        <span data-lang="zh">版本 <b>V0.4</b></span>
+        <span data-lang="en">STATUS <b class="ok">OPERATIONAL</b></span>
+        <span data-lang="zh">状态 <b class="ok">运行中</b></span>
       </div>
     </header>
 
-    <!-- 第一行：数据成果总结 -->
-    <section class="an-summary">
+    <!-- 顶部核心成果 -->
+    <h3 class="an-sec-title" data-lang="en">MISSION OVERVIEW</h3>
+    <h3 class="an-sec-title" data-lang="zh">任务概览</h3>
+    <div class="an-sec-sub" data-lang="en">Core results of the autonomous monitoring mission.</div>
+    <div class="an-sec-sub" data-lang="zh">自主监测任务的核心成果。</div>
+    <section class="an-overview">
       <div class="kpi-block">
-        <span class="kpi-label">DATA RECORDS</span>
-        <span class="kpi-num"><b id="sumRecords">--</b><em>REC</em></span>
+        <span class="kpi-label" data-lang="en">DATA RECORDS</span>
+        <span class="kpi-label" data-lang="zh">数据记录</span>
+        <span class="kpi-num"><b id="sumRecords">--</b><em data-lang="en">REC</em><em data-lang="zh">条</em></span>
       </div>
       <div class="kpi-block">
-        <span class="kpi-label">SENSOR CHANNELS</span>
-        <span class="kpi-num"><b id="sumChannels">--</b><em>CH</em></span>
+        <span class="kpi-label" data-lang="en">SENSOR CHANNELS</span>
+        <span class="kpi-label" data-lang="zh">传感器通道</span>
+        <span class="kpi-num"><b id="sumChannels">--</b><em data-lang="en">CH</em><em data-lang="zh">个</em></span>
       </div>
-      <div class="kpi-block">
-        <span class="kpi-label">DATA TRANSMISSION RATE</span>
-        <span class="kpi-num"><b id="sumRate">--</b><em>%</em></span>
-      </div>
-      <div class="kpi-block">
-        <span class="kpi-label">BATTERY SOC</span>
-        <span class="kpi-num"><b id="sumSoc">--</b><em>%</em></span>
+      <div class="soc-module">
+        <div class="soc-wrap">
+          <svg class="soc-ring" viewBox="0 0 132 132" aria-hidden="true">
+            <circle class="soc-track" cx="66" cy="66" r="56"></circle>
+            <circle class="soc-arc" id="socArc" cx="66" cy="66" r="56"></circle>
+          </svg>
+          <div class="soc-center"><b id="sumSoc">--</b><span>%</span></div>
+        </div>
+        <div>
+          <div class="soc-label" data-lang="en">Battery SOC</div>
+          <div class="soc-label" data-lang="zh">电池 SOC</div>
+          <p data-lang="en">Remaining Energy Level</p>
+          <p data-lang="zh">剩余能量水平</p>
+        </div>
       </div>
     </section>
-
-    <div class="an-note">
-      <span data-lang="en">Transmission rate = successfully transmitted records / all scheduled sampling events. SOC shows the latest reported battery level; it stays "--" until the SOC channel provides data.</span>
-      <span data-lang="zh">传输率 = 成功上传的数据次数 ÷ 计划总采样次数。SOC 显示最近一次上报的剩余电量；在 SOC 通道提供数据前显示“--”。</span>
-    </div>
 
     <div class="an-summary-foot">
-      <span>OPERATION DAYS <b id="sumDays">--</b></span>
-      <span>LATEST UPDATE <b id="sumLatest">--</b></span>
-      <span>GPS AVAILABILITY <b id="sumGps">--</b></span>
+      <span data-lang="en">OPERATION DAYS <b id="sumDays">--</b></span>
+      <span data-lang="zh">运行天数 <b id="sumDays">--</b></span>
+      <span data-lang="en">LATEST UPDATE <b id="sumLatest">--</b></span>
+      <span data-lang="zh">最近更新 <b id="sumLatest">--</b></span>
+      <span data-lang="en">GPS AVAILABILITY <b id="sumGps">--</b></span>
+      <span data-lang="zh">定位有效率 <b id="sumGps">--</b></span>
     </div>
 
-    <!-- 第二行：科研任务编年历 -->
-    <section class="an-timeline">
-      <h3>MISSION TIMELINE · 任务编年历</h3>
-      <div class="an-chronicle" id="anChronicle"></div>
+    <!-- 传感器数据返回率 -->
+    <section class="an-profile">
+      <h3 class="an-sec-title" data-lang="en">SENSOR DATA RETURN RATIO</h3>
+      <h3 class="an-sec-title" data-lang="zh">传感器数据返回率</h3>
+      <div class="sr-list" id="sensorRatio"></div>
+      <p class="sr-note" data-lang="en">Each sensor: received records / expected sampling records.</p>
+      <p class="sr-note" data-lang="zh">每个传感器：实际收到的数据记录数 ÷ 理论采样记录总数。</p>
     </section>
 
-    <!-- 第三行：技术创新能力 -->
+    <!-- 系统能力 -->
     <section class="an-achievements">
-      <h3>MISSION ACHIEVEMENTS · 系统能力</h3>
+      <h3 data-lang="en">MISSION CAPABILITIES</h3>
+      <h3 data-lang="zh">系统能力</h3>
       <div class="ach-grid">
         <div class="ach-item">
           <i class="ach-ico">◈</i>
-          <b>AUTONOMOUS DATA COLLECTION</b>
-          <span data-lang="en">24/7 unattended sampling at the Antarctic field site.</span>
-          <span data-lang="zh">在南极现场无人值守，全天候自动采样。</span>
+          <b data-lang="en">AUTONOMOUS MONITORING</b>
+          <b data-lang="zh">自主环境监测</b>
+          <span data-lang="en">Unattended collection of polar environmental data.</span>
+          <span data-lang="zh">无人值守采集极地环境数据。</span>
         </div>
         <div class="ach-item">
           <i class="ach-ico">▣</i>
-          <b>MULTI-SENSOR INTEGRATION</b>
-          <span data-lang="en">Temperature, humidity, solar, power and GPS channels in one node.</span>
-          <span data-lang="zh">单节点集成温度、湿度、太阳辐射、电源与 GPS 等多类传感器。</span>
-        </div>
-        <div class="ach-item">
-          <i class="ach-ico">⚡</i>
-          <b>LOW-POWER OPERATION</b>
-          <span data-lang="en">Solar powered with battery buffering for long-term polar operation.</span>
-          <span data-lang="zh">太阳能供电加电池缓冲，支持极地长期低功耗运行。</span>
+          <b data-lang="en">MULTI SENSOR FUSION</b>
+          <b data-lang="zh">多传感器融合</b>
+          <span data-lang="en">Synchronized temperature, humidity, voltage and solar channels.</span>
+          <span data-lang="zh">同步采集温度、湿度、电压、太阳辐射等数据。</span>
         </div>
         <div class="ach-item">
           <i class="ach-ico">⌁</i>
-          <b>LONG-RANGE LoRa COMMUNICATION</b>
-          <span data-lang="en">Low-power long-range radio uplink for remote data retrieval.</span>
-          <span data-lang="zh">低功耗远距离 LoRa 无线链路，远程回传数据。</span>
+          <b data-lang="en">LONG RANGE COMMUNICATION</b>
+          <b data-lang="zh">远距离通信</b>
+          <span data-lang="en">Long-distance data transfer through LoRa radio link.</span>
+          <span data-lang="zh">通过 LoRa 实现远距离数据传输。</span>
         </div>
         <div class="ach-item">
-          <i class="ach-ico">✛</i>
-          <b>GPS POSITIONING</b>
-          <span data-lang="en">Autonomous satellite positioning for deployment tracking.</span>
-          <span data-lang="zh">自主卫星定位，记录部署位置与运行轨迹。</span>
+          <i class="ach-ico">⚡</i>
+          <b data-lang="en">LOW POWER DESIGN</b>
+          <b data-lang="zh">低功耗设计</b>
+          <span data-lang="en">Solar powered for long-term field operation.</span>
+          <span data-lang="zh">太阳能供电，支持长期野外运行。</span>
         </div>
       </div>
     </section>
 
-    <!-- 底部：数据质量说明 -->
+    <!-- 横向任务时间轴（页面底部） -->
+    <section class="an-timeline">
+      <h3 data-lang="en">MISSION TIMELINE</h3>
+      <h3 data-lang="zh">任务时间轴</h3>
+      <div class="tl-hwrap">
+        <div class="tl-track" id="anTimeline"></div>
+      </div>
+      <p class="tl-hint" data-lang="en">Key events derived from the recorded mission history.</p>
+      <p class="tl-hint" data-lang="zh">基于实际记录数据提取的关键任务事件。</p>
+    </section>
+
+    <!-- 数据质量说明 -->
     <section class="an-quality">
-      <h3>DATA QUALITY NOTE · 数据质量说明</h3>
+      <h3 data-lang="en">DATA QUALITY NOTE</h3>
+      <h3 data-lang="zh">数据质量说明</h3>
       <p data-lang="en">All metrics are computed directly from the recorded dataset. Missing values are preserved and displayed as "--"; no synthetic data is generated.</p>
       <p data-lang="zh">所有指标均基于实际记录数据计算；缺失值如实保留并显示为“--”，不生成任何模拟数据。</p>
     </section>
@@ -346,21 +588,12 @@
     var total = data.length;
     if (!total) return;
 
-    /* 通道数：实际字段（不含 time） */
     var keys = {};
     data.forEach(function (r) {
       Object.keys(r).forEach(function (k) { if (k !== 'time') keys[k] = true; });
     });
     var channels = Object.keys(keys).length;
 
-    /* 传输率：主传感器通道至少一个有效的记录数 / 总采样数 */
-    var sensorKeys = ['v', 'a', 's', 't', 'h', 'j', 'k'];
-    var ok = data.filter(function (r) {
-      return sensorKeys.some(function (k) { return r[k] !== null && r[k] !== undefined; });
-    }).length;
-    var rate = total ? (ok / total * 100) : 0;
-
-    /* 时间范围 */
     var times = data.map(function (r) { return new Date(r.time).getTime(); })
       .filter(function (t) { return !isNaN(t); })
       .sort(function (a, b) { return a - b; });
@@ -368,19 +601,16 @@
     var end = times[times.length - 1];
     var days = Math.max(1, Math.round((end - start) / 86400000));
 
-    /* SOC：最新非空值（data.json 暂无 soc 字段则显示 --，不造数据） */
     var soc = null;
     for (var i = data.length - 1; i >= 0; i--) {
       if (data[i].soc !== null && data[i].soc !== undefined) { soc = data[i].soc; break; }
     }
 
-    /* 首次采样断档：相邻时间间隔 > 3 小时 */
     var gapStart = null;
     for (var g = 1; g < times.length; g++) {
       if (times[g] - times[g - 1] > 10800000) { gapStart = times[g - 1]; break; }
     }
 
-    /* 首次 S / N 状态 */
     var firstS = null, firstN = null;
     for (var m = 0; m < data.length; m++) {
       var md = String(data[m].mode === null || data[m].mode === undefined ? '' : data[m].mode).trim().toUpperCase();
@@ -388,40 +618,76 @@
       if (firstN === null && md === 'N') firstN = new Date(data[m].time).getTime();
     }
 
-    /* GPS 有效率 */
     var gpsOk = data.filter(function (r) {
       return (r.x !== null && r.x !== undefined) && (r.y !== null && r.y !== undefined);
     }).length;
 
     setTxt('sumRecords', total);
     setTxt('sumChannels', channels);
-    setTxt('sumRate', rate.toFixed(1));
     setTxt('sumSoc', soc === null ? '--' : (typeof soc === 'number' ? soc.toFixed(0) : soc));
     setTxt('sumDays', days);
     setTxt('sumLatest', fmtFull(end));
     setTxt('sumGps', (gpsOk / total * 100).toFixed(1) + '%');
 
-    /* 编年历节点 */
-    var nodes = [
-      { t: start, name: 'MISSION START', en: 'The node began recording environmental data.', zh: '系统开始记录环境数据。' },
-      { t: firstS, name: 'FIRST S SIGNAL', en: 'First record with standby (S) operating mode.', zh: '首次接收到待机（S）状态数据。' },
-      { t: firstN, name: 'FIRST N SIGNAL', en: 'First record with normal (N) operating mode.', zh: '首次接收到正常运行（N）状态数据。' },
-      { t: gapStart, name: 'DATA INTERRUPTION', en: 'First detected gap in the sampling timeline.', zh: '首次检测到的采样时间断档。' },
-      { t: end, name: 'LATEST DATA', en: 'Most recent successful data synchronization.', zh: '最近一次成功的数据同步。' }
+    /* 传感器数据返回率：各通道实际记录 / 总采样记录 */
+    var ratioDefs = [
+      { key: 't', en: 'TEMPERATURE', zh: '温度' },
+      { key: 'h', en: 'HUMIDITY', zh: '湿度' },
+      { key: 's', en: 'SOLAR IRRADIANCE', zh: '太阳辐射' },
+      { key: 'v', en: 'VOLTAGE', zh: '电压' },
+      { key: 'a', en: 'CURRENT', zh: '电流' }
     ];
+    var ratioHtml = '';
+    ratioDefs.forEach(function (def) {
+      var actual = data.filter(function (r) {
+        return r[def.key] !== null && r[def.key] !== undefined;
+      }).length;
+      var pct = total ? (actual / total * 100) : 0;
+      ratioHtml += '<div class="sr-row">';
+      ratioHtml += '<span class="sr-name" data-lang="en">' + def.en + '</span>';
+      ratioHtml += '<span class="sr-name" data-lang="zh">' + def.zh + '</span>';
+      ratioHtml += '<span class="sr-ratio">' + actual + ' / ' + total + '</span>';
+      ratioHtml += '<span class="sr-bar"><i style="width:' + pct.toFixed(1) + '%"></i></span>';
+      ratioHtml += '<b class="sr-pct">' + pct.toFixed(1) + '%</b>';
+      ratioHtml += '</div>';
+    });
+    var ratioBox = $('sensorRatio');
+    if (ratioBox) ratioBox.innerHTML = ratioHtml;
 
+    /* SOC 圆环 */
+    var arc = $('socArc');
+    if (arc) {
+      var C = 2 * Math.PI * 56;
+      if (soc === null || isNaN(soc)) {
+        arc.setAttribute('stroke-dasharray', '0 ' + C);
+        arc.setAttribute('stroke', '#62d9ff');
+      } else {
+        var pct = Math.max(0, Math.min(100, Number(soc)));
+        arc.setAttribute('stroke-dasharray', ((pct / 100) * C).toFixed(1) + ' ' + C.toFixed(1));
+        arc.setAttribute('stroke', pct >= 60 ? '#00e5a8' : (pct >= 30 ? '#f5b942' : '#ff5263'));
+      }
+    }
+
+    /* 横向时间轴 */
+    var nodes = [
+      { t: start, en: 'MISSION START', zh: '任务启动', enD: 'The system began collecting data.', zhD: '系统开始采集数据。' },
+      { t: firstS, en: 'FIRST S SIGNAL', zh: '首次S信号', enD: 'First record with standby (S) mode.', zhD: '首次检测到S状态。' },
+      { t: firstN, en: 'FIRST N SIGNAL', zh: '首次N信号', enD: 'First record with normal (N) mode.', zhD: '首次检测到N状态。' },
+      { t: gapStart, en: 'DATA LOSS', zh: '数据中断', enD: 'First detected gap in sampling.', zhD: '首次检测到采样断档。' },
+      { t: end, en: 'LATEST DATA', zh: '最新数据', enD: 'Most recent data synchronization.', zhD: '最近一次数据同步。' }
+    ];
     var html = '';
     nodes.forEach(function (n, idx) {
-      html += '<div class="chr-node' + (idx === nodes.length - 1 ? ' last' : '') + '">';
-      html += '<i class="chr-dot"></i>';
-      html += '<div class="chr-body">';
-      html += '<div class="chr-head"><b>' + n.name + '</b><span class="chr-date">' + (n.t ? fmtDate(n.t) : '--') + '</span></div>';
-      html += '<span class="chr-time">' + (n.t ? fmtFull(n.t) : '--') + '</span>';
-      html += '<p data-lang="en">' + n.en + '</p>';
-      html += '<p data-lang="zh">' + n.zh + '</p>';
-      html += '</div></div>';
+      html += '<div class="tl-node' + (idx === nodes.length - 1 ? ' last' : '') + '">';
+      html += '<i class="dot"></i>';
+      html += '<span class="date">' + (n.t ? fmtDate(n.t) : '--') + '</span>';
+      html += '<b data-lang="en">' + n.en + '</b>';
+      html += '<b data-lang="zh">' + n.zh + '</b>';
+      html += '<p data-lang="en">' + n.enD + '</p>';
+      html += '<p data-lang="zh">' + n.zhD + '</p>';
+      html += '</div>';
     });
-    var box = $('anChronicle');
+    var box = $('anTimeline');
     if (box) box.innerHTML = html;
   }
 
