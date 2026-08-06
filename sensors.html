@@ -25,6 +25,9 @@
       letter-spacing:1.5px;
       color:#6f93a8;
     }
+    html[data-lang="zh"] .sensors-page .sensor-grid .panel-title::after{
+      content:"实时";
+    }
   </style>
 </head>
 
@@ -71,42 +74,42 @@
     <section class="sensor-grid hud-frame">
 
       <div class="panel">
-        <div class="panel-title">CABIN TEMPERATURE<br>RS485</div>
+        <div class="panel-title"><span data-i18n="cabin_temperature">CABIN TEMPERATURE</span><br>RS485</div>
         <canvas id="chartInTemp"></canvas>
       </div>
 
       <div class="panel">
-        <div class="panel-title">CABIN HUMIDITY<br>RS485</div>
+        <div class="panel-title"><span data-i18n="cabin_humidity">CABIN HUMIDITY</span><br>RS485</div>
         <canvas id="chartInHum"></canvas>
       </div>
 
       <div class="panel">
-        <div class="panel-title">OUTSIDE TEMPERATURE<br>SHT35</div>
+        <div class="panel-title"><span data-i18n="outside_temperature">OUTSIDE TEMPERATURE</span><br>SHT35</div>
         <canvas id="chartOutTemp"></canvas>
       </div>
 
       <div class="panel">
-        <div class="panel-title">OUTSIDE HUMIDITY<br>SHT35</div>
+        <div class="panel-title"><span data-i18n="outside_humidity">OUTSIDE HUMIDITY</span><br>SHT35</div>
         <canvas id="chartOutHum"></canvas>
       </div>
 
       <div class="panel">
-        <div class="panel-title">SOLAR IRRADIANCE<br>PYRANOMETER · W/m²</div>
+        <div class="panel-title"><span data-i18n="solar_radiation">SOLAR IRRADIANCE</span><br>PYRANOMETER · W/m²</div>
         <canvas id="chartSolar"></canvas>
       </div>
 
       <div class="panel">
-        <div class="panel-title">CURRENT (mA)</div>
+        <div class="panel-title" data-i18n="current_ma">CURRENT (mA)</div>
         <canvas id="chartCurrent"></canvas>
       </div>
 
       <div class="panel">
-        <div class="panel-title">VOLTAGE</div>
+        <div class="panel-title" data-i18n="voltage_title">VOLTAGE</div>
         <canvas id="chartVoltage"></canvas>
       </div>
 
       <div class="panel">
-        <div class="panel-title">WIND SPEED<br>NO DATA AVAILABLE</div>
+        <div class="panel-title"><span data-i18n="wind_speed">WIND SPEED</span><br><span data-i18n="no_data_available">NO DATA AVAILABLE</span></div>
         <canvas id="chartWind"></canvas>
       </div>
 
@@ -335,7 +338,7 @@
       };
       tt.callbacks.label = function (context) {
         var v = context.parsed && context.parsed.y;
-        if (typeof v !== 'number' || isNaN(v)) return 'NO DATA';
+        if (typeof v !== 'number' || isNaN(v)) return window.ANX_T ? window.ANX_T('no_data') : 'NO DATA';
         return parseFloat(v.toFixed(2)) + (units[ctx.id] || '');
       };
     }
@@ -347,7 +350,7 @@
       cfg.options.scales.y = cfg.options.scales.y || {};
       cfg.options.scales.y.title = {
         display: true,
-        text: 'CURRENT (mA)',
+        text: window.ANX_T ? window.ANX_T('current_ma') : 'CURRENT (mA)',
         color: '#6f93a8',
         font: { size: 10 }
       };
@@ -439,6 +442,8 @@
         var tZh = titleEl.getAttribute('data-title-zh');
         if (tEn && tZh) titleEl.textContent = lang === 'zh' ? tZh : tEn;
       }
+      if (window.ANX_APPLY_I18N) window.ANX_APPLY_I18N(lang);
+      try { window.dispatchEvent(new CustomEvent('anx:langchange', { detail: { lang: lang } })); } catch (e) {}
     }
     function bind() {
       document.querySelectorAll('.lang-switch button').forEach(function (b) {

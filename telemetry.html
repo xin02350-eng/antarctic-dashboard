@@ -214,21 +214,22 @@
   'use strict';
   var box = document.getElementById('telemetryData');
   if (!box) return;
+  var L = function (k, p) { return window.ANX_T ? window.ANX_T(k, p) : k; };
 
   /* ============ 字段元数据：动态读取 data.json 全部字段 ============ */
   var FIELD_META = {
-    v:    { label: 'VOLTAGE',          unit: 'V' },
-    a:    { label: 'CURRENT',          unit: 'mA' },
-    s:    { label: 'SOLAR IRRADIANCE', unit: 'W/m²' },
-    t:    { label: 'INSIDE TEMP',      unit: '°C' },
-    h:    { label: 'INSIDE HUMIDITY',  unit: '%RH' },
-    j:    { label: 'OUTSIDE TEMP',     unit: '°C' },
-    k:    { label: 'OUTSIDE HUMIDITY', unit: '%RH' },
-    x:    { label: 'LATITUDE',         unit: '°' },
-    y:    { label: 'LONGITUDE',        unit: '°' },
-    n:    { label: 'SATELLITES',       unit: '' },
-    g:    { label: 'GPS STATUS',       unit: '' },
-    mode: { label: 'MODE',             unit: '' }
+    v:    { labelKey: 'voltage',          unit: 'V' },
+    a:    { labelKey: 'current',          unit: 'mA' },
+    s:    { labelKey: 'solar_irradiance', unit: 'W/m²' },
+    t:    { labelKey: 'inside_temp',      unit: '°C' },
+    h:    { labelKey: 'inside_humidity',  unit: '%RH' },
+    j:    { labelKey: 'outside_temp',     unit: '°C' },
+    k:    { labelKey: 'outside_humidity', unit: '%RH' },
+    x:    { labelKey: 'latitude',         unit: '°' },
+    y:    { labelKey: 'longitude',        unit: '°' },
+    n:    { labelKey: 'satellites',       unit: '' },
+    g:    { labelKey: 'gps_status',       unit: '' },
+    mode: { labelKey: 'mode',             unit: '' }
   };
   var KNOWN_ORDER = ['v', 'a', 's', 't', 'h', 'j', 'k', 'x', 'y', 'n', 'g', 'mode'];
 
@@ -254,14 +255,14 @@
   }
 
   function metaOf(k) {
-    return FIELD_META[k] || { label: k.toUpperCase(), unit: '' };
+    return FIELD_META[k] ? { label: L(FIELD_META[k].labelKey), unit: FIELD_META[k].unit } : { label: k.toUpperCase(), unit: '' };
   }
 
   /* 本地时间格式化：YYYY-MM-DD HH:mm（保留分钟，不依赖 main.js） */
   function fmtTime(t) {
     if (!t) return '--';
-    var d = new Date(t);
-    if (isNaN(d.getTime())) return String(t);
+    var d = window.ANX_PARSE_TIME ? window.ANX_PARSE_TIME(t) : new Date(t);
+    if (!d || isNaN(d.getTime())) return String(t);
     function p(n) { return String(n).padStart(2, '0'); }
     return d.getFullYear() + '-' + p(d.getMonth() + 1) + '-' + p(d.getDate()) +
       ' ' + p(d.getHours()) + ':' + p(d.getMinutes());
@@ -276,8 +277,10 @@
 
   function modeInfo(m) {
     var raw = (m === null || m === undefined || m === '') ? 'N' : String(m);
+    var key = raw === 'E' ? 'emergency' : (raw === 'S' ? 'standby' : 'normal');
     return {
-      st: raw === 'E' ? 'EMERGENCY' : (raw === 'S' ? 'STANDBY' : 'NORMAL'),
+      key: key,
+      st: L(key),
       cls: raw === 'E' ? 'm-emergency' : (raw === 'S' ? 'm-standby' : 'm-normal')
     };
   }
@@ -286,7 +289,7 @@
     var g = d.g;
     if (g === null || g === undefined || g === '') return { text: '--', cls: '' };
     var ok = g === 'O' || g === 'OK' || g === 1 || g === '1' || g === true;
-    return ok ? { text: 'ONLINE', cls: 'gps-ok' } : { text: 'NO FIX', cls: 'gps-bad' };
+    return ok ? { key: 'ok', text: L('online'), cls: 'gps-ok' } : { key: 'bad', text: L('no_fix'), cls: 'gps-bad' };
   }
 
   /* ============ 高性能分批渲染：不全量创建 DOM ============ */
@@ -302,8 +305,8 @@
   function rowHtml(d, keys) {
     var mi = modeInfo(d.mode);
     var gi = gpsInfo(d);
-    var recCls = (mi.st === 'EMERGENCY' || gi.text === 'NO FIX') ? 'tel-alert' :
-      (mi.st === 'STANDBY' ? 'tel-warn' : 'tel-ok');
+    var recCls = (mi.key === 'emergency' || gi.key === 'bad') ? 'tel-alert' :
+      (mi.key === 'standby' ? 'tel-warn' : 'tel-ok');
     var html = '<tr class="' + recCls + '">';
     html += '<td class="tel-time">' + fmtTime(d.time) + '</td>';
     html += '<td><span class="tel-mode ' + mi.cls + '">' + mi.st + '</span></td>';
@@ -322,7 +325,7 @@
   function buildShell(keys) {
     var html = '<div class="tel-scroll-wrap">';
     html += '<div class="tel-scroll"><table class="tel-table"><thead><tr>';
-    html += '<th>TIME</th><th>MODE</th>';
+    html += '<th>' + L('time') + '</th><th>' + L('mode') + '</th>';
     keys.forEach(function (k) {
       var m = metaOf(k);
       html += '<th>' + m.label + (m.unit ? '<em>(' + m.unit + ')</em>' : '') + '</th>';
@@ -331,7 +334,7 @@
     html += '<div class="tel-sb tel-sb-v"><div class="tel-sb-thumb" data-dir="v"></div></div>';
     html += '<div class="tel-sb tel-sb-h"><div class="tel-sb-thumb" data-dir="h"></div></div>';
     html += '</div>';
-    html += '<div class="tel-loading">LOADING HISTORY…</div>';
+    html += '<div class="tel-loading">' + L('loading_history') + '</div>';
     return html;
   }
 
@@ -343,7 +346,7 @@
     if (!batch.length) {
       allDone = true;
       loadingBusy = false;
-      if (loadEl) loadEl.textContent = 'ALL HISTORY LOADED · ' + renderedCount + ' RECORDS';
+      if (loadEl) loadEl.textContent = L('all_loaded', { n: renderedCount });
       return;
     }
     var frag = document.createDocumentFragment();
@@ -355,9 +358,9 @@
     loadingBusy = false;
     if (renderedCount >= rowsHtml.length) {
       allDone = true;
-      if (loadEl) loadEl.textContent = 'ALL HISTORY LOADED · ' + renderedCount + ' RECORDS';
+      if (loadEl) loadEl.textContent = L('all_loaded', { n: renderedCount });
     } else if (loadEl) {
-      loadEl.textContent = 'HISTORY ' + renderedCount + ' / ' + rowsHtml.length;
+      loadEl.textContent = L('history_progress', { a: renderedCount, b: rowsHtml.length });
     }
     updateSb();
   }
@@ -443,12 +446,23 @@
   }
 
   /* 渲染入口：已存在表格则跳过（幂等，无循环） */
-  function render(list) {
+  var lastList = null;
+  function render(list, force) {
     if (!list || !list.length) return;
-    if (box.querySelector('.tel-table')) return;
+    if (box.querySelector('.tel-table')) {
+      if (!force) return;
+      box.innerHTML = '';
+      renderedCount = 0;
+      allDone = false;
+      loadingBusy = false;
+      rowsHtml = [];
+      scrollEl = null;
+      tbodyEl = null;
+      loadEl = null;
+    }
     var keys = collectKeys(list);
     var titleEl = document.getElementById('dataPanelTitle');
-    if (titleEl) titleEl.textContent = 'LATEST ' + list.length + ' RECORDS · 13 CHANNELS';
+    if (titleEl) titleEl.textContent = L('latest_records', { n: list.length, c: 13 });
     box.innerHTML = buildShell(keys);
     scrollEl = box.querySelector('.tel-scroll');
     tbodyEl = box.querySelector('.tel-table tbody');
@@ -460,6 +474,7 @@
     wireScroll();
     initSb();
     requestAnimationFrame(ensureFill);
+    lastList = list;
   }
 
   /* 优先使用 main.js 的全局 DATA */
@@ -486,6 +501,11 @@
     }
     if (++tries > 60) clearInterval(timer);
   }, 500);
+  if (window.addEventListener) {
+    window.addEventListener('anx:langchange', function () {
+      if (lastList) render(lastList, true);
+    });
+  }
 })();
 </script>
   <!-- 语言切换（全站统一） -->
@@ -512,6 +532,8 @@
         var tZh = titleEl.getAttribute('data-title-zh');
         if (tEn && tZh) titleEl.textContent = lang === 'zh' ? tZh : tEn;
       }
+      if (window.ANX_APPLY_I18N) window.ANX_APPLY_I18N(lang);
+      try { window.dispatchEvent(new CustomEvent('anx:langchange', { detail: { lang: lang } })); } catch (e) {}
     }
     function bind() {
       document.querySelectorAll('.lang-switch button').forEach(function (b) {

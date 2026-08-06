@@ -175,9 +175,10 @@
   ];
   var SOURCES = ['hardwareSolar', 'hardwareVoltage', 'hardwareTemp', 'hardwareGPS'];
 
+  function offText() { return window.ANX_T ? window.ANX_T('no_signal') : 'NO SIGNAL'; }
   function normalize(t) {
     t = (t || '').trim();
-    if (!t || t === '--' || /^null$/i.test(t)) return 'NO SIGNAL';
+    if (!t || t === '--' || /^null$/i.test(t) || t === (window.ANX_T ? window.ANX_T('null') : 'NULL')) return offText();
     return t;
   }
 
@@ -194,15 +195,16 @@
       var el = document.getElementById(id);
       if (!el) return;
       var raw = (el.textContent || '').trim();
-      var bad = !raw || raw === '--' || /^null$/i.test(raw) || raw === 'NO SIGNAL';
+      var off = offText();
+      var bad = !raw || raw === '--' || /^null$/i.test(raw) || raw === off || raw === (window.ANX_T ? window.ANX_T('null') : 'NULL');
       var card = el.closest('.hud-card');
       if (!card) return;
       if (bad) {
         card.classList.add('st-off');
         card.classList.remove('st-ok');
-        if (!(el.dataset.st === 'off' && el.textContent === 'NO SIGNAL')) {
+        if (!(el.dataset.st === 'off' && el.textContent === off)) {
           el.dataset.st = 'off';
-          el.textContent = 'NO SIGNAL';
+          el.textContent = off;
         }
       } else {
         card.classList.remove('st-off');
@@ -213,6 +215,9 @@
   }
 
   sync();
+  if (window.addEventListener) {
+    window.addEventListener('anx:langchange', sync);
+  }
   if (window.MutationObserver) {
     var ob = new MutationObserver(sync);
     SOURCES.forEach(function (id) {
@@ -246,6 +251,8 @@
         var tZh = titleEl.getAttribute('data-title-zh');
         if (tEn && tZh) titleEl.textContent = lang === 'zh' ? tZh : tEn;
       }
+      if (window.ANX_APPLY_I18N) window.ANX_APPLY_I18N(lang);
+      try { window.dispatchEvent(new CustomEvent('anx:langchange', { detail: { lang: lang } })); } catch (e) {}
     }
     function bind() {
       document.querySelectorAll('.lang-switch button').forEach(function (b) {

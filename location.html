@@ -454,6 +454,8 @@ POSITION FIX
       var tZh = titleEl.getAttribute('data-title-zh');
       if (tEn && tZh) titleEl.textContent = lang === 'zh' ? tZh : tEn;
     }
+    if (window.ANX_APPLY_I18N) window.ANX_APPLY_I18N(lang);
+    try { window.dispatchEvent(new CustomEvent('anx:langchange', { detail: { lang: lang } })); } catch (e) {}
   }
   function bind() {
     document.querySelectorAll('.lang-switch button').forEach(function (b) {

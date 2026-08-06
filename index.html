@@ -60,22 +60,22 @@
     <!-- 顶部：任务状态栏（MISSION STATUS / CURRENT TIME / OPERATION MODE） -->
     <section class="mission-info dashboard-command-strip">
       <div class="cmd-cell">
-        <span class="cmd-label">MISSION STATUS</span>
-        <strong class="cmd-value"><i class="cmd-led"></i>NOMINAL</strong>
-        <span class="cmd-sub">ALL SYSTEMS CHECK</span>
+        <span class="cmd-label" data-i18n="mission_status">MISSION STATUS</span>
+        <strong class="cmd-value"><i class="cmd-led"></i><span data-i18n="nominal">NOMINAL</span></strong>
+        <span class="cmd-sub" data-i18n="all_systems_check">ALL SYSTEMS CHECK</span>
       </div>
       <div class="cmd-cell">
-        <span class="cmd-label">CURRENT TIME</span>
+        <span class="cmd-label" data-i18n="current_time">CURRENT TIME</span>
         <strong class="cmd-value" id="time">--</strong>
-        <span class="cmd-sub">LOCAL TIME</span>
+        <span class="cmd-sub" data-i18n="local_time">LOCAL TIME</span>
       </div>
       <div class="cmd-cell" id="modeCell">
-        <span class="cmd-label">OPERATION MODE</span>
+        <span class="cmd-label" data-i18n="operation_mode">OPERATION MODE</span>
         <strong class="cmd-value">
           <i class="cmd-led mode-led"></i><span class="mode-text" id="modeDisplay">--</span>
           <span id="systemMode" class="mode-raw" aria-hidden="true">--</span>
         </strong>
-        <span class="cmd-sub" id="modeSub">AUTONOMOUS</span>
+        <span class="cmd-sub" id="modeSub" data-i18n="autonomous">AUTONOMOUS</span>
       </div>
     </section>
 
@@ -84,38 +84,38 @@
 
       <!-- 左侧面板：电力 / 环境 -->
       <aside class="side-panel side-left">
-        <div class="side-panel-title">POWER &amp; ENVIRONMENT</div>
+        <div class="side-panel-title" data-i18n="power_environment">POWER &amp; ENVIRONMENT</div>
 
         <div class="status-card sensor-card">
           <div class="sensor-head">
             <svg class="sensor-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4.8 13.4h5.2L9 22l9.2-11.6H13z"/></svg>
-            <span class="sensor-name">VOLTAGE</span>
+            <span class="sensor-name" data-i18n="voltage">VOLTAGE</span>
             <span class="sensor-led"></span>
           </div>
           <div class="sensor-value"><strong id="voltage">--</strong><span class="sensor-unit">V</span></div>
-          <div class="sensor-meta"><span>BATTERY BUS</span><span class="sensor-state">NOMINAL</span></div>
+          <div class="sensor-meta"><span data-i18n="battery_bus">BATTERY BUS</span><span class="sensor-state" data-i18n="nominal">NOMINAL</span></div>
           <span class="sensor-index">01</span>
         </div>
 
         <div class="status-card sensor-card">
           <div class="sensor-head">
             <svg class="sensor-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h3l2-6 4 12 2-6h7"/></svg>
-            <span class="sensor-name">CURRENT</span>
+            <span class="sensor-name" data-i18n="current">CURRENT</span>
             <span class="sensor-led"></span>
           </div>
           <div class="sensor-value"><strong id="current">--</strong><span class="sensor-unit">mA</span></div>
-          <div class="sensor-meta"><span>LOAD DRAW</span><span class="sensor-state">NOMINAL</span></div>
+          <div class="sensor-meta"><span data-i18n="load_draw">LOAD DRAW</span><span class="sensor-state" data-i18n="nominal">NOMINAL</span></div>
           <span class="sensor-index">02</span>
         </div>
 
         <div class="status-card sensor-card">
           <div class="sensor-head">
             <svg class="sensor-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 4a2 2 0 1 1 4 0v9.5a4 4 0 1 1-4 0V4z"/><path d="M12 9v7"/></svg>
-            <span class="sensor-name">TEMPERATURE</span>
+            <span class="sensor-name" data-i18n="temperature">TEMPERATURE</span>
             <span class="sensor-led"></span>
           </div>
           <div class="sensor-value"><strong id="insideTemp">--</strong><span class="sensor-unit">°C</span></div>
-          <div class="sensor-meta"><span>CABIN</span><span>OUTSIDE <b id="outsideTemp">--</b>°C</span></div>
+          <div class="sensor-meta"><span data-i18n="cabin">CABIN</span><span><span data-i18n="outside">OUTSIDE</span> <b id="outsideTemp">--</b>°C</span></div>
           <span class="sensor-index">03</span>
         </div>
       </aside>
@@ -123,15 +123,15 @@
       <!-- 中部：地图战区（视觉中心） -->
       <section class="map-panel">
         <div class="map-panel-head">
-          <div class="panel-title">ANTARCTIC POSITIONING · GPS TRACKING</div>
-          <div class="panel-title-tag">LIVE TELEMETRY FEED</div>
+          <div class="panel-title" data-i18n="antarctic_positioning">ANTARCTIC POSITIONING · GPS TRACKING</div>
+          <div class="panel-title-tag" data-i18n="live_telemetry_feed">LIVE TELEMETRY FEED</div>
         </div>
 
         <div class="map-status-grid">
-          <div class="map-cell"><span>GPS STATUS</span><strong>TRACKING</strong><i class="map-cell-led"></i></div>
-          <div class="map-cell" id="mapModeCell"><span>MODE</span><strong id="mapModeValue">--</strong><i class="map-cell-led"></i></div>
-          <div class="map-cell"><span>POWER</span><strong>SOLAR + BATTERY</strong><i class="map-cell-led"></i></div>
-          <div class="map-cell"><span>COMMS</span><strong>DATA LINK</strong><i class="map-cell-led"></i></div>
+          <div class="map-cell"><span data-i18n="gps_status">GPS STATUS</span><strong data-i18n="tracking">TRACKING</strong><i class="map-cell-led"></i></div>
+          <div class="map-cell" id="mapModeCell"><span data-i18n="mode">MODE</span><strong id="mapModeValue">--</strong><i class="map-cell-led"></i></div>
+          <div class="map-cell"><span data-i18n="power">POWER</span><strong data-i18n="solar_battery">SOLAR + BATTERY</strong><i class="map-cell-led"></i></div>
+          <div class="map-cell"><span data-i18n="comms">COMMS</span><strong data-i18n="data_link">DATA LINK</strong><i class="map-cell-led"></i></div>
         </div>
 
         <!-- #worldMap 由 main.js 创建真实 Leaflet 地图；以下装饰层均为 pointer-events:none，不影响拖拽缩放 -->
@@ -147,46 +147,46 @@
         <!-- 坐标信息浮层 -->
         <div class="map-overlay">
           <h3>ANT-A01</h3>
-          <p>LAT <span id="latitude">--</span></p>
-          <p>LON <span id="longitude">--</span></p>
-          <p>SATELLITES <span id="satellites">--</span></p>
+          <p><span data-i18n="lat">LAT</span> <span id="latitude">--</span></p>
+          <p><span data-i18n="lon">LON</span> <span id="longitude">--</span></p>
+          <p><span data-i18n="satellites">SATELLITES</span> <span id="satellites">--</span></p>
         </div>
       </section>
 
       <!-- 右侧面板：气候 / 通信 -->
       <aside class="side-panel side-right">
-        <div class="side-panel-title">CLIMATE &amp; COMMS</div>
+        <div class="side-panel-title" data-i18n="climate_comms">CLIMATE &amp; COMMS</div>
 
         <div class="status-card sensor-card">
           <div class="sensor-head">
             <svg class="sensor-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3s6 6.4 6 11a6 6 0 0 1-12 0c0-4.6 6-11 6-11z"/></svg>
-            <span class="sensor-name">HUMIDITY</span>
+            <span class="sensor-name" data-i18n="inside_humidity">HUMIDITY</span>
             <span class="sensor-led"></span>
           </div>
           <div class="sensor-value"><strong id="humidity">--</strong><span class="sensor-unit">%RH</span></div>
-          <div class="sensor-meta"><span>CABIN</span><span>OUTSIDE <b id="outsideHumidity">--</b>%RH</span></div>
+          <div class="sensor-meta"><span data-i18n="cabin">CABIN</span><span><span data-i18n="outside">OUTSIDE</span> <b id="outsideHumidity">--</b>%RH</span></div>
           <span class="sensor-index">04</span>
         </div>
 
         <div class="status-card sensor-card">
           <div class="sensor-head">
             <svg class="sensor-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M19.1 4.9l-1.8 1.8M6.7 17.3l-1.8 1.8"/></svg>
-            <span class="sensor-name">SOLAR RADIATION</span>
+            <span class="sensor-name" data-i18n="solar_radiation_label">SOLAR RADIATION</span>
             <span class="sensor-led"></span>
           </div>
           <div class="sensor-value"><strong id="solar">--</strong><span class="sensor-unit">W/m²</span></div>
-          <div class="sensor-meta"><span>PYRANOMETER</span><span class="sensor-state">NOMINAL</span></div>
+          <div class="sensor-meta"><span data-i18n="pyranometer">PYRANOMETER</span><span class="sensor-state" data-i18n="nominal">NOMINAL</span></div>
           <span class="sensor-index">05</span>
         </div>
 
         <div class="status-card sensor-card">
           <div class="sensor-head">
             <svg class="sensor-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20a12 12 0 0 1 16 0"/><path d="M8 16a8 8 0 0 1 8 0"/><circle cx="12" cy="12" r="1.6"/></svg>
-            <span class="sensor-name">DATA LINK</span>
+            <span class="sensor-name" data-i18n="data_link">DATA LINK</span>
             <span class="sensor-led"></span>
           </div>
-          <div class="sensor-value"><strong id="gpsStatusPage">--</strong><span class="sensor-unit">FIX</span></div>
-          <div class="sensor-meta"><span>SATELLITES <b id="satelliteSmall">--</b></span><span class="sensor-state">NOMINAL</span></div>
+          <div class="sensor-value"><strong id="gpsStatusPage">--</strong><span class="sensor-unit" data-i18n="fix">FIX</span></div>
+          <div class="sensor-meta"><span><span data-i18n="satellites">SATELLITES</span> <b id="satelliteSmall">--</b></span><span class="sensor-state" data-i18n="nominal">NOMINAL</span></div>
           <span class="sensor-index">06</span>
         </div>
       </aside>
@@ -195,29 +195,29 @@
     <!-- 底部：任务统计（任务闭环） -->
     <section class="operation-grid">
       <div class="operation-card">
-        <span class="op-label">OPERATION DAYS</span>
+        <span class="op-label" data-i18n="operation_days">OPERATION DAYS</span>
         <strong id="runDays">--</strong>
-        <span class="op-sub">CONTINUOUS RUN</span>
+        <span class="op-sub" data-i18n="continuous_run">CONTINUOUS RUN</span>
       </div>
       <div class="operation-card">
-        <span class="op-label">DATA RECORDS</span>
+        <span class="op-label" data-i18n="data_records">DATA RECORDS</span>
         <strong id="dataCount">--</strong>
-        <span class="op-sub">TELEMETRY SAMPLES</span>
+        <span class="op-sub" data-i18n="telemetry_samples">TELEMETRY SAMPLES</span>
       </div>
       <div class="operation-card">
-        <span class="op-label">LAST UPDATE</span>
+        <span class="op-label" data-i18n="last_update">LAST UPDATE</span>
         <strong id="lastUpdate">--</strong>
-        <span class="op-sub">LAST DATA CONTACT</span>
+        <span class="op-sub" data-i18n="last_data_contact">LAST DATA CONTACT</span>
       </div>
     </section>
 
     <!-- 底部：任务流状态 -->
     <section class="stream-panel">
-      <div class="panel-title">MISSION STREAM</div>
+      <div class="panel-title" data-i18n="mission_stream">MISSION STREAM</div>
       <div class="stream">
-        <div class="stream-row"><i class="stream-dot"></i><span>ENVIRONMENT DATA ACQUISITION ACTIVE</span><em>RUNNING</em></div>
-        <div class="stream-row"><i class="stream-dot"></i><span>SATELLITE POSITIONING ACTIVE</span><em>RUNNING</em></div>
-        <div class="stream-row"><i class="stream-dot"></i><span>LONG TERM MONITORING MODE</span><em>RUNNING</em></div>
+        <div class="stream-row"><i class="stream-dot"></i><span data-i18n="stream_env">ENVIRONMENT DATA ACQUISITION ACTIVE</span><em data-i18n="running">RUNNING</em></div>
+        <div class="stream-row"><i class="stream-dot"></i><span data-i18n="stream_gps">SATELLITE POSITIONING ACTIVE</span><em data-i18n="running">RUNNING</em></div>
+        <div class="stream-row"><i class="stream-dot"></i><span data-i18n="stream_long">LONG TERM MONITORING MODE</span><em data-i18n="running">RUNNING</em></div>
       </div>
     </section>
 
@@ -491,12 +491,13 @@
   ========================================================= */
 
   /* MODE 状态映射（N / S / E → 科研设备状态标签） */
+  var L = function (k) { return window.ANX_T ? window.ANX_T(k) : k; };
   var MODE_STATES = {
-    N:    { label: 'NORMAL',       sub: 'NORMAL OPERATION',  cls: 'mode-normal' },
-    S:    { label: 'STANDBY',      sub: 'LOW POWER STANDBY', cls: 'mode-standby' },
-    E:    { label: 'EMERGENCY',    sub: 'PROTECTIVE MODE',   cls: 'mode-emergency' },
-    '--': { label: 'WAITING DATA', sub: 'MODE UNKNOWN',      cls: 'mode-wait' },
-    NULL: { label: 'NO SIGNAL',    sub: 'MODE UNKNOWN',      cls: 'mode-off' }
+    N:    { labelKey: 'normal',       subKey: 'normal_operation',  cls: 'mode-normal' },
+    S:    { labelKey: 'standby',      subKey: 'low_power_standby', cls: 'mode-standby' },
+    E:    { labelKey: 'emergency',    subKey: 'protective_mode',   cls: 'mode-emergency' },
+    '--': { labelKey: 'waiting_data', subKey: 'mode_unknown',      cls: 'mode-wait' },
+    NULL: { labelKey: 'no_signal',    subKey: 'mode_unknown',      cls: 'mode-off' }
   };
   var MODE_CLASSES = ['mode-normal', 'mode-standby', 'mode-emergency', 'mode-wait', 'mode-off'];
 
@@ -512,13 +513,13 @@
     var raw = (rawEl.textContent || '').trim().toUpperCase();
     if (raw === '') raw = '--';
     var st = MODE_STATES[raw] || MODE_STATES.NULL;
-    disp.textContent = st.label;
-    if (sub) sub.textContent = st.sub;
+    disp.textContent = L(st.labelKey);
+    if (sub) sub.textContent = L(st.subKey);
     if (cell) {
       MODE_CLASSES.forEach(function (c) { cell.classList.remove(c); });
       cell.classList.add(st.cls);
     }
-    if (mapVal) mapVal.textContent = st.label;
+    if (mapVal) mapVal.textContent = L(st.labelKey);
     if (mapCell) {
       MODE_CLASSES.forEach(function (c) { mapCell.classList.remove(c); });
       mapCell.classList.add(st.cls);
@@ -527,18 +528,18 @@
 
   /* 数值空态文案（按设备语义选择，不伪造数据） */
   var VALUE_LABELS = {
-    voltage:         'NO SIGNAL',
-    current:         'NO SIGNAL',
-    insideTemp:      'NO TELEMETRY',
-    outsideTemp:     'NO TELEMETRY',
-    humidity:        'NO SIGNAL',
-    outsideHumidity: 'NO SIGNAL',
-    solar:           'WAITING DATA',
-    gpsStatusPage:   'NO FIX',
-    satelliteSmall:  'NO FIX',
-    satellites:      'NO FIX',
-    latitude:        'NO FIX',
-    longitude:       'NO FIX'
+    voltage:         'no_signal',
+    current:         'no_signal',
+    insideTemp:      'no_telemetry',
+    outsideTemp:     'no_telemetry',
+    humidity:        'no_signal',
+    outsideHumidity: 'no_signal',
+    solar:           'waiting_data',
+    gpsStatusPage:   'no_fix',
+    satelliteSmall:  'no_fix',
+    satellites:      'no_fix',
+    latitude:        'no_fix',
+    longitude:       'no_fix'
   };
   var VALUE_IDS = Object.keys(VALUE_LABELS);
 
@@ -552,19 +553,24 @@
     var txt = (el.textContent || '').trim();
     var state;
     var label;
+    var key;
 
     /* 若当前文字仍是本层渲染的占位文案，保持原状态（避免自触发死循环） */
     if (el.dataset.state && txt === (el.dataset.label || '')) {
       state = el.dataset.state;
-      label = txt;
+      key = el.dataset.key || '';
+      label = state === 'ok' ? '' : L(key);
     } else if (txt === '--' || txt === '') {
       state = 'wait';
-      label = 'WAITING DATA';
-    } else if (/^null$/i.test(txt)) {
+      key = 'waiting_data';
+      label = L(key);
+    } else if (/^null$/i.test(txt) || txt === (window.ANX_T ? window.ANX_T('null') : 'NULL')) {
       state = 'off';
-      label = VALUE_LABELS[id] || 'NO SIGNAL';
+      key = VALUE_LABELS[id] || 'no_signal';
+      label = L(key);
     } else {
       state = 'ok';
+      key = '';
       label = '';
     }
 
@@ -575,7 +581,7 @@
       card.classList.toggle('st-ok', state === 'ok');
       var chip = card.querySelector('.sensor-state');
       if (chip) {
-        chip.textContent = state === 'ok' ? 'NOMINAL' : (state === 'wait' ? 'AWAITING SENSOR' : 'SENSOR OFFLINE');
+        chip.textContent = state === 'ok' ? L('nominal') : (state === 'wait' ? L('awaiting_sensor') : L('sensor_offline'));
       }
     }
 
@@ -583,6 +589,7 @@
     if (label) {
       if (el.textContent !== label) el.textContent = label;
       el.dataset.state = state;
+      el.dataset.key = key;
       el.dataset.label = label;
       el.classList.add('st-' + state);
     } else {
@@ -597,6 +604,9 @@
   }
 
   syncStatus();
+  if (window.addEventListener) {
+    window.addEventListener('anx:langchange', function () { syncStatus(); });
+  }
   if (window.MutationObserver) {
     var statusObserver = new MutationObserver(syncStatus);
     var statusIds = VALUE_IDS.concat(['systemMode']);
@@ -631,6 +641,8 @@
         var tZh = titleEl.getAttribute('data-title-zh');
         if (tEn && tZh) titleEl.textContent = lang === 'zh' ? tZh : tEn;
       }
+      if (window.ANX_APPLY_I18N) window.ANX_APPLY_I18N(lang);
+      try { window.dispatchEvent(new CustomEvent('anx:langchange', { detail: { lang: lang } })); } catch (e) {}
     }
     function bind() {
       document.querySelectorAll('.lang-switch button').forEach(function (b) {

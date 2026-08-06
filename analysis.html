@@ -544,9 +544,9 @@
     <section class="sensor-ratio-section">
       <h3 class="an-sec-title" data-lang="en">SENSOR DATA RETURN RATIO</h3>
       <h3 class="an-sec-title" data-lang="zh">传感器数据返回率</h3>
-      <div class="sr-list" id="sensorRatio"></div>
       <p class="sr-note" data-lang="en">Each sensor: received records / expected sampling records.</p>
       <p class="sr-note" data-lang="zh">每个传感器：实际收到的数据记录数 ÷ 理论采样记录总数。</p>
+      <div class="sr-list" id="sensorRatio"></div>
     </section>
 
     <!-- SOC 独立区域 -->
@@ -766,6 +766,8 @@
         var tZh = titleEl.getAttribute('data-title-zh');
         if (tEn && tZh) titleEl.textContent = lang === 'zh' ? tZh : tEn;
       }
+      if (window.ANX_APPLY_I18N) window.ANX_APPLY_I18N(lang);
+      try { window.dispatchEvent(new CustomEvent('anx:langchange', { detail: { lang: lang } })); } catch (e) {}
     }
     function bind() {
       document.querySelectorAll('.lang-switch button').forEach(function (b) {
