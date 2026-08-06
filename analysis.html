@@ -26,6 +26,29 @@
       margin-top:4px;
     }
 
+    /* 中部区域：显式 CSS Grid，禁止模块堆叠 */
+    .analysis-page .an-grid{
+      display:grid;
+      grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);
+      grid-template-areas:
+        "summary summary"
+        "ratio caps";
+      gap:14px;
+      align-items:start;
+    }
+    .analysis-page .an-summary{
+      grid-area:summary;
+      min-width:0;
+    }
+    .analysis-page .an-ratio{
+      grid-area:ratio;
+      min-width:0;
+    }
+    .analysis-page .an-caps{
+      grid-area:caps;
+      min-width:0;
+    }
+
     /* 顶部核心成果区域 */
     .analysis-page .an-sec-title{
       font-size:10px;
@@ -74,7 +97,8 @@
       pointer-events:none;
     }
     .soc-wrap{
-      position:relative;
+      display:grid;
+      place-items:center;
       width:132px;
       height:132px;
     }
@@ -82,6 +106,7 @@
       width:132px;
       height:132px;
       transform:rotate(-90deg);
+      grid-area:1 / 1;
     }
     .soc-ring circle{
       fill:none;
@@ -98,8 +123,7 @@
       transition:stroke-dasharray .8s ease, stroke .4s ease;
     }
     .soc-center{
-      position:absolute;
-      inset:0;
+      grid-area:1 / 1;
       display:flex;
       align-items:center;
       justify-content:center;
@@ -349,6 +373,13 @@
     }
 
     @media (max-width:1100px){
+      .analysis-page .an-grid{
+        grid-template-columns:1fr;
+        grid-template-areas:
+          "summary"
+          "ratio"
+          "caps";
+      }
       .analysis-page .an-overview{
         grid-template-columns:1fr 1fr;
       }
@@ -418,7 +449,7 @@
       <a class="nav-item" href="./telemetry.html">DATA</a>
       <a class="nav-item" href="./hardware.html">Hardware</a>
       <a class="nav-item active">Analysis</a>
-      <div class="lang-switch"><button type="button" data-lang="zh">中文</button><button type="button" data-lang="en" class="active">EN</button></div>
+      <div class="lang-switch"><span class="lang-pill" aria-hidden="true"></span><button type="button" data-lang="zh">中</button><button type="button" data-lang="en" class="active">EN</button></div>
     </nav>
     <label for="navToggle" class="nav-overlay" aria-hidden="true"></label>
   </aside>
@@ -445,12 +476,15 @@
       </div>
     </header>
 
-    <!-- 顶部核心成果 -->
-    <h3 class="an-sec-title" data-lang="en">MISSION OVERVIEW</h3>
-    <h3 class="an-sec-title" data-lang="zh">任务概览</h3>
-    <div class="an-sec-sub" data-lang="en">Core results of the autonomous monitoring mission.</div>
-    <div class="an-sec-sub" data-lang="zh">自主监测任务的核心成果。</div>
-    <section class="an-overview">
+    <!-- 中部成果区：显式 Grid 三区域 -->
+    <div class="an-grid">
+
+    <section class="an-summary">
+      <h3 class="an-sec-title" data-lang="en">MISSION OVERVIEW</h3>
+      <h3 class="an-sec-title" data-lang="zh">任务概览</h3>
+      <div class="an-sec-sub" data-lang="en">Core results of the autonomous monitoring mission.</div>
+      <div class="an-sec-sub" data-lang="zh">自主监测任务的核心成果。</div>
+      <section class="an-overview">
       <div class="kpi-block">
         <span class="kpi-label" data-lang="en">DATA RECORDS</span>
         <span class="kpi-label" data-lang="zh">数据记录</span>
@@ -476,19 +510,20 @@
           <p data-lang="zh">剩余能量水平</p>
         </div>
       </div>
-    </section>
+      </section>
 
-    <div class="an-summary-foot">
+      <div class="an-summary-foot">
       <span data-lang="en">OPERATION DAYS <b id="sumDays">--</b></span>
       <span data-lang="zh">运行天数 <b id="sumDays">--</b></span>
       <span data-lang="en">LATEST UPDATE <b id="sumLatest">--</b></span>
       <span data-lang="zh">最近更新 <b id="sumLatest">--</b></span>
       <span data-lang="en">GPS AVAILABILITY <b id="sumGps">--</b></span>
       <span data-lang="zh">定位有效率 <b id="sumGps">--</b></span>
-    </div>
+      </div>
+    </section>
 
     <!-- 传感器数据返回率 -->
-    <section class="an-profile">
+    <section class="an-ratio">
       <h3 class="an-sec-title" data-lang="en">SENSOR DATA RETURN RATIO</h3>
       <h3 class="an-sec-title" data-lang="zh">传感器数据返回率</h3>
       <div class="sr-list" id="sensorRatio"></div>
@@ -497,7 +532,7 @@
     </section>
 
     <!-- 系统能力 -->
-    <section class="an-achievements">
+    <section class="an-caps">
       <h3 data-lang="en">MISSION CAPABILITIES</h3>
       <h3 data-lang="zh">系统能力</h3>
       <div class="ach-grid">
@@ -531,6 +566,8 @@
         </div>
       </div>
     </section>
+
+    </div>
 
     <!-- 横向任务时间轴（页面底部） -->
     <section class="an-timeline">
