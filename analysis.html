@@ -26,27 +26,42 @@
       margin-top:4px;
     }
 
-    /* 中部区域：显式 CSS Grid，禁止模块堆叠 */
-    .analysis-page .an-grid{
+    /* 中部区域：analysis-container 显式 CSS Grid，五个独立区域 */
+    .analysis-page .analysis-container{
       display:grid;
-      grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);
+      grid-template-columns:minmax(0,1.15fr) minmax(0,320px);
       grid-template-areas:
-        "summary summary"
-        "ratio caps";
+        "summary soc"
+        "ratio soc"
+        "caps soc"
+        "timeline timeline";
       gap:14px;
       align-items:start;
     }
-    .analysis-page .an-summary{
+    .analysis-page .summary-section{
       grid-area:summary;
       min-width:0;
+      position:static;
     }
-    .analysis-page .an-ratio{
+    .analysis-page .sensor-ratio-section{
       grid-area:ratio;
       min-width:0;
+      position:static;
     }
-    .analysis-page .an-caps{
+    .analysis-page .capabilities-section{
       grid-area:caps;
       min-width:0;
+      position:static;
+    }
+    .analysis-page .soc-section{
+      grid-area:soc;
+      min-width:0;
+      position:static;
+    }
+    .analysis-page .timeline-section{
+      grid-area:timeline;
+      min-width:0;
+      position:static;
     }
 
     /* 顶部核心成果区域 */
@@ -66,7 +81,7 @@
     }
     .analysis-page .an-overview{
       display:grid;
-      grid-template-columns:1fr 1fr 1.4fr;
+      grid-template-columns:1fr 1fr;
       gap:12px;
       align-items:stretch;
     }
@@ -74,43 +89,52 @@
       min-height:150px;
       justify-content:center;
     }
+    /* SOC 独立模块（右侧高列 / 手机独立区域） */
     .soc-module{
-      position:relative;
       border:1px solid rgba(140,234,255,.18);
       border-radius:10px;
       background:linear-gradient(165deg, rgba(9,28,44,.62), rgba(5,16,28,.5));
-      padding:14px 10px 12px;
+      padding:18px 12px;
       display:flex;
       flex-direction:column;
       align-items:center;
       justify-content:center;
-      gap:4px;
-      overflow:hidden;
+      gap:6px;
+      min-height:340px;
+    }
+    .soc-section .an-sec-title{
+      margin-bottom:8px;
+      text-align:center;
     }
     .soc-module::before{
       content:'';
       position:absolute;
-      width:170px;
-      height:170px;
+      width:190px;
+      height:190px;
       border-radius:50%;
       background:radial-gradient(circle, rgba(98,217,255,.10), transparent 62%);
       pointer-events:none;
+      z-index:0;
+    }
+    .soc-module > *{
+      position:relative;
+      z-index:1;
     }
     .soc-wrap{
       display:grid;
       place-items:center;
-      width:132px;
-      height:132px;
+      width:150px;
+      height:150px;
     }
     .soc-ring{
-      width:132px;
-      height:132px;
+      width:150px;
+      height:150px;
       transform:rotate(-90deg);
       grid-area:1 / 1;
     }
     .soc-ring circle{
       fill:none;
-      stroke-width:8;
+      stroke-width:9;
     }
     .soc-track{
       stroke:rgba(98,217,255,.12);
@@ -131,36 +155,38 @@
       font-variant-numeric:tabular-nums;
     }
     .soc-center b{
-      font-size:30px;
+      font-size:34px;
       font-weight:700;
       color:#eafcff;
       letter-spacing:1px;
     }
     .soc-center span{
-      font-size:13px;
+      font-size:14px;
       color:#8ceaff;
-      margin-top:6px;
-    }
-    .soc-center em{
-      position:absolute;
-      bottom:24px;
-      font-style:normal;
-      font-size:8px;
-      letter-spacing:2px;
-      color:#6f93a8;
+      margin-top:7px;
     }
     .soc-label{
       font-size:9px;
       letter-spacing:2px;
       color:rgba(140,234,255,.7);
-      margin-top:2px;
+      margin-top:4px;
+      text-align:center;
     }
     .soc-module p{
       margin:0;
-      font-size:8.5px;
+      font-size:9px;
       color:#6f93a8;
       text-align:center;
-      line-height:1.4;
+      line-height:1.5;
+    }
+
+    /* 旧 SOC 定位规则兜底（确保无 absolute 堆叠） */
+    .soc-module{
+      position:relative;
+    }
+    .soc-wrap .soc-ring,
+    .soc-wrap .soc-center{
+      position:static;
     }
 
     /* 传感器数据返回率（逐通道真实覆盖） */
@@ -373,21 +399,24 @@
     }
 
     @media (max-width:1100px){
-      .analysis-page .an-grid{
+      .analysis-page .analysis-container{
         grid-template-columns:1fr;
         grid-template-areas:
           "summary"
+          "soc"
           "ratio"
-          "caps";
+          "caps"
+          "timeline";
       }
       .analysis-page .an-overview{
         grid-template-columns:1fr 1fr;
       }
       .soc-module{
-        grid-column:1 / -1;
+        min-height:0;
         flex-direction:row;
         gap:14px;
         justify-content:center;
+        padding:14px 12px;
       }
       .sr-row{
         grid-template-columns:minmax(80px,130px) 80px minmax(50px,1fr) 48px;
@@ -396,9 +425,6 @@
     @media (max-width:700px){
       .analysis-page .an-overview{
         grid-template-columns:1fr 1fr;
-      }
-      .soc-module{
-        grid-column:1 / -1;
       }
     }
     @media (max-width:420px){
@@ -477,9 +503,9 @@
     </header>
 
     <!-- 中部成果区：显式 Grid 三区域 -->
-    <div class="an-grid">
+    <div class="analysis-container">
 
-    <section class="an-summary">
+    <section class="summary-section">
       <h3 class="an-sec-title" data-lang="en">MISSION OVERVIEW</h3>
       <h3 class="an-sec-title" data-lang="zh">任务概览</h3>
       <div class="an-sec-sub" data-lang="en">Core results of the autonomous monitoring mission.</div>
@@ -495,21 +521,6 @@
         <span class="kpi-label" data-lang="zh">传感器通道</span>
         <span class="kpi-num"><b id="sumChannels">--</b><em data-lang="en">CH</em><em data-lang="zh">个</em></span>
       </div>
-      <div class="soc-module">
-        <div class="soc-wrap">
-          <svg class="soc-ring" viewBox="0 0 132 132" aria-hidden="true">
-            <circle class="soc-track" cx="66" cy="66" r="56"></circle>
-            <circle class="soc-arc" id="socArc" cx="66" cy="66" r="56"></circle>
-          </svg>
-          <div class="soc-center"><b id="sumSoc">--</b><span>%</span></div>
-        </div>
-        <div>
-          <div class="soc-label" data-lang="en">Battery SOC</div>
-          <div class="soc-label" data-lang="zh">电池 SOC</div>
-          <p data-lang="en">Remaining Energy Level</p>
-          <p data-lang="zh">剩余能量水平</p>
-        </div>
-      </div>
       </section>
 
       <div class="an-summary-foot">
@@ -523,7 +534,7 @@
     </section>
 
     <!-- 传感器数据返回率 -->
-    <section class="an-ratio">
+    <section class="sensor-ratio-section">
       <h3 class="an-sec-title" data-lang="en">SENSOR DATA RETURN RATIO</h3>
       <h3 class="an-sec-title" data-lang="zh">传感器数据返回率</h3>
       <div class="sr-list" id="sensorRatio"></div>
@@ -532,9 +543,9 @@
     </section>
 
     <!-- 系统能力 -->
-    <section class="an-caps">
-      <h3 data-lang="en">MISSION CAPABILITIES</h3>
-      <h3 data-lang="zh">系统能力</h3>
+    <section class="capabilities-section">
+      <h3 class="an-sec-title" data-lang="en">MISSION CAPABILITIES</h3>
+      <h3 class="an-sec-title" data-lang="zh">系统能力</h3>
       <div class="ach-grid">
         <div class="ach-item">
           <i class="ach-ico">◈</i>
@@ -567,10 +578,29 @@
       </div>
     </section>
 
+    <!-- SOC 独立区域 -->
+    <section class="soc-section">
+      <h3 class="an-sec-title" data-lang="en">BATTERY SOC</h3>
+      <h3 class="an-sec-title" data-lang="zh">电池 SOC</h3>
+      <div class="soc-module">
+        <div class="soc-wrap">
+          <svg class="soc-ring" viewBox="0 0 150 150" aria-hidden="true">
+            <circle class="soc-track" cx="75" cy="75" r="63"></circle>
+            <circle class="soc-arc" id="socArc" cx="75" cy="75" r="63"></circle>
+          </svg>
+          <div class="soc-center"><b id="sumSoc">--</b><span>%</span></div>
+        </div>
+        <div class="soc-label" data-lang="en">Battery SOC</div>
+        <div class="soc-label" data-lang="zh">电池 SOC</div>
+        <p data-lang="en">Remaining Energy Level</p>
+        <p data-lang="zh">剩余能量水平</p>
+      </div>
+    </section>
+
     </div>
 
     <!-- 横向任务时间轴（页面底部） -->
-    <section class="an-timeline">
+    <section class="timeline-section an-timeline">
       <h3 data-lang="en">MISSION TIMELINE</h3>
       <h3 data-lang="zh">任务时间轴</h3>
       <div class="tl-hwrap">
@@ -694,7 +724,7 @@
     /* SOC 圆环 */
     var arc = $('socArc');
     if (arc) {
-      var C = 2 * Math.PI * 56;
+      var C = 2 * Math.PI * 63;
       if (soc === null || isNaN(soc)) {
         arc.setAttribute('stroke-dasharray', '0 ' + C);
         arc.setAttribute('stroke', '#62d9ff');
