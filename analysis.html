@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>ANTARCTIC NEXUS - MISSION ANALYTICS</title>
+  <title data-title-en="ANTARCTIC NEXUS - MISSION ANALYTICS" data-title-zh="南极自主无人监测系统 · 任务成果分析">ANTARCTIC NEXUS - MISSION ANALYTICS</title>
   <link rel="icon" href="data:,">
-  <link rel="stylesheet" href="./css/style.css?v=20260806">
+  <link rel="stylesheet" href="./css/style.css?v=20260806b">
   <style>
     /* Analysis v2：成果分析页（仅本页样式） */
     body.analysis-page{
@@ -33,7 +33,6 @@
       grid-template-areas:
         "summary summary"
         "soc ratio"
-        "quality quality"
         "timeline timeline";
       gap:14px;
       align-items:stretch;
@@ -58,13 +57,6 @@
       min-width:0;
       position:static;
     }
-    .analysis-page .an-quality{
-      grid-area:quality;
-      min-width:0;
-      position:static;
-      margin-top:0;
-    }
-
     /* 顶部核心成果区域 */
     .analysis-page .an-sec-title{
       font-size:10px;
@@ -265,18 +257,21 @@
       border-left:2px solid rgba(98,217,255,.35);
     }
     /* 横向紧凑任务时间轴（页面底部，不超屏不滚动） */
-    .tl-hwrap{
-      overflow:visible;
-      padding:20px 2px 8px;
+    .tl-body{
+      display:flex;
+      align-items:stretch;
+      gap:16px;
     }
-    .tl-track{
+    .tl-nodes{
       position:relative;
       display:flex;
       justify-content:space-between;
       align-items:flex-start;
-      height:118px;
+      flex:1;
+      min-width:0;
+      padding:20px 2px 8px;
     }
-    .tl-track::before{
+    .tl-nodes::before{
       content:'';
       position:absolute;
       left:4%;
@@ -285,12 +280,14 @@
       height:2px;
       background:linear-gradient(90deg, rgba(98,217,255,.12), rgba(98,217,255,.55), rgba(98,217,255,.12));
       border-radius:2px;
+      pointer-events:none;
     }
     .tl-node{
       position:relative;
       flex:1;
       min-width:0;
       text-align:center;
+      z-index:1;
     }
     .tl-node .dot{
       width:12px;
@@ -334,14 +331,6 @@
       margin:2px 2px 0;
     }
 
-    .an-quality{
-      margin-top:14px;
-      border:1px solid rgba(140,234,255,.12);
-      border-radius:8px;
-      background:linear-gradient(165deg, rgba(9,28,44,.45), rgba(5,16,28,.4));
-      padding:12px 14px;
-    }
-    .an-quality h3,
     .analysis-page .timeline-wrapper h3{
       font-size:10px;
       letter-spacing:3px;
@@ -350,11 +339,57 @@
       padding-bottom:6px;
       margin-bottom:10px;
     }
-    .an-quality p{
+
+    /* 任务持续卡片（时间轴最右侧，正常 flex 流，无 absolute 覆盖） */
+    .tl-duration{
+      flex:0 0 190px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      gap:8px;
+      min-height:118px;
+      padding:12px 10px;
+      border:1px solid rgba(140,234,255,.16);
+      border-radius:8px;
+      background:linear-gradient(165deg, rgba(9,28,44,.55), rgba(5,16,28,.45));
+    }
+    .tl-dur-label{
+      font-size:9px;
+      letter-spacing:2px;
+      color:rgba(140,234,255,.7);
+      text-align:center;
+    }
+    .tl-dur-dates{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:2px;
       font-size:10px;
-      color:#7f9fb2;
-      line-height:1.7;
-      margin:0;
+      color:#dff6ff;
+      font-variant-numeric:tabular-nums;
+    }
+    .tl-dur-dates b{
+      font-weight:600;
+      color:#eafcff;
+    }
+    .tl-dur-arrow{
+      font-size:10px;
+      color:#62d9ff;
+      line-height:1;
+    }
+    .tl-dur-days{
+      font-size:12px;
+      color:#8ceaff;
+      font-weight:700;
+      letter-spacing:1px;
+      font-variant-numeric:tabular-nums;
+    }
+    .tl-dur-days em{
+      font-style:normal;
+      font-size:8px;
+      color:#6f93a8;
+      margin-left:3px;
     }
 
     @media (max-width:1100px){
@@ -364,7 +399,6 @@
           "summary"
           "soc"
           "ratio"
-          "quality"
           "timeline";
       }
       .analysis-page .an-overview{
@@ -384,6 +418,18 @@
     @media (max-width:700px){
       .analysis-page .an-overview{
         grid-template-columns:1fr 1fr;
+      }
+      .tl-body{
+        flex-direction:column;
+      }
+      .tl-duration{
+        flex:1 1 auto;
+        width:100%;
+        min-height:0;
+        flex-direction:row;
+        justify-content:space-between;
+        align-items:center;
+        padding:10px 14px;
       }
     }
     @media (max-width:420px){
@@ -405,6 +451,10 @@
       }
       .tl-node b{
         white-space:normal;
+      }
+      .tl-duration{
+        flex-direction:column;
+        gap:6px;
       }
     }
   </style>
@@ -515,20 +565,18 @@
       </div>
     </section>
 
-    <!-- 数据质量说明 -->
-    <section class="an-quality">
-      <h3 data-lang="en">DATA QUALITY NOTE</h3>
-      <h3 data-lang="zh">数据质量说明</h3>
-      <p data-lang="en">All metrics are computed directly from the recorded dataset. Missing values are preserved and displayed as "--"; no synthetic data is generated.</p>
-      <p data-lang="zh">所有指标均基于实际记录数据计算；缺失值如实保留并显示为“--”，不生成任何模拟数据。</p>
-    </section>
-
     <!-- 横向任务时间轴（页面最底部） -->
     <div class="timeline-wrapper">
       <h3 data-lang="en">MISSION TIMELINE</h3>
       <h3 data-lang="zh">任务时间轴</h3>
-      <div class="tl-hwrap">
-        <div class="tl-track" id="anTimeline"></div>
+      <div class="tl-body">
+        <div class="tl-nodes" id="anTimeline"></div>
+        <div class="tl-duration">
+          <div class="tl-dur-label" data-lang="en">MISSION DURATION</div>
+          <div class="tl-dur-label" data-lang="zh">任务持续</div>
+          <div class="tl-dur-dates"><b id="tlStart">--</b><span class="tl-dur-arrow">↓</span><b id="tlEnd">--</b></div>
+          <div class="tl-dur-days"><b id="tlDays">--</b><em data-lang="en">DAYS</em><em data-lang="zh">天</em></div>
+        </div>
       </div>
       <p class="tl-hint" data-lang="en">Key events derived from the recorded mission history.</p>
       <p class="tl-hint" data-lang="zh">基于实际记录数据提取的关键任务事件。</p>
@@ -540,10 +588,10 @@
 </div>
 
 <!-- 全站暴风雪模块（三层：远景雪雾 / 中景主雪 / 前景大粒） -->
-<script src="./js/ambient.js?v=20260806"></script>
+<script src="./js/ambient.js?v=20260806b"></script>
 
 <!-- 数据核心（main.js 保持不变） -->
-<script src="./js/main.js?v=20260806"></script>
+<script src="./js/main.js?v=20260806b"></script>
 
 <!-- 任务成果分析层（纯显示逻辑，不影响 main.js / data.json） -->
 <script>
@@ -603,16 +651,11 @@
       if (data[i].soc !== null && data[i].soc !== undefined) { soc = data[i].soc; break; }
     }
 
-    var gapStart = null;
-    for (var g = 1; g < times.length; g++) {
-      if (times[g] - times[g - 1] > 10800000) { gapStart = times[g - 1]; break; }
-    }
-
-    var firstS = null, firstN = null;
+    var firstS = null, firstE = null;
     for (var m = 0; m < data.length; m++) {
       var md = String(data[m].mode === null || data[m].mode === undefined ? '' : data[m].mode).trim().toUpperCase();
       if (firstS === null && md === 'S') firstS = new Date(data[m].time).getTime();
-      if (firstN === null && md === 'N') firstN = new Date(data[m].time).getTime();
+      if (firstE === null && md === 'E') firstE = new Date(data[m].time).getTime();
     }
 
     setTxt('sumRecords', total);
@@ -620,6 +663,9 @@
     setTxt('sumSoc', soc === null ? '--' : (typeof soc === 'number' ? soc.toFixed(0) : soc));
     setTxt('sumDays', days);
     setTxt('sumLatest', fmtFull(end));
+    setTxt('tlStart', fmtDate(start));
+    setTxt('tlEnd', fmtDate(end));
+    setTxt('tlDays', days);
 
     /* 传感器数据返回率：各通道实际记录 / 总采样记录 */
     var ratioDefs = [
@@ -668,9 +714,8 @@
     /* 横向时间轴 */
     var nodes = [
       { t: start, en: 'MISSION START', zh: '任务启动', enD: 'The system began collecting data.', zhD: '系统开始采集数据。' },
-      { t: firstS, en: 'FIRST S SIGNAL', zh: '首次S信号', enD: 'First record with standby (S) mode.', zhD: '首次检测到S状态。' },
-      { t: firstN, en: 'FIRST N SIGNAL', zh: '首次N信号', enD: 'First record with normal (N) mode.', zhD: '首次检测到N状态。' },
-      { t: gapStart, en: 'DATA LOSS', zh: '数据中断', enD: 'First detected gap in sampling.', zhD: '首次检测到采样断档。' },
+      { t: firstS, en: 'FIRST S EVENT', zh: '首次S事件', enD: 'First record with standby (S) mode.', zhD: '首次检测到S状态。' },
+      { t: firstE, en: 'FIRST E EVENT', zh: '首次E事件', enD: 'First record with emergency (E) mode.', zhD: '首次检测到E状态。' },
       { t: end, en: 'LATEST DATA', zh: '最新数据', enD: 'Most recent data synchronization.', zhD: '最近一次数据同步。' }
     ];
     var html = '';
@@ -686,6 +731,7 @@
     });
     var box = $('anTimeline');
     if (box) box.innerHTML = html;
+    if (window.anxApplyLang) window.anxApplyLang(window.anxCurrentLang || 'en');
   }
 
   function render() { if (ready()) compute(); }
@@ -703,6 +749,7 @@
   document.documentElement.setAttribute('data-lang', lang);
   document.documentElement.setAttribute('lang', lang === 'zh' ? 'zh-CN' : 'en');
   document.querySelectorAll('[data-lang]').forEach(function (el) {
+    if (el.tagName === 'BUTTON' && el.parentNode && el.parentNode.classList && el.parentNode.classList.contains('lang-switch')) return;
     el.style.display = (el.getAttribute('data-lang') === lang) ? '' : 'none';
   });
   document.querySelectorAll('.lang-switch button').forEach(function (b) {
@@ -711,6 +758,14 @@
         if (b.hasAttribute('aria-pressed')) b.setAttribute('aria-pressed', String(on));
       });
       try { localStorage.setItem('anx-lang', lang); } catch (e) {}
+      window.anxCurrentLang = lang;
+      window.anxApplyLang = apply;
+      var titleEl = document.querySelector('title');
+      if (titleEl) {
+        var tEn = titleEl.getAttribute('data-title-en');
+        var tZh = titleEl.getAttribute('data-title-zh');
+        if (tEn && tZh) titleEl.textContent = lang === 'zh' ? tZh : tEn;
+      }
     }
     function bind() {
       document.querySelectorAll('.lang-switch button').forEach(function (b) {

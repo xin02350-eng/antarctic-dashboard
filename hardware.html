@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>ANTARCTIC NEXUS - HARDWARE DOCUMENTATION</title>
+  <title data-title-en="ANTARCTIC NEXUS - HARDWARE DOCUMENTATION" data-title-zh="南极自主无人监测系统 · 硬件档案">ANTARCTIC NEXUS - HARDWARE DOCUMENTATION</title>
   <link rel="icon" href="data:,">
-  <link rel="stylesheet" href="./css/style.css?v=20260806">
+  <link rel="stylesheet" href="./css/style.css?v=20260806b">
 </head>
 
 <body class="polar-ambient hardware-page">
@@ -154,10 +154,10 @@
 </div>
 
 <!-- 全站暴风雪模块（模块化，自动创建背景/前景画布） -->
-<script src="./js/ambient.js?v=20260806"></script>
+<script src="./js/ambient.js?v=20260806b"></script>
 
 <!-- 数据核心（main.js 保持不变） -->
-<script src="./js/main.js?v=20260806"></script>
+<script src="./js/main.js?v=20260806b"></script>
 
 <!-- =========================================================
      档案页辅助层（纯显示逻辑，不影响 main.js）
@@ -229,6 +229,7 @@
       document.documentElement.setAttribute('data-lang', lang);
       document.documentElement.setAttribute('lang', lang === 'zh' ? 'zh-CN' : 'en');
       document.querySelectorAll('[data-lang]').forEach(function (el) {
+        if (el.tagName === 'BUTTON' && el.parentNode && el.parentNode.classList && el.parentNode.classList.contains('lang-switch')) return;
         el.style.display = (el.getAttribute('data-lang') === lang) ? '' : 'none';
       });
       document.querySelectorAll('.lang-switch button').forEach(function (b) {
@@ -237,6 +238,14 @@
         if (b.hasAttribute('aria-pressed')) b.setAttribute('aria-pressed', String(on));
       });
       try { localStorage.setItem('anx-lang', lang); } catch (e) {}
+      window.anxCurrentLang = lang;
+      window.anxApplyLang = apply;
+      var titleEl = document.querySelector('title');
+      if (titleEl) {
+        var tEn = titleEl.getAttribute('data-title-en');
+        var tZh = titleEl.getAttribute('data-title-zh');
+        if (tEn && tZh) titleEl.textContent = lang === 'zh' ? tZh : tEn;
+      }
     }
     function bind() {
       document.querySelectorAll('.lang-switch button').forEach(function (b) {

@@ -12927,12 +12927,21 @@ transform:translateX(100%);
 }
 
 
-/* 双语内容显隐：html[data-lang] 控制 */
-html[data-lang="zh"] [data-lang="en"],
+/* 双语内容显隐：html[data-lang] 控制（语言切换按钮除外，必须始终可见） */
+html[data-lang="zh"] [data-lang="en"]:not(button),
 
-html[data-lang="en"] [data-lang="zh"]{
+html[data-lang="en"] [data-lang="zh"]:not(button){
 
 display:none;
+
+}
+
+
+html[data-lang="zh"] .lang-switch button[data-lang="en"],
+
+html[data-lang="en"] .lang-switch button[data-lang="zh"]{
+
+display:inline-block;
 
 }
 
