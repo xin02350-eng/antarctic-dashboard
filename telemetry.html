@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>ANTARCTIC NEXUS - DATA</title>
+  <title data-title-en="ANTARCTIC NEXUS - DATA" data-title-zh="南极自主无人监测系统 · 数据">ANTARCTIC NEXUS - DATA</title>
   <link rel="icon" href="data:,">
-  <link rel="stylesheet" href="./css/style.css?v=20260806">
+  <link rel="stylesheet" href="./css/style.css?v=20260806b">
 
   <!-- REAL TIME TELEMETRY：纯表格 + 固定表头（仅本页） -->
   <style>
@@ -195,12 +195,12 @@
 
 <!-- 极地氛围层：雪花画布 / 页面扫描线 / 设备编号铭牌 -->
 <!-- 全站暴风雪模块（模块化，自动创建背景/前景画布） -->
-<script src="./js/ambient.js?v=20260806"></script>
+<script src="./js/ambient.js?v=20260806b"></script>
 <div class="polar-scan" aria-hidden="true"></div>
 <div class="polar-badge">ANT-A01 · POLAR STATION · REMOTE SENSOR NODE</div>
 
 <!-- 数据核心（main.js 保持不变：负责读取 data.json 并写入 #telemetryData） -->
-<script src="./js/main.js?v=20260806"></script>
+<script src="./js/main.js?v=20260806b"></script>
 
 <!-- =========================================================
      Telemetry 最小数据渲染层（纯显示逻辑，不改 main.js）
@@ -495,6 +495,7 @@
       document.documentElement.setAttribute('data-lang', lang);
       document.documentElement.setAttribute('lang', lang === 'zh' ? 'zh-CN' : 'en');
       document.querySelectorAll('[data-lang]').forEach(function (el) {
+        if (el.tagName === 'BUTTON' && el.parentNode && el.parentNode.classList && el.parentNode.classList.contains('lang-switch')) return;
         el.style.display = (el.getAttribute('data-lang') === lang) ? '' : 'none';
       });
       document.querySelectorAll('.lang-switch button').forEach(function (b) {
@@ -503,6 +504,14 @@
         if (b.hasAttribute('aria-pressed')) b.setAttribute('aria-pressed', String(on));
       });
       try { localStorage.setItem('anx-lang', lang); } catch (e) {}
+      window.anxCurrentLang = lang;
+      window.anxApplyLang = apply;
+      var titleEl = document.querySelector('title');
+      if (titleEl) {
+        var tEn = titleEl.getAttribute('data-title-en');
+        var tZh = titleEl.getAttribute('data-title-zh');
+        if (tEn && tZh) titleEl.textContent = lang === 'zh' ? tZh : tEn;
+      }
     }
     function bind() {
       document.querySelectorAll('.lang-switch button').forEach(function (b) {

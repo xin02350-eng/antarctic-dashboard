@@ -8,7 +8,7 @@
   if (window.__antSnowLoaded) return;
   window.__antSnowLoaded = true;
   var s = document.createElement('script');
-  s.src = './js/snow.js?v=20260806';
+  s.src = './js/snow.js?v=20260806b';
   s.async = false;
   (document.head || document.documentElement).appendChild(s);
 })();
