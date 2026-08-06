@@ -33,7 +33,6 @@
       grid-template-areas:
         "summary soc"
         "ratio soc"
-        "caps soc"
         "timeline timeline";
       gap:14px;
       align-items:start;
@@ -48,20 +47,16 @@
       min-width:0;
       position:static;
     }
-    .analysis-page .capabilities-section{
-      grid-area:caps;
-      min-width:0;
-      position:static;
-    }
     .analysis-page .soc-section{
       grid-area:soc;
       min-width:0;
       position:static;
     }
-    .analysis-page .timeline-section{
+    .analysis-page .timeline-wrapper{
       grid-area:timeline;
       min-width:0;
       position:static;
+      margin-top:2px;
     }
 
     /* 顶部核心成果区域 */
@@ -267,44 +262,7 @@
       margin-left:4px;
     }
 
-    /* 系统能力 */
-    .analysis-page .an-achievements{
-      margin-top:14px;
-    }
-    .ach-grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
-      gap:10px;
-    }
-    .ach-item{
-      border:1px solid rgba(140,234,255,.12);
-      border-radius:8px;
-      background:linear-gradient(165deg, rgba(9,28,44,.5), rgba(5,16,28,.42));
-      padding:12px 14px;
-      display:flex;
-      flex-direction:column;
-      gap:6px;
-    }
-    .ach-ico{
-      font-style:normal;
-      font-size:16px;
-      color:#8ceaff;
-    }
-    .ach-item b{
-      font-size:10px;
-      letter-spacing:1.5px;
-      color:#dff6ff;
-    }
-    .ach-item span{
-      font-size:9.5px;
-      color:#7f9fb2;
-      line-height:1.5;
-    }
-
     /* 横向紧凑任务时间轴（页面底部，不超屏不滚动） */
-    .analysis-page .an-timeline{
-      margin-top:14px;
-    }
     .tl-hwrap{
       overflow:visible;
       padding:20px 2px 8px;
@@ -382,8 +340,7 @@
       padding:12px 14px;
     }
     .an-quality h3,
-    .analysis-page .an-timeline h3,
-    .analysis-page .an-achievements h3{
+    .analysis-page .timeline-wrapper h3{
       font-size:10px;
       letter-spacing:3px;
       color:rgba(140,234,255,.65);
@@ -405,7 +362,6 @@
           "summary"
           "soc"
           "ratio"
-          "caps"
           "timeline";
       }
       .analysis-page .an-overview{
@@ -429,9 +385,6 @@
     }
     @media (max-width:420px){
       .analysis-page .an-overview{
-        grid-template-columns:1fr;
-      }
-      .ach-grid{
         grid-template-columns:1fr;
       }
       .sr-row{
@@ -542,42 +495,6 @@
       <p class="sr-note" data-lang="zh">每个传感器：实际收到的数据记录数 ÷ 理论采样记录总数。</p>
     </section>
 
-    <!-- 系统能力 -->
-    <section class="capabilities-section">
-      <h3 class="an-sec-title" data-lang="en">MISSION CAPABILITIES</h3>
-      <h3 class="an-sec-title" data-lang="zh">系统能力</h3>
-      <div class="ach-grid">
-        <div class="ach-item">
-          <i class="ach-ico">◈</i>
-          <b data-lang="en">AUTONOMOUS MONITORING</b>
-          <b data-lang="zh">自主环境监测</b>
-          <span data-lang="en">Unattended collection of polar environmental data.</span>
-          <span data-lang="zh">无人值守采集极地环境数据。</span>
-        </div>
-        <div class="ach-item">
-          <i class="ach-ico">▣</i>
-          <b data-lang="en">MULTI SENSOR FUSION</b>
-          <b data-lang="zh">多传感器融合</b>
-          <span data-lang="en">Synchronized temperature, humidity, voltage and solar channels.</span>
-          <span data-lang="zh">同步采集温度、湿度、电压、太阳辐射等数据。</span>
-        </div>
-        <div class="ach-item">
-          <i class="ach-ico">⌁</i>
-          <b data-lang="en">LONG RANGE COMMUNICATION</b>
-          <b data-lang="zh">远距离通信</b>
-          <span data-lang="en">Long-distance data transfer through LoRa radio link.</span>
-          <span data-lang="zh">通过 LoRa 实现远距离数据传输。</span>
-        </div>
-        <div class="ach-item">
-          <i class="ach-ico">⚡</i>
-          <b data-lang="en">LOW POWER DESIGN</b>
-          <b data-lang="zh">低功耗设计</b>
-          <span data-lang="en">Solar powered for long-term field operation.</span>
-          <span data-lang="zh">太阳能供电，支持长期野外运行。</span>
-        </div>
-      </div>
-    </section>
-
     <!-- SOC 独立区域 -->
     <section class="soc-section">
       <h3 class="an-sec-title" data-lang="en">BATTERY SOC</h3>
@@ -600,7 +517,7 @@
     </div>
 
     <!-- 横向任务时间轴（页面底部） -->
-    <section class="timeline-section an-timeline">
+    <div class="timeline-wrapper">
       <h3 data-lang="en">MISSION TIMELINE</h3>
       <h3 data-lang="zh">任务时间轴</h3>
       <div class="tl-hwrap">
@@ -608,7 +525,7 @@
       </div>
       <p class="tl-hint" data-lang="en">Key events derived from the recorded mission history.</p>
       <p class="tl-hint" data-lang="zh">基于实际记录数据提取的关键任务事件。</p>
-    </section>
+    </div>
 
     <!-- 数据质量说明 -->
     <section class="an-quality">
@@ -768,22 +685,30 @@
 
 <!-- 语言切换（全站统一） -->
 <script>
-(function () {
-  function apply(lang) {
-    document.documentElement.setAttribute('data-lang', lang);
-    document.querySelectorAll('.lang-switch button').forEach(function (b) {
-      b.classList.toggle('active', b.getAttribute('data-lang') === lang);
-    });
-    try { localStorage.setItem('anx-lang', lang); } catch (e) {}
-  }
-  var saved = null;
-  try { saved = localStorage.getItem('anx-lang'); } catch (e) {}
-  apply(saved === 'zh' ? 'zh' : 'en');
-  document.addEventListener('click', function (ev) {
-    var b = ev.target && ev.target.closest ? ev.target.closest('.lang-switch button') : null;
-    if (b) apply(b.getAttribute('data-lang'));
-  });
-})();
+  (function () {
+    function apply(lang) {
+      document.documentElement.setAttribute('data-lang', lang);
+      document.documentElement.setAttribute('lang', lang === 'zh' ? 'zh-CN' : 'en');
+      document.querySelectorAll('.lang-switch button').forEach(function (b) {
+        var on = b.getAttribute('data-lang') === lang;
+        b.classList.toggle('active', on);
+        if (b.hasAttribute('aria-pressed')) b.setAttribute('aria-pressed', String(on));
+      });
+      try { localStorage.setItem('anx-lang', lang); } catch (e) {}
+    }
+    function bind() {
+      document.querySelectorAll('.lang-switch button').forEach(function (b) {
+        b.addEventListener('click', function (ev) {
+          ev.preventDefault();
+          apply(b.getAttribute('data-lang'));
+        });
+      });
+    }
+    var saved = null;
+    try { saved = localStorage.getItem('anx-lang'); } catch (e) {}
+    apply(saved === 'zh' ? 'zh' : 'en');
+    bind();
+  })();
 </script>
 
 </body>
