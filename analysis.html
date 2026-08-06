@@ -425,12 +425,12 @@
     <input type="checkbox" id="navToggle" class="nav-toggle" aria-hidden="true">
     <label for="navToggle" class="nav-toggle-btn" aria-label="MENU"><span></span><span></span><span></span></label>
     <nav class="sidebar-menu">
-      <a class="nav-item" href="./index.html">Dashboard</a>
-      <a class="nav-item" href="./location.html">Location</a>
-      <a class="nav-item" href="./sensors.html">Sensors</a>
-      <a class="nav-item" href="./telemetry.html">DATA</a>
-      <a class="nav-item" href="./hardware.html">Hardware</a>
-      <a class="nav-item active">Analysis</a>
+      <a class="nav-item" href="./index.html"><span data-lang="en">Dashboard</span><span data-lang="zh">仪表盘</span></a>
+      <a class="nav-item" href="./location.html"><span data-lang="en">Location</span><span data-lang="zh">位置</span></a>
+      <a class="nav-item" href="./sensors.html"><span data-lang="en">Sensors</span><span data-lang="zh">传感器</span></a>
+      <a class="nav-item" href="./telemetry.html"><span data-lang="en">DATA</span><span data-lang="zh">数据</span></a>
+      <a class="nav-item" href="./hardware.html"><span data-lang="en">Hardware</span><span data-lang="zh">硬件</span></a>
+      <a class="nav-item active"><span data-lang="en">Analysis</span><span data-lang="zh">分析</span></a>
       <div class="lang-switch"><span class="lang-pill" aria-hidden="true"></span><button type="button" data-lang="zh">中</button><button type="button" data-lang="en" class="active">EN</button></div>
     </nav>
     <label for="navToggle" class="nav-overlay" aria-hidden="true"></label>
@@ -573,13 +573,16 @@
     var total = data.length;
     if (!total) return;
 
-    /* 传感器通道：按“传感器数据类型”统计（有实际数据的类型数） */
+    /* 传感器通道：按实际数据类型统计（有数据的类型数） */
     var sensorGroups = [
-      { name: 'temperature', keys: ['t', 'j'] },
-      { name: 'humidity', keys: ['h', 'k'] },
+      { name: 'inside temp', keys: ['t'] },
+      { name: 'inside hum', keys: ['h'] },
+      { name: 'outside temp', keys: ['j'] },
+      { name: 'outside hum', keys: ['k'] },
       { name: 'solar', keys: ['s'] },
       { name: 'voltage', keys: ['v'] },
       { name: 'current', keys: ['a'] },
+      { name: 'gps', keys: ['x', 'y'] },
       { name: 'wind', keys: ['wind'] }
     ];
     var channels = sensorGroups.filter(function (g) {
@@ -620,17 +623,19 @@
 
     /* 传感器数据返回率：各通道实际记录 / 总采样记录 */
     var ratioDefs = [
-      { key: 't', en: 'TEMPERATURE', zh: '温度' },
-      { key: 'h', en: 'HUMIDITY', zh: '湿度' },
-      { key: 's', en: 'SOLAR IRRADIANCE', zh: '太阳辐射' },
-      { key: 'v', en: 'VOLTAGE', zh: '电压' },
-      { key: 'a', en: 'CURRENT', zh: '电流' },
-      { key: 'wind', en: 'WIND SPEED', zh: '风速' }
+      { keys: ['t', 'h'], en: 'INSIDE TEMP/HUM', zh: '舱内温湿度' },
+      { keys: ['j', 'k'], en: 'OUTSIDE TEMP/HUM', zh: '舱外温湿度' },
+      { keys: ['s'], en: 'SOLAR RADIATION', zh: '太阳能辐射' },
+      { keys: ['v', 'a'], en: 'CURRENT/VOLTAGE', zh: '电流电压' },
+      { keys: ['x', 'y'], en: 'GPS', zh: 'GPS' },
+      { keys: ['wind'], en: 'WIND SPEED', zh: '风速' }
     ];
     var ratioHtml = '';
     ratioDefs.forEach(function (def) {
       var actual = data.filter(function (r) {
-        return r[def.key] !== null && r[def.key] !== undefined;
+        return def.keys.some(function (k) {
+          return r[k] !== null && r[k] !== undefined;
+        });
       }).length;
       var pct = total ? (actual / total * 100) : 0;
       var ratioTxt = actual === 0 ? '--' : actual + ' / ' + total;
