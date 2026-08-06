@@ -29,10 +29,11 @@
     /* 中部区域：analysis-container 显式 CSS Grid，五个独立区域 */
     .analysis-page .analysis-container{
       display:grid;
-      grid-template-columns:minmax(0,1.15fr) minmax(0,320px);
+      grid-template-columns:minmax(0,320px) minmax(0,1fr);
       grid-template-areas:
-        "summary soc"
-        "ratio soc"
+        "summary summary"
+        "soc ratio"
+        "quality quality"
         "timeline timeline";
       gap:14px;
       align-items:start;
@@ -56,7 +57,12 @@
       grid-area:timeline;
       min-width:0;
       position:static;
-      margin-top:2px;
+    }
+    .analysis-page .an-quality{
+      grid-area:quality;
+      min-width:0;
+      position:static;
+      margin-top:0;
     }
 
     /* 顶部核心成果区域 */
@@ -362,6 +368,7 @@
           "summary"
           "soc"
           "ratio"
+          "quality"
           "timeline";
       }
       .analysis-page .an-overview{
@@ -514,9 +521,15 @@
       </div>
     </section>
 
-    </div>
+    <!-- 数据质量说明 -->
+    <section class="an-quality">
+      <h3 data-lang="en">DATA QUALITY NOTE</h3>
+      <h3 data-lang="zh">数据质量说明</h3>
+      <p data-lang="en">All metrics are computed directly from the recorded dataset. Missing values are preserved and displayed as "--"; no synthetic data is generated.</p>
+      <p data-lang="zh">所有指标均基于实际记录数据计算；缺失值如实保留并显示为“--”，不生成任何模拟数据。</p>
+    </section>
 
-    <!-- 横向任务时间轴（页面底部） -->
+    <!-- 横向任务时间轴（页面最底部） -->
     <div class="timeline-wrapper">
       <h3 data-lang="en">MISSION TIMELINE</h3>
       <h3 data-lang="zh">任务时间轴</h3>
@@ -527,13 +540,7 @@
       <p class="tl-hint" data-lang="zh">基于实际记录数据提取的关键任务事件。</p>
     </div>
 
-    <!-- 数据质量说明 -->
-    <section class="an-quality">
-      <h3 data-lang="en">DATA QUALITY NOTE</h3>
-      <h3 data-lang="zh">数据质量说明</h3>
-      <p data-lang="en">All metrics are computed directly from the recorded dataset. Missing values are preserved and displayed as "--"; no synthetic data is generated.</p>
-      <p data-lang="zh">所有指标均基于实际记录数据计算；缺失值如实保留并显示为“--”，不生成任何模拟数据。</p>
-    </section>
+    </div>
 
   </main>
 </div>
