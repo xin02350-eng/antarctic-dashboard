@@ -13,6 +13,8 @@ permissions:
 
 # 同一时间只允许一个 Pages 构建/部署；
 # 新推送到达后自动取消旧的排队任务，只部署最新提交。
+# 重要：仓库 Settings → Pages → Source 必须选择 “GitHub Actions”，
+# 否则内置 pages build and deployment 会同时运行，与本工作流争抢部署锁。
 concurrency:
   group: pages
   cancel-in-progress: true
@@ -23,6 +25,7 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - name: Checkout
         uses: actions/checkout@v4
