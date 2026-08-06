@@ -36,7 +36,7 @@
         "quality quality"
         "timeline timeline";
       gap:14px;
-      align-items:start;
+      align-items:stretch;
     }
     .analysis-page .summary-section{
       grid-area:summary;
@@ -82,13 +82,18 @@
     }
     .analysis-page .an-overview{
       display:grid;
-      grid-template-columns:1fr 1fr;
+      grid-template-columns:repeat(4,minmax(0,1fr));
       gap:12px;
       align-items:stretch;
     }
     .analysis-page .an-overview .kpi-block{
-      min-height:150px;
+      min-height:110px;
       justify-content:center;
+    }
+    .analysis-page .an-overview .kpi-block:last-child .kpi-num b{
+      font-size:13px;
+      letter-spacing:.5px;
+      word-break:break-all;
     }
     /* SOC 独立模块（右侧高列 / 手机独立区域） */
     .soc-module{
@@ -101,7 +106,12 @@
       align-items:center;
       justify-content:center;
       gap:6px;
-      min-height:340px;
+      min-height:0;
+      height:auto;
+      flex:1;
+    }
+    .soc-section{
+      display:flex;
     }
     .soc-section .an-sec-title{
       margin-bottom:8px;
@@ -254,20 +264,6 @@
       margin:8px 0 2px;
       border-left:2px solid rgba(98,217,255,.35);
     }
-    .an-summary-foot{
-      display:flex;
-      flex-wrap:wrap;
-      gap:8px 18px;
-      font-size:9px;
-      letter-spacing:1.5px;
-      color:#6f93a8;
-      padding:6px 10px;
-    }
-    .an-summary-foot b{
-      color:#dff6ff;
-      margin-left:4px;
-    }
-
     /* 横向紧凑任务时间轴（页面底部，不超屏不滚动） */
     .tl-hwrap{
       overflow:visible;
@@ -481,16 +477,17 @@
         <span class="kpi-label" data-lang="zh">传感器通道</span>
         <span class="kpi-num"><b id="sumChannels">--</b><em data-lang="en">CH</em><em data-lang="zh">个</em></span>
       </div>
-      </section>
-
-      <div class="an-summary-foot">
-      <span data-lang="en">OPERATION DAYS <b id="sumDays">--</b></span>
-      <span data-lang="zh">运行天数 <b id="sumDays">--</b></span>
-      <span data-lang="en">LATEST UPDATE <b id="sumLatest">--</b></span>
-      <span data-lang="zh">最近更新 <b id="sumLatest">--</b></span>
-      <span data-lang="en">GPS AVAILABILITY <b id="sumGps">--</b></span>
-      <span data-lang="zh">定位有效率 <b id="sumGps">--</b></span>
+      <div class="kpi-block">
+        <span class="kpi-label" data-lang="en">OPERATION DAYS</span>
+        <span class="kpi-label" data-lang="zh">运行天数</span>
+        <span class="kpi-num"><b id="sumDays">--</b><em data-lang="en">DAYS</em><em data-lang="zh">天</em></span>
       </div>
+      <div class="kpi-block">
+        <span class="kpi-label" data-lang="en">LATEST UPDATE</span>
+        <span class="kpi-label" data-lang="zh">最近更新</span>
+        <span class="kpi-num"><b id="sumLatest">--</b></span>
+      </div>
+      </section>
     </section>
 
     <!-- 传感器数据返回率 -->
@@ -504,8 +501,6 @@
 
     <!-- SOC 独立区域 -->
     <section class="soc-section">
-      <h3 class="an-sec-title" data-lang="en">BATTERY SOC</h3>
-      <h3 class="an-sec-title" data-lang="zh">电池 SOC</h3>
       <div class="soc-module">
         <div class="soc-wrap">
           <svg class="soc-ring" viewBox="0 0 150 150" aria-hidden="true">
@@ -514,10 +509,9 @@
           </svg>
           <div class="soc-center"><b id="sumSoc">--</b><span>%</span></div>
         </div>
-        <div class="soc-label" data-lang="en">Battery SOC</div>
-        <div class="soc-label" data-lang="zh">电池 SOC</div>
-        <p data-lang="en">Remaining Energy Level</p>
-        <p data-lang="zh">剩余能量水平</p>
+        <div class="soc-label">SOC</div>
+        <p data-lang="en">Remaining battery capacity</p>
+        <p data-lang="zh">剩余电池容量</p>
       </div>
     </section>
 
@@ -579,11 +573,20 @@
     var total = data.length;
     if (!total) return;
 
-    var keys = {};
-    data.forEach(function (r) {
-      Object.keys(r).forEach(function (k) { if (k !== 'time') keys[k] = true; });
-    });
-    var channels = Object.keys(keys).length;
+    /* 传感器通道：按“传感器数据类型”统计（有实际数据的类型数） */
+    var sensorGroups = [
+      { name: 'temperature', keys: ['t', 'j'] },
+      { name: 'humidity', keys: ['h', 'k'] },
+      { name: 'solar', keys: ['s'] },
+      { name: 'voltage', keys: ['v'] },
+      { name: 'current', keys: ['a'] },
+      { name: 'wind', keys: ['wind'] }
+    ];
+    var channels = sensorGroups.filter(function (g) {
+      return data.some(function (r) {
+        return g.keys.some(function (k) { return r[k] !== null && r[k] !== undefined; });
+      });
+    }).length;
 
     var times = data.map(function (r) { return new Date(r.time).getTime(); })
       .filter(function (t) { return !isNaN(t); })
@@ -609,16 +612,11 @@
       if (firstN === null && md === 'N') firstN = new Date(data[m].time).getTime();
     }
 
-    var gpsOk = data.filter(function (r) {
-      return (r.x !== null && r.x !== undefined) && (r.y !== null && r.y !== undefined);
-    }).length;
-
     setTxt('sumRecords', total);
     setTxt('sumChannels', channels);
     setTxt('sumSoc', soc === null ? '--' : (typeof soc === 'number' ? soc.toFixed(0) : soc));
     setTxt('sumDays', days);
     setTxt('sumLatest', fmtFull(end));
-    setTxt('sumGps', (gpsOk / total * 100).toFixed(1) + '%');
 
     /* 传感器数据返回率：各通道实际记录 / 总采样记录 */
     var ratioDefs = [
@@ -626,7 +624,8 @@
       { key: 'h', en: 'HUMIDITY', zh: '湿度' },
       { key: 's', en: 'SOLAR IRRADIANCE', zh: '太阳辐射' },
       { key: 'v', en: 'VOLTAGE', zh: '电压' },
-      { key: 'a', en: 'CURRENT', zh: '电流' }
+      { key: 'a', en: 'CURRENT', zh: '电流' },
+      { key: 'wind', en: 'WIND SPEED', zh: '风速' }
     ];
     var ratioHtml = '';
     ratioDefs.forEach(function (def) {
@@ -634,12 +633,14 @@
         return r[def.key] !== null && r[def.key] !== undefined;
       }).length;
       var pct = total ? (actual / total * 100) : 0;
+      var ratioTxt = actual === 0 ? '--' : actual + ' / ' + total;
+      var pctTxt = actual === 0 ? '--' : pct.toFixed(1) + '%';
       ratioHtml += '<div class="sr-row">';
       ratioHtml += '<span class="sr-name" data-lang="en">' + def.en + '</span>';
       ratioHtml += '<span class="sr-name" data-lang="zh">' + def.zh + '</span>';
-      ratioHtml += '<span class="sr-ratio">' + actual + ' / ' + total + '</span>';
-      ratioHtml += '<span class="sr-bar"><i style="width:' + pct.toFixed(1) + '%"></i></span>';
-      ratioHtml += '<b class="sr-pct">' + pct.toFixed(1) + '%</b>';
+      ratioHtml += '<span class="sr-ratio">' + ratioTxt + '</span>';
+      ratioHtml += '<span class="sr-bar"><i style="width:' + (actual === 0 ? 0 : pct.toFixed(1)) + '%"></i></span>';
+      ratioHtml += '<b class="sr-pct">' + pctTxt + '</b>';
       ratioHtml += '</div>';
     });
     var ratioBox = $('sensorRatio');
@@ -694,9 +695,12 @@
 <script>
   (function () {
     function apply(lang) {
-      document.documentElement.setAttribute('data-lang', lang);
-      document.documentElement.setAttribute('lang', lang === 'zh' ? 'zh-CN' : 'en');
-      document.querySelectorAll('.lang-switch button').forEach(function (b) {
+  document.documentElement.setAttribute('data-lang', lang);
+  document.documentElement.setAttribute('lang', lang === 'zh' ? 'zh-CN' : 'en');
+  document.querySelectorAll('[data-lang]').forEach(function (el) {
+    el.style.display = (el.getAttribute('data-lang') === lang) ? '' : 'none';
+  });
+  document.querySelectorAll('.lang-switch button').forEach(function (b) {
         var on = b.getAttribute('data-lang') === lang;
         b.classList.toggle('active', on);
         if (b.hasAttribute('aria-pressed')) b.setAttribute('aria-pressed', String(on));
