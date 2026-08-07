@@ -186,8 +186,8 @@
     .soc-module::before{
       content:'';
       position:absolute;
-      width:220px;
-      height:220px;
+      width:250px;
+      height:250px;
       border-radius:50%;
       background:radial-gradient(circle, rgba(98,217,255,.10), transparent 62%);
       pointer-events:none;
@@ -200,16 +200,16 @@
     .soc-wrap{
       display:grid;
       place-items:center;
-      width:clamp(180px, 20vw, 210px);
-      height:clamp(180px, 20vw, 210px);
-      min-width:180px;
-      min-height:180px;
+      width:clamp(160px, 15vw, 220px);
+      height:clamp(160px, 15vw, 220px);
+      min-width:160px;
+      min-height:160px;
     }
     .soc-ring{
-      width:clamp(180px, 20vw, 210px);
-      height:clamp(180px, 20vw, 210px);
-      min-width:180px;
-      min-height:180px;
+      width:clamp(160px, 15vw, 220px);
+      height:clamp(160px, 15vw, 220px);
+      min-width:160px;
+      min-height:160px;
       transform:rotate(-90deg);
       grid-area:1 / 1;
     }
@@ -248,15 +248,15 @@
       font-variant-numeric:tabular-nums;
     }
     .soc-center b{
-      font-size:40px;
+      font-size:80px;
       font-weight:700;
       color:#eafcff;
       letter-spacing:1px;
     }
     .soc-center span{
-      font-size:14px;
+      font-size:20px;
       color:#8ceaff;
-      margin-top:7px;
+      margin-top:10px;
     }
     .soc-label{
       font-size:9px;
@@ -628,19 +628,23 @@
         margin:-2px 2px 3px;
       }
       .soc-wrap{
-        width:150px;
-        height:150px;
-        min-width:150px;
-        min-height:150px;
+        width:clamp(160px, 15vw, 220px);
+        height:clamp(160px, 15vw, 220px);
+        min-width:160px;
+        min-height:160px;
       }
       .soc-ring{
-        width:150px;
-        height:150px;
-        min-width:150px;
-        min-height:150px;
+        width:clamp(160px, 15vw, 220px);
+        height:clamp(160px, 15vw, 220px);
+        min-width:160px;
+        min-height:160px;
       }
       .soc-center b{
-        font-size:30px;
+        font-size:60px;
+      }
+      .soc-center span{
+        font-size:16px;
+        margin-top:8px;
       }
       .soc-module{
         padding:4px 12px;
