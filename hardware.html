@@ -191,10 +191,13 @@
   ];
   var SOURCES = ['hardwareSolar', 'hardwareVoltage', 'hardwareTemp', 'hardwareGPS'];
 
-  function offText() { return window.ANX_T ? window.ANX_T('no_signal') : 'NO SIGNAL'; }
+  function offText() { return window.ANX_T ? window.ANX_T('status.waiting') : 'WAITING FOR DATA'; }
   function normalize(t) {
     t = (t || '').trim();
-    if (!t || t === '--' || /^null$/i.test(t) || t === (window.ANX_T ? window.ANX_T('null') : 'NULL')) return offText();
+    var offA = offText();
+    var offB = (window.ANX_I18N && window.ANX_I18N.zh && window.ANX_I18N.zh['status.waiting']) || '等待数据';
+    if (!t || t === '--' || /^null$/i.test(t) || t === (window.ANX_T ? window.ANX_T('null') : 'NULL') ||
+        t === offA || t === offB || t === 'WAITING FOR DATA' || t === 'NO SIGNAL') return offText();
     return t;
   }
 
@@ -212,7 +215,10 @@
       if (!el) return;
       var raw = (el.textContent || '').trim();
       var off = offText();
-      var bad = !raw || raw === '--' || /^null$/i.test(raw) || raw === off || raw === (window.ANX_T ? window.ANX_T('null') : 'NULL');
+      var offOther = (window.ANX_I18N && window.ANX_I18N.zh && window.ANX_I18N.zh['status.waiting']) || '等待数据';
+      var bad = !raw || raw === '--' || /^null$/i.test(raw) || raw === off || raw === offOther ||
+                raw === 'WAITING FOR DATA' || raw === 'NO SIGNAL' ||
+                raw === (window.ANX_T ? window.ANX_T('null') : 'NULL');
       var card = el.closest('.hud-card');
       if (!card) return;
       if (bad) {
