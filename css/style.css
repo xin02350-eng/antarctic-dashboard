@@ -12976,7 +12976,13 @@ margin-bottom:2px;
 
 .hardware-page .tech-item{
 
-font-size:10px;
+display:flex;
+
+align-items:center;
+
+gap:6px;
+
+font-size:9px;
 
 letter-spacing:.5px;
 
@@ -12990,7 +12996,11 @@ line-height:1.5;
 
 font-size:12px;
 
-margin-right:2px;
+width:18px;
+
+text-align:center;
+
+flex:none;
 
 }
 
@@ -12998,9 +13008,19 @@ margin-right:2px;
 
 display:grid;
 
-grid-template-columns:1fr 1fr;
+grid-template-columns:repeat(4,minmax(0,1fr));
 
-gap:2px 12px;
+gap:4px 8px;
+
+}
+
+@media (max-width:768px){
+
+.hardware-page .tech-grid{
+
+grid-template-columns:repeat(2,1fr);
+
+}
 
 }
 

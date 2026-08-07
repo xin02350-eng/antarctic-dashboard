@@ -36,6 +36,7 @@ window.ANX_I18N = {
 en:{
 null:"NULL",
 online:"ONLINE",
+offline:"OFFLINE",
 no_fix:"NO FIX",
 no_signal:"Waiting for Data",
 waiting_data:"Waiting for Data",
@@ -155,6 +156,7 @@ temp:"TEMP",
 sensor:"Sensors",
 sensors:"Sensors",
 sensor_types:"SENSOR TYPES",
+data_types:"DATA TYPES",
 gps_lora:"GPS / LORA"
 ,
 gps:"GPS",
@@ -163,6 +165,7 @@ link:"LINK"
 zh:{
 null:"无数据",
 online:"在线",
+offline:"离线",
 no_fix:"未定位",
 no_signal:"等待数据",
 waiting_data:"等待数据",
@@ -282,6 +285,7 @@ temp:"温度",
 sensor:"传感器",
 sensors:"传感器",
 sensor_types:"传感器类型",
+data_types:"采集数据类型",
 gps_lora:"GPS / LoRa"
 ,
 gps:"GPS",
