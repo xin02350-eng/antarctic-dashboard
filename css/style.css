@@ -12789,9 +12789,37 @@ padding-top:64px;
 
 display:flex;
 
-align-items:center;
+flex-direction:column;
+
+align-items:flex-end;
 
 gap:12px;
+
+}
+
+.header-right .system-online{
+
+font-size:10px;
+
+letter-spacing:2px;
+
+color:#9fd8c2;
+
+}
+
+body:not(.dashboard-page) .system-online > span:first-child{
+
+width:8px;
+
+height:8px;
+
+border-radius:50%;
+
+background:#00e5a8;
+
+box-shadow:0 0 8px rgba(0,229,168,.35);
+
+animation:dashBreathe 2.6s ease-in-out infinite;
 
 }
 
