@@ -69,7 +69,7 @@
       border:1px solid rgba(140,234,255,.10);
       border-radius:10px;
       background:linear-gradient(165deg, rgba(9,28,44,.38), rgba(5,16,28,.30));
-      padding:12px 14px 10px;
+      padding:2px 14px 22px;
       display:flex;
       flex-direction:column;
       justify-content:flex-start;
@@ -398,6 +398,7 @@
       gap:16px;
       margin:0;
       width:100%;
+      transform:translateY(10px);
     }
     .tl-nodes{
       position:relative;
@@ -406,7 +407,7 @@
       align-items:flex-start;
       flex:1;
       min-width:0;
-      padding:4px 2px 2px;
+      padding:2px 2px 0;
     }
     .tl-nodes::before{
       content:'';
@@ -427,8 +428,8 @@
       z-index:1;
     }
     .tl-node .dot{
-      width:14px;
-      height:14px;
+      width:10px;
+      height:10px;
       border-radius:50%;
       background:#62d9ff;
       box-shadow:0 0 8px rgba(98,217,255,.55);
@@ -440,14 +441,14 @@
       box-shadow:0 0 8px rgba(0,229,168,.55);
     }
     .tl-node .date{
-      font-size:11px;
+      font-size:9px;
       letter-spacing:1px;
       color:#8ceaff;
       display:block;
     }
     .tl-node b{
       display:block;
-      font-size:11px;
+      font-size:10px;
       letter-spacing:1px;
       color:#dff6ff;
       margin-top:2px;
@@ -456,7 +457,7 @@
       text-overflow:ellipsis;
     }
     .tl-node p{
-      font-size:9px;
+      font-size:8px;
       color:#7f9fb2;
       margin:2px 0 0;
       line-height:1.4;
@@ -466,6 +467,12 @@
       letter-spacing:1px;
       color:#6f93a8;
       margin:2px 2px 0;
+    }
+
+    @media (min-width:1100px){
+      .analysis-page .timeline-wrapper .tl-hint{
+        display:none;
+      }
     }
 
     .analysis-page .timeline-wrapper h3{
@@ -484,15 +491,15 @@
       flex-direction:column;
       justify-content:center;
       align-items:center;
-      gap:4px;
+      gap:1px;
       min-height:34px;
-      padding:6px 10px;
+      padding:3px 8px;
       border:1px solid rgba(140,234,255,.16);
       border-radius:8px;
       background:linear-gradient(165deg, rgba(9,28,44,.55), rgba(5,16,28,.45));
     }
     .tl-dur-label{
-      font-size:8px;
+      font-size:7px;
       letter-spacing:2px;
       color:rgba(140,234,255,.7);
       text-align:center;
@@ -502,7 +509,7 @@
       flex-direction:column;
       align-items:center;
       gap:1px;
-      font-size:9px;
+      font-size:8px;
       color:#dff6ff;
       font-variant-numeric:tabular-nums;
     }
@@ -511,12 +518,12 @@
       color:#eafcff;
     }
     .tl-dur-arrow{
-      font-size:9px;
+      font-size:8px;
       color:#62d9ff;
       line-height:1;
     }
     .tl-dur-days{
-      font-size:10px;
+      font-size:9px;
       color:#8ceaff;
       font-weight:700;
       letter-spacing:1px;
@@ -524,7 +531,7 @@
     }
     .tl-dur-days em{
       font-style:normal;
-      font-size:7px;
+      font-size:6px;
       color:#6f93a8;
       margin-left:3px;
     }
@@ -611,7 +618,7 @@
         min-height:34px;
       }
       .analysis-page .timeline-wrapper{
-        padding:4px 14px 1px;
+        padding:0 14px 16px;
         min-height:110px;
       }
       .analysis-page .timeline-wrapper h3{
@@ -624,17 +631,18 @@
         display:none;
       }
       .tl-node b{
-        font-size:10px;
-      }
-      .tl-node .date{
         font-size:9px;
       }
+      .tl-node .date{
+        font-size:8px;
+      }
       .tl-node .dot{
-        width:12px;
-        height:12px;
+        width:10px;
+        height:10px;
       }
       .tl-body{
         gap:6px;
+        transform:translateY(6px);
       }
       .analysis-page .mission-header{
         padding-bottom:6px;
@@ -686,6 +694,7 @@
       }
       .tl-body{
         flex-direction:column;
+        transform:none;
       }
       .tl-duration{
         flex:1 1 auto;
