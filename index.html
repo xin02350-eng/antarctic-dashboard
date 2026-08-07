@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <meta name="color-scheme" content="dark">
-  <title data-title-en="ANTARCTIC NEXUS" data-title-zh="南极自主无人监测系统">ANTARCTIC NEXUS</title>
+  <title data-title-en="AUTONOMOUS NEXUS" data-title-zh="自主观测系统">AUTONOMOUS NEXUS</title>
   <link rel="icon" href="data:,">
   <link rel="stylesheet" href="./css/style.css?v=20260806b">
 
@@ -13,8 +13,8 @@
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 </head>
 
-<!-- dashboard-page：Dashboard 专属样式作用域；polar-ambient：全局极地氛围 -->
-<body class="dashboard-page polar-ambient">
+<!-- dashboard-page：Dashboard 专属样式作用域；ambient-theme：全局环境氛围 -->
+<body class="dashboard-page ambient-theme">
 
 <div class="app">
 
@@ -23,8 +23,8 @@
     <div class="brand">
       <div class="logo">AN</div>
       <div>
-        <h1>ANTARCTIC<br>NEXUS</h1>
-        <p data-i18n="brand_subtitle">POLAR AUTONOMOUS OBSERVATORY</p>
+        <h1>AUTONOMOUS<br>NEXUS</h1>
+        <p data-i18n="brand_subtitle">Autonomous Environmental Observatory</p>
       </div>
     </div>
     <input type="checkbox" id="navToggle" class="nav-toggle" aria-hidden="true">
@@ -47,8 +47,8 @@
     <!-- 顶部：任务标题区 -->
     <header class="mission-header dashboard-hero">
       <div class="hero-main">
-        <div class="dashboard-kicker"><span data-lang="en">POLAR DIGITAL TWIN · MISSION CONTROL</span><span data-lang="zh">极地数字孪生 · 任务控制</span></div>
-        <div class="dashboard-title"><span data-lang="en">ANTARCTIC AUTONOMOUS MONITORING SYSTEM</span><span data-lang="zh">南极自主无人监测系统</span></div>
+        <div class="dashboard-kicker"><span data-lang="en">AUTONOMOUS DIGITAL TWIN · MISSION CONTROL</span><span data-lang="zh">自主数字孪生 · 任务控制</span></div>
+        <div class="dashboard-title"><span data-lang="en">AUTONOMOUS MONITORING SYSTEM</span><span data-lang="zh">自主观测系统</span></div>
         <div class="hero-sub"><span data-lang="en">AUTONOMOUS ENVIRONMENTAL MONITORING PLATFORM · STATION ANT-A01</span><span data-lang="zh">自主环境监测平台 · 站点 ANT-A01</span></div>
       </div>
       <div class="hero-status">
@@ -123,7 +123,7 @@
       <!-- 中部：地图战区（视觉中心） -->
       <section class="map-panel">
         <div class="map-panel-head">
-          <div class="panel-title" data-i18n="antarctic_positioning">ANTARCTIC POSITIONING · GPS TRACKING</div>
+          <div class="panel-title" data-i18n="node_positioning">NODE POSITIONING · GPS TRACKING</div>
           <div class="panel-title-tag" data-i18n="live_telemetry_feed">LIVE TELEMETRY FEED</div>
         </div>
 
@@ -241,8 +241,8 @@
 <script src="./js/ambient.js?v=20260806b"></script>
 
 <!-- 页面级扫描线与设备编号铭牌（氛围层，不拦截交互） -->
-<div class="polar-scan" aria-hidden="true"></div>
-<div class="polar-badge">ANT-A01 · POLAR STATION · REMOTE SENSOR NODE</div>
+<div class="scan-line" aria-hidden="true"></div>
+<div class="node-badge">ANT-A01 · AUTONOMOUS STATION · REMOTE SENSOR NODE</div>
 
 <!-- 数据核心与地图初始化（不允许修改） -->
 <script src="./js/main.js?v=20260806b"></script>
@@ -250,7 +250,7 @@
 <!-- =========================================================
      Dashboard 专属前端装饰层（纯原生 JavaScript）
      - 不读取、不修改 main.js 的任何逻辑
-     - 只负责：雪花粒子、地图经纬网、南极强调、GPS 扫描定位、状态灯同步
+     - 只负责：雪花粒子、地图经纬网、南半球强调、GPS 扫描定位、状态灯同步
 ========================================================= -->
 <script>
 (function () {
@@ -262,7 +262,7 @@
   /* =========================================================
      2. 地图装饰层（仅在 Dashboard 页面生效）
         - 经纬网：按地图真实投影逐格绘制，随缩放/拖动重绘
-        - 南极强调：极圈虚线 + 光晕，视口进入南半球时自动出现
+        - 南半球强调：极圈虚线 + 光晕，视口进入南半球时自动出现
         - GPS 扫描：扫描线、雷达扫掠、扩散光圈跟随真实定位点
         - 所有装饰层 pointer-events:none，不影响拖拽与缩放
   ========================================================= */
@@ -367,8 +367,8 @@
     }
   }
 
-  /* 南极区域强调：光晕 + 60/70/80°S 极圈虚线（视口进入南半球才绘制） */
-  function drawPolarEmphasis(map, ctx, w, h) {
+  /* 南半球区域强调：光晕 + 60/70/80°S 极圈虚线（视口进入南半球才绘制） */
+  function drawSectorEmphasis(map, ctx, w, h) {
     var pole = map.latLngToContainerPoint([-85, 0]);
     if (pole.x < -800 || pole.x > w + 800 || pole.y < -800 || pole.y > h + 800) return;
 
@@ -376,7 +376,7 @@
     var r70 = dist(pole, map.latLngToContainerPoint([-70, 0]));
     var r80 = dist(pole, map.latLngToContainerPoint([-80, 0]));
 
-    /* 极地光晕（微弱，非廉价发光） */
+    /* 区域光晕（微弱，非廉价发光） */
     var g = ctx.createRadialGradient(pole.x, pole.y, 0, pole.x, pole.y, r60);
     g.addColorStop(0, 'rgba(98,217,255,.10)');
     g.addColorStop(0.7, 'rgba(98,217,255,.045)');
@@ -401,7 +401,7 @@
 
     ctx.fillStyle = 'rgba(140,234,255,.45)';
     ctx.font = '8px "Segoe UI", sans-serif';
-    ctx.fillText('60°S · ANTARCTIC SECTOR', pole.x + 6, pole.y - r60 - 4);
+    ctx.fillText('60°S · TEST SECTOR', pole.x + 6, pole.y - r60 - 4);
   }
 
   /* 站区作业圈：以真实定位点为中心，半径约 300km 的虚线圆 */
@@ -445,7 +445,7 @@
     if (core) core.style.opacity = visible;
   }
 
-  /* 统一重绘：网格 + 南极强调 + 站区圈 + 定位叠层（rAF 节流） */
+  /* 统一重绘：网格 + 南半球强调 + 站区圈 + 定位叠层（rAF 节流） */
   function drawMapOverlays() {
     var map = window.deviceMap;
     if (!map || !graticule) return;
@@ -455,7 +455,7 @@
     var h = graticule.clientHeight;
     ctx.setTransform(mapDpr, 0, 0, mapDpr, 0, 0);
     drawGraticule(map, ctx, w, h);
-    drawPolarEmphasis(map, ctx, w, h);
+    drawSectorEmphasis(map, ctx, w, h);
     drawStationZone(map, ctx, w, h);
     positionOverlays(map);
   }

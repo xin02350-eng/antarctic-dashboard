@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title data-title-en="ANTARCTIC NEXUS - DATA" data-title-zh="南极自主无人监测系统 · 数据">ANTARCTIC NEXUS - DATA</title>
+  <title data-title-en="AUTONOMOUS NEXUS - DATA" data-title-zh="自主观测系统 · 数据">AUTONOMOUS NEXUS - DATA</title>
   <link rel="icon" href="data:,">
   <link rel="stylesheet" href="./css/style.css?v=20260806b">
 
@@ -32,7 +32,7 @@
       color:#6f93a8;
       font-weight:400;
     }
-    /* ============ 极地终端自定义滚动组件 ============ */
+    /* ============ 终端自定义滚动组件 ============ */
     /* 原生滚动条彻底隐藏（避免系统白色样式），视觉完全由网页控制；
        滚轮 / 触控板 / 触摸滚动仍由 overflow:auto 提供 */
     @media (min-width:769px){
@@ -146,7 +146,7 @@
   <script>window.__antSnowScale = 0.5;</script>
 </head>
 
-<body class="polar-ambient telemetry-page">
+<body class="ambient-theme telemetry-page">
 
 <div class="app">
 
@@ -154,8 +154,8 @@
     <div class="brand">
       <div class="logo">AN</div>
       <div>
-        <h1>ANTARCTIC<br>NEXUS</h1>
-        <p data-i18n="brand_subtitle">POLAR AUTONOMOUS OBSERVATORY</p>
+        <h1>AUTONOMOUS<br>NEXUS</h1>
+        <p data-i18n="brand_subtitle">Autonomous Environmental Observatory</p>
       </div>
     </div>
     <input type="checkbox" id="navToggle" class="nav-toggle" aria-hidden="true">
@@ -197,11 +197,11 @@
   </main>
 </div>
 
-<!-- 极地氛围层：雪花画布 / 页面扫描线 / 设备编号铭牌 -->
+<!-- 环境氛围层：雪花画布 / 页面扫描线 / 设备编号铭牌 -->
 <!-- 全站暴风雪模块（模块化，自动创建背景/前景画布） -->
 <script src="./js/ambient.js?v=20260806b"></script>
-<div class="polar-scan" aria-hidden="true"></div>
-<div class="polar-badge">ANT-A01 · POLAR STATION · REMOTE SENSOR NODE</div>
+<div class="scan-line" aria-hidden="true"></div>
+<div class="node-badge">ANT-A01 · AUTONOMOUS STATION · REMOTE SENSOR NODE</div>
 
 <!-- 数据核心（main.js 保持不变：负责读取 data.json 并写入 #telemetryData） -->
 <script src="./js/main.js?v=20260806b"></script>

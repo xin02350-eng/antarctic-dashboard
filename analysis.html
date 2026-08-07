@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title data-title-en="ANTARCTIC NEXUS - MISSION ANALYTICS" data-title-zh="南极自主无人监测系统 · 任务成果分析">ANTARCTIC NEXUS - MISSION ANALYTICS</title>
+  <title data-title-en="AUTONOMOUS NEXUS - MISSION ANALYTICS" data-title-zh="自主观测系统 · 任务成果分析">AUTONOMOUS NEXUS - MISSION ANALYTICS</title>
   <link rel="icon" href="data:,">
   <link rel="stylesheet" href="./css/style.css?v=20260806b">
   <style>
@@ -751,6 +751,7 @@
       }
       .soc-module{
         min-height:0;
+        min-width:0;
         flex-direction:row;
         gap:14px;
         justify-content:center;
@@ -816,10 +817,21 @@
         gap:6px;
       }
     }
+
+    /* V38 phone SOC module column layout (prevent horizontal overflow) */
+    @media (max-width:768px){
+      .analysis-page .soc-module{
+        flex-direction:column;
+        align-items:center;
+        justify-content:center;
+        gap:4px;
+        padding:10px 12px;
+      }
+    }
   </style>
 </head>
 
-<body class="polar-ambient analysis-page">
+<body class="ambient-theme analysis-page">
 
 <div class="app">
 
@@ -827,8 +839,8 @@
     <div class="brand">
       <div class="logo">AN</div>
       <div>
-        <h1>ANTARCTIC<br>NEXUS</h1>
-        <p data-i18n="brand_subtitle">POLAR AUTONOMOUS OBSERVATORY</p>
+        <h1>AUTONOMOUS<br>NEXUS</h1>
+        <p data-i18n="brand_subtitle">Autonomous Environmental Observatory</p>
       </div>
     </div>
     <input type="checkbox" id="navToggle" class="nav-toggle" aria-hidden="true">
@@ -850,12 +862,12 @@
     <!-- MISSION OVERVIEW -->
     <header class="mission-header an-head">
       <div>
-        <div class="an-kicker" data-lang="en">ANTARCTIC AUTONOMOUS MONITORING MISSION SUMMARY</div>
-        <div class="an-kicker" data-lang="zh">南极自主无人监测系统 · 任务成果分析</div>
+        <div class="an-kicker" data-lang="en">AUTONOMOUS MONITORING MISSION SUMMARY</div>
+        <div class="an-kicker" data-lang="zh">自主观测系统 · 任务成果分析</div>
         <h2 data-lang="en">MISSION ANALYTICS</h2>
         <h2 data-lang="zh">任务成果分析</h2>
-        <div class="an-sub" data-lang="en">An autonomous Antarctic monitoring node · long-term environmental data collection and transmission.</div>
-        <div class="an-sub" data-lang="zh">南极自主无人监测节点 · 长期采集并稳定回传环境数据。</div>
+        <div class="an-sub" data-lang="en">An autonomous monitoring node · long-term environmental data collection and transmission.</div>
+        <div class="an-sub" data-lang="zh">自主监测节点 · 长期采集并稳定回传环境数据。</div>
       </div>
       <div class="an-meta">
         <span data-lang="en">MISSION ID <b>ANT-A01</b></span>

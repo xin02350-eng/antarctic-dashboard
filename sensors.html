@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title data-title-en="ANTARCTIC NEXUS - SENSORS" data-title-zh="南极自主无人监测系统 · 传感器">ANTARCTIC NEXUS - SENSORS</title>
+  <title data-title-en="AUTONOMOUS NEXUS - SENSORS" data-title-zh="自主观测系统 · 传感器">AUTONOMOUS NEXUS - SENSORS</title>
   <link rel="icon" href="data:,">
   <link rel="stylesheet" href="./css/style.css?v=20260806b">
 
@@ -31,8 +31,8 @@
   </style>
 </head>
 
-<!-- polar-ambient：极地氛围（极光/雾效/雪花/扫描线）；sensors-page：本页专属样式 -->
-<body class="polar-ambient sensors-page">
+<!-- ambient-theme：环境氛围（极光/雾效/雪花/扫描线）；sensors-page：本页专属样式 -->
+<body class="ambient-theme sensors-page">
 
 <div class="app">
 
@@ -40,8 +40,8 @@
     <div class="brand">
       <div class="logo">AN</div>
       <div>
-        <h1>ANTARCTIC<br>NEXUS</h1>
-        <p data-i18n="brand_subtitle">POLAR AUTONOMOUS OBSERVATORY</p>
+        <h1>AUTONOMOUS<br>NEXUS</h1>
+        <p data-i18n="brand_subtitle">Autonomous Environmental Observatory</p>
       </div>
     </div>
     <input type="checkbox" id="navToggle" class="nav-toggle" aria-hidden="true">
@@ -122,11 +122,11 @@
   </main>
 </div>
 
-<!-- 极地氛围层：雪花画布 / 页面扫描线 / 设备编号铭牌 -->
+<!-- 环境氛围层：雪花画布 / 页面扫描线 / 设备编号铭牌 -->
 <!-- 全站暴风雪模块（模块化，自动创建背景/前景画布） -->
 <script src="./js/ambient.js?v=20260806b"></script>
-<div class="polar-scan" aria-hidden="true"></div>
-<div class="polar-badge">ANT-A01 · POLAR STATION · REMOTE SENSOR NODE</div>
+<div class="scan-line" aria-hidden="true"></div>
+<div class="node-badge">ANT-A01 · AUTONOMOUS STATION · REMOTE SENSOR NODE</div>
 
 <!-- =========================================================
      SOLAR IRRADIANCE 图表辅助配置（纯显示层）

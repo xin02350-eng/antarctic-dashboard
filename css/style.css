@@ -1,5 +1,5 @@
 /* =====================================================
- ANTARCTIC NEXUS
+ AUTONOMOUS NEXUS
  V7 FINAL STYLE SYSTEM
 
  PART 1 / 3
@@ -475,7 +475,7 @@ overflow-x:hidden;
 
 
 
-/* 极地极光 */
+/* 环境光效 */
 
 
 body::before{
@@ -2304,7 +2304,7 @@ letter-spacing:3px;
 
 
 
-.polar-device{
+.node-device{
 
 
 width:520px;
@@ -2380,13 +2380,13 @@ translateY(-12px);
 ===================== */
 
 
-.polar-device line,
+.node-device line,
 
 
-.polar-device rect,
+.node-device rect,
 
 
-.polar-device polygon{
+.node-device polygon{
 
 
 transition:.3s;
@@ -2397,10 +2397,10 @@ transition:.3s;
 
 
 
-.polar-device rect:hover,
+.node-device rect:hover,
 
 
-.polar-device polygon:hover{
+.node-device polygon:hover{
 
 
 filter:
@@ -2821,7 +2821,7 @@ margin:auto;
 
 
 
-.polar-device{
+.node-device{
 
 
 width:420px;
@@ -2887,7 +2887,7 @@ gap:20px;
 
 
 
-.polar-device{
+.node-device{
 
 
 width:330px;
@@ -3020,16 +3020,16 @@ margin-top:16px;
 
 
 /* =========================================================
-   DASHBOARD V8 · POLAR MISSION CONTROL
+   DASHBOARD V8 · MISSION CONTROL
    全部规则以 body.dashboard-page 作用域隔离，
    只影响 Dashboard 一页，不波及 location/analysis 等页面。
-   风格关键词：industrial / scientific / polar station / mission control
+   风格关键词：industrial / scientific / autonomous station / mission control
 ========================================================= */
 
 
 /* =========================================================
-   一、整体氛围：深海蓝 + 冰川蓝 + 极光青
-   深色极地空间 + 冰层纹理，克制发光，不使用大圆角
+   一、整体氛围：深海蓝 + 淡蓝 + 极光青
+   深色深色空间 + 层次纹理，克制发光，不使用大圆角
 ========================================================= */
 
 body.dashboard-page{
@@ -3042,7 +3042,7 @@ linear-gradient(160deg,#020911 0%,#041525 46%,#03101d 100%);
 }
 
 
-/* 极光与冰层纹理（只增强 Dashboard，背景层由全局 ::before 延续） */
+/* 极光与层次纹理（只增强 Dashboard，背景层由全局 ::before 延续） */
 body.dashboard-page::before{
 
 background:
@@ -4031,7 +4031,7 @@ opacity:.95;
 }
 
 
-/* 定位标记改为冰川蓝 */
+/* 定位标记改为淡蓝 */
 body.dashboard-page .leaflet-marker-icon{
 
 filter:hue-rotate(150deg) saturate(1.1) drop-shadow(0 0 4px rgba(98,217,255,.6));
@@ -4110,7 +4110,7 @@ pointer-events:none;
 }
 
 
-/* 半透明深蓝覆盖层：让地图呈现南极任务地图质感 */
+/* 半透明深蓝覆盖层：让地图呈现任务地图质感 */
 body.dashboard-page .map-tint{
 
 inset:0;
@@ -4885,18 +4885,18 @@ transition:none!important;
 
 
 /* =========================================================
-   ROUND 2 · POLAR RESEARCH PLATFORM
-   第二轮回级：极地氛围 / 遥测终端 / 硬件数字孪生
+   ROUND 2 · RESEARCH PLATFORM
+   第二轮回级：环境氛围 / 遥测终端 / 硬件数字孪生
    全部为展示层样式，不影响数据链路与地图逻辑
 ========================================================= */
 
 
 /* ---------------------------------------------------------
-   一、极地环境氛围（body.polar-ambient 页面共用）
+   一、环境氛围（body.ambient-theme 页面共用）
 --------------------------------------------------------- */
 
-/* 极光背景 + 冰层纹理（覆盖全局 body::before） */
-body.polar-ambient::before{
+/* 光效背景 + 层次纹理（覆盖全局 body::before） */
+body.ambient-theme::before{
 
 content:"";
 
@@ -4920,7 +4920,7 @@ animation:aurora 24s infinite alternate;
 
 
 /* 环境雾效（覆盖全局 body::after 的旧版 CSS 雪花） */
-body.polar-ambient::after{
+body.ambient-theme::after{
 
 content:"";
 
@@ -4942,7 +4942,7 @@ animation:none;
 
 
 /* 雪花画布（纯 canvas，粒子数量由各页脚本控制） */
-body.polar-ambient #snowField{
+body.ambient-theme #snowField{
 
 position:fixed;
 
@@ -4958,7 +4958,7 @@ opacity:.65;
 
 
 /* 页面级扫描线：极淡，缓慢下扫 */
-.polar-scan{
+.scan-line{
 
 position:fixed;
 
@@ -4976,12 +4976,12 @@ pointer-events:none;
 
 background:linear-gradient(180deg, transparent, rgba(98,217,255,.035) 45%, rgba(98,217,255,.08) 50%, rgba(98,217,255,.035) 55%, transparent);
 
-animation:polarScanMove 16s linear infinite;
+animation:scanMove 16s linear infinite;
 
 }
 
 
-@keyframes polarScanMove{
+@keyframes scanMove{
 
 to{
 
@@ -4993,7 +4993,7 @@ transform:translateY(calc(100vh + 360px));
 
 
 /* 设备编号铭牌（固定角落，小号等宽字） */
-.polar-badge{
+.node-badge{
 
 position:fixed;
 
@@ -5855,11 +5855,11 @@ order:-1;
 
 @media (prefers-reduced-motion: reduce){
 
-body.polar-ambient *,
+body.ambient-theme *,
 
-body.polar-ambient *::before,
+body.ambient-theme *::before,
 
-body.polar-ambient *::after{
+body.ambient-theme *::after{
 
 animation:none!important;
 
@@ -6785,7 +6785,7 @@ stroke-dashoffset:-104;
 
 
 /* =========================================================
-   V0.4 · POLAR OPERATIONS SUITE
+   V0.4 · OPERATIONS SUITE
    全站版本标记 / 模块化暴风雪 / Hardware 档案页 / Analysis 分析中心
 ========================================================= */
 
@@ -6805,13 +6805,13 @@ color:#8ceaff;
    全部 z-index:-1，位于内容之下，绝不遮挡文字/卡片/地图/图表
 ========================================================= */
 
-body.polar-ambient #snowFog,
+body.ambient-theme #snowFog,
 
-body.polar-ambient #snowFar,
+body.ambient-theme #snowFar,
 
-body.polar-ambient #snowMid,
+body.ambient-theme #snowMid,
 
-body.polar-ambient #snowFront{
+body.ambient-theme #snowFront{
 
 position:fixed;
 
@@ -6828,28 +6828,28 @@ z-index:-1;
 }
 
 
-body.polar-ambient #snowFog{
+body.ambient-theme #snowFog{
 
 opacity:.9;
 
 }
 
 
-body.polar-ambient #snowFar{
+body.ambient-theme #snowFar{
 
 opacity:.85;
 
 }
 
 
-body.polar-ambient #snowMid{
+body.ambient-theme #snowMid{
 
 opacity:.9;
 
 }
 
 
-body.polar-ambient #snowFront{
+body.ambient-theme #snowFront{
 
 opacity:.8;
 
@@ -6858,13 +6858,13 @@ opacity:.8;
 
 /* 修复：全局 canvas{height:260px!important}（Chart.js 用）会压缩雪画布，
    这里以更高优先级强制雪画布铺满整个视口 */
-body.polar-ambient #snowFog,
+body.ambient-theme #snowFog,
 
-body.polar-ambient #snowFar,
+body.ambient-theme #snowFar,
 
-body.polar-ambient #snowMid,
+body.ambient-theme #snowMid,
 
-body.polar-ambient #snowFront{
+body.ambient-theme #snowFront{
 
 position:fixed!important;
 
@@ -6884,7 +6884,7 @@ z-index:-1!important;
 
 
 /* 风雪方向感：背景追加斜向风雪线（覆盖早期极光纹理层） */
-body.polar-ambient::before{
+body.ambient-theme::before{
 
 background:
 repeating-linear-gradient(112deg, rgba(220,245,255,.012) 0 1px, transparent 1px 64px),
@@ -7650,7 +7650,7 @@ grid-template-rows:repeat(4,minmax(180px,1fr));
 
 
 /* =========================================================
-   V0.4.1 · ANTARCTIC MISSION SUMMARY（任务总结屏）
+   V0.4.1 · MISSION SUMMARY（任务总结屏）
    MISSION OVERVIEW → KPI → DATA PROFILE → SYSTEM HEALTH → TIMELINE
 ========================================================= */
 
@@ -10067,14 +10067,14 @@ order:1;
 /* 移动端背景性能：关闭扫描线与极光动画 */
 @media (max-width:900px){
 
-.polar-scan{
+.scan-line{
 
 display:none;
 
 }
 
 
-body.polar-ambient::before{
+body.ambient-theme::before{
 
 animation:none;
 
@@ -11082,7 +11082,7 @@ font-size:13px;
 }
 
 
-/* 设备边缘冰蓝轮廓光（静态，突出主体） */
+/* 设备边缘淡蓝轮廓光（静态，突出主体） */
 .hardware-page .hw-rim{
 
 stroke:rgba(220,250,255,.55);
@@ -11316,8 +11316,8 @@ fill:rgba(130,170,190,.45);
 
 
 /* =========================================================
-   HARDWARE V5 · ANTARCTIC FIELD NODE
-   真实极地节点形象：顶部 GPS/LoRa 天线、三棱柱太阳能、
+   HARDWARE V5 · FIELD NODE
+   真实观测节点形象：顶部 GPS/LoRa 天线、三棱柱太阳能、
    透明核心舱、防腐蚀支撑杆、雪地固定结构
 ========================================================= */
 
@@ -11795,7 +11795,7 @@ animation:dashBreathe 4.5s ease-in-out infinite;
 }
 
 
-/* 背景层：冰山 / 冰尘 / 反射 */
+/* 背景层：层次 / 纹理 / 反射 */
 .hardware-page .hw-silhouette,
 
 .hardware-page .hw-reflect,
@@ -12614,7 +12614,7 @@ padding:6px 10px;
 }
 
 
-.polar-scan{
+.scan-line{
 
 display:none;
 
@@ -12783,7 +12783,7 @@ padding-top:64px;
 
 /* =========================================================
    V4.0 · LANGUAGE SWITCH（全站中英切换胶囊）
-   深色玻璃 + 冰蓝高亮；当前语言高亮，未选择透明
+   深色玻璃 + 淡蓝高亮；当前语言高亮，未选择透明
 ========================================================= */
 .header-right{
 
@@ -13139,6 +13139,65 @@ height:36px;
 .header-right{
 
 gap:8px;
+
+}
+
+}
+
+
+/* =========================================================
+   V38 · 全站响应式兼容性优化（仅响应式，不改设计）
+   1) 超宽屏内容上限，避免 2560px 拉伸
+   2) 手机端硬件链路条内部滚动，避免撑破页面
+========================================================= */
+@media (min-width:901px){
+
+main{
+
+max-width:1920px;
+
+margin-left:260px;
+
+margin-right:auto;
+
+}
+
+}
+
+
+@media (max-width:480px){
+
+.hardware-page .hw-strip{
+
+gap:6px;
+
+padding:6px 8px;
+
+}
+
+
+.hardware-page .hw-chain{
+
+flex:0 1 auto;
+
+min-width:0;
+
+width:100%;
+
+max-width:100%;
+
+overflow-x:auto;
+
+-webkit-overflow-scrolling:touch;
+
+}
+
+
+.hardware-page .hc-node,
+
+.hardware-page .hc-arrow{
+
+flex:none;
 
 }
 

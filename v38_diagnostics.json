@@ -1,0 +1,3640 @@
+[
+  {
+    "size": "2560x1440",
+    "page": "index.html",
+    "vw": 2560,
+    "vh": 1440,
+    "doc": {
+      "sw": 2560,
+      "cw": 2560,
+      "sh": 1440,
+      "ch": 1440
+    },
+    "body": {
+      "sw": 2560
+    },
+    "hOverflow": false,
+    "vOverflow": false,
+    "offenders": [],
+    "sidebar": {
+      "left": 0,
+      "right": 250,
+      "w": 250
+    },
+    "menuOverflow": false,
+    "hasL": false,
+    "hasChart": false,
+    "analysisVScroll": null,
+    "errors": [
+      "Failed to load resource: net::ERR_NETWORK_ACCESS_DENIED"
+    ]
+  },
+  {
+    "size": "2560x1440",
+    "page": "location.html",
+    "vw": 2560,
+    "vh": 1440,
+    "doc": {
+      "sw": 2560,
+      "cw": 2560,
+      "sh": 1440,
+      "ch": 1440
+    },
+    "body": {
+      "sw": 2560
+    },
+    "hOverflow": false,
+    "vOverflow": false,
+    "offenders": [],
+    "sidebar": {
+      "left": 0,
+      "right": 250,
+      "w": 250
+    },
+    "menuOverflow": false,
+    "hasL": false,
+    "hasChart": false,
+    "analysisVScroll": null,
+    "errors": [
+      "Failed to load resource: net::ERR_NETWORK_ACCESS_DENIED"
+    ]
+  },
+  {
+    "size": "2560x1440",
+    "page": "sensors.html",
+    "vw": 2560,
+    "vh": 1440,
+    "doc": {
+      "sw": 2560,
+      "cw": 2560,
+      "sh": 1440,
+      "ch": 1440
+    },
+    "body": {
+      "sw": 2560
+    },
+    "hOverflow": false,
+    "vOverflow": false,
+    "offenders": [],
+    "sidebar": {
+      "left": 0,
+      "right": 250,
+      "w": 250
+    },
+    "menuOverflow": false,
+    "hasL": false,
+    "hasChart": false,
+    "analysisVScroll": null,
+    "errors": [
+      "Failed to load resource: net::ERR_NETWORK_ACCESS_DENIED"
+    ]
+  },
+  {
+    "size": "2560x1440",
+    "page": "telemetry.html",
+    "vw": 2560,
+    "vh": 1440,
+    "doc": {
+      "sw": 2560,
+      "cw": 2560,
+      "sh": 1440,
+      "ch": 1440
+    },
+    "body": {
+      "sw": 2560
+    },
+    "hOverflow": false,
+    "vOverflow": false,
+    "offenders": [],
+    "sidebar": {
+      "left": 0,
+      "right": 250,
+      "w": 250
+    },
+    "menuOverflow": false,
+    "hasL": false,
+    "hasChart": false,
+    "analysisVScroll": null,
+    "errors": []
+  },
+  {
+    "size": "2560x1440",
+    "page": "hardware.html",
+    "vw": 2560,
+    "vh": 1440,
+    "doc": {
+      "sw": 2560,
+      "cw": 2560,
+      "sh": 1440,
+      "ch": 1440
+    },
+    "body": {
+      "sw": 2560
+    },
+    "hOverflow": false,
+    "vOverflow": false,
+    "offenders": [],
+    "sidebar": {
+      "left": 0,
+      "right": 250,
+      "w": 250
+    },
+    "menuOverflow": false,
+    "hasL": false,
+    "hasChart": false,
+    "analysisVScroll": null,
+    "errors": []
+  },
+  {
+    "size": "2560x1440",
+    "page": "analysis.html",
+    "vw": 2560,
+    "vh": 1440,
+    "doc": {
+      "sw": 2560,
+      "cw": 2560,
+      "sh": 1440,
+      "ch": 1440
+    },
+    "body": {
+      "sw": 2560
+    },
+    "hOverflow": false,
+    "vOverflow": false,
+    "offenders": [],
+    "sidebar": {
+      "left": 0,
+      "right": 250,
+      "w": 250
+    },
+    "menuOverflow": false,
+    "hasL": false,
+    "hasChart": false,
+    "analysisVScroll": false,
+    "errors": []
+  },
+  {
+    "size": "1920x1080",
+    "page": "index.html",
+    "vw": 1905,
+    "vh": 1080,
+    "doc": {
+      "sw": 1905,
+      "cw": 1905,
+      "sh": 1191,
+      "ch": 1080
+    },
+    "body": {
+      "sw": 1905
+    },
+    "hOverflow": false,
+    "vOverflow": true,
+    "offenders": [
+      {
+        "tag": "CANVAS",
+        "cls": "",
+        "id": "snowCanvas",
+        "left": 0,
+        "right": 1920,
+        "w": 1920
+      }
+    ],
+    "sidebar": {
+      "left": 0,
+      "right": 250,
+      "w": 250
+    },
+    "menuOverflow": false,
+    "hasL": false,
+    "hasChart": false,
+    "analysisVScroll": null,
+    "errors": [
+      "Failed to load resource: net::ERR_NETWORK_ACCESS_DENIED"
+    ]
+  },
+  {
+    "size": "1920x1080",
+    "page": "location.html",
+    "vw": 1920,
+    "vh": 1080,
+    "doc": {
+      "sw": 1920,
+      "cw": 1920,
+      "sh": 1080,
+      "ch": 1080
+    },
+    "body": {
+      "sw": 1920
+    },
+    "hOverflow": false,
+    "vOverflow": false,
+    "offenders": [],
+    "sidebar": {
+      "left": 0,
+      "right": 250,
+      "w": 250
+    },
+    "menuOverflow": false,
+    "hasL": false,
+    "hasChart": false,
+    "analysisVScroll": null,
+    "errors": [
+      "Failed to load resource: net::ERR_NETWORK_ACCESS_DENIED"
+    ]
+  },
+  {
+    "size": "1920x1080",
+    "page": "sensors.html",
+    "vw": 1920,
+    "vh": 1080,
+    "doc": {
+      "sw": 1920,
+      "cw": 1920,
+      "sh": 1080,
+      "ch": 1080
+    },
+    "body": {
+      "sw": 1920
+    },
+    "hOverflow": false,
+    "vOverflow": false,
+    "offenders": [],
+    "sidebar": {
+      "left": 0,
+      "right": 250,
+      "w": 250
+    },
+    "menuOverflow": false,
+    "hasL": false,
+    "hasChart": false,
+    "analysisVScroll": null,
+    "errors": [
+      "Failed to load resource: net::ERR_NETWORK_ACCESS_DENIED"
+    ]
+  },
+  {
+    "size": "1920x1080",
+    "page": "telemetry.html",
+    "vw": 1920,
+    "vh": 1080,
+    "doc": {
+      "sw": 1920,
+      "cw": 1920,
+      "sh": 1080,
+      "ch": 1080
+    },
+    "body": {
+      "sw": 1920
+    },
+    "hOverflow": false,
+    "vOverflow": false,
+    "offenders": [],
+    "sidebar": {
+      "left": 0,
+      "right": 250,
+      "w": 250
+    },
+    "menuOverflow": false,
+    "hasL": false,
+    "hasChart": false,
+    "analysisVScroll": null,
+    "errors": []
+  },
+  {
+    "size": "1920x1080",
+    "page": "hardware.html",
+    "vw": 1920,
+    "vh": 1080,
+    "doc": {
+      "sw": 1920,
+      "cw": 1920,
+      "sh": 1080,
+      "ch": 1080
+    },
+    "body": {
+      "sw": 1920
+    },
+    "hOverflow": false,
+    "vOverflow": false,
+    "offenders": [],
+    "sidebar": {
+      "left": 0,
+      "right": 250,
+      "w": 250
+    },
+    "menuOverflow": false,
+    "hasL": false,
+    "hasChart": false,
+    "analysisVScroll": null,
+    "errors": []
+  },
+  {
+    "size": "1920x1080",
+    "page": "analysis.html",
+    "vw": 1920,
+    "vh": 1080,
+    "doc": {
+      "sw": 1920,
+      "cw": 1920,
+      "sh": 1080,
+      "ch": 1080
+    },
+    "body": {
+      "sw": 1920
+    },
+    "hOverflow": false,
+    "vOverflow": false,
+    "offenders": [],
+    "sidebar": {
+      "left": 0,
+      "right": 250,
+      "w": 250
+    },
+    "menuOverflow": false,
+    "hasL": false,
+    "hasChart": false,
+    "analysisVScroll": false,
+    "errors": []
+  },
+  {
+    "size": "1536x864",
+    "page": "index.html",
+    "vw": 1521,
+    "vh": 864,
+    "doc": {
+      "sw": 1521,
+      "cw": 1521,
+      "sh": 1001,
+      "ch": 864
+    },
+    "body": {
+      "sw": 1521
+    },
+    "hOverflow": false,
+    "vOverflow": true,
+    "offenders": [
+      {
+        "tag": "CANVAS",
+        "cls": "",
+        "id": "snowCanvas",
+        "left": 0,
+        "right": 1536,
+        "w": 1536
+      }
+    ],
+    "sidebar": {
+      "left": 0,
+      "right": 250,
+      "w": 250
+    },
+    "menuOverflow": false,
+    "hasL": false,
+    "hasChart": false,
+    "analysisVScroll": null,
+    "errors": [
+      "Failed to load resource: net::ERR_NETWORK_ACCESS_DENIED"
+    ]
+  },
+  {
+    "size": "1536x864",
+    "page": "location.html",
+    "vw": 1536,
+    "vh": 864,
+    "doc": {
+      "sw": 1536,
+      "cw": 1536,
+      "sh": 864,
+      "ch": 864
+    },
+    "body": {
+      "sw": 1536
+    },
+    "hOverflow": false,
+    "vOverflow": false,
+    "offenders": [],
+    "sidebar": {
+      "left": 0,
+      "right": 250,
+      "w": 250
+    },
+    "menuOverflow": false,
+    "hasL": false,
+    "hasChart": false,
+    "analysisVScroll": null,
+    "errors": [
+      "Failed to load resource: net::ERR_NETWORK_ACCESS_DENIED"
+    ]
+  },
+  {
+    "size": "1536x864",
+    "page": "sensors.html",
+    "vw": 1536,
+    "vh": 864,
+    "doc": {
+      "sw": 1536,
+      "cw": 1536,
+      "sh": 864,
+      "ch": 864
+    },
+    "body": {
+      "sw": 1536
+    },
+    "hOverflow": false,
+    "vOverflow": false,
+    "offenders": [],
+    "sidebar": {
+      "left": 0,
+      "right": 250,
+      "w": 250
+    },
+    "menuOverflow": false,
+    "hasL": false,
+    "hasChart": false,
+    "analysisVScroll": null,
+    "errors": [
+      "Failed to load resource: net::ERR_NETWORK_ACCESS_DENIED"
+    ]
+  },
+  {
+    "size": "1536x864",
+    "page": "telemetry.html",
+    "vw": 1536,
+    "vh": 864,
+    "doc": {
+      "sw": 1536,
+      "cw": 1536,
+      "sh": 864,
+      "ch": 864
+    },
+    "body": {
+      "sw": 1536
+    },
+    "hOverflow": false,
+    "vOverflow": false,
+    "offenders": [
+      {
+        "tag": "TABLE",
+        "cls": "tel-table",
+        "id": "",
+        "left": 288,
+        "right": 1766,
+        "w": 1478
+      },
+      {
+        "tag": "THEAD",
+        "cls": "",
+        "id": "",
+        "left": 288,
+        "right": 1766,
+        "w": 1478
+      },
+      {
+        "tag": "TR",
+        "cls": "",
+        "id": "",
+        "left": 288,
+        "right": 1766,
+        "w": 1478
+      },
+      {
+        "tag": "TH",
+        "cls": "",
+        "id": "",
+        "left": 1460,
+        "right": 1544,
+        "w": 84
+      },
+      {
+        "tag": "TH",
+        "cls": "",
+        "id": "",
+        "left": 1544,
+        "right": 1628,
+        "w": 84
+      },
+      {
+        "tag": "TH",
+        "cls": "",
+        "id": "",
+        "left": 1628,
+        "right": 1656,
+        "w": 27
+      }
+    ],
+    "sidebar": {
+      "left": 0,
+      "right": 250,
+      "w": 250
+    },
+    "menuOverflow": false,
+    "hasL": false,
+    "hasChart": false,
+    "analysisVScroll": null,
+    "errors": []
+  },
+  {
+    "size": "1536x864",
+    "page": "hardware.html",
+    "vw": 1536,
+    "vh": 864,
+    "doc": {
+      "sw": 1536,
+      "cw": 1536,
+      "sh": 864,
+      "ch": 864
+    },
+    "body": {
+      "sw": 1536
+    },
+    "hOverflow": false,
+    "vOverflow": false,
+    "offenders": [],
+    "sidebar": {
+      "left": 0,
+      "right": 250,
+      "w": 250
+    },
+    "menuOverflow": false,
+    "hasL": false,
+    "hasChart": false,
+    "analysisVScroll": null,
+    "errors": []
+  },
+  {
+    "size": "1536x864",
+    "page": "analysis.html",
+    "vw": 1536,
+    "vh": 864,
+    "doc": {
+      "sw": 1536,
+      "cw": 1536,
+      "sh": 864,
+      "ch": 864
+    },
+    "body": {
+      "sw": 1536
+    },
+    "hOverflow": false,
+    "vOverflow": false,
+    "offenders": [],
+    "sidebar": {
+      "left": 0,
+      "right": 250,
+      "w": 250
+    },
+    "menuOverflow": false,
+    "hasL": false,
+    "hasChart": false,
+    "analysisVScroll": false,
+    "errors": []
+  },
+  {
+    "size": "1440x900",
+    "page": "index.html",
+    "vw": 1425,
+    "vh": 900,
+    "doc": {
+      "sw": 1425,
+      "cw": 1425,
+      "sh": 1015,
+      "ch": 900
+    },
+    "body": {
+      "sw": 1425
+    },
+    "hOverflow": false,
+    "vOverflow": true,
+    "offenders": [
+      {
+        "tag": "CANVAS",
+        "cls": "",
+        "id": "snowCanvas",
+        "left": 0,
+        "right": 1440,
+        "w": 1440
+      }
+    ],
+    "sidebar": {
+      "left": 0,
+      "right": 250,
+      "w": 250
+    },
+    "menuOverflow": false,
+    "hasL": false,
+    "hasChart": false,
+    "analysisVScroll": null,
+    "errors": [
+      "Failed to load resource: net::ERR_NETWORK_ACCESS_DENIED"
+    ]
+  },
+  {
+    "size": "1440x900",
+    "page": "location.html",
+    "vw": 1440,
+    "vh": 900,
+    "doc": {
+      "sw": 1440,
+      "cw": 1440,
+      "sh": 900,
+      "ch": 900
+    },
+    "body": {
+      "sw": 1440
+    },
+    "hOverflow": false,
+    "vOverflow": false,
+    "offenders": [],
+    "sidebar": {
+      "left": 0,
+      "right": 250,
+      "w": 250
+    },
+    "menuOverflow": false,
+    "hasL": false,
+    "hasChart": false,
+    "analysisVScroll": null,
+    "errors": [
+      "Failed to load resource: net::ERR_NETWORK_ACCESS_DENIED"
+    ]
+  },
+  {
+    "size": "1440x900",
+    "page": "sensors.html",
+    "vw": 1440,
+    "vh": 900,
+    "doc": {
+      "sw": 1440,
+      "cw": 1440,
+      "sh": 900,
+      "ch": 900
+    },
+    "body": {
+      "sw": 1440
+    },
+    "hOverflow": false,
+    "vOverflow": false,
+    "offenders": [],
+    "sidebar": {
+      "left": 0,
+      "right": 250,
+      "w": 250
+    },
+    "menuOverflow": false,
+    "hasL": false,
+    "hasChart": false,
+    "analysisVScroll": null,
+    "errors": [
+      "Failed to load resource: net::ERR_NETWORK_ACCESS_DENIED"
+    ]
+  },
+  {
+    "size": "1440x900",
+    "page": "telemetry.html",
+    "vw": 1440,
+    "vh": 900,
+    "doc": {
+      "sw": 1440,
+      "cw": 1440,
+      "sh": 900,
+      "ch": 900
+    },
+    "body": {
+      "sw": 1440
+    },
+    "hOverflow": false,
+    "vOverflow": false,
+    "offenders": [
+      {
+        "tag": "TABLE",
+        "cls": "tel-table",
+        "id": "",
+        "left": 288,
+        "right": 1766,
+        "w": 1478
+      },
+      {
+        "tag": "THEAD",
+        "cls": "",
+        "id": "",
+        "left": 288,
+        "right": 1766,
+        "w": 1478
+      },
+      {
+        "tag": "TR",
+        "cls": "",
+        "id": "",
+        "left": 288,
+        "right": 1766,
+        "w": 1478
+      },
+      {
+        "tag": "TH",
+        "cls": "",
+        "id": "",
+        "left": 1375,
+        "right": 1460,
+        "w": 84
+      },
+      {
+        "tag": "TH",
+        "cls": "",
+        "id": "",
+        "left": 1460,
+        "right": 1544,
+        "w": 84
+      },
+      {
+        "tag": "TH",
+        "cls": "",
+        "id": "",
+        "left": 1544,
+        "right": 1628,
+        "w": 84
+      }
+    ],
+    "sidebar": {
+      "left": 0,
+      "right": 250,
+      "w": 250
+    },
+    "menuOverflow": false,
+    "hasL": false,
+    "hasChart": false,
+    "analysisVScroll": null,
+    "errors": []
+  },
+  {
+    "size": "1440x900",
+    "page": "hardware.html",
+    "vw": 1440,
+    "vh": 900,
+    "doc": {
+      "sw": 1440,
+      "cw": 1440,
+      "sh": 900,
+      "ch": 900
+    },
+    "body": {
+      "sw": 1440
+    },
+    "hOverflow": false,
+    "vOverflow": false,
+    "offenders": [],
+    "sidebar": {
+      "left": 0,
+      "right": 250,
+      "w": 250
+    },
+    "menuOverflow": false,
+    "hasL": false,
+    "hasChart": false,
+    "analysisVScroll": null,
+    "errors": []
+  },
+  {
+    "size": "1440x900",
+    "page": "analysis.html",
+    "vw": 1440,
+    "vh": 900,
+    "doc": {
+      "sw": 1440,
+      "cw": 1440,
+      "sh": 900,
+      "ch": 900
+    },
+    "body": {
+      "sw": 1440
+    },
+    "hOverflow": false,
+    "vOverflow": false,
+    "offenders": [],
+    "sidebar": {
+      "left": 0,
+      "right": 250,
+      "w": 250
+    },
+    "menuOverflow": false,
+    "hasL": false,
+    "hasChart": false,
+    "analysisVScroll": false,
+    "errors": []
+  },
+  {
+    "size": "1366x768",
+    "page": "index.html",
+    "vw": 1351,
+    "vh": 768,
+    "doc": {
+      "sw": 1351,
+      "cw": 1351,
+      "sh": 917,
+      "ch": 768
+    },
+    "body": {
+      "sw": 1351
+    },
+    "hOverflow": false,
+    "vOverflow": true,
+    "offenders": [
+      {
+        "tag": "CANVAS",
+        "cls": "",
+        "id": "snowCanvas",
+        "left": 0,
+        "right": 1366,
+        "w": 1366
+      }
+    ],
+    "sidebar": {
+      "left": 0,
+      "right": 250,
+      "w": 250
+    },
+    "menuOverflow": false,
+    "hasL": false,
+    "hasChart": false,
+    "analysisVScroll": null,
+    "errors": [
+      "Failed to load resource: net::ERR_NETWORK_ACCESS_DENIED"
+    ]
+  },
+  {
+    "size": "1366x768",
+    "page": "location.html",
+    "vw": 1366,
+    "vh": 768,
+    "doc": {
+      "sw": 1366,
+      "cw": 1366,
+      "sh": 768,
+      "ch": 768
+    },
+    "body": {
+      "sw": 1366
+    },
+    "hOverflow": false,
+    "vOverflow": false,
+    "offenders": [],
+    "sidebar": {
+      "left": 0,
+      "right": 250,
+      "w": 250
+    },
+    "menuOverflow": false,
+    "hasL": false,
+    "hasChart": false,
+    "analysisVScroll": null,
+    "errors": [
+      "Failed to load resource: net::ERR_NETWORK_ACCESS_DENIED"
+    ]
+  },
+  {
+    "size": "1366x768",
+    "page": "sensors.html",
+    "vw": 1366,
+    "vh": 768,
+    "doc": {
+      "sw": 1366,
+      "cw": 1366,
+      "sh": 768,
+      "ch": 768
+    },
+    "body": {
+      "sw": 1366
+    },
+    "hOverflow": false,
+    "vOverflow": false,
+    "offenders": [],
+    "sidebar": {
+      "left": 0,
+      "right": 250,
+      "w": 250
+    },
+    "menuOverflow": false,
+    "hasL": false,
+    "hasChart": false,
+    "analysisVScroll": null,
+    "errors": [
+      "Failed to load resource: net::ERR_NETWORK_ACCESS_DENIED"
+    ]
+  },
+  {
+    "size": "1366x768",
+    "page": "telemetry.html",
+    "vw": 1366,
+    "vh": 768,
+    "doc": {
+      "sw": 1366,
+      "cw": 1366,
+      "sh": 768,
+      "ch": 768
+    },
+    "body": {
+      "sw": 1366
+    },
+    "hOverflow": false,
+    "vOverflow": false,
+    "offenders": [
+      {
+        "tag": "TABLE",
+        "cls": "tel-table",
+        "id": "",
+        "left": 288,
+        "right": 1766,
+        "w": 1478
+      },
+      {
+        "tag": "THEAD",
+        "cls": "",
+        "id": "",
+        "left": 288,
+        "right": 1766,
+        "w": 1478
+      },
+      {
+        "tag": "TR",
+        "cls": "",
+        "id": "",
+        "left": 288,
+        "right": 1766,
+        "w": 1478
+      },
+      {
+        "tag": "TH",
+        "cls": "",
+        "id": "",
+        "left": 1297,
+        "right": 1375,
+        "w": 78
+      },
+      {
+        "tag": "TH",
+        "cls": "",
+        "id": "",
+        "left": 1375,
+        "right": 1460,
+        "w": 84
+      },
+      {
+        "tag": "TH",
+        "cls": "",
+        "id": "",
+        "left": 1460,
+        "right": 1544,
+        "w": 84
+      }
+    ],
+    "sidebar": {
+      "left": 0,
+      "right": 250,
+      "w": 250
+    },
+    "menuOverflow": false,
+    "hasL": false,
+    "hasChart": false,
+    "analysisVScroll": null,
+    "errors": []
+  },
+  {
+    "size": "1366x768",
+    "page": "hardware.html",
+    "vw": 1366,
+    "vh": 768,
+    "doc": {
+      "sw": 1366,
+      "cw": 1366,
+      "sh": 768,
+      "ch": 768
+    },
+    "body": {
+      "sw": 1366
+    },
+    "hOverflow": false,
+    "vOverflow": false,
+    "offenders": [],
+    "sidebar": {
+      "left": 0,
+      "right": 250,
+      "w": 250
+    },
+    "menuOverflow": false,
+    "hasL": false,
+    "hasChart": false,
+    "analysisVScroll": null,
+    "errors": []
+  },
+  {
+    "size": "1366x768",
+    "page": "analysis.html",
+    "vw": 1366,
+    "vh": 768,
+    "doc": {
+      "sw": 1366,
+      "cw": 1366,
+      "sh": 768,
+      "ch": 768
+    },
+    "body": {
+      "sw": 1366
+    },
+    "hOverflow": false,
+    "vOverflow": false,
+    "offenders": [],
+    "sidebar": {
+      "left": 0,
+      "right": 250,
+      "w": 250
+    },
+    "menuOverflow": false,
+    "hasL": false,
+    "hasChart": false,
+    "analysisVScroll": false,
+    "errors": []
+  },
+  {
+    "size": "1280x800",
+    "page": "index.html",
+    "vw": 1265,
+    "vh": 800,
+    "doc": {
+      "sw": 1265,
+      "cw": 1265,
+      "sh": 1093,
+      "ch": 800
+    },
+    "body": {
+      "sw": 1265
+    },
+    "hOverflow": false,
+    "vOverflow": true,
+    "offenders": [
+      {
+        "tag": "CANVAS",
+        "cls": "",
+        "id": "snowCanvas",
+        "left": 0,
+        "right": 1280,
+        "w": 1280
+      }
+    ],
+    "sidebar": {
+      "left": 0,
+      "right": 250,
+      "w": 250
+    },
+    "menuOverflow": false,
+    "hasL": false,
+    "hasChart": false,
+    "analysisVScroll": null,
+    "errors": [
+      "Failed to load resource: net::ERR_NETWORK_ACCESS_DENIED"
+    ]
+  },
+  {
+    "size": "1280x800",
+    "page": "location.html",
+    "vw": 1280,
+    "vh": 800,
+    "doc": {
+      "sw": 1280,
+      "cw": 1280,
+      "sh": 800,
+      "ch": 800
+    },
+    "body": {
+      "sw": 1280
+    },
+    "hOverflow": false,
+    "vOverflow": false,
+    "offenders": [],
+    "sidebar": {
+      "left": 0,
+      "right": 250,
+      "w": 250
+    },
+    "menuOverflow": false,
+    "hasL": false,
+    "hasChart": false,
+    "analysisVScroll": null,
+    "errors": [
+      "Failed to load resource: net::ERR_NETWORK_ACCESS_DENIED"
+    ]
+  },
+  {
+    "size": "1280x800",
+    "page": "sensors.html",
+    "vw": 1280,
+    "vh": 800,
+    "doc": {
+      "sw": 1280,
+      "cw": 1280,
+      "sh": 800,
+      "ch": 800
+    },
+    "body": {
+      "sw": 1280
+    },
+    "hOverflow": false,
+    "vOverflow": false,
+    "offenders": [],
+    "sidebar": {
+      "left": 0,
+      "right": 250,
+      "w": 250
+    },
+    "menuOverflow": false,
+    "hasL": false,
+    "hasChart": false,
+    "analysisVScroll": null,
+    "errors": [
+      "Failed to load resource: net::ERR_NETWORK_ACCESS_DENIED"
+    ]
+  },
+  {
+    "size": "1280x800",
+    "page": "telemetry.html",
+    "vw": 1280,
+    "vh": 800,
+    "doc": {
+      "sw": 1280,
+      "cw": 1280,
+      "sh": 800,
+      "ch": 800
+    },
+    "body": {
+      "sw": 1280
+    },
+    "hOverflow": false,
+    "vOverflow": false,
+    "offenders": [
+      {
+        "tag": "TABLE",
+        "cls": "tel-table",
+        "id": "",
+        "left": 288,
+        "right": 1766,
+        "w": 1478
+      },
+      {
+        "tag": "THEAD",
+        "cls": "",
+        "id": "",
+        "left": 288,
+        "right": 1766,
+        "w": 1478
+      },
+      {
+        "tag": "TR",
+        "cls": "",
+        "id": "",
+        "left": 288,
+        "right": 1766,
+        "w": 1478
+      },
+      {
+        "tag": "TH",
+        "cls": "",
+        "id": "",
+        "left": 1226,
+        "right": 1297,
+        "w": 72
+      },
+      {
+        "tag": "EM",
+        "cls": "",
+        "id": "",
+        "left": 1236,
+        "right": 1287,
+        "w": 52
+      },
+      {
+        "tag": "TH",
+        "cls": "",
+        "id": "",
+        "left": 1297,
+        "right": 1375,
+        "w": 78
+      }
+    ],
+    "sidebar": {
+      "left": 0,
+      "right": 250,
+      "w": 250
+    },
+    "menuOverflow": false,
+    "hasL": false,
+    "hasChart": false,
+    "analysisVScroll": null,
+    "errors": []
+  },
+  {
+    "size": "1280x800",
+    "page": "hardware.html",
+    "vw": 1280,
+    "vh": 800,
+    "doc": {
+      "sw": 1280,
+      "cw": 1280,
+      "sh": 800,
+      "ch": 800
+    },
+    "body": {
+      "sw": 1280
+    },
+    "hOverflow": false,
+    "vOverflow": false,
+    "offenders": [],
+    "sidebar": {
+      "left": 0,
+      "right": 250,
+      "w": 250
+    },
+    "menuOverflow": false,
+    "hasL": false,
+    "hasChart": false,
+    "analysisVScroll": null,
+    "errors": []
+  },
+  {
+    "size": "1280x800",
+    "page": "analysis.html",
+    "vw": 1280,
+    "vh": 800,
+    "doc": {
+      "sw": 1280,
+      "cw": 1280,
+      "sh": 800,
+      "ch": 800
+    },
+    "body": {
+      "sw": 1280
+    },
+    "hOverflow": false,
+    "vOverflow": false,
+    "offenders": [],
+    "sidebar": {
+      "left": 0,
+      "right": 250,
+      "w": 250
+    },
+    "menuOverflow": false,
+    "hasL": false,
+    "hasChart": false,
+    "analysisVScroll": false,
+    "errors": []
+  },
+  {
+    "size": "1280x720",
+    "page": "index.html",
+    "vw": 1265,
+    "vh": 720,
+    "doc": {
+      "sw": 1265,
+      "cw": 1265,
+      "sh": 1082,
+      "ch": 720
+    },
+    "body": {
+      "sw": 1265
+    },
+    "hOverflow": false,
+    "vOverflow": true,
+    "offenders": [
+      {
+        "tag": "CANVAS",
+        "cls": "",
+        "id": "snowCanvas",
+        "left": 0,
+        "right": 1280,
+        "w": 1280
+      }
+    ],
+    "sidebar": {
+      "left": 0,
+      "right": 250,
+      "w": 250
+    },
+    "menuOverflow": false,
+    "hasL": false,
+    "hasChart": false,
+    "analysisVScroll": null,
+    "errors": [
+      "Failed to load resource: net::ERR_NETWORK_ACCESS_DENIED"
+    ]
+  },
+  {
+    "size": "1280x720",
+    "page": "location.html",
+    "vw": 1280,
+    "vh": 720,
+    "doc": {
+      "sw": 1280,
+      "cw": 1280,
+      "sh": 720,
+      "ch": 720
+    },
+    "body": {
+      "sw": 1280
+    },
+    "hOverflow": false,
+    "vOverflow": false,
+    "offenders": [],
+    "sidebar": {
+      "left": 0,
+      "right": 250,
+      "w": 250
+    },
+    "menuOverflow": false,
+    "hasL": false,
+    "hasChart": false,
+    "analysisVScroll": null,
+    "errors": [
+      "Failed to load resource: net::ERR_NETWORK_ACCESS_DENIED"
+    ]
+  },
+  {
+    "size": "1280x720",
+    "page": "sensors.html",
+    "vw": 1280,
+    "vh": 720,
+    "doc": {
+      "sw": 1280,
+      "cw": 1280,
+      "sh": 720,
+      "ch": 720
+    },
+    "body": {
+      "sw": 1280
+    },
+    "hOverflow": false,
+    "vOverflow": false,
+    "offenders": [],
+    "sidebar": {
+      "left": 0,
+      "right": 250,
+      "w": 250
+    },
+    "menuOverflow": false,
+    "hasL": false,
+    "hasChart": false,
+    "analysisVScroll": null,
+    "errors": [
+      "Failed to load resource: net::ERR_NETWORK_ACCESS_DENIED"
+    ]
+  },
+  {
+    "size": "1280x720",
+    "page": "telemetry.html",
+    "vw": 1280,
+    "vh": 720,
+    "doc": {
+      "sw": 1280,
+      "cw": 1280,
+      "sh": 720,
+      "ch": 720
+    },
+    "body": {
+      "sw": 1280
+    },
+    "hOverflow": false,
+    "vOverflow": false,
+    "offenders": [
+      {
+        "tag": "TABLE",
+        "cls": "tel-table",
+        "id": "",
+        "left": 288,
+        "right": 1766,
+        "w": 1478
+      },
+      {
+        "tag": "THEAD",
+        "cls": "",
+        "id": "",
+        "left": 288,
+        "right": 1766,
+        "w": 1478
+      },
+      {
+        "tag": "TR",
+        "cls": "",
+        "id": "",
+        "left": 288,
+        "right": 1766,
+        "w": 1478
+      },
+      {
+        "tag": "TH",
+        "cls": "",
+        "id": "",
+        "left": 1226,
+        "right": 1297,
+        "w": 72
+      },
+      {
+        "tag": "EM",
+        "cls": "",
+        "id": "",
+        "left": 1236,
+        "right": 1287,
+        "w": 52
+      },
+      {
+        "tag": "TH",
+        "cls": "",
+        "id": "",
+        "left": 1297,
+        "right": 1375,
+        "w": 78
+      }
+    ],
+    "sidebar": {
+      "left": 0,
+      "right": 250,
+      "w": 250
+    },
+    "menuOverflow": false,
+    "hasL": false,
+    "hasChart": false,
+    "analysisVScroll": null,
+    "errors": []
+  },
+  {
+    "size": "1280x720",
+    "page": "hardware.html",
+    "vw": 1280,
+    "vh": 720,
+    "doc": {
+      "sw": 1280,
+      "cw": 1280,
+      "sh": 720,
+      "ch": 720
+    },
+    "body": {
+      "sw": 1280
+    },
+    "hOverflow": false,
+    "vOverflow": false,
+    "offenders": [],
+    "sidebar": {
+      "left": 0,
+      "right": 250,
+      "w": 250
+    },
+    "menuOverflow": false,
+    "hasL": false,
+    "hasChart": false,
+    "analysisVScroll": null,
+    "errors": []
+  },
+  {
+    "size": "1280x720",
+    "page": "analysis.html",
+    "vw": 1280,
+    "vh": 720,
+    "doc": {
+      "sw": 1280,
+      "cw": 1280,
+      "sh": 720,
+      "ch": 720
+    },
+    "body": {
+      "sw": 1280
+    },
+    "hOverflow": false,
+    "vOverflow": false,
+    "offenders": [],
+    "sidebar": {
+      "left": 0,
+      "right": 250,
+      "w": 250
+    },
+    "menuOverflow": false,
+    "hasL": false,
+    "hasChart": false,
+    "analysisVScroll": false,
+    "errors": []
+  },
+  {
+    "size": "1024x1366",
+    "page": "index.html",
+    "vw": 1009,
+    "vh": 1366,
+    "doc": {
+      "sw": 1009,
+      "cw": 1009,
+      "sh": 1470,
+      "ch": 1366
+    },
+    "body": {
+      "sw": 1009
+    },
+    "hOverflow": false,
+    "vOverflow": true,
+    "offenders": [
+      {
+        "tag": "I",
+        "cls": "",
+        "id": "",
+        "left": 206,
+        "right": 1053,
+        "w": 847
+      },
+      {
+        "tag": "CANVAS",
+        "cls": "",
+        "id": "snowCanvas",
+        "left": 0,
+        "right": 1024,
+        "w": 1024
+      }
+    ],
+    "sidebar": {
+      "left": 0,
+      "right": 250,
+      "w": 250
+    },
+    "menuOverflow": false,
+    "hasL": false,
+    "hasChart": false,
+    "analysisVScroll": null,
+    "errors": [
+      "Failed to load resource: net::ERR_NETWORK_ACCESS_DENIED"
+    ]
+  },
+  {
+    "size": "1024x1366",
+    "page": "location.html",
+    "vw": 1024,
+    "vh": 1366,
+    "doc": {
+      "sw": 1024,
+      "cw": 1024,
+      "sh": 1366,
+      "ch": 1366
+    },
+    "body": {
+      "sw": 1024
+    },
+    "hOverflow": false,
+    "vOverflow": false,
+    "offenders": [],
+    "sidebar": {
+      "left": 0,
+      "right": 250,
+      "w": 250
+    },
+    "menuOverflow": false,
+    "hasL": false,
+    "hasChart": false,
+    "analysisVScroll": null,
+    "errors": [
+      "Failed to load resource: net::ERR_NETWORK_ACCESS_DENIED"
+    ]
+  },
+  {
+    "size": "1024x1366",
+    "page": "sensors.html",
+    "vw": 1024,
+    "vh": 1366,
+    "doc": {
+      "sw": 1024,
+      "cw": 1024,
+      "sh": 1366,
+      "ch": 1366
+    },
+    "body": {
+      "sw": 1024
+    },
+    "hOverflow": false,
+    "vOverflow": false,
+    "offenders": [],
+    "sidebar": {
+      "left": 0,
+      "right": 250,
+      "w": 250
+    },
+    "menuOverflow": false,
+    "hasL": false,
+    "hasChart": false,
+    "analysisVScroll": null,
+    "errors": [
+      "Failed to load resource: net::ERR_NETWORK_ACCESS_DENIED"
+    ]
+  },
+  {
+    "size": "1024x1366",
+    "page": "telemetry.html",
+    "vw": 1024,
+    "vh": 1366,
+    "doc": {
+      "sw": 1024,
+      "cw": 1024,
+      "sh": 1366,
+      "ch": 1366
+    },
+    "body": {
+      "sw": 1024
+    },
+    "hOverflow": false,
+    "vOverflow": false,
+    "offenders": [
+      {
+        "tag": "TABLE",
+        "cls": "tel-table",
+        "id": "",
+        "left": 288,
+        "right": 1758,
+        "w": 1470
+      },
+      {
+        "tag": "THEAD",
+        "cls": "",
+        "id": "",
+        "left": 288,
+        "right": 1758,
+        "w": 1470
+      },
+      {
+        "tag": "TR",
+        "cls": "",
+        "id": "",
+        "left": 288,
+        "right": 1758,
+        "w": 1470
+      },
+      {
+        "tag": "TH",
+        "cls": "",
+        "id": "",
+        "left": 999,
+        "right": 1096,
+        "w": 97
+      },
+      {
+        "tag": "EM",
+        "cls": "",
+        "id": "",
+        "left": 1009,
+        "right": 1086,
+        "w": 77
+      },
+      {
+        "tag": "TH",
+        "cls": "",
+        "id": "",
+        "left": 1096,
+        "right": 1219,
+        "w": 123
+      }
+    ],
+    "sidebar": {
+      "left": 0,
+      "right": 250,
+      "w": 250
+    },
+    "menuOverflow": false,
+    "hasL": false,
+    "hasChart": false,
+    "analysisVScroll": null,
+    "errors": []
+  },
+  {
+    "size": "1024x1366",
+    "page": "hardware.html",
+    "vw": 1024,
+    "vh": 1366,
+    "doc": {
+      "sw": 1024,
+      "cw": 1024,
+      "sh": 1366,
+      "ch": 1366
+    },
+    "body": {
+      "sw": 1024
+    },
+    "hOverflow": false,
+    "vOverflow": false,
+    "offenders": [],
+    "sidebar": {
+      "left": 0,
+      "right": 250,
+      "w": 250
+    },
+    "menuOverflow": false,
+    "hasL": false,
+    "hasChart": false,
+    "analysisVScroll": null,
+    "errors": []
+  },
+  {
+    "size": "1024x1366",
+    "page": "analysis.html",
+    "vw": 1009,
+    "vh": 1366,
+    "doc": {
+      "sw": 1009,
+      "cw": 1009,
+      "sh": 1441,
+      "ch": 1366
+    },
+    "body": {
+      "sw": 1009
+    },
+    "hOverflow": false,
+    "vOverflow": true,
+    "offenders": [
+      {
+        "tag": "CANVAS",
+        "cls": "",
+        "id": "snowCanvas",
+        "left": 0,
+        "right": 1024,
+        "w": 1024
+      }
+    ],
+    "sidebar": {
+      "left": 0,
+      "right": 250,
+      "w": 250
+    },
+    "menuOverflow": false,
+    "hasL": false,
+    "hasChart": false,
+    "analysisVScroll": true,
+    "errors": []
+  },
+  {
+    "size": "768x1024",
+    "page": "index.html",
+    "vw": 753,
+    "vh": 1024,
+    "doc": {
+      "sw": 753,
+      "cw": 753,
+      "sh": 2231,
+      "ch": 1024
+    },
+    "body": {
+      "sw": 753
+    },
+    "hOverflow": false,
+    "vOverflow": true,
+    "offenders": [
+      {
+        "tag": "NAV",
+        "cls": "sidebar-menu",
+        "id": "",
+        "left": -326,
+        "right": -6,
+        "w": 320
+      },
+      {
+        "tag": "A",
+        "cls": "nav-item active",
+        "id": "",
+        "left": -314,
+        "right": -19,
+        "w": 295
+      },
+      {
+        "tag": "SPAN",
+        "cls": "",
+        "id": "",
+        "left": -298,
+        "right": -221,
+        "w": 77
+      },
+      {
+        "tag": "A",
+        "cls": "nav-item",
+        "id": "",
+        "left": -314,
+        "right": -19,
+        "w": 295
+      },
+      {
+        "tag": "SPAN",
+        "cls": "",
+        "id": "",
+        "left": -298,
+        "right": -236,
+        "w": 63
+      },
+      {
+        "tag": "A",
+        "cls": "nav-item",
+        "id": "",
+        "left": -314,
+        "right": -19,
+        "w": 295
+      }
+    ],
+    "sidebar": {
+      "left": 0,
+      "right": 753,
+      "w": 753
+    },
+    "menuOverflow": false,
+    "hasL": false,
+    "hasChart": false,
+    "analysisVScroll": null,
+    "errors": [
+      "Failed to load resource: net::ERR_NETWORK_ACCESS_DENIED"
+    ]
+  },
+  {
+    "size": "768x1024",
+    "page": "location.html",
+    "vw": 753,
+    "vh": 1024,
+    "doc": {
+      "sw": 753,
+      "cw": 753,
+      "sh": 1297,
+      "ch": 1024
+    },
+    "body": {
+      "sw": 753
+    },
+    "hOverflow": false,
+    "vOverflow": true,
+    "offenders": [
+      {
+        "tag": "NAV",
+        "cls": "sidebar-menu",
+        "id": "",
+        "left": -326,
+        "right": -6,
+        "w": 320
+      },
+      {
+        "tag": "A",
+        "cls": "nav-item",
+        "id": "",
+        "left": -314,
+        "right": -19,
+        "w": 295
+      },
+      {
+        "tag": "SPAN",
+        "cls": "",
+        "id": "",
+        "left": -298,
+        "right": -221,
+        "w": 77
+      },
+      {
+        "tag": "A",
+        "cls": "nav-item active",
+        "id": "",
+        "left": -314,
+        "right": -19,
+        "w": 295
+      },
+      {
+        "tag": "SPAN",
+        "cls": "",
+        "id": "",
+        "left": -298,
+        "right": -236,
+        "w": 63
+      },
+      {
+        "tag": "A",
+        "cls": "nav-item",
+        "id": "",
+        "left": -314,
+        "right": -19,
+        "w": 295
+      }
+    ],
+    "sidebar": {
+      "left": 0,
+      "right": 753,
+      "w": 753
+    },
+    "menuOverflow": false,
+    "hasL": false,
+    "hasChart": false,
+    "analysisVScroll": null,
+    "errors": [
+      "Failed to load resource: net::ERR_NETWORK_ACCESS_DENIED"
+    ]
+  },
+  {
+    "size": "768x1024",
+    "page": "sensors.html",
+    "vw": 753,
+    "vh": 1024,
+    "doc": {
+      "sw": 753,
+      "cw": 753,
+      "sh": 2965,
+      "ch": 1024
+    },
+    "body": {
+      "sw": 753
+    },
+    "hOverflow": false,
+    "vOverflow": true,
+    "offenders": [
+      {
+        "tag": "NAV",
+        "cls": "sidebar-menu",
+        "id": "",
+        "left": -326,
+        "right": -6,
+        "w": 320
+      },
+      {
+        "tag": "A",
+        "cls": "nav-item",
+        "id": "",
+        "left": -314,
+        "right": -19,
+        "w": 295
+      },
+      {
+        "tag": "SPAN",
+        "cls": "",
+        "id": "",
+        "left": -298,
+        "right": -221,
+        "w": 77
+      },
+      {
+        "tag": "A",
+        "cls": "nav-item",
+        "id": "",
+        "left": -314,
+        "right": -19,
+        "w": 295
+      },
+      {
+        "tag": "SPAN",
+        "cls": "",
+        "id": "",
+        "left": -298,
+        "right": -236,
+        "w": 63
+      },
+      {
+        "tag": "A",
+        "cls": "nav-item active",
+        "id": "",
+        "left": -314,
+        "right": -19,
+        "w": 295
+      }
+    ],
+    "sidebar": {
+      "left": 0,
+      "right": 753,
+      "w": 753
+    },
+    "menuOverflow": false,
+    "hasL": false,
+    "hasChart": false,
+    "analysisVScroll": null,
+    "errors": [
+      "Failed to load resource: net::ERR_NETWORK_ACCESS_DENIED"
+    ]
+  },
+  {
+    "size": "768x1024",
+    "page": "telemetry.html",
+    "vw": 753,
+    "vh": 1024,
+    "doc": {
+      "sw": 753,
+      "cw": 753,
+      "sh": 1120,
+      "ch": 1024
+    },
+    "body": {
+      "sw": 753
+    },
+    "hOverflow": false,
+    "vOverflow": true,
+    "offenders": [
+      {
+        "tag": "NAV",
+        "cls": "sidebar-menu",
+        "id": "",
+        "left": -326,
+        "right": -6,
+        "w": 320
+      },
+      {
+        "tag": "A",
+        "cls": "nav-item",
+        "id": "",
+        "left": -314,
+        "right": -19,
+        "w": 295
+      },
+      {
+        "tag": "SPAN",
+        "cls": "",
+        "id": "",
+        "left": -298,
+        "right": -221,
+        "w": 77
+      },
+      {
+        "tag": "A",
+        "cls": "nav-item",
+        "id": "",
+        "left": -314,
+        "right": -19,
+        "w": 295
+      },
+      {
+        "tag": "SPAN",
+        "cls": "",
+        "id": "",
+        "left": -298,
+        "right": -236,
+        "w": 63
+      },
+      {
+        "tag": "A",
+        "cls": "nav-item",
+        "id": "",
+        "left": -314,
+        "right": -19,
+        "w": 295
+      }
+    ],
+    "sidebar": {
+      "left": 0,
+      "right": 753,
+      "w": 753
+    },
+    "menuOverflow": false,
+    "hasL": false,
+    "hasChart": false,
+    "analysisVScroll": null,
+    "errors": []
+  },
+  {
+    "size": "768x1024",
+    "page": "hardware.html",
+    "vw": 753,
+    "vh": 1024,
+    "doc": {
+      "sw": 753,
+      "cw": 753,
+      "sh": 1800,
+      "ch": 1024
+    },
+    "body": {
+      "sw": 753
+    },
+    "hOverflow": false,
+    "vOverflow": true,
+    "offenders": [
+      {
+        "tag": "NAV",
+        "cls": "sidebar-menu",
+        "id": "",
+        "left": -326,
+        "right": -6,
+        "w": 320
+      },
+      {
+        "tag": "A",
+        "cls": "nav-item",
+        "id": "",
+        "left": -314,
+        "right": -19,
+        "w": 295
+      },
+      {
+        "tag": "SPAN",
+        "cls": "",
+        "id": "",
+        "left": -298,
+        "right": -221,
+        "w": 77
+      },
+      {
+        "tag": "A",
+        "cls": "nav-item",
+        "id": "",
+        "left": -314,
+        "right": -19,
+        "w": 295
+      },
+      {
+        "tag": "SPAN",
+        "cls": "",
+        "id": "",
+        "left": -298,
+        "right": -236,
+        "w": 63
+      },
+      {
+        "tag": "A",
+        "cls": "nav-item",
+        "id": "",
+        "left": -314,
+        "right": -19,
+        "w": 295
+      }
+    ],
+    "sidebar": {
+      "left": 0,
+      "right": 753,
+      "w": 753
+    },
+    "menuOverflow": false,
+    "hasL": false,
+    "hasChart": false,
+    "analysisVScroll": null,
+    "errors": []
+  },
+  {
+    "size": "768x1024",
+    "page": "analysis.html",
+    "vw": 753,
+    "vh": 1024,
+    "doc": {
+      "sw": 753,
+      "cw": 753,
+      "sh": 1533,
+      "ch": 1024
+    },
+    "body": {
+      "sw": 753
+    },
+    "hOverflow": false,
+    "vOverflow": true,
+    "offenders": [
+      {
+        "tag": "NAV",
+        "cls": "sidebar-menu",
+        "id": "",
+        "left": -326,
+        "right": -6,
+        "w": 320
+      },
+      {
+        "tag": "A",
+        "cls": "nav-item",
+        "id": "",
+        "left": -314,
+        "right": -19,
+        "w": 295
+      },
+      {
+        "tag": "SPAN",
+        "cls": "",
+        "id": "",
+        "left": -298,
+        "right": -221,
+        "w": 77
+      },
+      {
+        "tag": "A",
+        "cls": "nav-item",
+        "id": "",
+        "left": -314,
+        "right": -19,
+        "w": 295
+      },
+      {
+        "tag": "SPAN",
+        "cls": "",
+        "id": "",
+        "left": -298,
+        "right": -236,
+        "w": 63
+      },
+      {
+        "tag": "A",
+        "cls": "nav-item",
+        "id": "",
+        "left": -314,
+        "right": -19,
+        "w": 295
+      }
+    ],
+    "sidebar": {
+      "left": 0,
+      "right": 753,
+      "w": 753
+    },
+    "menuOverflow": false,
+    "hasL": false,
+    "hasChart": false,
+    "analysisVScroll": true,
+    "errors": []
+  },
+  {
+    "size": "390x844",
+    "page": "index.html",
+    "vw": 375,
+    "vh": 844,
+    "doc": {
+      "sw": 375,
+      "cw": 375,
+      "sh": 2607,
+      "ch": 844
+    },
+    "body": {
+      "sw": 375
+    },
+    "hOverflow": false,
+    "vOverflow": true,
+    "offenders": [
+      {
+        "tag": "NAV",
+        "cls": "sidebar-menu",
+        "id": "",
+        "left": -310,
+        "right": -6,
+        "w": 304
+      },
+      {
+        "tag": "A",
+        "cls": "nav-item active",
+        "id": "",
+        "left": -298,
+        "right": -19,
+        "w": 279
+      },
+      {
+        "tag": "SPAN",
+        "cls": "",
+        "id": "",
+        "left": -282,
+        "right": -205,
+        "w": 77
+      },
+      {
+        "tag": "A",
+        "cls": "nav-item",
+        "id": "",
+        "left": -298,
+        "right": -19,
+        "w": 279
+      },
+      {
+        "tag": "SPAN",
+        "cls": "",
+        "id": "",
+        "left": -282,
+        "right": -220,
+        "w": 63
+      },
+      {
+        "tag": "A",
+        "cls": "nav-item",
+        "id": "",
+        "left": -298,
+        "right": -19,
+        "w": 279
+      }
+    ],
+    "sidebar": {
+      "left": 0,
+      "right": 375,
+      "w": 375
+    },
+    "menuOverflow": false,
+    "hasL": false,
+    "hasChart": false,
+    "analysisVScroll": null,
+    "errors": [
+      "Failed to load resource: net::ERR_NETWORK_ACCESS_DENIED"
+    ]
+  },
+  {
+    "size": "390x844",
+    "page": "location.html",
+    "vw": 375,
+    "vh": 844,
+    "doc": {
+      "sw": 375,
+      "cw": 375,
+      "sh": 1126,
+      "ch": 844
+    },
+    "body": {
+      "sw": 375
+    },
+    "hOverflow": false,
+    "vOverflow": true,
+    "offenders": [
+      {
+        "tag": "NAV",
+        "cls": "sidebar-menu",
+        "id": "",
+        "left": -310,
+        "right": -6,
+        "w": 304
+      },
+      {
+        "tag": "A",
+        "cls": "nav-item",
+        "id": "",
+        "left": -298,
+        "right": -19,
+        "w": 279
+      },
+      {
+        "tag": "SPAN",
+        "cls": "",
+        "id": "",
+        "left": -282,
+        "right": -205,
+        "w": 77
+      },
+      {
+        "tag": "A",
+        "cls": "nav-item active",
+        "id": "",
+        "left": -298,
+        "right": -19,
+        "w": 279
+      },
+      {
+        "tag": "SPAN",
+        "cls": "",
+        "id": "",
+        "left": -282,
+        "right": -220,
+        "w": 63
+      },
+      {
+        "tag": "A",
+        "cls": "nav-item",
+        "id": "",
+        "left": -298,
+        "right": -19,
+        "w": 279
+      }
+    ],
+    "sidebar": {
+      "left": 0,
+      "right": 375,
+      "w": 375
+    },
+    "menuOverflow": false,
+    "hasL": false,
+    "hasChart": false,
+    "analysisVScroll": null,
+    "errors": [
+      "Failed to load resource: net::ERR_NETWORK_ACCESS_DENIED"
+    ]
+  },
+  {
+    "size": "390x844",
+    "page": "sensors.html",
+    "vw": 375,
+    "vh": 844,
+    "doc": {
+      "sw": 375,
+      "cw": 375,
+      "sh": 2987,
+      "ch": 844
+    },
+    "body": {
+      "sw": 375
+    },
+    "hOverflow": false,
+    "vOverflow": true,
+    "offenders": [
+      {
+        "tag": "NAV",
+        "cls": "sidebar-menu",
+        "id": "",
+        "left": -310,
+        "right": -6,
+        "w": 304
+      },
+      {
+        "tag": "A",
+        "cls": "nav-item",
+        "id": "",
+        "left": -298,
+        "right": -19,
+        "w": 279
+      },
+      {
+        "tag": "SPAN",
+        "cls": "",
+        "id": "",
+        "left": -282,
+        "right": -205,
+        "w": 77
+      },
+      {
+        "tag": "A",
+        "cls": "nav-item",
+        "id": "",
+        "left": -298,
+        "right": -19,
+        "w": 279
+      },
+      {
+        "tag": "SPAN",
+        "cls": "",
+        "id": "",
+        "left": -282,
+        "right": -220,
+        "w": 63
+      },
+      {
+        "tag": "A",
+        "cls": "nav-item active",
+        "id": "",
+        "left": -298,
+        "right": -19,
+        "w": 279
+      }
+    ],
+    "sidebar": {
+      "left": 0,
+      "right": 375,
+      "w": 375
+    },
+    "menuOverflow": false,
+    "hasL": false,
+    "hasChart": false,
+    "analysisVScroll": null,
+    "errors": [
+      "Failed to load resource: net::ERR_NETWORK_ACCESS_DENIED"
+    ]
+  },
+  {
+    "size": "390x844",
+    "page": "telemetry.html",
+    "vw": 375,
+    "vh": 844,
+    "doc": {
+      "sw": 375,
+      "cw": 375,
+      "sh": 935,
+      "ch": 844
+    },
+    "body": {
+      "sw": 375
+    },
+    "hOverflow": false,
+    "vOverflow": true,
+    "offenders": [
+      {
+        "tag": "NAV",
+        "cls": "sidebar-menu",
+        "id": "",
+        "left": -310,
+        "right": -6,
+        "w": 304
+      },
+      {
+        "tag": "A",
+        "cls": "nav-item",
+        "id": "",
+        "left": -298,
+        "right": -19,
+        "w": 279
+      },
+      {
+        "tag": "SPAN",
+        "cls": "",
+        "id": "",
+        "left": -282,
+        "right": -205,
+        "w": 77
+      },
+      {
+        "tag": "A",
+        "cls": "nav-item",
+        "id": "",
+        "left": -298,
+        "right": -19,
+        "w": 279
+      },
+      {
+        "tag": "SPAN",
+        "cls": "",
+        "id": "",
+        "left": -282,
+        "right": -220,
+        "w": 63
+      },
+      {
+        "tag": "A",
+        "cls": "nav-item",
+        "id": "",
+        "left": -298,
+        "right": -19,
+        "w": 279
+      }
+    ],
+    "sidebar": {
+      "left": 0,
+      "right": 375,
+      "w": 375
+    },
+    "menuOverflow": false,
+    "hasL": false,
+    "hasChart": false,
+    "analysisVScroll": null,
+    "errors": []
+  },
+  {
+    "size": "390x844",
+    "page": "hardware.html",
+    "vw": 375,
+    "vh": 844,
+    "doc": {
+      "sw": 375,
+      "cw": 375,
+      "sh": 1768,
+      "ch": 844
+    },
+    "body": {
+      "sw": 375
+    },
+    "hOverflow": false,
+    "vOverflow": true,
+    "offenders": [
+      {
+        "tag": "NAV",
+        "cls": "sidebar-menu",
+        "id": "",
+        "left": -310,
+        "right": -6,
+        "w": 304
+      },
+      {
+        "tag": "A",
+        "cls": "nav-item",
+        "id": "",
+        "left": -298,
+        "right": -19,
+        "w": 279
+      },
+      {
+        "tag": "SPAN",
+        "cls": "",
+        "id": "",
+        "left": -282,
+        "right": -205,
+        "w": 77
+      },
+      {
+        "tag": "A",
+        "cls": "nav-item",
+        "id": "",
+        "left": -298,
+        "right": -19,
+        "w": 279
+      },
+      {
+        "tag": "SPAN",
+        "cls": "",
+        "id": "",
+        "left": -282,
+        "right": -220,
+        "w": 63
+      },
+      {
+        "tag": "A",
+        "cls": "nav-item",
+        "id": "",
+        "left": -298,
+        "right": -19,
+        "w": 279
+      }
+    ],
+    "sidebar": {
+      "left": 0,
+      "right": 375,
+      "w": 375
+    },
+    "menuOverflow": false,
+    "hasL": false,
+    "hasChart": false,
+    "analysisVScroll": null,
+    "errors": []
+  },
+  {
+    "size": "390x844",
+    "page": "analysis.html",
+    "vw": 375,
+    "vh": 844,
+    "doc": {
+      "sw": 375,
+      "cw": 375,
+      "sh": 2139,
+      "ch": 844
+    },
+    "body": {
+      "sw": 375
+    },
+    "hOverflow": false,
+    "vOverflow": true,
+    "offenders": [
+      {
+        "tag": "NAV",
+        "cls": "sidebar-menu",
+        "id": "",
+        "left": -310,
+        "right": -6,
+        "w": 304
+      },
+      {
+        "tag": "A",
+        "cls": "nav-item",
+        "id": "",
+        "left": -298,
+        "right": -19,
+        "w": 279
+      },
+      {
+        "tag": "SPAN",
+        "cls": "",
+        "id": "",
+        "left": -282,
+        "right": -205,
+        "w": 77
+      },
+      {
+        "tag": "A",
+        "cls": "nav-item",
+        "id": "",
+        "left": -298,
+        "right": -19,
+        "w": 279
+      },
+      {
+        "tag": "SPAN",
+        "cls": "",
+        "id": "",
+        "left": -282,
+        "right": -220,
+        "w": 63
+      },
+      {
+        "tag": "A",
+        "cls": "nav-item",
+        "id": "",
+        "left": -298,
+        "right": -19,
+        "w": 279
+      }
+    ],
+    "sidebar": {
+      "left": 0,
+      "right": 375,
+      "w": 375
+    },
+    "menuOverflow": false,
+    "hasL": false,
+    "hasChart": false,
+    "analysisVScroll": true,
+    "errors": []
+  },
+  {
+    "size": "375x812",
+    "page": "index.html",
+    "vw": 360,
+    "vh": 812,
+    "doc": {
+      "sw": 360,
+      "cw": 360,
+      "sh": 2594,
+      "ch": 812
+    },
+    "body": {
+      "sw": 360
+    },
+    "hOverflow": false,
+    "vOverflow": true,
+    "offenders": [
+      {
+        "tag": "NAV",
+        "cls": "sidebar-menu",
+        "id": "",
+        "left": -298,
+        "right": -6,
+        "w": 293
+      },
+      {
+        "tag": "A",
+        "cls": "nav-item active",
+        "id": "",
+        "left": -286,
+        "right": -19,
+        "w": 268
+      },
+      {
+        "tag": "SPAN",
+        "cls": "",
+        "id": "",
+        "left": -270,
+        "right": -193,
+        "w": 77
+      },
+      {
+        "tag": "A",
+        "cls": "nav-item",
+        "id": "",
+        "left": -286,
+        "right": -19,
+        "w": 268
+      },
+      {
+        "tag": "SPAN",
+        "cls": "",
+        "id": "",
+        "left": -270,
+        "right": -208,
+        "w": 63
+      },
+      {
+        "tag": "A",
+        "cls": "nav-item",
+        "id": "",
+        "left": -286,
+        "right": -19,
+        "w": 268
+      }
+    ],
+    "sidebar": {
+      "left": 0,
+      "right": 360,
+      "w": 360
+    },
+    "menuOverflow": false,
+    "hasL": false,
+    "hasChart": false,
+    "analysisVScroll": null,
+    "errors": [
+      "Failed to load resource: net::ERR_NETWORK_ACCESS_DENIED"
+    ]
+  },
+  {
+    "size": "375x812",
+    "page": "location.html",
+    "vw": 360,
+    "vh": 812,
+    "doc": {
+      "sw": 360,
+      "cw": 360,
+      "sh": 1124,
+      "ch": 812
+    },
+    "body": {
+      "sw": 360
+    },
+    "hOverflow": false,
+    "vOverflow": true,
+    "offenders": [
+      {
+        "tag": "NAV",
+        "cls": "sidebar-menu",
+        "id": "",
+        "left": -298,
+        "right": -6,
+        "w": 293
+      },
+      {
+        "tag": "A",
+        "cls": "nav-item",
+        "id": "",
+        "left": -286,
+        "right": -19,
+        "w": 268
+      },
+      {
+        "tag": "SPAN",
+        "cls": "",
+        "id": "",
+        "left": -270,
+        "right": -193,
+        "w": 77
+      },
+      {
+        "tag": "A",
+        "cls": "nav-item active",
+        "id": "",
+        "left": -286,
+        "right": -19,
+        "w": 268
+      },
+      {
+        "tag": "SPAN",
+        "cls": "",
+        "id": "",
+        "left": -270,
+        "right": -208,
+        "w": 63
+      },
+      {
+        "tag": "A",
+        "cls": "nav-item",
+        "id": "",
+        "left": -286,
+        "right": -19,
+        "w": 268
+      }
+    ],
+    "sidebar": {
+      "left": 0,
+      "right": 360,
+      "w": 360
+    },
+    "menuOverflow": false,
+    "hasL": false,
+    "hasChart": false,
+    "analysisVScroll": null,
+    "errors": [
+      "Failed to load resource: net::ERR_NETWORK_ACCESS_DENIED"
+    ]
+  },
+  {
+    "size": "375x812",
+    "page": "sensors.html",
+    "vw": 360,
+    "vh": 812,
+    "doc": {
+      "sw": 360,
+      "cw": 360,
+      "sh": 2985,
+      "ch": 812
+    },
+    "body": {
+      "sw": 360
+    },
+    "hOverflow": false,
+    "vOverflow": true,
+    "offenders": [
+      {
+        "tag": "NAV",
+        "cls": "sidebar-menu",
+        "id": "",
+        "left": -298,
+        "right": -6,
+        "w": 293
+      },
+      {
+        "tag": "A",
+        "cls": "nav-item",
+        "id": "",
+        "left": -286,
+        "right": -19,
+        "w": 268
+      },
+      {
+        "tag": "SPAN",
+        "cls": "",
+        "id": "",
+        "left": -270,
+        "right": -193,
+        "w": 77
+      },
+      {
+        "tag": "A",
+        "cls": "nav-item",
+        "id": "",
+        "left": -286,
+        "right": -19,
+        "w": 268
+      },
+      {
+        "tag": "SPAN",
+        "cls": "",
+        "id": "",
+        "left": -270,
+        "right": -208,
+        "w": 63
+      },
+      {
+        "tag": "A",
+        "cls": "nav-item active",
+        "id": "",
+        "left": -286,
+        "right": -19,
+        "w": 268
+      }
+    ],
+    "sidebar": {
+      "left": 0,
+      "right": 360,
+      "w": 360
+    },
+    "menuOverflow": false,
+    "hasL": false,
+    "hasChart": false,
+    "analysisVScroll": null,
+    "errors": [
+      "Failed to load resource: net::ERR_NETWORK_ACCESS_DENIED"
+    ]
+  },
+  {
+    "size": "375x812",
+    "page": "telemetry.html",
+    "vw": 360,
+    "vh": 812,
+    "doc": {
+      "sw": 360,
+      "cw": 360,
+      "sh": 901,
+      "ch": 812
+    },
+    "body": {
+      "sw": 360
+    },
+    "hOverflow": false,
+    "vOverflow": true,
+    "offenders": [
+      {
+        "tag": "NAV",
+        "cls": "sidebar-menu",
+        "id": "",
+        "left": -298,
+        "right": -6,
+        "w": 293
+      },
+      {
+        "tag": "A",
+        "cls": "nav-item",
+        "id": "",
+        "left": -286,
+        "right": -19,
+        "w": 268
+      },
+      {
+        "tag": "SPAN",
+        "cls": "",
+        "id": "",
+        "left": -270,
+        "right": -193,
+        "w": 77
+      },
+      {
+        "tag": "A",
+        "cls": "nav-item",
+        "id": "",
+        "left": -286,
+        "right": -19,
+        "w": 268
+      },
+      {
+        "tag": "SPAN",
+        "cls": "",
+        "id": "",
+        "left": -270,
+        "right": -208,
+        "w": 63
+      },
+      {
+        "tag": "A",
+        "cls": "nav-item",
+        "id": "",
+        "left": -286,
+        "right": -19,
+        "w": 268
+      }
+    ],
+    "sidebar": {
+      "left": 0,
+      "right": 360,
+      "w": 360
+    },
+    "menuOverflow": false,
+    "hasL": false,
+    "hasChart": false,
+    "analysisVScroll": null,
+    "errors": []
+  },
+  {
+    "size": "375x812",
+    "page": "hardware.html",
+    "vw": 360,
+    "vh": 812,
+    "doc": {
+      "sw": 360,
+      "cw": 360,
+      "sh": 1768,
+      "ch": 812
+    },
+    "body": {
+      "sw": 360
+    },
+    "hOverflow": false,
+    "vOverflow": true,
+    "offenders": [
+      {
+        "tag": "NAV",
+        "cls": "sidebar-menu",
+        "id": "",
+        "left": -298,
+        "right": -6,
+        "w": 293
+      },
+      {
+        "tag": "A",
+        "cls": "nav-item",
+        "id": "",
+        "left": -286,
+        "right": -19,
+        "w": 268
+      },
+      {
+        "tag": "SPAN",
+        "cls": "",
+        "id": "",
+        "left": -270,
+        "right": -193,
+        "w": 77
+      },
+      {
+        "tag": "A",
+        "cls": "nav-item",
+        "id": "",
+        "left": -286,
+        "right": -19,
+        "w": 268
+      },
+      {
+        "tag": "SPAN",
+        "cls": "",
+        "id": "",
+        "left": -270,
+        "right": -208,
+        "w": 63
+      },
+      {
+        "tag": "A",
+        "cls": "nav-item",
+        "id": "",
+        "left": -286,
+        "right": -19,
+        "w": 268
+      }
+    ],
+    "sidebar": {
+      "left": 0,
+      "right": 360,
+      "w": 360
+    },
+    "menuOverflow": false,
+    "hasL": false,
+    "hasChart": false,
+    "analysisVScroll": null,
+    "errors": []
+  },
+  {
+    "size": "375x812",
+    "page": "analysis.html",
+    "vw": 360,
+    "vh": 812,
+    "doc": {
+      "sw": 360,
+      "cw": 360,
+      "sh": 2152,
+      "ch": 812
+    },
+    "body": {
+      "sw": 360
+    },
+    "hOverflow": false,
+    "vOverflow": true,
+    "offenders": [
+      {
+        "tag": "NAV",
+        "cls": "sidebar-menu",
+        "id": "",
+        "left": -298,
+        "right": -6,
+        "w": 293
+      },
+      {
+        "tag": "A",
+        "cls": "nav-item",
+        "id": "",
+        "left": -286,
+        "right": -19,
+        "w": 268
+      },
+      {
+        "tag": "SPAN",
+        "cls": "",
+        "id": "",
+        "left": -270,
+        "right": -193,
+        "w": 77
+      },
+      {
+        "tag": "A",
+        "cls": "nav-item",
+        "id": "",
+        "left": -286,
+        "right": -19,
+        "w": 268
+      },
+      {
+        "tag": "SPAN",
+        "cls": "",
+        "id": "",
+        "left": -270,
+        "right": -208,
+        "w": 63
+      },
+      {
+        "tag": "A",
+        "cls": "nav-item",
+        "id": "",
+        "left": -286,
+        "right": -19,
+        "w": 268
+      }
+    ],
+    "sidebar": {
+      "left": 0,
+      "right": 360,
+      "w": 360
+    },
+    "menuOverflow": false,
+    "hasL": false,
+    "hasChart": false,
+    "analysisVScroll": true,
+    "errors": []
+  },
+  {
+    "size": "360x800",
+    "page": "index.html",
+    "vw": 345,
+    "vh": 800,
+    "doc": {
+      "sw": 345,
+      "cw": 345,
+      "sh": 2580,
+      "ch": 800
+    },
+    "body": {
+      "sw": 345
+    },
+    "hOverflow": false,
+    "vOverflow": true,
+    "offenders": [
+      {
+        "tag": "NAV",
+        "cls": "sidebar-menu",
+        "id": "",
+        "left": -286,
+        "right": -6,
+        "w": 281
+      },
+      {
+        "tag": "A",
+        "cls": "nav-item active",
+        "id": "",
+        "left": -274,
+        "right": -19,
+        "w": 256
+      },
+      {
+        "tag": "SPAN",
+        "cls": "",
+        "id": "",
+        "left": -258,
+        "right": -181,
+        "w": 77
+      },
+      {
+        "tag": "A",
+        "cls": "nav-item",
+        "id": "",
+        "left": -274,
+        "right": -19,
+        "w": 256
+      },
+      {
+        "tag": "SPAN",
+        "cls": "",
+        "id": "",
+        "left": -258,
+        "right": -196,
+        "w": 63
+      },
+      {
+        "tag": "A",
+        "cls": "nav-item",
+        "id": "",
+        "left": -274,
+        "right": -19,
+        "w": 256
+      }
+    ],
+    "sidebar": {
+      "left": 0,
+      "right": 345,
+      "w": 345
+    },
+    "menuOverflow": false,
+    "hasL": false,
+    "hasChart": false,
+    "analysisVScroll": null,
+    "errors": [
+      "Failed to load resource: net::ERR_NETWORK_ACCESS_DENIED"
+    ]
+  },
+  {
+    "size": "360x800",
+    "page": "location.html",
+    "vw": 345,
+    "vh": 800,
+    "doc": {
+      "sw": 345,
+      "cw": 345,
+      "sh": 1123,
+      "ch": 800
+    },
+    "body": {
+      "sw": 345
+    },
+    "hOverflow": false,
+    "vOverflow": true,
+    "offenders": [
+      {
+        "tag": "NAV",
+        "cls": "sidebar-menu",
+        "id": "",
+        "left": -286,
+        "right": -6,
+        "w": 281
+      },
+      {
+        "tag": "A",
+        "cls": "nav-item",
+        "id": "",
+        "left": -274,
+        "right": -19,
+        "w": 256
+      },
+      {
+        "tag": "SPAN",
+        "cls": "",
+        "id": "",
+        "left": -258,
+        "right": -181,
+        "w": 77
+      },
+      {
+        "tag": "A",
+        "cls": "nav-item active",
+        "id": "",
+        "left": -274,
+        "right": -19,
+        "w": 256
+      },
+      {
+        "tag": "SPAN",
+        "cls": "",
+        "id": "",
+        "left": -258,
+        "right": -196,
+        "w": 63
+      },
+      {
+        "tag": "A",
+        "cls": "nav-item",
+        "id": "",
+        "left": -274,
+        "right": -19,
+        "w": 256
+      }
+    ],
+    "sidebar": {
+      "left": 0,
+      "right": 345,
+      "w": 345
+    },
+    "menuOverflow": false,
+    "hasL": false,
+    "hasChart": false,
+    "analysisVScroll": null,
+    "errors": [
+      "Failed to load resource: net::ERR_NETWORK_ACCESS_DENIED"
+    ]
+  },
+  {
+    "size": "360x800",
+    "page": "sensors.html",
+    "vw": 345,
+    "vh": 800,
+    "doc": {
+      "sw": 345,
+      "cw": 345,
+      "sh": 3004,
+      "ch": 800
+    },
+    "body": {
+      "sw": 345
+    },
+    "hOverflow": false,
+    "vOverflow": true,
+    "offenders": [
+      {
+        "tag": "NAV",
+        "cls": "sidebar-menu",
+        "id": "",
+        "left": -286,
+        "right": -6,
+        "w": 281
+      },
+      {
+        "tag": "A",
+        "cls": "nav-item",
+        "id": "",
+        "left": -274,
+        "right": -19,
+        "w": 256
+      },
+      {
+        "tag": "SPAN",
+        "cls": "",
+        "id": "",
+        "left": -258,
+        "right": -181,
+        "w": 77
+      },
+      {
+        "tag": "A",
+        "cls": "nav-item",
+        "id": "",
+        "left": -274,
+        "right": -19,
+        "w": 256
+      },
+      {
+        "tag": "SPAN",
+        "cls": "",
+        "id": "",
+        "left": -258,
+        "right": -196,
+        "w": 63
+      },
+      {
+        "tag": "A",
+        "cls": "nav-item active",
+        "id": "",
+        "left": -274,
+        "right": -19,
+        "w": 256
+      }
+    ],
+    "sidebar": {
+      "left": 0,
+      "right": 345,
+      "w": 345
+    },
+    "menuOverflow": false,
+    "hasL": false,
+    "hasChart": false,
+    "analysisVScroll": null,
+    "errors": [
+      "Failed to load resource: net::ERR_NETWORK_ACCESS_DENIED"
+    ]
+  },
+  {
+    "size": "360x800",
+    "page": "telemetry.html",
+    "vw": 345,
+    "vh": 800,
+    "doc": {
+      "sw": 345,
+      "cw": 345,
+      "sh": 888,
+      "ch": 800
+    },
+    "body": {
+      "sw": 345
+    },
+    "hOverflow": false,
+    "vOverflow": true,
+    "offenders": [
+      {
+        "tag": "NAV",
+        "cls": "sidebar-menu",
+        "id": "",
+        "left": -286,
+        "right": -6,
+        "w": 281
+      },
+      {
+        "tag": "A",
+        "cls": "nav-item",
+        "id": "",
+        "left": -274,
+        "right": -19,
+        "w": 256
+      },
+      {
+        "tag": "SPAN",
+        "cls": "",
+        "id": "",
+        "left": -258,
+        "right": -181,
+        "w": 77
+      },
+      {
+        "tag": "A",
+        "cls": "nav-item",
+        "id": "",
+        "left": -274,
+        "right": -19,
+        "w": 256
+      },
+      {
+        "tag": "SPAN",
+        "cls": "",
+        "id": "",
+        "left": -258,
+        "right": -196,
+        "w": 63
+      },
+      {
+        "tag": "A",
+        "cls": "nav-item",
+        "id": "",
+        "left": -274,
+        "right": -19,
+        "w": 256
+      }
+    ],
+    "sidebar": {
+      "left": 0,
+      "right": 345,
+      "w": 345
+    },
+    "menuOverflow": false,
+    "hasL": false,
+    "hasChart": false,
+    "analysisVScroll": null,
+    "errors": []
+  },
+  {
+    "size": "360x800",
+    "page": "hardware.html",
+    "vw": 345,
+    "vh": 800,
+    "doc": {
+      "sw": 345,
+      "cw": 345,
+      "sh": 1779,
+      "ch": 800
+    },
+    "body": {
+      "sw": 345
+    },
+    "hOverflow": false,
+    "vOverflow": true,
+    "offenders": [
+      {
+        "tag": "NAV",
+        "cls": "sidebar-menu",
+        "id": "",
+        "left": -286,
+        "right": -6,
+        "w": 281
+      },
+      {
+        "tag": "A",
+        "cls": "nav-item",
+        "id": "",
+        "left": -274,
+        "right": -19,
+        "w": 256
+      },
+      {
+        "tag": "SPAN",
+        "cls": "",
+        "id": "",
+        "left": -258,
+        "right": -181,
+        "w": 77
+      },
+      {
+        "tag": "A",
+        "cls": "nav-item",
+        "id": "",
+        "left": -274,
+        "right": -19,
+        "w": 256
+      },
+      {
+        "tag": "SPAN",
+        "cls": "",
+        "id": "",
+        "left": -258,
+        "right": -196,
+        "w": 63
+      },
+      {
+        "tag": "A",
+        "cls": "nav-item",
+        "id": "",
+        "left": -274,
+        "right": -19,
+        "w": 256
+      }
+    ],
+    "sidebar": {
+      "left": 0,
+      "right": 345,
+      "w": 345
+    },
+    "menuOverflow": false,
+    "hasL": false,
+    "hasChart": false,
+    "analysisVScroll": null,
+    "errors": []
+  },
+  {
+    "size": "360x800",
+    "page": "analysis.html",
+    "vw": 345,
+    "vh": 800,
+    "doc": {
+      "sw": 345,
+      "cw": 345,
+      "sh": 2152,
+      "ch": 800
+    },
+    "body": {
+      "sw": 345
+    },
+    "hOverflow": false,
+    "vOverflow": true,
+    "offenders": [
+      {
+        "tag": "NAV",
+        "cls": "sidebar-menu",
+        "id": "",
+        "left": -286,
+        "right": -6,
+        "w": 281
+      },
+      {
+        "tag": "A",
+        "cls": "nav-item",
+        "id": "",
+        "left": -274,
+        "right": -19,
+        "w": 256
+      },
+      {
+        "tag": "SPAN",
+        "cls": "",
+        "id": "",
+        "left": -258,
+        "right": -181,
+        "w": 77
+      },
+      {
+        "tag": "A",
+        "cls": "nav-item",
+        "id": "",
+        "left": -274,
+        "right": -19,
+        "w": 256
+      },
+      {
+        "tag": "SPAN",
+        "cls": "",
+        "id": "",
+        "left": -258,
+        "right": -196,
+        "w": 63
+      },
+      {
+        "tag": "A",
+        "cls": "nav-item",
+        "id": "",
+        "left": -274,
+        "right": -19,
+        "w": 256
+      }
+    ],
+    "sidebar": {
+      "left": 0,
+      "right": 345,
+      "w": 345
+    },
+    "menuOverflow": false,
+    "hasL": false,
+    "hasChart": false,
+    "analysisVScroll": true,
+    "errors": []
+  }
+]
