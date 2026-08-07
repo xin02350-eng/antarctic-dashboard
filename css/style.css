@@ -12876,6 +12876,43 @@ display:inline;
 
 }
 
+/* 页面头部状态双行结构（GPS / SENSOR ARRAY / DATA LINK） */
+.header-right .status-stack{
+
+display:flex;
+
+flex-direction:column;
+
+align-items:flex-end;
+
+gap:2px;
+
+white-space:nowrap;
+
+}
+
+.header-right .status-stack .status-stack-label{
+
+font-size:11px;
+
+letter-spacing:2px;
+
+color:#9fd8c2;
+
+font-weight:bold;
+
+}
+
+.header-right .status-stack .status-stack-value{
+
+font-size:9px;
+
+letter-spacing:1.5px;
+
+color:#6f93a8;
+
+}
+
 /* Hardware 档案：供电系统 / 传感器参数列表 */
 .hardware-page .tech-block{
 
@@ -12885,9 +12922,15 @@ flex-direction:column;
 
 gap:3px;
 
-padding:2px 0 8px;
+padding:8px 10px;
 
-border-bottom:1px solid rgba(98,217,255,.07);
+margin:2px 0 8px;
+
+border:1px solid rgba(98,217,255,.10);
+
+border-radius:6px;
+
+background:rgba(6,20,34,.30);
 
 }
 
@@ -12912,6 +12955,14 @@ letter-spacing:.5px;
 color:#dff6ff;
 
 line-height:1.5;
+
+}
+
+.hardware-page .tech-ico{
+
+font-size:12px;
+
+margin-right:2px;
 
 }
 
