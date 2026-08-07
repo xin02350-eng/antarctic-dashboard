@@ -60,12 +60,13 @@
     .net-online i{width:6px;height:6px;border-radius:50%;background:#00e5a8;animation:netPulse 2.4s ease-out infinite}
     @keyframes netPulse{0%{box-shadow:0 0 0 0 rgba(0,229,168,.45)}70%{box-shadow:0 0 0 9px rgba(0,229,168,0)}100%{box-shadow:0 0 0 0 rgba(0,229,168,0)}}
     #networkMap{flex:1;min-height:430px;background:#04101d;position:relative;z-index:1}
-    #networkMap .leaflet-tile-pane{filter:grayscale(.35) brightness(.52) contrast(1.16) sepia(.16) hue-rotate(166deg) saturate(.58)}
+    #networkMap .leaflet-tile-pane{filter:grayscale(.12) brightness(.94) contrast(1.05) saturate(.9)}
     #networkMap .leaflet-control-attribution{display:none}
-    .map-graticule{position:absolute;inset:0;z-index:2;pointer-events:none;opacity:.32;background-image:linear-gradient(rgba(98,217,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(98,217,255,.05) 1px,transparent 1px);background-size:56px 56px}
-    .map-inner-shadow{position:absolute;inset:0;z-index:3;pointer-events:none;box-shadow:inset 0 0 60px rgba(2,8,17,.72),inset 0 0 6px rgba(2,8,17,.6);border-radius:0}
+    .map-graticule{position:absolute;inset:0;z-index:2;pointer-events:none;opacity:.25;background-image:linear-gradient(rgba(98,217,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(98,217,255,.05) 1px,transparent 1px);background-size:56px 56px}
+    .map-inner-shadow{position:absolute;inset:0;z-index:3;pointer-events:none;box-shadow:inset 0 0 46px rgba(2,8,17,.38),inset 0 0 4px rgba(2,8,17,.35);border-radius:0}
     .net-marker{background:transparent;border:0}
     .net-marker .dot{display:block;width:13px;height:13px;border-radius:50%;background:#00e5a8;box-shadow:0 0 0 0 rgba(0,229,168,.5);animation:netPulse 2.8s ease-out infinite}
+    .net-marker .lab{display:block;margin-top:5px;transform:translateX(-50%);font-size:9px;letter-spacing:2px;color:#eafcff;text-shadow:0 1px 6px rgba(2,8,17,.9),0 0 12px rgba(0,229,168,.35);white-space:nowrap}
     .net-map-foot{position:relative;z-index:4;display:flex;align-items:center;justify-content:space-between;padding:10px 18px;border-top:1px solid rgba(98,217,255,.09);font-size:8px;letter-spacing:2px;color:#6f93a8;background:rgba(3,12,22,.55)}
     .net-map-foot b{color:#9fd8c2;font-weight:500}
 
@@ -155,15 +156,15 @@
       </div>
       <div class="net-node active">
         <div class="row"><span class="num">01</span><b>ANT-A01</b></div>
-        <span class="state"><span data-lang="en">Active Node</span><span data-lang="zh">当前运行</span></span>
+        <span class="state"><span data-lang="en">ACTIVE NODE</span><span data-lang="zh">当前运行</span></span>
       </div>
       <div class="net-node">
         <div class="row"><span class="num">02</span><b>ANT-A02</b></div>
-        <span class="state"><span data-lang="en">Coming Soon</span><span data-lang="zh">待部署</span></span>
+        <span class="state"><span data-lang="en">COMING SOON</span><span data-lang="zh">待部署</span></span>
       </div>
       <div class="net-node">
         <div class="row"><span class="num">03</span><b>ANT-A03</b></div>
-        <span class="state"><span data-lang="en">Coming Soon</span><span data-lang="zh">待部署</span></span>
+        <span class="state"><span data-lang="en">COMING SOON</span><span data-lang="zh">待部署</span></span>
       </div>
       <div class="cat-foot">
         <span data-lang="en">Nodes online: 01 / 03</span><span data-lang="zh">在线节点：01 / 03</span>
@@ -277,11 +278,12 @@
       L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
         subdomains: 'abcd', maxZoom: 18, attribution: ''
       }).addTo(map);
-      var icon = L.divIcon({ className: 'net-marker', html: '<span class="dot"></span>', iconSize: [16, 16], iconAnchor: [8, 8] });
+      var icon = L.divIcon({ className: 'net-marker', html: '<span class="dot"></span><span class="lab" data-lang="en">NANJING</span><span class="lab" data-lang="zh">南京</span>', iconSize: [16, 40], iconAnchor: [8, 8] });
       L.marker([32.049141, 118.793686], { icon: icon }).addTo(map).bindPopup('ANT-A01 · NANJING');
       window.networkMap = map;
       setTimeout(function () { map.invalidateSize(); }, 400);
       window.addEventListener('resize', function () { map.invalidateSize(); });
+      if (window.anxApplyLang) window.anxApplyLang(window.anxCurrentLang || 'en');
     }
     fetch('./data.json').then(function (r) { return r.json(); }).then(function (d) {
       var n = Array.isArray(d) ? d.length : 0;
