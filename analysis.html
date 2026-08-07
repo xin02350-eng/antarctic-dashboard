@@ -27,6 +27,18 @@
       color:#6f93a8;
       margin-top:4px;
     }
+    .analysis-page .mission-header{
+      padding-bottom:10px;
+    }
+    .analysis-page .an-head h2{
+      font-size:24px;
+    }
+    .analysis-page .an-kicker{
+      font-size:8px;
+    }
+    .analysis-page .an-meta span{
+      font-size:9px;
+    }
 
     /* 中部区域：analysis-container 显式 CSS Grid，五个独立区域 */
     .analysis-page .analysis-container{
@@ -105,10 +117,12 @@
       align-items:stretch;
     }
     .analysis-page .an-overview .kpi-block{
-      min-height:112px;
-      justify-content:center;
+      min-height:168px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
       position:relative;
-      padding:10px 12px 8px;
+      padding:14px 14px 12px;
       border:1px solid rgba(140,234,255,.10);
       border-radius:8px;
       background:linear-gradient(165deg, rgba(9,28,44,.50), rgba(5,16,28,.36));
@@ -125,12 +139,27 @@
       opacity:.65;
     }
     .analysis-page .an-overview .kpi-block .kpi-num b{
-      font-size:clamp(24px,2.1vw,30px);
+      font-size:clamp(32px,2.8vw,40px);
     }
     .analysis-page .an-overview .kpi-block:last-child .kpi-num b{
-      font-size:clamp(13px,1.1vw,16px);
+      font-size:clamp(16px,1.4vw,20px);
       letter-spacing:.5px;
       word-break:break-all;
+    }
+    .analysis-page .an-overview .kpi-label{
+      font-size:10px;
+    }
+    .analysis-page .an-overview .kpi-num{
+      display:flex;
+      align-items:baseline;
+      justify-content:center;
+      gap:4px;
+    }
+    .analysis-page .an-overview .kpi-foot{
+      font-size:8px;
+      letter-spacing:1.5px;
+      color:#6f93a8;
+      text-align:center;
     }
     /* SOC 独立模块（右侧高列 / 手机独立区域） */
     .soc-module{
@@ -540,14 +569,20 @@
         gap:3px;
       }
       .analysis-page .summary-section{
-        padding:6px 14px 8px;
+        padding:4px 14px 6px;
       }
       .analysis-page .an-overview .kpi-block{
-        min-height:80px;
-        padding:6px 10px 4px;
+        min-height:120px;
+        padding:8px 10px 6px;
       }
       .analysis-page .an-overview .kpi-block .kpi-num b{
-        font-size:clamp(20px,1.8vw,24px);
+        font-size:clamp(26px,2.3vw,32px);
+      }
+      .analysis-page .an-overview .kpi-label{
+        font-size:9px;
+      }
+      .analysis-page .an-overview .kpi-foot{
+        font-size:7px;
       }
       .analysis-page .an-sec-title{
         margin-bottom:4px;
@@ -637,16 +672,16 @@
         gap:6px;
       }
       .analysis-page .mission-header{
-        padding-bottom:6px;
+        padding-bottom:4px;
       }
       .analysis-page .an-head h2{
-        font-size:22px;
+        font-size:20px;
       }
       .analysis-page .an-kicker{
-        font-size:8px;
+        font-size:7px;
       }
       .analysis-page .an-meta span{
-        font-size:8px;
+        font-size:7px;
       }
     }
 
@@ -794,21 +829,25 @@
         <span class="kpi-label" data-lang="en">DATA RECORDS</span>
         <span class="kpi-label" data-lang="zh">数据记录</span>
         <span class="kpi-num"><b id="sumRecords">--</b><em data-lang="en">REC</em><em data-lang="zh">条</em></span>
+        <span class="kpi-foot" data-lang="en">TELEMETRY</span><span class="kpi-foot" data-lang="zh">遥测记录</span>
       </div>
       <div class="kpi-block">
         <span class="kpi-label" data-lang="en">Data Types Collected</span>
         <span class="kpi-label" data-lang="zh">采集数据种类</span>
         <span class="kpi-num"><b id="sumChannels">--</b><em data-lang="en">TYPES</em><em data-lang="zh">种</em></span>
+        <span class="kpi-foot" data-lang="en">DATA TYPES</span><span class="kpi-foot" data-lang="zh">数据类别</span>
       </div>
       <div class="kpi-block">
         <span class="kpi-label" data-lang="en">OPERATION DAYS</span>
         <span class="kpi-label" data-lang="zh">运行天数</span>
         <span class="kpi-num"><b id="sumDays">--</b><em data-lang="en">DAYS</em><em data-lang="zh">天</em></span>
+        <span class="kpi-foot" data-lang="en">CONTINUOUS RUN</span><span class="kpi-foot" data-lang="zh">持续运行</span>
       </div>
       <div class="kpi-block">
         <span class="kpi-label" data-lang="en">LATEST UPDATE</span>
         <span class="kpi-label" data-lang="zh">最近更新</span>
         <span class="kpi-num"><b id="sumLatest">--</b></span>
+        <span class="kpi-foot" data-lang="en">LAST CONTACT</span><span class="kpi-foot" data-lang="zh">最近同步</span>
       </div>
       </section>
     </section>
