@@ -796,8 +796,8 @@
     <section class="sensor-ratio-section">
       <h3 class="an-sec-title" data-lang="en">Sensor Data Coverage</h3>
       <h3 class="an-sec-title" data-lang="zh">传感器数据覆盖率</h3>
-      <p class="sr-note" data-lang="en">Shows the proportion of records collected by each sensor type among all telemetry records.</p>
-      <p class="sr-note" data-lang="zh">表示该类传感器数据记录数量占全部遥测记录的覆盖比例。</p>
+      <p class="sr-note" data-lang="en">Shows the proportion of valid sensor records within all telemetry records.</p>
+      <p class="sr-note" data-lang="zh">表示各类传感器有效数据记录在全部遥测记录中的覆盖比例。</p>
       <div class="sr-head">
         <span data-lang="en">SENSOR · TYPE</span><span data-lang="zh">编号 · 类型</span>
         <span data-lang="en">DATA COVERAGE</span><span data-lang="zh">数据覆盖率</span>
@@ -952,7 +952,11 @@
     var soc = null;
     for (var i = data.length - 1; i >= 0; i--) {
       if (data[i].soc !== null && data[i].soc !== undefined) { soc = data[i].soc; break; }
-      if (data[i].v !== null && data[i].v !== undefined) { soc = voltageToSoc(Number(data[i].v)); break; }
+      var v = null;
+      ['v', 'voltage', 'batt', 'battery'].forEach(function (k) {
+        if (v === null && data[i][k] !== null && data[i][k] !== undefined) v = data[i][k];
+      });
+      if (v !== null) { soc = voltageToSoc(Number(v)); break; }
     }
 
     var firstS = null, firstE = null;

@@ -12860,8 +12860,7 @@ color:#eafcff;
 
 
 /* 状态灯容器内的双语文字 span：不继承圆点样式 */
-body.dashboard-page .system-online span[data-lang],
-body.hardware-page .system-online span[data-lang]{
+body .system-online span[data-lang]{
 
 width:auto;
 
@@ -12874,6 +12873,55 @@ background:none;
 box-shadow:none;
 
 display:inline;
+
+}
+
+/* Hardware 档案：供电系统 / 传感器参数列表 */
+.hardware-page .tech-block{
+
+display:flex;
+
+flex-direction:column;
+
+gap:3px;
+
+padding:2px 0 8px;
+
+border-bottom:1px solid rgba(98,217,255,.07);
+
+}
+
+.hardware-page .tech-title{
+
+font-size:9px;
+
+letter-spacing:2px;
+
+color:rgba(140,234,255,.7);
+
+margin-bottom:2px;
+
+}
+
+.hardware-page .tech-item{
+
+font-size:10px;
+
+letter-spacing:.5px;
+
+color:#dff6ff;
+
+line-height:1.5;
+
+}
+
+.hardware-page .tech-grid{
+
+display:grid;
+
+grid-template-columns:1fr 1fr;
+
+gap:2px 12px;
 
 }
 
