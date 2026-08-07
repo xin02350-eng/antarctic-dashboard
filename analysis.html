@@ -216,6 +216,12 @@
     .soc-track{
       stroke:rgba(98,217,255,.12);
     }
+    .soc-ticks{
+      fill:none;
+      stroke:rgba(98,217,255,.16);
+      stroke-width:2;
+      stroke-dasharray:1 5;
+    }
     .soc-arc{
       stroke:#62d9ff;
       stroke-linecap:round;
@@ -232,7 +238,7 @@
       font-variant-numeric:tabular-nums;
     }
     .soc-center b{
-      font-size:28px;
+      font-size:32px;
       font-weight:700;
       color:#eafcff;
       letter-spacing:1px;
@@ -249,12 +255,24 @@
       margin-top:4px;
       text-align:center;
     }
-    .soc-module p{
+    .soc-state{
+      font-size:8px;
+      letter-spacing:2px;
+      color:#9fd8c2;
+      border:1px solid rgba(0,229,168,.22);
+      border-radius:999px;
+      padding:2px 10px;
+    }
+    .soc-meta{
       margin:0;
-      font-size:9px;
+      font-size:8px;
       color:#6f93a8;
       text-align:center;
       line-height:1.5;
+    }
+    .soc-meta b{
+      color:#dff6ff;
+      font-weight:600;
     }
 
     /* 旧 SOC 定位规则兜底（确保无 absolute 堆叠） */
@@ -291,10 +309,10 @@
     }
     .sr-head{
       display:grid;
-      grid-template-columns:minmax(150px,1fr) 110px minmax(60px,1fr) 76px;
-      gap:12px;
+      grid-template-columns:56px 1fr 86px;
+      gap:12px 10px;
       align-items:center;
-      padding:2px 12px 6px;
+      padding:1px 12px 4px;
       border-bottom:1px solid rgba(98,217,255,.08);
       margin-bottom:2px;
     }
@@ -311,10 +329,11 @@
     }
     .sr-row{
       display:grid;
-      grid-template-columns:minmax(150px,1fr) 110px minmax(60px,1fr) 76px;
+      grid-template-columns:56px 1fr 86px;
+      grid-template-areas:"ch name pct" "bar bar bar";
       align-items:center;
-      gap:12px;
-      padding:5px 12px;
+      gap:3px 10px;
+      padding:7px 12px;
       border-radius:6px;
       background:rgba(6,20,34,.35);
       border-bottom:1px solid rgba(98,217,255,.06);
@@ -323,10 +342,11 @@
       border-bottom:0;
     }
     .sr-name{
+      grid-area:name;
       display:flex;
       flex-direction:column;
       align-items:flex-start;
-      gap:2px;
+      gap:1px;
       min-width:0;
       position:relative;
       padding-left:8px;
@@ -341,12 +361,14 @@
       border-radius:1px;
       background:rgba(98,217,255,.35);
     }
-    .sr-name .sr-ch{
+    .sr-ch{
+      grid-area:ch;
+      align-self:center;
       font-style:normal;
       font-size:10px;
-      letter-spacing:1.2px;
+      letter-spacing:1px;
       color:rgba(98,217,255,.75);
-      flex:none;
+      text-align:center;
     }
     .sr-name b{
       display:block;
@@ -359,11 +381,14 @@
       text-overflow:ellipsis;
     }
     .sr-ratio{
-      font-size:11px;
-      color:#dff6ff;
+      font-style:normal;
+      font-size:10px;
+      color:#6f93a8;
       font-variant-numeric:tabular-nums;
+      margin:0;
     }
     .sr-bar{
+      grid-area:bar;
       height:6px;
       border-radius:3px;
       background:rgba(98,217,255,.10);
@@ -377,6 +402,7 @@
       transition:width .6s ease;
     }
     .sr-pct{
+      grid-area:pct;
       font-size:14px;
       color:#8ceaff;
       text-align:right;
@@ -594,18 +620,25 @@
         margin:-2px 2px 3px;
       }
       .soc-wrap{
-        width:98px;
-        height:98px;
+        width:88px;
+        height:88px;
       }
       .soc-ring{
-        width:98px;
-        height:98px;
+        width:88px;
+        height:88px;
       }
       .soc-center b{
         font-size:20px;
       }
       .soc-module{
-        padding:8px 12px;
+        padding:6px 12px;
+      }
+      .soc-meta{
+        font-size:7px;
+      }
+      .soc-state{
+        font-size:7px;
+        padding:1px 8px;
       }
       .sr-list{
         gap:2px;
@@ -613,32 +646,32 @@
         justify-content:center;
       }
       .sr-row{
-        padding:1px 10px;
-        grid-template-columns:minmax(110px,1fr) 96px minmax(50px,1fr) 60px;
-        gap:8px;
+        padding:0 8px;
+        grid-template-columns:40px 1fr 64px;
+        gap:2px 6px;
       }
       .sr-head{
-        grid-template-columns:minmax(110px,1fr) 96px minmax(50px,1fr) 60px;
-        padding:0 10px 3px;
+        grid-template-columns:40px 1fr 64px;
+        padding:0 8px 2px;
         margin-bottom:0;
       }
       .sr-name b{
-        font-size:11px;
+        font-size:10px;
       }
       .sr-name{
         gap:0;
       }
-      .sr-name .sr-ch{
-        font-size:8px;
+      .sr-ch{
+        font-size:7px;
       }
       .sr-pct{
         font-size:12px;
       }
       .sr-ratio{
-        font-size:10px;
+        font-size:8px;
       }
       .sr-bar{
-        height:4px;
+        height:3px;
       }
       .tl-nodes{
         padding:1px 2px 1px;
@@ -860,10 +893,9 @@
       <p class="sr-note" data-lang="en">Shows the proportion of valid sensor records within all telemetry records.</p>
       <p class="sr-note" data-lang="zh">表示各类传感器有效数据记录在全部遥测记录中的覆盖比例。</p>
       <div class="sr-head">
-        <span data-lang="en">SENSOR · TYPE</span><span data-lang="zh">编号 · 类型</span>
-        <span data-lang="en">DATA COVERAGE</span><span data-lang="zh">数据覆盖率</span>
-        <span data-lang="en">COVERAGE</span><span data-lang="zh">覆盖率</span>
-        <span class="sr-h-p" data-lang="en">RATIO</span><span class="sr-h-p" data-lang="zh">占比</span>
+        <span data-lang="en">CH</span><span data-lang="zh">编号</span>
+        <span data-lang="en">SENSOR TYPE · RECORDS</span><span data-lang="zh">传感器类型 · 记录</span>
+        <span class="sr-h-p" data-lang="en">COVERAGE</span><span class="sr-h-p" data-lang="zh">覆盖率</span>
       </div>
       <div class="sr-list" id="sensorRatio"></div>
     </section>
@@ -874,13 +906,15 @@
         <div class="soc-wrap">
           <svg class="soc-ring" viewBox="0 0 150 150" aria-hidden="true">
             <circle class="soc-track" cx="75" cy="75" r="63"></circle>
+            <circle class="soc-ticks" cx="75" cy="75" r="58"></circle>
             <circle class="soc-arc" id="socArc" cx="75" cy="75" r="63"></circle>
           </svg>
           <div class="soc-center"><b id="sumSoc">--</b><span>%</span></div>
         </div>
         <div class="soc-label">SOC</div>
-        <p data-lang="en">Remaining battery capacity</p>
-        <p data-lang="zh">剩余电池容量</p>
+        <span class="soc-state" id="socState">--</span>
+        <p class="soc-meta"><span data-lang="en">Battery Level</span><span data-lang="zh">电池电量</span></p>
+        <p class="soc-meta"><span data-lang="en">Voltage:</span><span data-lang="zh">电压：</span><b id="sumVoltage">--</b><span>V</span></p>
       </div>
     </section>
 
@@ -1013,14 +1047,21 @@
       return 0;
     }
     var soc = null;
+    var lastV = null;
     for (var i = data.length - 1; i >= 0; i--) {
       if (data[i].soc !== null && data[i].soc !== undefined) { soc = data[i].soc; break; }
       var v = null;
       ['v', 'voltage', 'batt', 'battery'].forEach(function (k) {
         if (v === null && data[i][k] !== null && data[i][k] !== undefined) v = data[i][k];
       });
-      if (v !== null) { soc = voltageToSoc(Number(v)); break; }
+      if (v !== null) { lastV = v; soc = voltageToSoc(Number(v)); break; }
     }
+    var socNum = (soc !== null && !isNaN(soc)) ? Number(soc) : null;
+    setTxt('sumVoltage', lastV === null ? '--' : Number(lastV).toFixed(1));
+    setTxt('socState', socNum === null ? '--' :
+      (socNum >= 60 ? (window.ANX_T ? window.ANX_T('soc_ok') : 'NORMAL') :
+      (socNum > 0 ? (window.ANX_T ? window.ANX_T('soc_low') : 'LOW') :
+      (window.ANX_T ? window.ANX_T('soc_empty') : 'EMPTY'))));
 
     var firstS = null, firstE = null;
     for (var m = 0; m < data.length; m++) {
@@ -1061,15 +1102,14 @@
       var idxTxt = String(idx + 1);
       var online = actual > 0;
       ratioHtml += '<div class="sr-row' + (online ? '' : ' sr-off') + '">';
+      ratioHtml += '<i class="sr-ch">' + String(idx + 1).padStart(2, '0') + '</i>';
       ratioHtml += '<span class="sr-name">';
-      ratioHtml += '<i class="sr-ch" data-lang="en">SENSOR ' + idxTxt + '</i>';
-      ratioHtml += '<i class="sr-ch" data-lang="zh">传感器' + idxTxt + '</i>';
       ratioHtml += '<b data-lang="en">' + def.en + '</b>';
       ratioHtml += '<b data-lang="zh">' + def.zh + '</b>';
+      ratioHtml += '<em class="sr-ratio">' + ratioTxt + '</em>';
       ratioHtml += '</span>';
-      ratioHtml += '<span class="sr-ratio">' + ratioTxt + '</span>';
-      ratioHtml += '<span class="sr-bar"><i style="width:' + (actual === 0 ? 0 : pct.toFixed(1)) + '%"></i></span>';
       ratioHtml += '<b class="sr-pct"><i class="sr-state' + (online ? ' ok' : ' off') + '"></i>' + pctTxt + '</b>';
+      ratioHtml += '<span class="sr-bar"><i style="width:' + (actual === 0 ? 0 : pct.toFixed(1)) + '%"></i></span>';
       ratioHtml += '</div>';
     });
     var ratioBox = $('sensorRatio');
