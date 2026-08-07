@@ -50,7 +50,7 @@
       border:1px solid rgba(140,234,255,.10);
       border-radius:10px;
       background:linear-gradient(165deg, rgba(9,28,44,.42), rgba(5,16,28,.34));
-      padding:12px 14px 14px;
+      padding:8px 14px 10px;
     }
     .analysis-page .sensor-ratio-section{
       grid-area:ratio;
@@ -73,7 +73,7 @@
       display:flex;
       flex-direction:column;
       justify-content:flex-start;
-      min-height:128px;
+      min-height:160px;
     }
     .analysis-page .timeline-body{
       flex:1;
@@ -105,10 +105,10 @@
       align-items:stretch;
     }
     .analysis-page .an-overview .kpi-block{
-      min-height:132px;
+      min-height:100px;
       justify-content:center;
       position:relative;
-      padding:14px 12px 12px;
+      padding:8px 10px 6px;
       border:1px solid rgba(140,234,255,.10);
       border-radius:8px;
       background:linear-gradient(165deg, rgba(9,28,44,.50), rgba(5,16,28,.36));
@@ -125,7 +125,7 @@
       opacity:.65;
     }
     .analysis-page .an-overview .kpi-block .kpi-num b{
-      font-size:clamp(26px,2.2vw,34px);
+      font-size:clamp(22px,2vw,28px);
     }
     .analysis-page .an-overview .kpi-block:last-child .kpi-num b{
       font-size:clamp(13px,1.1vw,16px);
@@ -398,7 +398,6 @@
       gap:16px;
       margin:0;
       width:100%;
-      transform:translateY(10px);
     }
     .tl-nodes{
       position:relative;
@@ -428,8 +427,8 @@
       z-index:1;
     }
     .tl-node .dot{
-      width:10px;
-      height:10px;
+      width:12px;
+      height:12px;
       border-radius:50%;
       background:#62d9ff;
       box-shadow:0 0 8px rgba(98,217,255,.55);
@@ -441,14 +440,14 @@
       box-shadow:0 0 8px rgba(0,229,168,.55);
     }
     .tl-node .date{
-      font-size:9px;
+      font-size:10px;
       letter-spacing:1px;
       color:#8ceaff;
       display:block;
     }
     .tl-node b{
       display:block;
-      font-size:10px;
+      font-size:11px;
       letter-spacing:1px;
       color:#dff6ff;
       margin-top:2px;
@@ -457,7 +456,7 @@
       text-overflow:ellipsis;
     }
     .tl-node p{
-      font-size:8px;
+      font-size:9px;
       color:#7f9fb2;
       margin:2px 0 0;
       line-height:1.4;
@@ -467,12 +466,6 @@
       letter-spacing:1px;
       color:#6f93a8;
       margin:2px 2px 0;
-    }
-
-    @media (min-width:1100px){
-      .analysis-page .timeline-wrapper .tl-hint{
-        display:none;
-      }
     }
 
     .analysis-page .timeline-wrapper h3{
@@ -550,11 +543,11 @@
         padding:8px 14px 10px;
       }
       .analysis-page .an-overview .kpi-block{
-        min-height:84px;
-        padding:6px 10px 4px;
+        min-height:72px;
+        padding:4px 10px 2px;
       }
       .analysis-page .an-overview .kpi-block .kpi-num b{
-        font-size:clamp(20px,1.8vw,24px);
+        font-size:clamp(18px,1.6vw,22px);
       }
       .analysis-page .an-sec-title{
         margin-bottom:4px;
@@ -619,7 +612,7 @@
       }
       .analysis-page .timeline-wrapper{
         padding:0 14px 16px;
-        min-height:110px;
+        min-height:125px;
       }
       .analysis-page .timeline-wrapper h3{
         margin-bottom:1px;
@@ -631,10 +624,10 @@
         display:none;
       }
       .tl-node b{
-        font-size:9px;
+        font-size:10px;
       }
       .tl-node .date{
-        font-size:8px;
+        font-size:9px;
       }
       .tl-node .dot{
         width:10px;
@@ -642,7 +635,6 @@
       }
       .tl-body{
         gap:6px;
-        transform:translateY(6px);
       }
       .analysis-page .mission-header{
         padding-bottom:6px;
