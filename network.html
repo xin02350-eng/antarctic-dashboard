@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="color-scheme" content="dark">
+  <title data-title-en="AUTONOMOUS NEXUS · OBSERVATION NETWORK" data-title-zh="自主观测系统 · 观测网络">AUTONOMOUS NEXUS · OBSERVATION NETWORK</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{min-height:100%}
+    body{background:#020811;color:#dff6ff;font-family:"Segoe UI",system-ui,-apple-system,"Microsoft YaHei",sans-serif}
+    a{color:inherit;text-decoration:none}
+
+    .net-top{display:flex;align-items:center;justify-content:space-between;padding:16px 28px;border-bottom:1px solid rgba(98,217,255,.12);background:rgba(3,13,24,.9)}
+    .net-top .brand{display:flex;align-items:center;gap:11px}
+    .net-top .logo{width:32px;height:32px;border:1px solid rgba(98,217,255,.5);border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#8ceaff}
+    .net-top .brand h1{font-size:13px;letter-spacing:2.5px;color:#eafcff}
+    .net-top .brand p{font-size:8px;letter-spacing:1.8px;color:#6f93a8;margin-top:2px}
+    .net-top .top-right{display:flex;align-items:center;gap:18px}
+    .home-link{font-size:10px;letter-spacing:2px;color:#8ceaff;border:1px solid rgba(98,217,255,.3);border-radius:2px;padding:7px 14px;transition:background .25s ease}
+    .home-link:hover{background:rgba(98,217,255,.12)}
+
+    .lang-switch{position:relative;display:flex;width:100px;height:28px;border:1px solid rgba(98,217,255,.28);border-radius:999px;background:rgba(3,13,24,.72);overflow:hidden}
+    .lang-switch .pill{position:absolute;top:3px;left:3px;z-index:1;width:calc(50% - 3px);height:calc(100% - 6px);border-radius:999px;background:linear-gradient(135deg,rgba(45,212,170,.92),rgba(98,217,255,.78));transition:transform .3s cubic-bezier(.4,0,.2,1)}
+    html[data-lang="en"] .lang-switch .pill{transform:translateX(100%)}
+    .lang-switch button{position:relative;z-index:2;flex:1;border:0;background:transparent;color:#8fb0c2;font-size:10px;letter-spacing:1px;cursor:pointer;font-family:inherit}
+    .lang-switch button.active{color:#04101c;font-weight:700}
+
+    .net-main{display:grid;grid-template-columns:minmax(0,15%) minmax(0,60%) minmax(0,25%);gap:16px;padding:18px 22px;min-height:calc(100vh - 67px)}
+
+    .net-catalog{background:linear-gradient(165deg,rgba(9,28,44,.42),rgba(5,16,28,.34));border:1px solid rgba(140,234,255,.10);border-radius:8px;padding:18px 14px;display:flex;flex-direction:column;gap:10px}
+    .net-catalog h2{font-size:11px;letter-spacing:2.5px;color:rgba(140,234,255,.75);padding-bottom:10px;border-bottom:1px solid rgba(98,217,255,.12)}
+    .net-catalog .cat-sub{font-size:9px;color:#6f93a8;letter-spacing:1px;margin-top:-4px}
+    .net-node{display:flex;align-items:center;gap:10px;padding:10px 10px;border:1px solid rgba(98,217,255,.08);border-radius:6px;background:rgba(6,20,34,.3);cursor:default}
+    .net-node .num{font-size:16px;font-weight:700;color:rgba(98,217,255,.45);font-style:normal;letter-spacing:1px}
+    .net-node b{font-size:11px;letter-spacing:1.5px;color:#dff6ff;display:block}
+    .net-node span{font-size:8px;letter-spacing:1.5px;color:#6f93a8;display:block;margin-top:2px}
+    .net-node.active{border-color:rgba(0,229,168,.35);background:rgba(0,229,168,.06)}
+    .net-node.active .num{color:#00e5a8}
+    .net-node.active span{color:#9fd8c2}
+
+    .net-map-wrap{display:flex;flex-direction:column;border:1px solid rgba(140,234,255,.10);border-radius:8px;overflow:hidden;background:linear-gradient(165deg,rgba(9,28,44,.42),rgba(5,16,28,.34));min-width:0}
+    .net-map-head{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-bottom:1px solid rgba(98,217,255,.10)}
+    .net-map-head .title{font-size:10px;letter-spacing:2.5px;color:rgba(140,234,255,.75)}
+    .net-online{display:flex;align-items:center;gap:7px;font-size:9px;letter-spacing:2px;color:#9fd8c2;border:1px solid rgba(0,229,168,.25);border-radius:999px;padding:3px 10px}
+    .net-online i{width:6px;height:6px;border-radius:50%;background:#00e5a8;animation:netPulse 2.4s ease-out infinite}
+    @keyframes netPulse{0%{box-shadow:0 0 0 0 rgba(0,229,168,.45)}70%{box-shadow:0 0 0 8px rgba(0,229,168,0)}100%{box-shadow:0 0 0 0 rgba(0,229,168,0)}}
+    #networkMap{flex:1;min-height:420px;background:#04101d}
+    #networkMap .leaflet-tile-pane{filter:grayscale(1) brightness(.5) contrast(1.25) sepia(.28) hue-rotate(168deg) saturate(.72)}
+    .net-marker{background:transparent;border:0}
+    .net-marker .dot{display:block;width:13px;height:13px;border-radius:50%;background:#00e5a8;box-shadow:0 0 0 0 rgba(0,229,168,.45);animation:netPulse 2.6s ease-out infinite}
+
+    .net-side{display:flex;flex-direction:column;gap:10px;min-width:0}
+    .net-guide{background:linear-gradient(165deg,rgba(9,28,44,.42),rgba(5,16,28,.34));border:1px solid rgba(140,234,255,.10);border-radius:8px;padding:14px 14px}
+    .net-guide h3{font-size:10px;letter-spacing:2.5px;color:rgba(140,234,255,.75);margin-bottom:8px}
+    .net-guide ul{list-style:none;font-size:9px;line-height:2;color:#9ab8ca;letter-spacing:.5px}
+    .net-guide li::before{content:"· ";color:#00e5a8}
+
+    .term-card{border:1px solid rgba(140,234,255,.10);border-radius:8px;padding:14px 14px;background:linear-gradient(165deg,rgba(9,28,44,.42),rgba(5,16,28,.34))}
+    .term-card.active{border-color:rgba(0,229,168,.4);background:linear-gradient(165deg,rgba(9,34,44,.55),rgba(5,20,32,.4))}
+    .term-card h4{font-size:13px;letter-spacing:2px;color:#eafcff}
+    .term-card .type{font-size:9px;color:#9ab8ca;margin-top:4px;line-height:1.6}
+    .term-card .meta{font-size:9px;color:#6f93a8;margin-top:8px;line-height:1.8}
+    .term-card .meta b{color:#dff6ff;font-weight:600}
+    .term-status{display:inline-block;margin-top:8px;font-size:8px;letter-spacing:2px;padding:3px 10px;border-radius:999px;border:1px solid rgba(0,229,168,.3);color:#9fd8c2}
+    .term-card .enter{display:inline-block;margin-top:12px;border:1px solid rgba(98,217,255,.5);background:rgba(98,217,255,.08);color:#eafcff;font-size:10px;letter-spacing:2px;padding:9px 18px;border-radius:2px;transition:background .25s ease}
+    .term-card .enter:hover{background:rgba(98,217,255,.18)}
+    .term-card.disabled{opacity:.52}
+    .term-card.disabled .term-status{border-color:rgba(127,163,181,.3);color:#6f93a8}
+    .term-card.disabled .enter{display:none}
+
+    @media (max-width:1100px){
+      .net-main{grid-template-columns:1fr;grid-template-rows:auto 420px auto}
+      .net-catalog{flex-direction:row;align-items:center;overflow-x:auto;padding:12px 14px}
+      .net-catalog h2{white-space:nowrap;padding-bottom:0;border-bottom:0;border-right:1px solid rgba(98,217,255,.12);padding-right:14px}
+      .net-catalog .cat-sub{display:none}
+      .net-node{flex:none;min-width:150px}
+      .net-side{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
+      .net-guide{grid-column:1 / -1}
+    }
+    @media (max-width:700px){
+      .net-top{padding:12px 14px}
+      .net-top .brand p{display:none}
+      .home-link{display:none}
+      .net-main{padding:10px;grid-template-rows:auto 300px auto;gap:10px}
+      #networkMap{min-height:300px}
+      .net-side{grid-template-columns:1fr}
+      .net-node{min-width:128px;padding:8px}
+    }
+  </style>
+</head>
+<body class="network-page">
+
+  <header class="net-top">
+    <div class="brand">
+      <div class="logo">AN</div>
+      <div>
+        <h1>AUTONOMOUS NEXUS</h1>
+        <p><span data-lang="en">OBSERVATION NETWORK</span><span data-lang="zh">观测网络</span></p>
+      </div>
+    </div>
+    <div class="top-right">
+      <a class="home-link" href="./index.html"><span data-lang="en">EXPLORATION</span><span data-lang="zh">探索首页</span></a>
+      <div class="lang-switch"><span class="pill" aria-hidden="true"></span><button type="button" data-lang="zh">中</button><button type="button" data-lang="en" class="active">EN</button></div>
+    </div>
+  </header>
+
+  <main class="net-main">
+
+    <aside class="net-catalog">
+      <div>
+        <h2><span data-lang="en">OBSERVATION NETWORK</span><span data-lang="zh">观测网络</span></h2>
+        <p class="cat-sub"><span data-lang="en">NODE CATALOG</span><span data-lang="zh">节点目录</span></p>
+      </div>
+      <div class="net-node active">
+        <i class="num">01</i>
+        <div><b>ANT-A01</b><span data-lang="en">CURRENT</span><span data-lang="zh">当前运行</span></div>
+      </div>
+      <div class="net-node">
+        <i class="num">02</i>
+        <div><b>ANT-A02</b><span data-lang="en">PENDING</span><span data-lang="zh">待部署</span></div>
+      </div>
+      <div class="net-node">
+        <i class="num">03</i>
+        <div><b>ANT-A03</b><span data-lang="en">PENDING</span><span data-lang="zh">待部署</span></div>
+      </div>
+    </aside>
+
+    <section class="net-map-wrap">
+      <div class="net-map-head">
+        <span class="title"><span data-lang="en">REAL-TIME NODE MAP</span><span data-lang="zh">节点实时地图</span></span>
+        <span class="net-online"><i></i><span data-lang="en">ONLINE</span><span data-lang="zh">在线</span></span>
+      </div>
+      <div id="networkMap"></div>
+    </section>
+
+    <aside class="net-side">
+      <div class="net-guide">
+        <h3><span data-lang="en">Select Observation Node</span><span data-lang="zh">选择观测终端</span></h3>
+        <ul>
+          <li data-lang="en">Status</li><li data-lang="zh">实时状态</li>
+          <li data-lang="en">Sensors</li><li data-lang="zh">环境数据</li>
+          <li data-lang="en">Hardware</li><li data-lang="zh">硬件信息</li>
+          <li data-lang="en">Analysis</li><li data-lang="zh">任务分析</li>
+        </ul>
+      </div>
+
+      <div class="term-card active">
+        <h4>ANT-A01</h4>
+        <p class="type"><span data-lang="en">Autonomous Environmental Observation Node</span><span data-lang="zh">自主环境观测节点</span></p>
+        <p class="meta"><span data-lang="en">Location:</span><span data-lang="zh">位置：</span><b><span data-lang="en">Nanjing</span><span data-lang="zh">南京</span></b></p>
+        <span class="term-status"><span data-lang="en">ONLINE</span><span data-lang="zh">在线</span></span>
+        <a class="enter" href="./dashboard.html"><span data-lang="en">ENTER TERMINAL</span><span data-lang="zh">进入终端</span></a>
+      </div>
+
+      <div class="term-card disabled">
+        <h4>ANT-A02</h4>
+        <p class="type"><span data-lang="en">Future Node</span><span data-lang="zh">未来节点</span></p>
+        <span class="term-status"><span data-lang="en">COMING SOON</span><span data-lang="zh">即将上线</span></span>
+      </div>
+
+      <div class="term-card disabled">
+        <h4>ANT-A03</h4>
+        <p class="type"><span data-lang="en">Future Node</span><span data-lang="zh">未来节点</span></p>
+        <span class="term-status"><span data-lang="en">COMING SOON</span><span data-lang="zh">即将上线</span></span>
+      </div>
+    </aside>
+
+  </main>
+
+  <script>
+  (function () {
+    function apply(lang) {
+      document.documentElement.setAttribute('data-lang', lang);
+      document.documentElement.setAttribute('lang', lang === 'zh' ? 'zh-CN' : 'en');
+      document.querySelectorAll('[data-lang]').forEach(function (el) {
+        if (el.tagName === 'BUTTON' && el.parentNode && el.parentNode.classList && el.parentNode.classList.contains('lang-switch')) return;
+        el.style.display = (el.getAttribute('data-lang') === lang) ? '' : 'none';
+      });
+      document.querySelectorAll('.lang-switch button').forEach(function (b) {
+        b.classList.toggle('active', b.getAttribute('data-lang') === lang);
+      });
+      try { localStorage.setItem('anx-lang', lang); } catch (e) {}
+      window.anxCurrentLang = lang;
+      window.anxApplyLang = apply;
+      var titleEl = document.querySelector('title');
+      if (titleEl) {
+        var tEn = titleEl.getAttribute('data-title-en');
+        var tZh = titleEl.getAttribute('data-title-zh');
+        if (tEn && tZh) titleEl.textContent = lang === 'zh' ? tZh : tEn;
+      }
+      try { window.dispatchEvent(new CustomEvent('anx:langchange', { detail: { lang: lang } })); } catch (e) {}
+    }
+    function bind() {
+      document.querySelectorAll('.lang-switch button').forEach(function (b) {
+        b.addEventListener('click', function (ev) {
+          ev.preventDefault();
+          apply(b.getAttribute('data-lang'));
+        });
+      });
+    }
+    var saved = null;
+    try { saved = localStorage.getItem('anx-lang'); } catch (e) {}
+    apply(saved === 'zh' ? 'zh' : 'en');
+    bind();
+  })();
+  </script>
+
+  <script>
+  (function () {
+    if (!window.L) return;
+    var map = L.map('networkMap', { zoomControl: false, attributionControl: false }).setView([32.049141, 118.793686], 6);
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18 }).addTo(map);
+    var icon = L.divIcon({ className: 'net-marker', html: '<span class="dot"></span>', iconSize: [16, 16], iconAnchor: [8, 8] });
+    L.marker([32.049141, 118.793686], { icon: icon }).addTo(map).bindPopup('ANT-A01 · NANJING');
+    window.networkMap = map;
+    setTimeout(function () { map.invalidateSize(); }, 400);
+    window.addEventListener('resize', function () { map.invalidateSize(); });
+  })();
+  </script>
+</body>
+</html>
