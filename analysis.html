@@ -796,11 +796,11 @@
     <section class="sensor-ratio-section">
       <h3 class="an-sec-title" data-lang="en">Sensor Data Coverage</h3>
       <h3 class="an-sec-title" data-lang="zh">传感器数据覆盖率</h3>
-      <p class="sr-note" data-lang="en">Indicates the proportion of valid records from each sensor among all telemetry records.</p>
-      <p class="sr-note" data-lang="zh">表示该传感器有效数据记录占全部遥测记录的比例。</p>
+      <p class="sr-note" data-lang="en">Shows the proportion of records collected by each sensor type among all telemetry records.</p>
+      <p class="sr-note" data-lang="zh">表示该类传感器数据记录数量占全部遥测记录的覆盖比例。</p>
       <div class="sr-head">
         <span data-lang="en">SENSOR · TYPE</span><span data-lang="zh">编号 · 类型</span>
-        <span data-lang="en">RECEIVED / TOTAL</span><span data-lang="zh">有效 / 总记录</span>
+        <span data-lang="en">DATA COVERAGE</span><span data-lang="zh">数据覆盖率</span>
         <span data-lang="en">COVERAGE</span><span data-lang="zh">覆盖率</span>
         <span class="sr-h-p" data-lang="en">RATIO</span><span class="sr-h-p" data-lang="zh">占比</span>
       </div>
@@ -915,9 +915,44 @@
       days = Math.max(1, Math.round((end - start) / 86400000));
     }
 
+    function voltageToSoc(v) {
+      if (v === null || v === undefined || isNaN(v)) return null;
+      if (v >= 15.5) return 100;
+      if (v >= 15.4) return 99;
+      if (v >= 15.3) return 98;
+      if (v >= 15.1) return 97;
+      if (v >= 15.0) return 96;
+      if (v >= 14.9) return 95;
+      if (v >= 14.8) return 93;
+      if (v >= 14.7) return 91;
+      if (v >= 14.6) return 89;
+      if (v >= 14.5) return 87;
+      if (v >= 14.4) return 85;
+      if (v >= 14.3) return 83;
+      if (v >= 14.2) return 81;
+      if (v >= 14.1) return 79;
+      if (v >= 14.0) return 76;
+      if (v >= 13.9) return 74;
+      if (v >= 13.8) return 70;
+      if (v >= 13.7) return 68;
+      if (v >= 13.6) return 64;
+      if (v >= 13.5) return 60;
+      if (v >= 13.4) return 55;
+      if (v >= 13.3) return 49;
+      if (v >= 13.2) return 42;
+      if (v >= 13.1) return 33;
+      if (v >= 13.0) return 25;
+      if (v >= 12.9) return 17;
+      if (v >= 12.8) return 11;
+      if (v >= 12.7) return 6;
+      if (v >= 12.6) return 3;
+      if (v >= 12.5) return 2;
+      return 0;
+    }
     var soc = null;
     for (var i = data.length - 1; i >= 0; i--) {
       if (data[i].soc !== null && data[i].soc !== undefined) { soc = data[i].soc; break; }
+      if (data[i].v !== null && data[i].v !== undefined) { soc = voltageToSoc(Number(data[i].v)); break; }
     }
 
     var firstS = null, firstE = null;

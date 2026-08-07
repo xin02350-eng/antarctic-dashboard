@@ -12860,7 +12860,8 @@ color:#eafcff;
 
 
 /* 状态灯容器内的双语文字 span：不继承圆点样式 */
-.system-online span[data-lang]{
+body.dashboard-page .system-online span[data-lang],
+body.hardware-page .system-online span[data-lang]{
 
 width:auto;
 
