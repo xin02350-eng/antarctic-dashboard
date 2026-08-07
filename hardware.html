@@ -17,7 +17,7 @@
       <div class="logo">AN</div>
       <div>
         <h1>ANTARCTIC<br>NEXUS</h1>
-        <p>POLAR AUTONOMOUS OBSERVATORY</p>
+        <p data-i18n="brand_subtitle">POLAR AUTONOMOUS OBSERVATORY</p>
       </div>
     </div>
     <input type="checkbox" id="navToggle" class="nav-toggle" aria-hidden="true">
@@ -51,24 +51,24 @@
 
       <!-- 左侧：识别与规格（NASA 工程档案风格） -->
       <aside class="doc-side">
-        <h3>IDENTIFICATION</h3>
-        <div class="tech-line">DESIGNATION <span>ANT-A01</span></div>
-        <div class="tech-line">TYPE <span>POLAR NODE</span></div>
-        <div class="tech-line">VERSION <span>V0.4</span></div>
-        <div class="tech-line">STATUS <span class="green">ACTIVE</span></div>
+        <h3 data-i18n="identification">IDENTIFICATION</h3>
+        <div class="tech-line"><span data-i18n="designation">DESIGNATION</span> <span>ANT-A01</span></div>
+        <div class="tech-line"><span data-i18n="type">TYPE</span> <span data-i18n="polar_node">POLAR NODE</span></div>
+        <div class="tech-line"><span data-i18n="version">VERSION</span> <span>V0.4</span></div>
+        <div class="tech-line"><span data-i18n="status">STATUS</span> <span class="green" data-i18n="active">ACTIVE</span></div>
 
-        <h3>SPECIFICATIONS</h3>
-        <div class="tech-line">ENCLOSURE <span>IP66</span></div>
-        <div class="tech-line">POWER <span>SOLAR + LI-ION</span></div>
-        <div class="tech-line">SENSORS <span>TEMP · HUM · PRESS · RAD</span></div>
-        <div class="tech-line">COMMS <span>GPS · LoRa</span></div>
+        <h3 data-i18n="specifications">SPECIFICATIONS</h3>
+        <div class="tech-line"><span data-i18n="enclosure">ENCLOSURE</span> <span>IP66</span></div>
+        <div class="tech-line"><span data-i18n="power">POWER</span> <span data-i18n="power_value">SOLAR + LI-ION</span></div>
+        <div class="tech-line"><span data-i18n="sensors">SENSORS</span> <span>TEMP · HUM · PRESS · RAD</span></div>
+        <div class="tech-line"><span data-i18n="comms">COMMS</span> <span>GPS · LoRa</span></div>
       </aside>
 
       <!-- 中央：大型设备照片展示区（真实照片占位） -->
       <div class="doc-stage">
         <div class="doc-stage-head">
-          <span>DEVICE PHOTOGRAPH · FIELD DEPLOYMENT</span>
-          <span class="doc-file">FILE: ANT-A01_001 · REV V0.4</span>
+          <span data-i18n="device_photograph">DEVICE PHOTOGRAPH · FIELD DEPLOYMENT</span>
+          <span class="doc-file" data-i18n="file_label">FILE: ANT-A01_001 · REV V0.4</span>
         </div>
 
         <div class="doc-photo">
@@ -77,26 +77,26 @@
               <path d="M4 7h3l2-3h6l2 3h3v13H4V7z"/>
               <circle cx="12" cy="13" r="4"/>
             </svg>
-            <p>REAL DEVICE PHOTO</p>
-            <p class="photo-sub">IMAGE SLOT · REPLACE WITH FIELD PHOTOGRAPH</p>
+            <p data-i18n="real_device_photo">REAL DEVICE PHOTO</p>
+            <p class="photo-sub" data-i18n="image_slot">IMAGE SLOT · REPLACE WITH FIELD PHOTOGRAPH</p>
           </div>
         </div>
 
         <div class="doc-stage-foot">
-          <span>CAPTURED: PENDING</span>
-          <span>LOCATION: ANTARCTIC FIELD SITE</span>
-          <span>DOC: HARDWARE ARCHIVE</span>
+          <span data-i18n="captured_pending">CAPTURED: PENDING</span>
+          <span data-i18n="location_field">LOCATION: ANTARCTIC FIELD SITE</span>
+          <span data-i18n="doc_archive">DOC: HARDWARE ARCHIVE</span>
         </div>
       </div>
 
       <!-- 右侧：实时遥测 + 部署信息 -->
       <aside class="doc-side">
-        <h3>LIVE TELEMETRY</h3>
+        <h3 data-i18n="live_telemetry">LIVE TELEMETRY</h3>
 
         <div class="hud-card">
           <i class="hc-dot"></i>
           <div class="hc-body">
-            <span class="hc-name">POWER · SOLAR</span>
+            <span class="hc-name" data-i18n="power_solar">POWER · SOLAR</span>
             <span class="hc-val" id="hardwareSolar">NULL</span><span class="hc-unit">W/m²</span>
           </div>
         </div>
@@ -104,7 +104,7 @@
         <div class="hud-card">
           <i class="hc-dot"></i>
           <div class="hc-body">
-            <span class="hc-name">BATTERY</span>
+            <span class="hc-name" data-i18n="battery">BATTERY</span>
             <span class="hc-val" id="hardwareVoltage">NULL</span><span class="hc-unit">V</span>
           </div>
         </div>
@@ -112,7 +112,7 @@
         <div class="hud-card">
           <i class="hc-dot"></i>
           <div class="hc-body">
-            <span class="hc-name">SENSOR · CABIN</span>
+            <span class="hc-name" data-i18n="sensor_cabin">SENSOR · CABIN</span>
             <span class="hc-val" id="hardwareTemp">NULL</span><span class="hc-unit">°C</span>
           </div>
         </div>
@@ -120,15 +120,15 @@
         <div class="hud-card">
           <i class="hc-dot"></i>
           <div class="hc-body">
-            <span class="hc-name">GPS</span>
+            <span class="hc-name" data-i18n="gps">GPS</span>
             <span class="hc-val" id="hardwareGPS">NULL</span>
           </div>
         </div>
 
-        <h3>DEPLOYMENT</h3>
-        <div class="tech-line">SITE <span>ANTARCTICA</span></div>
-        <div class="tech-line">MOUNT <span>ICE ANCHOR</span></div>
-        <div class="tech-line">LINK <span>LoRa UPLINK</span></div>
+        <h3 data-i18n="deployment">DEPLOYMENT</h3>
+        <div class="tech-line"><span data-i18n="site">SITE</span> <span data-i18n="antarctica">ANTARCTICA</span></div>
+        <div class="tech-line"><span data-i18n="mount">MOUNT</span> <span data-i18n="ice_anchor">ICE ANCHOR</span></div>
+        <div class="tech-line"><span data-i18n="link">LINK</span> <span data-i18n="lora_uplink">LoRa UPLINK</span></div>
       </aside>
     </section>
 
@@ -136,16 +136,16 @@
     <footer class="hw-strip">
       <div class="hw-chain">
         <span class="hc-node on">ANT-A01</span><i class="hc-arrow">→</i>
-        <span class="hc-node on">SOLAR</span><i class="hc-arrow">→</i>
-        <span class="hc-node on">BATTERY</span><i class="hc-arrow">→</i>
+        <span class="hc-node on" data-i18n="solar">SOLAR</span><i class="hc-arrow">→</i>
+        <span class="hc-node on" data-i18n="battery">BATTERY</span><i class="hc-arrow">→</i>
         <span class="hc-node on">MCU</span><i class="hc-arrow">→</i>
-        <span class="hc-node on">SENSOR</span><i class="hc-arrow">→</i>
-        <span class="hc-node on">GPS / LORA</span>
+        <span class="hc-node on" data-i18n="sensor">SENSOR</span><i class="hc-arrow">→</i>
+        <span class="hc-node on" data-i18n="gps_lora">GPS / LORA</span>
       </div>
       <div class="hw-chips">
-        <span class="hw-chip">SOLAR <b id="hwStripSolar">--</b></span>
-        <span class="hw-chip">VOLT <b id="hwStripVoltage">--</b></span>
-        <span class="hw-chip">TEMP <b id="hwStripTemp">--</b></span>
+        <span class="hw-chip"><span data-i18n="solar">SOLAR</span> <b id="hwStripSolar">--</b></span>
+        <span class="hw-chip"><span data-i18n="volt">VOLT</span> <b id="hwStripVoltage">--</b></span>
+        <span class="hw-chip"><span data-i18n="temp">TEMP</span> <b id="hwStripTemp">--</b></span>
         <span class="hw-chip">GPS <b id="hwStripGps">--</b></span>
       </div>
     </footer>

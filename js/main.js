@@ -113,7 +113,46 @@ last_data_contact:"LAST DATA CONTACT",
 mission_stream:"MISSION STREAM",
 solar_radiation_label:"SOLAR RADIATION",
 lat:"LAT",
-lon:"LON"
+lon:"LON",
+brand_subtitle:"POLAR AUTONOMOUS OBSERVATORY",
+real_world_map:"REAL WORLD MAP",
+ant_a01_position:"ANT-A01 POSITION",
+deployment_nodes:"DEPLOYMENT NODES",
+position_fix:"POSITION FIX",
+identification:"IDENTIFICATION",
+specifications:"SPECIFICATIONS",
+designation:"DESIGNATION",
+type:"TYPE",
+polar_node:"POLAR NODE",
+version:"VERSION",
+status:"STATUS",
+active:"ACTIVE",
+enclosure:"ENCLOSURE",
+power_value:"SOLAR + LI-ION",
+device_photograph:"DEVICE PHOTOGRAPH · FIELD DEPLOYMENT",
+file_label:"FILE: ANT-A01_001 · REV V0.4",
+real_device_photo:"REAL DEVICE PHOTO",
+image_slot:"IMAGE SLOT · REPLACE WITH FIELD PHOTOGRAPH",
+captured_pending:"CAPTURED: PENDING",
+location_field:"LOCATION: ANTARCTIC FIELD SITE",
+doc_archive:"DOC: HARDWARE ARCHIVE",
+live_telemetry:"LIVE TELEMETRY",
+power_solar:"POWER · SOLAR",
+battery:"BATTERY",
+sensor_cabin:"SENSOR · CABIN",
+deployment:"DEPLOYMENT",
+site:"SITE",
+antarctica:"ANTARCTICA",
+mount:"MOUNT",
+ice_anchor:"ICE ANCHOR",
+lora_uplink:"LoRa UPLINK",
+solar:"SOLAR",
+volt:"VOLT",
+temp:"TEMP",
+sensor:"SENSOR",
+gps_lora:"GPS / LORA"
+,
+gps:"GPS"
 },
 zh:{
 null:"无数据",
@@ -195,7 +234,46 @@ last_data_contact:"最近数据联系",
 mission_stream:"任务流",
 solar_radiation_label:"太阳辐射",
 lat:"纬度",
-lon:"经度"
+lon:"经度",
+brand_subtitle:"极地自主观测平台",
+real_world_map:"实景地图",
+ant_a01_position:"ANT-A01 位置",
+deployment_nodes:"部署节点",
+position_fix:"定位有效",
+identification:"识别信息",
+specifications:"规格参数",
+designation:"编号",
+type:"类型",
+polar_node:"极地节点",
+version:"版本",
+status:"状态",
+active:"运行中",
+enclosure:"防护等级",
+power_value:"太阳能 + 锂离子",
+device_photograph:"设备实拍 · 野外部署",
+file_label:"文件：ANT-A01_001 · 版本 V0.4",
+real_device_photo:"真实设备照片",
+image_slot:"图片位 · 替换为实地照片",
+captured_pending:"拍摄状态：待补充",
+location_field:"地点：南极野外站点",
+doc_archive:"档案：硬件档案",
+live_telemetry:"实时遥测",
+power_solar:"供电 · 太阳能",
+battery:"电池",
+sensor_cabin:"传感器 · 舱内",
+deployment:"部署信息",
+site:"站点",
+antarctica:"南极",
+mount:"安装方式",
+ice_anchor:"冰锚固定",
+lora_uplink:"LoRa 上行链路",
+solar:"太阳能",
+volt:"电压",
+temp:"温度",
+sensor:"传感器",
+gps_lora:"GPS / LoRa"
+,
+gps:"GPS"
 }
 };
 
@@ -1868,6 +1946,11 @@ function updateTelemetry(){
 
 
 
+if(document.body && document.body.classList && document.body.classList.contains("telemetry-page")){
+return;
+}
+
+
 let box =
 
 document.getElementById(
@@ -2145,27 +2228,34 @@ return;
 
 }
 
+var anyTarget = ["missionDays","runDays","totalRecords","dataCount","lastContact","lastUpdate","gpsValidCount"].some(function(id){
+return !!document.getElementById(id);
+});
+if(!anyTarget){
+return;
+}
+
 
 
 
 
 let start =
 
-new Date(
+window.ANX_PARSE_TIME ? window.ANX_PARSE_TIME(
 
 DATA[0].time
 
-);
+) : new Date(DATA[0].time);
 
 
 
 let end =
 
-new Date(
+window.ANX_PARSE_TIME ? window.ANX_PARSE_TIME(
 
 DATA[DATA.length-1].time
 
-);
+) : new Date(DATA[DATA.length-1].time);
 
 
 
@@ -2173,15 +2263,14 @@ DATA[DATA.length-1].time
 
 let days =
 
-Math.ceil(
+(start && end && !isNaN(start.getTime()) && !isNaN(end.getTime())) ? Math.max(1, Math.ceil(
 
 (end-start)
 
 /
 
 86400000
-
-);
+) ) : "--";
 
 
 
