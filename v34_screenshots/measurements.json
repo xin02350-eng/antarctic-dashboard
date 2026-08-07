@@ -1,0 +1,762 @@
+[
+  {
+    "lang": "en",
+    "w": 1920,
+    "h": 1080,
+    "dataLang": "en",
+    "viewport": {
+      "w": 1920,
+      "h": 1080
+    },
+    "doc": {
+      "sh": 1080,
+      "ch": 1080,
+      "sw": 1920,
+      "cw": 1920,
+      "vScroll": false,
+      "hScroll": false
+    },
+    "rows": [
+      {
+        "name": "CABIN TEMP & HUM",
+        "ratio": "424/476",
+        "pct": "89.1%",
+        "barW": "89.1%",
+        "sameLine": true,
+        "orderOk": true,
+        "rowH": 54,
+        "barBelow": true,
+        "overflowX": false
+      },
+      {
+        "name": "EXTERNAL ENVIRONMENT",
+        "ratio": "451/476",
+        "pct": "94.7%",
+        "barW": "94.7%",
+        "sameLine": true,
+        "orderOk": true,
+        "rowH": 54,
+        "barBelow": true,
+        "overflowX": false
+      },
+      {
+        "name": "SOLAR RADIATION",
+        "ratio": "372/476",
+        "pct": "78.2%",
+        "barW": "78.2%",
+        "sameLine": true,
+        "orderOk": true,
+        "rowH": 54,
+        "barBelow": true,
+        "overflowX": false
+      },
+      {
+        "name": "POWER STATUS",
+        "ratio": "474/476",
+        "pct": "99.6%",
+        "barW": "99.6%",
+        "sameLine": true,
+        "orderOk": true,
+        "rowH": 54,
+        "barBelow": true,
+        "overflowX": false
+      },
+      {
+        "name": "GPS POSITION",
+        "ratio": "9/476",
+        "pct": "1.9%",
+        "barW": "1.9%",
+        "sameLine": true,
+        "orderOk": true,
+        "rowH": 54,
+        "barBelow": true,
+        "overflowX": false
+      },
+      {
+        "name": "WIND MONITORING",
+        "ratio": "--",
+        "pct": "--",
+        "barW": "0%",
+        "sameLine": true,
+        "orderOk": true,
+        "rowH": 54,
+        "barBelow": true,
+        "overflowX": false
+      }
+    ],
+    "ring": {
+      "w": 180,
+      "h": 180
+    },
+    "socText": "0",
+    "socFont": "52px",
+    "socVoltage": "9.0",
+    "socState": "EMPTY",
+    "headCols": "1111.34px 42.6562px 76px"
+  },
+  {
+    "lang": "en",
+    "w": 1440,
+    "h": 900,
+    "dataLang": "en",
+    "viewport": {
+      "w": 1440,
+      "h": 900
+    },
+    "doc": {
+      "sh": 900,
+      "ch": 900,
+      "sw": 1440,
+      "cw": 1440,
+      "vScroll": false,
+      "hScroll": false
+    },
+    "rows": [
+      {
+        "name": "CABIN TEMP & HUM",
+        "ratio": "424/476",
+        "pct": "89.1%",
+        "barW": "89.1%",
+        "sameLine": true,
+        "orderOk": true,
+        "rowH": 32,
+        "barBelow": true,
+        "overflowX": false
+      },
+      {
+        "name": "EXTERNAL ENVIRONMENT",
+        "ratio": "451/476",
+        "pct": "94.7%",
+        "barW": "94.7%",
+        "sameLine": true,
+        "orderOk": true,
+        "rowH": 32,
+        "barBelow": true,
+        "overflowX": false
+      },
+      {
+        "name": "SOLAR RADIATION",
+        "ratio": "372/476",
+        "pct": "78.2%",
+        "barW": "78.2%",
+        "sameLine": true,
+        "orderOk": true,
+        "rowH": 32,
+        "barBelow": true,
+        "overflowX": false
+      },
+      {
+        "name": "POWER STATUS",
+        "ratio": "474/476",
+        "pct": "99.6%",
+        "barW": "99.6%",
+        "sameLine": true,
+        "orderOk": true,
+        "rowH": 32,
+        "barBelow": true,
+        "overflowX": false
+      },
+      {
+        "name": "GPS POSITION",
+        "ratio": "9/476",
+        "pct": "1.9%",
+        "barW": "1.9%",
+        "sameLine": true,
+        "orderOk": true,
+        "rowH": 32,
+        "barBelow": true,
+        "overflowX": false
+      },
+      {
+        "name": "WIND MONITORING",
+        "ratio": "--",
+        "pct": "--",
+        "barW": "0%",
+        "sameLine": true,
+        "orderOk": true,
+        "rowH": 32,
+        "barBelow": true,
+        "overflowX": false
+      }
+    ],
+    "ring": {
+      "w": 150,
+      "h": 150
+    },
+    "socText": "0",
+    "socFont": "30px",
+    "socVoltage": "9.0",
+    "socState": "EMPTY",
+    "headCols": "657.344px 42.6562px 64px"
+  },
+  {
+    "lang": "en",
+    "w": 1366,
+    "h": 768,
+    "dataLang": "en",
+    "viewport": {
+      "w": 1366,
+      "h": 768
+    },
+    "doc": {
+      "sh": 768,
+      "ch": 768,
+      "sw": 1366,
+      "cw": 1366,
+      "vScroll": false,
+      "hScroll": false
+    },
+    "rows": [
+      {
+        "name": "CABIN TEMP & HUM",
+        "ratio": "424/476",
+        "pct": "89.1%",
+        "barW": "89.1%",
+        "sameLine": true,
+        "orderOk": true,
+        "rowH": 32,
+        "barBelow": true,
+        "overflowX": false
+      },
+      {
+        "name": "EXTERNAL ENVIRONMENT",
+        "ratio": "451/476",
+        "pct": "94.7%",
+        "barW": "94.7%",
+        "sameLine": true,
+        "orderOk": true,
+        "rowH": 32,
+        "barBelow": true,
+        "overflowX": false
+      },
+      {
+        "name": "SOLAR RADIATION",
+        "ratio": "372/476",
+        "pct": "78.2%",
+        "barW": "78.2%",
+        "sameLine": true,
+        "orderOk": true,
+        "rowH": 32,
+        "barBelow": true,
+        "overflowX": false
+      },
+      {
+        "name": "POWER STATUS",
+        "ratio": "474/476",
+        "pct": "99.6%",
+        "barW": "99.6%",
+        "sameLine": true,
+        "orderOk": true,
+        "rowH": 32,
+        "barBelow": true,
+        "overflowX": false
+      },
+      {
+        "name": "GPS POSITION",
+        "ratio": "9/476",
+        "pct": "1.9%",
+        "barW": "1.9%",
+        "sameLine": true,
+        "orderOk": true,
+        "rowH": 32,
+        "barBelow": true,
+        "overflowX": false
+      },
+      {
+        "name": "WIND MONITORING",
+        "ratio": "--",
+        "pct": "--",
+        "barW": "0%",
+        "sameLine": true,
+        "orderOk": true,
+        "rowH": 32,
+        "barBelow": true,
+        "overflowX": false
+      }
+    ],
+    "ring": {
+      "w": 150,
+      "h": 150
+    },
+    "socText": "0",
+    "socFont": "30px",
+    "socVoltage": "9.0",
+    "socState": "EMPTY",
+    "headCols": "583.344px 42.6562px 64px"
+  },
+  {
+    "lang": "en",
+    "w": 1280,
+    "h": 720,
+    "dataLang": "en",
+    "viewport": {
+      "w": 1280,
+      "h": 720
+    },
+    "doc": {
+      "sh": 720,
+      "ch": 720,
+      "sw": 1280,
+      "cw": 1280,
+      "vScroll": false,
+      "hScroll": false
+    },
+    "rows": [
+      {
+        "name": "CABIN TEMP & HUM",
+        "ratio": "424/476",
+        "pct": "89.1%",
+        "barW": "89.1%",
+        "sameLine": true,
+        "orderOk": true,
+        "rowH": 32,
+        "barBelow": true,
+        "overflowX": false
+      },
+      {
+        "name": "EXTERNAL ENVIRONMENT",
+        "ratio": "451/476",
+        "pct": "94.7%",
+        "barW": "94.7%",
+        "sameLine": true,
+        "orderOk": true,
+        "rowH": 32,
+        "barBelow": true,
+        "overflowX": false
+      },
+      {
+        "name": "SOLAR RADIATION",
+        "ratio": "372/476",
+        "pct": "78.2%",
+        "barW": "78.2%",
+        "sameLine": true,
+        "orderOk": true,
+        "rowH": 32,
+        "barBelow": true,
+        "overflowX": false
+      },
+      {
+        "name": "POWER STATUS",
+        "ratio": "474/476",
+        "pct": "99.6%",
+        "barW": "99.6%",
+        "sameLine": true,
+        "orderOk": true,
+        "rowH": 32,
+        "barBelow": true,
+        "overflowX": false
+      },
+      {
+        "name": "GPS POSITION",
+        "ratio": "9/476",
+        "pct": "1.9%",
+        "barW": "1.9%",
+        "sameLine": true,
+        "orderOk": true,
+        "rowH": 32,
+        "barBelow": true,
+        "overflowX": false
+      },
+      {
+        "name": "WIND MONITORING",
+        "ratio": "--",
+        "pct": "--",
+        "barW": "0%",
+        "sameLine": true,
+        "orderOk": true,
+        "rowH": 32,
+        "barBelow": true,
+        "overflowX": false
+      }
+    ],
+    "ring": {
+      "w": 150,
+      "h": 150
+    },
+    "socText": "0",
+    "socFont": "30px",
+    "socVoltage": "9.0",
+    "socState": "EMPTY",
+    "headCols": "497.344px 42.6562px 64px"
+  },
+  {
+    "lang": "zh",
+    "w": 1920,
+    "h": 1080,
+    "dataLang": "zh",
+    "viewport": {
+      "w": 1920,
+      "h": 1080
+    },
+    "doc": {
+      "sh": 1080,
+      "ch": 1080,
+      "sw": 1920,
+      "cw": 1920,
+      "vScroll": false,
+      "hScroll": false
+    },
+    "rows": [
+      {
+        "name": "CABIN TEMP & HUM",
+        "ratio": "424/476",
+        "pct": "89.1%",
+        "barW": "89.1%",
+        "sameLine": false,
+        "orderOk": true,
+        "rowH": 54,
+        "barBelow": true,
+        "overflowX": false
+      },
+      {
+        "name": "EXTERNAL ENVIRONMENT",
+        "ratio": "451/476",
+        "pct": "94.7%",
+        "barW": "94.7%",
+        "sameLine": false,
+        "orderOk": true,
+        "rowH": 54,
+        "barBelow": true,
+        "overflowX": false
+      },
+      {
+        "name": "SOLAR RADIATION",
+        "ratio": "372/476",
+        "pct": "78.2%",
+        "barW": "78.2%",
+        "sameLine": false,
+        "orderOk": true,
+        "rowH": 54,
+        "barBelow": true,
+        "overflowX": false
+      },
+      {
+        "name": "POWER STATUS",
+        "ratio": "474/476",
+        "pct": "99.6%",
+        "barW": "99.6%",
+        "sameLine": false,
+        "orderOk": true,
+        "rowH": 54,
+        "barBelow": true,
+        "overflowX": false
+      },
+      {
+        "name": "GPS POSITION",
+        "ratio": "9/476",
+        "pct": "1.9%",
+        "barW": "1.9%",
+        "sameLine": false,
+        "orderOk": true,
+        "rowH": 54,
+        "barBelow": true,
+        "overflowX": false
+      },
+      {
+        "name": "WIND MONITORING",
+        "ratio": "--",
+        "pct": "--",
+        "barW": "0%",
+        "sameLine": false,
+        "orderOk": true,
+        "rowH": 54,
+        "barBelow": true,
+        "overflowX": false
+      }
+    ],
+    "ring": {
+      "w": 180,
+      "h": 180
+    },
+    "socText": "0",
+    "socFont": "52px",
+    "socVoltage": "9.0",
+    "socState": "电量耗尽",
+    "headCols": "1135.59px 18.4062px 76px"
+  },
+  {
+    "lang": "zh",
+    "w": 1440,
+    "h": 900,
+    "dataLang": "zh",
+    "viewport": {
+      "w": 1440,
+      "h": 900
+    },
+    "doc": {
+      "sh": 900,
+      "ch": 900,
+      "sw": 1440,
+      "cw": 1440,
+      "vScroll": false,
+      "hScroll": false
+    },
+    "rows": [
+      {
+        "name": "CABIN TEMP & HUM",
+        "ratio": "424/476",
+        "pct": "89.1%",
+        "barW": "89.1%",
+        "sameLine": false,
+        "orderOk": true,
+        "rowH": 32,
+        "barBelow": true,
+        "overflowX": false
+      },
+      {
+        "name": "EXTERNAL ENVIRONMENT",
+        "ratio": "451/476",
+        "pct": "94.7%",
+        "barW": "94.7%",
+        "sameLine": false,
+        "orderOk": true,
+        "rowH": 32,
+        "barBelow": true,
+        "overflowX": false
+      },
+      {
+        "name": "SOLAR RADIATION",
+        "ratio": "372/476",
+        "pct": "78.2%",
+        "barW": "78.2%",
+        "sameLine": false,
+        "orderOk": true,
+        "rowH": 32,
+        "barBelow": true,
+        "overflowX": false
+      },
+      {
+        "name": "POWER STATUS",
+        "ratio": "474/476",
+        "pct": "99.6%",
+        "barW": "99.6%",
+        "sameLine": false,
+        "orderOk": true,
+        "rowH": 32,
+        "barBelow": true,
+        "overflowX": false
+      },
+      {
+        "name": "GPS POSITION",
+        "ratio": "9/476",
+        "pct": "1.9%",
+        "barW": "1.9%",
+        "sameLine": false,
+        "orderOk": true,
+        "rowH": 32,
+        "barBelow": true,
+        "overflowX": false
+      },
+      {
+        "name": "WIND MONITORING",
+        "ratio": "--",
+        "pct": "--",
+        "barW": "0%",
+        "sameLine": false,
+        "orderOk": true,
+        "rowH": 32,
+        "barBelow": true,
+        "overflowX": false
+      }
+    ],
+    "ring": {
+      "w": 150,
+      "h": 150
+    },
+    "socText": "0",
+    "socFont": "30px",
+    "socVoltage": "9.0",
+    "socState": "电量耗尽",
+    "headCols": "681.594px 18.4062px 64px"
+  },
+  {
+    "lang": "zh",
+    "w": 1366,
+    "h": 768,
+    "dataLang": "zh",
+    "viewport": {
+      "w": 1366,
+      "h": 768
+    },
+    "doc": {
+      "sh": 768,
+      "ch": 768,
+      "sw": 1366,
+      "cw": 1366,
+      "vScroll": false,
+      "hScroll": false
+    },
+    "rows": [
+      {
+        "name": "CABIN TEMP & HUM",
+        "ratio": "424/476",
+        "pct": "89.1%",
+        "barW": "89.1%",
+        "sameLine": false,
+        "orderOk": true,
+        "rowH": 32,
+        "barBelow": true,
+        "overflowX": false
+      },
+      {
+        "name": "EXTERNAL ENVIRONMENT",
+        "ratio": "451/476",
+        "pct": "94.7%",
+        "barW": "94.7%",
+        "sameLine": false,
+        "orderOk": true,
+        "rowH": 32,
+        "barBelow": true,
+        "overflowX": false
+      },
+      {
+        "name": "SOLAR RADIATION",
+        "ratio": "372/476",
+        "pct": "78.2%",
+        "barW": "78.2%",
+        "sameLine": false,
+        "orderOk": true,
+        "rowH": 32,
+        "barBelow": true,
+        "overflowX": false
+      },
+      {
+        "name": "POWER STATUS",
+        "ratio": "474/476",
+        "pct": "99.6%",
+        "barW": "99.6%",
+        "sameLine": false,
+        "orderOk": true,
+        "rowH": 32,
+        "barBelow": true,
+        "overflowX": false
+      },
+      {
+        "name": "GPS POSITION",
+        "ratio": "9/476",
+        "pct": "1.9%",
+        "barW": "1.9%",
+        "sameLine": false,
+        "orderOk": true,
+        "rowH": 32,
+        "barBelow": true,
+        "overflowX": false
+      },
+      {
+        "name": "WIND MONITORING",
+        "ratio": "--",
+        "pct": "--",
+        "barW": "0%",
+        "sameLine": false,
+        "orderOk": true,
+        "rowH": 32,
+        "barBelow": true,
+        "overflowX": false
+      }
+    ],
+    "ring": {
+      "w": 150,
+      "h": 150
+    },
+    "socText": "0",
+    "socFont": "30px",
+    "socVoltage": "9.0",
+    "socState": "电量耗尽",
+    "headCols": "607.594px 18.4062px 64px"
+  },
+  {
+    "lang": "zh",
+    "w": 1280,
+    "h": 720,
+    "dataLang": "zh",
+    "viewport": {
+      "w": 1280,
+      "h": 720
+    },
+    "doc": {
+      "sh": 720,
+      "ch": 720,
+      "sw": 1280,
+      "cw": 1280,
+      "vScroll": false,
+      "hScroll": false
+    },
+    "rows": [
+      {
+        "name": "CABIN TEMP & HUM",
+        "ratio": "424/476",
+        "pct": "89.1%",
+        "barW": "89.1%",
+        "sameLine": false,
+        "orderOk": true,
+        "rowH": 32,
+        "barBelow": true,
+        "overflowX": false
+      },
+      {
+        "name": "EXTERNAL ENVIRONMENT",
+        "ratio": "451/476",
+        "pct": "94.7%",
+        "barW": "94.7%",
+        "sameLine": false,
+        "orderOk": true,
+        "rowH": 32,
+        "barBelow": true,
+        "overflowX": false
+      },
+      {
+        "name": "SOLAR RADIATION",
+        "ratio": "372/476",
+        "pct": "78.2%",
+        "barW": "78.2%",
+        "sameLine": false,
+        "orderOk": true,
+        "rowH": 32,
+        "barBelow": true,
+        "overflowX": false
+      },
+      {
+        "name": "POWER STATUS",
+        "ratio": "474/476",
+        "pct": "99.6%",
+        "barW": "99.6%",
+        "sameLine": false,
+        "orderOk": true,
+        "rowH": 32,
+        "barBelow": true,
+        "overflowX": false
+      },
+      {
+        "name": "GPS POSITION",
+        "ratio": "9/476",
+        "pct": "1.9%",
+        "barW": "1.9%",
+        "sameLine": false,
+        "orderOk": true,
+        "rowH": 32,
+        "barBelow": true,
+        "overflowX": false
+      },
+      {
+        "name": "WIND MONITORING",
+        "ratio": "--",
+        "pct": "--",
+        "barW": "0%",
+        "sameLine": false,
+        "orderOk": true,
+        "rowH": 32,
+        "barBelow": true,
+        "overflowX": false
+      }
+    ],
+    "ring": {
+      "w": 150,
+      "h": 150
+    },
+    "socText": "0",
+    "socFont": "30px",
+    "socVoltage": "9.0",
+    "socState": "电量耗尽",
+    "headCols": "521.594px 18.4062px 64px"
+  }
+]
