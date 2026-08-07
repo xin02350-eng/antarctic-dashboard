@@ -1,0 +1,394 @@
+[
+  {
+    "lang": "en",
+    "w": 1920,
+    "h": 1080,
+    "dataLang": "en",
+    "viewport": {
+      "w": 1920,
+      "h": 1080
+    },
+    "doc": {
+      "sh": 1080,
+      "ch": 1080,
+      "sw": 1920,
+      "cw": 1920,
+      "vScroll": false,
+      "hScroll": false
+    },
+    "ring": {
+      "w": 210,
+      "h": 210
+    },
+    "wrap": {
+      "w": 210,
+      "h": 210
+    },
+    "socText": "0",
+    "socFont": "40px",
+    "socVoltage": "9.0",
+    "socState": "EMPTY",
+    "socStateInline": "inline-block",
+    "hasOuterTicks": true,
+    "outerTicksVisible": true,
+    "metaTexts": [
+      "Battery Status:电池状态：EMPTY",
+      "Voltage:电压：9.0V",
+      "Power Source:供电来源：Solar + Battery太阳能 + 电池"
+    ],
+    "metaVisibleZh": [
+      false,
+      false,
+      false
+    ],
+    "moduleRect": {
+      "w": 320,
+      "h": 514
+    },
+    "overviewH": 168,
+    "timelineH": 190
+  },
+  {
+    "lang": "en",
+    "w": 1440,
+    "h": 900,
+    "dataLang": "en",
+    "viewport": {
+      "w": 1440,
+      "h": 900
+    },
+    "doc": {
+      "sh": 900,
+      "ch": 900,
+      "sw": 1440,
+      "cw": 1440,
+      "vScroll": false,
+      "hScroll": false
+    },
+    "ring": {
+      "w": 150,
+      "h": 150
+    },
+    "wrap": {
+      "w": 150,
+      "h": 150
+    },
+    "socText": "0",
+    "socFont": "30px",
+    "socVoltage": "9.0",
+    "socState": "EMPTY",
+    "socStateInline": "inline-block",
+    "hasOuterTicks": true,
+    "outerTicksVisible": true,
+    "metaTexts": [
+      "Battery Status:电池状态：EMPTY",
+      "Voltage:电压：9.0V",
+      "Power Source:供电来源：Solar + Battery太阳能 + 电池"
+    ],
+    "metaVisibleZh": [
+      false,
+      false,
+      false
+    ],
+    "moduleRect": {
+      "w": 320,
+      "h": 477
+    },
+    "overviewH": 120,
+    "timelineH": 140
+  },
+  {
+    "lang": "en",
+    "w": 1366,
+    "h": 768,
+    "dataLang": "en",
+    "viewport": {
+      "w": 1366,
+      "h": 768
+    },
+    "doc": {
+      "sh": 768,
+      "ch": 768,
+      "sw": 1366,
+      "cw": 1366,
+      "vScroll": false,
+      "hScroll": false
+    },
+    "ring": {
+      "w": 150,
+      "h": 150
+    },
+    "wrap": {
+      "w": 150,
+      "h": 150
+    },
+    "socText": "0",
+    "socFont": "30px",
+    "socVoltage": "9.0",
+    "socState": "EMPTY",
+    "socStateInline": "inline-block",
+    "hasOuterTicks": true,
+    "outerTicksVisible": true,
+    "metaTexts": [
+      "Battery Status:电池状态：EMPTY",
+      "Voltage:电压：9.0V",
+      "Power Source:供电来源：Solar + Battery太阳能 + 电池"
+    ],
+    "metaVisibleZh": [
+      false,
+      false,
+      false
+    ],
+    "moduleRect": {
+      "w": 320,
+      "h": 345
+    },
+    "overviewH": 120,
+    "timelineH": 140
+  },
+  {
+    "lang": "en",
+    "w": 1280,
+    "h": 720,
+    "dataLang": "en",
+    "viewport": {
+      "w": 1280,
+      "h": 720
+    },
+    "doc": {
+      "sh": 720,
+      "ch": 720,
+      "sw": 1280,
+      "cw": 1280,
+      "vScroll": false,
+      "hScroll": false
+    },
+    "ring": {
+      "w": 150,
+      "h": 150
+    },
+    "wrap": {
+      "w": 150,
+      "h": 150
+    },
+    "socText": "0",
+    "socFont": "30px",
+    "socVoltage": "9.0",
+    "socState": "EMPTY",
+    "socStateInline": "inline-block",
+    "hasOuterTicks": true,
+    "outerTicksVisible": true,
+    "metaTexts": [
+      "Battery Status:电池状态：EMPTY",
+      "Voltage:电压：9.0V",
+      "Power Source:供电来源：Solar + Battery太阳能 + 电池"
+    ],
+    "metaVisibleZh": [
+      false,
+      false,
+      false
+    ],
+    "moduleRect": {
+      "w": 320,
+      "h": 311
+    },
+    "overviewH": 120,
+    "timelineH": 140
+  },
+  {
+    "lang": "zh",
+    "w": 1920,
+    "h": 1080,
+    "dataLang": "zh",
+    "viewport": {
+      "w": 1920,
+      "h": 1080
+    },
+    "doc": {
+      "sh": 1080,
+      "ch": 1080,
+      "sw": 1920,
+      "cw": 1920,
+      "vScroll": false,
+      "hScroll": false
+    },
+    "ring": {
+      "w": 210,
+      "h": 210
+    },
+    "wrap": {
+      "w": 210,
+      "h": 210
+    },
+    "socText": "0",
+    "socFont": "40px",
+    "socVoltage": "9.0",
+    "socState": "电量耗尽",
+    "socStateInline": "inline-block",
+    "hasOuterTicks": true,
+    "outerTicksVisible": true,
+    "metaTexts": [
+      "Battery Status:电池状态：电量耗尽",
+      "Voltage:电压：9.0V",
+      "Power Source:供电来源：Solar + Battery太阳能 + 电池"
+    ],
+    "metaVisibleZh": [
+      true,
+      true,
+      true
+    ],
+    "moduleRect": {
+      "w": 320,
+      "h": 514
+    },
+    "overviewH": 168,
+    "timelineH": 190
+  },
+  {
+    "lang": "zh",
+    "w": 1440,
+    "h": 900,
+    "dataLang": "zh",
+    "viewport": {
+      "w": 1440,
+      "h": 900
+    },
+    "doc": {
+      "sh": 900,
+      "ch": 900,
+      "sw": 1440,
+      "cw": 1440,
+      "vScroll": false,
+      "hScroll": false
+    },
+    "ring": {
+      "w": 150,
+      "h": 150
+    },
+    "wrap": {
+      "w": 150,
+      "h": 150
+    },
+    "socText": "0",
+    "socFont": "30px",
+    "socVoltage": "9.0",
+    "socState": "电量耗尽",
+    "socStateInline": "inline-block",
+    "hasOuterTicks": true,
+    "outerTicksVisible": true,
+    "metaTexts": [
+      "Battery Status:电池状态：电量耗尽",
+      "Voltage:电压：9.0V",
+      "Power Source:供电来源：Solar + Battery太阳能 + 电池"
+    ],
+    "metaVisibleZh": [
+      true,
+      true,
+      true
+    ],
+    "moduleRect": {
+      "w": 320,
+      "h": 477
+    },
+    "overviewH": 120,
+    "timelineH": 140
+  },
+  {
+    "lang": "zh",
+    "w": 1366,
+    "h": 768,
+    "dataLang": "zh",
+    "viewport": {
+      "w": 1366,
+      "h": 768
+    },
+    "doc": {
+      "sh": 768,
+      "ch": 768,
+      "sw": 1366,
+      "cw": 1366,
+      "vScroll": false,
+      "hScroll": false
+    },
+    "ring": {
+      "w": 150,
+      "h": 150
+    },
+    "wrap": {
+      "w": 150,
+      "h": 150
+    },
+    "socText": "0",
+    "socFont": "30px",
+    "socVoltage": "9.0",
+    "socState": "电量耗尽",
+    "socStateInline": "inline-block",
+    "hasOuterTicks": true,
+    "outerTicksVisible": true,
+    "metaTexts": [
+      "Battery Status:电池状态：电量耗尽",
+      "Voltage:电压：9.0V",
+      "Power Source:供电来源：Solar + Battery太阳能 + 电池"
+    ],
+    "metaVisibleZh": [
+      true,
+      true,
+      true
+    ],
+    "moduleRect": {
+      "w": 320,
+      "h": 345
+    },
+    "overviewH": 120,
+    "timelineH": 140
+  },
+  {
+    "lang": "zh",
+    "w": 1280,
+    "h": 720,
+    "dataLang": "zh",
+    "viewport": {
+      "w": 1280,
+      "h": 720
+    },
+    "doc": {
+      "sh": 720,
+      "ch": 720,
+      "sw": 1280,
+      "cw": 1280,
+      "vScroll": false,
+      "hScroll": false
+    },
+    "ring": {
+      "w": 150,
+      "h": 150
+    },
+    "wrap": {
+      "w": 150,
+      "h": 150
+    },
+    "socText": "0",
+    "socFont": "30px",
+    "socVoltage": "9.0",
+    "socState": "电量耗尽",
+    "socStateInline": "inline-block",
+    "hasOuterTicks": true,
+    "outerTicksVisible": true,
+    "metaTexts": [
+      "Battery Status:电池状态：电量耗尽",
+      "Voltage:电压：9.0V",
+      "Power Source:供电来源：Solar + Battery太阳能 + 电池"
+    ],
+    "metaVisibleZh": [
+      true,
+      true,
+      true
+    ],
+    "moduleRect": {
+      "w": 320,
+      "h": 311
+    },
+    "overviewH": 120,
+    "timelineH": 140
+  }
+]

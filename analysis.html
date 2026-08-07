@@ -171,7 +171,7 @@
       flex-direction:column;
       align-items:center;
       justify-content:center;
-      gap:2px;
+      gap:4px;
       min-height:0;
       height:auto;
       flex:1;
@@ -186,8 +186,8 @@
     .soc-module::before{
       content:'';
       position:absolute;
-      width:190px;
-      height:190px;
+      width:220px;
+      height:220px;
       border-radius:50%;
       background:radial-gradient(circle, rgba(98,217,255,.10), transparent 62%);
       pointer-events:none;
@@ -200,14 +200,14 @@
     .soc-wrap{
       display:grid;
       place-items:center;
-      width:160px;
-      height:160px;
+      width:clamp(180px, 20vw, 210px);
+      height:clamp(180px, 20vw, 210px);
       min-width:180px;
       min-height:180px;
     }
     .soc-ring{
-      width:160px;
-      height:160px;
+      width:clamp(180px, 20vw, 210px);
+      height:clamp(180px, 20vw, 210px);
       min-width:180px;
       min-height:180px;
       transform:rotate(-90deg);
@@ -215,7 +215,7 @@
     }
     .soc-ring circle{
       fill:none;
-      stroke-width:9;
+      stroke-width:10;
     }
     .soc-track{
       stroke:rgba(98,217,255,.12);
@@ -225,6 +225,12 @@
       stroke:rgba(98,217,255,.16);
       stroke-width:2;
       stroke-dasharray:1 5;
+    }
+    .soc-outer-ticks{
+      fill:none;
+      stroke:rgba(98,217,255,.14);
+      stroke-width:1;
+      stroke-dasharray:1 4;
     }
     .soc-arc{
       stroke:#62d9ff;
@@ -242,7 +248,7 @@
       font-variant-numeric:tabular-nums;
     }
     .soc-center b{
-      font-size:52px;
+      font-size:40px;
       font-weight:700;
       color:#eafcff;
       letter-spacing:1px;
@@ -277,6 +283,11 @@
     .soc-meta b{
       color:#dff6ff;
       font-weight:600;
+    }
+    .soc-meta .soc-state{
+      display:inline-block;
+      margin-left:4px;
+      color:#9fd8c2;
     }
 
     /* 旧 SOC 定位规则兜底（确保无 absolute 堆叠） */
@@ -910,14 +921,15 @@
           <svg class="soc-ring" viewBox="0 0 150 150" aria-hidden="true">
             <circle class="soc-track" cx="75" cy="75" r="63"></circle>
             <circle class="soc-ticks" cx="75" cy="75" r="58"></circle>
+            <circle class="soc-outer-ticks" cx="75" cy="75" r="69"></circle>
             <circle class="soc-arc" id="socArc" cx="75" cy="75" r="63"></circle>
           </svg>
           <div class="soc-center"><b id="sumSoc">--</b><span>%</span></div>
         </div>
         <div class="soc-label">SOC</div>
-        <span class="soc-state" id="socState">--</span>
-        <p class="soc-meta"><span data-lang="en">Battery Level</span><span data-lang="zh">电池电量</span></p>
+        <p class="soc-meta"><span data-lang="en">Battery Status:</span><span data-lang="zh">电池状态：</span><b id="socState" class="soc-state">--</b></p>
         <p class="soc-meta"><span data-lang="en">Voltage:</span><span data-lang="zh">电压：</span><b id="sumVoltage">--</b><span>V</span></p>
+        <p class="soc-meta"><span data-lang="en">Power Source:</span><span data-lang="zh">供电来源：</span><b data-lang="en">Solar + Battery</b><b data-lang="zh">太阳能 + 电池</b></p>
       </div>
     </section>
 
