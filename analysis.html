@@ -78,8 +78,9 @@
     .analysis-page .timeline-body{
       flex:1;
       min-height:0;
+      width:100%;
       display:flex;
-      align-items:center;
+      align-items:stretch;
       justify-content:center;
     }
     /* 顶部核心成果区域 */
@@ -392,7 +393,7 @@
     /* 横向紧凑任务时间轴（页面底部，不超屏不滚动） */
     .tl-body{
       display:flex;
-      align-items:center;
+      align-items:stretch;
       justify-content:center;
       gap:16px;
       margin:0;
@@ -405,13 +406,13 @@
       align-items:flex-start;
       flex:1;
       min-width:0;
-      padding:20px 2px 8px;
+      padding:24px 2px 12px;
     }
     .tl-nodes::before{
       content:'';
       position:absolute;
-      left:4%;
-      right:4%;
+      left:2%;
+      right:2%;
       top:5px;
       height:2px;
       background:linear-gradient(90deg, rgba(98,217,255,.12), rgba(98,217,255,.55), rgba(98,217,255,.12));
@@ -426,8 +427,8 @@
       z-index:1;
     }
     .tl-node .dot{
-      width:12px;
-      height:12px;
+      width:14px;
+      height:14px;
       border-radius:50%;
       background:#62d9ff;
       box-shadow:0 0 8px rgba(98,217,255,.55);
@@ -439,14 +440,14 @@
       box-shadow:0 0 8px rgba(0,229,168,.55);
     }
     .tl-node .date{
-      font-size:8.5px;
+      font-size:11px;
       letter-spacing:1px;
       color:#8ceaff;
       display:block;
     }
     .tl-node b{
       display:block;
-      font-size:9px;
+      font-size:12px;
       letter-spacing:1px;
       color:#dff6ff;
       margin-top:2px;
@@ -455,7 +456,7 @@
       text-overflow:ellipsis;
     }
     .tl-node p{
-      font-size:8px;
+      font-size:9px;
       color:#7f9fb2;
       margin:2px 0 0;
       line-height:1.4;
@@ -604,7 +605,7 @@
         height:4px;
       }
       .tl-nodes{
-        padding:2px 2px 2px;
+        padding:6px 2px 4px;
       }
       .tl-duration{
         min-height:50px;
@@ -623,10 +624,14 @@
         display:none;
       }
       .tl-node b{
-        font-size:8px;
+        font-size:10px;
       }
       .tl-node .date{
-        font-size:8px;
+        font-size:9px;
+      }
+      .tl-node .dot{
+        width:12px;
+        height:12px;
       }
       .tl-body{
         gap:6px;
