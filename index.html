@@ -11,64 +11,61 @@
     html,body{height:100%}
     body{background:#01060d;color:#dff6ff;font-family:"Segoe UI",system-ui,-apple-system,"Microsoft YaHei",sans-serif;overflow:hidden;position:relative}
 
-    /* ---------- 深空背景 ---------- */
-    .space{position:fixed;inset:0;z-index:0;background:
-      radial-gradient(ellipse 90% 70% at 50% 40%,#041527 0%,#01060d 68%),
-      #01060d}
-    .stars{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.8;background-image:
-      radial-gradient(1px 1px at 8% 16%,rgba(220,245,255,.9),transparent 100%),
-      radial-gradient(1px 1px at 18% 74%,rgba(220,245,255,.6),transparent 100%),
-      radial-gradient(1.5px 1.5px at 30% 12%,rgba(220,245,255,.75),transparent 100%),
-      radial-gradient(1px 1px at 42% 86%,rgba(220,245,255,.55),transparent 100%),
-      radial-gradient(1px 1px at 55% 22%,rgba(220,245,255,.7),transparent 100%),
-      radial-gradient(1.5px 1.5px at 66% 66%,rgba(220,245,255,.5),transparent 100%),
-      radial-gradient(1px 1px at 78% 30%,rgba(220,245,255,.65),transparent 100%),
-      radial-gradient(1px 1px at 90% 72%,rgba(220,245,255,.5),transparent 100%),
-      radial-gradient(1px 1px at 96% 14%,rgba(220,245,255,.6),transparent 100%),
-      radial-gradient(1.5px 1.5px at 14% 42%,rgba(220,245,255,.5),transparent 100%)}
+    /* ---------- 深空 ---------- */
+    .space{position:fixed;inset:0;z-index:0;background:linear-gradient(180deg,#020a14 0%,#03101f 55%,#041527 100%)}
+    .stars{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.85;background-image:
+      radial-gradient(1px 1px at 6% 12%,rgba(220,245,255,.9),transparent 100%),
+      radial-gradient(1px 1px at 14% 38%,rgba(220,245,255,.55),transparent 100%),
+      radial-gradient(1.5px 1.5px at 24% 8%,rgba(220,245,255,.75),transparent 100%),
+      radial-gradient(1px 1px at 34% 46%,rgba(220,245,255,.5),transparent 100%),
+      radial-gradient(1px 1px at 44% 18%,rgba(220,245,255,.7),transparent 100%),
+      radial-gradient(1.5px 1.5px at 56% 30%,rgba(220,245,255,.55),transparent 100%),
+      radial-gradient(1px 1px at 66% 12%,rgba(220,245,255,.7),transparent 100%),
+      radial-gradient(1px 1px at 76% 36%,rgba(220,245,255,.5),transparent 100%),
+      radial-gradient(1px 1px at 86% 22%,rgba(220,245,255,.65),transparent 100%),
+      radial-gradient(1.5px 1.5px at 94% 44%,rgba(220,245,255,.5),transparent 100%),
+      radial-gradient(1px 1px at 48% 52%,rgba(220,245,255,.4),transparent 100%),
+      radial-gradient(1px 1px at 20% 56%,rgba(220,245,255,.4),transparent 100%)}
 
-    /* ---------- 艺术化地球 ---------- */
-    .globe-wrap{position:fixed;right:5vw;top:52%;z-index:3;transform:translateY(-50%);width:min(54vw,760px);aspect-ratio:1;opacity:0;transform-origin:center;transition:opacity 2s ease,transform 2s ease}
-    .home-page.loaded .globe-wrap{opacity:1}
-    .globe{position:absolute;inset:0;filter:drop-shadow(0 0 90px rgba(98,217,255,.14)) drop-shadow(0 0 26px rgba(45,212,170,.08))}
-    .globe-wrap::after{content:"";position:absolute;left:50%;top:50%;width:78%;height:78%;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle at 38% 32%,rgba(98,217,255,.10),rgba(98,217,255,0) 58%)}
-    .earth-glow{position:fixed;right:4vw;top:52%;z-index:2;transform:translateY(-50%);width:min(60vw,860px);aspect-ratio:1;pointer-events:none;background:radial-gradient(circle,rgba(98,217,255,.07),rgba(45,212,170,.03) 45%,transparent 68%);opacity:0;transition:opacity 2.4s ease .4s}
-    .home-page.loaded .earth-glow{opacity:1}
+    /* ---------- 高空俯瞰的地球表面 ---------- */
+    .earth-wrap{position:fixed;left:0;right:0;bottom:0;z-index:2;height:70vh;opacity:0;transform:translateY(24px);transition:opacity 2s ease .2s,transform 2s ease .2s}
+    .home-page.loaded .earth-wrap{opacity:1;transform:none}
+    .earth-svg{width:100%;height:100%;display:block}
+    .horizon{position:fixed;left:0;right:0;z-index:3;top:61vh;height:1px;background:linear-gradient(90deg,transparent 5%,rgba(140,234,255,.38) 50%,transparent 95%);box-shadow:0 0 26px rgba(98,217,255,.22);opacity:0;transition:opacity 2.2s ease .6s;pointer-events:none}
+    .home-page.loaded .horizon{opacity:1}
+    .earth-tint{position:fixed;left:0;right:0;bottom:0;z-index:3;height:70vh;pointer-events:none;background:linear-gradient(180deg,rgba(2,10,20,.25),rgba(2,10,20,0) 22%),radial-gradient(ellipse 52% 40% at 47% 58%,rgba(0,229,168,.035),transparent 70%)}
 
-    .grid-overlay{position:fixed;inset:0;z-index:2;pointer-events:none;opacity:.3;background-image:linear-gradient(rgba(98,217,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(98,217,255,.04) 1px,transparent 1px);background-size:80px 80px;-webkit-mask-image:radial-gradient(ellipse 62% 58% at 62% 48%,#000 20%,transparent 75%);mask-image:radial-gradient(ellipse 62% 58% at 62% 48%,#000 20%,transparent 75%)}
+    /* 探索方向轨迹 */
+    .route-ne{fill:none;stroke:rgba(140,234,255,.4);stroke-width:1;stroke-dasharray:3 7;animation:routeFlow 7s linear infinite}
+    .route-future{fill:none;stroke:rgba(140,234,255,.55);stroke-width:1.2;stroke-dasharray:4 9;animation:routeFlow 10s linear infinite}
+    @keyframes routeFlow{to{stroke-dashoffset:-100}}
+    .dir-label{position:absolute;z-index:4;font-size:8px;letter-spacing:3px;color:rgba(140,234,255,.62);text-transform:uppercase;pointer-events:none;opacity:0;transition:opacity 1.4s ease 1.6s}
+    .home-page.loaded .dir-label{opacity:1}
+    .dir-ne{left:56.5%;top:44%}
+    .dir-future{left:57.5%;top:86%}
 
-    /* 探索路线 */
-    .route-flow{position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none}
-    .route-flow .under{fill:none;stroke:rgba(98,217,255,.12);stroke-width:1}
-    .route-flow .flow{fill:none;stroke:rgba(140,234,255,.55);stroke-width:1.2;stroke-dasharray:4 9;animation:routeFlow 9s linear infinite}
-    @keyframes routeFlow{to{stroke-dashoffset:-104}}
-    .route-label{position:absolute;left:6%;bottom:7%;font-size:9px;letter-spacing:3px;color:rgba(140,234,255,.7);text-transform:uppercase;opacity:0;transition:opacity 1.4s ease 1.6s}
-    .home-page.loaded .route-label{opacity:1}
-    .ne-tick{position:absolute;right:12%;top:16%;font-size:8px;letter-spacing:2px;color:rgba(140,234,255,.45);text-transform:uppercase;opacity:0;transition:opacity 1.4s ease 1.8s}
-    .home-page.loaded .ne-tick{opacity:1}
-
-    /* 南京节点 */
-    .node{position:absolute;left:54%;top:47%;z-index:5;width:0;height:0;opacity:0;transition:opacity 1s ease 1.1s}
+    /* ---------- 南京节点 ---------- */
+    .node{position:absolute;left:47%;top:66.2%;z-index:5;width:0;height:0;opacity:0;transition:opacity 1s ease 1.05s}
     .home-page.loaded .node{opacity:1}
-    .node-halo{position:absolute;left:50%;top:50%;width:110px;height:110px;margin:-55px 0 0 -55px;border-radius:50%;background:radial-gradient(circle,rgba(0,229,168,.18),rgba(0,229,168,0) 66%);animation:haloBreath 4.5s ease-in-out infinite}
+    .node-halo{position:absolute;left:50%;top:50%;width:120px;height:120px;margin:-60px 0 0 -60px;border-radius:50%;background:radial-gradient(circle,rgba(0,229,168,.18),rgba(0,229,168,0) 66%);animation:haloBreath 4.5s ease-in-out infinite}
     @keyframes haloBreath{0%,100%{opacity:.65;transform:scale(.96)}50%{opacity:1;transform:scale(1.06)}}
-    .node-dot{position:absolute;left:50%;top:50%;width:9px;height:9px;margin:-4.5px 0 0 -4.5px;border-radius:50%;background:#00e5a8;box-shadow:0 0 0 0 rgba(0,229,168,.55);animation:nodePulse 3s ease-out infinite}
-    @keyframes nodePulse{0%{box-shadow:0 0 0 0 rgba(0,229,168,.55)}70%{box-shadow:0 0 0 18px rgba(0,229,168,0)}100%{box-shadow:0 0 0 0 rgba(0,229,168,0)}}
-    .node-ring{position:absolute;left:50%;top:50%;width:28px;height:28px;margin:-14px 0 0 -14px;border-radius:50%;border:1px solid rgba(0,229,168,.35);animation:ringExpand 3.6s ease-out infinite}
+    .node-dot{position:absolute;left:50%;top:50%;width:10px;height:10px;margin:-5px 0 0 -5px;border-radius:50%;background:#00e5a8;box-shadow:0 0 10px rgba(0,229,168,.75);animation:nodePulse 3s ease-out infinite}
+    @keyframes nodePulse{0%{box-shadow:0 0 0 0 rgba(0,229,168,.5)}70%{box-shadow:0 0 0 18px rgba(0,229,168,0)}100%{box-shadow:0 0 0 0 rgba(0,229,168,0)}}
+    .node-ring{position:absolute;left:50%;top:50%;width:30px;height:30px;margin:-15px 0 0 -15px;border-radius:50%;border:1px solid rgba(0,229,168,.35);animation:ringExpand 3.6s ease-out infinite}
     .node-ring.r2{animation-delay:1.8s}
     @keyframes ringExpand{0%{transform:scale(.5);opacity:1}100%{transform:scale(2.6);opacity:0}}
     .node-orbits{position:absolute;left:50%;top:50%;width:0;height:0;animation:orbitSpin 16s linear infinite}
     .node-orbits i{position:absolute;width:3px;height:3px;border-radius:50%;background:rgba(140,234,255,.9);box-shadow:0 0 6px rgba(140,234,255,.6)}
-    .node-orbits i:nth-child(1){left:26px;top:0}
-    .node-orbits i:nth-child(2){left:-26px;top:0}
-    .node-orbits i:nth-child(3){left:0;top:26px}
+    .node-orbits i:nth-child(1){left:28px;top:0}
+    .node-orbits i:nth-child(2){left:-28px;top:0}
+    .node-orbits i:nth-child(3){left:0;top:28px}
     .node-orbits.o2{animation:orbitSpin 22s linear infinite reverse;opacity:.7}
     .node-orbits.o2 i{width:2px;height:2px;background:rgba(45,212,170,.85)}
-    .node-orbits.o2 i:nth-child(1){left:34px;top:10px}
-    .node-orbits.o2 i:nth-child(2){left:-30px;top:-12px}
-    .node-orbits.o2 i:nth-child(3){left:8px;top:-34px}
+    .node-orbits.o2 i:nth-child(1){left:36px;top:12px}
+    .node-orbits.o2 i:nth-child(2){left:-32px;top:-14px}
+    .node-orbits.o2 i:nth-child(3){left:10px;top:-36px}
     @keyframes orbitSpin{to{transform:rotate(360deg)}}
-    .node-card{position:absolute;left:22px;top:16px;border:1px solid rgba(0,229,168,.26);border-left:2px solid #00e5a8;background:rgba(3,15,25,.74);backdrop-filter:blur(8px);padding:10px 16px;border-radius:2px;min-width:200px}
+    .node-card{position:absolute;left:22px;top:16px;border:1px solid rgba(0,229,168,.26);border-left:2px solid #00e5a8;background:rgba(3,15,25,.74);backdrop-filter:blur(8px);padding:10px 16px;border-radius:2px;min-width:204px}
     .node-card b{display:block;font-size:14px;letter-spacing:3px;color:#eafcff;font-weight:600}
     .node-card span{display:block;font-size:9px;letter-spacing:2px;color:#9fd8c2;margin-top:5px;text-transform:uppercase}
 
@@ -87,65 +84,64 @@
     .lang-switch button{position:relative;z-index:2;flex:1;border:0;background:transparent;color:#8fb0c2;font-size:11px;letter-spacing:1px;cursor:pointer;font-family:inherit}
     .lang-switch button.active{color:#04101c;font-weight:700}
 
-    /* ---------- 主文案 ---------- */
-    .home-hero{position:fixed;left:7vw;top:42%;z-index:8;max-width:620px;transform:translateY(-50%);pointer-events:none}
+    /* ---------- 主文案（左侧留白区） ---------- */
+    .home-hero{position:fixed;left:7vw;top:36%;z-index:8;max-width:580px;transform:translateY(-50%);pointer-events:none}
     .home-hero>*{pointer-events:auto}
     .kicker{display:flex;align-items:center;gap:14px;font-size:10px;letter-spacing:5px;color:rgba(140,234,255,.7);margin-bottom:24px;opacity:0;transform:translateY(16px)}
     .kicker::before{content:"";display:block;width:46px;height:1px;background:linear-gradient(90deg,rgba(98,217,255,.7),transparent)}
     .home-page.loaded .kicker{opacity:1;transform:none;transition:opacity .9s ease .45s,transform .9s ease .45s}
-    .home-hero h2{font-size:clamp(38px,4.2vw,66px);line-height:1.14;font-weight:200;letter-spacing:3px;opacity:0;transform:translateY(22px)}
+    .home-hero h2{font-size:clamp(38px,4vw,62px);line-height:1.16;font-weight:200;letter-spacing:3px;opacity:0;transform:translateY(22px)}
     .home-hero h2 em{font-style:normal;background:linear-gradient(180deg,#eafcff 30%,#8ceaff 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
     .home-page.loaded .home-hero h2{opacity:1;transform:none;transition:opacity 1s ease .6s,transform 1s ease .6s}
-    .home-sub{margin-top:26px;font-size:clamp(12px,1.05vw,15px);line-height:2;color:#9ab8ca;max-width:540px;opacity:0;transform:translateY(18px)}
+    .home-sub{margin-top:24px;font-size:clamp(12px,1vw,15px);line-height:2;color:#9ab8ca;max-width:520px;opacity:0;transform:translateY(18px)}
     .home-page.loaded .home-sub{opacity:1;transform:none;transition:opacity 1s ease .75s,transform 1s ease .75s}
-    .explore-btn{margin-top:38px;display:inline-flex;align-items:center;gap:14px;border:1px solid rgba(98,217,255,.5);background:rgba(6,20,34,.28);color:#eafcff;font-size:12px;letter-spacing:4px;padding:16px 40px;border-radius:2px;cursor:pointer;font-family:inherit;transition:background .35s ease,box-shadow .35s ease;text-transform:uppercase;opacity:0;transform:translateY(18px)}
+    .explore-btn{margin-top:36px;display:inline-flex;align-items:center;gap:14px;border:1px solid rgba(98,217,255,.5);background:rgba(6,20,34,.28);color:#eafcff;font-size:12px;letter-spacing:4px;padding:15px 38px;border-radius:2px;cursor:pointer;font-family:inherit;transition:background .35s ease,box-shadow .35s ease;text-transform:uppercase;opacity:0;transform:translateY(18px)}
     .home-page.loaded .explore-btn{opacity:1;transform:none;transition:opacity 1s ease .9s,transform 1s ease .9s,background .35s ease,box-shadow .35s ease}
     .explore-btn::after{content:"→";color:#8ceaff;font-size:14px;transition:transform .3s ease}
     .explore-btn:hover{background:rgba(98,217,255,.12);box-shadow:0 0 30px rgba(98,217,255,.12)}
     .explore-btn:hover::after{transform:translateX(4px)}
 
     /* ---------- 底部理念 ---------- */
-    .home-manifesto{position:fixed;left:44px;bottom:30px;z-index:8;max-width:560px;pointer-events:none;opacity:0;transform:translateY(14px)}
+    .home-manifesto{position:fixed;left:44px;bottom:26px;z-index:8;max-width:520px;pointer-events:none;opacity:0;transform:translateY(14px)}
     .home-page.loaded .home-manifesto{opacity:1;transform:none;transition:opacity 1.2s ease 1.25s,transform 1.2s ease 1.25s}
-    .home-manifesto::before{content:"";display:block;width:100%;height:1px;background:linear-gradient(90deg,rgba(98,217,255,.35),transparent 80%);margin-bottom:14px}
-    .home-manifesto p{font-size:clamp(11px,.95vw,14px);line-height:2;color:rgba(191,221,235,.72);letter-spacing:.5px}
+    .home-manifesto::before{content:"";display:block;width:100%;height:1px;background:linear-gradient(90deg,rgba(98,217,255,.35),transparent 80%);margin-bottom:13px}
+    .home-manifesto p{font-size:clamp(11px,.92vw,14px);line-height:2;color:rgba(191,221,235,.72);letter-spacing:.5px}
 
-    .motto{position:fixed;right:44px;bottom:30px;z-index:8;pointer-events:none;opacity:0}
+    .motto{position:fixed;right:44px;bottom:26px;z-index:8;pointer-events:none;opacity:0}
     .home-page.loaded .motto{opacity:1;transition:opacity 1.4s ease 1.5s}
     .motto span[data-lang="zh"]{writing-mode:vertical-rl;letter-spacing:5px;font-size:11px;color:rgba(140,234,255,.5)}
     .motto span[data-lang="en"]{max-width:150px;text-align:right;font-size:10px;letter-spacing:2px;line-height:2;color:rgba(140,234,255,.5)}
 
     /* ---------- 离场过渡 ---------- */
-    body.is-leaving .globe-wrap{transform:translateY(-50%) scale(1.16);opacity:.18;transition:transform .9s cubic-bezier(.6,0,.4,1),opacity .9s ease}
-    body.is-leaving .earth-glow{opacity:1;transition:opacity .8s ease}
-    body.is-leaving .home-hero{opacity:0;transform:translateY(-6%);transition:all .45s ease}
-    body.is-leaving::after{content:"";position:fixed;inset:0;z-index:99;background:radial-gradient(ellipse at 50% 60%,#062033,#01060d 72%);opacity:0;animation:leaveFade .7s ease forwards;pointer-events:none}
+    body.is-leaving .earth-wrap{transform:translateY(30px) scale(1.12);opacity:.15;transition:transform 1s cubic-bezier(.6,0,.4,1),opacity 1s ease}
+    body.is-leaving .horizon{opacity:0;transition:opacity .5s ease}
+    body.is-leaving .home-hero{opacity:0;transform:translateY(-5%);transition:all .45s ease}
+    body.is-leaving::after{content:"";position:fixed;inset:0;z-index:99;background:radial-gradient(ellipse at 50% 62%,#062033,#01060d 74%);opacity:0;animation:leaveFade .7s ease forwards;pointer-events:none}
     @keyframes leaveFade{to{opacity:1}}
 
     /* ---------- 响应式 ---------- */
     @media (max-width:900px){
-      .globe-wrap{right:50%;top:26%;transform:translateX(50%);width:130vw;opacity:.42}
-      .home-page.loaded .globe-wrap{transform:translateX(50%)}
-      .earth-glow{right:50%;top:26%;transform:translateX(50%);width:150vw;opacity:.7}
-      .home-page.loaded .earth-glow{transform:translateX(50%)}
-      body.is-leaving .globe-wrap{transform:translateX(50%) scale(1.18)}
-      .grid-overlay{-webkit-mask-image:radial-gradient(ellipse 70% 50% at 50% 28%,#000 20%,transparent 72%);mask-image:radial-gradient(ellipse 70% 50% at 50% 28%,#000 20%,transparent 72%)}
+      .earth-wrap{height:64vh}
+      .horizon{top:62vh}
+      .earth-tint{height:64vh}
+      .home-hero{left:24px;right:24px;max-width:none;top:34%}
+      .home-hero h2{font-size:clamp(30px,8.5vw,44px)}
+      .home-sub{font-size:12px}
+      .explore-btn{margin-top:24px;padding:13px 26px;font-size:11px;letter-spacing:3px}
+      .dir-ne{display:none}
+      .dir-future{left:58%;top:84%}
     }
-    @media (max-width:768px){
-      .home-top{padding:18px 20px}
+    @media (max-width:700px){
+      .home-top{padding:16px 20px}
       .brand p{display:none}
       .brand h1{font-size:12px;letter-spacing:2px}
-      .home-hero{left:22px;right:22px;top:auto;bottom:170px;transform:none;max-width:none}
-      .home-hero h2{font-size:clamp(30px,9vw,42px)}
-      .home-sub{font-size:12px;margin-top:16px}
-      .explore-btn{margin-top:24px;padding:13px 26px;font-size:11px;letter-spacing:3px}
-      .node{left:50%;top:46%}
-      .node-card{left:auto;right:-86px;top:20px;min-width:150px;padding:7px 12px}
+      .home-hero{top:auto;bottom:190px;transform:none}
+      .node{left:50%;top:60%}
+      .node-card{left:auto;right:-84px;top:18px;min-width:148px;padding:7px 12px}
       .node-card b{font-size:12px}
       .node-card span{font-size:8px}
-      .route-label{left:12%;bottom:auto;top:58%}
-      .ne-tick{display:none}
-      .home-manifesto{left:20px;right:20px;bottom:16px;max-width:none}
+      .dir-future{left:56%;top:80%;font-size:7px;letter-spacing:2px}
+      .home-manifesto{left:20px;right:20px;bottom:14px;max-width:none}
       .home-manifesto p{font-size:11px}
       .motto{position:static;display:block;margin-top:12px;text-align:left}
       .motto span[data-lang="zh"]{writing-mode:horizontal-tb;letter-spacing:2px;font-size:10px}
@@ -157,38 +153,47 @@
 
   <div class="space" aria-hidden="true"></div>
   <div class="stars" aria-hidden="true"></div>
-  <div class="grid-overlay" aria-hidden="true"></div>
-  <div class="earth-glow" aria-hidden="true"></div>
 
-  <div class="globe-wrap" aria-hidden="true">
-    <svg class="globe" viewBox="0 0 600 600" fill="none">
+  <div class="earth-wrap" aria-hidden="true">
+    <svg class="earth-svg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMax slice">
       <defs>
-        <radialGradient id="earthGrad" cx="36%" cy="30%" r="75%">
-          <stop offset="0%" stop-color="#0a2436"/>
-          <stop offset="55%" stop-color="#061523"/>
-          <stop offset="100%" stop-color="#030b14"/>
+        <clipPath id="earthClip">
+          <ellipse cx="800" cy="1540" rx="1500" ry="1140"/>
+        </clipPath>
+        <radialGradient id="earthGrad" cx="42%" cy="28%" r="80%">
+          <stop offset="0%" stop-color="#0c2b42"/>
+          <stop offset="52%" stop-color="#071c2e"/>
+          <stop offset="100%" stop-color="#020b15"/>
         </radialGradient>
       </defs>
-      <circle cx="300" cy="300" r="288" fill="url(#earthGrad)" stroke="rgba(98,217,255,.20)" stroke-width="1"/>
-      <circle cx="300" cy="300" r="282" fill="none" stroke="rgba(140,234,255,.07)"/>
-      <!-- 经纬弧线 -->
-      <ellipse cx="300" cy="300" rx="288" ry="96" stroke="rgba(98,217,255,.08)"/>
-      <ellipse cx="300" cy="300" rx="196" ry="288" stroke="rgba(98,217,255,.08)"/>
-      <ellipse cx="300" cy="300" rx="96" ry="288" stroke="rgba(98,217,255,.08)"/>
-      <path d="M12 300 H588" stroke="rgba(98,217,255,.10)"/>
-      <path d="M300 12 V588" stroke="rgba(98,217,255,.10)"/>
-      <!-- 艺术化东亚大陆轮廓 -->
-      <path d="M292 158 C 320 146, 356 152, 378 170 C 396 184, 410 208, 414 234 C 418 262, 410 286, 396 302 C 382 320, 356 330, 332 322 C 310 314, 292 300, 282 282 C 272 262, 268 238, 274 212 C 278 192, 282 170, 292 158 Z"
-        fill="rgba(140,234,255,.07)" stroke="rgba(140,234,255,.18)" stroke-width=".9"/>
-      <path d="M418 208 C 428 216, 434 234, 432 252 C 430 266, 424 276, 416 272" fill="none" stroke="rgba(140,234,255,.14)" stroke-width=".9"/>
-      <path d="M392 252 C 404 258, 410 272, 408 284" fill="none" stroke="rgba(140,234,255,.12)" stroke-width=".9"/>
-      <!-- 探索路线：南京 → 未来方向 -->
-      <path class="under" d="M338 268 C 330 300, 300 336, 252 368"/>
-      <path class="flow" d="M338 268 C 330 300, 300 336, 252 368"/>
-      <path d="M246 364 L 262 366 L 254 352 Z" fill="rgba(140,234,255,.45)"/>
+      <ellipse cx="800" cy="1540" rx="1500" ry="1140" fill="url(#earthGrad)"/>
+      <g clip-path="url(#earthClip)">
+        <!-- 经纬弧线 -->
+        <ellipse cx="800" cy="1540" rx="1500" ry="1140" fill="none" stroke="rgba(98,217,255,.08)"/>
+        <ellipse cx="800" cy="1540" rx="1120" ry="1140" fill="none" stroke="rgba(98,217,255,.07)"/>
+        <ellipse cx="800" cy="1540" rx="760" ry="1140" fill="none" stroke="rgba(98,217,255,.07)"/>
+        <ellipse cx="800" cy="1540" rx="1500" ry="780" fill="none" stroke="rgba(98,217,255,.07)"/>
+        <ellipse cx="800" cy="1540" rx="1500" ry="420" fill="none" stroke="rgba(98,217,255,.06)"/>
+        <!-- 艺术化东亚大陆轮廓 -->
+        <path d="M610 500 C 650 470, 720 475, 760 495 C 800 515, 830 548, 832 586 C 834 622, 816 658, 778 674 C 740 690, 682 688, 648 666 C 614 644, 596 608, 600 570 C 602 540, 606 515, 610 500 Z"
+          fill="rgba(140,234,255,.08)" stroke="rgba(140,234,255,.22)" stroke-width="1"/>
+        <path d="M838 548 C 852 528, 868 534, 872 554 C 874 572, 862 586, 848 580"
+          fill="none" stroke="rgba(140,234,255,.16)" stroke-width="1"/>
+        <path d="M900 530 C 920 546, 930 582, 922 616 C 916 636, 904 640, 898 624 C 890 604, 886 566, 900 530 Z"
+          fill="rgba(140,234,255,.07)" stroke="rgba(140,234,255,.16)" stroke-width="1"/>
+        <path d="M830 668 C 840 668, 846 680, 840 690 C 833 698, 824 692, 826 680 Z"
+          fill="rgba(140,234,255,.06)" stroke="rgba(140,234,255,.14)" stroke-width="1"/>
+        <path d="M778 674 C 808 704, 828 732, 816 760 C 810 776, 796 768, 798 750 C 802 728, 798 706, 778 674 Z"
+          fill="rgba(140,234,255,.05)" stroke="rgba(140,234,255,.12)" stroke-width="1"/>
+        <!-- 探索方向轨迹 -->
+        <path class="route-ne" d="M760 590 C 810 560, 860 520, 900 470"/>
+        <path d="M896 464 L 912 474 L 898 482 Z" fill="rgba(140,234,255,.4)"/>
+        <path class="route-future" d="M752 596 C 800 660, 860 720, 900 790"/>
+        <path d="M896 786 L 914 790 L 902 802 Z" fill="rgba(140,234,255,.5)"/>
+      </g>
     </svg>
-    <div class="route-label"><span data-lang="en">Future Exploration</span><span data-lang="zh">未来探索方向</span></div>
-    <div class="ne-tick"><span data-lang="en">Northeast</span><span data-lang="zh">东北方向</span></div>
+    <span class="dir-label dir-ne"><span data-lang="en">Northeast</span><span data-lang="zh">东北方向</span></span>
+    <span class="dir-label dir-future"><span data-lang="en">Future Exploration</span><span data-lang="zh">未来探索方向</span></span>
     <div class="node">
       <div class="node-halo"></div>
       <span class="node-dot"></span>
@@ -203,6 +208,8 @@
       </div>
     </div>
   </div>
+  <div class="horizon" aria-hidden="true"></div>
+  <div class="earth-tint" aria-hidden="true"></div>
 
   <header class="home-top">
     <div class="brand">
