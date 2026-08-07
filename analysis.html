@@ -75,6 +75,13 @@
       justify-content:flex-start;
       min-height:210px;
     }
+    .analysis-page .timeline-body{
+      flex:1;
+      min-height:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
     /* 顶部核心成果区域 */
     .analysis-page .an-sec-title{
       font-size:10px;
@@ -385,11 +392,10 @@
     /* 横向紧凑任务时间轴（页面底部，不超屏不滚动） */
     .tl-body{
       display:flex;
-      align-items:stretch;
+      align-items:center;
       justify-content:center;
       gap:16px;
-      margin-top:auto;
-      margin-bottom:0;
+      margin:0;
     }
     .tl-nodes{
       position:relative;
@@ -458,7 +464,6 @@
       letter-spacing:1px;
       color:#6f93a8;
       margin:2px 2px 0;
-      margin-top:auto;
     }
 
     .analysis-page .timeline-wrapper h3{
@@ -611,7 +616,7 @@
         margin-bottom:1px;
       }
       .tl-hint{
-        margin:auto 0 0;
+        margin:0;
       }
       .tl-node p{
         display:none;
@@ -836,13 +841,15 @@
     <div class="timeline-wrapper">
       <h3 data-lang="en">MISSION TIMELINE</h3>
       <h3 data-lang="zh">任务时间轴</h3>
-      <div class="tl-body">
-        <div class="tl-nodes" id="anTimeline"></div>
-        <div class="tl-duration">
-          <div class="tl-dur-label" data-lang="en">MISSION DURATION</div>
-          <div class="tl-dur-label" data-lang="zh">任务持续</div>
-          <div class="tl-dur-dates"><b id="tlStart">--</b><span class="tl-dur-arrow">↓</span><b id="tlEnd">--</b></div>
-          <div class="tl-dur-days"><b id="tlDays">--</b><em data-lang="en">DAYS</em><em data-lang="zh">天</em></div>
+      <div class="timeline-body">
+        <div class="tl-body">
+          <div class="tl-nodes" id="anTimeline"></div>
+          <div class="tl-duration">
+            <div class="tl-dur-label" data-lang="en">MISSION DURATION</div>
+            <div class="tl-dur-label" data-lang="zh">任务持续</div>
+            <div class="tl-dur-dates"><b id="tlStart">--</b><span class="tl-dur-arrow">↓</span><b id="tlEnd">--</b></div>
+            <div class="tl-dur-days"><b id="tlDays">--</b><em data-lang="en">DAYS</em><em data-lang="zh">天</em></div>
+          </div>
         </div>
       </div>
       <p class="tl-hint" data-lang="en">Key events derived from the recorded mission history.</p>
