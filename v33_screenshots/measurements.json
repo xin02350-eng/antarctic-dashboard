@@ -1,0 +1,762 @@
+[
+  {
+    "lang": "en",
+    "w": 1920,
+    "h": 1080,
+    "viewport": {
+      "w": 1920,
+      "h": 1080
+    },
+    "doc": {
+      "sw": 1920,
+      "cw": 1920,
+      "sh": 1080,
+      "ch": 1080,
+      "vScroll": false,
+      "hScroll": false
+    },
+    "overview": {
+      "x": 283,
+      "y": 177,
+      "w": 1604,
+      "h": 168
+    },
+    "ratioSection": {
+      "x": 598,
+      "y": 366,
+      "w": 1304,
+      "h": 514
+    },
+    "socSection": {
+      "x": 268,
+      "y": 366,
+      "w": 320,
+      "h": 514
+    },
+    "timeline": {
+      "x": 268,
+      "y": 890,
+      "w": 1634,
+      "h": 190
+    },
+    "ring": {
+      "w": 180,
+      "h": 180
+    },
+    "socText": "0",
+    "socFont": "52px",
+    "rowCount": 6,
+    "rows": [
+      {
+        "h": 65,
+        "mb": "5px",
+        "pt": "12px",
+        "pb": "12px",
+        "name": "CABIN TEMP & HUM"
+      },
+      {
+        "h": 65,
+        "mb": "5px",
+        "pt": "12px",
+        "pb": "12px",
+        "name": "EXTERNAL ENVIRONMENT"
+      },
+      {
+        "h": 65,
+        "mb": "5px",
+        "pt": "12px",
+        "pb": "12px",
+        "name": "SOLAR RADIATION"
+      },
+      {
+        "h": 65,
+        "mb": "5px",
+        "pt": "12px",
+        "pb": "12px",
+        "name": "POWER STATUS"
+      },
+      {
+        "h": 65,
+        "mb": "5px",
+        "pt": "12px",
+        "pb": "12px",
+        "name": "GPS POSITION"
+      },
+      {
+        "h": 64,
+        "mb": "0px",
+        "pt": "12px",
+        "pb": "12px",
+        "name": "WIND MONITORING"
+      }
+    ],
+    "srListGap": "2px",
+    "dataLang": "en",
+    "title": "ANTARCTIC NEXUS - MISSION ANALYTICS"
+  },
+  {
+    "lang": "en",
+    "w": 1440,
+    "h": 900,
+    "viewport": {
+      "w": 1440,
+      "h": 900
+    },
+    "doc": {
+      "sw": 1440,
+      "cw": 1440,
+      "sh": 900,
+      "ch": 900,
+      "vScroll": false,
+      "hScroll": false
+    },
+    "overview": {
+      "x": 283,
+      "y": 156,
+      "w": 1124,
+      "h": 120
+    },
+    "ratioSection": {
+      "x": 592,
+      "y": 287,
+      "w": 830,
+      "h": 469
+    },
+    "socSection": {
+      "x": 268,
+      "y": 287,
+      "w": 320,
+      "h": 469
+    },
+    "timeline": {
+      "x": 268,
+      "y": 760,
+      "w": 1154,
+      "h": 140
+    },
+    "ring": {
+      "w": 150,
+      "h": 150
+    },
+    "socText": "0",
+    "socFont": "30px",
+    "rowCount": 6,
+    "rows": [
+      {
+        "h": 35,
+        "mb": "3px",
+        "pt": "2px",
+        "pb": "2px",
+        "name": "CABIN TEMP & HUM"
+      },
+      {
+        "h": 35,
+        "mb": "3px",
+        "pt": "2px",
+        "pb": "2px",
+        "name": "EXTERNAL ENVIRONMENT"
+      },
+      {
+        "h": 35,
+        "mb": "3px",
+        "pt": "2px",
+        "pb": "2px",
+        "name": "SOLAR RADIATION"
+      },
+      {
+        "h": 35,
+        "mb": "3px",
+        "pt": "2px",
+        "pb": "2px",
+        "name": "POWER STATUS"
+      },
+      {
+        "h": 35,
+        "mb": "3px",
+        "pt": "2px",
+        "pb": "2px",
+        "name": "GPS POSITION"
+      },
+      {
+        "h": 34,
+        "mb": "0px",
+        "pt": "2px",
+        "pb": "2px",
+        "name": "WIND MONITORING"
+      }
+    ],
+    "srListGap": "2px",
+    "dataLang": "en",
+    "title": "ANTARCTIC NEXUS - MISSION ANALYTICS"
+  },
+  {
+    "lang": "en",
+    "w": 1366,
+    "h": 768,
+    "viewport": {
+      "w": 1366,
+      "h": 768
+    },
+    "doc": {
+      "sw": 1366,
+      "cw": 1366,
+      "sh": 768,
+      "ch": 768,
+      "vScroll": false,
+      "hScroll": false
+    },
+    "overview": {
+      "x": 283,
+      "y": 156,
+      "w": 1050,
+      "h": 120
+    },
+    "ratioSection": {
+      "x": 592,
+      "y": 287,
+      "w": 756,
+      "h": 337
+    },
+    "socSection": {
+      "x": 268,
+      "y": 287,
+      "w": 320,
+      "h": 337
+    },
+    "timeline": {
+      "x": 268,
+      "y": 628,
+      "w": 1080,
+      "h": 140
+    },
+    "ring": {
+      "w": 150,
+      "h": 150
+    },
+    "socText": "0",
+    "socFont": "30px",
+    "rowCount": 6,
+    "rows": [
+      {
+        "h": 35,
+        "mb": "3px",
+        "pt": "2px",
+        "pb": "2px",
+        "name": "CABIN TEMP & HUM"
+      },
+      {
+        "h": 35,
+        "mb": "3px",
+        "pt": "2px",
+        "pb": "2px",
+        "name": "EXTERNAL ENVIRONMENT"
+      },
+      {
+        "h": 35,
+        "mb": "3px",
+        "pt": "2px",
+        "pb": "2px",
+        "name": "SOLAR RADIATION"
+      },
+      {
+        "h": 35,
+        "mb": "3px",
+        "pt": "2px",
+        "pb": "2px",
+        "name": "POWER STATUS"
+      },
+      {
+        "h": 35,
+        "mb": "3px",
+        "pt": "2px",
+        "pb": "2px",
+        "name": "GPS POSITION"
+      },
+      {
+        "h": 34,
+        "mb": "0px",
+        "pt": "2px",
+        "pb": "2px",
+        "name": "WIND MONITORING"
+      }
+    ],
+    "srListGap": "2px",
+    "dataLang": "en",
+    "title": "ANTARCTIC NEXUS - MISSION ANALYTICS"
+  },
+  {
+    "lang": "en",
+    "w": 1280,
+    "h": 720,
+    "viewport": {
+      "w": 1280,
+      "h": 720
+    },
+    "doc": {
+      "sw": 1280,
+      "cw": 1280,
+      "sh": 720,
+      "ch": 720,
+      "vScroll": false,
+      "hScroll": false
+    },
+    "overview": {
+      "x": 283,
+      "y": 142,
+      "w": 964,
+      "h": 120
+    },
+    "ratioSection": {
+      "x": 592,
+      "y": 273,
+      "w": 670,
+      "h": 303
+    },
+    "socSection": {
+      "x": 268,
+      "y": 273,
+      "w": 320,
+      "h": 303
+    },
+    "timeline": {
+      "x": 268,
+      "y": 580,
+      "w": 994,
+      "h": 140
+    },
+    "ring": {
+      "w": 150,
+      "h": 150
+    },
+    "socText": "0",
+    "socFont": "30px",
+    "rowCount": 6,
+    "rows": [
+      {
+        "h": 35,
+        "mb": "3px",
+        "pt": "2px",
+        "pb": "2px",
+        "name": "CABIN TEMP & HUM"
+      },
+      {
+        "h": 35,
+        "mb": "3px",
+        "pt": "2px",
+        "pb": "2px",
+        "name": "EXTERNAL ENVIRONMENT"
+      },
+      {
+        "h": 35,
+        "mb": "3px",
+        "pt": "2px",
+        "pb": "2px",
+        "name": "SOLAR RADIATION"
+      },
+      {
+        "h": 35,
+        "mb": "3px",
+        "pt": "2px",
+        "pb": "2px",
+        "name": "POWER STATUS"
+      },
+      {
+        "h": 35,
+        "mb": "3px",
+        "pt": "2px",
+        "pb": "2px",
+        "name": "GPS POSITION"
+      },
+      {
+        "h": 34,
+        "mb": "0px",
+        "pt": "2px",
+        "pb": "2px",
+        "name": "WIND MONITORING"
+      }
+    ],
+    "srListGap": "2px",
+    "dataLang": "en",
+    "title": "ANTARCTIC NEXUS - MISSION ANALYTICS"
+  },
+  {
+    "lang": "zh",
+    "w": 1920,
+    "h": 1080,
+    "viewport": {
+      "w": 1920,
+      "h": 1080
+    },
+    "doc": {
+      "sw": 1920,
+      "cw": 1920,
+      "sh": 1080,
+      "ch": 1080,
+      "vScroll": false,
+      "hScroll": false
+    },
+    "overview": {
+      "x": 283,
+      "y": 177,
+      "w": 1604,
+      "h": 168
+    },
+    "ratioSection": {
+      "x": 598,
+      "y": 366,
+      "w": 1304,
+      "h": 514
+    },
+    "socSection": {
+      "x": 268,
+      "y": 366,
+      "w": 320,
+      "h": 514
+    },
+    "timeline": {
+      "x": 268,
+      "y": 890,
+      "w": 1634,
+      "h": 190
+    },
+    "ring": {
+      "w": 180,
+      "h": 180
+    },
+    "socText": "0",
+    "socFont": "52px",
+    "rowCount": 6,
+    "rows": [
+      {
+        "h": 65,
+        "mb": "5px",
+        "pt": "12px",
+        "pb": "12px",
+        "name": "CABIN TEMP & HUM"
+      },
+      {
+        "h": 65,
+        "mb": "5px",
+        "pt": "12px",
+        "pb": "12px",
+        "name": "EXTERNAL ENVIRONMENT"
+      },
+      {
+        "h": 65,
+        "mb": "5px",
+        "pt": "12px",
+        "pb": "12px",
+        "name": "SOLAR RADIATION"
+      },
+      {
+        "h": 65,
+        "mb": "5px",
+        "pt": "12px",
+        "pb": "12px",
+        "name": "POWER STATUS"
+      },
+      {
+        "h": 65,
+        "mb": "5px",
+        "pt": "12px",
+        "pb": "12px",
+        "name": "GPS POSITION"
+      },
+      {
+        "h": 64,
+        "mb": "0px",
+        "pt": "12px",
+        "pb": "12px",
+        "name": "WIND MONITORING"
+      }
+    ],
+    "srListGap": "2px",
+    "dataLang": "zh",
+    "title": "南极自主无人监测系统 · 任务成果分析"
+  },
+  {
+    "lang": "zh",
+    "w": 1440,
+    "h": 900,
+    "viewport": {
+      "w": 1440,
+      "h": 900
+    },
+    "doc": {
+      "sw": 1440,
+      "cw": 1440,
+      "sh": 900,
+      "ch": 900,
+      "vScroll": false,
+      "hScroll": false
+    },
+    "overview": {
+      "x": 283,
+      "y": 156,
+      "w": 1124,
+      "h": 120
+    },
+    "ratioSection": {
+      "x": 592,
+      "y": 287,
+      "w": 830,
+      "h": 469
+    },
+    "socSection": {
+      "x": 268,
+      "y": 287,
+      "w": 320,
+      "h": 469
+    },
+    "timeline": {
+      "x": 268,
+      "y": 760,
+      "w": 1154,
+      "h": 140
+    },
+    "ring": {
+      "w": 150,
+      "h": 150
+    },
+    "socText": "0",
+    "socFont": "30px",
+    "rowCount": 6,
+    "rows": [
+      {
+        "h": 35,
+        "mb": "3px",
+        "pt": "2px",
+        "pb": "2px",
+        "name": "CABIN TEMP & HUM"
+      },
+      {
+        "h": 35,
+        "mb": "3px",
+        "pt": "2px",
+        "pb": "2px",
+        "name": "EXTERNAL ENVIRONMENT"
+      },
+      {
+        "h": 35,
+        "mb": "3px",
+        "pt": "2px",
+        "pb": "2px",
+        "name": "SOLAR RADIATION"
+      },
+      {
+        "h": 35,
+        "mb": "3px",
+        "pt": "2px",
+        "pb": "2px",
+        "name": "POWER STATUS"
+      },
+      {
+        "h": 35,
+        "mb": "3px",
+        "pt": "2px",
+        "pb": "2px",
+        "name": "GPS POSITION"
+      },
+      {
+        "h": 34,
+        "mb": "0px",
+        "pt": "2px",
+        "pb": "2px",
+        "name": "WIND MONITORING"
+      }
+    ],
+    "srListGap": "2px",
+    "dataLang": "zh",
+    "title": "南极自主无人监测系统 · 任务成果分析"
+  },
+  {
+    "lang": "zh",
+    "w": 1366,
+    "h": 768,
+    "viewport": {
+      "w": 1366,
+      "h": 768
+    },
+    "doc": {
+      "sw": 1366,
+      "cw": 1366,
+      "sh": 768,
+      "ch": 768,
+      "vScroll": false,
+      "hScroll": false
+    },
+    "overview": {
+      "x": 283,
+      "y": 156,
+      "w": 1050,
+      "h": 120
+    },
+    "ratioSection": {
+      "x": 592,
+      "y": 287,
+      "w": 756,
+      "h": 337
+    },
+    "socSection": {
+      "x": 268,
+      "y": 287,
+      "w": 320,
+      "h": 337
+    },
+    "timeline": {
+      "x": 268,
+      "y": 628,
+      "w": 1080,
+      "h": 140
+    },
+    "ring": {
+      "w": 150,
+      "h": 150
+    },
+    "socText": "0",
+    "socFont": "30px",
+    "rowCount": 6,
+    "rows": [
+      {
+        "h": 35,
+        "mb": "3px",
+        "pt": "2px",
+        "pb": "2px",
+        "name": "CABIN TEMP & HUM"
+      },
+      {
+        "h": 35,
+        "mb": "3px",
+        "pt": "2px",
+        "pb": "2px",
+        "name": "EXTERNAL ENVIRONMENT"
+      },
+      {
+        "h": 35,
+        "mb": "3px",
+        "pt": "2px",
+        "pb": "2px",
+        "name": "SOLAR RADIATION"
+      },
+      {
+        "h": 35,
+        "mb": "3px",
+        "pt": "2px",
+        "pb": "2px",
+        "name": "POWER STATUS"
+      },
+      {
+        "h": 35,
+        "mb": "3px",
+        "pt": "2px",
+        "pb": "2px",
+        "name": "GPS POSITION"
+      },
+      {
+        "h": 34,
+        "mb": "0px",
+        "pt": "2px",
+        "pb": "2px",
+        "name": "WIND MONITORING"
+      }
+    ],
+    "srListGap": "2px",
+    "dataLang": "zh",
+    "title": "南极自主无人监测系统 · 任务成果分析"
+  },
+  {
+    "lang": "zh",
+    "w": 1280,
+    "h": 720,
+    "viewport": {
+      "w": 1280,
+      "h": 720
+    },
+    "doc": {
+      "sw": 1280,
+      "cw": 1280,
+      "sh": 720,
+      "ch": 720,
+      "vScroll": false,
+      "hScroll": false
+    },
+    "overview": {
+      "x": 283,
+      "y": 142,
+      "w": 964,
+      "h": 120
+    },
+    "ratioSection": {
+      "x": 592,
+      "y": 273,
+      "w": 670,
+      "h": 303
+    },
+    "socSection": {
+      "x": 268,
+      "y": 273,
+      "w": 320,
+      "h": 303
+    },
+    "timeline": {
+      "x": 268,
+      "y": 580,
+      "w": 994,
+      "h": 140
+    },
+    "ring": {
+      "w": 150,
+      "h": 150
+    },
+    "socText": "0",
+    "socFont": "30px",
+    "rowCount": 6,
+    "rows": [
+      {
+        "h": 35,
+        "mb": "3px",
+        "pt": "2px",
+        "pb": "2px",
+        "name": "CABIN TEMP & HUM"
+      },
+      {
+        "h": 35,
+        "mb": "3px",
+        "pt": "2px",
+        "pb": "2px",
+        "name": "EXTERNAL ENVIRONMENT"
+      },
+      {
+        "h": 35,
+        "mb": "3px",
+        "pt": "2px",
+        "pb": "2px",
+        "name": "SOLAR RADIATION"
+      },
+      {
+        "h": 35,
+        "mb": "3px",
+        "pt": "2px",
+        "pb": "2px",
+        "name": "POWER STATUS"
+      },
+      {
+        "h": 35,
+        "mb": "3px",
+        "pt": "2px",
+        "pb": "2px",
+        "name": "GPS POSITION"
+      },
+      {
+        "h": 34,
+        "mb": "0px",
+        "pt": "2px",
+        "pb": "2px",
+        "name": "WIND MONITORING"
+      }
+    ],
+    "srListGap": "2px",
+    "dataLang": "zh",
+    "title": "南极自主无人监测系统 · 任务成果分析"
+  }
+]

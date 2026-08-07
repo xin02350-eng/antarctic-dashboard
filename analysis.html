@@ -16,8 +16,8 @@
       height:auto;
       min-height:100vh;
       overflow:visible;
-      padding:64px 18px 0;
-      gap:12px;
+      padding:42px 18px 0;
+      gap:8px;
       display:flex;
       flex-direction:column;
     }
@@ -28,7 +28,7 @@
       margin-top:4px;
     }
     .analysis-page .mission-header{
-      padding-bottom:10px;
+      padding-bottom:6px;
     }
     .analysis-page .an-head h2{
       font-size:24px;
@@ -49,7 +49,7 @@
         "summary summary"
         "soc ratio"
         "timeline timeline";
-      gap:14px;
+      gap:10px;
       align-items:stretch;
       flex:1 0 auto;
       width:100%;
@@ -202,10 +202,14 @@
       place-items:center;
       width:160px;
       height:160px;
+      min-width:180px;
+      min-height:180px;
     }
     .soc-ring{
       width:160px;
       height:160px;
+      min-width:180px;
+      min-height:180px;
       transform:rotate(-90deg);
       grid-area:1 / 1;
     }
@@ -238,7 +242,7 @@
       font-variant-numeric:tabular-nums;
     }
     .soc-center b{
-      font-size:40px;
+      font-size:52px;
       font-weight:700;
       color:#eafcff;
       letter-spacing:1px;
@@ -291,7 +295,7 @@
       border:1px solid rgba(140,234,255,.10);
       border-radius:10px;
       background:linear-gradient(165deg, rgba(9,28,44,.42), rgba(5,16,28,.34));
-      padding:8px 14px;
+      padding:6px 14px;
       display:flex;
       flex-direction:column;
       min-height:0;
@@ -299,8 +303,8 @@
     .sr-list{
       display:flex;
       flex-direction:column;
-      gap:4px;
-      padding:2px 0;
+      gap:2px;
+      padding:1px 0;
       flex:1 0 auto;
       justify-content:center;
     }
@@ -333,13 +337,16 @@
       grid-template-areas:"ch name pct" "bar bar bar";
       align-items:center;
       gap:3px 10px;
-      padding:10px 14px;
+      padding:12px 14px;
+      min-height:54px;
+      margin-bottom:5px;
       border-radius:6px;
       background:rgba(6,20,34,.35);
       border-bottom:1px solid rgba(98,217,255,.06);
     }
     .sr-row:last-child{
       border-bottom:0;
+      margin-bottom:0;
     }
     .sr-name{
       grid-area:name;
@@ -587,12 +594,12 @@
     /* 低高度桌面：轻微压缩间距与环尺寸，避免 1366×768 需要滚动 */
     @media (max-height:920px) and (min-width:1100px){
       body.analysis-page main{
-        padding-top:38px;
+        padding-top:36px;
         padding-bottom:0;
-        gap:8px;
+        gap:4px;
       }
       .analysis-page .analysis-container{
-        gap:8px;
+        gap:4px;
       }
       .analysis-page .summary-section{
         padding:4px 14px 6px;
@@ -620,15 +627,19 @@
         margin:-2px 2px 3px;
       }
       .soc-wrap{
-        width:100px;
-        height:100px;
+        width:150px;
+        height:150px;
+        min-width:150px;
+        min-height:150px;
       }
       .soc-ring{
-        width:100px;
-        height:100px;
+        width:150px;
+        height:150px;
+        min-width:150px;
+        min-height:150px;
       }
       .soc-center b{
-        font-size:24px;
+        font-size:30px;
       }
       .soc-module{
         padding:4px 12px;
@@ -641,14 +652,19 @@
         padding:1px 8px;
       }
       .sr-list{
-        gap:3px;
+        gap:2px;
         padding:0;
         justify-content:center;
       }
       .sr-row{
-        padding:1px 10px;
+        padding:2px 10px;
+        min-height:32px;
+        margin-bottom:3px;
         grid-template-columns:40px 1fr 64px;
         gap:2px 6px;
+      }
+      .sr-row:last-child{
+        margin-bottom:0;
       }
       .sr-head{
         grid-template-columns:40px 1fr 64px;
