@@ -14,7 +14,7 @@
     body{background:#01060d;color:#dff6ff;font-family:"Segoe UI",system-ui,-apple-system,"Microsoft YaHei",sans-serif;position:relative}
 
     /* ---------- 真实地图层 ---------- */
-    #homeMap{position:fixed;inset:0;z-index:0;overflow:hidden;background:radial-gradient(ellipse at 50% 60%,#062030 0%,#01060d 72%);opacity:0;transition:opacity 1.8s ease}
+    #homeMap{position:fixed;inset:0;z-index:0;overflow:hidden;background:radial-gradient(ellipse at 50% 42%,#041526 0%,#01060d 78%);opacity:0;transition:opacity 1.8s ease}
     .home-page.loaded #homeMap{opacity:1}
     #homeMap .leaflet-tile-pane{filter:grayscale(.3) brightness(.58) contrast(1.22) sepia(.16) hue-rotate(162deg) saturate(.62)}
     #homeMap .leaflet-control-attribution{display:none}
@@ -22,6 +22,7 @@
     .graticule-canvas{position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none}
     #fallbackMap{position:fixed;inset:0;z-index:0;width:100%;height:100%;display:none;overflow:hidden}
     #routeCv{position:fixed;inset:0;z-index:3;width:100%;height:100%;pointer-events:none}
+    #netPts{position:fixed;inset:0;z-index:2;width:100%;height:100%;pointer-events:none}
 
     .map-veil{position:fixed;inset:0;z-index:2;pointer-events:none;background:
       linear-gradient(90deg,rgba(1,6,13,.88),rgba(1,6,13,.42) 30%,rgba(1,6,13,.05) 52%,rgba(1,6,13,.28) 100%),
@@ -42,6 +43,13 @@
     .map-node .nd-card span{display:block;font-size:8px;letter-spacing:1.8px;color:#9fd8c2;margin-top:4px;text-transform:uppercase;white-space:nowrap}
     .map-node .nd-card em{display:block;font-style:normal;font-size:8px;letter-spacing:1px;color:#6f93a8;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
     .map-node.an .nd-card{top:auto;bottom:20px}
+
+    /* ---------- 远方目标：南极（画面远端，不挤入地图） ---------- */
+    .far-target{position:fixed;left:50%;bottom:92px;z-index:6;transform:translateX(-50%);text-align:center;pointer-events:none;opacity:0;transition:opacity 1.4s ease 1.7s}
+    .home-page.loaded .far-target{opacity:1}
+    .far-target .ft-line{width:1px;height:34px;margin:0 auto 8px;background:linear-gradient(rgba(140,234,255,.5),rgba(140,234,255,.05))}
+    .far-target b{display:block;font-size:11px;letter-spacing:4px;color:#a9d7ea;font-weight:500}
+    .far-target span{display:block;font-size:8px;letter-spacing:2.5px;color:rgba(140,234,255,.6);margin-top:5px;text-transform:uppercase}
 
     .map-node.ne .nd-dot{background:rgba(140,234,255,.85);box-shadow:0 0 8px rgba(140,234,255,.5);animation:none}
     .map-node.ne .nd-ring{border-color:rgba(140,234,255,.28);animation:none;opacity:.7}
@@ -119,6 +127,9 @@
       .brand p{display:none}
       .brand h1{font-size:12px;letter-spacing:2px}
       .home-hero{top:auto;bottom:196px;transform:none}
+      .far-target{bottom:210px}
+      .far-target .ft-line{height:22px}
+      .far-target b{font-size:10px;letter-spacing:3px}
       .map-node .nd-card{left:auto;right:auto;top:18px;transform:translateX(-50%);width:132px;min-width:0;padding:7px 11px}
       .map-node.nj .nd-card{transform:translateX(-16%)}
       .map-node.an .nd-card{transform:translateX(-82%)}
@@ -140,6 +151,7 @@
   <canvas id="fallbackMap" aria-hidden="true"></canvas>
   <div class="map-veil" aria-hidden="true"></div>
   <canvas id="routeCv" aria-hidden="true"></canvas>
+  <canvas id="netPts" aria-hidden="true"></canvas>
   <canvas id="particles" aria-hidden="true"></canvas>
 
   <header class="home-top">
@@ -184,15 +196,6 @@
       <em>45.75°N · 126.65°E</em>
     </div>
   </div>
-  <div class="map-node an" id="nodeAn">
-    <span class="nd-dot"></span><span class="nd-ring"></span><span class="nd-halo"></span>
-    <div class="nd-card">
-      <b>ANTARCTICA</b>
-      <span data-lang="en">Future Goal</span><span data-lang="zh">未来目标</span>
-      <em>82°S · 130°W</em>
-    </div>
-  </div>
-
   <footer class="home-manifesto">
     <p>
       <span data-lang="en">The unknown requires explorers;<br>Uninhabited lands require the first set of observations.</span>
@@ -202,6 +205,13 @@
   <div class="motto">
     <span data-lang="en">Seeking the cold frontier,<br>we dare to lead the way.</span>
     <span data-lang="zh">寻此寒旅，敢为天下先。</span>
+  </div>
+
+  <div class="far-target">
+    <div class="ft-line" aria-hidden="true"></div>
+    <b>ANTARCTICA</b>
+    <span data-lang="en">Future Goal · 82°S 130°W</span>
+    <span data-lang="zh">未来目标 · 82°S 130°W</span>
   </div>
 
   <script>
@@ -250,8 +260,7 @@
     var AN = [-82.0, -130.0];           // Marie Byrd Land 内陆，南极大陆（太平洋扇区）
     var NODES = [
       { id: 'nodeNj', pos: NJ },
-      { id: 'nodeNe', pos: NE },
-      { id: 'nodeAn', pos: AN }
+      { id: 'nodeNe', pos: NE }
     ];
 
     function gcLine(a, b, n) {
@@ -281,10 +290,8 @@
 
     /* ---------- 响应式视角 ---------- */
     function viewFor(w) {
-      if (w >= 1700) return { center: [-37, 140], zoom: 2.75 };
-      if (w >= 1440) return { center: [-45, 140], zoom: 2.4 };
-      if (w >= 1024) return { center: [-45, 140], zoom: 2.3 };
-      return { center: [-22.5, 174], zoom: 2 };
+      /* 主体聚焦东亚：南京起点 + 东北第一阶段目标；南极在画面远端之外 */
+      return { center: [39, 122], zoom: 5 };
     }
 
     var map = null, fallback = false;
@@ -292,12 +299,27 @@
     var partCtx = partCv.getContext('2d');
     var routeCv = document.getElementById('routeCv');
     var routeCtx = routeCv.getContext('2d');
+    var ptsCv = document.getElementById('netPts');
+    var ptsCtx = ptsCv.getContext('2d');
+    var dataPts = [];
+    (function () {
+      var seed = 20260809;
+      function rnd() { seed = (seed * 1664525 + 1013904223) >>> 0; return seed / 4294967296; }
+      for (var i = 0; i < 150; i++) {
+        dataPts.push([18 + rnd() * 34, 100 + rnd() * 40, rnd()]);
+      }
+      for (var j = 0; j < 30; j++) {
+        dataPts.push([-56 + rnd() * 112, -170 + rnd() * 340, rnd()]);
+      }
+    })();
 
     function sizeCanvas() {
       partCv.width = window.innerWidth;
       partCv.height = window.innerHeight;
       routeCv.width = window.innerWidth;
       routeCv.height = window.innerHeight;
+      ptsCv.width = window.innerWidth;
+      ptsCv.height = window.innerHeight;
     }
     sizeCanvas();
     window.addEventListener('resize', function () { sizeCanvas(); if (map) map.invalidateSize(); positionNodes(); });
@@ -354,12 +376,56 @@
     function drawRoutes() {
       if (!routeCv.width) sizeCanvas();
       routeCtx.clearRect(0, 0, routeCv.width, routeCv.height);
-      [R1, R2].forEach(function (pts) {
-        var P = routePoints(pts);
-        tracePath(P, 9, 'rgba(0,229,168,.10)', 1, null);
-        tracePath(P, 3, 'rgba(0,229,168,.30)', 1, null);
-        tracePath(P, 1.2, 'rgba(140,234,255,.92)', 1, 'rgba(98,217,255,.55)');
-      });
+      var P1 = routePoints(R1);
+      tracePath(P1, 9, 'rgba(0,229,168,.10)', 1, null);
+      tracePath(P1, 3, 'rgba(0,229,168,.30)', 1, null);
+      tracePath(P1, 1.2, 'rgba(140,234,255,.92)', 1, 'rgba(98,217,255,.55)');
+      /* 第二段：跨越海洋的巨大弧线，向画面外渐隐 */
+      var P2 = routePoints(R2);
+      var h = routeCv.height;
+      routeCtx.lineJoin = 'round';
+      routeCtx.lineCap = 'round';
+      for (var i = 1; i < P2.length; i++) {
+        var f = i / (P2.length - 1);
+        var alpha = Math.max(0, 1 - Math.max(0, (f - 0.18) / 0.30));
+        var edgeFade = Math.max(0, 1 - Math.max(0, (P2[i].y - h * 0.62) / (h * 0.36)));
+        alpha = Math.min(alpha, edgeFade);
+        if (alpha <= 0.02) continue;
+        routeCtx.beginPath();
+        routeCtx.moveTo(P2[i - 1].x, P2[i - 1].y);
+        routeCtx.lineTo(P2[i].x, P2[i].y);
+        routeCtx.globalAlpha = alpha * 0.10;
+        routeCtx.strokeStyle = '#00e5a8';
+        routeCtx.lineWidth = 9;
+        routeCtx.stroke();
+        routeCtx.globalAlpha = alpha * 0.32;
+        routeCtx.lineWidth = 3;
+        routeCtx.stroke();
+        routeCtx.globalAlpha = alpha * 0.95;
+        routeCtx.strokeStyle = '#8ceaff';
+        routeCtx.lineWidth = 1.2;
+        routeCtx.shadowColor = 'rgba(98,217,255,.55)';
+        routeCtx.shadowBlur = 8;
+        routeCtx.stroke();
+        routeCtx.shadowBlur = 0;
+      }
+      routeCtx.globalAlpha = 1;
+    }
+
+    /* ---------- 蓝色数据节点（观测网络采集点，真实投影定位） ---------- */
+    function drawDataPts() {
+      if (!ptsCv.width) sizeCanvas();
+      ptsCtx.clearRect(0, 0, ptsCv.width, ptsCv.height);
+      for (var i = 0; i < dataPts.length; i++) {
+        var p = (map && !fallback) ? map.latLngToContainerPoint([dataPts[i][0], dataPts[i][1]]) : projectMercator([dataPts[i][0], dataPts[i][1]], viewFor(window.innerWidth));
+        var w = window.innerWidth, h2 = window.innerHeight;
+        if (p.x < -8 || p.x > w + 8 || p.y < -8 || p.y > h2 + 8) continue;
+        var r = dataPts[i][2] > 0.93 ? 1.6 : 1;
+        ptsCtx.beginPath();
+        ptsCtx.arc(p.x, p.y, r, 0, Math.PI * 2);
+        ptsCtx.fillStyle = dataPts[i][2] > 0.93 ? 'rgba(140,234,255,.8)' : 'rgba(98,217,255,.45)';
+        ptsCtx.fill();
+      }
     }
 
     /* ---------- Web Mercator（离线兜底与数学校验共用） ---------- */
@@ -383,16 +449,13 @@
         zoomSnap: 0.25
       }).setView(v.center, v.zoom);
 
-      L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Ocean/World_Ocean_Base/MapServer/tile/{z}/{y}/{x}', {
-        maxZoom: 10, attribution: ''
-      }).addTo(map);
-
       /* 真实国界（Natural Earth 110m，公开地理数据） */
       fetch('https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_110m_admin_0_countries.geojson')
         .then(function (r) { return r.json(); })
         .then(function (gj) {
           L.geoJSON(gj, {
-            style: { color: 'rgba(140,234,255,.30)', weight: 0.55, opacity: .8, fill: false }
+            style: { color: 'rgba(98,217,255,.55)', weight: 0.6, opacity: .85, fill: false },
+            interactive: false
           }).addTo(map);
         }).catch(function () {});
 
@@ -428,8 +491,9 @@
 
       setTimeout(function () { map.invalidateSize(); positionNodes(); }, 300);
       setTimeout(function () { map.invalidateSize(); positionNodes(); }, 900);
-      map.on('move zoom resize', function () { positionNodes(); drawRoutes(); });
+      map.on('move zoom resize', function () { positionNodes(); drawRoutes(); drawDataPts(); });
       drawRoutes();
+      drawDataPts();
       window.homeMap = map;
     }
 
@@ -442,6 +506,7 @@
         var pts = routes[r];
         for (var k = 0; k < 5; k++) {
           var f = ((t / (r === 0 ? 9000 : 16000)) + k / 5) % 1;
+          if (r === 1 && f > 0.34) continue;
           var idx = f * (pts.length - 1);
           var i0 = Math.floor(idx), i1 = Math.min(i0 + 1, pts.length - 1), fr = idx - i0;
           var a = pts[i0], b = pts[i1];
@@ -506,6 +571,7 @@
       }
       draw();
       drawRoutes();
+      drawDataPts();
       positionNodes();
       window.addEventListener('resize', draw);
     }
