@@ -6,68 +6,56 @@
   <meta name="color-scheme" content="dark">
   <title data-title-en="AUTONOMOUS NEXUS · EXPLORATION" data-title-zh="自主观测系统 · 探索序章">AUTONOMOUS NEXUS · EXPLORATION</title>
   <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
   <style>
     *{box-sizing:border-box;margin:0;padding:0}
-    html,body{height:100%}
-    body{background:#01060d;color:#dff6ff;font-family:"Segoe UI",system-ui,-apple-system,"Microsoft YaHei",sans-serif;overflow:hidden;position:relative}
+    html,body{height:100%;overflow:hidden}
+    body{background:#01060d;color:#dff6ff;font-family:"Segoe UI",system-ui,-apple-system,"Microsoft YaHei",sans-serif;position:relative}
 
-    /* ---------- 深空 ---------- */
-    .space{position:fixed;inset:0;z-index:0;background:linear-gradient(180deg,#020a14 0%,#03101f 55%,#041527 100%)}
-    .stars{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.85;background-image:
-      radial-gradient(1px 1px at 6% 12%,rgba(220,245,255,.9),transparent 100%),
-      radial-gradient(1px 1px at 14% 38%,rgba(220,245,255,.55),transparent 100%),
-      radial-gradient(1.5px 1.5px at 24% 8%,rgba(220,245,255,.75),transparent 100%),
-      radial-gradient(1px 1px at 34% 46%,rgba(220,245,255,.5),transparent 100%),
-      radial-gradient(1px 1px at 44% 18%,rgba(220,245,255,.7),transparent 100%),
-      radial-gradient(1.5px 1.5px at 56% 30%,rgba(220,245,255,.55),transparent 100%),
-      radial-gradient(1px 1px at 66% 12%,rgba(220,245,255,.7),transparent 100%),
-      radial-gradient(1px 1px at 76% 36%,rgba(220,245,255,.5),transparent 100%),
-      radial-gradient(1px 1px at 86% 22%,rgba(220,245,255,.65),transparent 100%),
-      radial-gradient(1.5px 1.5px at 94% 44%,rgba(220,245,255,.5),transparent 100%),
-      radial-gradient(1px 1px at 48% 52%,rgba(220,245,255,.4),transparent 100%),
-      radial-gradient(1px 1px at 20% 56%,rgba(220,245,255,.4),transparent 100%)}
+    /* ---------- 真实地图层 ---------- */
+    #homeMap{position:fixed;inset:0;z-index:0;overflow:hidden;background:radial-gradient(ellipse at 50% 60%,#062030 0%,#01060d 72%);opacity:0;transition:opacity 1.8s ease}
+    .home-page.loaded #homeMap{opacity:1}
+    #homeMap .leaflet-tile-pane{filter:grayscale(.3) brightness(.58) contrast(1.22) sepia(.16) hue-rotate(162deg) saturate(.62)}
+    #homeMap .leaflet-control-attribution{display:none}
+    #homeMap .leaflet-control-zoom{display:none}
+    .graticule-canvas{position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none}
+    #fallbackMap{position:fixed;inset:0;z-index:0;width:100%;height:100%;display:none;overflow:hidden}
+    #routeCv{position:fixed;inset:0;z-index:3;width:100%;height:100%;pointer-events:none}
 
-    /* ---------- 高空俯瞰的地球表面 ---------- */
-    .earth-wrap{position:fixed;left:0;right:0;bottom:0;z-index:2;height:70vh;opacity:0;transform:translateY(24px);transition:opacity 2s ease .2s,transform 2s ease .2s}
-    .home-page.loaded .earth-wrap{opacity:1;transform:none}
-    .earth-svg{width:100%;height:100%;display:block}
-    .horizon{position:fixed;left:0;right:0;z-index:3;top:61vh;height:1px;background:linear-gradient(90deg,transparent 5%,rgba(140,234,255,.38) 50%,transparent 95%);box-shadow:0 0 26px rgba(98,217,255,.22);opacity:0;transition:opacity 2.2s ease .6s;pointer-events:none}
-    .home-page.loaded .horizon{opacity:1}
-    .earth-tint{position:fixed;left:0;right:0;bottom:0;z-index:3;height:70vh;pointer-events:none;background:linear-gradient(180deg,rgba(2,10,20,.25),rgba(2,10,20,0) 22%),radial-gradient(ellipse 52% 40% at 47% 58%,rgba(0,229,168,.035),transparent 70%)}
+    .map-veil{position:fixed;inset:0;z-index:2;pointer-events:none;background:
+      linear-gradient(90deg,rgba(1,6,13,.88),rgba(1,6,13,.42) 30%,rgba(1,6,13,.05) 52%,rgba(1,6,13,.28) 100%),
+      radial-gradient(ellipse at 50% 55%,rgba(1,6,13,0) 40%,rgba(1,6,13,.55) 82%,rgba(1,6,13,.92) 100%)}
 
-    /* 探索方向轨迹 */
-    .route-ne{fill:none;stroke:rgba(140,234,255,.4);stroke-width:1;stroke-dasharray:3 7;animation:routeFlow 7s linear infinite}
-    .route-future{fill:none;stroke:rgba(140,234,255,.55);stroke-width:1.2;stroke-dasharray:4 9;animation:routeFlow 10s linear infinite}
-    @keyframes routeFlow{to{stroke-dashoffset:-100}}
-    .dir-label{position:absolute;z-index:4;font-size:8px;letter-spacing:3px;color:rgba(140,234,255,.62);text-transform:uppercase;pointer-events:none;opacity:0;transition:opacity 1.4s ease 1.6s}
-    .home-page.loaded .dir-label{opacity:1}
-    .dir-ne{left:56.5%;top:44%}
-    .dir-future{left:57.5%;top:86%}
-
-    /* ---------- 南京节点 ---------- */
-    .node{position:absolute;left:47%;top:66.2%;z-index:5;width:0;height:0;opacity:0;transition:opacity 1s ease 1.05s}
-    .home-page.loaded .node{opacity:1}
-    .node-halo{position:absolute;left:50%;top:50%;width:120px;height:120px;margin:-60px 0 0 -60px;border-radius:50%;background:radial-gradient(circle,rgba(0,229,168,.18),rgba(0,229,168,0) 66%);animation:haloBreath 4.5s ease-in-out infinite}
-    @keyframes haloBreath{0%,100%{opacity:.65;transform:scale(.96)}50%{opacity:1;transform:scale(1.06)}}
-    .node-dot{position:absolute;left:50%;top:50%;width:10px;height:10px;margin:-5px 0 0 -5px;border-radius:50%;background:#00e5a8;box-shadow:0 0 10px rgba(0,229,168,.75);animation:nodePulse 3s ease-out infinite}
+    /* ---------- 节点（DOM 覆盖层，坐标投影定位） ---------- */
+    .map-node{position:absolute;z-index:5;width:0;height:0;opacity:0;transition:opacity 1s ease 1.05s;pointer-events:none}
+    .home-page.loaded .map-node{opacity:1}
+    .map-node .nd-dot{position:absolute;left:50%;top:50%;width:9px;height:9px;margin:-4.5px 0 0 -4.5px;border-radius:50%;background:#00e5a8;box-shadow:0 0 12px rgba(0,229,168,.8);animation:nodePulse 3s ease-out infinite}
     @keyframes nodePulse{0%{box-shadow:0 0 0 0 rgba(0,229,168,.5)}70%{box-shadow:0 0 0 18px rgba(0,229,168,0)}100%{box-shadow:0 0 0 0 rgba(0,229,168,0)}}
-    .node-ring{position:absolute;left:50%;top:50%;width:30px;height:30px;margin:-15px 0 0 -15px;border-radius:50%;border:1px solid rgba(0,229,168,.35);animation:ringExpand 3.6s ease-out infinite}
-    .node-ring.r2{animation-delay:1.8s}
+    .map-node .nd-ring{position:absolute;left:50%;top:50%;width:28px;height:28px;margin:-14px 0 0 -14px;border-radius:50%;border:1px solid rgba(0,229,168,.4);animation:ringExpand 3.6s ease-out infinite}
+    .map-node .nd-ring.r2{animation-delay:1.8s}
     @keyframes ringExpand{0%{transform:scale(.5);opacity:1}100%{transform:scale(2.6);opacity:0}}
-    .node-orbits{position:absolute;left:50%;top:50%;width:0;height:0;animation:orbitSpin 16s linear infinite}
-    .node-orbits i{position:absolute;width:3px;height:3px;border-radius:50%;background:rgba(140,234,255,.9);box-shadow:0 0 6px rgba(140,234,255,.6)}
-    .node-orbits i:nth-child(1){left:28px;top:0}
-    .node-orbits i:nth-child(2){left:-28px;top:0}
-    .node-orbits i:nth-child(3){left:0;top:28px}
-    .node-orbits.o2{animation:orbitSpin 22s linear infinite reverse;opacity:.7}
-    .node-orbits.o2 i{width:2px;height:2px;background:rgba(45,212,170,.85)}
-    .node-orbits.o2 i:nth-child(1){left:36px;top:12px}
-    .node-orbits.o2 i:nth-child(2){left:-32px;top:-14px}
-    .node-orbits.o2 i:nth-child(3){left:10px;top:-36px}
-    @keyframes orbitSpin{to{transform:rotate(360deg)}}
-    .node-card{position:absolute;left:22px;top:16px;border:1px solid rgba(0,229,168,.26);border-left:2px solid #00e5a8;background:rgba(3,15,25,.74);backdrop-filter:blur(8px);padding:10px 16px;border-radius:2px;min-width:204px}
-    .node-card b{display:block;font-size:14px;letter-spacing:3px;color:#eafcff;font-weight:600}
-    .node-card span{display:block;font-size:9px;letter-spacing:2px;color:#9fd8c2;margin-top:5px;text-transform:uppercase}
+    .map-node .nd-halo{position:absolute;left:50%;top:50%;width:110px;height:110px;margin:-55px 0 0 -55px;border-radius:50%;background:radial-gradient(circle,rgba(0,229,168,.16),rgba(0,229,168,0) 66%);animation:haloBreath 4.5s ease-in-out infinite}
+    @keyframes haloBreath{0%,100%{opacity:.6;transform:scale(.96)}50%{opacity:1;transform:scale(1.06)}}
+    .map-node .nd-card{position:absolute;left:24px;top:18px;border:1px solid rgba(0,229,168,.26);border-left:2px solid #00e5a8;background:rgba(3,15,25,.76);backdrop-filter:blur(8px);padding:9px 14px;border-radius:2px;min-width:180px}
+    .map-node .nd-card b{display:block;font-size:12px;letter-spacing:2.5px;color:#eafcff;font-weight:600;white-space:nowrap}
+    .map-node .nd-card span{display:block;font-size:8px;letter-spacing:1.8px;color:#9fd8c2;margin-top:4px;text-transform:uppercase;white-space:nowrap}
+    .map-node .nd-card em{display:block;font-style:normal;font-size:8px;letter-spacing:1px;color:#6f93a8;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .map-node.an .nd-card{top:auto;bottom:20px}
+
+    .map-node.ne .nd-dot{background:rgba(140,234,255,.85);box-shadow:0 0 8px rgba(140,234,255,.5);animation:none}
+    .map-node.ne .nd-ring{border-color:rgba(140,234,255,.28);animation:none;opacity:.7}
+    .map-node.ne .nd-halo{background:radial-gradient(circle,rgba(140,234,255,.08),rgba(140,234,255,0) 66%);animation:none}
+    .map-node.ne .nd-card{border-color:rgba(140,234,255,.2);border-left-color:rgba(140,234,255,.65)}
+    .map-node.ne .nd-card span{color:#8aa9bb}
+    .map-node.an .nd-dot{background:#8ceaff;box-shadow:0 0 10px rgba(140,234,255,.7);animation:none}
+    .map-node.an .nd-ring{border-color:rgba(140,234,255,.35);animation:none;opacity:.85}
+    .map-node.an .nd-halo{background:radial-gradient(circle,rgba(140,234,255,.1),rgba(140,234,255,0) 66%);animation:none}
+    .map-node.an .nd-card{border-color:rgba(140,234,255,.28);border-left-color:#8ceaff}
+    .map-node.an .nd-card span{color:#a9d7ea}
+
+    /* ---------- 粒子层 ---------- */
+    #particles{position:fixed;inset:0;z-index:4;width:100%;height:100%;pointer-events:none}
 
     /* ---------- 顶部品牌栏 ---------- */
     .home-top{position:fixed;top:0;left:0;right:0;z-index:10;display:flex;align-items:center;justify-content:space-between;padding:30px 44px;pointer-events:none;opacity:0;transition:opacity 1.2s ease .2s}
@@ -84,13 +72,13 @@
     .lang-switch button{position:relative;z-index:2;flex:1;border:0;background:transparent;color:#8fb0c2;font-size:11px;letter-spacing:1px;cursor:pointer;font-family:inherit}
     .lang-switch button.active{color:#04101c;font-weight:700}
 
-    /* ---------- 主文案（左侧留白区） ---------- */
-    .home-hero{position:fixed;left:7vw;top:36%;z-index:8;max-width:580px;transform:translateY(-50%);pointer-events:none}
+    /* ---------- 主文案 ---------- */
+    .home-hero{position:fixed;left:7vw;top:34%;z-index:8;max-width:580px;transform:translateY(-50%);pointer-events:none}
     .home-hero>*{pointer-events:auto}
     .kicker{display:flex;align-items:center;gap:14px;font-size:10px;letter-spacing:5px;color:rgba(140,234,255,.7);margin-bottom:24px;opacity:0;transform:translateY(16px)}
     .kicker::before{content:"";display:block;width:46px;height:1px;background:linear-gradient(90deg,rgba(98,217,255,.7),transparent)}
     .home-page.loaded .kicker{opacity:1;transform:none;transition:opacity .9s ease .45s,transform .9s ease .45s}
-    .home-hero h2{font-size:clamp(38px,4vw,62px);line-height:1.16;font-weight:200;letter-spacing:3px;opacity:0;transform:translateY(22px)}
+    .home-hero h2{font-size:clamp(36px,3.8vw,60px);line-height:1.16;font-weight:200;letter-spacing:3px;opacity:0;transform:translateY(22px)}
     .home-hero h2 em{font-style:normal;background:linear-gradient(180deg,#eafcff 30%,#8ceaff 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
     .home-page.loaded .home-hero h2{opacity:1;transform:none;transition:opacity 1s ease .6s,transform 1s ease .6s}
     .home-sub{margin-top:24px;font-size:clamp(12px,1vw,15px);line-height:2;color:#9ab8ca;max-width:520px;opacity:0;transform:translateY(18px)}
@@ -113,34 +101,31 @@
     .motto span[data-lang="en"]{max-width:150px;text-align:right;font-size:10px;letter-spacing:2px;line-height:2;color:rgba(140,234,255,.5)}
 
     /* ---------- 离场过渡 ---------- */
-    body.is-leaving .earth-wrap{transform:translateY(30px) scale(1.12);opacity:.15;transition:transform 1s cubic-bezier(.6,0,.4,1),opacity 1s ease}
-    body.is-leaving .horizon{opacity:0;transition:opacity .5s ease}
+    body.is-leaving #homeMap{transform:scale(1.1);opacity:.2;transition:transform 1s cubic-bezier(.6,0,.4,1),opacity 1s ease}
+    body.is-leaving .map-veil{opacity:1;transition:opacity .6s ease}
     body.is-leaving .home-hero{opacity:0;transform:translateY(-5%);transition:all .45s ease}
-    body.is-leaving::after{content:"";position:fixed;inset:0;z-index:99;background:radial-gradient(ellipse at 50% 62%,#062033,#01060d 74%);opacity:0;animation:leaveFade .7s ease forwards;pointer-events:none}
+    body.is-leaving::after{content:"";position:fixed;inset:0;z-index:99;background:radial-gradient(ellipse at 50% 60%,#062033,#01060d 75%);opacity:0;animation:leaveFade .7s ease forwards;pointer-events:none}
     @keyframes leaveFade{to{opacity:1}}
 
     /* ---------- 响应式 ---------- */
     @media (max-width:900px){
-      .earth-wrap{height:64vh}
-      .horizon{top:62vh}
-      .earth-tint{height:64vh}
-      .home-hero{left:24px;right:24px;max-width:none;top:34%}
+      .home-hero{left:24px;right:24px;max-width:none;top:30%}
       .home-hero h2{font-size:clamp(30px,8.5vw,44px)}
       .home-sub{font-size:12px}
       .explore-btn{margin-top:24px;padding:13px 26px;font-size:11px;letter-spacing:3px}
-      .dir-ne{display:none}
-      .dir-future{left:58%;top:84%}
     }
     @media (max-width:700px){
       .home-top{padding:16px 20px}
       .brand p{display:none}
       .brand h1{font-size:12px;letter-spacing:2px}
-      .home-hero{top:auto;bottom:190px;transform:none}
-      .node{left:50%;top:60%}
-      .node-card{left:auto;right:-84px;top:18px;min-width:148px;padding:7px 12px}
-      .node-card b{font-size:12px}
-      .node-card span{font-size:8px}
-      .dir-future{left:56%;top:80%;font-size:7px;letter-spacing:2px}
+      .home-hero{top:auto;bottom:196px;transform:none}
+      .map-node .nd-card{left:auto;right:auto;top:18px;transform:translateX(-50%);width:132px;min-width:0;padding:7px 11px}
+      .map-node.nj .nd-card{transform:translateX(-16%)}
+      .map-node.an .nd-card{transform:translateX(-82%)}
+      .map-node .nd-card b{font-size:11px}
+      .map-node .nd-card span{font-size:7px}
+      .map-node .nd-card em{font-size:7px}
+      .map-node .nd-halo{width:70px;height:70px;margin:-35px 0 0 -35px}
       .home-manifesto{left:20px;right:20px;bottom:14px;max-width:none}
       .home-manifesto p{font-size:11px}
       .motto{position:static;display:block;margin-top:12px;text-align:left}
@@ -151,65 +136,11 @@
 </head>
 <body class="home-page">
 
-  <div class="space" aria-hidden="true"></div>
-  <div class="stars" aria-hidden="true"></div>
-
-  <div class="earth-wrap" aria-hidden="true">
-    <svg class="earth-svg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMax slice">
-      <defs>
-        <clipPath id="earthClip">
-          <ellipse cx="800" cy="1540" rx="1500" ry="1140"/>
-        </clipPath>
-        <radialGradient id="earthGrad" cx="42%" cy="28%" r="80%">
-          <stop offset="0%" stop-color="#0c2b42"/>
-          <stop offset="52%" stop-color="#071c2e"/>
-          <stop offset="100%" stop-color="#020b15"/>
-        </radialGradient>
-      </defs>
-      <ellipse cx="800" cy="1540" rx="1500" ry="1140" fill="url(#earthGrad)"/>
-      <g clip-path="url(#earthClip)">
-        <!-- 经纬弧线 -->
-        <ellipse cx="800" cy="1540" rx="1500" ry="1140" fill="none" stroke="rgba(98,217,255,.08)"/>
-        <ellipse cx="800" cy="1540" rx="1120" ry="1140" fill="none" stroke="rgba(98,217,255,.07)"/>
-        <ellipse cx="800" cy="1540" rx="760" ry="1140" fill="none" stroke="rgba(98,217,255,.07)"/>
-        <ellipse cx="800" cy="1540" rx="1500" ry="780" fill="none" stroke="rgba(98,217,255,.07)"/>
-        <ellipse cx="800" cy="1540" rx="1500" ry="420" fill="none" stroke="rgba(98,217,255,.06)"/>
-        <!-- 艺术化东亚大陆轮廓 -->
-        <path d="M610 500 C 650 470, 720 475, 760 495 C 800 515, 830 548, 832 586 C 834 622, 816 658, 778 674 C 740 690, 682 688, 648 666 C 614 644, 596 608, 600 570 C 602 540, 606 515, 610 500 Z"
-          fill="rgba(140,234,255,.08)" stroke="rgba(140,234,255,.22)" stroke-width="1"/>
-        <path d="M838 548 C 852 528, 868 534, 872 554 C 874 572, 862 586, 848 580"
-          fill="none" stroke="rgba(140,234,255,.16)" stroke-width="1"/>
-        <path d="M900 530 C 920 546, 930 582, 922 616 C 916 636, 904 640, 898 624 C 890 604, 886 566, 900 530 Z"
-          fill="rgba(140,234,255,.07)" stroke="rgba(140,234,255,.16)" stroke-width="1"/>
-        <path d="M830 668 C 840 668, 846 680, 840 690 C 833 698, 824 692, 826 680 Z"
-          fill="rgba(140,234,255,.06)" stroke="rgba(140,234,255,.14)" stroke-width="1"/>
-        <path d="M778 674 C 808 704, 828 732, 816 760 C 810 776, 796 768, 798 750 C 802 728, 798 706, 778 674 Z"
-          fill="rgba(140,234,255,.05)" stroke="rgba(140,234,255,.12)" stroke-width="1"/>
-        <!-- 探索方向轨迹 -->
-        <path class="route-ne" d="M760 590 C 810 560, 860 520, 900 470"/>
-        <path d="M896 464 L 912 474 L 898 482 Z" fill="rgba(140,234,255,.4)"/>
-        <path class="route-future" d="M752 596 C 800 660, 860 720, 900 790"/>
-        <path d="M896 786 L 914 790 L 902 802 Z" fill="rgba(140,234,255,.5)"/>
-      </g>
-    </svg>
-    <span class="dir-label dir-ne"><span data-lang="en">Northeast</span><span data-lang="zh">东北方向</span></span>
-    <span class="dir-label dir-future"><span data-lang="en">Future Exploration</span><span data-lang="zh">未来探索方向</span></span>
-    <div class="node">
-      <div class="node-halo"></div>
-      <span class="node-dot"></span>
-      <span class="node-ring"></span>
-      <span class="node-ring r2"></span>
-      <div class="node-orbits"><i></i><i></i><i></i></div>
-      <div class="node-orbits o2"><i></i><i></i><i></i></div>
-      <div class="node-card">
-        <b>ANT-A01</b>
-        <span data-lang="en">Nanjing · Current Node</span>
-        <span data-lang="zh">南京 · 当前观测节点</span>
-      </div>
-    </div>
-  </div>
-  <div class="horizon" aria-hidden="true"></div>
-  <div class="earth-tint" aria-hidden="true"></div>
+  <div id="homeMap" aria-hidden="true"></div>
+  <canvas id="fallbackMap" aria-hidden="true"></canvas>
+  <div class="map-veil" aria-hidden="true"></div>
+  <canvas id="routeCv" aria-hidden="true"></canvas>
+  <canvas id="particles" aria-hidden="true"></canvas>
 
   <header class="home-top">
     <div class="brand">
@@ -236,6 +167,31 @@
       <span data-lang="en">Start Exploration</span><span data-lang="zh">开启探索</span>
     </button>
   </section>
+
+  <div class="map-node nj" id="nodeNj">
+    <span class="nd-dot"></span><span class="nd-ring"></span><span class="nd-ring r2"></span><span class="nd-halo"></span>
+    <div class="nd-card">
+      <b>NANJING</b>
+      <span data-lang="en">Current Node</span><span data-lang="zh">当前观测节点</span>
+      <em>32.0491°N · 118.7937°E</em>
+    </div>
+  </div>
+  <div class="map-node ne" id="nodeNe">
+    <span class="nd-dot"></span><span class="nd-ring"></span><span class="nd-halo"></span>
+    <div class="nd-card">
+      <b>NORTHEAST CHINA</b>
+      <span data-lang="en">Future Phase</span><span data-lang="zh">未来阶段</span>
+      <em>45.75°N · 126.65°E</em>
+    </div>
+  </div>
+  <div class="map-node an" id="nodeAn">
+    <span class="nd-dot"></span><span class="nd-ring"></span><span class="nd-halo"></span>
+    <div class="nd-card">
+      <b>ANTARCTICA</b>
+      <span data-lang="en">Future Goal</span><span data-lang="zh">未来目标</span>
+      <em>82°S · 130°W</em>
+    </div>
+  </div>
 
   <footer class="home-manifesto">
     <p>
@@ -288,6 +244,274 @@
 
   <script>
   (function () {
+    /* ---------- 真实地理坐标（禁止估算） ---------- */
+    var NJ = [32.049141, 118.793686];   // Nanjing, Jiangsu, China（data.json 实测坐标）
+    var NE = [45.75, 126.65];           // Harbin, Heilongjiang, China（中国东北）
+    var AN = [-82.0, -130.0];           // Marie Byrd Land 内陆，南极大陆（太平洋扇区）
+    var NODES = [
+      { id: 'nodeNj', pos: NJ },
+      { id: 'nodeNe', pos: NE },
+      { id: 'nodeAn', pos: AN }
+    ];
+
+    function gcLine(a, b, n) {
+      var R = Math.PI / 180;
+      var lat1 = a[0] * R, lon1 = a[1] * R, lat2 = b[0] * R, lon2 = b[1] * R;
+      var d = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin((lat2 - lat1) / 2), 2) + Math.cos(lat1) * Math.cos(lat2) * Math.pow(Math.sin((lon2 - lon1) / 2), 2)));
+      if (d < 1e-9) return [a, b];
+      var out = [], prev = a[1];
+      for (var i = 0; i <= n; i++) {
+        var f = i / n;
+        var A = Math.sin((1 - f) * d) / Math.sin(d);
+        var B = Math.sin(f * d) / Math.sin(d);
+        var x = A * Math.cos(lat1) * Math.cos(lon1) + B * Math.cos(lat2) * Math.cos(lon2);
+        var y = A * Math.cos(lat1) * Math.sin(lon1) + B * Math.cos(lat2) * Math.sin(lon2);
+        var z = A * Math.sin(lat1) + B * Math.sin(lat2);
+        var la = Math.atan2(z, Math.sqrt(x * x + y * y)) / R;
+        var lo = Math.atan2(y, x) / R;
+        while (lo - prev > 180) lo -= 360;
+        while (lo - prev < -180) lo += 360;
+        out.push([la, lo]);
+        prev = lo;
+      }
+      return out;
+    }
+    var R1 = gcLine(NJ, NE, 40);   // 南京 → 中国东北（第一段）
+    var R2 = gcLine(NE, AN, 90);   // 中国东北 → 南极大陆（第二段，跨太平洋弧线）
+
+    /* ---------- 响应式视角 ---------- */
+    function viewFor(w) {
+      if (w >= 1700) return { center: [-37, 140], zoom: 2.75 };
+      if (w >= 1440) return { center: [-45, 140], zoom: 2.4 };
+      if (w >= 1024) return { center: [-45, 140], zoom: 2.3 };
+      return { center: [-22.5, 174], zoom: 2 };
+    }
+
+    var map = null, fallback = false;
+    var partCv = document.getElementById('particles');
+    var partCtx = partCv.getContext('2d');
+    var routeCv = document.getElementById('routeCv');
+    var routeCtx = routeCv.getContext('2d');
+
+    function sizeCanvas() {
+      partCv.width = window.innerWidth;
+      partCv.height = window.innerHeight;
+      routeCv.width = window.innerWidth;
+      routeCv.height = window.innerHeight;
+    }
+    sizeCanvas();
+    window.addEventListener('resize', function () { sizeCanvas(); if (map) map.invalidateSize(); positionNodes(); });
+
+    function positionNodes() {
+      for (var i = 0; i < NODES.length; i++) {
+        var el = document.getElementById(NODES[i].id);
+        if (!el) continue;
+        if (map && !fallback) {
+          var p = map.latLngToContainerPoint(NODES[i].pos);
+          var world = 256 * Math.pow(2, map.getZoom());
+          p.x += world * Math.round((window.innerWidth / 2 - p.x) / world);
+          el.style.left = p.x + 'px';
+          el.style.top = p.y + 'px';
+        } else {
+          var q = projectMercator(NODES[i].pos, viewFor(window.innerWidth));
+          var w2 = 256 * Math.pow(2, viewFor(window.innerWidth).zoom);
+          q.x += w2 * Math.round((window.innerWidth / 2 - q.x) / w2);
+          el.style.left = q.x + 'px';
+          el.style.top = q.y + 'px';
+        }
+      }
+    }
+
+    /* ---------- 探索路线：自绘画布 + 世界回绕修正（真实大地线投影） ---------- */
+    function routePoints(pts) {
+      var out = [];
+      var v = viewFor(window.innerWidth);
+      var world = map && !fallback ? 256 * Math.pow(2, map.getZoom()) : 256 * Math.pow(2, v.zoom);
+      for (var i = 0; i < pts.length; i++) {
+        var p = (map && !fallback) ? map.latLngToContainerPoint(pts[i]) : projectMercator(pts[i], v);
+        if (i > 0 && Math.abs(p.x - out[i - 1].x) > world / 2) {
+          p.x += (out[i - 1].x < p.x) ? -world : world;
+        }
+        out.push(p);
+      }
+      return out;
+    }
+    function tracePath(pts, width, color, alpha, shadow) {
+      routeCtx.beginPath();
+      for (var i = 0; i < pts.length; i++) {
+        if (i === 0) routeCtx.moveTo(pts[i].x, pts[i].y); else routeCtx.lineTo(pts[i].x, pts[i].y);
+      }
+      routeCtx.globalAlpha = alpha;
+      routeCtx.strokeStyle = color;
+      routeCtx.lineWidth = width;
+      routeCtx.lineJoin = 'round';
+      routeCtx.lineCap = 'round';
+      if (shadow) { routeCtx.shadowColor = shadow; routeCtx.shadowBlur = 8; }
+      routeCtx.stroke();
+      routeCtx.globalAlpha = 1;
+      routeCtx.shadowBlur = 0;
+    }
+    function drawRoutes() {
+      if (!routeCv.width) sizeCanvas();
+      routeCtx.clearRect(0, 0, routeCv.width, routeCv.height);
+      [R1, R2].forEach(function (pts) {
+        var P = routePoints(pts);
+        tracePath(P, 9, 'rgba(0,229,168,.10)', 1, null);
+        tracePath(P, 3, 'rgba(0,229,168,.30)', 1, null);
+        tracePath(P, 1.2, 'rgba(140,234,255,.92)', 1, 'rgba(98,217,255,.55)');
+      });
+    }
+
+    /* ---------- Web Mercator（离线兜底与数学校验共用） ---------- */
+    function projectMercator(ll, v) {
+      var world = 256 * Math.pow(2, v.zoom);
+      var sin = Math.sin(ll[0] * Math.PI / 180);
+      var x = (ll[1] + 180) / 360;
+      var y = 0.5 - Math.log((1 + sin) / (1 - sin)) / (4 * Math.PI);
+      var cx = (v.center[1] + 180) / 360 * world;
+      var cy = (0.5 - Math.log((1 + Math.sin(v.center[0] * Math.PI / 180)) / (1 - Math.sin(v.center[0] * Math.PI / 180))) / (4 * Math.PI)) * world;
+      return { x: x * world - cx + window.innerWidth / 2, y: y * world - cy + window.innerHeight / 2 };
+    }
+
+    /* ---------- Leaflet 主渲染（真实底图 + 真实国界 + 大地线） ---------- */
+    function initLeaflet() {
+      var v = viewFor(window.innerWidth);
+      map = L.map('homeMap', {
+        zoomControl: false, attributionControl: false,
+        dragging: false, scrollWheelZoom: false, touchZoom: false,
+        doubleClickZoom: false, boxZoom: false, keyboard: false,
+        zoomSnap: 0.25
+      }).setView(v.center, v.zoom);
+
+      L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Ocean/World_Ocean_Base/MapServer/tile/{z}/{y}/{x}', {
+        maxZoom: 10, attribution: ''
+      }).addTo(map);
+
+      /* 真实国界（Natural Earth 110m，公开地理数据） */
+      fetch('https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_110m_admin_0_countries.geojson')
+        .then(function (r) { return r.json(); })
+        .then(function (gj) {
+          L.geoJSON(gj, {
+            style: { color: 'rgba(140,234,255,.30)', weight: 0.55, opacity: .8, fill: false }
+          }).addTo(map);
+        }).catch(function () {});
+
+      /* 经纬网格 */
+      (function () {
+        var cv = document.createElement('canvas');
+        cv.className = 'graticule-canvas';
+        document.getElementById('homeMap').appendChild(cv);
+        function draw() {
+          var s = map.getSize();
+          cv.width = s.x; cv.height = s.y;
+          var ctx = cv.getContext('2d');
+          ctx.strokeStyle = 'rgba(140,234,255,.10)';
+          ctx.lineWidth = 1;
+          for (var lon = -180; lon <= 180; lon += 15) {
+            var p1 = map.latLngToContainerPoint([0, lon]);
+            var p2 = map.latLngToContainerPoint([80, lon]);
+            var p3 = map.latLngToContainerPoint([-80, lon]);
+            ctx.beginPath();
+            ctx.moveTo(p1.x, 0); ctx.lineTo(p1.x, s.y);
+            ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(p2.x, p2.y); ctx.lineTo(p3.x, p3.y); ctx.stroke();
+          }
+          for (var lat = -75; lat <= 75; lat += 15) {
+            var q1 = map.latLngToContainerPoint([lat, 0]);
+            var q2 = map.latLngToContainerPoint([lat, 90]);
+            ctx.beginPath(); ctx.moveTo(0, q1.y); ctx.lineTo(s.x, q1.y); ctx.stroke();
+          }
+        }
+        map.on('move zoom viewreset resize', draw);
+        setTimeout(draw, 300);
+      })();
+
+      setTimeout(function () { map.invalidateSize(); positionNodes(); }, 300);
+      setTimeout(function () { map.invalidateSize(); positionNodes(); }, 900);
+      map.on('move zoom resize', function () { positionNodes(); drawRoutes(); });
+      drawRoutes();
+      window.homeMap = map;
+    }
+
+    /* ---------- 粒子流 ---------- */
+    var routes = [R1, R2];
+    function drawParticles(t) {
+      partCtx.clearRect(0, 0, partCv.width, partCv.height);
+      if (!map || fallback) return;
+      for (var r = 0; r < routes.length; r++) {
+        var pts = routes[r];
+        for (var k = 0; k < 5; k++) {
+          var f = ((t / (r === 0 ? 9000 : 16000)) + k / 5) % 1;
+          var idx = f * (pts.length - 1);
+          var i0 = Math.floor(idx), i1 = Math.min(i0 + 1, pts.length - 1), fr = idx - i0;
+          var a = pts[i0], b = pts[i1];
+          var p = map.latLngToContainerPoint([a[0] + (b[0] - a[0]) * fr, a[1] + (b[1] - a[1]) * fr]);
+          var alpha = 0.75 * (1 - Math.abs(f - 0.5) * 1.6);
+          partCtx.beginPath();
+          partCtx.arc(p.x, p.y, 2, 0, Math.PI * 2);
+          partCtx.fillStyle = 'rgba(140,234,255,' + Math.max(0, alpha) + ')';
+          partCtx.shadowColor = 'rgba(0,229,168,.8)';
+          partCtx.shadowBlur = 6;
+          partCtx.fill();
+          partCtx.shadowBlur = 0;
+        }
+      }
+    }
+    function loop(t) { drawParticles(t || 0); requestAnimationFrame(loop); }
+    setInterval(drawRoutes, 500);
+    requestAnimationFrame(loop);
+
+    /* ---------- 离线兜底：真实投影画布（无底图时） ---------- */
+    function initFallback() {
+      fallback = true;
+      var cv = document.getElementById('fallbackMap');
+      cv.style.display = 'block';
+      document.getElementById('homeMap').style.display = 'none';
+      function draw() {
+        cv.width = window.innerWidth; cv.height = window.innerHeight;
+        var ctx = cv.getContext('2d');
+        var g = ctx.createLinearGradient(0, 0, 0, cv.height);
+        g.addColorStop(0, '#020a14'); g.addColorStop(1, '#041527');
+        ctx.fillStyle = g; ctx.fillRect(0, 0, cv.width, cv.height);
+        var v = viewFor(window.innerWidth);
+        var world = 256 * Math.pow(2, v.zoom);
+        var c = projectMercator([v.center[0], v.center[1]], v);
+        ctx.strokeStyle = 'rgba(140,234,255,.09)';
+        ctx.lineWidth = 1;
+        for (var lon = -180; lon <= 180; lon += 15) {
+          var px = projectMercator([0, lon], v).x;
+          ctx.beginPath(); ctx.moveTo(px, 0); ctx.lineTo(px, cv.height); ctx.stroke();
+        }
+        for (var lat = -75; lat <= 75; lat += 15) {
+          var py = projectMercator([lat, 0], v).y;
+          ctx.beginPath(); ctx.moveTo(0, py); ctx.lineTo(cv.width, py); ctx.stroke();
+        }
+        function path(pts, glow) {
+          ctx.beginPath();
+          for (var i = 0; i < pts.length; i++) {
+            var p = projectMercator(pts[i], v);
+            if (i === 0) ctx.moveTo(p.x, p.y); else ctx.lineTo(p.x, p.y);
+          }
+          if (glow) { ctx.strokeStyle = 'rgba(0,229,168,.12)'; ctx.lineWidth = 8; ctx.stroke(); }
+          ctx.strokeStyle = 'rgba(140,234,255,.8)'; ctx.lineWidth = 1.2; ctx.stroke();
+        }
+        path(R1, true); path(R2, true);
+        for (var i = 0; i < NODES.length; i++) {
+          var p = projectMercator(NODES[i].pos, v);
+          ctx.beginPath(); ctx.arc(p.x, p.y, 4, 0, Math.PI * 2);
+          ctx.fillStyle = NODES[i].id === 'nodeNj' ? '#00e5a8' : '#8ceaff';
+          ctx.shadowColor = NODES[i].id === 'nodeNj' ? '#00e5a8' : '#8ceaff';
+          ctx.shadowBlur = 12; ctx.fill(); ctx.shadowBlur = 0;
+        }
+      }
+      draw();
+      drawRoutes();
+      positionNodes();
+      window.addEventListener('resize', draw);
+    }
+
+    if (window.L) { initLeaflet(); } else { initFallback(); }
+
     setTimeout(function () { document.body.classList.add('loaded'); }, 180);
     var btn = document.getElementById('exploreBtn');
     if (btn) {
