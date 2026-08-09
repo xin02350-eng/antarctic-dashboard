@@ -13,9 +13,10 @@
     html,body{height:100%;overflow:hidden}
     body{background:#01060d;color:#dff6ff;font-family:"Segoe UI",system-ui,-apple-system,"Microsoft YaHei",sans-serif;position:relative}
 
-    /* ================= 左侧 40%：文字区域 ================= */
-    .home-text{position:fixed;left:0;top:0;bottom:0;width:40%;z-index:10;display:flex;flex-direction:column;justify-content:center;padding:30px 46px 130px 46px;background:linear-gradient(180deg,#020a14 0%,#01060d 100%);border-right:1px solid rgba(98,217,255,.08)}
-    .home-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:9vh}
+    /* ================= 全屏地图 + 覆盖式文字 ================= */
+    .home-text{position:fixed;inset:0;z-index:10;pointer-events:none}
+    .home-text>*{pointer-events:auto}
+    .home-top{position:absolute;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;padding:30px 44px}
     .brand{display:flex;align-items:center;gap:14px}
     .logo{width:42px;height:42px;border:1px solid rgba(98,217,255,.42);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:600;letter-spacing:1px;color:#8ceaff;background:rgba(6,20,34,.28)}
     .brand h1{font-size:15px;letter-spacing:4px;color:#eafcff;font-weight:600}
@@ -30,7 +31,8 @@
     .kicker{display:flex;align-items:center;gap:14px;font-size:10px;letter-spacing:5px;color:rgba(140,234,255,.7);margin-bottom:24px;opacity:0;transform:translateY(16px)}
     .kicker::before{content:"";display:block;width:46px;height:1px;background:linear-gradient(90deg,rgba(98,217,255,.7),transparent)}
     .home-page.loaded .kicker{opacity:1;transform:none;transition:opacity .9s ease .45s,transform .9s ease .45s}
-    .home-hero h2{font-size:clamp(34px,2.7vw,54px);line-height:1.18;font-weight:200;letter-spacing:2px;opacity:0;transform:translateY(22px)}
+    .home-hero{position:absolute;left:6vw;top:36%;max-width:560px}
+    .home-hero h2{font-size:clamp(34px,3.4vw,62px);line-height:1.16;font-weight:200;letter-spacing:2px;opacity:0;transform:translateY(22px)}
     .home-hero h2 em{font-style:normal;background:linear-gradient(180deg,#eafcff 30%,#8ceaff 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
     .home-page.loaded .home-hero h2{opacity:1;transform:none;transition:opacity 1s ease .6s,transform 1s ease .6s}
     .home-sub{margin-top:26px;font-size:clamp(12px,.95vw,15px);line-height:2;color:#9ab8ca;max-width:440px;opacity:0;transform:translateY(18px)}
@@ -41,26 +43,28 @@
     .explore-btn:hover{background:rgba(98,217,255,.12);box-shadow:0 0 30px rgba(98,217,255,.12)}
     .explore-btn:hover::after{transform:translateX(4px)}
 
-    .home-manifesto{position:absolute;left:46px;bottom:30px;max-width:430px;pointer-events:none;opacity:0;transform:translateY(14px)}
+    .home-manifesto{position:absolute;left:6vw;bottom:28px;max-width:520px;pointer-events:none;opacity:0;transform:translateY(14px)}
     .home-page.loaded .home-manifesto{opacity:1;transform:none;transition:opacity 1.2s ease 1.25s,transform 1.2s ease 1.25s}
     .home-manifesto::before{content:"";display:block;width:100%;height:1px;background:linear-gradient(90deg,rgba(98,217,255,.35),transparent 80%);margin-bottom:13px}
     .home-manifesto p{font-size:clamp(10px,.8vw,13px);line-height:2;color:rgba(191,221,235,.72);letter-spacing:.5px}
 
-    .motto{position:absolute;right:28px;bottom:30px;pointer-events:none;opacity:0}
+    .motto{position:absolute;right:44px;bottom:28px;pointer-events:none;opacity:0}
     .home-page.loaded .motto{opacity:1;transition:opacity 1.4s ease 1.5s}
     .motto span[data-lang="zh"]{writing-mode:vertical-rl;letter-spacing:5px;font-size:11px;color:rgba(140,234,255,.5)}
     .motto span[data-lang="en"]{max-width:120px;text-align:right;font-size:9px;letter-spacing:2px;line-height:2;color:rgba(140,234,255,.5)}
 
-    /* ================= 右侧 60%：地图画框 ================= */
-    .home-map-area{position:fixed;left:40%;right:0;top:0;bottom:0;z-index:1}
-    .map-frame{position:absolute;inset:5vh 2.5vw 6vh 1.5vw;overflow:hidden;border:1px solid rgba(98,217,255,.12);border-radius:12px;background:radial-gradient(ellipse at 50% 42%,#041526 0%,#01060d 80%);box-shadow:0 24px 70px rgba(0,0,0,.45)}
+    /* ================= 全屏地图背景 ================= */
+    .home-map-area{position:fixed;inset:0;z-index:1}
+    .map-frame{position:absolute;inset:0;overflow:hidden;background:radial-gradient(ellipse at 50% 42%,#041526 0%,#01060d 80%)}
     #homeMap{position:absolute;inset:0;overflow:hidden;opacity:0;transition:opacity 1.8s ease}
     .home-page.loaded #homeMap{opacity:1}
     #homeMap .leaflet-control-attribution{display:none}
     #homeMap .leaflet-control-zoom{display:none}
     .graticule-canvas{position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none}
     #fallbackMap{position:absolute;inset:0;width:100%;height:100%;display:none}
-    .map-veil{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 50% 50%,rgba(1,6,13,0) 52%,rgba(1,6,13,.42) 100%)}
+    .map-veil{position:absolute;inset:0;pointer-events:none;background:
+      linear-gradient(90deg,rgba(1,6,13,.72),rgba(1,6,13,.18) 34%,rgba(1,6,13,0) 55%,rgba(1,6,13,.24) 100%),
+      linear-gradient(180deg,rgba(1,6,13,.38),rgba(1,6,13,0) 18%,rgba(1,6,13,0) 70%,rgba(1,6,13,.55) 100%)}
     #routeCv{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:3}
     #netPts{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2}
     #particles{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:4}
@@ -103,16 +107,15 @@
 
     /* ---------- 响应式 ---------- */
     @media (max-width:900px){
-      .home-text{width:100%;height:38%;bottom:auto;padding:16px 22px 0 22px;justify-content:flex-start;border-right:0;border-bottom:1px solid rgba(98,217,255,.1)}
-      .home-top{margin-bottom:18px}
+      .home-top{padding:16px 22px}
       .brand p{display:none}
+      .home-hero{left:22px;right:22px;top:auto;bottom:190px;transform:none;max-width:none}
       .home-hero h2{font-size:clamp(26px,7.5vw,40px)}
       .home-sub{margin-top:14px;font-size:12px;max-width:none}
       .explore-btn{margin-top:18px;padding:12px 24px;font-size:11px;letter-spacing:3px}
-      .home-manifesto{display:none}
+      .home-manifesto{left:22px;right:22px;bottom:16px;max-width:none}
+      .home-manifesto p{font-size:11px}
       .motto{display:none}
-      .home-map-area{left:0;top:38%;right:0;bottom:0}
-      .map-frame{inset:10px 12px 14px}
       .map-node .nd-card{left:auto;right:auto;top:18px;transform:translateX(-50%);width:124px;min-width:0;padding:6px 10px}
       .map-node .nd-card b{font-size:10px}
       .map-node .nd-card span{font-size:7px}
@@ -298,7 +301,7 @@
       var fs = frameSize();
       if (fs.w >= 600) {
         var s = fs.w / 132;
-        return { center: [-18.1, 174.4], zoom: Math.log2(s) };
+        return { center: [-15, 168], zoom: Math.log2(s) };
       }
       return { center: [39, 122], zoom: 3.25 };
     }
