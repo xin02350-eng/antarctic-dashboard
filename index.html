@@ -28,16 +28,16 @@
     .lang-switch button{position:relative;z-index:2;flex:1;border:0;background:transparent;color:#8fb0c2;font-size:11px;letter-spacing:1px;cursor:pointer;font-family:inherit}
     .lang-switch button.active{color:#04101c;font-weight:700}
 
-    .kicker{display:flex;align-items:center;gap:14px;font-size:10px;letter-spacing:5px;color:rgba(140,234,255,.7);margin-bottom:24px;opacity:0;transform:translateY(16px)}
+    .kicker{display:flex;align-items:center;gap:14px;font-size:10px;letter-spacing:6px;color:rgba(140,234,255,.7);margin-bottom:24px;opacity:0;transform:translateY(16px)}
     .kicker::before{content:"";display:block;width:46px;height:1px;background:linear-gradient(90deg,rgba(98,217,255,.7),transparent)}
     .home-page.loaded .kicker{opacity:1;transform:none;transition:opacity .9s ease .45s,transform .9s ease .45s}
     .home-hero{position:absolute;left:6vw;top:36%;max-width:560px}
-    .home-hero h2{font-size:clamp(34px,3.4vw,62px);line-height:1.16;font-weight:200;letter-spacing:2px;opacity:0;transform:translateY(22px)}
+    .home-hero h2{font-size:clamp(34px,3.4vw,62px);line-height:1.16;font-weight:200;letter-spacing:3px;opacity:0;transform:translateY(22px)}
     .home-hero h2 em{font-style:normal;background:linear-gradient(180deg,#eafcff 30%,#8ceaff 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
     .home-page.loaded .home-hero h2{opacity:1;transform:none;transition:opacity 1s ease .6s,transform 1s ease .6s}
-    .home-sub{margin-top:26px;font-size:clamp(12px,.95vw,15px);line-height:2;color:#9ab8ca;max-width:440px;opacity:0;transform:translateY(18px)}
+    .home-sub{margin-top:26px;font-size:clamp(12px,.95vw,15px);line-height:2.05;color:#9ab8ca;max-width:480px;opacity:0;transform:translateY(18px)}
     .home-page.loaded .home-sub{opacity:1;transform:none;transition:opacity 1s ease .75s,transform 1s ease .75s}
-    .explore-btn{margin-top:36px;display:inline-flex;align-items:center;gap:14px;border:1px solid rgba(98,217,255,.5);background:rgba(6,20,34,.28);color:#eafcff;font-size:12px;letter-spacing:4px;padding:15px 36px;border-radius:2px;cursor:pointer;font-family:inherit;transition:background .35s ease,box-shadow .35s ease;text-transform:uppercase;opacity:0;transform:translateY(18px)}
+    .explore-btn{margin-top:36px;display:inline-flex;align-items:center;gap:14px;border:1px solid rgba(98,217,255,.5);background:rgba(6,20,34,.28);color:#eafcff;font-size:12px;letter-spacing:5px;padding:16px 40px;border-radius:2px;cursor:pointer;font-family:inherit;transition:background .35s ease,box-shadow .35s ease;text-transform:uppercase;opacity:0;transform:translateY(18px)}
     .home-page.loaded .explore-btn{opacity:1;transform:none;transition:opacity 1s ease .9s,transform 1s ease .9s,background .35s ease,box-shadow .35s ease}
     .explore-btn::after{content:"→";color:#8ceaff;font-size:14px;transition:transform .3s ease}
     .explore-btn:hover{background:rgba(98,217,255,.12);box-shadow:0 0 30px rgba(98,217,255,.12)}
@@ -106,10 +106,10 @@
     @keyframes leaveFade{to{opacity:1}}
 
     /* ---------- 响应式 ---------- */
-    @media (max-width:900px){
+    @media (max-width:1024px){
       .home-top{padding:16px 22px}
       .brand p{display:none}
-      .home-hero{left:22px;right:22px;top:auto;bottom:190px;transform:none;max-width:none}
+      .home-hero{left:22px;right:22px;top:auto;bottom:150px;transform:none;max-width:none}
       .home-hero h2{font-size:clamp(26px,7.5vw,40px)}
       .home-sub{margin-top:14px;font-size:12px;max-width:none}
       .explore-btn{margin-top:18px;padding:12px 24px;font-size:11px;letter-spacing:3px}
@@ -311,6 +311,7 @@
     var partCtx = partCv.getContext('2d');
     var routeCv = document.getElementById('routeCv');
     var routeCtx = routeCv.getContext('2d');
+    var routeT = 0;
     var ptsCv = document.getElementById('netPts');
     var ptsCtx = ptsCv.getContext('2d');
     var dataPts = [];
@@ -404,6 +405,11 @@
       tracePath(P2, 9, 'rgba(0,229,168,.10)', 1, null);
       tracePath(P2, 3, 'rgba(0,229,168,.30)', 1, null);
       tracePath(P2, 1.2, 'rgba(140,234,255,.92)', 1, 'rgba(98,217,255,.55)');
+      routeCtx.save();
+      routeCtx.setLineDash([3, 7]);
+      routeCtx.lineDashOffset = -routeT * 0.5;
+      tracePath(P2, 1.4, 'rgba(214,248,255,.95)', 1, null);
+      routeCtx.restore();
     }
 
     function drawDataPts() {
@@ -416,7 +422,7 @@
         var r = dataPts[i][2] > 0.93 ? 1.6 : 1;
         ptsCtx.beginPath();
         ptsCtx.arc(p.x, p.y, r, 0, Math.PI * 2);
-        ptsCtx.fillStyle = dataPts[i][2] > 0.93 ? 'rgba(140,234,255,.8)' : 'rgba(98,217,255,.45)';
+        ptsCtx.fillStyle = dataPts[i][2] > 0.95 ? 'rgba(140,234,255,.68)' : 'rgba(98,217,255,.38)';
         ptsCtx.fill();
       }
     }
@@ -448,7 +454,7 @@
           var s = map.getSize();
           cv.width = s.x; cv.height = s.y;
           var ctx = cv.getContext('2d');
-          ctx.strokeStyle = 'rgba(140,234,255,.10)';
+          ctx.strokeStyle = 'rgba(140,234,255,.07)';
           ctx.lineWidth = 1;
           for (var lon = -180; lon <= 180; lon += 15) {
             var p1 = map.latLngToContainerPoint([0, lon]);
@@ -493,7 +499,7 @@
       }
     }
     function loop(t) { drawParticles(t || 0); requestAnimationFrame(loop); }
-    setInterval(drawRoutes, 500);
+    (function anim() { routeT++; drawRoutes(); requestAnimationFrame(anim); })();
     requestAnimationFrame(loop);
 
     function initFallback() {
@@ -509,7 +515,7 @@
         g.addColorStop(0, '#020a14'); g.addColorStop(1, '#041527');
         ctx.fillStyle = g; ctx.fillRect(0, 0, fs.w, fs.h);
         var v = viewFor();
-        ctx.strokeStyle = 'rgba(140,234,255,.09)';
+        ctx.strokeStyle = 'rgba(140,234,255,.07)';
         ctx.lineWidth = 1;
         for (var lon = -180; lon <= 180; lon += 15) {
           var px = projectMercator([0, lon], v).x;

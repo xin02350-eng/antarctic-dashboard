@@ -15,6 +15,12 @@
     body.a02-page .system-online span:first-child{background:#e6c07a;box-shadow:0 0 8px rgba(230,192,122,.5);animation:none}
     body.a02-page .cmd-value{color:#e6c07a}
     body.a02-page .sensor-state{display:none}
+    body.a02-page .sensor-card{border-style:dashed;border-color:rgba(230,192,122,.22)}
+    body.a02-page .stream-row .stream-dot{background:#e6c07a}
+    @media (min-width:901px){
+      body.a02-page .side-right{display:none}
+      body.a02-page .mission-grid{grid-template-columns:minmax(220px,26%) minmax(0,1fr)}
+    }
     .a02-map-msg{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;z-index:5;pointer-events:none;background:rgba(3,13,24,.55)}
     .a02-map-msg b{font-size:13px;letter-spacing:4px;color:#e6c07a;font-weight:500}
     .a02-map-msg span{font-size:9px;letter-spacing:2px;color:#9ab8ca}

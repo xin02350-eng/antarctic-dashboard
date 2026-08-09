@@ -10,6 +10,10 @@
   <style>
     /* V43 · Dashboard 简约化：隐藏底部统计卡（核心状态/传感器/地图/任务流保留） */
     body.dashboard-page .operation-grid{display:none}
+    @media (min-width:901px){
+      body.dashboard-page .side-right{display:none}
+      body.dashboard-page .mission-grid{grid-template-columns:minmax(220px,26%) minmax(0,1fr)}
+    }
   </style>
 
   <!-- Leaflet 地图（真实地图，由 main.js 初始化） -->
