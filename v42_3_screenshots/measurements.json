@@ -1,0 +1,380 @@
+[
+  {
+    "lang": "zh",
+    "size": "1920x1080",
+    "page": "/index.html",
+    "dataLang": "zh",
+    "text": {
+      "l": 0,
+      "r": 768,
+      "t": 0,
+      "b": 1080,
+      "w": 768,
+      "h": 1080
+    },
+    "frame": {
+      "l": 797,
+      "r": 1872,
+      "t": 54,
+      "b": 1015,
+      "w": 1075,
+      "h": 961
+    },
+    "hero": {
+      "l": 46,
+      "r": 721,
+      "t": 424,
+      "b": 696,
+      "w": 675,
+      "h": 272
+    },
+    "btn": {
+      "l": 46,
+      "r": 214,
+      "t": 645,
+      "b": 696,
+      "w": 168,
+      "h": 51
+    },
+    "textMapOverlap": false,
+    "heroNodeOverlap": false,
+    "njInFrame": true,
+    "neInFrame": true,
+    "anInFrame": true,
+    "pos": {
+      "nj": {
+        "x": 889,
+        "y": 337
+      },
+      "ne": {
+        "x": 952,
+        "y": 283
+      },
+      "an": {
+        "x": 1779,
+        "y": 786
+      }
+    },
+    "geoPaths": 177,
+    "routePx": 270,
+    "hScrollPossible": false,
+    "zoom": 3,
+    "loaded": true,
+    "localErrors": []
+  },
+  {
+    "lang": "zh",
+    "size": "1366x768",
+    "page": "/index.html",
+    "dataLang": "zh",
+    "text": {
+      "l": 0,
+      "r": 546,
+      "t": 0,
+      "b": 768,
+      "w": 546,
+      "h": 768
+    },
+    "frame": {
+      "l": 567,
+      "r": 1332,
+      "t": 38,
+      "b": 722,
+      "w": 765,
+      "h": 684
+    },
+    "hero": {
+      "l": 46,
+      "r": 499,
+      "t": 266,
+      "b": 513,
+      "w": 453,
+      "h": 246
+    },
+    "btn": {
+      "l": 46,
+      "r": 214,
+      "t": 462,
+      "b": 513,
+      "w": 168,
+      "h": 51
+    },
+    "textMapOverlap": false,
+    "heroNodeOverlap": false,
+    "njInFrame": true,
+    "neInFrame": true,
+    "anInFrame": true,
+    "pos": {
+      "nj": {
+        "x": 624,
+        "y": 236
+      },
+      "ne": {
+        "x": 670,
+        "y": 196
+      },
+      "an": {
+        "x": 1275,
+        "y": 564
+      }
+    },
+    "geoPaths": 177,
+    "routePx": 202,
+    "hScrollPossible": false,
+    "zoom": 2.5500000000000003,
+    "loaded": true,
+    "localErrors": []
+  },
+  {
+    "lang": "zh",
+    "size": "390x844",
+    "page": "/index.html",
+    "dataLang": "zh",
+    "text": {
+      "l": 0,
+      "r": 390,
+      "t": 0,
+      "b": 321,
+      "w": 390,
+      "h": 321
+    },
+    "frame": {
+      "l": 12,
+      "r": 378,
+      "t": 331,
+      "b": 830,
+      "w": 366,
+      "h": 499
+    },
+    "hero": {
+      "l": 22,
+      "r": 368,
+      "t": 76,
+      "b": 274,
+      "w": 346,
+      "h": 198
+    },
+    "btn": {
+      "l": 22,
+      "r": 157,
+      "t": 229,
+      "b": 274,
+      "w": 135,
+      "h": 45
+    },
+    "textMapOverlap": true,
+    "heroNodeOverlap": false,
+    "njInFrame": true,
+    "neInFrame": true,
+    "anInFrame": false,
+    "pos": {
+      "nj": {
+        "x": 164,
+        "y": 613
+      },
+      "ne": {
+        "x": 239,
+        "y": 549
+      },
+      "an": {
+        "x": 1222,
+        "y": 1147
+      }
+    },
+    "geoPaths": 177,
+    "routePx": 95,
+    "hScrollPossible": false,
+    "zoom": 3.25,
+    "loaded": true,
+    "localErrors": []
+  },
+  {
+    "lang": "en",
+    "size": "1920x1080",
+    "page": "/index.html",
+    "dataLang": "en",
+    "text": {
+      "l": 0,
+      "r": 768,
+      "t": 0,
+      "b": 1080,
+      "w": 768,
+      "h": 1080
+    },
+    "frame": {
+      "l": 797,
+      "r": 1872,
+      "t": 54,
+      "b": 1015,
+      "w": 1075,
+      "h": 961
+    },
+    "hero": {
+      "l": 46,
+      "r": 721,
+      "t": 378,
+      "b": 741,
+      "w": 675,
+      "h": 363
+    },
+    "btn": {
+      "l": 46,
+      "r": 330,
+      "t": 690,
+      "b": 741,
+      "w": 284,
+      "h": 51
+    },
+    "textMapOverlap": false,
+    "heroNodeOverlap": false,
+    "njInFrame": true,
+    "neInFrame": true,
+    "anInFrame": true,
+    "pos": {
+      "nj": {
+        "x": 889,
+        "y": 337
+      },
+      "ne": {
+        "x": 952,
+        "y": 283
+      },
+      "an": {
+        "x": 1779,
+        "y": 786
+      }
+    },
+    "geoPaths": 177,
+    "routePx": 270,
+    "hScrollPossible": false,
+    "zoom": 3,
+    "loaded": true,
+    "localErrors": []
+  },
+  {
+    "lang": "en",
+    "size": "1366x768",
+    "page": "/index.html",
+    "dataLang": "en",
+    "text": {
+      "l": 0,
+      "r": 546,
+      "t": 0,
+      "b": 768,
+      "w": 546,
+      "h": 768
+    },
+    "frame": {
+      "l": 567,
+      "r": 1332,
+      "t": 38,
+      "b": 722,
+      "w": 765,
+      "h": 684
+    },
+    "hero": {
+      "l": 46,
+      "r": 499,
+      "t": 232,
+      "b": 548,
+      "w": 453,
+      "h": 316
+    },
+    "btn": {
+      "l": 46,
+      "r": 330,
+      "t": 497,
+      "b": 548,
+      "w": 284,
+      "h": 51
+    },
+    "textMapOverlap": false,
+    "heroNodeOverlap": false,
+    "njInFrame": true,
+    "neInFrame": true,
+    "anInFrame": true,
+    "pos": {
+      "nj": {
+        "x": 624,
+        "y": 236
+      },
+      "ne": {
+        "x": 670,
+        "y": 196
+      },
+      "an": {
+        "x": 1275,
+        "y": 564
+      }
+    },
+    "geoPaths": 177,
+    "routePx": 202,
+    "hScrollPossible": false,
+    "zoom": 2.5500000000000003,
+    "loaded": true,
+    "localErrors": []
+  },
+  {
+    "lang": "en",
+    "size": "390x844",
+    "page": "/index.html",
+    "dataLang": "en",
+    "text": {
+      "l": 0,
+      "r": 390,
+      "t": 0,
+      "b": 321,
+      "w": 390,
+      "h": 321
+    },
+    "frame": {
+      "l": 12,
+      "r": 378,
+      "t": 331,
+      "b": 830,
+      "w": 366,
+      "h": 499
+    },
+    "hero": {
+      "l": 22,
+      "r": 368,
+      "t": 76,
+      "b": 332,
+      "w": 346,
+      "h": 256
+    },
+    "btn": {
+      "l": 22,
+      "r": 254,
+      "t": 287,
+      "b": 332,
+      "w": 232,
+      "h": 45
+    },
+    "textMapOverlap": true,
+    "heroNodeOverlap": false,
+    "njInFrame": true,
+    "neInFrame": true,
+    "anInFrame": false,
+    "pos": {
+      "nj": {
+        "x": 164,
+        "y": 613
+      },
+      "ne": {
+        "x": 239,
+        "y": 549
+      },
+      "an": {
+        "x": 1222,
+        "y": 1147
+      }
+    },
+    "geoPaths": 177,
+    "routePx": 95,
+    "hScrollPossible": false,
+    "zoom": 3.25,
+    "loaded": true,
+    "localErrors": []
+  }
+]
