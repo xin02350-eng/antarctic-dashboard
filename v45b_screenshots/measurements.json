@@ -1,0 +1,213 @@
+[
+  {
+    "page": "index",
+    "size": "1920x1080",
+    "lang": "zh",
+    "hOverflow": false,
+    "hero": {
+      "l": 134,
+      "r": 774,
+      "t": 356,
+      "b": 745
+    },
+    "rib": {
+      "l": 0,
+      "r": 1920,
+      "t": 1006,
+      "b": 1080
+    },
+    "nodes": {
+      "nj": true,
+      "ne": true,
+      "an": true
+    },
+    "heroOverlap": false,
+    "ribOverlap": false,
+    "records": "476",
+    "err": []
+  },
+  {
+    "page": "index",
+    "size": "1440x900",
+    "lang": "zh",
+    "hOverflow": false,
+    "hero": {
+      "l": 101,
+      "r": 741,
+      "t": 297,
+      "b": 653
+    },
+    "rib": {
+      "l": 0,
+      "r": 1440,
+      "t": 826,
+      "b": 900
+    },
+    "nodes": {
+      "nj": true,
+      "ne": true,
+      "an": true
+    },
+    "heroOverlap": false,
+    "ribOverlap": false,
+    "records": "476",
+    "err": []
+  },
+  {
+    "page": "index",
+    "size": "1366x768",
+    "lang": "zh",
+    "hOverflow": false,
+    "hero": {
+      "l": 96,
+      "r": 736,
+      "t": 253,
+      "b": 598
+    },
+    "rib": {
+      "l": 0,
+      "r": 1366,
+      "t": 694,
+      "b": 768
+    },
+    "nodes": {
+      "nj": true,
+      "ne": true,
+      "an": true
+    },
+    "heroOverlap": false,
+    "ribOverlap": false,
+    "records": "476",
+    "err": []
+  },
+  {
+    "page": "index",
+    "size": "1024x1366",
+    "lang": "zh",
+    "hOverflow": false,
+    "hero": {
+      "l": 22,
+      "r": 1002,
+      "t": 981,
+      "b": 1196
+    },
+    "rib": {
+      "l": 0,
+      "r": 1024,
+      "t": 1303,
+      "b": 1366
+    },
+    "nodes": {
+      "nj": true,
+      "ne": true,
+      "an": true
+    },
+    "heroOverlap": false,
+    "ribOverlap": false,
+    "records": "476",
+    "err": []
+  },
+  {
+    "page": "index",
+    "size": "390x844",
+    "lang": "zh",
+    "hOverflow": false,
+    "hero": {
+      "l": 22,
+      "r": 368,
+      "t": 477,
+      "b": 674
+    },
+    "rib": {
+      "l": 0,
+      "r": 390,
+      "t": 733,
+      "b": 844
+    },
+    "nodes": {
+      "nj": true,
+      "ne": true,
+      "an": false
+    },
+    "heroOverlap": false,
+    "ribOverlap": false,
+    "records": "476",
+    "err": []
+  },
+  {
+    "page": "index",
+    "size": "375x812",
+    "lang": "zh",
+    "hOverflow": false,
+    "hero": {
+      "l": 22,
+      "r": 353,
+      "t": 446,
+      "b": 642
+    },
+    "rib": {
+      "l": 0,
+      "r": 375,
+      "t": 701,
+      "b": 812
+    },
+    "nodes": {
+      "nj": true,
+      "ne": true,
+      "an": false
+    },
+    "heroOverlap": false,
+    "ribOverlap": false,
+    "records": "476",
+    "err": []
+  },
+  {
+    "page": "index",
+    "size": "1920x1080",
+    "lang": "en",
+    "hOverflow": false,
+    "hero": {
+      "l": 134,
+      "r": 774,
+      "t": 356,
+      "b": 962
+    },
+    "rib": {
+      "l": 0,
+      "r": 1920,
+      "t": 1006,
+      "b": 1080
+    },
+    "nodes": {
+      "nj": true,
+      "ne": true,
+      "an": true
+    },
+    "heroOverlap": false,
+    "ribOverlap": false,
+    "records": "476",
+    "err": []
+  },
+  {
+    "page": "/network.html",
+    "hOverflow": false,
+    "records": "476",
+    "recs": 3,
+    "err": []
+  },
+  {
+    "page": "/dashboard.html",
+    "hOverflow": false,
+    "a02": false,
+    "data": 476,
+    "err": []
+  },
+  {
+    "page": "/a02.html",
+    "hOverflow": false,
+    "a02": true,
+    "dashed": true,
+    "data": null,
+    "err": []
+  }
+]

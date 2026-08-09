@@ -13,201 +13,184 @@
     html,body{height:100%;overflow:hidden}
     body{background:#01060d;color:#dff6ff;font-family:"Segoe UI",system-ui,-apple-system,"Microsoft YaHei",sans-serif;position:relative}
 
-    /* ================= 全屏地图 + 覆盖式文字 ================= */
-    .home-text{position:fixed;inset:0;z-index:10;pointer-events:none}
-    .home-text>*{pointer-events:auto}
-    .home-top{position:absolute;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;padding:30px 44px}
-    .brand{display:flex;align-items:center;gap:14px}
-    .logo{width:42px;height:42px;border:1px solid rgba(98,217,255,.42);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:600;letter-spacing:1px;color:#8ceaff;background:rgba(6,20,34,.28)}
-    .brand h1{font-size:15px;letter-spacing:4px;color:#eafcff;font-weight:600}
-    .brand p{font-size:8px;letter-spacing:2.4px;color:#6f93a8;margin-top:3px;text-transform:uppercase}
+    /* ---------- 背景：蓝色科学线稿（真实地理） ---------- */
+    #homeMap{position:fixed;inset:0;z-index:0;overflow:hidden;background:radial-gradient(ellipse at 55% 45%,#041527 0%,#01060d 80%);opacity:0;transition:opacity 2s ease}
+    .home-page.loaded #homeMap{opacity:1}
+    #homeMap .leaflet-control-attribution,#homeMap .leaflet-control-zoom{display:none}
+    .graticule-canvas{position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none}
+    #fallbackMap{position:fixed;inset:0;width:100%;height:100%;display:none;z-index:0}
+    #routeCv{position:fixed;inset:0;z-index:2;width:100%;height:100%;pointer-events:none}
+    #netPts{position:fixed;inset:0;z-index:1;width:100%;height:100%;pointer-events:none}
+    #particles{position:fixed;inset:0;z-index:3;width:100%;height:100%;pointer-events:none}
 
-    .lang-switch{position:relative;display:flex;width:104px;height:30px;border:1px solid rgba(98,217,255,.24);border-radius:999px;background:rgba(3,13,24,.6);backdrop-filter:blur(6px);overflow:hidden}
+    .veil{position:fixed;inset:0;z-index:4;pointer-events:none;background:
+      linear-gradient(90deg,rgba(1,6,13,.92),rgba(1,6,13,.55) 26%,rgba(1,6,13,.08) 46%,rgba(1,6,13,0) 58%,rgba(1,6,13,.35) 100%),
+      linear-gradient(180deg,rgba(1,6,13,.42),rgba(1,6,13,0) 16%,rgba(1,6,13,0) 68%,rgba(1,6,13,.78) 100%)}
+
+    /* ---------- 顶栏 ---------- */
+    .top{position:fixed;top:0;left:0;right:0;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:30px 46px;pointer-events:none;opacity:0;transition:opacity 1.2s ease .2s}
+    .home-page.loaded .top{opacity:1}
+    .top>*{pointer-events:auto}
+    .brand{display:flex;align-items:center;gap:14px}
+    .logo{width:40px;height:40px;border:1px solid rgba(98,217,255,.38);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:600;letter-spacing:1px;color:#8ceaff;background:rgba(6,20,34,.3)}
+    .brand h1{font-size:14px;letter-spacing:5px;color:#eafcff;font-weight:500}
+    .brand p{font-size:8px;letter-spacing:3px;color:#6f93a8;margin-top:3px;text-transform:uppercase}
+    .lang-switch{position:relative;display:flex;width:102px;height:29px;border:1px solid rgba(98,217,255,.22);border-radius:999px;background:rgba(3,13,24,.55);backdrop-filter:blur(6px);overflow:hidden}
     .lang-switch .pill{position:absolute;top:3px;left:3px;z-index:1;width:calc(50% - 3px);height:calc(100% - 6px);border-radius:999px;background:linear-gradient(135deg,rgba(45,212,170,.9),rgba(98,217,255,.76));transition:transform .3s cubic-bezier(.4,0,.2,1)}
     html[data-lang="en"] .lang-switch .pill{transform:translateX(100%)}
     .lang-switch button{position:relative;z-index:2;flex:1;border:0;background:transparent;color:#8fb0c2;font-size:11px;letter-spacing:1px;cursor:pointer;font-family:inherit}
     .lang-switch button.active{color:#04101c;font-weight:700}
 
-    .kicker{display:flex;align-items:center;gap:14px;font-size:10px;letter-spacing:6px;color:rgba(140,234,255,.7);margin-bottom:24px;opacity:0;transform:translateY(16px)}
-    .kicker::before{content:"";display:block;width:46px;height:1px;background:linear-gradient(90deg,rgba(98,217,255,.7),transparent)}
-    .home-page.loaded .kicker{opacity:1;transform:none;transition:opacity .9s ease .45s,transform .9s ease .45s}
-    .home-hero{position:absolute;left:6vw;top:36%;max-width:560px}
-    .home-hero h2{font-size:clamp(34px,3.4vw,62px);line-height:1.16;font-weight:200;letter-spacing:3px;opacity:0;transform:translateY(22px)}
-    .home-hero h2 em{font-style:normal;background:linear-gradient(180deg,#eafcff 30%,#8ceaff 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
-    .home-page.loaded .home-hero h2{opacity:1;transform:none;transition:opacity 1s ease .6s,transform 1s ease .6s}
-    .home-sub{margin-top:26px;font-size:clamp(12px,.95vw,15px);line-height:2.05;color:#9ab8ca;max-width:480px;opacity:0;transform:translateY(18px)}
-    .home-page.loaded .home-sub{opacity:1;transform:none;transition:opacity 1s ease .75s,transform 1s ease .75s}
-    .explore-btn{margin-top:36px;display:inline-flex;align-items:center;gap:14px;border:1px solid rgba(98,217,255,.5);background:rgba(6,20,34,.28);color:#eafcff;font-size:12px;letter-spacing:5px;padding:16px 40px;border-radius:2px;cursor:pointer;font-family:inherit;transition:background .35s ease,box-shadow .35s ease;text-transform:uppercase;opacity:0;transform:translateY(18px)}
-    .home-page.loaded .explore-btn{opacity:1;transform:none;transition:opacity 1s ease .9s,transform 1s ease .9s,background .35s ease,box-shadow .35s ease}
-    .explore-btn::after{content:"→";color:#8ceaff;font-size:14px;transition:transform .3s ease}
-    .explore-btn:hover{background:rgba(98,217,255,.12);box-shadow:0 0 30px rgba(98,217,255,.12)}
-    .explore-btn:hover::after{transform:translateX(4px)}
+    /* ---------- 章节索引（右侧竖排） ---------- */
+    .chapter{position:fixed;right:34px;top:50%;z-index:20;transform:translateY(-50%);display:flex;flex-direction:column;gap:26px;opacity:0;transition:opacity 1.4s ease 1s}
+    .home-page.loaded .chapter{opacity:1}
+    .chapter a{display:flex;align-items:center;gap:10px;justify-content:flex-end;text-decoration:none;font-size:8px;letter-spacing:3px;color:rgba(140,234,255,.45);text-transform:uppercase;transition:color .3s ease}
+    .chapter a:hover{color:#eafcff}
+    .chapter a em{font-style:normal;font-size:10px;color:rgba(98,217,255,.6)}
+    .chapter a::after{content:"";width:22px;height:1px;background:rgba(98,217,255,.25);transition:width .3s ease,background .3s ease}
+    .chapter a:hover::after{width:34px;background:rgba(0,229,168,.7)}
 
-    .home-manifesto{position:absolute;left:6vw;bottom:28px;max-width:520px;pointer-events:none;opacity:0;transform:translateY(14px)}
-    .home-page.loaded .home-manifesto{opacity:1;transform:none;transition:opacity 1.2s ease 1.25s,transform 1.2s ease 1.25s}
-    .home-manifesto::before{content:"";display:block;width:100%;height:1px;background:linear-gradient(90deg,rgba(98,217,255,.35),transparent 80%);margin-bottom:13px}
-    .home-manifesto p{font-size:clamp(10px,.8vw,13px);line-height:2;color:rgba(191,221,235,.72);letter-spacing:.5px}
+    /* ---------- Hero（编辑式封面排版） ---------- */
+    .hero{position:fixed;left:7vw;top:33%;z-index:10;max-width:640px}
+    .kicker{display:flex;align-items:center;gap:16px;font-size:9px;letter-spacing:6px;color:rgba(140,234,255,.65);margin-bottom:28px;text-transform:uppercase;opacity:0;transform:translateY(14px)}
+    .kicker::before{content:"";width:52px;height:1px;background:linear-gradient(90deg,rgba(98,217,255,.8),transparent)}
+    .home-page.loaded .kicker{opacity:1;transform:none;transition:opacity .9s ease .4s,transform .9s ease .4s}
+    .hero h1{font-size:clamp(42px,5vw,86px);line-height:1.08;font-weight:200;letter-spacing:4px;opacity:0;transform:translateY(20px)}
+    .hero h1 em{font-style:normal;background:linear-gradient(180deg,#f2fdff 24%,#8ceaff 92%);-webkit-background-clip:text;background-clip:text;color:transparent}
+    .home-page.loaded .hero h1{opacity:1;transform:none;transition:opacity 1s ease .55s,transform 1s ease .55s}
+    .hero .sub{margin-top:28px;font-size:clamp(12px,1vw,15px);line-height:2.1;color:#9ab8ca;max-width:500px;opacity:0;transform:translateY(16px)}
+    .home-page.loaded .hero .sub{opacity:1;transform:none;transition:opacity 1s ease .7s,transform 1s ease .7s}
+    .hero .btn{margin-top:40px;display:inline-block;position:relative;padding:6px 0 10px;font-size:12px;letter-spacing:5px;color:#eafcff;text-decoration:none;text-transform:uppercase;cursor:pointer;border:0;background:none;font-family:inherit;opacity:0;transform:translateY(14px)}
+    .hero .btn::after{content:"";position:absolute;left:0;bottom:0;width:100%;height:1px;background:rgba(98,217,255,.55);transition:transform .35s ease,background .35s ease}
+    .hero .btn:hover::after{transform:scaleX(1.12);background:#00e5a8}
+    .hero .btn b{color:#8ceaff;font-weight:400;margin-left:14px}
+    .home-page.loaded .hero .btn{opacity:1;transform:none;transition:opacity 1s ease .85s,transform 1s ease .85s}
 
-    .motto{position:absolute;right:44px;bottom:28px;pointer-events:none;opacity:0}
-    .home-page.loaded .motto{opacity:1;transition:opacity 1.4s ease 1.5s}
-    .motto span[data-lang="zh"]{writing-mode:vertical-rl;letter-spacing:5px;font-size:11px;color:rgba(140,234,255,.5)}
-    .motto span[data-lang="en"]{max-width:120px;text-align:right;font-size:9px;letter-spacing:2px;line-height:2;color:rgba(140,234,255,.5)}
+    /* ---------- 底部数据带 ---------- */
+    .ribbon{position:fixed;left:0;right:0;bottom:0;z-index:12;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid rgba(98,217,255,.12);background:linear-gradient(180deg,rgba(1,6,13,.25),rgba(1,6,13,.86));backdrop-filter:blur(10px);opacity:0;transform:translateY(10px)}
+    .home-page.loaded .ribbon{opacity:1;transform:none;transition:opacity 1.2s ease 1.05s,transform 1.2s ease 1.05s}
+    .ribbon .cell{padding:18px 34px;border-right:1px solid rgba(98,217,255,.08)}
+    .ribbon .cell:last-child{border-right:0}
+    .ribbon .cell small{display:block;font-size:8px;letter-spacing:3px;color:#6f93a8;text-transform:uppercase;margin-bottom:7px}
+    .ribbon .cell b{display:block;font-size:14px;letter-spacing:2px;color:#eafcff;font-weight:500;white-space:nowrap}
+    .ribbon .cell b span{color:#8ceaff}
 
-    /* ================= 全屏地图背景 ================= */
-    .home-map-area{position:fixed;inset:0;z-index:1}
-    .map-frame{position:absolute;inset:0;overflow:hidden;background:radial-gradient(ellipse at 50% 42%,#041526 0%,#01060d 80%)}
-    #homeMap{position:absolute;inset:0;overflow:hidden;opacity:0;transition:opacity 1.8s ease}
-    .home-page.loaded #homeMap{opacity:1}
-    #homeMap .leaflet-control-attribution{display:none}
-    #homeMap .leaflet-control-zoom{display:none}
-    .graticule-canvas{position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none}
-    #fallbackMap{position:absolute;inset:0;width:100%;height:100%;display:none}
-    .map-veil{position:absolute;inset:0;pointer-events:none;background:
-      linear-gradient(90deg,rgba(1,6,13,.72),rgba(1,6,13,.18) 34%,rgba(1,6,13,0) 55%,rgba(1,6,13,.24) 100%),
-      linear-gradient(180deg,rgba(1,6,13,.38),rgba(1,6,13,0) 18%,rgba(1,6,13,0) 70%,rgba(1,6,13,.55) 100%)}
-    #routeCv{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:3}
-    #netPts{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2}
-    #particles{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:4}
-
-    /* ---------- 节点（地图框内投影定位） ---------- */
-    .map-node{position:absolute;z-index:5;width:0;height:0;opacity:0;transition:opacity 1s ease 1.05s;pointer-events:none}
-    .home-page.loaded .map-node{opacity:1}
-    .map-node .nd-dot{position:absolute;left:50%;top:50%;width:9px;height:9px;margin:-4.5px 0 0 -4.5px;border-radius:50%;background:#00e5a8;box-shadow:0 0 12px rgba(0,229,168,.8);animation:nodePulse 3s ease-out infinite}
-    @keyframes nodePulse{0%{box-shadow:0 0 0 0 rgba(0,229,168,.5)}70%{box-shadow:0 0 0 18px rgba(0,229,168,0)}100%{box-shadow:0 0 0 0 rgba(0,229,168,0)}}
-    .map-node .nd-ring{position:absolute;left:50%;top:50%;width:28px;height:28px;margin:-14px 0 0 -14px;border-radius:50%;border:1px solid rgba(0,229,168,.4);animation:ringExpand 3.6s ease-out infinite}
-    .map-node .nd-ring.r2{animation-delay:1.8s}
-    @keyframes ringExpand{0%{transform:scale(.5);opacity:1}100%{transform:scale(2.6);opacity:0}}
-    .map-node .nd-halo{position:absolute;left:50%;top:50%;width:100px;height:100px;margin:-50px 0 0 -50px;border-radius:50%;background:radial-gradient(circle,rgba(0,229,168,.15),rgba(0,229,168,0) 66%);animation:haloBreath 4.5s ease-in-out infinite}
+    /* ---------- 节点（极简光点 + 浮签） ---------- */
+    .node{position:absolute;z-index:8;width:0;height:0;opacity:0;transition:opacity 1.1s ease 1.1s;pointer-events:none}
+    .home-page.loaded .node{opacity:1}
+    .node .dot{position:absolute;left:50%;top:50%;width:8px;height:8px;margin:-4px 0 0 -4px;border-radius:50%}
+    .node.nj .dot{background:#00e5a8;box-shadow:0 0 14px rgba(0,229,168,.9);animation:nodePulse 3s ease-out infinite}
+    @keyframes nodePulse{0%{box-shadow:0 0 0 0 rgba(0,229,168,.55)}70%{box-shadow:0 0 0 20px rgba(0,229,168,0)}100%{box-shadow:0 0 0 0 rgba(0,229,168,0)}}
+    .node .ring{position:absolute;left:50%;top:50%;width:26px;height:26px;margin:-13px 0 0 -13px;border-radius:50%;border:1px solid rgba(0,229,168,.4);animation:ringExpand 3.6s ease-out infinite}
+    .node.nj .ring.r2{animation-delay:1.8s}
+    @keyframes ringExpand{0%{transform:scale(.5);opacity:1}100%{transform:scale(2.7);opacity:0}}
+    .node .halo{position:absolute;left:50%;top:50%;width:96px;height:96px;margin:-48px 0 0 -48px;border-radius:50%;background:radial-gradient(circle,rgba(0,229,168,.14),rgba(0,229,168,0) 66%);animation:haloBreath 4.5s ease-in-out infinite}
     @keyframes haloBreath{0%,100%{opacity:.6;transform:scale(.96)}50%{opacity:1;transform:scale(1.06)}}
-    .map-node .nd-card{position:absolute;border:1px solid rgba(0,229,168,.26);border-left:2px solid #00e5a8;background:rgba(3,15,25,.78);backdrop-filter:blur(8px);padding:8px 13px;border-radius:2px;min-width:176px}
-    .map-node .nd-card b{display:block;font-size:11px;letter-spacing:2.5px;color:#eafcff;font-weight:600;white-space:nowrap}
-    .map-node .nd-card span{display:block;font-size:8px;letter-spacing:1.8px;color:#9fd8c2;margin-top:4px;text-transform:uppercase;white-space:nowrap}
-    .map-node .nd-card em{display:block;font-style:normal;font-size:8px;letter-spacing:1px;color:#6f93a8;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-    .map-node .nd-lead{position:absolute;background:rgba(140,234,255,.35)}
-    .map-node.nj .nd-card{left:26px;top:18px}
-    .map-node.nj .nd-lead{left:4px;top:-1px;width:22px;height:1px}
-    .map-node.ne .nd-card{left:26px;top:18px}
-    .map-node.ne .nd-lead{left:4px;top:-1px;width:22px;height:1px}
-    .map-node.an .nd-card{left:50%;transform:translateX(16px);bottom:24px}
-    .map-node.an .nd-lead{left:-1px;bottom:24px;width:1px;height:24px}
-    .map-node.ne .nd-dot{background:rgba(140,234,255,.9);box-shadow:0 0 8px rgba(140,234,255,.55);animation:none}
-    .map-node.ne .nd-ring{border-color:rgba(140,234,255,.3);animation:none;opacity:.7}
-    .map-node.ne .nd-halo{background:radial-gradient(circle,rgba(140,234,255,.08),rgba(140,234,255,0) 66%);animation:none}
-    .map-node.ne .nd-card{border-color:rgba(140,234,255,.22);border-left-color:rgba(140,234,255,.65)}
-    .map-node.an .nd-dot{background:#8ceaff;box-shadow:0 0 10px rgba(140,234,255,.7);animation:none}
-    .map-node.an .nd-ring{border-color:rgba(140,234,255,.35);animation:none;opacity:.85}
-    .map-node.an .nd-halo{background:radial-gradient(circle,rgba(140,234,255,.1),rgba(140,234,255,0) 66%);animation:none}
-    .map-node.an .nd-card{border-color:rgba(140,234,255,.28);border-left-color:#8ceaff}
+    .node.ne .dot{background:rgba(140,234,255,.85);box-shadow:0 0 9px rgba(140,234,255,.55)}
+    .node.an .dot{background:#8ceaff;box-shadow:0 0 11px rgba(140,234,255,.75)}
+    .node .tag{position:absolute;font-size:9px;letter-spacing:2.5px;color:#dff6ff;white-space:nowrap;text-shadow:0 1px 8px rgba(1,6,13,.95),0 0 16px rgba(98,217,255,.25)}
+    .node .tag small{display:block;font-size:7px;letter-spacing:2px;color:rgba(140,234,255,.6);margin-top:4px;font-weight:400}
+    .node .lead{position:absolute;background:rgba(140,234,255,.3)}
+    .node.nj .tag{left:18px;top:-8px}
+    .node.nj .lead{left:2px;top:0;width:16px;height:1px}
+    .node.ne .tag{left:18px;top:-8px}
+    .node.ne .lead{left:2px;top:0;width:16px;height:1px}
+    .node.an .tag{left:50%;transform:translateX(14px);bottom:16px}
+    .node.an .lead{left:50%;bottom:0;width:1px;height:16px}
 
-    /* ---------- 离场过渡 ---------- */
-    body.is-leaving .map-frame{transform:scale(1.06);opacity:.25;transition:transform 1s cubic-bezier(.6,0,.4,1),opacity 1s ease}
-    body.is-leaving .home-hero{opacity:0;transform:translateY(-5%);transition:all .45s ease}
-    body.is-leaving::after{content:"";position:fixed;inset:0;z-index:99;background:radial-gradient(ellipse at 60% 55%,#062033,#01060d 75%);opacity:0;animation:leaveFade .7s ease forwards;pointer-events:none}
+    /* ---------- 离场 ---------- */
+    body.is-leaving #homeMap{transform:scale(1.1);opacity:.15;transition:transform 1s cubic-bezier(.6,0,.4,1),opacity 1s ease}
+    body.is-leaving .hero{opacity:0;transform:translateY(-4%);transition:all .45s ease}
+    body.is-leaving::after{content:"";position:fixed;inset:0;z-index:99;background:radial-gradient(ellipse at 55% 55%,#062033,#01060d 75%);opacity:0;animation:leaveFade .7s ease forwards;pointer-events:none}
     @keyframes leaveFade{to{opacity:1}}
 
     /* ---------- 响应式 ---------- */
     @media (max-width:1024px){
-      .home-top{padding:16px 22px}
+      .chapter{display:none}
+      .hero{left:22px;right:22px;top:auto;bottom:170px;max-width:none}
+      .hero h1{font-size:clamp(30px,6vw,46px)}
+      .ribbon .cell{padding:14px 18px}
+      .ribbon .cell b{font-size:12px}
+    }
+    @media (max-width:700px){
+      .top{padding:16px 20px}
       .brand p{display:none}
-      .home-hero{left:22px;right:22px;top:auto;bottom:150px;transform:none;max-width:none}
-      .home-hero h2{font-size:clamp(26px,7.5vw,40px)}
-      .home-sub{margin-top:14px;font-size:12px;max-width:none}
-      .explore-btn{margin-top:18px;padding:12px 24px;font-size:11px;letter-spacing:3px}
-      .home-manifesto{left:22px;right:22px;bottom:16px;max-width:none}
-      .home-manifesto p{font-size:11px}
-      .motto{display:none}
-      .map-node .nd-card{left:auto;right:auto;top:18px;transform:translateX(-50%);width:124px;min-width:0;padding:6px 10px}
-      .map-node .nd-card b{font-size:10px}
-      .map-node .nd-card span{font-size:7px}
-      .map-node .nd-card em{font-size:7px}
-      .map-node .nd-lead{display:none}
-      .map-node.nj .nd-card{transform:translateX(-16%)}
-      .map-node.an .nd-card{left:50%;bottom:auto;top:18px;transform:translateX(-82%)}
-      .map-node .nd-halo{width:70px;height:70px;margin:-35px 0 0 -35px}
+      .brand h1{font-size:12px;letter-spacing:2px}
+      .hero{left:22px;right:22px;top:auto;bottom:170px;max-width:none}
+      .hero h1{font-size:clamp(30px,9vw,44px);letter-spacing:2px}
+      .hero .sub{margin-top:16px;font-size:12px}
+      .hero .btn{margin-top:22px;font-size:11px;letter-spacing:3px}
+      .ribbon{grid-template-columns:1fr 1fr}
+      .ribbon .cell:nth-child(2){border-right:0}
+      .ribbon .cell{border-bottom:1px solid rgba(98,217,255,.08);padding:10px 16px}
+      .node .tag{font-size:8px}
+      .node .tag small{font-size:6px}
     }
   </style>
 </head>
 <body class="home-page">
 
-  <!-- 左侧 40%：文字 -->
-  <section class="home-text">
-    <header class="home-top">
-      <div class="brand">
-        <div class="logo">AN</div>
-        <div>
-          <h1>AUTONOMOUS NEXUS</h1>
-          <p><span data-lang="en">Environmental Observation Network</span><span data-lang="zh">自主环境观测网络</span></p>
-        </div>
+  <div id="homeMap" aria-hidden="true"></div>
+  <canvas id="fallbackMap" aria-hidden="true"></canvas>
+  <canvas id="netPts" aria-hidden="true"></canvas>
+  <canvas id="routeCv" aria-hidden="true"></canvas>
+  <canvas id="particles" aria-hidden="true"></canvas>
+  <div class="veil" aria-hidden="true"></div>
+
+  <header class="top">
+    <div class="brand">
+      <div class="logo">AN</div>
+      <div>
+        <h1>AUTONOMOUS NEXUS</h1>
+        <p><span data-lang="en">Environmental Observation Programme</span><span data-lang="zh">自主环境观测计划</span></p>
       </div>
-      <div class="lang-switch"><span class="pill" aria-hidden="true"></span><button type="button" data-lang="zh">中</button><button type="button" data-lang="en" class="active">EN</button></div>
-    </header>
-
-    <div class="home-hero">
-      <div class="kicker"><span data-lang="en">Exploration — Chapter 01</span><span data-lang="zh">探索 · 第一章</span></div>
-      <h2>
-        <span data-lang="en"><em>From Observation,</em><br><em>Toward the Unknown</em></span>
-        <span data-lang="zh"><em>始于观测，走向未知</em></span>
-      </h2>
-      <p class="home-sub">
-        <span data-lang="en">Starting from Nanjing, we are building an autonomous environmental observation network, using long-term collected data as the foundation for future exploration.</span>
-        <span data-lang="zh">从南京出发，构建自主环境观测网络；以持续积累的数据，为未来探索提供基础。</span>
-      </p>
-      <button type="button" class="explore-btn" id="exploreBtn">
-        <span data-lang="en">Start Exploration</span><span data-lang="zh">开启探索</span>
-      </button>
     </div>
+    <div class="lang-switch"><span class="pill" aria-hidden="true"></span><button type="button" data-lang="zh">中</button><button type="button" data-lang="en" class="active">EN</button></div>
+  </header>
 
-    <footer class="home-manifesto">
-      <p>
-        <span data-lang="en">The unknown requires explorers;<br>Uninhabited lands require the first set of observations.</span>
-        <span data-lang="zh">未知之境，需要探索者的脚步；<br>无人之地，需要第一组观测数据。</span>
-      </p>
-    </footer>
-    <div class="motto">
-      <span data-lang="en">Seeking the cold frontier,<br>we dare to lead the way.</span>
-      <span data-lang="zh">寻此寒旅，敢为天下先。</span>
-    </div>
+  <nav class="chapter" aria-label="chapters">
+    <a href="./index.html"><em>01</em><span data-lang="en">Exploration</span><span data-lang="zh">探索</span></a>
+    <a href="./network.html"><em>02</em><span data-lang="en">Network</span><span data-lang="zh">观测网络</span></a>
+    <a href="./dashboard.html"><em>03</em><span data-lang="en">Terminal</span><span data-lang="zh">终端</span></a>
+  </nav>
+
+  <section class="hero">
+    <div class="kicker"><span data-lang="en">Autonomous Environmental Observation Programme</span><span data-lang="zh">自主环境观测计划</span></div>
+    <h1>
+      <span data-lang="en"><em>From Observation,</em><br><em>Toward the Unknown</em></span>
+      <span data-lang="zh"><em>始于观测，走向未知</em></span>
+    </h1>
+    <p class="sub">
+      <span data-lang="en">Starting from Nanjing, we are building an autonomous environmental observation network, using long-term collected data as the foundation for exploring unknown environments.</span>
+      <span data-lang="zh">从南京出发，构建自主环境观测网络；以持续积累的数据，为探索未知环境提供基础。</span>
+    </p>
+    <button type="button" class="btn" id="exploreBtn">
+      <span data-lang="en">Start Exploration</span><span data-lang="zh">开启探索</span><b>→</b>
+    </button>
   </section>
 
-  <!-- 右侧 60%：探索地图 -->
-  <div class="home-map-area">
-    <div class="map-frame">
-      <div id="homeMap" aria-hidden="true"></div>
-      <canvas id="fallbackMap" aria-hidden="true"></canvas>
-      <div class="map-veil" aria-hidden="true"></div>
-      <canvas id="netPts" aria-hidden="true"></canvas>
-      <canvas id="routeCv" aria-hidden="true"></canvas>
-      <canvas id="particles" aria-hidden="true"></canvas>
-
-      <div class="map-node nj" id="nodeNj">
-        <span class="nd-dot"></span><span class="nd-ring"></span><span class="nd-ring r2"></span><span class="nd-halo"></span>
-        <span class="nd-lead"></span>
-        <div class="nd-card">
-          <b>NANJING</b>
-          <span data-lang="en">Current Node</span><span data-lang="zh">当前观测节点</span>
-          <em>32.0491°N · 118.7937°E</em>
-        </div>
-      </div>
-      <div class="map-node ne" id="nodeNe">
-        <span class="nd-dot"></span><span class="nd-ring"></span><span class="nd-halo"></span>
-        <span class="nd-lead"></span>
-        <div class="nd-card">
-          <b>NORTHEAST CHINA</b>
-          <span data-lang="en">Future Phase</span><span data-lang="zh">未来阶段</span>
-          <em>45.75°N · 126.65°E</em>
-        </div>
-      </div>
-      <div class="map-node an" id="nodeAn">
-        <span class="nd-dot"></span><span class="nd-ring"></span><span class="nd-halo"></span>
-        <span class="nd-lead"></span>
-        <div class="nd-card">
-          <b>ANTARCTICA</b>
-          <span data-lang="en">Future Goal</span><span data-lang="zh">未来目标</span>
-          <em>82°S · 130°W</em>
-        </div>
-      </div>
-    </div>
+  <div class="node nj" id="nodeNj">
+    <span class="dot"></span><span class="ring"></span><span class="ring r2"></span><span class="halo"></span>
+    <span class="lead"></span>
+    <div class="tag">NANJING<small data-lang="en">Current Node</small><small data-lang="zh">当前观测节点</small></div>
   </div>
+  <div class="node ne" id="nodeNe">
+    <span class="dot"></span><span class="ring"></span><span class="halo"></span>
+    <span class="lead"></span>
+    <div class="tag">NORTHEAST CHINA<small data-lang="en">Next Phase</small><small data-lang="zh">下一阶段</small></div>
+  </div>
+  <div class="node an" id="nodeAn">
+    <span class="dot"></span><span class="ring"></span><span class="halo"></span>
+    <span class="lead"></span>
+    <div class="tag">ANTARCTICA<small data-lang="en">Future Goal</small><small data-lang="zh">未来目标</small></div>
+  </div>
+
+  <footer class="ribbon">
+    <div class="cell"><small data-lang="en">Station</small><small data-lang="zh">站点</small><b>ANT-A01 · <span data-lang="en">Nanjing</span><span data-lang="zh">南京</span></b></div>
+    <div class="cell"><small data-lang="en">Phase</small><small data-lang="zh">阶段</small><b>01 — <span data-lang="en">Active</span><span data-lang="zh">运行中</span></b></div>
+    <div class="cell"><small data-lang="en">Data Records</small><small data-lang="zh">数据记录</small><b id="ribbonRecords">--</b></div>
+    <div class="cell"><small data-lang="en">Destination</small><small data-lang="zh">目标</small><b><span data-lang="en">Future Exploration</span><span data-lang="zh">未来探索</span></b></div>
+  </footer>
 
   <script>
   (function () {
@@ -218,47 +201,34 @@
         if (el.tagName === 'BUTTON' && el.parentNode && el.parentNode.classList && el.parentNode.classList.contains('lang-switch')) return;
         el.style.display = (el.getAttribute('data-lang') === lang) ? '' : 'none';
       });
-      document.querySelectorAll('.lang-switch button').forEach(function (b) {
-        b.classList.toggle('active', b.getAttribute('data-lang') === lang);
-      });
+      document.querySelectorAll('.lang-switch button').forEach(function (b) { b.classList.toggle('active', b.getAttribute('data-lang') === lang); });
       try { localStorage.setItem('anx-lang', lang); } catch (e) {}
       window.anxCurrentLang = lang;
       window.anxApplyLang = apply;
       var titleEl = document.querySelector('title');
-      if (titleEl) {
-        var tEn = titleEl.getAttribute('data-title-en');
-        var tZh = titleEl.getAttribute('data-title-zh');
-        if (tEn && tZh) titleEl.textContent = lang === 'zh' ? tZh : tEn;
-      }
+      if (titleEl) { var tEn = titleEl.getAttribute('data-title-en'); var tZh = titleEl.getAttribute('data-title-zh'); if (tEn && tZh) titleEl.textContent = lang === 'zh' ? tZh : tEn; }
       try { window.dispatchEvent(new CustomEvent('anx:langchange', { detail: { lang: lang } })); } catch (e) {}
     }
     function bind() {
       document.querySelectorAll('.lang-switch button').forEach(function (b) {
-        b.addEventListener('click', function (ev) {
-          ev.preventDefault();
-          apply(b.getAttribute('data-lang'));
-        });
+        b.addEventListener('click', function (ev) { ev.preventDefault(); apply(b.getAttribute('data-lang')); });
       });
     }
-    var saved = null;
-    try { saved = localStorage.getItem('anx-lang'); } catch (e) {}
-    apply(saved === 'zh' ? 'zh' : 'en');
-    bind();
+    var saved = null; try { saved = localStorage.getItem('anx-lang'); } catch (e) {}
+    apply(saved === 'zh' ? 'zh' : 'en'); bind();
   })();
   </script>
 
   <script>
   (function () {
-    /* ---------- 真实地理坐标 ---------- */
-    var NJ = [32.049141, 118.793686];   // Nanjing（data.json 实测坐标）
-    var NE = [45.75, 126.65];           // Harbin，中国东北
-    var AN = [-82.0, -130.0];           // 玛丽伯德地内陆，南极大陆
+    var NJ = [32.049141, 118.793686];
+    var NE = [45.75, 126.65];
+    var AN = [-82.0, -130.0];
     var NODES = [
       { id: 'nodeNj', pos: NJ },
       { id: 'nodeNe', pos: NE },
       { id: 'nodeAn', pos: AN }
     ];
-
     function gcLine(a, b, n) {
       var R = Math.PI / 180;
       var lat1 = a[0] * R, lon1 = a[1] * R, lat2 = b[0] * R, lon2 = b[1] * R;
@@ -266,301 +236,162 @@
       if (d < 1e-9) return [a, b];
       var out = [], prev = a[1];
       for (var i = 0; i <= n; i++) {
-        var f = i / n;
-        var A = Math.sin((1 - f) * d) / Math.sin(d);
-        var B = Math.sin(f * d) / Math.sin(d);
+        var f = i / n, A = Math.sin((1 - f) * d) / Math.sin(d), B = Math.sin(f * d) / Math.sin(d);
         var x = A * Math.cos(lat1) * Math.cos(lon1) + B * Math.cos(lat2) * Math.cos(lon2);
         var y = A * Math.cos(lat1) * Math.sin(lon1) + B * Math.cos(lat2) * Math.sin(lon2);
         var z = A * Math.sin(lat1) + B * Math.sin(lat2);
         var la = Math.atan2(z, Math.sqrt(x * x + y * y)) / R;
         var lo = Math.atan2(y, x) / R;
-        while (lo - prev > 180) lo -= 360;
-        while (lo - prev < -180) lo += 360;
-        out.push([la, lo]);
-        prev = lo;
+        while (lo - prev > 180) lo -= 360; while (lo - prev < -180) lo += 360;
+        out.push([la, lo]); prev = lo;
       }
       return out;
     }
-    var R1 = gcLine(NJ, NE, 40);
-    var R2 = gcLine(NE, AN, 90);
-
-    /* ---------- 局部展开投影与视角（按地图框尺寸） ---------- */
+    var R1 = gcLine(NJ, NE, 40), R2 = gcLine(NE, AN, 90);
     var EXPLORE_K = 0.492;
     var ExploreCRS = L.Util.extend({}, L.CRS.Simple, {
-      projection: {
-        project: function (latlng) { return new L.Point(latlng.lng, latlng.lat * EXPLORE_K); },
-        unproject: function (p) { return new L.LatLng(p.y / EXPLORE_K, p.x); }
-      }
+      projection: { project: function (ll) { return new L.Point(ll.lng, ll.lat * EXPLORE_K); }, unproject: function (p) { return new L.LatLng(p.y / EXPLORE_K, p.x); } }
     });
-
-    function frameSize() {
-      var f = document.querySelector('.map-frame');
-      return { w: f.clientWidth, h: f.clientHeight };
-    }
-    function viewFor() {
-      var fs = frameSize();
-      if (fs.w >= 600) {
-        var s = fs.w / 132;
-        return { center: [-15, 168], zoom: Math.log2(s) };
-      }
-      return { center: [39, 122], zoom: 3.25 };
-    }
-
-    var map = null, fallback = false;
-    var partCv = document.getElementById('particles');
-    var partCtx = partCv.getContext('2d');
-    var routeCv = document.getElementById('routeCv');
-    var routeCtx = routeCv.getContext('2d');
-    var routeT = 0;
-    var ptsCv = document.getElementById('netPts');
-    var ptsCtx = ptsCv.getContext('2d');
+    function viewFor() { var w = window.innerWidth; return w >= 700 ? { center: [-18, 168], zoom: Math.log2(w / 146) } : { center: [39, 122], zoom: 3.25 }; }
+    var map = null, fallback = false, routeT = 0;
+    var partCv = document.getElementById('particles'), partCtx = partCv.getContext('2d');
+    var routeCv = document.getElementById('routeCv'), routeCtx = routeCv.getContext('2d');
+    var ptsCv = document.getElementById('netPts'), ptsCtx = ptsCv.getContext('2d');
     var dataPts = [];
     (function () {
       var seed = 20260809;
       function rnd() { seed = (seed * 1664525 + 1013904223) >>> 0; return seed / 4294967296; }
-      for (var i = 0; i < 150; i++) dataPts.push([18 + rnd() * 34, 100 + rnd() * 40, rnd()]);
-      for (var j = 0; j < 30; j++) dataPts.push([-56 + rnd() * 112, -170 + rnd() * 340, rnd()]);
+      for (var i = 0; i < 130; i++) dataPts.push([18 + rnd() * 34, 100 + rnd() * 40, rnd()]);
+      for (var j = 0; j < 24; j++) dataPts.push([-56 + rnd() * 112, -170 + rnd() * 340, rnd()]);
     })();
-
     function sizeCanvas() {
-      var fs = frameSize();
-      partCv.width = fs.w; partCv.height = fs.h;
-      routeCv.width = fs.w; routeCv.height = fs.h;
-      ptsCv.width = fs.w; ptsCv.height = fs.h;
+      partCv.width = window.innerWidth; partCv.height = window.innerHeight;
+      routeCv.width = window.innerWidth; routeCv.height = window.innerHeight;
+      ptsCv.width = window.innerWidth; ptsCv.height = window.innerHeight;
     }
     sizeCanvas();
-    window.addEventListener('resize', function () {
-      sizeCanvas();
-      if (map && !fallback) {
-        var v = viewFor();
-        map.setView(v.center, v.zoom, { animate: false });
-        map.invalidateSize();
-      }
-      positionNodes(); drawRoutes(); drawDataPts();
-    });
-
+    window.addEventListener('resize', function () { sizeCanvas(); if (map && !fallback) { var v = viewFor(); map.setView(v.center, v.zoom, { animate: false }); map.invalidateSize(); } positionNodes(); drawRoutes(); drawDataPts(); });
     function projectMercator(ll, v) {
-      var fs = frameSize();
       var s = Math.pow(2, v.zoom);
-      return {
-        x: (ll[1] - v.center[1]) * s + fs.w / 2,
-        y: -(ll[0] - v.center[0]) * EXPLORE_K * s + fs.h / 2
-      };
+      return { x: (ll[1] - v.center[1]) * s + window.innerWidth / 2, y: -(ll[0] - v.center[0]) * EXPLORE_K * s + window.innerHeight / 2 };
     }
-
     function positionNodes() {
-      var fs = frameSize();
       for (var i = 0; i < NODES.length; i++) {
-        var el = document.getElementById(NODES[i].id);
-        if (!el) continue;
-        var p;
-        if (map && !fallback) {
-          p = map.latLngToContainerPoint(NODES[i].pos);
-        } else {
-          p = projectMercator(NODES[i].pos, viewFor());
-        }
+        var el = document.getElementById(NODES[i].id); if (!el) continue;
+        var p = (map && !fallback) ? map.latLngToContainerPoint(NODES[i].pos) : projectMercator(NODES[i].pos, viewFor());
         var world = 360 * Math.pow(2, map && !fallback ? map.getZoom() : viewFor().zoom);
-        p.x += world * Math.round((fs.w / 2 - p.x) / world);
-        el.style.left = p.x + 'px';
-        el.style.top = p.y + 'px';
+        p.x += world * Math.round((window.innerWidth / 2 - p.x) / world);
+        el.style.left = p.x + 'px'; el.style.top = p.y + 'px';
       }
     }
-
     function routePoints(pts) {
-      var out = [];
-      var v = viewFor();
-      var world = 360 * Math.pow(2, map && !fallback ? map.getZoom() : v.zoom);
+      var out = [], v = viewFor(), world = 360 * Math.pow(2, map && !fallback ? map.getZoom() : v.zoom);
       for (var i = 0; i < pts.length; i++) {
         var p = (map && !fallback) ? map.latLngToContainerPoint(pts[i]) : projectMercator(pts[i], v);
-        if (i > 0 && Math.abs(p.x - out[i - 1].x) > world / 2) {
-          p.x += (out[i - 1].x < p.x) ? -world : world;
-        }
+        if (i > 0 && Math.abs(p.x - out[i - 1].x) > world / 2) p.x += (out[i - 1].x < p.x) ? -world : world;
         out.push(p);
       }
       return out;
     }
     function tracePath(pts, width, color, alpha, shadow) {
       routeCtx.beginPath();
-      for (var i = 0; i < pts.length; i++) {
-        if (i === 0) routeCtx.moveTo(pts[i].x, pts[i].y); else routeCtx.lineTo(pts[i].x, pts[i].y);
-      }
-      routeCtx.globalAlpha = alpha;
-      routeCtx.strokeStyle = color;
-      routeCtx.lineWidth = width;
-      routeCtx.lineJoin = 'round';
-      routeCtx.lineCap = 'round';
+      for (var i = 0; i < pts.length; i++) { if (i === 0) routeCtx.moveTo(pts[i].x, pts[i].y); else routeCtx.lineTo(pts[i].x, pts[i].y); }
+      routeCtx.globalAlpha = alpha; routeCtx.strokeStyle = color; routeCtx.lineWidth = width;
+      routeCtx.lineJoin = 'round'; routeCtx.lineCap = 'round';
       if (shadow) { routeCtx.shadowColor = shadow; routeCtx.shadowBlur = 8; }
-      routeCtx.stroke();
-      routeCtx.globalAlpha = 1;
-      routeCtx.shadowBlur = 0;
+      routeCtx.stroke(); routeCtx.globalAlpha = 1; routeCtx.shadowBlur = 0;
     }
     function drawRoutes() {
       if (!routeCv.width) sizeCanvas();
       routeCtx.clearRect(0, 0, routeCv.width, routeCv.height);
-      var P1 = routePoints(R1);
-      tracePath(P1, 9, 'rgba(0,229,168,.10)', 1, null);
-      tracePath(P1, 3, 'rgba(0,229,168,.30)', 1, null);
-      tracePath(P1, 1.2, 'rgba(140,234,255,.92)', 1, 'rgba(98,217,255,.55)');
-      var P2 = routePoints(R2);
-      tracePath(P2, 9, 'rgba(0,229,168,.10)', 1, null);
-      tracePath(P2, 3, 'rgba(0,229,168,.30)', 1, null);
-      tracePath(P2, 1.2, 'rgba(140,234,255,.92)', 1, 'rgba(98,217,255,.55)');
-      routeCtx.save();
-      routeCtx.setLineDash([3, 7]);
-      routeCtx.lineDashOffset = -routeT * 0.5;
-      tracePath(P2, 1.4, 'rgba(214,248,255,.95)', 1, null);
-      routeCtx.restore();
+      var P1 = routePoints(R1), P2 = routePoints(R2);
+      tracePath(P1, 9, 'rgba(0,229,168,.08)', 1, null);
+      tracePath(P1, 3, 'rgba(0,229,168,.26)', 1, null);
+      tracePath(P1, 1.2, 'rgba(140,234,255,.85)', 1, 'rgba(98,217,255,.5)');
+      tracePath(P2, 10, 'rgba(0,229,168,.07)', 1, null);
+      tracePath(P2, 3, 'rgba(0,229,168,.24)', 1, null);
+      tracePath(P2, 1.2, 'rgba(140,234,255,.8)', 1, 'rgba(98,217,255,.45)');
+      routeCtx.save(); routeCtx.setLineDash([3, 8]); routeCtx.lineDashOffset = -routeT * 0.5;
+      tracePath(P2, 1.3, 'rgba(214,248,255,.9)', 1, null); routeCtx.restore();
     }
-
     function drawDataPts() {
       if (!ptsCv.width) sizeCanvas();
       ptsCtx.clearRect(0, 0, ptsCv.width, ptsCv.height);
-      var fs = frameSize();
       for (var i = 0; i < dataPts.length; i++) {
         var p = (map && !fallback) ? map.latLngToContainerPoint([dataPts[i][0], dataPts[i][1]]) : projectMercator([dataPts[i][0], dataPts[i][1]], viewFor());
-        if (p.x < -8 || p.x > fs.w + 8 || p.y < -8 || p.y > fs.h + 8) continue;
-        var r = dataPts[i][2] > 0.93 ? 1.6 : 1;
-        ptsCtx.beginPath();
-        ptsCtx.arc(p.x, p.y, r, 0, Math.PI * 2);
-        ptsCtx.fillStyle = dataPts[i][2] > 0.95 ? 'rgba(140,234,255,.68)' : 'rgba(98,217,255,.38)';
+        if (p.x < -8 || p.x > window.innerWidth + 8 || p.y < -8 || p.y > window.innerHeight + 8) continue;
+        ptsCtx.beginPath(); ptsCtx.arc(p.x, p.y, dataPts[i][2] > 0.95 ? 1.5 : 1, 0, Math.PI * 2);
+        ptsCtx.fillStyle = dataPts[i][2] > 0.95 ? 'rgba(140,234,255,.55)' : 'rgba(98,217,255,.3)';
         ptsCtx.fill();
       }
     }
-
     function initLeaflet() {
       var v = viewFor();
-      map = L.map('homeMap', {
-        crs: ExploreCRS,
-        zoomControl: false, attributionControl: false,
-        dragging: false, scrollWheelZoom: false, touchZoom: false,
-        doubleClickZoom: false, boxZoom: false, keyboard: false,
-        zoomSnap: 0.05
-      }).setView(v.center, v.zoom);
-
+      map = L.map('homeMap', { crs: ExploreCRS, zoomControl: false, attributionControl: false, dragging: false, scrollWheelZoom: false, touchZoom: false, doubleClickZoom: false, boxZoom: false, keyboard: false, zoomSnap: 0.05 }).setView(v.center, v.zoom);
       fetch('https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_110m_admin_0_countries.geojson')
         .then(function (r) { return r.json(); })
-        .then(function (gj) {
-          L.geoJSON(gj, {
-            style: { color: 'rgba(98,217,255,.55)', weight: 0.6, opacity: .85, fill: false },
-            interactive: false
-          }).addTo(map);
-        }).catch(function () {});
-
+        .then(function (gj) { L.geoJSON(gj, { style: { color: 'rgba(98,217,255,.5)', weight: 0.55, opacity: .8, fill: false }, interactive: false }).addTo(map); }).catch(function () {});
       (function () {
-        var cv = document.createElement('canvas');
-        cv.className = 'graticule-canvas';
-        document.getElementById('homeMap').appendChild(cv);
+        var cv = document.createElement('canvas'); cv.className = 'graticule-canvas'; document.getElementById('homeMap').appendChild(cv);
         function draw() {
-          var s = map.getSize();
-          cv.width = s.x; cv.height = s.y;
-          var ctx = cv.getContext('2d');
-          ctx.strokeStyle = 'rgba(140,234,255,.07)';
-          ctx.lineWidth = 1;
-          for (var lon = -180; lon <= 180; lon += 15) {
-            var p1 = map.latLngToContainerPoint([0, lon]);
-            ctx.beginPath(); ctx.moveTo(p1.x, 0); ctx.lineTo(p1.x, s.y); ctx.stroke();
-          }
-          for (var lat = -75; lat <= 75; lat += 15) {
-            var q1 = map.latLngToContainerPoint([lat, 0]);
-            ctx.beginPath(); ctx.moveTo(0, q1.y); ctx.lineTo(s.x, q1.y); ctx.stroke();
-          }
+          var s = map.getSize(); cv.width = s.x; cv.height = s.y;
+          var ctx = cv.getContext('2d'); ctx.strokeStyle = 'rgba(140,234,255,.06)'; ctx.lineWidth = 1;
+          for (var lon = -180; lon <= 180; lon += 15) { var p = map.latLngToContainerPoint([0, lon]); ctx.beginPath(); ctx.moveTo(p.x, 0); ctx.lineTo(p.x, s.y); ctx.stroke(); }
+          for (var lat = -75; lat <= 75; lat += 15) { var q = map.latLngToContainerPoint([lat, 0]); ctx.beginPath(); ctx.moveTo(0, q.y); ctx.lineTo(s.x, q.y); ctx.stroke(); }
         }
-        map.on('move zoom viewreset resize', draw);
-        setTimeout(draw, 300);
+        map.on('move zoom viewreset resize', draw); setTimeout(draw, 300);
       })();
-
       setTimeout(function () { map.invalidateSize(); positionNodes(); drawRoutes(); drawDataPts(); }, 300);
       setTimeout(function () { map.invalidateSize(); positionNodes(); drawRoutes(); drawDataPts(); }, 900);
       map.on('move zoom resize', function () { positionNodes(); drawRoutes(); drawDataPts(); });
       window.homeMap = map;
     }
-
     var routes = [R1, R2];
     function drawParticles(t) {
       partCtx.clearRect(0, 0, partCv.width, partCv.height);
       if (!map || fallback) return;
       for (var r = 0; r < routes.length; r++) {
         var pts = routes[r];
-        for (var k = 0; k < 5; k++) {
-          var f = ((t / (r === 0 ? 9000 : 16000)) + k / 5) % 1;
-          var idx = f * (pts.length - 1);
-          var i0 = Math.floor(idx), i1 = Math.min(i0 + 1, pts.length - 1), fr = idx - i0;
+        for (var k = 0; k < 4; k++) {
+          var f = ((t / (r === 0 ? 9000 : 15000)) + k / 4) % 1;
+          var idx = f * (pts.length - 1), i0 = Math.floor(idx), i1 = Math.min(i0 + 1, pts.length - 1), fr = idx - i0;
           var a = pts[i0], b = pts[i1];
           var p = map.latLngToContainerPoint([a[0] + (b[0] - a[0]) * fr, a[1] + (b[1] - a[1]) * fr]);
-          var alpha = 0.75 * (1 - Math.abs(f - 0.5) * 1.6);
-          partCtx.beginPath();
-          partCtx.arc(p.x, p.y, 2, 0, Math.PI * 2);
+          var alpha = 0.7 * (1 - Math.abs(f - 0.5) * 1.7);
+          partCtx.beginPath(); partCtx.arc(p.x, p.y, 1.8, 0, Math.PI * 2);
           partCtx.fillStyle = 'rgba(140,234,255,' + Math.max(0, alpha) + ')';
-          partCtx.shadowColor = 'rgba(0,229,168,.8)';
-          partCtx.shadowBlur = 6;
-          partCtx.fill();
-          partCtx.shadowBlur = 0;
+          partCtx.shadowColor = 'rgba(0,229,168,.8)'; partCtx.shadowBlur = 6; partCtx.fill(); partCtx.shadowBlur = 0;
         }
       }
     }
-    function loop(t) { drawParticles(t || 0); requestAnimationFrame(loop); }
     (function anim() { routeT++; drawRoutes(); requestAnimationFrame(anim); })();
-    requestAnimationFrame(loop);
-
+    (function loop(t) { drawParticles(t || 0); requestAnimationFrame(loop); })(0);
     function initFallback() {
-      fallback = true;
-      var cv = document.getElementById('fallbackMap');
-      cv.style.display = 'block';
-      document.getElementById('homeMap').style.display = 'none';
+      fallback = true; var cv = document.getElementById('fallbackMap'); cv.style.display = 'block'; document.getElementById('homeMap').style.display = 'none';
       function draw() {
-        var fs = frameSize();
-        cv.width = fs.w; cv.height = fs.h;
-        var ctx = cv.getContext('2d');
-        var g = ctx.createLinearGradient(0, 0, 0, fs.h);
+        cv.width = window.innerWidth; cv.height = window.innerHeight;
+        var ctx = cv.getContext('2d'), g = ctx.createLinearGradient(0, 0, 0, cv.height);
         g.addColorStop(0, '#020a14'); g.addColorStop(1, '#041527');
-        ctx.fillStyle = g; ctx.fillRect(0, 0, fs.w, fs.h);
-        var v = viewFor();
-        ctx.strokeStyle = 'rgba(140,234,255,.07)';
-        ctx.lineWidth = 1;
-        for (var lon = -180; lon <= 180; lon += 15) {
-          var px = projectMercator([0, lon], v).x;
-          ctx.beginPath(); ctx.moveTo(px, 0); ctx.lineTo(px, fs.h); ctx.stroke();
-        }
-        for (var lat = -75; lat <= 75; lat += 15) {
-          var py = projectMercator([lat, 0], v).y;
-          ctx.beginPath(); ctx.moveTo(0, py); ctx.lineTo(fs.w, py); ctx.stroke();
-        }
-        function path(pts) {
+        ctx.fillStyle = g; ctx.fillRect(0, 0, cv.width, cv.height);
+        var v = viewFor(); ctx.strokeStyle = 'rgba(140,234,255,.07)'; ctx.lineWidth = 1;
+        for (var lon = -180; lon <= 180; lon += 15) { var px = projectMercator([0, lon], v).x; ctx.beginPath(); ctx.moveTo(px, 0); ctx.lineTo(px, cv.height); ctx.stroke(); }
+        for (var lat = -75; lat <= 75; lat += 15) { var py = projectMercator([lat, 0], v).y; ctx.beginPath(); ctx.moveTo(0, py); ctx.lineTo(cv.width, py); ctx.stroke(); }
+        [R1, R2].forEach(function (pts) {
           ctx.beginPath();
-          for (var i = 0; i < pts.length; i++) {
-            var p = projectMercator(pts[i], v);
-            if (i === 0) ctx.moveTo(p.x, p.y); else ctx.lineTo(p.x, p.y);
-          }
-          ctx.strokeStyle = 'rgba(0,229,168,.12)'; ctx.lineWidth = 8; ctx.stroke();
-          ctx.strokeStyle = 'rgba(140,234,255,.8)'; ctx.lineWidth = 1.2; ctx.stroke();
-        }
-        path(R1); path(R2);
-        for (var i = 0; i < NODES.length; i++) {
-          var p = projectMercator(NODES[i].pos, v);
-          ctx.beginPath(); ctx.arc(p.x, p.y, 4, 0, Math.PI * 2);
-          ctx.fillStyle = NODES[i].id === 'nodeNj' ? '#00e5a8' : '#8ceaff';
-          ctx.shadowColor = ctx.fillStyle; ctx.shadowBlur = 12; ctx.fill(); ctx.shadowBlur = 0;
-        }
+          for (var i = 0; i < pts.length; i++) { var p = projectMercator(pts[i], v); if (i === 0) ctx.moveTo(p.x, p.y); else ctx.lineTo(p.x, p.y); }
+          ctx.strokeStyle = 'rgba(0,229,168,.1)'; ctx.lineWidth = 8; ctx.stroke();
+          ctx.strokeStyle = 'rgba(140,234,255,.7)'; ctx.lineWidth = 1.1; ctx.stroke();
+        });
+        NODES.forEach(function (n) { var p = projectMercator(n.pos, v); ctx.beginPath(); ctx.arc(p.x, p.y, 4, 0, Math.PI * 2); ctx.fillStyle = n.id === 'nodeNj' ? '#00e5a8' : '#8ceaff'; ctx.shadowColor = ctx.fillStyle; ctx.shadowBlur = 12; ctx.fill(); ctx.shadowBlur = 0; });
       }
-      draw();
-      drawRoutes();
-      drawDataPts();
-      positionNodes();
+      draw(); drawRoutes(); drawDataPts(); positionNodes();
       window.addEventListener('resize', draw);
     }
-
     if (window.L) { initLeaflet(); } else { initFallback(); }
-
+    fetch('./data.json').then(function (r) { return r.json(); }).then(function (d) { var el = document.getElementById('ribbonRecords'); if (el) el.textContent = Array.isArray(d) ? d.length : '--'; }).catch(function () {});
     setTimeout(function () { document.body.classList.add('loaded'); }, 180);
     var btn = document.getElementById('exploreBtn');
-    if (btn) {
-      btn.addEventListener('click', function () {
-        if (btn.dataset.busy) return;
-        btn.dataset.busy = '1';
-        document.body.classList.add('is-leaving');
-        setTimeout(function () { location.href = './network.html'; }, 850);
-      });
-    }
+    if (btn) btn.addEventListener('click', function () { if (btn.dataset.busy) return; btn.dataset.busy = '1'; document.body.classList.add('is-leaving'); setTimeout(function () { location.href = './network.html'; }, 850); });
   })();
   </script>
 </body>
