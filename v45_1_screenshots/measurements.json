@@ -1,0 +1,242 @@
+[
+  {
+    "lang": "zh",
+    "size": "1920x1080",
+    "hOverflow": false,
+    "hasA01": false,
+    "has476": false,
+    "hasOnline": false,
+    "nodes": {
+      "nj": true,
+      "ne": true,
+      "an": true
+    },
+    "heroOverlap": false,
+    "manOverlap": false,
+    "anLowInView": true,
+    "hero": {
+      "l": 134,
+      "r": 774,
+      "t": 356,
+      "b": 745
+    },
+    "dataLang": "zh",
+    "err": []
+  },
+  {
+    "lang": "zh",
+    "size": "1366x768",
+    "hOverflow": false,
+    "hasA01": false,
+    "has476": false,
+    "hasOnline": false,
+    "nodes": {
+      "nj": true,
+      "ne": true,
+      "an": true
+    },
+    "heroOverlap": false,
+    "manOverlap": false,
+    "anLowInView": true,
+    "hero": {
+      "l": 96,
+      "r": 736,
+      "t": 253,
+      "b": 598
+    },
+    "dataLang": "zh",
+    "err": []
+  },
+  {
+    "lang": "zh",
+    "size": "1024x1366",
+    "hOverflow": false,
+    "hasA01": false,
+    "has476": false,
+    "hasOnline": false,
+    "nodes": {
+      "nj": true,
+      "ne": true,
+      "an": true
+    },
+    "heroOverlap": false,
+    "manOverlap": false,
+    "anLowInView": true,
+    "hero": {
+      "l": 22,
+      "r": 1002,
+      "t": 1031,
+      "b": 1246
+    },
+    "dataLang": "zh",
+    "err": []
+  },
+  {
+    "lang": "zh",
+    "size": "390x844",
+    "hOverflow": false,
+    "hasA01": false,
+    "has476": false,
+    "hasOnline": false,
+    "nodes": {
+      "nj": true,
+      "ne": true,
+      "an": false
+    },
+    "heroOverlap": false,
+    "manOverlap": false,
+    "anLowInView": false,
+    "hero": {
+      "l": 22,
+      "r": 368,
+      "t": 527,
+      "b": 724
+    },
+    "dataLang": "zh",
+    "err": []
+  },
+  {
+    "lang": "zh",
+    "size": "375x812",
+    "hOverflow": false,
+    "hasA01": false,
+    "has476": false,
+    "hasOnline": false,
+    "nodes": {
+      "nj": true,
+      "ne": true,
+      "an": false
+    },
+    "heroOverlap": false,
+    "manOverlap": false,
+    "anLowInView": false,
+    "hero": {
+      "l": 22,
+      "r": 353,
+      "t": 496,
+      "b": 692
+    },
+    "dataLang": "zh",
+    "err": []
+  },
+  {
+    "lang": "en",
+    "size": "1920x1080",
+    "hOverflow": false,
+    "hasA01": false,
+    "has476": false,
+    "hasOnline": false,
+    "nodes": {
+      "nj": true,
+      "ne": true,
+      "an": true
+    },
+    "heroOverlap": false,
+    "manOverlap": false,
+    "anLowInView": true,
+    "hero": {
+      "l": 134,
+      "r": 774,
+      "t": 356,
+      "b": 962
+    },
+    "dataLang": "en",
+    "err": []
+  },
+  {
+    "lang": "en",
+    "size": "1366x768",
+    "hOverflow": false,
+    "hasA01": false,
+    "has476": false,
+    "hasOnline": false,
+    "nodes": {
+      "nj": true,
+      "ne": true,
+      "an": true
+    },
+    "heroOverlap": false,
+    "manOverlap": false,
+    "anLowInView": true,
+    "hero": {
+      "l": 96,
+      "r": 736,
+      "t": 253,
+      "b": 701
+    },
+    "dataLang": "en",
+    "err": []
+  },
+  {
+    "lang": "en",
+    "size": "1024x1366",
+    "hOverflow": false,
+    "hasA01": false,
+    "has476": false,
+    "hasOnline": false,
+    "nodes": {
+      "nj": true,
+      "ne": true,
+      "an": true
+    },
+    "heroOverlap": false,
+    "manOverlap": false,
+    "anLowInView": true,
+    "hero": {
+      "l": 22,
+      "r": 1002,
+      "t": 956,
+      "b": 1246
+    },
+    "dataLang": "en",
+    "err": []
+  },
+  {
+    "lang": "en",
+    "size": "390x844",
+    "hOverflow": false,
+    "hasA01": false,
+    "has476": false,
+    "hasOnline": false,
+    "nodes": {
+      "nj": true,
+      "ne": true,
+      "an": false
+    },
+    "heroOverlap": true,
+    "manOverlap": false,
+    "anLowInView": false,
+    "hero": {
+      "l": 22,
+      "r": 368,
+      "t": 452,
+      "b": 724
+    },
+    "dataLang": "en",
+    "err": []
+  },
+  {
+    "lang": "en",
+    "size": "375x812",
+    "hOverflow": false,
+    "hasA01": false,
+    "has476": false,
+    "hasOnline": false,
+    "nodes": {
+      "nj": true,
+      "ne": true,
+      "an": false
+    },
+    "heroOverlap": true,
+    "manOverlap": false,
+    "anLowInView": false,
+    "hero": {
+      "l": 22,
+      "r": 353,
+      "t": 386,
+      "b": 692
+    },
+    "dataLang": "en",
+    "err": []
+  }
+]
