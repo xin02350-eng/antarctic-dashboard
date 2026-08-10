@@ -1,0 +1,80 @@
+[
+  {
+    "lang": "zh",
+    "size": "1920x1080",
+    "hOverflow": false,
+    "hasTHREE": true,
+    "hasGlobeLib": false,
+    "ready": true,
+    "canvasW": 1920,
+    "litSamples": 0,
+    "dataLang": "zh",
+    "text": "AN\n自主观测网络\n\n自主环境观测计划\n\n中\nEN\n自主环境观测计划\n始于观测，走向未知\n\n从南京出发，构建自主环境观测网络；以持续积累的数据，为探索未知环境提",
+    "err": []
+  },
+  {
+    "lang": "zh",
+    "size": "1366x768",
+    "hOverflow": false,
+    "hasTHREE": true,
+    "hasGlobeLib": false,
+    "ready": true,
+    "canvasW": 1366,
+    "litSamples": 0,
+    "dataLang": "zh",
+    "text": "AN\n自主观测网络\n\n自主环境观测计划\n\n中\nEN\n自主环境观测计划\n始于观测，走向未知\n\n从南京出发，构建自主环境观测网络；以持续积累的数据，为探索未知环境提",
+    "err": []
+  },
+  {
+    "lang": "zh",
+    "size": "390x844",
+    "hOverflow": false,
+    "hasTHREE": true,
+    "hasGlobeLib": false,
+    "ready": true,
+    "canvasW": 390,
+    "litSamples": 0,
+    "dataLang": "zh",
+    "text": "AN\n自主观测网络\n中\nEN\n自主环境观测计划\n始于观测，走向未知\n\n从南京出发，构建自主环境观测网络；以持续积累的数据，为探索未知环境提供基础。\n\n开启探索→",
+    "err": []
+  },
+  {
+    "lang": "en",
+    "size": "1920x1080",
+    "hOverflow": false,
+    "hasTHREE": true,
+    "hasGlobeLib": false,
+    "ready": true,
+    "canvasW": 1920,
+    "litSamples": 0,
+    "dataLang": "en",
+    "text": "AN\nAUTONOMOUS NEXUS\n\nENVIRONMENTAL OBSERVATION PROGRAMME\n\n中\nEN\nAUTONOMOUS ENVIRO",
+    "err": []
+  },
+  {
+    "lang": "en",
+    "size": "1366x768",
+    "hOverflow": false,
+    "hasTHREE": true,
+    "hasGlobeLib": false,
+    "ready": true,
+    "canvasW": 1366,
+    "litSamples": 0,
+    "dataLang": "en",
+    "text": "AN\nAUTONOMOUS NEXUS\n\nENVIRONMENTAL OBSERVATION PROGRAMME\n\n中\nEN\nAUTONOMOUS ENVIRO",
+    "err": []
+  },
+  {
+    "lang": "en",
+    "size": "390x844",
+    "hOverflow": false,
+    "hasTHREE": true,
+    "hasGlobeLib": false,
+    "ready": true,
+    "canvasW": 390,
+    "litSamples": 0,
+    "dataLang": "en",
+    "text": "AN\nAUTONOMOUS NEXUS\n中\nEN\nAUTONOMOUS ENVIRONMENTAL OBSERVATION PROGRAMME\nFrom Obs",
+    "err": []
+  }
+]
