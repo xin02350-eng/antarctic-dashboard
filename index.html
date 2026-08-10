@@ -214,11 +214,40 @@
       renderer.setSize(window.innerWidth, window.innerHeight);
       document.getElementById('globe3d').appendChild(renderer.domElement);
 
+      /* 数字化线框地球：自绘经纬网格纹理（非卫星照片） */
+      var gridCv = document.createElement('canvas');
+      gridCv.width = 2048; gridCv.height = 1024;
+      var gctx = gridCv.getContext('2d');
+      gctx.fillStyle = '#071d30';
+      gctx.fillRect(0, 0, 2048, 1024);
+      gctx.strokeStyle = 'rgba(98,217,255,.45)';
+      gctx.lineWidth = 1;
+      for (var gi = 0; gi <= 24; gi++) {
+        var x = Math.round(gi / 24 * 2048);
+        gctx.beginPath(); gctx.moveTo(x, 0); gctx.lineTo(x, 1024); gctx.stroke();
+      }
+      for (var gj = 0; gj <= 12; gj++) {
+        var y = Math.round(gj / 12 * 1024);
+        gctx.beginPath(); gctx.moveTo(0, y); gctx.lineTo(2048, y); gctx.stroke();
+      }
+      /* 少量蓝色数据节点（观测点） */
+      var seed2 = 20260811;
+      function rnd2() { seed2 = (seed2 * 1664525 + 1013904223) >>> 0; return seed2 / 4294967296; }
+      gctx.fillStyle = 'rgba(140,234,255,.5)';
+      for (var gk = 0; gk < 90; gk++) {
+        gctx.fillRect(Math.round(rnd2() * 2048), Math.round(rnd2() * 1024), 2, 2);
+      }
+      var gridTex = new THREE.CanvasTexture(gridCv);
+      gridTex.anisotropy = 4;
+
       globe = new window.ThreeGlobe()
-        .globeImageUrl('https://unpkg.com/three-globe/example/img/earth-blue-marble.jpg')
-        .bumpImageUrl('https://unpkg.com/three-globe/example/img/earth-topology.png')
+        .globeMaterial(new THREE.MeshPhongMaterial({ map: gridTex, color: 0xffffff, transparent: true, opacity: 0.94, shininess: 14 }))
         .atmosphereColor('#3d7ea6')
-        .atmosphereAltitude(0.22)
+        .atmosphereAltitude(0.18)
+        .polygonAltitude(0.008)
+        .polygonCapColor(function () { return 'rgba(7,30,48,0.25)'; })
+        .polygonSideColor(function () { return 'rgba(98,217,255,0.16)'; })
+        .polygonStrokeColor(function () { return 'rgba(140,234,255,0.55)'; })
         .pointsData(nodeData)
         .pointLat('lat').pointLng('lng').pointColor('color').pointAltitude('alt').pointRadius('radius')
         .labelsData(labelData(window.anxCurrentLang || 'en'))
@@ -227,7 +256,26 @@
         .arcStartLat('startLat').arcStartLng('startLng').arcEndLat('endLat').arcEndLng('endLng')
         .arcColor('color').arcAltitudeAutoScale(0.42).arcStroke(0.55)
         .arcDashLength(0.7).arcDashGap(0.5).arcDashAnimateTime(4200);
+      fetch('https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_110m_admin_0_countries.geojson')
+        .then(function (r) { return r.json(); })
+        .then(function (gj) { globe.polygonsData(gj.features); })
+        .catch(function () {});
       scene.add(globe);
+      var _right = new THREE.Vector3();
+      function setGlobeOffset() {
+        var dir = new THREE.Vector3();
+        camera.getWorldDirection(dir);
+        _right.crossVectors(dir, new THREE.Vector3(0, 1, 0)).normalize();
+        var small = window.innerWidth <= 700;
+        var k = small ? 34 : 79;
+        var s = small ? 0.55 : 1;
+        globe.scale.set(s, s, s);
+        globe.position.copy(_right).multiplyScalar(k);
+        globe.position.y = small ? 69 : 0;
+      }
+      window.__scene = scene;
+      window.__camera = camera;
+      window.__globe = globe;
 
       for (var i = 0; i < 8; i++) {
         particles.push({ lat: 0, lng: 0, color: '#bff3ff', radius: 0.12, alt: 0.03 });
@@ -240,7 +288,7 @@
         renderer.setSize(window.innerWidth, window.innerHeight);
       });
 
-      var camDist = 270, camLat = 12, camLng = 110, tick = 0;
+      var camDist = 400, camLat = 12, camLng = 110, tick = 0;
       function setCam(lat, lng) {
         var phi = (90 - lat) * Math.PI / 180;
         var theta = (lng + 180) * Math.PI / 180;
@@ -254,8 +302,9 @@
       function animate() {
         requestAnimationFrame(animate);
         tick++;
-        camLng += 0.00035;
+        globe.rotation.y += 0.00015;
         setCam(camLat, camLng);
+        setGlobeOffset();
         /* 粒子沿两条球面弧线缓慢流动 */
         for (var i = 0; i < 8; i++) {
           var route = i < 4 ? R1 : R2;

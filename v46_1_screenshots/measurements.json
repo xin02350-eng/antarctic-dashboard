@@ -1,0 +1,92 @@
+[
+  {
+    "lang": "zh",
+    "size": "1920x1080",
+    "hOverflow": false,
+    "ready": true,
+    "proj": {
+      "sx": 1238,
+      "sy": 540,
+      "dia": 794
+    },
+    "hasA01": false,
+    "has476": false,
+    "dataLang": "zh",
+    "err": []
+  },
+  {
+    "lang": "zh",
+    "size": "1366x768",
+    "hOverflow": false,
+    "ready": true,
+    "proj": {
+      "sx": 881,
+      "sy": 384,
+      "dia": 565
+    },
+    "hasA01": false,
+    "has476": false,
+    "dataLang": "zh",
+    "err": []
+  },
+  {
+    "lang": "zh",
+    "size": "390x844",
+    "hOverflow": false,
+    "ready": true,
+    "proj": {
+      "sx": 292,
+      "sy": 230,
+      "dia": 572
+    },
+    "hasA01": false,
+    "has476": false,
+    "dataLang": "zh",
+    "err": []
+  },
+  {
+    "lang": "en",
+    "size": "1920x1080",
+    "hOverflow": false,
+    "ready": true,
+    "proj": {
+      "sx": 1238,
+      "sy": 540,
+      "dia": 794
+    },
+    "hasA01": false,
+    "has476": false,
+    "dataLang": "en",
+    "err": []
+  },
+  {
+    "lang": "en",
+    "size": "1366x768",
+    "hOverflow": false,
+    "ready": true,
+    "proj": {
+      "sx": 881,
+      "sy": 384,
+      "dia": 565
+    },
+    "hasA01": false,
+    "has476": false,
+    "dataLang": "en",
+    "err": []
+  },
+  {
+    "lang": "en",
+    "size": "390x844",
+    "hOverflow": false,
+    "ready": true,
+    "proj": {
+      "sx": 292,
+      "sy": 230,
+      "dia": 572
+    },
+    "hasA01": false,
+    "has476": false,
+    "dataLang": "en",
+    "err": []
+  }
+]
