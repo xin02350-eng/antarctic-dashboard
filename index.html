@@ -228,7 +228,7 @@
     var ExploreCRS = L.Util.extend({}, L.CRS.Simple, {
       projection: { project: function (ll) { return new L.Point(ll.lng, ll.lat * EXPLORE_K); }, unproject: function (p) { return new L.LatLng(p.y / EXPLORE_K, p.x); } }
     });
-    function viewFor() { var w = window.innerWidth; return w >= 700 ? { center: [-25, 168], zoom: Math.log2(w / 180) } : { center: [22, 122], zoom: 3.25 }; }
+    function viewFor() { var w = window.innerWidth; return w >= 700 ? { center: [-25, 165], zoom: Math.log2(w / 260) } : { center: [22, 122], zoom: 3.25 }; }
     var map = null, fallback = false, routeT = 0;
     var partCv = document.getElementById('particles'), partCtx = partCv.getContext('2d');
     var routeCv = document.getElementById('routeCv'), routeCtx = routeCv.getContext('2d');
