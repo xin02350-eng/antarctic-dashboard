@@ -93,6 +93,11 @@
     body.is-leaving::after{content:"";position:fixed;inset:0;z-index:99;background:radial-gradient(ellipse at 50% 50%,#062033,#01060d 75%);opacity:0;animation:leaveFade .7s ease forwards;pointer-events:none}
     @keyframes leaveFade{to{opacity:1}}
 
+    @media (min-width:1025px){
+      html[data-lang="en"] .kicker{margin-bottom:40px}
+      html[data-lang="en"] .hero h1{margin-top:-24px}
+      .hero .btn{margin-top:88px}
+    }
     @media (max-width:1024px){
       .hero{left:22px;right:22px;top:auto;bottom:120px;max-width:none}
       .hero h1{font-size:clamp(30px,6vw,46px)}
