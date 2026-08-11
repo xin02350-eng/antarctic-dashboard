@@ -186,6 +186,17 @@
     var NJ = { lat: 31.9, lng: 118.8 };             // Nanjing（31.9N 118.8E）
     var NE = { lat: 45.75, lng: 126.65 };           // Harbin，中国东北
     var AN = { lat: -82.0, lng: 70.0 };             // 南极大陆内部（恩德比地，已验证落在 Antarctica polygon 内）
+    var LABELS = {
+      zh: { nanjing: '南京', northeast: '东北地区', antarctica: '南极大陆' },
+      en: { nanjing: 'NANJING', northeast: 'NORTHEAST CHINA', antarctica: 'ANTARCTICA' }
+    };
+    function buildLabels(lang) {
+      var L = lang === 'zh' ? LABELS.zh : LABELS.en;
+      return [
+        { lat: NJ.lat, lng: NJ.lng, text: L.nanjing, size: 0.62, color: '#eafcff', dotRadius: 0.12, altitude: 0.2 },
+        { lat: NE.lat, lng: NE.lng, text: L.northeast, size: 0.52, color: '#b7e6ff', dotRadius: 0.1, altitude: 0.2 }
+      ];
+    }
 
     function gcLine(a, b, n) {
       var R = Math.PI / 180;
@@ -271,6 +282,8 @@
         .polygonStrokeColor(function () { return 'rgba(140,234,255,0.55)'; })
         .pointsData(nodeData)
         .pointLat('lat').pointLng('lng').pointColor('color').pointAltitude('alt').pointRadius('radius')
+        .labelsData(buildLabels(window.anxCurrentLang || 'en'))
+        .labelLat('lat').labelLng('lng').labelText('text').labelSize('size').labelColor('color').labelDotRadius('dotRadius').labelAltitude('altitude')
         .arcsData(arcData)
         .arcStartLat('startLat').arcStartLng('startLng').arcEndLat('endLat').arcEndLng('endLng')
         .arcColor('color').arcAltitudeAutoScale(0.42).arcStroke(0.5)
@@ -369,49 +382,52 @@
       var labelCtx = labelCv.getContext('2d');
       var labelLang = window.anxCurrentLang || 'en';
       window.__labelLang = labelLang;
-      window.onLangChange = function (lang) { labelLang = lang; window.__labelLang = lang; };
+      window.onLangChange = function (lang) {
+        labelLang = lang;
+        window.__labelLang = lang;
+        if (globe) globe.labelsData(buildLabels(lang)); /* ???? three-globe label ???????? */
+      };
       function drawLabels2D(t) {
         labelCv.width = window.innerWidth;
         labelCv.height = window.innerHeight;
         labelCtx.clearRect(0, 0, labelCv.width, labelCv.height);
         var items = [
-          { node: NJ, coord: '31.9N · 118.8E', dy: 12, color: 'rgba(234,252,255,.92)' },
-          { node: NE, coord: '45.75N · 126.65E', dy: -26, color: 'rgba(196,232,250,.85)' }
+          { node: NJ, dy: 12 },
+          { node: NE, dy: -26 }
         ];
-        var names = labelLang === 'zh' ? ['南京', '东北地区'] : ['NANJING', 'NORTHEAST CHINA'];
         for (var li = 0; li < items.length; li++) {
           var it = items[li];
-          var rr = 100 * 1.02;
           var phi = (90 - it.node.lat) * Math.PI / 180;
           var theta = (90 - it.node.lng) * Math.PI / 180;
-          var v = new THREE.Vector3(
-            rr * Math.sin(phi) * Math.cos(theta),
-            rr * Math.cos(phi),
-            rr * Math.sin(phi) * Math.sin(theta)
+          var sv = new THREE.Vector3(
+            102 * Math.sin(phi) * Math.cos(theta),
+            102 * Math.cos(phi),
+            102 * Math.sin(phi) * Math.sin(theta)
           );
-          var n = v.clone().normalize();
+          var lv = new THREE.Vector3(
+            120 * Math.sin(phi) * Math.cos(theta),
+            120 * Math.cos(phi),
+            120 * Math.sin(phi) * Math.sin(theta)
+          );
+          var sn = sv.clone().normalize();
           globe.updateMatrixWorld();
-          var w = v.clone().applyMatrix4(globe.matrixWorld);
-          var nw = n.clone().transformDirection(globe.matrixWorld);
-          if (nw.dot(camera.position.clone().sub(w).normalize()) < 0.1) continue;
-          var sp = w.clone().project(camera);
-          if (sp.z > 1 || sp.z < -1) continue;
-          var sx = (sp.x * 0.5 + 0.5) * window.innerWidth;
-          var sy = (-sp.y * 0.5 + 0.5) * window.innerHeight;
-          var ax = sx + 26, ay = sy + it.dy;
-          labelCtx.strokeStyle = 'rgba(140,234,255,.5)';
+          var sw = sv.clone().applyMatrix4(globe.matrixWorld);
+          var snw = sn.clone().transformDirection(globe.matrixWorld);
+          if (snw.dot(camera.position.clone().sub(sw).normalize()) < 0.1) continue;
+          var lw = lv.clone().applyMatrix4(globe.matrixWorld);
+          var sp1 = sw.clone().project(camera);
+          var sp2 = lw.clone().project(camera);
+          if (sp1.z > 1 || sp1.z < -1 || sp2.z > 1 || sp2.z < -1) continue;
+          var sx = (sp1.x * 0.5 + 0.5) * window.innerWidth;
+          var sy = (-sp1.y * 0.5 + 0.5) * window.innerHeight;
+          var lx = (sp2.x * 0.5 + 0.5) * window.innerWidth;
+          var ly = (-sp2.y * 0.5 + 0.5) * window.innerHeight;
+          labelCtx.strokeStyle = 'rgba(140,234,255,.45)';
           labelCtx.lineWidth = 1;
           labelCtx.beginPath();
           labelCtx.moveTo(sx, sy);
-          labelCtx.lineTo(ax - 4, ay);
+          labelCtx.lineTo(lx, ly);
           labelCtx.stroke();
-          labelCtx.font = '500 10px "Segoe UI",system-ui,sans-serif';
-          labelCtx.fillStyle = it.color;
-          labelCtx.textBaseline = 'middle';
-          labelCtx.fillText(names[li], ax, ay);
-          labelCtx.font = '400 8px "Segoe UI",system-ui,sans-serif';
-          labelCtx.fillStyle = 'rgba(140,234,255,.6)';
-          labelCtx.fillText(it.coord, ax, ay + 12);
           if (li === 0) {
             var pulse = 0.5 + 0.5 * Math.sin(t / 320);
             labelCtx.beginPath();
@@ -422,7 +438,7 @@
           }
         }
       }
-      function animate() {
+function animate() {
         requestAnimationFrame(animate);
         tick++;
         globe.rotation.y += 0.00015;

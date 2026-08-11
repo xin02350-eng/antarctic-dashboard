@@ -1,0 +1,32 @@
+[
+  {
+    "lang": "zh",
+    "dataLang": "zh",
+    "labelLang": "zh",
+    "globeLabels": [
+      "南京",
+      "东北地区"
+    ],
+    "anLabel": [
+      "南极大陆"
+    ],
+    "leaderPx": 6,
+    "hOverflow": false,
+    "err": []
+  },
+  {
+    "lang": "en",
+    "dataLang": "en",
+    "labelLang": "en",
+    "globeLabels": [
+      "NANJING",
+      "NORTHEAST CHINA"
+    ],
+    "anLabel": [
+      "ANTARCTICA"
+    ],
+    "leaderPx": 7,
+    "hOverflow": false,
+    "err": []
+  }
+]
