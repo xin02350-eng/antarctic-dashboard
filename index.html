@@ -13,29 +13,12 @@
     html,body{height:100%;overflow:hidden}
     body{background:#01060d;color:#dff6ff;font-family:"Segoe UI",system-ui,-apple-system,"Microsoft YaHei",sans-serif;position:relative}
 
-    /* ---------- 高级星空（稀疏、克制） ---------- */
-    .stars{position:fixed;inset:0;z-index:0;pointer-events:none;background-image:
-      radial-gradient(1px 1px at 12% 18%,rgba(220,240,255,.8),transparent 100%),
-      radial-gradient(1px 1px at 26% 68%,rgba(220,240,255,.5),transparent 100%),
-      radial-gradient(1.5px 1.5px at 38% 12%,rgba(220,240,255,.65),transparent 100%),
-      radial-gradient(1px 1px at 52% 82%,rgba(220,240,255,.45),transparent 100%),
-      radial-gradient(1px 1px at 64% 24%,rgba(220,240,255,.6),transparent 100%),
-      radial-gradient(1.5px 1.5px at 76% 58%,rgba(220,240,255,.4),transparent 100%),
-      radial-gradient(1px 1px at 88% 34%,rgba(220,240,255,.55),transparent 100%),
-      radial-gradient(1px 1px at 94% 76%,rgba(220,240,255,.4),transparent 100%),
-      radial-gradient(1px 1px at 8% 88%,rgba(220,240,255,.4),transparent 100%),
-      radial-gradient(1.5px 1.5px at 46% 42%,rgba(220,240,255,.35),transparent 100%)}
-    .stars i{position:fixed;width:2px;height:2px;border-radius:50%;background:#cfe9ff;opacity:.35;animation:twinkle 7s ease-in-out infinite}
-    .stars i:nth-child(1){left:18%;top:28%;animation-delay:0s}
-    .stars i:nth-child(2){left:72%;top:16%;animation-delay:2.2s}
-    .stars i:nth-child(3){left:88%;top:62%;animation-delay:4.1s}
-    .stars i:nth-child(4){left:42%;top:76%;animation-delay:1.3s}
-    @keyframes twinkle{0%,100%{opacity:.18}50%{opacity:.7}}
+    /* 背景深空星光由 WebGL 场景内的轻量星层渲染，避免遮挡与合成差异 */
 
     /* ---------- 3D 地球画布 ---------- */
     #globe3d{position:fixed;inset:0;z-index:1}
     #globe3d canvas{display:block;filter:grayscale(.08) brightness(1.02) contrast(1.05) saturate(.88)}
-    .globe-halo{position:fixed;left:66%;top:50%;z-index:0;width:min(56vh,56vw);aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,rgba(10,42,68,.6),rgba(4,22,40,.22) 46%,transparent 70%);box-shadow:0 0 120px rgba(61,126,166,.12);pointer-events:none}
+    .globe-halo{position:fixed;left:66%;top:50%;z-index:0;width:min(56vh,56vw);aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,rgba(12,52,84,.62),rgba(5,28,50,.28) 46%,transparent 70%);box-shadow:0 0 140px rgba(76,150,205,.16),0 0 300px rgba(45,110,170,.10);pointer-events:none}
     .globe-fallback{position:fixed;inset:0;z-index:1;display:none;background:radial-gradient(ellipse at 50% 45%,#062030 0%,#01060d 72%)}
     #leaderCv{position:fixed;inset:0;z-index:3;width:100%;height:100%;pointer-events:none}
 
@@ -130,7 +113,6 @@
 </head>
 <body class="home-page">
 
-  <div class="stars" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
   <div class="globe-halo" aria-hidden="true"></div>
   <div id="globe3d" aria-hidden="true"></div>
   <div class="globe-fallback" aria-hidden="true"></div>
@@ -227,6 +209,7 @@
     var R2 = gcLine(NE, AN, 90);
 
     var scene, camera, renderer, globe, particles = [];
+    var bgStarLayers = [], bgNebula = [];
     var nodeData = [
       { lat: NJ.lat, lng: NJ.lng, color: '#00e5a8', radius: 0.55, alt: 0.012 },
       { lat: NE.lat, lng: NE.lng, color: '#7fd4ff', radius: 0.42, alt: 0.012 },
@@ -243,7 +226,6 @@
         return;
       }
       scene = new THREE.Scene();
-      scene.background = new THREE.Color(0x01060d);
       scene.add(new THREE.AmbientLight(0x9fb4c8, 1.0));
       var key = new THREE.DirectionalLight(0xffffff, 1.25);
       key.position.set(220, 120, 320);
@@ -253,6 +235,7 @@
       scene.add(fill);
       camera = new THREE.PerspectiveCamera(42, window.innerWidth / window.innerHeight, 1, 1200);
       renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+      renderer.setClearColor(0x000000, 0);
       renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
       renderer.setSize(window.innerWidth, window.innerHeight);
       document.getElementById('globe3d').appendChild(renderer.domElement);
@@ -318,6 +301,76 @@
       var floatMat = new THREE.PointsMaterial({ color: 0x7fb8d8, size: 1.2, transparent: true, opacity: 0.45, depthWrite: false });
       var floatPts = new THREE.Points(floatGeo, floatMat);
       scene.add(floatPts);
+      /* 背景深空星光层：三层低密度星点环绕场景，仅背景视觉，不影响地球与相机 */
+      (function () {
+        function makeStarLayer(seedVal, count, size, color, alpha, phase, speed) {
+          var seed = seedVal;
+          function rnd() { seed = (seed * 1664525 + 1013904223) >>> 0; return seed / 4294967296; }
+          var pos = [];
+          for (var i = 0; i < count; i++) {
+            var phi = rnd() * Math.PI * 2;
+            var cost = rnd() * 2 - 1;
+            var rad = 560 + rnd() * 420;
+            var sp = Math.sqrt(1 - cost * cost);
+            pos.push(rad * sp * Math.cos(phi), rad * cost, rad * sp * Math.sin(phi));
+          }
+          var geo = new THREE.BufferGeometry();
+          geo.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
+          var mat = new THREE.PointsMaterial({
+            color: color,
+            size: size,
+            transparent: true,
+            opacity: alpha,
+            sizeAttenuation: true,
+            depthWrite: false
+          });
+          var pts = new THREE.Points(geo, mat);
+          pts.userData.phase = phase;
+          pts.userData.speed = speed;
+          pts.userData.base = alpha;
+          scene.add(pts);
+          bgStarLayers.push(pts);
+        }
+        makeStarLayer(20260820, 220, 0.75, 0xcfe6ff, 0.40, 0.0, 0.14);
+        makeStarLayer(20260821, 150, 1.0, 0xafd4ff, 0.32, 2.1, 0.20);
+        makeStarLayer(20260822, 110, 1.3, 0xdfefff, 0.25, 4.2, 0.28);
+      })();
+      /* 极淡蓝色星云雾化：附着于相机空间的两处远处光晕，保持低透明度 */
+      (function () {
+        function glowTex(rgb) {
+          var c = document.createElement('canvas');
+          c.width = 256;
+          c.height = 256;
+          var g = c.getContext('2d');
+          var gr = g.createRadialGradient(128, 128, 0, 128, 128, 128);
+          gr.addColorStop(0, 'rgba(' + rgb + ',0.85)');
+          gr.addColorStop(0.45, 'rgba(' + rgb + ',0.30)');
+          gr.addColorStop(1, 'rgba(' + rgb + ',0)');
+          g.fillStyle = gr;
+          g.fillRect(0, 0, 256, 256);
+          return new THREE.CanvasTexture(c);
+        }
+        var spots = [
+          { x: -300, y: 215, z: -760, sx: 820, sy: 560, o: 0.065, rgb: '88,150,205' },
+          { x: 330, y: -245, z: -820, sx: 760, sy: 520, o: 0.05, rgb: '70,130,190' }
+        ];
+        for (var i = 0; i < spots.length; i++) {
+          var sp = spots[i];
+          var mat = new THREE.SpriteMaterial({
+            map: glowTex(sp.rgb),
+            transparent: true,
+            opacity: sp.o,
+            depthWrite: false,
+            blending: THREE.AdditiveBlending
+          });
+          mat.userData = { base: sp.o, phase: i * 2.4, speed: 0.045 + i * 0.02 };
+          var spr = new THREE.Sprite(mat);
+          spr.position.set(sp.x, sp.y, sp.z);
+          spr.scale.set(sp.sx, sp.sy, 1);
+          camera.add(spr);
+          bgNebula.push(spr);
+        }
+      })();
       /* 南极引导线（真实节点 → 地球旁空白区标签），由球体自动遮挡背面段 */
       var leaderGeo = new THREE.BufferGeometry();
       leaderGeo.setAttribute('position', new THREE.Float32BufferAttribute([0, 0, 0, 0, 0, 0], 3));
@@ -339,6 +392,8 @@
       window.__scene = scene;
       window.__camera = camera;
       window.__globe = globe;
+      window.__bgStarLayers = bgStarLayers;
+      window.__bgNebula = bgNebula;
 
       for (var i = 0; i < 8; i++) {
         particles.push({ lat: 0, lng: 0, color: '#bff3ff', radius: 0.12, alt: 0.03 });
@@ -474,6 +529,15 @@ function animate() {
         tick++;
         globe.rotation.y += 0.00015;
         floatPts.rotation.y += 0.00008;
+        var bgT = performance.now() / 1000;
+        for (var si = 0; si < bgStarLayers.length; si++) {
+          var sl = bgStarLayers[si];
+          sl.material.opacity = sl.userData.base * (0.72 + 0.28 * Math.sin(bgT * sl.userData.speed + sl.userData.phase));
+        }
+        for (var ni = 0; ni < bgNebula.length; ni++) {
+          var nb = bgNebula[ni];
+          nb.material.opacity = nb.material.userData.base * (0.78 + 0.22 * Math.sin(bgT * nb.material.userData.speed + nb.material.userData.phase));
+        }
         setCam(camLat, camLng);
         setGlobeOffset();
         updateLeader();

@@ -1,0 +1,618 @@
+{
+  "desktop": {
+    "en": {
+      "lang": "en",
+      "viewport": {
+        "w": 1920,
+        "h": 1080
+      },
+      "h1": {
+        "t": 190,
+        "b": 336,
+        "l": 134,
+        "r": 733,
+        "w": 598,
+        "h": 146
+      },
+      "sub": {
+        "t": 392,
+        "b": 524,
+        "l": 134,
+        "r": 654,
+        "w": 520,
+        "h": 132
+      },
+      "btn": {
+        "t": 628,
+        "b": 660,
+        "l": 134,
+        "r": 360,
+        "w": 226,
+        "h": 32
+      },
+      "ems": [
+        {
+          "txt": "From Observation,",
+          "t": 197,
+          "b": 263,
+          "l": 134,
+          "r": 604,
+          "w": 470,
+          "h": 66
+        },
+        {
+          "txt": "Toward the Unknown",
+          "t": 263,
+          "b": 336,
+          "l": 134,
+          "r": 733,
+          "w": 598,
+          "h": 73
+        }
+      ],
+      "btnBottomToViewport": 420,
+      "hOverflow": false,
+      "globeReady": true,
+      "globeCircle": {
+        "cx": 1254,
+        "cy": 540,
+        "r": 308
+      },
+      "lineHits": [
+        0,
+        0
+      ],
+      "secondLineWraps": false,
+      "starLayers": 3,
+      "starPoints": 480,
+      "starOpacities": [
+        0.364,
+        0.228,
+        0.141
+      ],
+      "nebulaLayers": 2,
+      "nebulaOpacities": [
+        0.054,
+        0.043
+      ]
+    },
+    "zh": {
+      "lang": "zh",
+      "viewport": {
+        "w": 1920,
+        "h": 1080
+      },
+      "h1": {
+        "t": 202,
+        "b": 386,
+        "l": 134,
+        "r": 559,
+        "w": 425,
+        "h": 184
+      },
+      "sub": {
+        "t": 420,
+        "b": 552,
+        "l": 134,
+        "r": 559,
+        "w": 425,
+        "h": 132
+      },
+      "btn": {
+        "t": 616,
+        "b": 648,
+        "l": 134,
+        "r": 232,
+        "w": 97,
+        "h": 32
+      },
+      "ems": [
+        {
+          "txt": "始于观测，",
+          "t": 193,
+          "b": 302,
+          "l": 134,
+          "r": 559,
+          "w": 425,
+          "h": 109
+        },
+        {
+          "txt": "走向未知",
+          "t": 285,
+          "b": 394,
+          "l": 134,
+          "r": 474,
+          "w": 340,
+          "h": 109
+        }
+      ],
+      "btnBottomToViewport": 432,
+      "hOverflow": false,
+      "globeReady": true,
+      "globeCircle": {
+        "cx": 1254,
+        "cy": 540,
+        "r": 307
+      },
+      "lineHits": [
+        0,
+        0
+      ],
+      "secondLineWraps": false,
+      "starLayers": 3,
+      "starPoints": 480,
+      "starOpacities": [
+        0.387,
+        0.188,
+        0.185
+      ],
+      "nebulaLayers": 2,
+      "nebulaOpacities": [
+        0.056,
+        0.042
+      ]
+    }
+  },
+  "laptop": {
+    "en": {
+      "lang": "en",
+      "viewport": {
+        "w": 1366,
+        "h": 768
+      },
+      "h1": {
+        "t": 143,
+        "b": 269,
+        "l": 96,
+        "r": 694,
+        "w": 598,
+        "h": 126
+      },
+      "sub": {
+        "t": 325,
+        "b": 445,
+        "l": 96,
+        "r": 616,
+        "w": 520,
+        "h": 120
+      },
+      "btn": {
+        "t": 549,
+        "b": 581,
+        "l": 96,
+        "r": 321,
+        "w": 226,
+        "h": 32
+      },
+      "ems": [
+        {
+          "txt": "From Observation,",
+          "t": 148,
+          "b": 205,
+          "l": 96,
+          "r": 504,
+          "w": 408,
+          "h": 57
+        },
+        {
+          "txt": "Toward the Unknown",
+          "t": 206,
+          "b": 269,
+          "l": 96,
+          "r": 617,
+          "w": 522,
+          "h": 63
+        }
+      ],
+      "btnBottomToViewport": 187,
+      "hOverflow": false,
+      "globeReady": true,
+      "globeCircle": {
+        "cx": 892,
+        "cy": 384,
+        "r": 219
+      },
+      "lineHits": [
+        0,
+        0
+      ],
+      "secondLineWraps": false,
+      "starLayers": 3,
+      "starPoints": 480,
+      "starOpacities": [
+        0.364,
+        0.229,
+        0.141
+      ],
+      "nebulaLayers": 2,
+      "nebulaOpacities": [
+        0.054,
+        0.043
+      ]
+    },
+    "zh": {
+      "lang": "zh",
+      "viewport": {
+        "w": 1366,
+        "h": 768
+      },
+      "h1": {
+        "t": 155,
+        "b": 302,
+        "l": 96,
+        "r": 438,
+        "w": 343,
+        "h": 147
+      },
+      "sub": {
+        "t": 336,
+        "b": 456,
+        "l": 96,
+        "r": 438,
+        "w": 343,
+        "h": 120
+      },
+      "btn": {
+        "t": 520,
+        "b": 552,
+        "l": 96,
+        "r": 193,
+        "w": 97,
+        "h": 32
+      },
+      "ems": [
+        {
+          "txt": "始于观测，",
+          "t": 148,
+          "b": 235,
+          "l": 96,
+          "r": 438,
+          "w": 343,
+          "h": 87
+        },
+        {
+          "txt": "走向未知",
+          "t": 222,
+          "b": 309,
+          "l": 96,
+          "r": 370,
+          "w": 274,
+          "h": 87
+        }
+      ],
+      "btnBottomToViewport": 216,
+      "hOverflow": false,
+      "globeReady": true,
+      "globeCircle": {
+        "cx": 892,
+        "cy": 384,
+        "r": 218
+      },
+      "lineHits": [
+        0,
+        0
+      ],
+      "secondLineWraps": false,
+      "starLayers": 3,
+      "starPoints": 480,
+      "starOpacities": [
+        0.378,
+        0.205,
+        0.165
+      ],
+      "nebulaLayers": 2,
+      "nebulaOpacities": [
+        0.055,
+        0.042
+      ]
+    }
+  },
+  "tablet": {
+    "en": {
+      "lang": "en",
+      "viewport": {
+        "w": 1024,
+        "h": 768
+      },
+      "h1": {
+        "t": 333,
+        "b": 436,
+        "l": 22,
+        "r": 542,
+        "w": 520,
+        "h": 103
+      },
+      "sub": {
+        "t": 470,
+        "b": 576,
+        "l": 22,
+        "r": 542,
+        "w": 520,
+        "h": 106
+      },
+      "btn": {
+        "t": 616,
+        "b": 648,
+        "l": 22,
+        "r": 248,
+        "w": 226,
+        "h": 32
+      },
+      "ems": [
+        {
+          "txt": "From Observation,",
+          "t": 327,
+          "b": 389,
+          "l": 22,
+          "r": 432,
+          "w": 410,
+          "h": 62
+        },
+        {
+          "txt": "Toward the Unknown",
+          "t": 379,
+          "b": 441,
+          "l": 22,
+          "r": 480,
+          "w": 458,
+          "h": 62
+        }
+      ],
+      "btnBottomToViewport": 120,
+      "hOverflow": false,
+      "globeReady": true,
+      "globeCircle": {
+        "cx": 721,
+        "cy": 384,
+        "r": 219
+      },
+      "lineHits": [
+        0,
+        0
+      ],
+      "secondLineWraps": false,
+      "starLayers": 3,
+      "starPoints": 480,
+      "starOpacities": [
+        0.364,
+        0.229,
+        0.141
+      ],
+      "nebulaLayers": 2,
+      "nebulaOpacities": [
+        0.054,
+        0.043
+      ]
+    },
+    "zh": {
+      "lang": "zh",
+      "viewport": {
+        "w": 1024,
+        "h": 768
+      },
+      "h1": {
+        "t": 333,
+        "b": 436,
+        "l": 22,
+        "r": 267,
+        "w": 245,
+        "h": 103
+      },
+      "sub": {
+        "t": 470,
+        "b": 576,
+        "l": 22,
+        "r": 267,
+        "w": 245,
+        "h": 106
+      },
+      "btn": {
+        "t": 616,
+        "b": 648,
+        "l": 22,
+        "r": 119,
+        "w": 97,
+        "h": 32
+      },
+      "ems": [
+        {
+          "txt": "始于观测，",
+          "t": 327,
+          "b": 389,
+          "l": 22,
+          "r": 267,
+          "w": 245,
+          "h": 62
+        },
+        {
+          "txt": "走向未知",
+          "t": 379,
+          "b": 441,
+          "l": 22,
+          "r": 218,
+          "w": 196,
+          "h": 62
+        }
+      ],
+      "btnBottomToViewport": 120,
+      "hOverflow": false,
+      "globeReady": true,
+      "globeCircle": {
+        "cx": 721,
+        "cy": 384,
+        "r": 218
+      },
+      "lineHits": [
+        0,
+        0
+      ],
+      "secondLineWraps": false,
+      "starLayers": 3,
+      "starPoints": 480,
+      "starOpacities": [
+        0.378,
+        0.205,
+        0.165
+      ],
+      "nebulaLayers": 2,
+      "nebulaOpacities": [
+        0.055,
+        0.042
+      ]
+    }
+  },
+  "mobile": {
+    "zh": {
+      "lang": "zh",
+      "viewport": {
+        "w": 390,
+        "h": 844
+      },
+      "h1": {
+        "t": 471,
+        "b": 549,
+        "l": 22,
+        "r": 368,
+        "w": 346,
+        "h": 79
+      },
+      "sub": {
+        "t": 565,
+        "b": 671,
+        "l": 22,
+        "r": 368,
+        "w": 346,
+        "h": 106
+      },
+      "btn": {
+        "t": 693,
+        "b": 724,
+        "l": 22,
+        "r": 105,
+        "w": 83,
+        "h": 31
+      },
+      "ems": [
+        {
+          "txt": "始于观测，",
+          "t": 467,
+          "b": 514,
+          "l": 22,
+          "r": 207,
+          "w": 185,
+          "h": 47
+        },
+        {
+          "txt": "走向未知",
+          "t": 506,
+          "b": 553,
+          "l": 22,
+          "r": 170,
+          "w": 148,
+          "h": 47
+        }
+      ],
+      "btnBottomToViewport": 120,
+      "hOverflow": false,
+      "globeReady": true,
+      "globeCircle": {
+        "cx": 285,
+        "cy": 243,
+        "r": 138
+      },
+      "lineHits": [
+        0,
+        0
+      ],
+      "secondLineWraps": false,
+      "starLayers": 3,
+      "starPoints": 480,
+      "starOpacities": [
+        0.364,
+        0.228,
+        0.141
+      ],
+      "nebulaLayers": 2,
+      "nebulaOpacities": [
+        0.054,
+        0.043
+      ]
+    },
+    "en": {
+      "lang": "en",
+      "viewport": {
+        "w": 390,
+        "h": 844
+      },
+      "h1": {
+        "t": 472,
+        "b": 543,
+        "l": 22,
+        "r": 368,
+        "w": 346,
+        "h": 71
+      },
+      "sub": {
+        "t": 559,
+        "b": 671,
+        "l": 22,
+        "r": 368,
+        "w": 346,
+        "h": 112
+      },
+      "btn": {
+        "t": 693,
+        "b": 724,
+        "l": 22,
+        "r": 202,
+        "w": 180,
+        "h": 31
+      },
+      "ems": [
+        {
+          "txt": "From Observation,",
+          "t": 468,
+          "b": 510,
+          "l": 22,
+          "r": 300,
+          "w": 278,
+          "h": 42
+        },
+        {
+          "txt": "Toward the Unknown",
+          "t": 503,
+          "b": 545,
+          "l": 22,
+          "r": 332,
+          "w": 310,
+          "h": 42
+        }
+      ],
+      "btnBottomToViewport": 120,
+      "hOverflow": false,
+      "globeReady": true,
+      "globeCircle": {
+        "cx": 285,
+        "cy": 243,
+        "r": 137
+      },
+      "lineHits": [
+        0,
+        0
+      ],
+      "secondLineWraps": false,
+      "starLayers": 3,
+      "starPoints": 480,
+      "starOpacities": [
+        0.38,
+        0.201,
+        0.169
+      ],
+      "nebulaLayers": 2,
+      "nebulaOpacities": [
+        0.055,
+        0.042
+      ]
+    }
+  }
+}
