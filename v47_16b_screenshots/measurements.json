@@ -1,0 +1,43 @@
+{
+  "desktop": {
+    "cards": [
+      {
+        "id": "ANT-A01",
+        "cardH": 250,
+        "badgeTopRight": true,
+        "badgeTextCentered": [
+          0,
+          0
+        ],
+        "badgeText": "运行节点",
+        "type": "南京观测节点",
+        "loc": "Deployment Site部署地点 部署地点 南京，中国"
+      },
+      {
+        "id": "ANT-A02",
+        "cardH": 250,
+        "badgeTopRight": true,
+        "badgeTextCentered": [
+          0,
+          0
+        ],
+        "badgeText": "即将上线",
+        "type": "未来观测节点",
+        "loc": null
+      },
+      {
+        "id": "ANT-A03",
+        "cardH": 250,
+        "badgeTopRight": true,
+        "badgeTextCentered": [
+          0,
+          0
+        ],
+        "badgeText": "即将上线",
+        "type": "未来观测节点",
+        "loc": null
+      }
+    ],
+    "overflow": false
+  }
+}

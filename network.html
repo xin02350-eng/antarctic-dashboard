@@ -111,8 +111,14 @@
     .term .th-right{display:flex;align-items:center;gap:8px}
     .node-led{width:8px;height:8px;border-radius:50%;background:#00e5a8;box-shadow:0 0 10px rgba(0,229,168,.9);animation:netPulse 2.4s ease-out infinite}
     .term .th h4{font-size:15px;letter-spacing:3px;color:#eafcff;font-weight:600}
-    .badge{font-size:8px;letter-spacing:2px;color:#9fd8c2;border:1px solid rgba(0,229,168,.25);border-radius:999px;padding:3px 9px}
+    .badge{display:inline-flex;align-items:center;justify-content:center;font-size:8px;letter-spacing:2px;color:#9fd8c2;border:1px solid rgba(0,229,168,.25);border-radius:999px;padding:3px 9px;line-height:1}
     .term .type{font-size:9px;color:#bcd3e0;margin-top:8px;line-height:1.7}
+    .term .term-divider{height:1px;background:linear-gradient(90deg,rgba(0,229,168,.35),rgba(98,217,255,.06));margin:12px 0 10px}
+    .term .info{display:flex;flex-direction:column;gap:7px}
+    .term .info-row{display:flex;align-items:center;justify-content:space-between;font-size:8px;letter-spacing:1.5px;color:#7f9db0;text-transform:uppercase}
+    .term .info-row b{color:#cfe2ee;font-weight:500;letter-spacing:1px;text-transform:none}
+    .term .info-row b.on{display:inline-flex;align-items:center;gap:6px;color:#8ff0cf}
+    .term .info-row b.on::before{content:"";width:6px;height:6px;border-radius:50%;background:#00e5a8;box-shadow:0 0 8px rgba(0,229,168,.8);animation:netPulse 2.4s ease-out infinite}
     .term .stats{display:flex;gap:10px;margin-top:14px}
     .term .stats div{flex:1;border:1px solid rgba(98,217,255,.16);border-radius:4px;padding:8px 10px;background:rgba(4,16,28,.5)}
     .term .stats b{display:block;font-size:15px;font-weight:500;color:#eafcff;letter-spacing:1px;font-variant-numeric:tabular-nums}
@@ -127,11 +133,8 @@
     @keyframes futureScan{0%{transform:translateY(0)}100%{transform:translateY(340px)}}
     .term.future:hover{border-color:rgba(150,200,225,.52);background:linear-gradient(165deg,rgba(14,34,54,.56),rgba(9,22,36,.42));box-shadow:inset 0 1px 0 rgba(180,220,245,.06),inset 0 0 28px rgba(80,140,185,.06),0 12px 28px rgba(0,0,0,.24)}
     .term.future .th h4{color:#aec6d6}
-    .badge.soon{border-color:rgba(140,180,205,.4);color:#a9c2d2;letter-spacing:2px}
-    .term.future .soon-center{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;font-size:13px;letter-spacing:5px;color:#b8d4e4;text-transform:uppercase;text-shadow:0 0 14px rgba(120,180,215,.25)}
-    .term.future .soon{margin-top:auto;padding-top:12px;font-size:8px;letter-spacing:2px;color:#89a5ba;text-transform:uppercase}
-    .soon-led{width:7px;height:7px;border-radius:50%;background:rgba(150,190,215,.6);box-shadow:0 0 8px rgba(120,175,210,.4);animation:soonPulse 4s ease-in-out infinite}
-    @keyframes soonPulse{0%,100%{opacity:.45}50%{opacity:.9}}
+    .badge.soon{background:rgba(120,165,195,.1);border-color:rgba(140,180,205,.4);color:#a9c2d2;font-size:7px;letter-spacing:2px;padding:3px 8px}
+    .term.future > .soon{margin-top:auto;padding-top:12px;font-size:8px;letter-spacing:2px;color:#89a5ba;text-transform:uppercase}
     .net-status{flex:none;border:1px solid rgba(140,234,255,.16);border-radius:8px;padding:12px 16px;background:linear-gradient(165deg,rgba(9,28,44,.55),rgba(5,16,28,.4));backdrop-filter:blur(10px)}
     .net-status .ns-title{font-size:8px;letter-spacing:2.5px;color:rgba(140,234,255,.85);text-transform:uppercase;padding-bottom:8px;border-bottom:1px solid rgba(98,217,255,.14);margin-bottom:8px}
     .net-status .ns-row{display:flex;align-items:center;justify-content:space-between;font-size:8px;letter-spacing:1.8px;color:#bcd3e0;padding:5px 0;text-transform:uppercase}
@@ -241,7 +244,11 @@
       </div>
       <div class="term active">
         <div class="th"><h4>ANT-A01</h4><span class="th-right"><span class="node-led" aria-hidden="true"></span><span class="badge"><span data-lang="en">Active Node</span><span data-lang="zh">运行节点</span></span></span></div>
-        <p class="type"><span data-lang="en">Nanjing Observation Node</span><span data-lang="zh">南京观测节点</span></p>
+        <div class="term-divider" aria-hidden="true"></div>
+        <div class="info">
+          <div class="info-row"><span><span data-lang="en">Deployment Site</span><span data-lang="zh">部署地点</span></span><b><span data-lang="en">Nanjing, China</span><span data-lang="zh">南京，中国</span></b></div>
+          <div class="info-row"><span><span data-lang="en">Run Status</span><span data-lang="zh">运行状态</span></span><b class="on"><span data-lang="en">Online</span><span data-lang="zh">在线</span></b></div>
+        </div>
         <div class="stats">
           <div><b id="tRecords">--</b><span data-lang="en">Records</span><span data-lang="zh">记录</span></div>
           <div><b>LoRa</b><span data-lang="en">Uplink</span><span data-lang="zh">上行</span></div>
@@ -250,17 +257,15 @@
       </div>
 
       <div class="term future" data-href="./dashboard-a02.html">
-        <div class="th"><h4>ANT-A02</h4><span class="th-right"><span class="soon-led" aria-hidden="true"></span></span></div>
-        <div class="soon-center"><span data-lang="en">Coming Soon</span><span data-lang="zh">即将上线</span></div>
-        <p class="type"><span data-lang="en">Future Node</span><span data-lang="zh">未来节点</span></p>
+        <div class="th"><h4>ANT-A02</h4><span class="badge soon"><span data-lang="en">Coming Soon</span><span data-lang="zh">即将上线</span></span></div>
+        <p class="type"><span data-lang="en">Future Observation Node</span><span data-lang="zh">未来观测节点</span></p>
         <div class="soon"><span data-lang="en">Awaiting Deployment</span><span data-lang="zh">等待部署</span></div>
         <a class="enter" href="./dashboard-a02.html"><span data-lang="en">Enter Terminal</span><span data-lang="zh">进入终端</span></a>
       </div>
 
       <div class="term future" data-href="./dashboard-a03.html">
-        <div class="th"><h4>ANT-A03</h4><span class="th-right"><span class="soon-led" aria-hidden="true"></span></span></div>
-        <div class="soon-center"><span data-lang="en">Coming Soon</span><span data-lang="zh">即将上线</span></div>
-        <p class="type"><span data-lang="en">Future Node</span><span data-lang="zh">未来节点</span></p>
+        <div class="th"><h4>ANT-A03</h4><span class="badge soon"><span data-lang="en">Coming Soon</span><span data-lang="zh">即将上线</span></span></div>
+        <p class="type"><span data-lang="en">Future Observation Node</span><span data-lang="zh">未来观测节点</span></p>
         <div class="soon"><span data-lang="en">Awaiting Deployment</span><span data-lang="zh">等待部署</span></div>
         <a class="enter" href="./dashboard-a03.html"><span data-lang="en">Enter Terminal</span><span data-lang="zh">进入终端</span></a>
       </div>

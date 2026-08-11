@@ -1,0 +1,122 @@
+{
+  "desktop": {
+    "cards": [
+      {
+        "id": "ANT-A01",
+        "card": {
+          "cx": 1664,
+          "cy": 284,
+          "h": 250
+        },
+        "statusCenter": null,
+        "textCenter": null,
+        "offset": null,
+        "text": null
+      },
+      {
+        "id": "FUTURE",
+        "card": {
+          "cx": 1664,
+          "cy": 546,
+          "h": 250
+        },
+        "statusCenter": [
+          1664,
+          546
+        ],
+        "textCenter": [
+          1664,
+          546
+        ],
+        "offset": [
+          0,
+          0
+        ],
+        "text": "Coming Soon即"
+      },
+      {
+        "id": "FUTURE",
+        "card": {
+          "cx": 1664,
+          "cy": 808,
+          "h": 250
+        },
+        "statusCenter": [
+          1664,
+          808
+        ],
+        "textCenter": [
+          1664,
+          808
+        ],
+        "offset": [
+          0,
+          0
+        ],
+        "text": "Coming Soon即"
+      }
+    ],
+    "gapAtBottom": 0,
+    "overflow": false
+  },
+  "mobile": {
+    "cards": [
+      {
+        "id": "ANT-A01",
+        "card": {
+          "cx": 195,
+          "cy": 683,
+          "h": 180
+        },
+        "statusCenter": null,
+        "textCenter": null,
+        "offset": null,
+        "text": null
+      },
+      {
+        "id": "FUTURE",
+        "card": {
+          "cx": 195,
+          "cy": 910,
+          "h": 250
+        },
+        "statusCenter": [
+          195,
+          910
+        ],
+        "textCenter": [
+          195,
+          910
+        ],
+        "offset": [
+          0,
+          0
+        ],
+        "text": "Coming Soon即"
+      },
+      {
+        "id": "FUTURE",
+        "card": {
+          "cx": 195,
+          "cy": 1172,
+          "h": 250
+        },
+        "statusCenter": [
+          195,
+          1172
+        ],
+        "textCenter": [
+          195,
+          1172
+        ],
+        "offset": [
+          0,
+          0
+        ],
+        "text": "Coming Soon即"
+      }
+    ],
+    "gapAtBottom": 0,
+    "overflow": false
+  }
+}
