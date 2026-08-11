@@ -64,21 +64,21 @@
     #networkMap{flex:1;min-height:430px;background:#04101d;position:relative;z-index:1}
     #networkMap .leaflet-tile-pane{filter:invert(1) hue-rotate(185deg) brightness(.86) contrast(.92) saturate(.7);opacity:.95}
     #networkMap .leaflet-control-attribution{display:none}
-    .map-inner{position:absolute;inset:0;z-index:2;pointer-events:none;background:radial-gradient(ellipse at 50% 42%,rgba(14,52,78,.12),rgba(3,14,26,.34) 62%,rgba(1,7,14,.5) 100%),linear-gradient(180deg,rgba(6,26,44,.28),rgba(2,10,20,.42)),repeating-linear-gradient(112deg,rgba(140,234,255,.020) 0 1px,transparent 1px 90px),repeating-linear-gradient(0deg,rgba(140,234,255,.030) 0 1px,transparent 1px 72px),repeating-linear-gradient(90deg,rgba(140,234,255,.030) 0 1px,transparent 1px 72px);box-shadow:inset 0 0 40px rgba(2,8,17,.25)}
-    .net-marker{position:relative;width:96px;height:96px}
-    .net-marker .halo{position:absolute;left:50%;top:50%;width:64px;height:64px;margin:-32px 0 0 -32px;border-radius:50%;border:1px solid rgba(0,229,168,.32);opacity:0;animation:netRing 4.2s ease-out infinite}
-    .net-marker .halo.h2{animation-delay:1.4s;border-color:rgba(98,217,255,.26)}
-    .net-marker .halo.h3{animation-delay:2.8s;border-color:rgba(0,229,168,.18)}
-    @keyframes netRing{0%{transform:scale(.35);opacity:.85}70%{transform:scale(1.55);opacity:.2}100%{transform:scale(2.05);opacity:0}}
-    .net-marker .dot{position:absolute;left:50%;top:50%;width:16px;height:16px;margin:-8px 0 0 -8px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#c9fff2,#00e5a8 48%,rgba(0,229,168,.28));box-shadow:0 0 14px rgba(0,229,168,.9),0 0 34px rgba(0,229,168,.42);animation:coreBreath 3.2s ease-in-out infinite}
-    @keyframes coreBreath{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.16);opacity:.86}}
-    .net-marker .orbit{position:absolute;left:50%;top:50%;width:104px;height:104px;margin:-52px 0 0 -52px;animation:orbitSpin 14s linear infinite;opacity:.8}
-    @keyframes orbitSpin{to{transform:rotate(360deg)}}
-    .net-marker .orbit i{position:absolute;width:3px;height:3px;border-radius:50%;background:#8ceaff;box-shadow:0 0 6px rgba(140,234,255,.8)}
-    .net-marker .orbit i:nth-child(1){top:-1.5px;left:50%;margin-left:-1.5px}
-    .net-marker .orbit i:nth-child(2){top:50%;right:-1.5px;margin-top:-1.5px}
-    .net-marker .orbit i:nth-child(3){bottom:-1.5px;left:50%;margin-left:-1.5px}
-    .net-marker .orbit i:nth-child(4){top:50%;left:-1.5px;margin-top:-1.5px}
+    #networkMap .map-layer{position:absolute;pointer-events:none}
+    #networkMap .map-tint{inset:0;z-index:430;background:radial-gradient(ellipse at 50% 42%,rgba(14,52,78,.12),rgba(3,14,26,.30) 62%,rgba(1,7,14,.42) 100%),linear-gradient(180deg,rgba(6,26,44,.22),rgba(2,10,20,.32)),repeating-linear-gradient(112deg,rgba(140,234,255,.020) 0 1px,transparent 1px 90px),repeating-linear-gradient(0deg,rgba(140,234,255,.030) 0 1px,transparent 1px 72px),repeating-linear-gradient(90deg,rgba(140,234,255,.030) 0 1px,transparent 1px 72px)}
+    #networkMap .map-scan{left:0;right:0;top:0;height:130px;z-index:470;background:linear-gradient(180deg,transparent,rgba(98,217,255,.045) 40%,rgba(140,234,255,.12) 50%,rgba(98,217,255,.045) 60%,transparent);animation:dashScan 9s linear infinite;will-change:transform}
+    #networkMap .map-radar{width:620px;height:620px;left:50%;top:50%;margin:-310px 0 0 -310px;z-index:480;opacity:.55}
+    #networkMap .map-radar i{position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 0deg,rgba(98,217,255,.16),rgba(98,217,255,.03) 65deg,transparent 95deg);animation:dashRadarSpin 14s linear infinite}
+    #networkMap .gps-rings{width:130px;height:130px;left:50%;top:50%;margin:-65px 0 0 -65px;z-index:490;opacity:1}
+    #networkMap .gps-rings i{position:absolute;inset:0;border-radius:50%;border:1px solid rgba(140,234,255,.6);animation:dashRing 3.4s ease-out infinite}
+    #networkMap .gps-rings i:nth-child(2){animation-delay:1.13s}
+    #networkMap .gps-rings i:nth-child(3){animation-delay:2.26s}
+    @keyframes dashScan{from{transform:translateY(-130px)}to{transform:translateY(920px)}}
+    @keyframes dashRadarSpin{to{transform:rotate(360deg)}}
+    @keyframes dashRing{0%{transform:scale(.3);opacity:.85}100%{transform:scale(1.7);opacity:0}}
+    .net-marker{position:relative;width:48px;height:48px}
+    .net-marker .dot{position:absolute;left:50%;top:50%;width:12px;height:12px;margin:-6px 0 0 -6px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#c9fff2,#00e5a8 48%,rgba(0,229,168,.28));box-shadow:0 0 14px rgba(0,229,168,.95),0 0 34px rgba(0,229,168,.5);animation:coreBreath 3.2s ease-in-out infinite}
+    @keyframes coreBreath{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.14);opacity:.86}}
     .net-marker .lab{position:absolute;top:100%;left:50%;transform:translateX(-50%);margin-top:6px;font-size:9px;letter-spacing:2px;color:#eafcff;text-shadow:0 1px 6px rgba(2,8,17,.9),0 0 12px rgba(0,229,168,.35);white-space:nowrap}
     .map-foot{display:flex;align-items:center;justify-content:space-between;padding:10px 18px;border-top:1px solid rgba(98,217,255,.09);font-size:8px;letter-spacing:2px;color:#6f93a8;background:rgba(3,12,22,.55)}
     .map-foot b{color:#9fd8c2;font-weight:500}
@@ -192,8 +192,12 @@
         <span class="t"><span data-lang="en">Node 01</span><span data-lang="zh">节点 01</span> — <b>ANT-A01</b></span>
         <span class="live"><i></i><span data-lang="en">Online</span><span data-lang="zh">在线</span></span>
       </div>
-      <div id="networkMap"></div>
-      <div class="map-inner" aria-hidden="true"></div>
+      <div id="networkMap">
+        <div class="map-layer map-tint" aria-hidden="true"></div>
+        <div class="map-layer map-scan" aria-hidden="true"></div>
+        <div class="map-layer map-radar" aria-hidden="true"><i></i></div>
+        <div class="map-layer gps-rings" aria-hidden="true"><i></i><i></i><i></i></div>
+      </div>
       <div class="dossier">
         <h4>ANT-A01</h4>
         <div class="dsub"><span data-lang="en">Nanjing Observation Node</span><span data-lang="zh">南京观测节点</span></div>
@@ -276,7 +280,7 @@
     if (window.L) {
       var map = L.map('networkMap', { zoomControl: false, attributionControl: false }).setView([32.049141, 118.793686], 6);
       L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '' }).addTo(map);
-      var icon = L.divIcon({ className: 'net-marker', html: '<span class="halo h1"></span><span class="halo h2"></span><span class="halo h3"></span><span class="dot"></span><span class="orbit"><i></i><i></i><i></i><i></i></span><span class="lab" data-lang="en">NANJING</span><span class="lab" data-lang="zh">南京</span>', iconSize: [96, 96], iconAnchor: [48, 48] });
+      var icon = L.divIcon({ className: 'net-marker', html: '<span class="dot"></span><span class="lab" data-lang="en">NANJING</span><span class="lab" data-lang="zh">南京</span>', iconSize: [48, 48], iconAnchor: [24, 24] });
       L.marker([32.049141, 118.793686], { icon: icon }).addTo(map).bindPopup('ANT-A01 · NANJING');
       window.networkMap = map;
       setTimeout(function () { map.invalidateSize(); }, 400);
