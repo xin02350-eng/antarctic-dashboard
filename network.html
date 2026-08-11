@@ -102,7 +102,7 @@
     .side-head .side-title::before{content:"";width:18px;height:1px;background:linear-gradient(90deg,rgba(0,229,168,.9),transparent)}
     .side-head .side-led{margin-left:auto;width:8px;height:8px;border-radius:50%;background:#00e5a8;box-shadow:0 0 10px rgba(0,229,168,.9);animation:netPulse 2.4s ease-out infinite}
     .side-head .side-sub{margin-top:8px;font-size:8px;letter-spacing:2.4px;color:rgba(140,234,255,.6);text-transform:uppercase}
-    .term{position:relative;display:flex;flex-direction:column;border:1px solid rgba(140,234,255,.2);border-radius:8px;padding:18px;background:rgba(9,26,42,.55);backdrop-filter:blur(12px);box-shadow:inset 0 1px 0 rgba(255,255,255,.04),0 14px 34px rgba(0,0,0,.3);overflow:hidden;flex:1 1 0;min-height:0;transition:transform .3s ease,border-color .3s ease,box-shadow .3s ease,background .3s ease}
+    .term{position:relative;display:flex;flex-direction:column;border:1px solid rgba(140,234,255,.2);border-radius:10px;padding:18px;background:rgba(9,26,42,.55);backdrop-filter:blur(12px);box-shadow:inset 0 1px 0 rgba(255,255,255,.04),0 14px 34px rgba(0,0,0,.3);overflow:hidden;flex:1 1 0;min-height:0;transition:transform .3s ease,border-color .3s ease,box-shadow .3s ease,background .3s ease}
     .term:hover{transform:translateY(-2px)}
     .term.active{border-color:rgba(0,229,168,.6);background:linear-gradient(165deg,rgba(13,40,56,.7),rgba(8,25,39,.55));animation:cardBreathe 3.6s ease-in-out infinite}
     @keyframes cardBreathe{0%,100%{box-shadow:inset 0 0 18px rgba(0,229,168,.05),0 14px 40px rgba(0,0,0,.36),0 0 22px rgba(0,229,168,.08)}50%{box-shadow:inset 0 0 30px rgba(0,229,168,.11),0 14px 40px rgba(0,0,0,.36),0 0 36px rgba(0,229,168,.18)}}
@@ -121,11 +121,16 @@
     .term .enter::after{content:"→";color:#8ceaff;font-size:13px;transition:transform .3s ease}
     .term .enter:hover{border-color:#00e5a8;color:#fff}
     .term .enter:hover::after{transform:translateX(4px)}
-    .term.future{border-style:dashed;border-color:rgba(140,175,196,.3);background:rgba(8,20,33,.38);cursor:pointer}
-    .term.future:hover{border-color:rgba(140,190,215,.55);background:rgba(11,26,41,.5);box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 12px 30px rgba(0,0,0,.28)}
-    .term.future .th h4{color:#a8bfce}
-    .badge.soon{border-color:rgba(140,180,205,.35);color:#8fa9bb}
-    .term.future .soon{margin-top:auto;padding-top:12px;font-size:8px;letter-spacing:2.5px;color:#6c8ba0;text-transform:uppercase}
+    .term.future{background:linear-gradient(165deg,rgba(11,28,45,.58),rgba(6,17,28,.44));border:1px solid rgba(130,170,195,.3);box-shadow:inset 0 1px 0 rgba(180,220,245,.05),inset 0 0 26px rgba(80,140,185,.05),0 10px 26px rgba(0,0,0,.22);cursor:pointer}
+    .term.future::before{content:"";position:absolute;left:0;top:0;right:0;height:1px;background:linear-gradient(90deg,rgba(120,180,215,.5),rgba(98,217,255,.06))}
+    .term.future::after{content:"";position:absolute;left:12%;right:12%;top:-45%;height:32%;background:linear-gradient(180deg,transparent,rgba(140,210,255,.06),transparent);animation:futureScan 6.5s linear infinite;pointer-events:none}
+    @keyframes futureScan{0%{transform:translateY(0)}100%{transform:translateY(340px)}}
+    .term.future:hover{border-color:rgba(150,200,225,.55);background:linear-gradient(165deg,rgba(13,32,51,.62),rgba(8,20,33,.5));box-shadow:inset 0 1px 0 rgba(180,220,245,.07),inset 0 0 34px rgba(80,140,185,.08),0 12px 30px rgba(0,0,0,.26)}
+    .term.future .th h4{color:#aec6d6}
+    .badge.soon{border-color:rgba(140,180,205,.42);color:#a9c2d2}
+    .term.future .soon{margin-top:auto;padding-top:12px;font-size:8px;letter-spacing:2.5px;color:#7f9db3;text-transform:uppercase}
+    .soon-led{width:7px;height:7px;border-radius:50%;background:rgba(150,190,215,.6);box-shadow:0 0 8px rgba(120,175,210,.4);animation:soonPulse 4s ease-in-out infinite}
+    @keyframes soonPulse{0%,100%{opacity:.45}50%{opacity:.9}}
     .net-status{flex:none;border:1px solid rgba(140,234,255,.16);border-radius:8px;padding:12px 16px;background:linear-gradient(165deg,rgba(9,28,44,.55),rgba(5,16,28,.4));backdrop-filter:blur(10px)}
     .net-status .ns-title{font-size:8px;letter-spacing:2.5px;color:rgba(140,234,255,.85);text-transform:uppercase;padding-bottom:8px;border-bottom:1px solid rgba(98,217,255,.14);margin-bottom:8px}
     .net-status .ns-row{display:flex;align-items:center;justify-content:space-between;font-size:8px;letter-spacing:1.8px;color:#bcd3e0;padding:5px 0;text-transform:uppercase}
@@ -244,14 +249,14 @@
       </div>
 
       <div class="term future" data-href="./dashboard-a02.html">
-        <div class="th"><h4>ANT-A02</h4><span class="badge soon"><span data-lang="en">Coming Soon</span><span data-lang="zh">即将上线</span></span></div>
+        <div class="th"><h4>ANT-A02</h4><span class="th-right"><span class="soon-led" aria-hidden="true"></span><span class="badge soon"><span data-lang="en">Coming Soon</span><span data-lang="zh">即将上线</span></span></span></div>
         <p class="type"><span data-lang="en">Future Node</span><span data-lang="zh">未来节点</span></p>
         <div class="soon"><span data-lang="en">Awaiting Deployment</span><span data-lang="zh">等待部署</span></div>
         <a class="enter" href="./dashboard-a02.html"><span data-lang="en">Enter Terminal</span><span data-lang="zh">进入终端</span></a>
       </div>
 
       <div class="term future" data-href="./dashboard-a03.html">
-        <div class="th"><h4>ANT-A03</h4><span class="badge soon"><span data-lang="en">Coming Soon</span><span data-lang="zh">即将上线</span></span></div>
+        <div class="th"><h4>ANT-A03</h4><span class="th-right"><span class="soon-led" aria-hidden="true"></span><span class="badge soon"><span data-lang="en">Coming Soon</span><span data-lang="zh">即将上线</span></span></span></div>
         <p class="type"><span data-lang="en">Future Node</span><span data-lang="zh">未来节点</span></p>
         <div class="soon"><span data-lang="en">Awaiting Deployment</span><span data-lang="zh">等待部署</span></div>
         <a class="enter" href="./dashboard-a03.html"><span data-lang="en">Enter Terminal</span><span data-lang="zh">进入终端</span></a>
