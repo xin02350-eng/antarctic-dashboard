@@ -97,13 +97,7 @@
 
     /* 右侧：选择面板 */
     .side{display:flex;flex-direction:column;gap:12px;min-width:0}
-    .guide{border:1px solid rgba(140,234,255,.18);border-radius:8px;padding:16px;background:linear-gradient(175deg,rgba(11,34,52,.55),rgba(6,20,33,.42))}
-    .guide h3{font-size:9px;letter-spacing:3px;color:rgba(140,234,255,.92);font-weight:500;margin-bottom:12px}
-    .guide ul{list-style:none}
-    .guide li{display:flex;align-items:center;justify-content:space-between;font-size:9px;letter-spacing:1.5px;color:#bcd3e0;padding:7px 0;border-bottom:1px solid rgba(98,217,255,.14)}
-    .guide li:last-child{border-bottom:0}
-    .guide li em{font-style:normal;color:rgba(98,217,255,.55);font-size:8px;letter-spacing:2px}
-    .term{position:relative;border:1px solid rgba(140,234,255,.2);border-radius:8px;padding:18px;background:rgba(9,26,42,.5);backdrop-filter:blur(8px);overflow:hidden}
+    .term{position:relative;display:flex;flex-direction:column;border:1px solid rgba(140,234,255,.2);border-radius:8px;padding:18px;background:rgba(9,26,42,.5);backdrop-filter:blur(8px);overflow:hidden;flex:1 1 0;min-height:0}
     .term.active{border-color:rgba(0,229,168,.5);background:linear-gradient(165deg,rgba(12,38,52,.65),rgba(7,23,36,.5));box-shadow:0 14px 40px rgba(0,0,0,.36),0 0 26px rgba(0,229,168,.08)}
     .term.active::before{content:"";position:absolute;left:0;top:0;right:0;height:2px;background:linear-gradient(90deg,rgba(0,229,168,.75),rgba(98,217,255,.1))}
     .term .th{display:flex;align-items:center;justify-content:space-between}
@@ -114,7 +108,7 @@
     .term .stats div{flex:1;border:1px solid rgba(98,217,255,.16);border-radius:4px;padding:8px 10px;background:rgba(4,16,28,.5)}
     .term .stats b{display:block;font-size:15px;font-weight:500;color:#eafcff;letter-spacing:1px;font-variant-numeric:tabular-nums}
     .term .stats span{display:block;font-size:7px;letter-spacing:1.5px;color:#7f9db0;margin-top:3px;text-transform:uppercase}
-    .term .enter{display:flex;align-items:center;justify-content:space-between;margin-top:16px;border-bottom:1px solid rgba(98,217,255,.4);color:#eafcff;font-size:10px;letter-spacing:3px;padding:8px 2px;transition:border-color .3s ease,color .3s ease}
+    .term .enter{display:flex;align-items:center;justify-content:space-between;margin-top:auto;padding-top:16px;border-bottom:1px solid rgba(98,217,255,.4);color:#eafcff;font-size:10px;letter-spacing:3px;padding:8px 2px;transition:border-color .3s ease,color .3s ease}
     .term .enter::after{content:"→";color:#8ceaff;font-size:13px;transition:transform .3s ease}
     .term .enter:hover{border-color:#00e5a8;color:#fff}
     .term .enter:hover::after{transform:translateX(4px)}
@@ -122,7 +116,7 @@
     .term.future:hover{border-color:rgba(127,163,181,.48);background:rgba(8,20,32,.3)}
     .term.future .th h4{color:#8aa3b4}
     .badge.soon{border-color:rgba(127,163,181,.25);color:#7c97a9}
-    .term.future .soon{margin-top:12px;font-size:8px;letter-spacing:2.5px;color:#4f6b7c;text-transform:uppercase}
+    .term.future .soon{margin-top:auto;padding-top:12px;font-size:8px;letter-spacing:2.5px;color:#4f6b7c;text-transform:uppercase}
 
     body.is-leaving::after{content:"";position:fixed;inset:0;z-index:99;background:rgba(2,8,17,.96);opacity:0;pointer-events:none;animation:leaveFade .6s ease forwards}
     @keyframes leaveFade{to{opacity:1}}
@@ -135,7 +129,6 @@
       .rec.active::before{left:8px;right:8px;top:auto;bottom:auto;width:auto;height:2px}
       .arc-foot{display:none}
       .side{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
-      .guide{grid-column:1 / -1}
     }
     @media (max-width:700px){
       .top{padding:12px 16px}
@@ -221,16 +214,6 @@
     </section>
 
     <aside class="side">
-      <div class="guide">
-        <h3><span data-lang="en">Select Observation Node</span><span data-lang="zh">选择观测终端</span></h3>
-        <ul>
-          <li><span data-lang="en">Status</span><span data-lang="zh">实时</span><em><span data-lang="en">Live</span><span data-lang="zh">在线</span></em></li>
-          <li><span data-lang="en">Sensors</span><span data-lang="zh">环境</span><em><span data-lang="en">Env</span><span data-lang="zh">数据</span></em></li>
-          <li><span data-lang="en">Hardware</span><span data-lang="zh">硬件</span><em><span data-lang="en">HW</span><span data-lang="zh">设备</span></em></li>
-          <li><span data-lang="en">Analysis</span><span data-lang="zh">任务</span><em><span data-lang="en">Mission</span><span data-lang="zh">分析</span></em></li>
-        </ul>
-      </div>
-
       <div class="term active">
         <div class="th"><h4>ANT-A01</h4><span class="badge"><span data-lang="en">Active Node</span><span data-lang="zh">运行节点</span></span></div>
         <p class="type"><span data-lang="en">Nanjing Observation Node</span><span data-lang="zh">南京观测节点</span></p>
