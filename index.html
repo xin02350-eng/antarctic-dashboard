@@ -183,7 +183,7 @@
   <script>
   (function () {
     /* ---------- 真实坐标 ---------- */
-    var NJ = { lat: 32.049141, lng: 118.793686 };   // Nanjing（项目实测坐标）
+    var NJ = { lat: 31.9, lng: 118.8 };             // Nanjing（31.9N 118.8E）
     var NE = { lat: 45.75, lng: 126.65 };           // Harbin，中国东北
     var AN = { lat: -82.0, lng: 70.0 };             // 南极大陆内部（恩德比地，已验证落在 Antarctica polygon 内）
 
@@ -214,20 +214,6 @@
       { startLat: NJ.lat, startLng: NJ.lng, endLat: NE.lat, endLng: NE.lng, color: '#8ceaff' },
       { startLat: NE.lat, startLng: NE.lng, endLat: AN.lat, endLng: AN.lng, color: '#8ceaff' }
     ];
-
-    function labelData(lang) {
-      var names = lang === 'zh' ? labelsZh : labelsEn;
-      return [
-        { lat: NJ.lat, lng: NJ.lng, text: names[0], size: 0.9, color: '#eafcff', dotRadius: 0.12, altitude: 0.03 },
-        { lat: NE.lat, lng: NE.lng, text: names[1], size: 0.8, color: '#b7e6ff', dotRadius: 0.1, altitude: 0.03 }
-      ];
-    }
-    var labelsEn = ['NANJING', 'NORTHEAST CHINA', 'ANTARCTICA'];
-    var labelsZh = ['南京', '东北地区', '南极大陆'];
-
-    window.onLangChange = function (lang) {
-      if (globe) globe.labelsData(labelData(lang));
-    };
 
     function init() {
       if (!window.THREE || !window.ThreeGlobe) {
@@ -285,8 +271,6 @@
         .polygonStrokeColor(function () { return 'rgba(140,234,255,0.55)'; })
         .pointsData(nodeData)
         .pointLat('lat').pointLng('lng').pointColor('color').pointAltitude('alt').pointRadius('radius')
-        .labelsData(labelData(window.anxCurrentLang || 'en'))
-        .labelLat('lat').labelLng('lng').labelText('text').labelSize('size').labelColor('color').labelDotRadius('dotRadius').labelAltitude('altitude')
         .arcsData(arcData)
         .arcStartLat('startLat').arcStartLng('startLng').arcEndLat('endLat').arcEndLng('endLng')
         .arcColor('color').arcAltitudeAutoScale(0.42).arcStroke(0.5)
@@ -381,7 +365,60 @@
           pos.needsUpdate = true;
         } catch (e) {}
       }
-function animate() {
+      var labelCv = document.getElementById('leaderCv');
+      var labelCtx = labelCv.getContext('2d');
+      function drawLabels2D(t) {
+        labelCv.width = window.innerWidth;
+        labelCv.height = window.innerHeight;
+        labelCtx.clearRect(0, 0, labelCv.width, labelCv.height);
+        var items = [
+          { node: NJ, name: 'NANJING', coord: '31.9N · 118.8E', dy: 12, color: 'rgba(234,252,255,.92)' },
+          { node: NE, name: 'NORTHEAST CHINA', coord: '45.75N · 126.65E', dy: -26, color: 'rgba(196,232,250,.85)' }
+        ];
+        for (var li = 0; li < items.length; li++) {
+          var it = items[li];
+          var rr = 100 * 1.02;
+          var phi = (90 - it.node.lat) * Math.PI / 180;
+          var theta = (90 - it.node.lng) * Math.PI / 180;
+          var v = new THREE.Vector3(
+            rr * Math.sin(phi) * Math.cos(theta),
+            rr * Math.cos(phi),
+            rr * Math.sin(phi) * Math.sin(theta)
+          );
+          var n = v.clone().normalize();
+          globe.updateMatrixWorld();
+          var w = v.clone().applyMatrix4(globe.matrixWorld);
+          var nw = n.clone().transformDirection(globe.matrixWorld);
+          if (nw.dot(camera.position.clone().sub(w).normalize()) < 0.1) continue;
+          var sp = w.clone().project(camera);
+          if (sp.z > 1 || sp.z < -1) continue;
+          var sx = (sp.x * 0.5 + 0.5) * window.innerWidth;
+          var sy = (-sp.y * 0.5 + 0.5) * window.innerHeight;
+          var ax = sx + 26, ay = sy + it.dy;
+          labelCtx.strokeStyle = 'rgba(140,234,255,.5)';
+          labelCtx.lineWidth = 1;
+          labelCtx.beginPath();
+          labelCtx.moveTo(sx, sy);
+          labelCtx.lineTo(ax - 4, ay);
+          labelCtx.stroke();
+          labelCtx.font = '500 10px "Segoe UI",system-ui,sans-serif';
+          labelCtx.fillStyle = it.color;
+          labelCtx.textBaseline = 'middle';
+          labelCtx.fillText(it.name, ax, ay);
+          labelCtx.font = '400 8px "Segoe UI",system-ui,sans-serif';
+          labelCtx.fillStyle = 'rgba(140,234,255,.6)';
+          labelCtx.fillText(it.coord, ax, ay + 12);
+          if (li === 0) {
+            var pulse = 0.5 + 0.5 * Math.sin(t / 320);
+            labelCtx.beginPath();
+            labelCtx.arc(sx, sy, 12 + 6 * pulse, 0, Math.PI * 2);
+            labelCtx.strokeStyle = 'rgba(0,229,168,' + (0.4 * pulse).toFixed(2) + ')';
+            labelCtx.lineWidth = 1;
+            labelCtx.stroke();
+          }
+        }
+      }
+      function animate() {
         requestAnimationFrame(animate);
         tick++;
         globe.rotation.y += 0.00015;
@@ -389,6 +426,7 @@ function animate() {
         setCam(camLat, camLng);
         setGlobeOffset();
         updateLeader();
+        drawLabels2D(tick);
         /* 粒子沿两条球面弧线缓慢流动 */
         for (var i = 0; i < 8; i++) {
           var route = i < 4 ? R1 : R2;
