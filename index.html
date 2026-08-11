@@ -152,8 +152,8 @@
   </footer>
 
   <div class="an-label">
-    <b>ANTARCTICA</b>
-    <span data-lang="en">Antarctic Continent</span><span data-lang="zh">南极大陆</span>
+    <b data-lang="en">ANTARCTICA</b><b data-lang="zh">南极大陆</b>
+    <span data-lang="en">Future Goal</span><span data-lang="zh">未来目标</span>
   </div>
 
   <script>
@@ -367,14 +367,18 @@
       }
       var labelCv = document.getElementById('leaderCv');
       var labelCtx = labelCv.getContext('2d');
+      var labelLang = window.anxCurrentLang || 'en';
+      window.__labelLang = labelLang;
+      window.onLangChange = function (lang) { labelLang = lang; window.__labelLang = lang; };
       function drawLabels2D(t) {
         labelCv.width = window.innerWidth;
         labelCv.height = window.innerHeight;
         labelCtx.clearRect(0, 0, labelCv.width, labelCv.height);
         var items = [
-          { node: NJ, name: 'NANJING', coord: '31.9N · 118.8E', dy: 12, color: 'rgba(234,252,255,.92)' },
-          { node: NE, name: 'NORTHEAST CHINA', coord: '45.75N · 126.65E', dy: -26, color: 'rgba(196,232,250,.85)' }
+          { node: NJ, coord: '31.9N · 118.8E', dy: 12, color: 'rgba(234,252,255,.92)' },
+          { node: NE, coord: '45.75N · 126.65E', dy: -26, color: 'rgba(196,232,250,.85)' }
         ];
+        var names = labelLang === 'zh' ? ['南京', '东北地区'] : ['NANJING', 'NORTHEAST CHINA'];
         for (var li = 0; li < items.length; li++) {
           var it = items[li];
           var rr = 100 * 1.02;
@@ -404,7 +408,7 @@
           labelCtx.font = '500 10px "Segoe UI",system-ui,sans-serif';
           labelCtx.fillStyle = it.color;
           labelCtx.textBaseline = 'middle';
-          labelCtx.fillText(it.name, ax, ay);
+          labelCtx.fillText(names[li], ax, ay);
           labelCtx.font = '400 8px "Segoe UI",system-ui,sans-serif';
           labelCtx.fillStyle = 'rgba(140,234,255,.6)';
           labelCtx.fillText(it.coord, ax, ay + 12);
