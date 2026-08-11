@@ -193,8 +193,8 @@
     function buildLabels(lang) {
       var L = lang === 'zh' ? LABELS.zh : LABELS.en;
       return [
-        { lat: NJ.lat, lng: NJ.lng, text: L.nanjing, size: 0.62, color: '#eafcff', dotRadius: 0.12, altitude: 0.2 },
-        { lat: NE.lat, lng: NE.lng, text: L.northeast, size: 0.52, color: '#b7e6ff', dotRadius: 0.1, altitude: 0.2 }
+        { lat: NJ.lat, lng: NJ.lng, text: L.nanjing, size: 0.62, color: '#eafcff', dotRadius: 0.02, altitude: 0.2 },
+        { lat: NE.lat, lng: NE.lng, text: L.northeast, size: 0.52, color: '#b7e6ff', dotRadius: 0.02, altitude: 0.2 }
       ];
     }
 
@@ -428,6 +428,19 @@
           labelCtx.moveTo(sx, sy);
           labelCtx.lineTo(lx, ly);
           labelCtx.stroke();
+          /* 节点发光标记：确保节点清晰可见 */
+          var nodeColor = li === 0 ? '0,229,168' : '140,234,255';
+          var glowR = labelCtx.createRadialGradient(sx, sy, 0, sx, sy, 14);
+          glowR.addColorStop(0, 'rgba(' + nodeColor + ',.85)');
+          glowR.addColorStop(1, 'rgba(' + nodeColor + ',0)');
+          labelCtx.fillStyle = glowR;
+          labelCtx.beginPath();
+          labelCtx.arc(sx, sy, 14, 0, Math.PI * 2);
+          labelCtx.fill();
+          labelCtx.fillStyle = li === 0 ? '#00e5a8' : '#8ceaff';
+          labelCtx.beginPath();
+          labelCtx.arc(sx, sy, 3, 0, Math.PI * 2);
+          labelCtx.fill();
           if (li === 0) {
             var pulse = 0.5 + 0.5 * Math.sin(t / 320);
             labelCtx.beginPath();
