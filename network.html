@@ -95,12 +95,21 @@
     .dossier .dgrid div b{display:block;font-size:13px;color:#eafcff;font-weight:500;letter-spacing:1px;font-variant-numeric:tabular-nums}
     .dossier .dgrid div span{display:block;font-size:7px;letter-spacing:1.5px;color:#6f93a8;margin-top:3px;text-transform:uppercase}
 
-    /* 右侧：选择面板 */
+    /* 右侧：未来终端管理入口 */
     .side{display:flex;flex-direction:column;gap:12px;min-width:0}
-    .term{position:relative;display:flex;flex-direction:column;border:1px solid rgba(140,234,255,.2);border-radius:8px;padding:18px;background:rgba(9,26,42,.5);backdrop-filter:blur(8px);overflow:hidden;flex:1 1 0;min-height:0}
-    .term.active{border-color:rgba(0,229,168,.5);background:linear-gradient(165deg,rgba(12,38,52,.65),rgba(7,23,36,.5));box-shadow:0 14px 40px rgba(0,0,0,.36),0 0 26px rgba(0,229,168,.08)}
+    .side-head{flex:none;position:relative;padding:14px 16px 12px;border:1px solid rgba(140,234,255,.16);border-radius:8px;background:linear-gradient(165deg,rgba(11,34,52,.6),rgba(6,20,33,.45));backdrop-filter:blur(10px);overflow:hidden}
+    .side-head .side-title{display:flex;align-items:center;gap:10px;font-size:11px;letter-spacing:3px;color:#eafcff;font-weight:500}
+    .side-head .side-title::before{content:"";width:18px;height:1px;background:linear-gradient(90deg,rgba(0,229,168,.9),transparent)}
+    .side-head .side-led{margin-left:auto;width:8px;height:8px;border-radius:50%;background:#00e5a8;box-shadow:0 0 10px rgba(0,229,168,.9);animation:netPulse 2.4s ease-out infinite}
+    .side-head .side-sub{margin-top:8px;font-size:8px;letter-spacing:2.4px;color:rgba(140,234,255,.6);text-transform:uppercase}
+    .term{position:relative;display:flex;flex-direction:column;border:1px solid rgba(140,234,255,.2);border-radius:8px;padding:18px;background:rgba(9,26,42,.55);backdrop-filter:blur(12px);box-shadow:inset 0 1px 0 rgba(255,255,255,.04),0 14px 34px rgba(0,0,0,.3);overflow:hidden;flex:1 1 0;min-height:0;transition:transform .3s ease,border-color .3s ease,box-shadow .3s ease,background .3s ease}
+    .term:hover{transform:translateY(-2px)}
+    .term.active{border-color:rgba(0,229,168,.6);background:linear-gradient(165deg,rgba(13,40,56,.7),rgba(8,25,39,.55));animation:cardBreathe 3.6s ease-in-out infinite}
+    @keyframes cardBreathe{0%,100%{box-shadow:inset 0 0 18px rgba(0,229,168,.05),0 14px 40px rgba(0,0,0,.36),0 0 22px rgba(0,229,168,.08)}50%{box-shadow:inset 0 0 30px rgba(0,229,168,.11),0 14px 40px rgba(0,0,0,.36),0 0 36px rgba(0,229,168,.18)}}
     .term.active::before{content:"";position:absolute;left:0;top:0;right:0;height:2px;background:linear-gradient(90deg,rgba(0,229,168,.75),rgba(98,217,255,.1))}
     .term .th{display:flex;align-items:center;justify-content:space-between}
+    .term .th-right{display:flex;align-items:center;gap:8px}
+    .node-led{width:8px;height:8px;border-radius:50%;background:#00e5a8;box-shadow:0 0 10px rgba(0,229,168,.9);animation:netPulse 2.4s ease-out infinite}
     .term .th h4{font-size:15px;letter-spacing:3px;color:#eafcff;font-weight:600}
     .badge{font-size:8px;letter-spacing:2px;color:#9fd8c2;border:1px solid rgba(0,229,168,.25);border-radius:999px;padding:3px 9px}
     .term .type{font-size:9px;color:#bcd3e0;margin-top:8px;line-height:1.7}
@@ -112,11 +121,16 @@
     .term .enter::after{content:"→";color:#8ceaff;font-size:13px;transition:transform .3s ease}
     .term .enter:hover{border-color:#00e5a8;color:#fff}
     .term .enter:hover::after{transform:translateX(4px)}
-    .term.future{border-style:dashed;border-color:rgba(127,163,181,.22);background:rgba(6,16,27,.22);cursor:pointer;transition:border-color .3s ease,background .3s ease}
-    .term.future:hover{border-color:rgba(127,163,181,.48);background:rgba(8,20,32,.3)}
-    .term.future .th h4{color:#8aa3b4}
-    .badge.soon{border-color:rgba(127,163,181,.25);color:#7c97a9}
-    .term.future .soon{margin-top:auto;padding-top:12px;font-size:8px;letter-spacing:2.5px;color:#4f6b7c;text-transform:uppercase}
+    .term.future{border-style:dashed;border-color:rgba(140,175,196,.3);background:rgba(8,20,33,.38);cursor:pointer}
+    .term.future:hover{border-color:rgba(140,190,215,.55);background:rgba(11,26,41,.5);box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 12px 30px rgba(0,0,0,.28)}
+    .term.future .th h4{color:#a8bfce}
+    .badge.soon{border-color:rgba(140,180,205,.35);color:#8fa9bb}
+    .term.future .soon{margin-top:auto;padding-top:12px;font-size:8px;letter-spacing:2.5px;color:#6c8ba0;text-transform:uppercase}
+    .net-status{flex:none;border:1px solid rgba(140,234,255,.16);border-radius:8px;padding:12px 16px;background:linear-gradient(165deg,rgba(9,28,44,.55),rgba(5,16,28,.4));backdrop-filter:blur(10px)}
+    .net-status .ns-title{font-size:8px;letter-spacing:2.5px;color:rgba(140,234,255,.85);text-transform:uppercase;padding-bottom:8px;border-bottom:1px solid rgba(98,217,255,.14);margin-bottom:8px}
+    .net-status .ns-row{display:flex;align-items:center;justify-content:space-between;font-size:8px;letter-spacing:1.8px;color:#bcd3e0;padding:5px 0;text-transform:uppercase}
+    .net-status .ns-row b{font-weight:500;color:#8ceaff;letter-spacing:1.5px;font-variant-numeric:tabular-nums}
+    .net-status .ns-row b.on{color:#00e5a8;text-shadow:0 0 8px rgba(0,229,168,.45)}
 
     body.is-leaving::after{content:"";position:fixed;inset:0;z-index:99;background:rgba(2,8,17,.96);opacity:0;pointer-events:none;animation:leaveFade .6s ease forwards}
     @keyframes leaveFade{to{opacity:1}}
@@ -129,6 +143,7 @@
       .rec.active::before{left:8px;right:8px;top:auto;bottom:auto;width:auto;height:2px}
       .arc-foot{display:none}
       .side{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
+      .side-head,.net-status{grid-column:1 / -1}
     }
     @media (max-width:700px){
       .top{padding:12px 16px}
@@ -214,8 +229,12 @@
     </section>
 
     <aside class="side">
+      <div class="side-head">
+        <div class="side-title"><span data-lang="en">Select Observation Node</span><span data-lang="zh">选择观测终端</span><span class="side-led" aria-hidden="true"></span></div>
+        <p class="side-sub"><span data-lang="en">Future Terminal Archive</span><span data-lang="zh">未来终端档案</span></p>
+      </div>
       <div class="term active">
-        <div class="th"><h4>ANT-A01</h4><span class="badge"><span data-lang="en">Active Node</span><span data-lang="zh">运行节点</span></span></div>
+        <div class="th"><h4>ANT-A01</h4><span class="th-right"><span class="node-led" aria-hidden="true"></span><span class="badge"><span data-lang="en">Active Node</span><span data-lang="zh">运行节点</span></span></span></div>
         <p class="type"><span data-lang="en">Nanjing Observation Node</span><span data-lang="zh">南京观测节点</span></p>
         <div class="stats">
           <div><b id="tRecords">--</b><span data-lang="en">Records</span><span data-lang="zh">记录</span></div>
@@ -236,6 +255,12 @@
         <p class="type"><span data-lang="en">Future Node</span><span data-lang="zh">未来节点</span></p>
         <div class="soon"><span data-lang="en">Awaiting Deployment</span><span data-lang="zh">等待部署</span></div>
         <a class="enter" href="./dashboard-a03.html"><span data-lang="en">Enter Terminal</span><span data-lang="zh">进入终端</span></a>
+      </div>
+      <div class="net-status">
+        <div class="ns-title"><span data-lang="en">Network Status</span><span data-lang="zh">网络状态</span></div>
+        <div class="ns-row"><span><span data-lang="en">Active Node</span><span data-lang="zh">运行节点</span></span><b class="on">01</b></div>
+        <div class="ns-row"><span><span data-lang="en">Future Node</span><span data-lang="zh">未来节点</span></span><b>02</b></div>
+        <div class="ns-row"><span><span data-lang="en">Total Coverage</span><span data-lang="zh">覆盖区域</span></span><b><span data-lang="en">01 Region</span><span data-lang="zh">01 区域</span></b></div>
       </div>
     </aside>
 

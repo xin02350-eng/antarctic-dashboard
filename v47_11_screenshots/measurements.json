@@ -1,0 +1,66 @@
+{
+  "zh": {
+    "side": {
+      "t": 85,
+      "b": 1062,
+      "h": 977
+    },
+    "head": {
+      "t": 85,
+      "b": 147,
+      "h": 62
+    },
+    "status": {
+      "t": 945,
+      "b": 1062,
+      "h": 117
+    },
+    "terms": [
+      250,
+      250,
+      250
+    ],
+    "title": "选择观测终端 ",
+    "sub": "未来终端档案",
+    "nsTitle": "网络状态",
+    "nsRows": [
+      "Active Node运行节点 运行节点 01",
+      "Future Node未来节点 未来节点 02",
+      "Total Coverage覆盖区域 覆盖区域 01 Region01 区域 01 区域"
+    ],
+    "nodeLed": true,
+    "overflow": false
+  },
+  "en": {
+    "side": {
+      "t": 85,
+      "b": 1062,
+      "h": 977
+    },
+    "head": {
+      "t": 85,
+      "b": 147,
+      "h": 62
+    },
+    "status": {
+      "t": 945,
+      "b": 1062,
+      "h": 117
+    },
+    "terms": [
+      250,
+      250,
+      250
+    ],
+    "title": "Select Observation Node ",
+    "sub": "Future Terminal Archive",
+    "nsTitle": "Network Status",
+    "nsRows": [
+      "Active Node运行节点 Active Node 01",
+      "Future Node未来节点 Future Node 02",
+      "Total Coverage覆盖区域 Total Coverage 01 Region01 区域 01 Region"
+    ],
+    "nodeLed": true,
+    "overflow": false
+  }
+}
