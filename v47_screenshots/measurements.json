@@ -1,0 +1,486 @@
+{
+  "network-zh": {
+    "url": "network.html",
+    "lang": "zh",
+    "viewport": {
+      "w": 1920,
+      "h": 1080
+    },
+    "hOverflow": false,
+    "bodyClass": "network-page",
+    "nav": [],
+    "cards": 0,
+    "map": null,
+    "mapPanel": null,
+    "overlay": null,
+    "overlayInsideMap": false,
+    "deviceMap": false,
+    "systemOnline": null
+  },
+  "network-en": {
+    "url": "network.html",
+    "lang": "en",
+    "viewport": {
+      "w": 1920,
+      "h": 1080
+    },
+    "hOverflow": false,
+    "bodyClass": "network-page",
+    "nav": [],
+    "cards": 0,
+    "map": null,
+    "mapPanel": null,
+    "overlay": null,
+    "overlayInsideMap": false,
+    "deviceMap": false,
+    "systemOnline": null
+  },
+  "dash-a02-zh": {
+    "url": "dashboard-a02.html",
+    "lang": "zh",
+    "viewport": {
+      "w": 1920,
+      "h": 1080
+    },
+    "hOverflow": false,
+    "bodyClass": "ambient-theme dashboard-page",
+    "nav": [
+      {
+        "txt": "Dashboard仪表盘",
+        "href": "./dashboard-a02.html",
+        "active": true
+      },
+      {
+        "txt": "Location位置",
+        "href": "./location-a02.html",
+        "active": false
+      },
+      {
+        "txt": "Sensors传感器",
+        "href": "./sensors-a02.html",
+        "active": false
+      },
+      {
+        "txt": "DATA数据",
+        "href": "./telemetry-a02.html",
+        "active": false
+      },
+      {
+        "txt": "Hardware硬件",
+        "href": "./hardware-a02.html",
+        "active": false
+      },
+      {
+        "txt": "Analysis分析",
+        "href": "./analysis-a02.html",
+        "active": false
+      }
+    ],
+    "cards": 6,
+    "map": {
+      "t": 392,
+      "b": 905,
+      "l": 728,
+      "r": 1867,
+      "w": 1139,
+      "h": 513
+    },
+    "mapPanel": {
+      "t": 290,
+      "b": 918,
+      "l": 715,
+      "r": 1880,
+      "w": 1165,
+      "h": 628
+    },
+    "overlay": {
+      "t": 793,
+      "b": 897,
+      "l": 1629,
+      "r": 1859,
+      "w": 230,
+      "h": 104
+    },
+    "overlayInsideMap": true,
+    "deviceMap": true,
+    "systemOnline": "AWAITING DEPLOYMENT等待部署"
+  },
+  "dash-a02-en": {
+    "url": "dashboard-a02.html",
+    "lang": "en",
+    "viewport": {
+      "w": 1920,
+      "h": 1080
+    },
+    "hOverflow": false,
+    "bodyClass": "ambient-theme dashboard-page",
+    "nav": [
+      {
+        "txt": "Dashboard仪表盘",
+        "href": "./dashboard-a02.html",
+        "active": true
+      },
+      {
+        "txt": "Location位置",
+        "href": "./location-a02.html",
+        "active": false
+      },
+      {
+        "txt": "Sensors传感器",
+        "href": "./sensors-a02.html",
+        "active": false
+      },
+      {
+        "txt": "DATA数据",
+        "href": "./telemetry-a02.html",
+        "active": false
+      },
+      {
+        "txt": "Hardware硬件",
+        "href": "./hardware-a02.html",
+        "active": false
+      },
+      {
+        "txt": "Analysis分析",
+        "href": "./analysis-a02.html",
+        "active": false
+      }
+    ],
+    "cards": 6,
+    "map": {
+      "t": 392,
+      "b": 905,
+      "l": 728,
+      "r": 1867,
+      "w": 1139,
+      "h": 513
+    },
+    "mapPanel": {
+      "t": 290,
+      "b": 918,
+      "l": 715,
+      "r": 1880,
+      "w": 1165,
+      "h": 628
+    },
+    "overlay": {
+      "t": 793,
+      "b": 897,
+      "l": 1629,
+      "r": 1859,
+      "w": 230,
+      "h": 104
+    },
+    "overlayInsideMap": true,
+    "deviceMap": true,
+    "systemOnline": "AWAITING DEPLOYMENT等待部署"
+  },
+  "dash-a03-zh": {
+    "url": "dashboard-a03.html",
+    "lang": "zh",
+    "viewport": {
+      "w": 1920,
+      "h": 1080
+    },
+    "hOverflow": false,
+    "bodyClass": "ambient-theme dashboard-page",
+    "nav": [
+      {
+        "txt": "Dashboard仪表盘",
+        "href": "./dashboard-a03.html",
+        "active": true
+      },
+      {
+        "txt": "Location位置",
+        "href": "./location-a03.html",
+        "active": false
+      },
+      {
+        "txt": "Sensors传感器",
+        "href": "./sensors-a03.html",
+        "active": false
+      },
+      {
+        "txt": "DATA数据",
+        "href": "./telemetry-a03.html",
+        "active": false
+      },
+      {
+        "txt": "Hardware硬件",
+        "href": "./hardware-a03.html",
+        "active": false
+      },
+      {
+        "txt": "Analysis分析",
+        "href": "./analysis-a03.html",
+        "active": false
+      }
+    ],
+    "cards": 6,
+    "map": {
+      "t": 392,
+      "b": 905,
+      "l": 728,
+      "r": 1867,
+      "w": 1139,
+      "h": 513
+    },
+    "mapPanel": {
+      "t": 290,
+      "b": 918,
+      "l": 715,
+      "r": 1880,
+      "w": 1165,
+      "h": 628
+    },
+    "overlay": {
+      "t": 793,
+      "b": 897,
+      "l": 1629,
+      "r": 1859,
+      "w": 230,
+      "h": 104
+    },
+    "overlayInsideMap": true,
+    "deviceMap": true,
+    "systemOnline": "AWAITING DEPLOYMENT等待部署"
+  },
+  "dash-a03-en": {
+    "url": "dashboard-a03.html",
+    "lang": "en",
+    "viewport": {
+      "w": 1920,
+      "h": 1080
+    },
+    "hOverflow": false,
+    "bodyClass": "ambient-theme dashboard-page",
+    "nav": [
+      {
+        "txt": "Dashboard仪表盘",
+        "href": "./dashboard-a03.html",
+        "active": true
+      },
+      {
+        "txt": "Location位置",
+        "href": "./location-a03.html",
+        "active": false
+      },
+      {
+        "txt": "Sensors传感器",
+        "href": "./sensors-a03.html",
+        "active": false
+      },
+      {
+        "txt": "DATA数据",
+        "href": "./telemetry-a03.html",
+        "active": false
+      },
+      {
+        "txt": "Hardware硬件",
+        "href": "./hardware-a03.html",
+        "active": false
+      },
+      {
+        "txt": "Analysis分析",
+        "href": "./analysis-a03.html",
+        "active": false
+      }
+    ],
+    "cards": 6,
+    "map": {
+      "t": 392,
+      "b": 905,
+      "l": 728,
+      "r": 1867,
+      "w": 1139,
+      "h": 513
+    },
+    "mapPanel": {
+      "t": 290,
+      "b": 918,
+      "l": 715,
+      "r": 1880,
+      "w": 1165,
+      "h": 628
+    },
+    "overlay": {
+      "t": 793,
+      "b": 897,
+      "l": 1629,
+      "r": 1859,
+      "w": 230,
+      "h": 104
+    },
+    "overlayInsideMap": true,
+    "deviceMap": true,
+    "systemOnline": "AWAITING DEPLOYMENT等待部署"
+  },
+  "sensors-a02-zh": {
+    "url": "sensors-a02.html",
+    "lang": "zh",
+    "viewport": {
+      "w": 1920,
+      "h": 1080
+    },
+    "hOverflow": false,
+    "bodyClass": "ambient-theme sensors-page",
+    "nav": [
+      {
+        "txt": "Dashboard仪表盘",
+        "href": "./dashboard-a02.html",
+        "active": false
+      },
+      {
+        "txt": "Location位置",
+        "href": "./location-a02.html",
+        "active": false
+      },
+      {
+        "txt": "Sensors传感器",
+        "href": "./sensors-a02.html",
+        "active": true
+      },
+      {
+        "txt": "DATA数据",
+        "href": "./telemetry-a02.html",
+        "active": false
+      },
+      {
+        "txt": "Hardware硬件",
+        "href": "./hardware-a02.html",
+        "active": false
+      },
+      {
+        "txt": "Analysis分析",
+        "href": "./analysis-a02.html",
+        "active": false
+      }
+    ],
+    "cards": 0,
+    "map": null,
+    "mapPanel": null,
+    "overlay": null,
+    "overlayInsideMap": false,
+    "deviceMap": false,
+    "systemOnline": "AWAITING DEPLOYMENT等待部署"
+  },
+  "sensors-a02-en": {
+    "url": "sensors-a02.html",
+    "lang": "en",
+    "viewport": {
+      "w": 1920,
+      "h": 1080
+    },
+    "hOverflow": false,
+    "bodyClass": "ambient-theme sensors-page",
+    "nav": [
+      {
+        "txt": "Dashboard仪表盘",
+        "href": "./dashboard-a02.html",
+        "active": false
+      },
+      {
+        "txt": "Location位置",
+        "href": "./location-a02.html",
+        "active": false
+      },
+      {
+        "txt": "Sensors传感器",
+        "href": "./sensors-a02.html",
+        "active": true
+      },
+      {
+        "txt": "DATA数据",
+        "href": "./telemetry-a02.html",
+        "active": false
+      },
+      {
+        "txt": "Hardware硬件",
+        "href": "./hardware-a02.html",
+        "active": false
+      },
+      {
+        "txt": "Analysis分析",
+        "href": "./analysis-a02.html",
+        "active": false
+      }
+    ],
+    "cards": 0,
+    "map": null,
+    "mapPanel": null,
+    "overlay": null,
+    "overlayInsideMap": false,
+    "deviceMap": false,
+    "systemOnline": "AWAITING DEPLOYMENT等待部署"
+  },
+  "location-a03-zh": {
+    "url": "location-a03.html",
+    "lang": "zh",
+    "viewport": {
+      "w": 1920,
+      "h": 1080
+    },
+    "hOverflow": false,
+    "bodyClass": "ambient-theme location-page",
+    "nav": [
+      {
+        "txt": "Dashboard仪表盘",
+        "href": "./dashboard-a03.html",
+        "active": false
+      },
+      {
+        "txt": "Location位置",
+        "href": "./location-a03.html",
+        "active": true
+      },
+      {
+        "txt": "Sensors传感器",
+        "href": "./sensors-a03.html",
+        "active": false
+      },
+      {
+        "txt": "DATA数据",
+        "href": "./telemetry-a03.html",
+        "active": false
+      },
+      {
+        "txt": "Hardware硬件",
+        "href": "./hardware-a03.html",
+        "active": false
+      },
+      {
+        "txt": "Analysis分析",
+        "href": "./analysis-a03.html",
+        "active": false
+      }
+    ],
+    "cards": 0,
+    "map": {
+      "t": 158,
+      "b": 655,
+      "l": 713,
+      "r": 1443,
+      "w": 730,
+      "h": 497
+    },
+    "mapPanel": {
+      "t": 124,
+      "b": 670,
+      "l": 698,
+      "r": 1458,
+      "w": 760,
+      "h": 546
+    },
+    "overlay": {
+      "t": 497,
+      "b": 614,
+      "l": 1162,
+      "r": 1402,
+      "w": 240,
+      "h": 117
+    },
+    "overlayInsideMap": true,
+    "deviceMap": true,
+    "systemOnline": "AWAITING DEPLOYMENT等待部署"
+  }
+}

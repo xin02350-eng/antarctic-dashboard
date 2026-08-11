@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="color-scheme" content="dark">
+  <title data-title-en="AUTONOMOUS NEXUS · ANT-A02" data-title-zh="自主观测系统 · ANT-A02">AUTONOMOUS NEXUS · ANT-A02</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./css/style.css?v=20260806b">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<style>
+    body.dashboard-page .operation-grid{display:none}
+    @media (min-width:901px){
+      body.dashboard-page .side-right{display:none}
+      body.dashboard-page .mission-grid{grid-template-columns:minmax(220px,26%) minmax(0,1fr)}
+    }
+  </style>
+  <style>
+
+    /* V47 · 待部署节点统一视觉 */
+    body .system-online.pending{border-color:rgba(124,151,169,.35);color:#9fb3c2}
+    body .system-online.pending > span:first-child{background:#7c97a9;box-shadow:0 0 8px rgba(124,151,169,.45)}
+    .waiting-panel{max-width:760px;margin:56px auto;padding:52px 40px;border:1px solid rgba(140,234,255,.14);border-radius:10px;background:linear-gradient(165deg,rgba(9,28,44,.5),rgba(5,16,28,.36));text-align:center;position:relative}
+    .waiting-panel::before{content:"";position:absolute;left:0;top:0;right:0;height:2px;background:linear-gradient(90deg,rgba(124,151,169,.7),rgba(98,217,255,.12))}
+    .waiting-mark{width:64px;height:64px;margin:0 auto 22px;border:1px solid rgba(140,234,255,.22);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#7c97a9}
+    .waiting-mark svg{width:28px;height:28px}
+    .waiting-eyebrow{font-size:9px;letter-spacing:3px;color:rgba(140,234,255,.55);text-transform:uppercase;margin-bottom:14px}
+    .waiting-panel h2{font-size:clamp(20px,2.2vw,30px);font-weight:200;letter-spacing:3px;color:#eafcff;margin-bottom:14px}
+    .waiting-panel p{font-size:12px;line-height:2;color:#9ab8ca;max-width:520px;margin:0 auto}
+    .waiting-tag{display:inline-block;margin-top:24px;font-size:9px;letter-spacing:2.5px;color:#9fb3c2;border:1px solid rgba(124,151,169,.35);border-radius:999px;padding:6px 16px;text-transform:uppercase}
+    .placeholder-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;max-width:760px;margin:24px auto 60px}
+    .placeholder-cell{border:1px solid rgba(140,234,255,.1);border-radius:8px;padding:18px;background:rgba(7,22,36,.3);text-align:center}
+    .placeholder-cell b{display:block;font-size:22px;font-weight:300;color:#6f93a8;letter-spacing:2px}
+    .placeholder-cell span{display:block;font-size:8px;letter-spacing:2px;color:#6f93a8;margin-top:8px;text-transform:uppercase}
+    body.location-page main,body.sensors-page main,body.telemetry-page main,body.hardware-page main,body.analysis-page main{height:auto!important;min-height:100vh;overflow:visible!important;display:block;padding:26px 30px}
+    @media (max-width:700px){
+      .waiting-panel{margin:30px 14px;padding:36px 22px}
+      .placeholder-grid{grid-template-columns:1fr;margin:18px 14px 40px}
+    }
+  </style>
+</head>
+<body class="ambient-theme dashboard-page">
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="logo">AN</div>
+      <div>
+        <h1>AUTONOMOUS<br>NEXUS</h1>
+        <p><span data-lang="en">Autonomous Environmental Observatory</span><span data-lang="zh">自主环境观测平台</span></p>
+      </div>
+    </div>
+    <input type="checkbox" id="navToggle" class="nav-toggle" aria-hidden="true">
+    <label for="navToggle" class="nav-toggle-btn" aria-label="MENU"><span></span><span></span><span></span></label>
+    <nav class="sidebar-menu">
+      <a class="nav-item active" href="./dashboard-a02.html"><span data-lang="en">Dashboard</span><span data-lang="zh">仪表盘</span></a>
+      <a class="nav-item" href="./location-a02.html"><span data-lang="en">Location</span><span data-lang="zh">位置</span></a>
+      <a class="nav-item" href="./sensors-a02.html"><span data-lang="en">Sensors</span><span data-lang="zh">传感器</span></a>
+      <a class="nav-item" href="./telemetry-a02.html"><span data-lang="en">DATA</span><span data-lang="zh">数据</span></a>
+      <a class="nav-item" href="./hardware-a02.html"><span data-lang="en">Hardware</span><span data-lang="zh">硬件</span></a>
+      <a class="nav-item" href="./analysis-a02.html"><span data-lang="en">Analysis</span><span data-lang="zh">分析</span></a>      <div class="lang-switch"><span class="lang-pill" aria-hidden="true"></span><button type="button" data-lang="zh">中</button><button type="button" data-lang="en" class="active">EN</button></div>
+    </nav>
+    <label for="navToggle" class="nav-overlay" aria-hidden="true"></label>
+  </aside>
+  <main>
+    <header class="mission-header dashboard-hero">
+      <div class="hero-main">
+        <div class="dashboard-kicker"><span data-lang="en">AUTONOMOUS DIGITAL TWIN · FUTURE STATION</span><span data-lang="zh">自主数字孪生 · 未来站点</span></div>
+        <div class="dashboard-title"><span data-lang="en">AUTONOMOUS MONITORING SYSTEM</span><span data-lang="zh">自主观测系统</span></div>
+        <div class="hero-sub"><span data-lang="en">STATION ANT-A02 · AWAITING DEPLOYMENT</span><span data-lang="zh">站点 ANT-A02 · 等待部署</span></div>
+      </div>
+      <div class="hero-status">
+        <div class="system-online pending"><span></span><span data-lang="en">AWAITING DEPLOYMENT</span><span data-lang="zh">等待部署</span></div>
+        <div class="hero-station"><span data-lang="en">STATION ANT-A02</span><span data-lang="zh">站点 ANT-A02</span></div>
+      </div>
+    </header>
+    <section class="mission-info dashboard-command-strip">
+      <div class="cmd-cell">
+        <span class="cmd-label"><span data-lang="en">MISSION STATUS</span><span data-lang="zh">任务状态</span></span>
+        <strong class="cmd-value"><i class="cmd-led"></i><span data-lang="en">PENDING</span><span data-lang="zh">待命</span></strong>
+        <span class="cmd-sub"><span data-lang="en">WAITING FOR DEPLOYMENT</span><span data-lang="zh">等待部署</span></span>
+      </div>
+      <div class="cmd-cell">
+        <span class="cmd-label"><span data-lang="en">CURRENT TIME</span><span data-lang="zh">当前时间</span></span>
+        <strong class="cmd-value" id="time">--</strong>
+        <span class="cmd-sub"><span data-lang="en">LOCAL TIME</span><span data-lang="zh">本地时间</span></span>
+      </div>
+      <div class="cmd-cell mode-wait" id="modeCell">
+        <span class="cmd-label"><span data-lang="en">OPERATION MODE</span><span data-lang="zh">运行模式</span></span>
+        <strong class="cmd-value"><i class="cmd-led mode-led"></i><span class="mode-text"><span data-lang="en">STANDBY</span><span data-lang="zh">待机</span></span></strong>
+        <span class="cmd-sub"><span data-lang="en">NO DATA AVAILABLE</span><span data-lang="zh">暂无数据</span></span>
+      </div>
+    </section>
+    <section class="mission-grid">
+      <aside class="side-panel side-left">
+        <div class="side-panel-title"><span data-lang="en">POWER &amp; ENVIRONMENT</span><span data-lang="zh">电力与环境</span></div>
+        <div class="status-card sensor-card st-wait">
+          <div class="sensor-head">
+            <svg class="sensor-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4.8 13.4h5.2L9 22l9.2-11.6H13z"/></svg>
+            <span class="sensor-name"><span data-lang="en">VOLTAGE</span><span data-lang="zh">电压</span></span>
+            <span class="sensor-led"></span>
+          </div>
+          <div class="sensor-value"><strong>--</strong><span class="sensor-unit">V</span></div>
+          <div class="sensor-meta"><span><span data-lang="en">BATTERY BUS</span><span data-lang="zh">电池总线</span></span><span class="sensor-state"><span data-lang="en">NO DATA</span><span data-lang="zh">无数据</span></span></div>
+          <span class="sensor-index">01</span>
+        </div>
+        <div class="status-card sensor-card st-wait">
+          <div class="sensor-head">
+            <svg class="sensor-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h3l2-6 4 12 2-6h7"/></svg>
+            <span class="sensor-name"><span data-lang="en">CURRENT</span><span data-lang="zh">电流</span></span>
+            <span class="sensor-led"></span>
+          </div>
+          <div class="sensor-value"><strong>--</strong><span class="sensor-unit">mA</span></div>
+          <div class="sensor-meta"><span><span data-lang="en">LOAD DRAW</span><span data-lang="zh">负载电流</span></span><span class="sensor-state"><span data-lang="en">NO DATA</span><span data-lang="zh">无数据</span></span></div>
+          <span class="sensor-index">02</span>
+        </div>
+        <div class="status-card sensor-card st-wait">
+          <div class="sensor-head">
+            <svg class="sensor-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 4a2 2 0 1 1 4 0v9.5a4 4 0 1 1-4 0V4z"/><path d="M12 9v7"/></svg>
+            <span class="sensor-name"><span data-lang="en">TEMPERATURE</span><span data-lang="zh">温度</span></span>
+            <span class="sensor-led"></span>
+          </div>
+          <div class="sensor-value"><strong>--</strong><span class="sensor-unit">°C</span></div>
+          <div class="sensor-meta"><span><span data-lang="en">CABIN</span><span data-lang="zh">舱内</span></span><span class="sensor-state"><span data-lang="en">NO DATA</span><span data-lang="zh">无数据</span></span></div>
+          <span class="sensor-index">03</span>
+        </div>
+      </aside>
+      <section class="map-panel">
+        <div class="map-panel-head">
+          <div class="panel-title"><span data-lang="en">NODE POSITIONING · NOT AVAILABLE</span><span data-lang="zh">节点定位 · 暂不可用</span></div>
+          <div class="panel-title-tag"><span data-lang="en">NO TELEMETRY</span><span data-lang="zh">无遥测</span></div>
+        </div>
+        <div class="map-status-grid">
+          <div class="map-cell"><span><span data-lang="en">GPS STATUS</span><span data-lang="zh">GPS状态</span></span><strong>--</strong><i class="map-cell-led"></i></div>
+          <div class="map-cell"><span><span data-lang="en">MODE</span><span data-lang="zh">模式</span></span><strong>--</strong><i class="map-cell-led"></i></div>
+          <div class="map-cell"><span><span data-lang="en">POWER</span><span data-lang="zh">电源</span></span><strong>--</strong><i class="map-cell-led"></i></div>
+          <div class="map-cell"><span><span data-lang="en">COMMS</span><span data-lang="zh">通信</span></span><strong>--</strong><i class="map-cell-led"></i></div>
+        </div>
+        <div id="worldMap"><div class="map-layer map-tint" aria-hidden="true"></div></div>
+        <div class="map-overlay">
+          <h3>ANT-A02</h3>
+          <p><span data-lang="en">AWAITING DEPLOYMENT</span><span data-lang="zh">等待部署</span></p>
+          <p><span data-lang="en">NO POSITION DATA</span><span data-lang="zh">暂无坐标数据</span></p>
+        </div>
+      </section>
+      <aside class="side-panel side-right">
+        <div class="side-panel-title"><span data-lang="en">CLIMATE &amp; COMMS</span><span data-lang="zh">气候与通信</span></div>
+        <div class="status-card sensor-card st-wait">
+          <div class="sensor-head">
+            <svg class="sensor-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3s6 6.4 6 11a6 6 0 0 1-12 0c0-4.6 6-11 6-11z"/></svg>
+            <span class="sensor-name"><span data-lang="en">HUMIDITY</span><span data-lang="zh">湿度</span></span>
+            <span class="sensor-led"></span>
+          </div>
+          <div class="sensor-value"><strong>--</strong><span class="sensor-unit">%RH</span></div>
+          <div class="sensor-meta"><span><span data-lang="en">CABIN</span><span data-lang="zh">舱内</span></span><span class="sensor-state"><span data-lang="en">NO DATA</span><span data-lang="zh">无数据</span></span></div>
+          <span class="sensor-index">04</span>
+        </div>
+        <div class="status-card sensor-card st-wait">
+          <div class="sensor-head">
+            <svg class="sensor-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M19.1 4.9l-1.8 1.8M6.7 17.3l-1.8 1.8"/></svg>
+            <span class="sensor-name"><span data-lang="en">SOLAR RADIATION</span><span data-lang="zh">太阳辐射</span></span>
+            <span class="sensor-led"></span>
+          </div>
+          <div class="sensor-value"><strong>--</strong><span class="sensor-unit">W/m²</span></div>
+          <div class="sensor-meta"><span><span data-lang="en">PYRANOMETER</span><span data-lang="zh">辐射计</span></span><span class="sensor-state"><span data-lang="en">NO DATA</span><span data-lang="zh">无数据</span></span></div>
+          <span class="sensor-index">05</span>
+        </div>
+        <div class="status-card sensor-card st-wait">
+          <div class="sensor-head">
+            <svg class="sensor-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20a12 12 0 0 1 16 0"/><path d="M8 16a8 8 0 0 1 8 0"/><circle cx="12" cy="12" r="1.6"/></svg>
+            <span class="sensor-name"><span data-lang="en">DATA LINK</span><span data-lang="zh">数据链路</span></span>
+            <span class="sensor-led"></span>
+          </div>
+          <div class="sensor-value"><strong>--</strong><span class="sensor-unit">FIX</span></div>
+          <div class="sensor-meta"><span><span data-lang="en">SATELLITES</span><span data-lang="zh">卫星数</span></span><span class="sensor-state"><span data-lang="en">NO DATA</span><span data-lang="zh">无数据</span></span></div>
+          <span class="sensor-index">06</span>
+        </div>
+      </aside>
+    </section>
+    <section class="operation-grid">
+      <div class="operation-card"><span class="op-label"><span data-lang="en">OPERATION DAYS</span><span data-lang="zh">运行天数</span></span><strong>--</strong><span class="op-sub"><span data-lang="en">CONTINUOUS RUN</span><span data-lang="zh">连续运行</span></span></div>
+      <div class="operation-card"><span class="op-label"><span data-lang="en">DATA RECORDS</span><span data-lang="zh">数据记录</span></span><strong>--</strong><span class="op-sub"><span data-lang="en">TELEMETRY SAMPLES</span><span data-lang="zh">遥测样本</span></span></div>
+      <div class="operation-card"><span class="op-label"><span data-lang="en">LAST UPDATE</span><span data-lang="zh">最近更新</span></span><strong>--</strong><span class="op-sub"><span data-lang="en">LAST DATA CONTACT</span><span data-lang="zh">最后数据联系</span></span></div>
+    </section>
+    <section class="stream-panel">
+      <div class="panel-title"><span data-lang="en">MISSION STREAM</span><span data-lang="zh">任务流</span></div>
+      <div class="stream">
+        <div class="stream-row"><i class="stream-dot"></i><span data-lang="en">STATION AWAITING DEPLOYMENT</span><span data-lang="zh">站点等待部署</span><em>--</em></div>
+        <div class="stream-row"><i class="stream-dot"></i><span data-lang="en">TELEMETRY LINK NOT ESTABLISHED</span><span data-lang="zh">遥测链路未建立</span><em>--</em></div>
+        <div class="stream-row"><i class="stream-dot"></i><span data-lang="en">MODULES IN STANDBY</span><span data-lang="zh">模块处于待机</span><em>--</em></div>
+      </div>
+    </section>
+  </main>
+</div>
+
+  <script>
+  (function () {
+    function apply(lang) {
+      document.documentElement.setAttribute('data-lang', lang);
+      document.documentElement.setAttribute('lang', lang === 'zh' ? 'zh-CN' : 'en');
+      document.querySelectorAll('[data-lang]').forEach(function (el) {
+        if (el.tagName === 'BUTTON' && el.parentNode && el.parentNode.classList && el.parentNode.classList.contains('lang-switch')) return;
+        el.style.display = (el.getAttribute('data-lang') === lang) ? '' : 'none';
+      });
+      document.querySelectorAll('.lang-switch button').forEach(function (b) { b.classList.toggle('active', b.getAttribute('data-lang') === lang); });
+      try { localStorage.setItem('anx-lang', lang); } catch (e) {}
+      window.anxCurrentLang = lang;
+      window.anxApplyLang = apply;
+      var titleEl = document.querySelector('title');
+      if (titleEl) { var tEn = titleEl.getAttribute('data-title-en'); var tZh = titleEl.getAttribute('data-title-zh'); if (tEn && tZh) titleEl.textContent = lang === 'zh' ? tZh : tEn; }
+    }
+    function bind() { document.querySelectorAll('.lang-switch button').forEach(function (b) { b.addEventListener('click', function (ev) { ev.preventDefault(); apply(b.getAttribute('data-lang')); }); }); }
+    var saved = null; try { saved = localStorage.getItem('anx-lang'); } catch (e) {}
+    apply(saved === 'zh' ? 'zh' : 'en'); bind();
+  })();
+  </script>
+
+  <script>
+  (function () {
+    var el = document.getElementById('time');
+    if (!el) return;
+    function tick() {
+      var d = new Date();
+      var p = function (n) { return (n < 10 ? '0' : '') + n; };
+      el.textContent = p(d.getHours()) + ':' + p(d.getMinutes()) + ':' + p(d.getSeconds());
+    }
+    tick();
+    setInterval(tick, 1000);
+  })();
+  </script>
+
+  <script>
+  (function () {
+    var box = document.getElementById('worldMap');
+    if (!box || !window.L) return;
+    var m = L.map(box, { zoomControl: false, attributionControl: false }).setView([18, 105], 2);
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '' }).addTo(m);
+    window.deviceMap = m;
+    setTimeout(function () { try { m.invalidateSize(); } catch (e) {} }, 350);
+    window.addEventListener('resize', function () { try { m.invalidateSize(); } catch (e) {} });
+  })();
+  </script></body>
+</html>

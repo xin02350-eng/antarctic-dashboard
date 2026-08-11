@@ -39,7 +39,7 @@
     .arc-head .eyebrow{font-size:8px;letter-spacing:3px;color:rgba(140,234,255,.55);margin-bottom:8px;text-transform:uppercase}
     .arc-head h2{font-size:13px;letter-spacing:3px;color:#eafcff;font-weight:400;line-height:1.6}
     .arc-head .line{height:1px;background:linear-gradient(90deg,rgba(98,217,255,.35),transparent);margin-top:12px}
-    .rec{position:relative;padding:15px 12px;border-top:1px solid rgba(98,217,255,.07);transition:background .25s ease}
+    .rec{position:relative;display:block;padding:15px 12px;border-top:1px solid rgba(98,217,255,.07);transition:background .25s ease;cursor:pointer}
     .rec:last-child{border-bottom:1px solid rgba(98,217,255,.07)}
     .rec:hover{background:rgba(98,217,255,.045)}
     .rec .r1{display:flex;align-items:baseline;gap:12px}
@@ -62,14 +62,14 @@
     .live i{width:6px;height:6px;border-radius:50%;background:#00e5a8;animation:netPulse 2.4s ease-out infinite}
     @keyframes netPulse{0%{box-shadow:0 0 0 0 rgba(0,229,168,.45)}70%{box-shadow:0 0 0 9px rgba(0,229,168,0)}100%{box-shadow:0 0 0 0 rgba(0,229,168,0)}}
     #networkMap{flex:1;min-height:430px;background:#04101d;position:relative;z-index:1}
-    #networkMap .leaflet-tile-pane{filter:grayscale(.08) brightness(1.02) contrast(1.02) saturate(.92)}
+    #networkMap .leaflet-tile-pane{filter:invert(1) hue-rotate(185deg) brightness(.9) contrast(.95) saturate(.75);opacity:.95}
     #networkMap .leaflet-control-attribution{display:none}
-    .map-inner{position:absolute;inset:0;z-index:2;pointer-events:none;box-shadow:inset 0 0 40px rgba(2,8,17,.3)}
+    .map-inner{position:absolute;inset:0;z-index:2;pointer-events:none;background:radial-gradient(ellipse at 50% 42%,rgba(14,52,78,.10),rgba(3,14,26,.30) 62%,rgba(1,7,14,.46) 100%),linear-gradient(180deg,rgba(6,26,44,.20),rgba(2,10,20,.30));box-shadow:inset 0 0 40px rgba(2,8,17,.25)}
     .net-marker{position:relative}
-    .net-marker .halo{position:absolute;left:50%;top:50%;width:36px;height:36px;margin:-18px 0 0 -18px;border-radius:50%;border:1px solid rgba(0,229,168,.4);animation:netRing 3s ease-out infinite}
+    .net-marker .halo{position:absolute;left:50%;top:50%;width:36px;height:36px;margin:-18px 0 0 -18px;border-radius:50%;border:1px solid rgba(98,217,255,.45);animation:netRing 3s ease-out infinite}
     @keyframes netRing{0%{transform:scale(.55);opacity:1}100%{transform:scale(2.2);opacity:0}}
-    .net-marker .dot{display:block;width:14px;height:14px;border-radius:50%;background:#00e5a8;box-shadow:0 0 12px rgba(0,229,168,.85);animation:netPulse 2.8s ease-out infinite}
-    .net-marker .lab{display:block;margin-top:5px;transform:translateX(-50%);font-size:9px;letter-spacing:2px;color:#eafcff;text-shadow:0 1px 6px rgba(2,8,17,.9),0 0 12px rgba(0,229,168,.35);white-space:nowrap}
+    .net-marker .dot{display:block;width:14px;height:14px;border-radius:50%;background:#62d9ff;box-shadow:0 0 12px rgba(98,217,255,.85);animation:netPulse 2.8s ease-out infinite}
+    .net-marker .lab{display:block;margin-top:5px;transform:translateX(-50%);font-size:9px;letter-spacing:2px;color:#eafcff;text-shadow:0 1px 6px rgba(2,8,17,.9),0 0 12px rgba(98,217,255,.35);white-space:nowrap}
     .map-foot{display:flex;align-items:center;justify-content:space-between;padding:10px 18px;border-top:1px solid rgba(98,217,255,.09);font-size:8px;letter-spacing:2px;color:#6f93a8;background:rgba(3,12,22,.55)}
     .map-foot b{color:#9fd8c2;font-weight:500}
     .dossier{position:absolute;left:16px;bottom:46px;z-index:6;min-width:230px;border:1px solid rgba(0,229,168,.22);border-left:2px solid #00e5a8;background:rgba(3,15,25,.82);backdrop-filter:blur(10px);padding:14px 16px;border-radius:4px}
@@ -102,7 +102,8 @@
     .term .enter::after{content:"→";color:#8ceaff;font-size:13px;transition:transform .3s ease}
     .term .enter:hover{border-color:#00e5a8;color:#fff}
     .term .enter:hover::after{transform:translateX(4px)}
-    .term.future{border-style:dashed;border-color:rgba(127,163,181,.22);background:rgba(6,16,27,.22)}
+    .term.future{border-style:dashed;border-color:rgba(127,163,181,.22);background:rgba(6,16,27,.22);cursor:pointer;transition:border-color .3s ease,background .3s ease}
+    .term.future:hover{border-color:rgba(127,163,181,.48);background:rgba(8,20,32,.3)}
     .term.future .th h4{color:#8aa3b4}
     .badge.soon{border-color:rgba(127,163,181,.25);color:#7c97a9}
     .term.future .soon{margin-top:12px;font-size:8px;letter-spacing:2.5px;color:#4f6b7c;text-transform:uppercase}
@@ -156,21 +157,21 @@
         <h2><span data-lang="en">Observation<br>Network</span><span data-lang="zh">观测网络</span></h2>
         <div class="line"></div>
       </div>
-      <div class="rec active">
+      <a class="rec active" href="./dashboard.html">
         <div class="r1"><span class="num">01</span><b>ANT-A01</b></div>
         <span class="state"><span data-lang="en">Active Node</span><span data-lang="zh">当前运行</span></span>
         <span class="spec"><span data-lang="en">Nanjing · 32.05N 118.79E</span><span data-lang="zh">南京 · 32.05N 118.79E</span></span>
-      </div>
-      <div class="rec">
+      </a>
+      <a class="rec" href="./dashboard-a02.html">
         <div class="r1"><span class="num">02</span><b>ANT-A02</b></div>
         <span class="state"><span data-lang="en">Coming Soon</span><span data-lang="zh">待部署</span></span>
         <span class="spec"><span data-lang="en">Phase 02 · Planned</span><span data-lang="zh">阶段 02 · 规划中</span></span>
-      </div>
-      <div class="rec">
+      </a>
+      <a class="rec" href="./dashboard-a03.html">
         <div class="r1"><span class="num">03</span><b>ANT-A03</b></div>
         <span class="state"><span data-lang="en">Coming Soon</span><span data-lang="zh">待部署</span></span>
         <span class="spec"><span data-lang="en">Phase 03 · Planned</span><span data-lang="zh">阶段 03 · 规划中</span></span>
-      </div>
+      </a>
       <div class="arc-foot">
         <span data-lang="en">Archive 01 — Active · 02/03 Planned</span><span data-lang="zh">档案 01 — 运行中 · 02/03 规划中</span>
       </div>
@@ -221,16 +222,18 @@
         <a class="enter" href="./dashboard.html" id="enterTerminal"><span data-lang="en">Enter Terminal</span><span data-lang="zh">进入终端</span></a>
       </div>
 
-      <div class="term future">
+      <div class="term future" data-href="./dashboard-a02.html">
         <div class="th"><h4>ANT-A02</h4><span class="badge soon"><span data-lang="en">Pending</span><span data-lang="zh">待部署</span></span></div>
         <p class="type"><span data-lang="en">Future Node</span><span data-lang="zh">未来节点</span></p>
         <div class="soon"><span data-lang="en">Awaiting Deployment</span><span data-lang="zh">等待部署</span></div>
+        <a class="enter" href="./dashboard-a02.html"><span data-lang="en">Enter Terminal</span><span data-lang="zh">进入终端</span></a>
       </div>
 
-      <div class="term future">
+      <div class="term future" data-href="./dashboard-a03.html">
         <div class="th"><h4>ANT-A03</h4><span class="badge soon"><span data-lang="en">Pending</span><span data-lang="zh">待部署</span></span></div>
         <p class="type"><span data-lang="en">Future Node</span><span data-lang="zh">未来节点</span></p>
         <div class="soon"><span data-lang="en">Awaiting Deployment</span><span data-lang="zh">等待部署</span></div>
+        <a class="enter" href="./dashboard-a03.html"><span data-lang="en">Enter Terminal</span><span data-lang="zh">进入终端</span></a>
       </div>
     </aside>
 
@@ -262,7 +265,7 @@
   (function () {
     if (window.L) {
       var map = L.map('networkMap', { zoomControl: false, attributionControl: false }).setView([32.049141, 118.793686], 6);
-      L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', { subdomains: 'abcd', maxZoom: 18, attribution: '' }).addTo(map);
+      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '' }).addTo(map);
       var icon = L.divIcon({ className: 'net-marker', html: '<span class="halo"></span><span class="dot"></span><span class="lab" data-lang="en">NANJING</span><span class="lab" data-lang="zh">南京</span>', iconSize: [16, 46], iconAnchor: [8, 8] });
       L.marker([32.049141, 118.793686], { icon: icon }).addTo(map).bindPopup('ANT-A01 · NANJING');
       window.networkMap = map;
@@ -274,8 +277,22 @@
       var n = Array.isArray(d) ? d.length : 0;
       ['dRecords', 'fRecords', 'tRecords'].forEach(function (id) { var el = document.getElementById(id); if (el) el.textContent = n; });
     }).catch(function () {});
-    var enter = document.getElementById('enterTerminal');
-    if (enter) enter.addEventListener('click', function (e) { e.preventDefault(); if (enter.dataset.busy) return; enter.dataset.busy = '1'; document.body.classList.add('is-leaving'); setTimeout(function () { location.href = enter.getAttribute('href'); }, 620); });
+    function go(href) {
+      if (!href || document.body.dataset.busy) return;
+      document.body.dataset.busy = '1';
+      document.body.classList.add('is-leaving');
+      setTimeout(function () { location.href = href; }, 620);
+    }
+    document.querySelectorAll('.enter, .rec').forEach(function (el) {
+      el.addEventListener('click', function (e) { e.preventDefault(); go(el.getAttribute('href')); });
+    });
+    document.querySelectorAll('.term[data-href]').forEach(function (el) {
+      el.addEventListener('click', function (e) {
+        if (e.target.closest('a')) return;
+        e.preventDefault();
+        go(el.getAttribute('data-href'));
+      });
+    });
   })();
   </script>
 </body>

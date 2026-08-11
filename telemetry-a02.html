@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="color-scheme" content="dark">
+  <title data-title-en="AUTONOMOUS NEXUS · ANT-A02" data-title-zh="自主观测系统 · ANT-A02">AUTONOMOUS NEXUS · ANT-A02</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./css/style.css?v=20260806b">
+  <style>
+
+    /* V47 · 待部署节点统一视觉 */
+    body .system-online.pending{border-color:rgba(124,151,169,.35);color:#9fb3c2}
+    body .system-online.pending > span:first-child{background:#7c97a9;box-shadow:0 0 8px rgba(124,151,169,.45)}
+    .waiting-panel{max-width:760px;margin:56px auto;padding:52px 40px;border:1px solid rgba(140,234,255,.14);border-radius:10px;background:linear-gradient(165deg,rgba(9,28,44,.5),rgba(5,16,28,.36));text-align:center;position:relative}
+    .waiting-panel::before{content:"";position:absolute;left:0;top:0;right:0;height:2px;background:linear-gradient(90deg,rgba(124,151,169,.7),rgba(98,217,255,.12))}
+    .waiting-mark{width:64px;height:64px;margin:0 auto 22px;border:1px solid rgba(140,234,255,.22);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#7c97a9}
+    .waiting-mark svg{width:28px;height:28px}
+    .waiting-eyebrow{font-size:9px;letter-spacing:3px;color:rgba(140,234,255,.55);text-transform:uppercase;margin-bottom:14px}
+    .waiting-panel h2{font-size:clamp(20px,2.2vw,30px);font-weight:200;letter-spacing:3px;color:#eafcff;margin-bottom:14px}
+    .waiting-panel p{font-size:12px;line-height:2;color:#9ab8ca;max-width:520px;margin:0 auto}
+    .waiting-tag{display:inline-block;margin-top:24px;font-size:9px;letter-spacing:2.5px;color:#9fb3c2;border:1px solid rgba(124,151,169,.35);border-radius:999px;padding:6px 16px;text-transform:uppercase}
+    .placeholder-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;max-width:760px;margin:24px auto 60px}
+    .placeholder-cell{border:1px solid rgba(140,234,255,.1);border-radius:8px;padding:18px;background:rgba(7,22,36,.3);text-align:center}
+    .placeholder-cell b{display:block;font-size:22px;font-weight:300;color:#6f93a8;letter-spacing:2px}
+    .placeholder-cell span{display:block;font-size:8px;letter-spacing:2px;color:#6f93a8;margin-top:8px;text-transform:uppercase}
+    body.location-page main,body.sensors-page main,body.telemetry-page main,body.hardware-page main,body.analysis-page main{height:auto!important;min-height:100vh;overflow:visible!important;display:block;padding:26px 30px}
+    @media (max-width:700px){
+      .waiting-panel{margin:30px 14px;padding:36px 22px}
+      .placeholder-grid{grid-template-columns:1fr;margin:18px 14px 40px}
+    }
+  </style>
+</head>
+<body class="ambient-theme telemetry-page">
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="logo">AN</div>
+      <div>
+        <h1>AUTONOMOUS<br>NEXUS</h1>
+        <p><span data-lang="en">Autonomous Environmental Observatory</span><span data-lang="zh">自主环境观测平台</span></p>
+      </div>
+    </div>
+    <input type="checkbox" id="navToggle" class="nav-toggle" aria-hidden="true">
+    <label for="navToggle" class="nav-toggle-btn" aria-label="MENU"><span></span><span></span><span></span></label>
+    <nav class="sidebar-menu">
+      <a class="nav-item" href="./dashboard-a02.html"><span data-lang="en">Dashboard</span><span data-lang="zh">仪表盘</span></a>
+      <a class="nav-item" href="./location-a02.html"><span data-lang="en">Location</span><span data-lang="zh">位置</span></a>
+      <a class="nav-item" href="./sensors-a02.html"><span data-lang="en">Sensors</span><span data-lang="zh">传感器</span></a>
+      <a class="nav-item active" href="./telemetry-a02.html"><span data-lang="en">DATA</span><span data-lang="zh">数据</span></a>
+      <a class="nav-item" href="./hardware-a02.html"><span data-lang="en">Hardware</span><span data-lang="zh">硬件</span></a>
+      <a class="nav-item" href="./analysis-a02.html"><span data-lang="en">Analysis</span><span data-lang="zh">分析</span></a>      <div class="lang-switch"><span class="lang-pill" aria-hidden="true"></span><button type="button" data-lang="zh">中</button><button type="button" data-lang="en" class="active">EN</button></div>
+    </nav>
+    <label for="navToggle" class="nav-overlay" aria-hidden="true"></label>
+  </aside>
+  <main>
+    <header class="mission-header">
+      <div>
+        <h2><span data-lang="en">DATA</span><span data-lang="zh">数据</span></h2>
+        <p><span data-lang="en">Station ANT-A02 · awaiting deployment</span><span data-lang="zh">站点 ANT-A02 · 等待部署</span></p>
+      </div>
+      <div class="header-right">
+        <div class="system-online pending"><span></span><span data-lang="en">AWAITING DEPLOYMENT</span><span data-lang="zh">等待部署</span></div>
+        <div class="status-stack">
+          <span class="status-stack-label"><span data-lang="en">NODE STATUS</span><span data-lang="zh">节点状态</span></span>
+          <span class="status-stack-value"><span data-lang="en">NOT DEPLOYED</span><span data-lang="zh">未部署</span></span>
+        </div>
+      </div>
+    </header>
+    <section class="waiting-panel">
+      <div class="waiting-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3.2"/><path d="M12 2a10 10 0 0 1 10 10M12 22a10 10 0 0 0 10-10M12 2a10 10 0 0 0-10 10M12 22a10 10 0 0 1-10-10"/></svg></div>
+      <div class="waiting-eyebrow"><span data-lang="en">FUTURE NODE · ANT-A02</span><span data-lang="zh">未来节点 · ANT-A02</span></div>
+      <h2><span data-lang="en">No Data Available</span><span data-lang="zh">暂无数据</span></h2>
+      <p><span data-lang="en">This module will activate once the station is deployed and telemetry is established.</span><span data-lang="zh">站点部署并建立遥测后，本模块将自动启用。</span></p>
+      <span class="waiting-tag"><span data-lang="en">Waiting for Deployment</span><span data-lang="zh">等待部署</span></span>
+    </section>
+    <section class="placeholder-grid">
+      <div class="placeholder-cell"><b>--</b><span data-lang="en">DATA</span><span data-lang="zh">数据</span></div>
+      <div class="placeholder-cell"><b>--</b><span data-lang="en">STATUS</span><span data-lang="zh">状态</span></div>
+      <div class="placeholder-cell"><b>--</b><span data-lang="en">LINK</span><span data-lang="zh">链路</span></div>
+    </section>
+  </main>
+</div>
+
+  <script>
+  (function () {
+    function apply(lang) {
+      document.documentElement.setAttribute('data-lang', lang);
+      document.documentElement.setAttribute('lang', lang === 'zh' ? 'zh-CN' : 'en');
+      document.querySelectorAll('[data-lang]').forEach(function (el) {
+        if (el.tagName === 'BUTTON' && el.parentNode && el.parentNode.classList && el.parentNode.classList.contains('lang-switch')) return;
+        el.style.display = (el.getAttribute('data-lang') === lang) ? '' : 'none';
+      });
+      document.querySelectorAll('.lang-switch button').forEach(function (b) { b.classList.toggle('active', b.getAttribute('data-lang') === lang); });
+      try { localStorage.setItem('anx-lang', lang); } catch (e) {}
+      window.anxCurrentLang = lang;
+      window.anxApplyLang = apply;
+      var titleEl = document.querySelector('title');
+      if (titleEl) { var tEn = titleEl.getAttribute('data-title-en'); var tZh = titleEl.getAttribute('data-title-zh'); if (tEn && tZh) titleEl.textContent = lang === 'zh' ? tZh : tEn; }
+    }
+    function bind() { document.querySelectorAll('.lang-switch button').forEach(function (b) { b.addEventListener('click', function (ev) { ev.preventDefault(); apply(b.getAttribute('data-lang')); }); }); }
+    var saved = null; try { saved = localStorage.getItem('anx-lang'); } catch (e) {}
+    apply(saved === 'zh' ? 'zh' : 'en'); bind();
+  })();
+  </script>
+</body>
+</html>
