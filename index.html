@@ -312,6 +312,12 @@
       var floatMat = new THREE.PointsMaterial({ color: 0x7fb8d8, size: 1.2, transparent: true, opacity: 0.45, depthWrite: false });
       var floatPts = new THREE.Points(floatGeo, floatMat);
       scene.add(floatPts);
+      /* 南极引导线（真实节点 → 地球旁空白区标签），由球体自动遮挡背面段 */
+      var leaderGeo = new THREE.BufferGeometry();
+      leaderGeo.setAttribute('position', new THREE.Float32BufferAttribute([0, 0, 0, 0, 0, 0], 3));
+      var leaderMat = new THREE.LineBasicMaterial({ color: 0x8ceaff, transparent: true, opacity: 0.5 });
+      var leaderLine = new THREE.Line(leaderGeo, leaderMat);
+      scene.add(leaderLine);
       var _right = new THREE.Vector3();
       function setGlobeOffset() {
         var dir = new THREE.Vector3();
@@ -339,7 +345,7 @@
         renderer.setSize(window.innerWidth, window.innerHeight);
       });
 
-      var camDist = 430, camLat = -25, camLng = 110, tick = 0;
+      var camDist = 430, camLat = 12, camLng = 110, tick = 0;
       function setCam(lat, lng) {
         var phi = (90 - lat) * Math.PI / 180;
         var theta = (lng + 180) * Math.PI / 180;
@@ -350,14 +356,8 @@
         );
         camera.lookAt(0, 0, 0);
       }
-      var leaderCv = document.getElementById('leaderCv');
-      var leaderCtx = leaderCv.getContext('2d');
-      function drawLeader() {
-        leaderCv.width = window.innerWidth;
-        leaderCv.height = window.innerHeight;
-        leaderCtx.clearRect(0, 0, leaderCv.width, leaderCv.height);
+      function updateLeader() {
         try {
-          /* three-globe 同款经纬→局部向量（与点/弧渲染保持一致） */
           var rr = 100 * 1.02;
           var phi = (90 - AN.lat) * Math.PI / 180;
           var theta = (90 - AN.lng) * Math.PI / 180;
@@ -366,42 +366,29 @@
             rr * Math.cos(phi),
             rr * Math.sin(phi) * Math.sin(theta)
           );
-          var n = v.clone().normalize();
           globe.updateMatrixWorld();
-          v.applyMatrix4(globe.matrixWorld);
-          var nw = n.clone().transformDirection(globe.matrixWorld);
-          var toCam = camera.position.clone().sub(v).normalize();
-          if (nw.dot(toCam) < 0.05) return; /* 节点在背面时隐藏引导线 */
-          var sp = v.clone().project(camera);
-          if (sp.z > 1 || sp.z < -1) return;
-          var sx = (sp.x * 0.5 + 0.5) * window.innerWidth;
-          var sy = (-sp.y * 0.5 + 0.5) * window.innerHeight;
+          var w = v.clone().applyMatrix4(globe.matrixWorld);
           var labelEl = document.querySelector('.an-label');
           var r = labelEl.getBoundingClientRect();
-          var ax = r.left, ay = r.top + r.height / 2;
-          var g = leaderCtx.createLinearGradient(sx, sy, ax, ay);
-          g.addColorStop(0, 'rgba(140,234,255,.7)');
-          g.addColorStop(1, 'rgba(140,234,255,.12)');
-          leaderCtx.strokeStyle = g;
-          leaderCtx.lineWidth = 1;
-          leaderCtx.beginPath();
-          leaderCtx.moveTo(sx, sy);
-          leaderCtx.lineTo(ax, ay);
-          leaderCtx.stroke();
-          leaderCtx.beginPath();
-          leaderCtx.arc(sx, sy, 2, 0, Math.PI * 2);
-          leaderCtx.fillStyle = 'rgba(140,234,255,.85)';
-          leaderCtx.fill();
+          var ndcX = ((r.left + r.width / 2) / window.innerWidth) * 2 - 1;
+          var ndcY = -(((r.top + r.height / 2) / window.innerHeight) * 2 - 1);
+          var vec = new THREE.Vector3(ndcX, ndcY, 0.5).unproject(camera);
+          var dir = vec.sub(camera.position).normalize();
+          var labelWorld = camera.position.clone().add(dir.clone().multiplyScalar(camera.position.length()));
+          var pos = leaderLine.geometry.attributes.position;
+          pos.setXYZ(0, w.x, w.y, w.z);
+          pos.setXYZ(1, labelWorld.x, labelWorld.y, labelWorld.z);
+          pos.needsUpdate = true;
         } catch (e) {}
       }
-      function animate() {
+function animate() {
         requestAnimationFrame(animate);
         tick++;
         globe.rotation.y += 0.00015;
         floatPts.rotation.y += 0.00008;
         setCam(camLat, camLng);
         setGlobeOffset();
-        drawLeader();
+        updateLeader();
         /* 粒子沿两条球面弧线缓慢流动 */
         for (var i = 0; i < 8; i++) {
           var route = i < 4 ? R1 : R2;
