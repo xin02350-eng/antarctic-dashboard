@@ -1,0 +1,80 @@
+{
+  "desktop": {
+    "cards": [
+      {
+        "cardCenter": [
+          1664,
+          546
+        ],
+        "soonCenter": [
+          1664,
+          546
+        ],
+        "offset": [
+          0,
+          0
+        ],
+        "overlapTop": true,
+        "overlapBottom": true,
+        "text": "Coming Soon即"
+      },
+      {
+        "cardCenter": [
+          1664,
+          808
+        ],
+        "soonCenter": [
+          1664,
+          808
+        ],
+        "offset": [
+          0,
+          0
+        ],
+        "overlapTop": true,
+        "overlapBottom": true,
+        "text": "Coming Soon即"
+      }
+    ],
+    "overflow": false
+  },
+  "mobile": {
+    "cards": [
+      {
+        "cardCenter": [
+          195,
+          854
+        ],
+        "soonCenter": [
+          195,
+          854
+        ],
+        "offset": [
+          0,
+          0
+        ],
+        "overlapTop": true,
+        "overlapBottom": true,
+        "text": "Coming Soon即"
+      },
+      {
+        "cardCenter": [
+          195,
+          1005
+        ],
+        "soonCenter": [
+          195,
+          1005
+        ],
+        "offset": [
+          0,
+          0
+        ],
+        "overlapTop": true,
+        "overlapBottom": true,
+        "text": "Coming Soon即"
+      }
+    ],
+    "overflow": false
+  }
+}

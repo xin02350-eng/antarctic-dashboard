@@ -128,6 +128,7 @@
     .term.future:hover{border-color:rgba(150,200,225,.52);background:linear-gradient(165deg,rgba(14,34,54,.56),rgba(9,22,36,.42));box-shadow:inset 0 1px 0 rgba(180,220,245,.06),inset 0 0 28px rgba(80,140,185,.06),0 12px 28px rgba(0,0,0,.24)}
     .term.future .th h4{color:#aec6d6}
     .badge.soon{border-color:rgba(140,180,205,.4);color:#a9c2d2;letter-spacing:2px}
+    .term.future .soon-center{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;font-size:13px;letter-spacing:5px;color:#b8d4e4;text-transform:uppercase;text-shadow:0 0 14px rgba(120,180,215,.25)}
     .term.future .soon{margin-top:auto;padding-top:12px;font-size:8px;letter-spacing:2px;color:#89a5ba;text-transform:uppercase}
     .soon-led{width:7px;height:7px;border-radius:50%;background:rgba(150,190,215,.6);box-shadow:0 0 8px rgba(120,175,210,.4);animation:soonPulse 4s ease-in-out infinite}
     @keyframes soonPulse{0%,100%{opacity:.45}50%{opacity:.9}}
@@ -249,14 +250,16 @@
       </div>
 
       <div class="term future" data-href="./dashboard-a02.html">
-        <div class="th"><h4>ANT-A02</h4><span class="th-right"><span class="soon-led" aria-hidden="true"></span><span class="badge soon"><span data-lang="en">Coming Soon</span><span data-lang="zh">即将上线</span></span></span></div>
+        <div class="th"><h4>ANT-A02</h4><span class="th-right"><span class="soon-led" aria-hidden="true"></span></span></div>
+        <div class="soon-center"><span data-lang="en">Coming Soon</span><span data-lang="zh">即将上线</span></div>
         <p class="type"><span data-lang="en">Future Node</span><span data-lang="zh">未来节点</span></p>
         <div class="soon"><span data-lang="en">Awaiting Deployment</span><span data-lang="zh">等待部署</span></div>
         <a class="enter" href="./dashboard-a02.html"><span data-lang="en">Enter Terminal</span><span data-lang="zh">进入终端</span></a>
       </div>
 
       <div class="term future" data-href="./dashboard-a03.html">
-        <div class="th"><h4>ANT-A03</h4><span class="th-right"><span class="soon-led" aria-hidden="true"></span><span class="badge soon"><span data-lang="en">Coming Soon</span><span data-lang="zh">即将上线</span></span></span></div>
+        <div class="th"><h4>ANT-A03</h4><span class="th-right"><span class="soon-led" aria-hidden="true"></span></span></div>
+        <div class="soon-center"><span data-lang="en">Coming Soon</span><span data-lang="zh">即将上线</span></div>
         <p class="type"><span data-lang="en">Future Node</span><span data-lang="zh">未来节点</span></p>
         <div class="soon"><span data-lang="en">Awaiting Deployment</span><span data-lang="zh">等待部署</span></div>
         <a class="enter" href="./dashboard-a03.html"><span data-lang="en">Enter Terminal</span><span data-lang="zh">进入终端</span></a>
