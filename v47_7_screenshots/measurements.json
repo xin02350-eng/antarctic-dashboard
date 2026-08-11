@@ -1,0 +1,48 @@
+{
+  "zh": {
+    "guideRows": [
+      "实时 在线",
+      "环境 数据",
+      "硬件 设备",
+      "任务 分析"
+    ],
+    "core": {
+      "cx": 875,
+      "cy": 581,
+      "w": 15
+    },
+    "r3": {
+      "cx": 875,
+      "cy": 581,
+      "w": 530
+    },
+    "flowAngle": "221.992deg",
+    "overflow": false
+  },
+  "en": {
+    "guideRows": [
+      "Status Live",
+      "Sensors Env",
+      "Hardware HW",
+      "Analysis Mission"
+    ],
+    "core": {
+      "cx": 875,
+      "cy": 581,
+      "w": 16
+    },
+    "r3": {
+      "cx": 875,
+      "cy": 581,
+      "w": 721
+    },
+    "flowAngle": "283.701deg",
+    "overflow": false
+  },
+  "dashboardMap": {
+    "l": 725,
+    "t": 402,
+    "r": 1852,
+    "b": 898
+  }
+}

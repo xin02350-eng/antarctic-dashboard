@@ -64,12 +64,12 @@
     .live{display:flex;align-items:center;gap:8px;font-size:9px;letter-spacing:2px;color:#9fd8c2;border:1px solid rgba(0,229,168,.22);border-radius:999px;padding:4px 12px;background:rgba(0,229,168,.05)}
     .live i{width:6px;height:6px;border-radius:50%;background:#00e5a8;animation:netPulse 2.4s ease-out infinite}
     @keyframes netPulse{0%{box-shadow:0 0 0 0 rgba(0,229,168,.45)}70%{box-shadow:0 0 0 9px rgba(0,229,168,0)}100%{box-shadow:0 0 0 0 rgba(0,229,168,0)}}
-    #networkMap{flex:1;min-height:430px;background:#0a2740;position:relative;z-index:1}
-    #networkMap .leaflet-container{background:#0a2740!important}
-    #networkMap .leaflet-tile-pane{filter:invert(1) hue-rotate(185deg) brightness(1.12) contrast(1.08) saturate(.72);opacity:1}
+    #networkMap{flex:1;min-height:430px;background:#0e3555;position:relative;z-index:1}
+    #networkMap .leaflet-container{background:#0e3555!important}
+    #networkMap .leaflet-tile-pane{filter:invert(1) hue-rotate(185deg) brightness(1.8) contrast(1.2) saturate(.82);opacity:1}
     #networkMap .leaflet-control-attribution{display:none}
     #networkMap .map-layer{position:absolute;pointer-events:none}
-    #networkMap .map-tint{inset:0;z-index:430;background:radial-gradient(ellipse at 50% 42%,rgba(14,52,78,.08),rgba(3,14,26,.14) 62%,rgba(1,7,14,.20) 100%),linear-gradient(180deg,rgba(6,26,44,.12),rgba(2,10,20,.16)),repeating-linear-gradient(112deg,rgba(140,234,255,.035) 0 1px,transparent 1px 90px),repeating-linear-gradient(0deg,rgba(140,234,255,.050) 0 1px,transparent 1px 72px),repeating-linear-gradient(90deg,rgba(140,234,255,.050) 0 1px,transparent 1px 72px)}
+    #networkMap .map-tint{inset:0;z-index:430;background:radial-gradient(ellipse at 50% 42%,rgba(14,52,78,.05),rgba(3,14,26,.08) 62%,rgba(1,7,14,.12) 100%),linear-gradient(180deg,rgba(6,26,44,.08),rgba(2,10,20,.10)),repeating-linear-gradient(112deg,rgba(140,234,255,.040) 0 1px,transparent 1px 90px),repeating-linear-gradient(0deg,rgba(140,234,255,.060) 0 1px,transparent 1px 72px),repeating-linear-gradient(90deg,rgba(140,234,255,.060) 0 1px,transparent 1px 72px)}
     #networkMap .map-scan{left:0;right:0;top:0;height:130px;z-index:470;background:linear-gradient(180deg,transparent,rgba(98,217,255,.045) 40%,rgba(140,234,255,.12) 50%,rgba(98,217,255,.045) 60%,transparent);animation:dashScan 9s linear infinite;will-change:transform}
     #networkMap .map-radar{width:620px;height:620px;left:50%;top:50%;margin:-310px 0 0 -310px;z-index:480;opacity:.55}
     #networkMap .map-radar i{position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 0deg,rgba(98,217,255,.16),rgba(98,217,255,.03) 65deg,transparent 95deg);animation:dashRadarSpin 14s linear infinite}
