@@ -238,6 +238,7 @@
       fill.position.set(-260, -140, -220);
       scene.add(fill);
       camera = new THREE.PerspectiveCamera(42, window.innerWidth / window.innerHeight, 1, 1200);
+      scene.add(camera);
       renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
       renderer.setClearColor(0x000000, 0);
       renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
@@ -305,41 +306,83 @@
       var floatMat = new THREE.PointsMaterial({ color: 0x7fb8d8, size: 1.2, transparent: true, opacity: 0.45, depthWrite: false });
       var floatPts = new THREE.Points(floatGeo, floatMat);
       scene.add(floatPts);
-      /* 背景深空星光层：三层低密度星点环绕场景，仅背景视觉，不影响地球与相机 */
+      /* 背景深空星光层：Shader 控制逐星大小/亮度/2-5 秒呼吸，冷白·淡蓝·冰蓝，仅背景视觉 */
       (function () {
-        function makeStarLayer(seedVal, count, size, color, alpha, phase, speed) {
+        var vertSrc = [
+          'attribute float aSize;',
+          'attribute float aAlpha;',
+          'attribute float aPhase;',
+          'attribute float aSpeed;',
+          'attribute vec3 aColor;',
+          'uniform float uTime;',
+          'uniform float uScale;',
+          'varying float vA;',
+          'varying vec3 vC;',
+          'void main(){',
+          '  vec4 mv = modelViewMatrix * vec4(position, 1.0);',
+          '  gl_PointSize = aSize * (uScale / max(1.0, -mv.z));',
+          '  float wave = 0.5 + 0.5 * sin(uTime * aSpeed + aPhase);',
+          '  vA = aAlpha * (0.30 + 0.70 * wave);',
+          '  vC = aColor;',
+          '  gl_Position = projectionMatrix * mv;',
+          '}'
+        ].join('\n');
+        var fragSrc = [
+          'precision mediump float;',
+          'varying float vA;',
+          'varying vec3 vC;',
+          'void main(){',
+          '  float d = length(gl_PointCoord - vec2(0.5));',
+          '  float a = smoothstep(0.5, 0.06, d) * vA;',
+          '  gl_FragColor = vec4(vC * a, a);',
+          '}'
+        ].join('\n');
+        function makeLayer(seedVal, count, sizeMin, sizeMax, alphaMin, alphaMax, colors, distMin, distMax) {
           var seed = seedVal;
           function rnd() { seed = (seed * 1664525 + 1013904223) >>> 0; return seed / 4294967296; }
-          var pos = [];
+          var pos = [], sizes = [], alphas = [], phases = [], speeds = [], cols = [];
           for (var i = 0; i < count; i++) {
-            var phi = rnd() * Math.PI * 2;
-            var cost = rnd() * 2 - 1;
-            var rad = 520 + rnd() * 160;
-            var sp = Math.sqrt(1 - cost * cost);
-            pos.push(rad * sp * Math.cos(phi), rad * cost, rad * sp * Math.sin(phi));
+            var dist = distMin + rnd() * (distMax - distMin);
+            var ax = (rnd() * 2 - 1) * 0.95;
+            var ay = (rnd() * 2 - 1) * 0.58;
+            pos.push(Math.tan(ax) * dist, Math.tan(ay) * dist, -dist);
+            sizes.push(sizeMin + rnd() * (sizeMax - sizeMin));
+            alphas.push(alphaMin + rnd() * (alphaMax - alphaMin));
+            phases.push(rnd() * Math.PI * 2);
+            speeds.push(1.2 + rnd() * 2.0);
+            var c = colors[Math.floor(rnd() * colors.length)];
+            cols.push(c[0], c[1], c[2]);
           }
           var geo = new THREE.BufferGeometry();
           geo.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
-          var mat = new THREE.PointsMaterial({
-            color: color,
-            size: size,
+          geo.setAttribute('aSize', new THREE.Float32BufferAttribute(sizes, 1));
+          geo.setAttribute('aAlpha', new THREE.Float32BufferAttribute(alphas, 1));
+          geo.setAttribute('aPhase', new THREE.Float32BufferAttribute(phases, 1));
+          geo.setAttribute('aSpeed', new THREE.Float32BufferAttribute(speeds, 1));
+          geo.setAttribute('aColor', new THREE.Float32BufferAttribute(cols, 3));
+          var mat = new THREE.ShaderMaterial({
+            uniforms: {
+              uTime: { value: 0 },
+              uScale: { value: window.innerHeight * 1.302 }
+            },
+            vertexShader: vertSrc,
+            fragmentShader: fragSrc,
             transparent: true,
-            opacity: alpha,
-            sizeAttenuation: true,
-            depthWrite: false
+            depthWrite: false,
+            blending: THREE.AdditiveBlending
           });
           var pts = new THREE.Points(geo, mat);
-          pts.userData.phase = phase;
-          pts.userData.speed = speed;
-          pts.userData.base = alpha;
-          scene.add(pts);
+          camera.add(pts);
           bgStarLayers.push(pts);
         }
-        makeStarLayer(20260820, 220, 0.7, 0xcfe6ff, 0.45, 0.0, 0.14);
-        makeStarLayer(20260821, 140, 1.1, 0xafd4ff, 0.38, 2.1, 0.20);
-        makeStarLayer(20260822, 80, 1.9, 0xdfefff, 0.50, 4.2, 0.28);
+        var coldWhite = [0.88, 0.94, 1.0];
+        var paleBlue = [0.66, 0.84, 1.0];
+        var iceBlue = [0.55, 0.86, 1.0];
+        makeLayer(20260820, 300, 0.55, 1.0, 0.32, 0.55, [coldWhite, paleBlue], 560, 980);
+        makeLayer(20260821, 100, 1.2, 1.9, 0.60, 0.80, [paleBlue, iceBlue, coldWhite], 580, 920);
+        makeLayer(20260822, 36, 2.6, 3.8, 0.80, 1.00, [iceBlue, paleBlue], 600, 860);
       })();
-      /* 极淡蓝色星云雾化：附着于相机空间的两处远处光晕，保持低透明度 */
+      /* 极淡蓝色空间雾：附着于相机空间的三处远处光晕，保持低透明度 */
       (function () {
         function glowTex(rgb) {
           var c = document.createElement('canvas');
@@ -355,8 +398,9 @@
           return new THREE.CanvasTexture(c);
         }
         var spots = [
-          { x: -300, y: 215, z: -760, sx: 820, sy: 560, o: 0.08, rgb: '88,150,205' },
-          { x: 330, y: -245, z: -820, sx: 760, sy: 520, o: 0.062, rgb: '70,130,190' }
+          { x: -300, y: 215, z: -760, sx: 820, sy: 560, o: 0.10, rgb: '88,150,205' },
+          { x: 330, y: -245, z: -820, sx: 760, sy: 520, o: 0.075, rgb: '70,130,190' },
+          { x: 0, y: 180, z: -860, sx: 900, sy: 520, o: 0.055, rgb: '100,165,220' }
         ];
         for (var i = 0; i < spots.length; i++) {
           var sp = spots[i];
@@ -449,6 +493,9 @@
         camera.updateProjectionMatrix();
         renderer.setSize(window.innerWidth, window.innerHeight);
         if (bgPlane) sizeBgPlane();
+        for (var zi = 0; zi < bgStarLayers.length; zi++) {
+          bgStarLayers[zi].material.uniforms.uScale.value = window.innerHeight * 1.302;
+        }
       });
 
       var camDist = 430, camLat = 12, camLng = 110, tick = 0;
@@ -576,8 +623,7 @@ function animate() {
         floatPts.rotation.y += 0.00008;
         var bgT = performance.now() / 1000;
         for (var si = 0; si < bgStarLayers.length; si++) {
-          var sl = bgStarLayers[si];
-          sl.material.opacity = sl.userData.base * (0.72 + 0.28 * Math.sin(bgT * sl.userData.speed + sl.userData.phase));
+          bgStarLayers[si].material.uniforms.uTime.value = bgT;
         }
         for (var ni = 0; ni < bgNebula.length; ni++) {
           var nb = bgNebula[ni];
