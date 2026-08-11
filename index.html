@@ -153,7 +153,7 @@
 
   <div class="an-label">
     <b>ANTARCTICA</b>
-    <span data-lang="en">Antarctic Region</span><span data-lang="zh">南极地区</span>
+    <span data-lang="en">Antarctic Continent</span><span data-lang="zh">南极大陆</span>
   </div>
 
   <script>
@@ -185,7 +185,7 @@
     /* ---------- 真实坐标 ---------- */
     var NJ = { lat: 32.049141, lng: 118.793686 };   // Nanjing（项目实测坐标）
     var NE = { lat: 45.75, lng: 126.65 };           // Harbin，中国东北
-    var AN = { lat: -82.0, lng: 70.0 };             // 南极大陆内部（恩德比地，面向亚洲一侧）
+    var AN = { lat: -82.0, lng: 70.0 };             // 南极大陆内部（恩德比地，已验证落在 Antarctica polygon 内）
 
     function gcLine(a, b, n) {
       var R = Math.PI / 180;
@@ -223,7 +223,7 @@
       ];
     }
     var labelsEn = ['NANJING', 'NORTHEAST CHINA', 'ANTARCTICA'];
-    var labelsZh = ['南京', '东北地区', '南极地区'];
+    var labelsZh = ['南京', '东北地区', '南极大陆'];
 
     window.onLangChange = function (lang) {
       if (globe) globe.labelsData(labelData(lang));
@@ -339,7 +339,7 @@
         renderer.setSize(window.innerWidth, window.innerHeight);
       });
 
-      var camDist = 430, camLat = 12, camLng = 110, tick = 0;
+      var camDist = 430, camLat = -25, camLng = 110, tick = 0;
       function setCam(lat, lng) {
         var phi = (90 - lat) * Math.PI / 180;
         var theta = (lng + 180) * Math.PI / 180;
@@ -357,11 +357,21 @@
         leaderCv.height = window.innerHeight;
         leaderCtx.clearRect(0, 0, leaderCv.width, leaderCv.height);
         try {
-          if (typeof globe.getCoords !== 'function') return;
-          var c = globe.getCoords(AN.lat, AN.lng, 0.02);
-          var v = new THREE.Vector3(c[0], c[1], c[2]);
+          /* three-globe 同款经纬→局部向量（与点/弧渲染保持一致） */
+          var rr = 100 * 1.02;
+          var phi = (90 - AN.lat) * Math.PI / 180;
+          var theta = (90 - AN.lng) * Math.PI / 180;
+          var v = new THREE.Vector3(
+            rr * Math.sin(phi) * Math.cos(theta),
+            rr * Math.cos(phi),
+            rr * Math.sin(phi) * Math.sin(theta)
+          );
+          var n = v.clone().normalize();
           globe.updateMatrixWorld();
           v.applyMatrix4(globe.matrixWorld);
+          var nw = n.clone().transformDirection(globe.matrixWorld);
+          var toCam = camera.position.clone().sub(v).normalize();
+          if (nw.dot(toCam) < 0.05) return; /* 节点在背面时隐藏引导线 */
           var sp = v.clone().project(camera);
           if (sp.z > 1 || sp.z < -1) return;
           var sx = (sp.x * 0.5 + 0.5) * window.innerWidth;
