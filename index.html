@@ -11,7 +11,7 @@
   <style>
     *{box-sizing:border-box;margin:0;padding:0}
     html,body{height:100%;overflow:hidden}
-    body{background:#01060d;color:#dff6ff;font-family:"Segoe UI",system-ui,-apple-system,"Microsoft YaHei",sans-serif;position:relative}
+    body{background:radial-gradient(ellipse at 66% 42%,#071a2c 0%,#020a14 48%,#01060d 82%);color:#dff6ff;font-family:"Segoe UI",system-ui,-apple-system,"Microsoft YaHei",sans-serif;position:relative}
 
     /* 背景深空星光由 WebGL 场景内的轻量星层渲染，避免遮挡与合成差异 */
 
@@ -51,6 +51,8 @@
 
     /* ---------- Hero ---------- */
     .hero{position:fixed;left:7vw;top:15%;z-index:10;max-width:640px}
+    .hero-content{position:relative;display:block}
+    .hero-content>*{margin-left:0;padding-left:0;text-align:left}
     .kicker{display:flex;align-items:center;gap:16px;font-size:9px;letter-spacing:6px;color:rgba(140,234,255,.65);margin-bottom:28px;text-transform:uppercase;opacity:0;transform:translateY(14px)}
     .kicker::before{content:"";width:52px;height:1px;background:linear-gradient(90deg,rgba(98,217,255,.8),transparent)}
     .home-page.loaded .kicker{opacity:1;transform:none;transition:opacity .9s ease .4s,transform .9s ease .4s}
@@ -78,12 +80,12 @@
 
     @media (min-width:1025px){
       html[data-lang="en"] .kicker{margin-bottom:40px}
-      html[data-lang="en"] .hero h1{margin-top:-24px;font-size:clamp(40px,3.9vw,62px);line-height:1.18;letter-spacing:2px}
+      html[data-lang="en"] .hero h1{margin-top:-24px;font-size:clamp(42px,4vw,64px);line-height:1.16;letter-spacing:2px}
       html[data-lang="en"] .hero h1 em{display:inline-block}
       html[data-lang="en"] .hero h1 em:nth-of-type(1){font-size:.9em}
-      html[data-lang="en"] .hero h1 em:nth-of-type(2){font-size:1em;letter-spacing:3px}
-      html[data-lang="en"] .hero .sub{margin-top:56px}
-      html[data-lang="en"] .hero .btn{margin-top:104px}
+      html[data-lang="en"] .hero h1 em:nth-of-type(2){font-size:1em;letter-spacing:2.5px}
+      html[data-lang="en"] .hero .sub{margin-top:48px}
+      html[data-lang="en"] .hero .btn{margin-top:84px}
       .hero .btn{margin-top:64px}
     }
     @media (max-width:1024px){
@@ -131,18 +133,20 @@
   </header>
 
   <section class="hero">
-    <div class="kicker"><span data-lang="en">Autonomous Environmental Observation Programme</span><span data-lang="zh">自主环境观测计划</span></div>
-    <h1>
-      <span data-lang="en"><em>From Observation,</em><br><em>Toward the Unknown</em></span>
-      <span data-lang="zh"><em>始于观测，</em><br><em>走向未知</em></span>
-    </h1>
-    <p class="sub">
-      <span data-lang="en">Starting from Nanjing,<br>we are building an autonomous environmental observation network,<br>using long-term collected data<br>as the foundation for exploring unknown environments.</span>
-      <span data-lang="zh">从南京出发，<br>构建自主环境观测网络；<br>以持续积累的数据，<br>为未来探索未知环境提供基础。</span>
-    </p>
-    <button type="button" class="btn" id="exploreBtn">
-      <span data-lang="en">Start Exploration</span><span data-lang="zh">开启探索</span><b>→</b>
-    </button>
+    <div class="hero-content">
+      <div class="kicker"><span data-lang="en">Autonomous Environmental Observation Programme</span><span data-lang="zh">自主环境观测计划</span></div>
+      <h1>
+        <span data-lang="en"><em>From Observation,</em><br><em>Toward the Unknown</em></span>
+        <span data-lang="zh"><em>始于观测，</em><br><em>走向未知</em></span>
+      </h1>
+      <p class="sub">
+        <span data-lang="en">Starting from Nanjing, we are building<br>an autonomous environmental observation network,<br>using long-term collected data as the foundation<br>for exploring unknown environments.</span>
+        <span data-lang="zh">从南京出发，<br>构建自主环境观测网络；<br>以持续积累的数据，<br>为未来探索未知环境提供基础。</span>
+      </p>
+      <button type="button" class="btn" id="exploreBtn">
+        <span data-lang="en">Start Exploration</span><span data-lang="zh">开启探索</span><b>→</b>
+      </button>
+    </div>
   </section>
 
   <footer class="manifesto">
@@ -209,7 +213,7 @@
     var R2 = gcLine(NE, AN, 90);
 
     var scene, camera, renderer, globe, particles = [];
-    var bgStarLayers = [], bgNebula = [];
+    var bgStarLayers = [], bgNebula = [], bgPlane = null;
     var nodeData = [
       { lat: NJ.lat, lng: NJ.lng, color: '#00e5a8', radius: 0.55, alt: 0.012 },
       { lat: NE.lat, lng: NE.lng, color: '#7fd4ff', radius: 0.42, alt: 0.012 },
@@ -310,7 +314,7 @@
           for (var i = 0; i < count; i++) {
             var phi = rnd() * Math.PI * 2;
             var cost = rnd() * 2 - 1;
-            var rad = 560 + rnd() * 420;
+            var rad = 520 + rnd() * 160;
             var sp = Math.sqrt(1 - cost * cost);
             pos.push(rad * sp * Math.cos(phi), rad * cost, rad * sp * Math.sin(phi));
           }
@@ -331,9 +335,9 @@
           scene.add(pts);
           bgStarLayers.push(pts);
         }
-        makeStarLayer(20260820, 220, 0.75, 0xcfe6ff, 0.40, 0.0, 0.14);
-        makeStarLayer(20260821, 150, 1.0, 0xafd4ff, 0.32, 2.1, 0.20);
-        makeStarLayer(20260822, 110, 1.3, 0xdfefff, 0.25, 4.2, 0.28);
+        makeStarLayer(20260820, 220, 0.7, 0xcfe6ff, 0.45, 0.0, 0.14);
+        makeStarLayer(20260821, 140, 1.1, 0xafd4ff, 0.38, 2.1, 0.20);
+        makeStarLayer(20260822, 80, 1.9, 0xdfefff, 0.50, 4.2, 0.28);
       })();
       /* 极淡蓝色星云雾化：附着于相机空间的两处远处光晕，保持低透明度 */
       (function () {
@@ -351,8 +355,8 @@
           return new THREE.CanvasTexture(c);
         }
         var spots = [
-          { x: -300, y: 215, z: -760, sx: 820, sy: 560, o: 0.065, rgb: '88,150,205' },
-          { x: 330, y: -245, z: -820, sx: 760, sy: 520, o: 0.05, rgb: '70,130,190' }
+          { x: -300, y: 215, z: -760, sx: 820, sy: 560, o: 0.08, rgb: '88,150,205' },
+          { x: 330, y: -245, z: -820, sx: 760, sy: 520, o: 0.062, rgb: '70,130,190' }
         ];
         for (var i = 0; i < spots.length; i++) {
           var sp = spots[i];
@@ -371,6 +375,45 @@
           bgNebula.push(spr);
         }
       })();
+      /* 深蓝黑渐变背景：屏幕空间远景雾面，让数字地球漂浮在深空 */
+      (function () {
+        var bgCv = document.createElement('canvas');
+        bgCv.width = 1024;
+        bgCv.height = 512;
+        var bgx = bgCv.getContext('2d');
+        var lin = bgx.createLinearGradient(0, 0, 0, 512);
+        lin.addColorStop(0, '#0b2137');
+        lin.addColorStop(0.46, '#041527');
+        lin.addColorStop(1, '#01060d');
+        bgx.fillStyle = lin;
+        bgx.fillRect(0, 0, 1024, 512);
+        function haze(x, y, r, a) {
+          var gr = bgx.createRadialGradient(x, y, 0, x, y, r);
+          gr.addColorStop(0, 'rgba(72,138,198,' + a + ')');
+          gr.addColorStop(1, 'rgba(72,138,198,0)');
+          bgx.fillStyle = gr;
+          bgx.fillRect(0, 0, 1024, 512);
+        }
+        haze(676, 256, 300, 0.11);
+        haze(260, 120, 220, 0.07);
+        haze(800, 430, 200, 0.055);
+        var tex = new THREE.CanvasTexture(bgCv);
+        bgPlane = new THREE.Mesh(
+          new THREE.PlaneGeometry(1, 1),
+          new THREE.MeshBasicMaterial({ map: tex, depthWrite: false, depthTest: false, fog: false })
+        );
+        bgPlane.renderOrder = -10;
+        bgPlane.frustumCulled = false;
+        camera.add(bgPlane);
+      })();
+      function sizeBgPlane() {
+        var dist = 100;
+        var halfH = Math.tan(camera.fov * Math.PI / 360) * dist;
+        var halfW = halfH * camera.aspect;
+        bgPlane.position.set(0, 0, -dist);
+        bgPlane.scale.set(halfW * 2, halfH * 2, 1);
+      }
+      sizeBgPlane();
       /* 南极引导线（真实节点 → 地球旁空白区标签），由球体自动遮挡背面段 */
       var leaderGeo = new THREE.BufferGeometry();
       leaderGeo.setAttribute('position', new THREE.Float32BufferAttribute([0, 0, 0, 0, 0, 0], 3));
@@ -394,6 +437,7 @@
       window.__globe = globe;
       window.__bgStarLayers = bgStarLayers;
       window.__bgNebula = bgNebula;
+      window.__bgPlane = bgPlane;
 
       for (var i = 0; i < 8; i++) {
         particles.push({ lat: 0, lng: 0, color: '#bff3ff', radius: 0.12, alt: 0.03 });
@@ -404,6 +448,7 @@
         camera.aspect = window.innerWidth / window.innerHeight;
         camera.updateProjectionMatrix();
         renderer.setSize(window.innerWidth, window.innerHeight);
+        if (bgPlane) sizeBgPlane();
       });
 
       var camDist = 430, camLat = 12, camLng = 110, tick = 0;
