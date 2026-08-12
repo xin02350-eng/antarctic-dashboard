@@ -3446,7 +3446,6 @@ flex:none;
 
 }
 
-
 /* =========================================================
    五、中部布局：大地图 + 两侧数据面板（非卡片堆叠）
 ========================================================= */
@@ -13201,4 +13200,36 @@ flex:none;
 
 }
 
+}
+/* ============ V47.21 · 全局语言切换组件视觉统一 ============ */
+.lang-switch{
+width:116px;
+height:30px;
+padding:3px;
+border-color:rgba(140,234,255,.16);
+background:rgba(7,20,34,.52);
+box-shadow:inset 0 0 10px rgba(2,10,18,.35),0 0 16px rgba(98,217,255,.06);
+backdrop-filter:blur(10px);
+}
+.lang-switch button{
+font-size:9px;
+letter-spacing:2px;
+color:rgba(140,234,255,.55);
+}
+.lang-switch button:hover{
+color:#cfe9ff;
+}
+.lang-switch button.active{
+color:#eafcff;
+text-shadow:0 0 8px rgba(140,234,255,.35);
+}
+.lang-switch .lang-pill{
+background:linear-gradient(135deg,rgba(45,212,170,.32),rgba(98,217,255,.26));
+box-shadow:0 0 10px rgba(98,217,255,.10);
+}
+@media (max-width:768px){
+.lang-switch{
+width:106px;
+height:28px;
+}
 }

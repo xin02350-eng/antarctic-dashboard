@@ -1,0 +1,80 @@
+{
+  "zh": {
+    "floats": 0,
+    "header": {
+      "t": 22,
+      "b": 143,
+      "l": 290,
+      "r": 1865,
+      "w": 1575,
+      "h": 121
+    },
+    "controls": {
+      "t": 56,
+      "b": 109,
+      "l": 1598,
+      "r": 1838,
+      "w": 240,
+      "h": 53
+    },
+    "sw": {
+      "t": 67,
+      "b": 97,
+      "l": 1722,
+      "r": 1838,
+      "w": 116,
+      "h": 30
+    },
+    "status": {
+      "t": 56,
+      "b": 109,
+      "l": 1598,
+      "r": 1708,
+      "w": 110,
+      "h": 53
+    },
+    "switchInHeader": true,
+    "sameRowAsStatus": true,
+    "brandText": "自主观测网络",
+    "overflow": false
+  },
+  "en": {
+    "floats": 0,
+    "header": {
+      "t": 22,
+      "b": 143,
+      "l": 290,
+      "r": 1865,
+      "w": 1575,
+      "h": 121
+    },
+    "controls": {
+      "t": 56,
+      "b": 109,
+      "l": 1567,
+      "r": 1838,
+      "w": 271,
+      "h": 53
+    },
+    "sw": {
+      "t": 67,
+      "b": 97,
+      "l": 1722,
+      "r": 1838,
+      "w": 116,
+      "h": 30
+    },
+    "status": {
+      "t": 56,
+      "b": 109,
+      "l": 1567,
+      "r": 1708,
+      "w": 141,
+      "h": 53
+    },
+    "switchInHeader": true,
+    "sameRowAsStatus": true,
+    "brandText": "AUTONOMOUSNEXUS",
+    "overflow": false
+  }
+}

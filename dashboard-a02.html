@@ -6,7 +6,7 @@
   <meta name="color-scheme" content="dark">
   <title data-title-en="AUTONOMOUS NEXUS · ANT-A02" data-title-zh="自主观测系统 · ANT-A02">AUTONOMOUS NEXUS · ANT-A02</title>
   <link rel="icon" href="data:,">
-  <link rel="stylesheet" href="./css/style.css?v=20260806b">
+  <link rel="stylesheet" href="./css/style.css?v=20260811">
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 <style>
@@ -38,15 +38,20 @@
       .waiting-panel{margin:30px 14px;padding:36px 22px}
       .placeholder-grid{grid-template-columns:1fr;margin:18px 14px 40px}
     }
+      .lang-float{position:fixed;top:26px;right:32px;z-index:120}
+      .hero-status{margin-right:150px}
   </style>
 </head>
 <body class="ambient-theme dashboard-page">
-<div class="app">
+
+<div class="lang-float"><div class="lang-switch"><span class="lang-pill" aria-hidden="true"></span><button type="button" data-lang="zh">中</button><button type="button" data-lang="en" class="active">EN</button></div></div>
+
+
   <aside class="sidebar">
     <div class="brand">
       <div class="logo">AN</div>
       <div>
-        <h1>AUTONOMOUS<br>NEXUS</h1>
+        <h1><span data-lang="en">AUTONOMOUS<br>NEXUS</span><span data-lang="zh">自主观测网络</span></h1>
         <p><span data-lang="en">Autonomous Environmental Observatory</span><span data-lang="zh">自主环境观测平台</span></p>
       </div>
     </div>
@@ -58,8 +63,7 @@
       <a class="nav-item" href="./sensors-a02.html"><span data-lang="en">Sensors</span><span data-lang="zh">传感器</span></a>
       <a class="nav-item" href="./telemetry-a02.html"><span data-lang="en">DATA</span><span data-lang="zh">数据</span></a>
       <a class="nav-item" href="./hardware-a02.html"><span data-lang="en">Hardware</span><span data-lang="zh">硬件</span></a>
-      <a class="nav-item" href="./analysis-a02.html"><span data-lang="en">Analysis</span><span data-lang="zh">分析</span></a>      <div class="lang-switch"><span class="lang-pill" aria-hidden="true"></span><button type="button" data-lang="zh">中</button><button type="button" data-lang="en" class="active">EN</button></div>
-    </nav>
+      <a class="nav-item" href="./analysis-a02.html"><span data-lang="en">Analysis</span><span data-lang="zh">分析</span></a>    </nav>
     <label for="navToggle" class="nav-overlay" aria-hidden="true"></label>
   </aside>
   <main>
@@ -199,17 +203,14 @@
       document.documentElement.setAttribute('data-lang', lang);
       document.documentElement.setAttribute('lang', lang === 'zh' ? 'zh-CN' : 'en');
       document.querySelectorAll('[data-lang]').forEach(function (el) {
-        if (el.tagName === 'BUTTON' && el.parentNode && el.parentNode.classList && el.parentNode.classList.contains('lang-switch')) return;
         el.style.display = (el.getAttribute('data-lang') === lang) ? '' : 'none';
       });
-      document.querySelectorAll('.lang-switch button').forEach(function (b) { b.classList.toggle('active', b.getAttribute('data-lang') === lang); });
       try { localStorage.setItem('anx-lang', lang); } catch (e) {}
       window.anxCurrentLang = lang;
       window.anxApplyLang = apply;
       var titleEl = document.querySelector('title');
       if (titleEl) { var tEn = titleEl.getAttribute('data-title-en'); var tZh = titleEl.getAttribute('data-title-zh'); if (tEn && tZh) titleEl.textContent = lang === 'zh' ? tZh : tEn; }
     }
-    function bind() { document.querySelectorAll('.lang-switch button').forEach(function (b) { b.addEventListener('click', function (ev) { ev.preventDefault(); apply(b.getAttribute('data-lang')); }); }); }
     var saved = null; try { saved = localStorage.getItem('anx-lang'); } catch (e) {}
     apply(saved === 'zh' ? 'zh' : 'en'); bind();
   })();

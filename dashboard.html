@@ -6,7 +6,7 @@
   <meta name="color-scheme" content="dark">
   <title data-title-en="AUTONOMOUS NEXUS" data-title-zh="自主观测系统">AUTONOMOUS NEXUS</title>
   <link rel="icon" href="data:,">
-  <link rel="stylesheet" href="./css/style.css?v=20260806b">
+  <link rel="stylesheet" href="./css/style.css?v=20260811">
   <style>
     /* V43 · Dashboard 简约化：隐藏底部统计卡（核心状态/传感器/地图/任务流保留） */
     body.dashboard-page .operation-grid{display:none}
@@ -25,6 +25,11 @@
       body.dashboard-page .stream-panel{border-radius:8px}
       body.dashboard-page .stream-row{padding:8px 14px}
     }
+    .dashboard-hero .hero-controls{display:flex;align-items:center;gap:14px}
+    .dashboard-hero .hero-controls .lang-switch{flex:none}
+    body.dashboard-page .mission-grid{grid-template-columns:minmax(0,1fr)}
+    body.dashboard-page .map-status-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+    body.dashboard-page .side-panel{grid-template-rows:auto repeat(2,minmax(0,1fr))}
   </style>
 
   <!-- Leaflet 地图（真实地图，由 main.js 初始化） -->
@@ -42,7 +47,7 @@
     <div class="brand">
       <div class="logo">AN</div>
       <div>
-        <h1>AUTONOMOUS<br>NEXUS</h1>
+        <h1><span data-lang="en">AUTONOMOUS<br>NEXUS</span><span data-lang="zh">自主观测网络</span></h1>
         <p data-i18n="brand_subtitle">Autonomous Environmental Observatory</p>
       </div>
     </div>
@@ -55,7 +60,6 @@
       <a class="nav-item" href="./telemetry.html"><span data-lang="en">DATA</span><span data-lang="zh">数据</span></a>
       <a class="nav-item" href="./hardware.html"><span data-lang="en">Hardware</span><span data-lang="zh">硬件</span></a>
       <a class="nav-item" href="./analysis.html"><span data-lang="en">Analysis</span><span data-lang="zh">分析</span></a>
-      <div class="lang-switch"><span class="lang-pill" aria-hidden="true"></span><button type="button" data-lang="zh">中</button><button type="button" data-lang="en" class="active">EN</button></div>
     </nav>
     <label for="navToggle" class="nav-overlay" aria-hidden="true"></label>
   </aside>
@@ -70,9 +74,12 @@
         <div class="dashboard-title"><span data-lang="en">AUTONOMOUS MONITORING SYSTEM</span><span data-lang="zh">自主观测系统</span></div>
         <div class="hero-sub"><span data-lang="en">AUTONOMOUS ENVIRONMENTAL MONITORING PLATFORM · STATION ANT-A01</span><span data-lang="zh">自主环境监测平台 · 站点 ANT-A01</span></div>
       </div>
-      <div class="hero-status">
-        <div class="system-online"><span></span><span data-lang="en">SYSTEM ONLINE</span><span data-lang="zh">系统在线</span></div>
-        <div class="hero-station"><span data-lang="en">STATION ANT-A01</span><span data-lang="zh">站点 ANT-A01</span></div>
+      <div class="hero-controls">
+        <div class="hero-status">
+          <div class="system-online"><span></span><span data-lang="en">SYSTEM ONLINE</span><span data-lang="zh">系统在线</span></div>
+          <div class="hero-station"><span data-lang="en">STATION ANT-A01</span><span data-lang="zh">站点 ANT-A01</span></div>
+        </div>
+        <div class="lang-switch"><span class="lang-pill" aria-hidden="true"></span><button type="button" data-lang="zh">中</button><button type="button" data-lang="en" class="active">EN</button></div>
       </div>
     </header>
 
@@ -101,44 +108,6 @@
     <!-- 中部：大地图 + 两侧科研数据面板（非卡片堆叠） -->
     <section class="mission-grid">
 
-      <!-- 左侧面板：电力 / 环境 -->
-      <aside class="side-panel side-left">
-        <div class="side-panel-title" data-i18n="power_environment">POWER &amp; ENVIRONMENT</div>
-
-        <div class="status-card sensor-card">
-          <div class="sensor-head">
-            <svg class="sensor-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4.8 13.4h5.2L9 22l9.2-11.6H13z"/></svg>
-            <span class="sensor-name" data-i18n="voltage">VOLTAGE</span>
-            <span class="sensor-led"></span>
-          </div>
-          <div class="sensor-value"><strong id="voltage">--</strong><span class="sensor-unit">V</span></div>
-          <div class="sensor-meta"><span data-i18n="battery_bus">BATTERY BUS</span><span class="sensor-state" data-i18n="nominal">NOMINAL</span></div>
-          <span class="sensor-index">01</span>
-        </div>
-
-        <div class="status-card sensor-card">
-          <div class="sensor-head">
-            <svg class="sensor-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h3l2-6 4 12 2-6h7"/></svg>
-            <span class="sensor-name" data-i18n="current">CURRENT</span>
-            <span class="sensor-led"></span>
-          </div>
-          <div class="sensor-value"><strong id="current">--</strong><span class="sensor-unit">mA</span></div>
-          <div class="sensor-meta"><span data-i18n="load_draw">LOAD DRAW</span><span class="sensor-state" data-i18n="nominal">NOMINAL</span></div>
-          <span class="sensor-index">02</span>
-        </div>
-
-        <div class="status-card sensor-card">
-          <div class="sensor-head">
-            <svg class="sensor-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 4a2 2 0 1 1 4 0v9.5a4 4 0 1 1-4 0V4z"/><path d="M12 9v7"/></svg>
-            <span class="sensor-name" data-i18n="temperature">TEMPERATURE</span>
-            <span class="sensor-led"></span>
-          </div>
-          <div class="sensor-value"><strong id="insideTemp">--</strong><span class="sensor-unit">°C</span></div>
-          <div class="sensor-meta"><span data-i18n="cabin">CABIN</span><span><span data-i18n="outside">OUTSIDE</span> <b id="outsideTemp">--</b>°C</span></div>
-          <span class="sensor-index">03</span>
-        </div>
-      </aside>
-
       <!-- 中部：地图战区（视觉中心） -->
       <section class="map-panel">
         <div class="map-panel-head">
@@ -150,7 +119,6 @@
           <div class="map-cell"><span data-i18n="gps_status">GPS STATUS</span><strong data-i18n="tracking">TRACKING</strong><i class="map-cell-led"></i></div>
           <div class="map-cell" id="mapModeCell"><span data-i18n="mode">MODE</span><strong id="mapModeValue">--</strong><i class="map-cell-led"></i></div>
           <div class="map-cell"><span data-i18n="power">POWER</span><strong data-i18n="solar_battery">SOLAR + BATTERY</strong><i class="map-cell-led"></i></div>
-          <div class="map-cell"><span data-i18n="comms">COMMS</span><strong data-i18n="data_link">DATA LINK</strong><i class="map-cell-led"></i></div>
         </div>
 
         <!-- #worldMap 由 main.js 创建真实 Leaflet 地图；以下装饰层均为 pointer-events:none，不影响拖拽缩放 -->
@@ -174,7 +142,7 @@
 
       <!-- 右侧面板：气候 / 通信 -->
       <aside class="side-panel side-right">
-        <div class="side-panel-title" data-i18n="climate_comms">CLIMATE &amp; COMMS</div>
+        <div class="side-panel-title"><span data-lang="en">CLIMATE</span><span data-lang="zh">气候</span></div>
 
         <div class="status-card sensor-card">
           <div class="sensor-head">
@@ -198,16 +166,6 @@
           <span class="sensor-index">05</span>
         </div>
 
-        <div class="status-card sensor-card">
-          <div class="sensor-head">
-            <svg class="sensor-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20a12 12 0 0 1 16 0"/><path d="M8 16a8 8 0 0 1 8 0"/><circle cx="12" cy="12" r="1.6"/></svg>
-            <span class="sensor-name" data-i18n="data_link">DATA LINK</span>
-            <span class="sensor-led"></span>
-          </div>
-          <div class="sensor-value"><strong id="gpsStatusPage">--</strong><span class="sensor-unit" data-i18n="fix">FIX</span></div>
-          <div class="sensor-meta"><span><span data-i18n="satellites">SATELLITES</span> <b id="satelliteSmall">--</b></span><span class="sensor-state" data-i18n="nominal">NOMINAL</span></div>
-          <span class="sensor-index">06</span>
-        </div>
       </aside>
     </section>
 
