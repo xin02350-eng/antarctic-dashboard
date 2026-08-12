@@ -4690,7 +4690,7 @@ grid-row:1;
 
 body.dashboard-page .map-panel{
 
-grid-column:2;
+grid-column:1;
 
 grid-row:1;
 
@@ -13236,4 +13236,66 @@ height:28px;
 /* V48.0 · Dashboard 地图版权条与全站深色科研视觉统一（与其他地图页一致隐藏） */
 body.dashboard-page .leaflet-control-attribution{
 display:none;
+}
+/* V48.2 · Tablet 专用基础版式（768–1200px，独立于桌面与手机断点） */
+@media (min-width:768px) and (max-width:1200px){
+body.dashboard-page .mission-header{
+padding:14px 20px 8px;
+}
+body.dashboard-page .dashboard-kicker{
+font-size:9px;
+letter-spacing:3px;
+}
+body.dashboard-page .dashboard-title{
+font-size:clamp(20px,2.6vw,30px);
+letter-spacing:2px;
+}
+body.dashboard-page .mission-info.dashboard-command-strip{
+margin-top:6px;
+gap:10px;
+padding:0 14px;
+}
+body.dashboard-page .dashboard-command-strip .cmd-cell{
+padding:9px 12px;
+}
+body.dashboard-page .cmd-value{
+font-size:18px;
+}
+body.dashboard-page .map-panel-head{
+padding:10px 16px;
+}
+body.dashboard-page .map-status-grid{
+margin:8px 0 10px;
+}
+body.dashboard-page .stream-panel{
+padding:8px 16px;
+}
+body.dashboard-page .stream-row{
+padding:5px 10px;
+}
+body.dashboard-page .map-overlay{
+right:16px;
+bottom:16px;
+}
+body.dashboard-page .side-panel.side-right{
+grid-column:1;
+grid-row:2;
+grid-template-columns:repeat(2,minmax(0,1fr));
+grid-template-rows:auto minmax(0,1fr);
+gap:10px;
+padding:10px 14px;
+}
+body.dashboard-page .side-panel.side-right .side-panel-title{
+grid-column:1 / -1;
+padding:0 0 6px;
+font-size:9px;
+letter-spacing:2.5px;
+}
+body.dashboard-page .side-panel.side-right .sensor-card{
+min-height:96px;
+padding:10px 12px;
+}
+body.dashboard-page .side-panel.side-right .sensor-value strong{
+font-size:20px;
+}
 }

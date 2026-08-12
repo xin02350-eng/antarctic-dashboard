@@ -63,6 +63,18 @@
       /* V47.33 · 未来终端状态：等待部署（与 A01 同一组件，仅降低亮度） */
     body .system-online.pending{border-color:rgba(124,151,169,.35);color:#9fb3c2}
     body .system-online.pending > span:first-child{background:#7c97a9;box-shadow:0 0 8px rgba(124,151,169,.45)}
+    /* V48.2 · Tablet 专用（768–1200px）：地图铺满，消除桌面压缩感 */
+    @media (min-width:768px) and (max-width:1200px){
+      body.dashboard-page main{display:flex;flex-direction:column}
+            body.dashboard-page .dashboard-hero{flex-direction:row;justify-content:space-between;align-items:center;gap:12px}
+      body.dashboard-page .hero-main{min-width:0;flex:1 1 auto}
+      body.dashboard-page .hero-status{flex:none}
+      body.dashboard-page .dashboard-command-strip .cmd-cell{padding:8px 10px;min-height:0}
+      body.dashboard-page .stream-panel{margin-top:0}
+      body.dashboard-page .mission-grid{display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(360px,1fr) auto;flex:1 1 auto;min-height:0}
+      body.dashboard-page .map-panel{grid-column:1;grid-row:1;min-height:0}
+      body.dashboard-page #worldMap{height:auto;flex:1 1 auto;min-height:260px;max-height:none;aspect-ratio:auto}
+    }
   </style>
 
   <!-- Leaflet 地图（真实地图，由 main.js 初始化） -->

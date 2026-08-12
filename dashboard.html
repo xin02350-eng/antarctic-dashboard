@@ -60,6 +60,18 @@
       body.dashboard-page main{overflow-y:auto}
       .dashboard-hero .hero-controls .lang-switch{position:fixed;top:16px;right:12px;z-index:120}
     }
+    /* V48.2 · Tablet 专用（768–1200px）：地图铺满，消除桌面压缩感 */
+    @media (min-width:768px) and (max-width:1200px){
+      body.dashboard-page main{display:flex;flex-direction:column}
+            body.dashboard-page .dashboard-hero{flex-direction:row;justify-content:space-between;align-items:center;gap:12px}
+      body.dashboard-page .hero-main{min-width:0;flex:1 1 auto}
+      body.dashboard-page .hero-status{flex:none}
+      body.dashboard-page .dashboard-command-strip .cmd-cell{padding:8px 10px;min-height:0}
+      body.dashboard-page .stream-panel{margin-top:0}
+      body.dashboard-page .mission-grid{display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(360px,1fr) auto;flex:1 1 auto;min-height:0}
+      body.dashboard-page .map-panel{grid-column:1;grid-row:1;min-height:0}
+      body.dashboard-page #worldMap{height:auto;flex:1 1 auto;min-height:260px;max-height:none;aspect-ratio:auto}
+    }
   </style>
 
   <!-- Leaflet 地图（真实地图，由 main.js 初始化） -->

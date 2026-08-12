@@ -124,6 +124,18 @@
     @media (max-width:1024px) and (min-width:701px){
       .hero{max-width:520px;right:auto}
     }
+    /* V48.2 · Tablet 专用：横屏恢复左侧构图，竖屏平衡地球与文字 */
+    @media (min-width:701px) and (max-width:1024px) and (orientation:landscape){
+      .hero{left:7vw;right:auto;top:13%;bottom:auto;max-width:520px}
+      .manifesto{left:46px;bottom:30px}
+      .an-label{right:6%;bottom:20%}
+    }
+    @media (min-width:768px) and (max-width:1024px) and (orientation:portrait){
+      .hero{bottom:150px}
+      .hero .sub{margin-top:20px}
+      .hero .btn{margin-top:26px}
+      .an-label{left:24px;right:auto;top:150px;bottom:auto;text-align:left}
+    }
     @media (max-width:700px){
       .an-label{left:14px;right:auto;top:150px;bottom:auto;text-align:left}
       .an-label b{font-size:9px;letter-spacing:2px}

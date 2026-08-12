@@ -145,8 +145,8 @@
     body.is-leaving::after{content:"";position:fixed;inset:0;z-index:99;background:rgba(2,8,17,.96);opacity:0;pointer-events:none;animation:leaveFade .6s ease forwards}
     @keyframes leaveFade{to{opacity:1}}
 
-    @media (max-width:1100px){
-      .main{grid-template-columns:1fr;grid-template-rows:auto 420px auto;gap:14px}
+    @media (max-width:900px), (min-width:901px) and (max-width:1024px) and (orientation:portrait){
+      .main{grid-template-columns:1fr;grid-template-rows:auto minmax(300px,38vh) auto;gap:14px}
       .archive{flex-direction:row;align-items:stretch;overflow-x:auto;padding:14px;gap:8px}
       .arc-head{flex:none;padding-right:14px;border-right:1px solid rgba(98,217,255,.12);display:flex;flex-direction:column;justify-content:center;margin-bottom:0}
       .rec{flex:none;min-width:170px;border-top:0;border-left:1px solid rgba(98,217,255,.07)}
@@ -164,6 +164,20 @@
       .side{grid-template-columns:1fr}
       .dossier{left:10px;bottom:34px;min-width:190px;padding:10px 12px}
       .map-foot{flex-direction:column;align-items:flex-start;gap:4px}
+    }
+    /* V48.2 · Tablet 专用（768–1200px）：竖屏地图加大，横屏保持三栏平衡 */
+    @media (min-width:768px) and (max-width:1200px){
+      .top{padding:14px 24px}
+      .main{padding:14px 18px}
+      .archive{padding:12px 14px;gap:8px}
+      .main{gap:10px}
+      .top{padding:12px 20px}
+      .side{gap:10px}
+      .side-head{padding:12px 14px}
+      .term{padding:12px}
+    }
+    @media (min-width:901px) and (max-width:1024px) and (orientation:portrait){
+      #networkMap{min-height:360px}
     }
   </style>
 </head>

@@ -1,0 +1,802 @@
+{
+  "teacherFlow": [
+    {
+      "step": 1,
+      "page": "index.html",
+      "m": {
+        "url": "index.html",
+        "ready": true,
+        "fallback": false,
+        "map": false,
+        "marker": false,
+        "cmd": 0,
+        "scroll": [
+          1920,
+          1080,
+          1920,
+          1080
+        ],
+        "lang": "zh-CN",
+        "title": "自主观测系统 · 探索序章"
+      },
+      "errors": []
+    },
+    {
+      "step": 2,
+      "page": "network.html",
+      "m": {
+        "url": "network.html",
+        "ready": true,
+        "fallback": null,
+        "map": true,
+        "marker": true,
+        "cmd": 0,
+        "scroll": [
+          1920,
+          1080,
+          1920,
+          1080
+        ],
+        "lang": "zh-CN",
+        "title": "自主观测系统 · 观测网络"
+      },
+      "errors": []
+    },
+    {
+      "step": 3,
+      "page": "location.html",
+      "m": {
+        "url": "location.html",
+        "ready": true,
+        "fallback": null,
+        "map": true,
+        "marker": true,
+        "cmd": 0,
+        "scroll": [
+          1920,
+          1080,
+          1920,
+          1080
+        ],
+        "lang": "zh-CN",
+        "title": "自主观测系统 · 位置"
+      },
+      "errors": []
+    },
+    {
+      "step": 4,
+      "page": "dashboard.html",
+      "m": {
+        "url": "dashboard.html",
+        "ready": true,
+        "fallback": null,
+        "map": true,
+        "marker": true,
+        "cmd": 3,
+        "scroll": [
+          1920,
+          1080,
+          1920,
+          1080
+        ],
+        "lang": "zh-CN",
+        "title": "自主观测系统"
+      },
+      "errors": []
+    },
+    {
+      "step": 5,
+      "page": "dashboard-a02.html",
+      "m": {
+        "url": "dashboard-a02.html",
+        "ready": true,
+        "fallback": null,
+        "map": true,
+        "marker": false,
+        "cmd": 3,
+        "scroll": [
+          1920,
+          1080,
+          1920,
+          1080
+        ],
+        "lang": "zh-CN",
+        "title": "自主观测系统 · ANT-A02"
+      },
+      "errors": []
+    },
+    {
+      "step": 6,
+      "page": "dashboard-a03.html",
+      "m": {
+        "url": "dashboard-a03.html",
+        "ready": true,
+        "fallback": null,
+        "map": true,
+        "marker": false,
+        "cmd": 3,
+        "scroll": [
+          1920,
+          1080,
+          1920,
+          1080
+        ],
+        "lang": "zh-CN",
+        "title": "自主观测系统 · ANT-A03"
+      },
+      "errors": []
+    }
+  ],
+  "langToggle": {
+    "en": {
+      "lang": "en",
+      "title": "AUTONOMOUS NEXUS · EXPLORATION",
+      "brand": "AUTONOMOUS NEXUS自主观测网络"
+    },
+    "zh": {
+      "lang": "zh-CN",
+      "title": "自主观测系统 · 探索序章",
+      "brand": "AUTONOMOUS NEXUS自主观测网络"
+    },
+    "errors": []
+  },
+  "backChain": [
+    {
+      "url": "dashboard-a03.html",
+      "errors": []
+    },
+    {
+      "url": "dashboard-a02.html",
+      "errors": []
+    },
+    {
+      "url": "dashboard.html",
+      "errors": []
+    },
+    {
+      "url": "location.html",
+      "errors": []
+    },
+    {
+      "url": "network.html",
+      "errors": []
+    }
+  ],
+  "refresh": {
+    "url": "dashboard.html",
+    "lang": "zh-CN",
+    "title": "自主观测系统",
+    "map": true,
+    "errors": []
+  },
+  "indexResize": [
+    {
+      "vp": [
+        1920,
+        1080
+      ],
+      "m": {
+        "vp": [
+          1920,
+          1080
+        ],
+        "globeReady": false,
+        "canvas": null,
+        "scroll": [
+          1920,
+          1080
+        ]
+      },
+      "errors": []
+    },
+    {
+      "vp": [
+        1100,
+        700
+      ],
+      "m": {
+        "vp": [
+          1100,
+          700
+        ],
+        "globeReady": false,
+        "canvas": null,
+        "scroll": [
+          1100,
+          700
+        ]
+      },
+      "errors": []
+    },
+    {
+      "vp": [
+        1920,
+        1080
+      ],
+      "m": {
+        "vp": [
+          1920,
+          1080
+        ],
+        "globeReady": false,
+        "canvas": null,
+        "scroll": [
+          1920,
+          1080
+        ]
+      },
+      "errors": []
+    }
+  ],
+  "dashboardResize": [
+    {
+      "m": {
+        "vp": [
+          1920,
+          1080
+        ],
+        "gridOK": true,
+        "gridCss": [
+          1562,
+          521
+        ],
+        "gridBuf": [
+          1562,
+          521
+        ],
+        "markerDiff": [
+          1,
+          1
+        ],
+        "map": true
+      },
+      "errors": []
+    },
+    {
+      "m": {
+        "vp": [
+          1280,
+          720
+        ],
+        "gridOK": true,
+        "gridCss": [
+          953,
+          243
+        ],
+        "gridBuf": [
+          953,
+          243
+        ],
+        "markerDiff": [
+          1,
+          1
+        ],
+        "map": true
+      },
+      "errors": []
+    },
+    {
+      "m": {
+        "vp": [
+          1920,
+          1080
+        ],
+        "gridOK": true,
+        "gridCss": [
+          1562,
+          521
+        ],
+        "gridBuf": [
+          1562,
+          521
+        ],
+        "markerDiff": [
+          1,
+          1
+        ],
+        "map": true
+      },
+      "errors": []
+    }
+  ],
+  "networkBadges": [
+    {
+      "box": [
+        1271,
+        339,
+        1325,
+        354
+      ],
+      "centers": [
+        [
+          1298,
+          346
+        ]
+      ]
+    },
+    {
+      "box": [
+        1271,
+        497,
+        1325,
+        512
+      ],
+      "centers": [
+        [
+          1298,
+          504
+        ]
+      ]
+    }
+  ],
+  "terminalParity": {
+    "dashboard.html@1366": {
+      "header": [
+        276,
+        12,
+        1340,
+        123,
+        1064,
+        111
+      ],
+      "cmd": [
+        276,
+        141,
+        1340,
+        218,
+        1064,
+        77
+      ],
+      "map": [
+        276,
+        234,
+        1340,
+        653,
+        1064,
+        419
+      ],
+      "lang": [
+        1197,
+        53,
+        1313,
+        83,
+        116,
+        30
+      ],
+      "cells": [
+        [
+          290,
+          141,
+          337,
+          77
+        ],
+        [
+          639,
+          141,
+          337,
+          77
+        ],
+        [
+          989,
+          141,
+          337,
+          77
+        ]
+      ]
+    },
+    "dashboard-a02.html@1366": {
+      "header": [
+        276,
+        12,
+        1340,
+        123,
+        1064,
+        111
+      ],
+      "cmd": [
+        276,
+        141,
+        1340,
+        218,
+        1064,
+        77
+      ],
+      "map": [
+        276,
+        234,
+        1340,
+        653,
+        1064,
+        419
+      ],
+      "lang": [
+        1197,
+        53,
+        1313,
+        83,
+        116,
+        30
+      ],
+      "cells": [
+        [
+          290,
+          141,
+          337,
+          77
+        ],
+        [
+          639,
+          141,
+          337,
+          77
+        ],
+        [
+          989,
+          141,
+          337,
+          77
+        ]
+      ]
+    },
+    "dashboard-a03.html@1366": {
+      "header": [
+        276,
+        12,
+        1340,
+        123,
+        1064,
+        111
+      ],
+      "cmd": [
+        276,
+        141,
+        1340,
+        218,
+        1064,
+        77
+      ],
+      "map": [
+        276,
+        234,
+        1340,
+        653,
+        1064,
+        419
+      ],
+      "lang": [
+        1197,
+        53,
+        1313,
+        83,
+        116,
+        30
+      ],
+      "cells": [
+        [
+          290,
+          141,
+          337,
+          77
+        ],
+        [
+          639,
+          141,
+          337,
+          77
+        ],
+        [
+          989,
+          141,
+          337,
+          77
+        ]
+      ]
+    },
+    "dashboard.html@1024": {
+      "header": [
+        266,
+        22,
+        1008,
+        131,
+        741,
+        109
+      ],
+      "cmd": [
+        266,
+        155,
+        1008,
+        235,
+        741,
+        80
+      ],
+      "map": [
+        266,
+        259,
+        1008,
+        1236,
+        741,
+        977
+      ],
+      "lang": [
+        865,
+        61,
+        981,
+        91,
+        116,
+        30
+      ],
+      "cells": [
+        [
+          280,
+          155,
+          230,
+          80
+        ],
+        [
+          522,
+          155,
+          230,
+          80
+        ],
+        [
+          764,
+          155,
+          230,
+          80
+        ]
+      ]
+    },
+    "dashboard-a02.html@1024": {
+      "header": [
+        266,
+        22,
+        1008,
+        131,
+        741,
+        109
+      ],
+      "cmd": [
+        266,
+        155,
+        1008,
+        235,
+        741,
+        80
+      ],
+      "map": [
+        266,
+        259,
+        1008,
+        1236,
+        741,
+        977
+      ],
+      "lang": [
+        865,
+        61,
+        981,
+        91,
+        116,
+        30
+      ],
+      "cells": [
+        [
+          280,
+          155,
+          230,
+          80
+        ],
+        [
+          522,
+          155,
+          230,
+          80
+        ],
+        [
+          764,
+          155,
+          230,
+          80
+        ]
+      ]
+    },
+    "dashboard-a03.html@1024": {
+      "header": [
+        266,
+        22,
+        1008,
+        131,
+        741,
+        109
+      ],
+      "cmd": [
+        266,
+        155,
+        1008,
+        235,
+        741,
+        80
+      ],
+      "map": [
+        266,
+        259,
+        1008,
+        1236,
+        741,
+        977
+      ],
+      "lang": [
+        865,
+        61,
+        981,
+        91,
+        116,
+        30
+      ],
+      "cells": [
+        [
+          280,
+          155,
+          230,
+          80
+        ],
+        [
+          522,
+          155,
+          230,
+          80
+        ],
+        [
+          764,
+          155,
+          230,
+          80
+        ]
+      ]
+    }
+  },
+  "webglSim": {
+    "fallback": true,
+    "loaded": true,
+    "heroOpacity": "1",
+    "canvas": false,
+    "errors": []
+  },
+  "webglRestored": {
+    "ready": true,
+    "canvas": true,
+    "fallback": false
+  },
+  "rescan_index.html@1920d1.25zh": {
+    "url": "index.html",
+    "lang": "zh-CN",
+    "title": "自主观测系统 · 探索序章",
+    "globeReady": true,
+    "fallback": false,
+    "langRect": [
+      1770,
+      35,
+      1874,
+      65
+    ],
+    "tiles": 0,
+    "tilesLoaded": null,
+    "scroll": [
+      1920,
+      1080,
+      1920,
+      1080
+    ],
+    "errors": []
+  },
+  "rescan_index.html@1920d1en": {
+    "url": "index.html",
+    "lang": "en",
+    "title": "AUTONOMOUS NEXUS · EXPLORATION",
+    "globeReady": true,
+    "fallback": false,
+    "langRect": [
+      1770,
+      35,
+      1874,
+      65
+    ],
+    "tiles": 0,
+    "tilesLoaded": null,
+    "scroll": [
+      1920,
+      1080,
+      1920,
+      1080
+    ],
+    "errors": []
+  },
+  "rescan_network.html@3840d1zh": {
+    "url": "network.html",
+    "lang": "zh-CN",
+    "title": "自主观测系统 · 观测网络",
+    "globeReady": false,
+    "fallback": null,
+    "langRect": [
+      3708,
+      18,
+      3812,
+      48
+    ],
+    "tiles": 80,
+    "tilesLoaded": true,
+    "scroll": [
+      3840,
+      2160,
+      3840,
+      2160
+    ],
+    "errors": []
+  },
+  "rescan_location.html@3840d1zh": {
+    "url": "location.html",
+    "lang": "zh-CN",
+    "title": "自主观测系统 · 位置",
+    "globeReady": false,
+    "fallback": null,
+    "langRect": [
+      3692,
+      28,
+      3808,
+      58
+    ],
+    "tiles": 64,
+    "tilesLoaded": true,
+    "scroll": [
+      3840,
+      2160,
+      3840,
+      2160
+    ],
+    "errors": []
+  },
+  "rescan_network.html@1920d1.25zh": {
+    "url": "network.html",
+    "lang": "zh-CN",
+    "title": "自主观测系统 · 观测网络",
+    "globeReady": false,
+    "fallback": null,
+    "langRect": [
+      1788,
+      18,
+      1892,
+      48
+    ],
+    "tiles": 20,
+    "tilesLoaded": true,
+    "scroll": [
+      1920,
+      1080,
+      1920,
+      1080
+    ],
+    "errors": []
+  },
+  "rescan_network.html@1920d1.5zh": {
+    "url": "network.html",
+    "lang": "zh-CN",
+    "title": "自主观测系统 · 观测网络",
+    "globeReady": false,
+    "fallback": null,
+    "langRect": [
+      1788,
+      18,
+      1892,
+      48
+    ],
+    "tiles": 20,
+    "tilesLoaded": true,
+    "scroll": [
+      1920,
+      1080,
+      1920,
+      1080
+    ],
+    "errors": []
+  }
+}

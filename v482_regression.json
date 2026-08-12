@@ -1,0 +1,1162 @@
+{
+  "index.html@1920x1080": {
+    "url": "index.html",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "scrollW": 1920,
+    "scrollH": 1080,
+    "clientW": 1920,
+    "clientH": 1080,
+    "langRect": [
+      1770,
+      35,
+      1874,
+      65
+    ],
+    "map": null,
+    "mapPanel": null,
+    "gridCols": null,
+    "globeReady": true,
+    "errors": []
+  },
+  "network.html@1920x1080": {
+    "url": "network.html",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "scrollW": 1920,
+    "scrollH": 1080,
+    "clientW": 1920,
+    "clientH": 1080,
+    "langRect": [
+      1788,
+      18,
+      1892,
+      48
+    ],
+    "map": [
+      339,
+      133,
+      1412,
+      1029,
+      1073,
+      896
+    ],
+    "mapPanel": [
+      338,
+      85,
+      1413,
+      1062,
+      1075,
+      977
+    ],
+    "gridCols": null,
+    "globeReady": false,
+    "errors": []
+  },
+  "location.html@1920x1080": {
+    "url": "location.html",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "scrollW": 1920,
+    "scrollH": 1080,
+    "clientW": 1920,
+    "clientH": 1080,
+    "langRect": [
+      1772,
+      28,
+      1888,
+      58
+    ],
+    "map": [
+      301,
+      163,
+      1869,
+      932,
+      1568,
+      769
+    ],
+    "mapPanel": [
+      286,
+      136,
+      1884,
+      947,
+      1598,
+      811
+    ],
+    "gridCols": null,
+    "globeReady": false,
+    "errors": []
+  },
+  "dashboard.html@1920x1080": {
+    "url": "dashboard.html",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "scrollW": 1920,
+    "scrollH": 1080,
+    "clientW": 1920,
+    "clientH": 1080,
+    "langRect": [
+      1737,
+      67,
+      1853,
+      97
+    ],
+    "map": [
+      303,
+      410,
+      1867,
+      933,
+      1564,
+      523
+    ],
+    "mapPanel": [
+      290,
+      278,
+      1880,
+      946,
+      1590,
+      668
+    ],
+    "gridCols": "1590px",
+    "globeReady": false,
+    "errors": []
+  },
+  "dashboard-a02.html@1920x1080": {
+    "url": "dashboard-a02.html",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "scrollW": 1920,
+    "scrollH": 1080,
+    "clientW": 1920,
+    "clientH": 1080,
+    "langRect": [
+      1737,
+      67,
+      1853,
+      97
+    ],
+    "map": [
+      303,
+      410,
+      1867,
+      933,
+      1564,
+      523
+    ],
+    "mapPanel": [
+      290,
+      278,
+      1880,
+      946,
+      1590,
+      668
+    ],
+    "gridCols": "1590px",
+    "globeReady": false,
+    "errors": []
+  },
+  "dashboard-a03.html@1920x1080": {
+    "url": "dashboard-a03.html",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "scrollW": 1920,
+    "scrollH": 1080,
+    "clientW": 1920,
+    "clientH": 1080,
+    "langRect": [
+      1737,
+      67,
+      1853,
+      97
+    ],
+    "map": [
+      303,
+      410,
+      1867,
+      933,
+      1564,
+      523
+    ],
+    "mapPanel": [
+      290,
+      278,
+      1880,
+      946,
+      1590,
+      668
+    ],
+    "gridCols": "1590px",
+    "globeReady": false,
+    "errors": []
+  },
+  "sensors.html@1920x1080": {
+    "url": "sensors.html",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "scrollW": 1920,
+    "scrollH": 1080,
+    "clientW": 1920,
+    "clientH": 1080,
+    "langRect": [
+      1772,
+      28,
+      1888,
+      58
+    ],
+    "map": null,
+    "mapPanel": null,
+    "gridCols": null,
+    "globeReady": false,
+    "errors": []
+  },
+  "telemetry.html@1920x1080": {
+    "url": "telemetry.html",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "scrollW": 1920,
+    "scrollH": 1080,
+    "clientW": 1920,
+    "clientH": 1080,
+    "langRect": [
+      1772,
+      28,
+      1888,
+      58
+    ],
+    "map": null,
+    "mapPanel": null,
+    "gridCols": null,
+    "globeReady": false,
+    "errors": []
+  },
+  "hardware.html@1920x1080": {
+    "url": "hardware.html",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "scrollW": 1920,
+    "scrollH": 1080,
+    "clientW": 1920,
+    "clientH": 1080,
+    "langRect": [
+      1772,
+      28,
+      1888,
+      58
+    ],
+    "map": null,
+    "mapPanel": null,
+    "gridCols": null,
+    "globeReady": false,
+    "errors": []
+  },
+  "analysis.html@1920x1080": {
+    "url": "analysis.html",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "scrollW": 1920,
+    "scrollH": 1080,
+    "clientW": 1920,
+    "clientH": 1080,
+    "langRect": [
+      1772,
+      28,
+      1888,
+      58
+    ],
+    "map": null,
+    "mapPanel": null,
+    "gridCols": null,
+    "globeReady": false,
+    "errors": []
+  },
+  "index.html@1366x768": {
+    "url": "index.html",
+    "viewport": [
+      1366,
+      768
+    ],
+    "scrollW": 1366,
+    "scrollH": 768,
+    "clientW": 1366,
+    "clientH": 768,
+    "langRect": [
+      1216,
+      35,
+      1320,
+      65
+    ],
+    "map": null,
+    "mapPanel": null,
+    "gridCols": null,
+    "globeReady": true,
+    "errors": []
+  },
+  "network.html@1366x768": {
+    "url": "network.html",
+    "viewport": [
+      1366,
+      768
+    ],
+    "scrollW": 1366,
+    "scrollH": 768,
+    "clientW": 1366,
+    "clientH": 768,
+    "langRect": [
+      1234,
+      18,
+      1338,
+      48
+    ],
+    "map": [
+      251,
+      133,
+      997,
+      717,
+      746,
+      584
+    ],
+    "mapPanel": [
+      250,
+      85,
+      998,
+      750,
+      748,
+      665
+    ],
+    "gridCols": null,
+    "globeReady": false,
+    "errors": []
+  },
+  "location.html@1366x768": {
+    "url": "location.html",
+    "viewport": [
+      1366,
+      768
+    ],
+    "scrollW": 1366,
+    "scrollH": 768,
+    "clientW": 1366,
+    "clientH": 768,
+    "langRect": [
+      1218,
+      28,
+      1334,
+      58
+    ],
+    "map": [
+      289,
+      139,
+      1327,
+      637,
+      1038,
+      498
+    ],
+    "mapPanel": [
+      274,
+      112,
+      1342,
+      652,
+      1068,
+      540
+    ],
+    "gridCols": null,
+    "globeReady": false,
+    "errors": []
+  },
+  "dashboard.html@1366x768": {
+    "url": "dashboard.html",
+    "viewport": [
+      1366,
+      768
+    ],
+    "scrollW": 1366,
+    "scrollH": 768,
+    "clientW": 1366,
+    "clientH": 768,
+    "langRect": [
+      1197,
+      53,
+      1313,
+      83
+    ],
+    "map": [
+      289,
+      366,
+      1327,
+      640,
+      1038,
+      274
+    ],
+    "mapPanel": [
+      276,
+      234,
+      1340,
+      653,
+      1064,
+      419
+    ],
+    "gridCols": "1064.09px",
+    "globeReady": false,
+    "errors": []
+  },
+  "dashboard-a02.html@1366x768": {
+    "url": "dashboard-a02.html",
+    "viewport": [
+      1366,
+      768
+    ],
+    "scrollW": 1366,
+    "scrollH": 768,
+    "clientW": 1366,
+    "clientH": 768,
+    "langRect": [
+      1197,
+      53,
+      1313,
+      83
+    ],
+    "map": [
+      289,
+      366,
+      1327,
+      640,
+      1038,
+      274
+    ],
+    "mapPanel": [
+      276,
+      234,
+      1340,
+      653,
+      1064,
+      419
+    ],
+    "gridCols": "1064.09px",
+    "globeReady": false,
+    "errors": []
+  },
+  "dashboard-a03.html@1366x768": {
+    "url": "dashboard-a03.html",
+    "viewport": [
+      1366,
+      768
+    ],
+    "scrollW": 1366,
+    "scrollH": 768,
+    "clientW": 1366,
+    "clientH": 768,
+    "langRect": [
+      1197,
+      53,
+      1313,
+      83
+    ],
+    "map": [
+      289,
+      366,
+      1327,
+      640,
+      1038,
+      274
+    ],
+    "mapPanel": [
+      276,
+      234,
+      1340,
+      653,
+      1064,
+      419
+    ],
+    "gridCols": "1064.09px",
+    "globeReady": false,
+    "errors": []
+  },
+  "sensors.html@1366x768": {
+    "url": "sensors.html",
+    "viewport": [
+      1366,
+      768
+    ],
+    "scrollW": 1366,
+    "scrollH": 768,
+    "clientW": 1366,
+    "clientH": 768,
+    "langRect": [
+      1218,
+      28,
+      1334,
+      58
+    ],
+    "map": null,
+    "mapPanel": null,
+    "gridCols": null,
+    "globeReady": false,
+    "errors": []
+  },
+  "telemetry.html@1366x768": {
+    "url": "telemetry.html",
+    "viewport": [
+      1366,
+      768
+    ],
+    "scrollW": 1366,
+    "scrollH": 768,
+    "clientW": 1366,
+    "clientH": 768,
+    "langRect": [
+      1218,
+      28,
+      1334,
+      58
+    ],
+    "map": null,
+    "mapPanel": null,
+    "gridCols": null,
+    "globeReady": false,
+    "errors": []
+  },
+  "hardware.html@1366x768": {
+    "url": "hardware.html",
+    "viewport": [
+      1366,
+      768
+    ],
+    "scrollW": 1366,
+    "scrollH": 768,
+    "clientW": 1366,
+    "clientH": 768,
+    "langRect": [
+      1218,
+      28,
+      1334,
+      58
+    ],
+    "map": null,
+    "mapPanel": null,
+    "gridCols": null,
+    "globeReady": false,
+    "errors": []
+  },
+  "analysis.html@1366x768": {
+    "url": "analysis.html",
+    "viewport": [
+      1366,
+      768
+    ],
+    "scrollW": 1366,
+    "scrollH": 768,
+    "clientW": 1366,
+    "clientH": 768,
+    "langRect": [
+      1218,
+      28,
+      1334,
+      58
+    ],
+    "map": null,
+    "mapPanel": null,
+    "gridCols": null,
+    "globeReady": false,
+    "errors": []
+  },
+  "index.html@390x844": {
+    "url": "index.html",
+    "viewport": [
+      390,
+      844
+    ],
+    "scrollW": 390,
+    "scrollH": 844,
+    "clientW": 390,
+    "clientH": 844,
+    "langRect": [
+      266,
+      21,
+      370,
+      51
+    ],
+    "map": null,
+    "mapPanel": null,
+    "gridCols": null,
+    "globeReady": true,
+    "errors": []
+  },
+  "network.html@390x844": {
+    "url": "network.html",
+    "viewport": [
+      390,
+      844
+    ],
+    "scrollW": 390,
+    "scrollH": 1242,
+    "clientW": 390,
+    "clientH": 844,
+    "langRect": [
+      270,
+      14,
+      374,
+      44
+    ],
+    "map": [
+      11,
+      257,
+      379,
+      557,
+      368,
+      300
+    ],
+    "mapPanel": [
+      10,
+      209,
+      380,
+      509,
+      370,
+      300
+    ],
+    "gridCols": null,
+    "globeReady": false,
+    "errors": []
+  },
+  "location.html@390x844": {
+    "url": "location.html",
+    "viewport": [
+      390,
+      844
+    ],
+    "scrollW": 390,
+    "scrollH": 844,
+    "clientW": 390,
+    "clientH": 844,
+    "langRect": [
+      270,
+      18,
+      376,
+      46
+    ],
+    "map": [
+      35,
+      251,
+      355,
+      690,
+      320,
+      439
+    ],
+    "mapPanel": [
+      24,
+      228,
+      366,
+      717,
+      342,
+      489
+    ],
+    "gridCols": null,
+    "globeReady": false,
+    "errors": []
+  },
+  "dashboard.html@390x844": {
+    "url": "dashboard.html",
+    "viewport": [
+      390,
+      844
+    ],
+    "scrollW": 390,
+    "scrollH": 844,
+    "clientW": 390,
+    "clientH": 844,
+    "langRect": [
+      272,
+      16,
+      378,
+      44
+    ],
+    "map": [
+      27,
+      584,
+      363,
+      888,
+      336,
+      304
+    ],
+    "mapPanel": [
+      14,
+      417,
+      376,
+      1044,
+      362,
+      627
+    ],
+    "gridCols": "minmax(0px, 1fr)",
+    "globeReady": false,
+    "errors": []
+  },
+  "dashboard-a02.html@390x844": {
+    "url": "dashboard-a02.html",
+    "viewport": [
+      390,
+      844
+    ],
+    "scrollW": 390,
+    "scrollH": 844,
+    "clientW": 390,
+    "clientH": 844,
+    "langRect": [
+      272,
+      16,
+      378,
+      44
+    ],
+    "map": [
+      27,
+      567,
+      363,
+      871,
+      336,
+      304
+    ],
+    "mapPanel": [
+      14,
+      417,
+      376,
+      1027,
+      362,
+      610
+    ],
+    "gridCols": "minmax(0px, 1fr)",
+    "globeReady": false,
+    "errors": []
+  },
+  "dashboard-a03.html@390x844": {
+    "url": "dashboard-a03.html",
+    "viewport": [
+      390,
+      844
+    ],
+    "scrollW": 390,
+    "scrollH": 844,
+    "clientW": 390,
+    "clientH": 844,
+    "langRect": [
+      272,
+      16,
+      378,
+      44
+    ],
+    "map": [
+      27,
+      567,
+      363,
+      871,
+      336,
+      304
+    ],
+    "mapPanel": [
+      14,
+      417,
+      376,
+      1027,
+      362,
+      610
+    ],
+    "gridCols": "minmax(0px, 1fr)",
+    "globeReady": false,
+    "errors": []
+  },
+  "sensors.html@390x844": {
+    "url": "sensors.html",
+    "viewport": [
+      390,
+      844
+    ],
+    "scrollW": 390,
+    "scrollH": 2961,
+    "clientW": 390,
+    "clientH": 844,
+    "langRect": [
+      270,
+      18,
+      376,
+      46
+    ],
+    "map": null,
+    "mapPanel": null,
+    "gridCols": null,
+    "globeReady": false,
+    "errors": []
+  },
+  "telemetry.html@390x844": {
+    "url": "telemetry.html",
+    "viewport": [
+      390,
+      844
+    ],
+    "scrollW": 390,
+    "scrollH": 936,
+    "clientW": 390,
+    "clientH": 844,
+    "langRect": [
+      270,
+      18,
+      376,
+      46
+    ],
+    "map": null,
+    "mapPanel": null,
+    "gridCols": null,
+    "globeReady": false,
+    "errors": []
+  },
+  "hardware.html@390x844": {
+    "url": "hardware.html",
+    "viewport": [
+      390,
+      844
+    ],
+    "scrollW": 390,
+    "scrollH": 1699,
+    "clientW": 390,
+    "clientH": 844,
+    "langRect": [
+      270,
+      18,
+      376,
+      46
+    ],
+    "map": null,
+    "mapPanel": null,
+    "gridCols": null,
+    "globeReady": false,
+    "errors": []
+  },
+  "analysis.html@390x844": {
+    "url": "analysis.html",
+    "viewport": [
+      390,
+      844
+    ],
+    "scrollW": 390,
+    "scrollH": 2101,
+    "clientW": 390,
+    "clientH": 844,
+    "langRect": [
+      270,
+      18,
+      376,
+      46
+    ],
+    "map": null,
+    "mapPanel": null,
+    "gridCols": null,
+    "globeReady": false,
+    "errors": []
+  },
+  "index.html@375x812": {
+    "url": "index.html",
+    "viewport": [
+      375,
+      812
+    ],
+    "scrollW": 375,
+    "scrollH": 812,
+    "clientW": 375,
+    "clientH": 812,
+    "langRect": [
+      251,
+      21,
+      355,
+      51
+    ],
+    "map": null,
+    "mapPanel": null,
+    "gridCols": null,
+    "globeReady": true,
+    "errors": []
+  },
+  "network.html@375x812": {
+    "url": "network.html",
+    "viewport": [
+      375,
+      812
+    ],
+    "scrollW": 375,
+    "scrollH": 1242,
+    "clientW": 375,
+    "clientH": 812,
+    "langRect": [
+      255,
+      14,
+      359,
+      44
+    ],
+    "map": [
+      11,
+      257,
+      364,
+      557,
+      353,
+      300
+    ],
+    "mapPanel": [
+      10,
+      209,
+      365,
+      509,
+      355,
+      300
+    ],
+    "gridCols": null,
+    "globeReady": false,
+    "errors": []
+  },
+  "location.html@375x812": {
+    "url": "location.html",
+    "viewport": [
+      375,
+      812
+    ],
+    "scrollW": 375,
+    "scrollH": 812,
+    "clientW": 375,
+    "clientH": 812,
+    "langRect": [
+      255,
+      18,
+      361,
+      46
+    ],
+    "map": [
+      35,
+      251,
+      340,
+      673,
+      305,
+      422
+    ],
+    "mapPanel": [
+      24,
+      228,
+      351,
+      685,
+      327,
+      457
+    ],
+    "gridCols": null,
+    "globeReady": false,
+    "errors": []
+  },
+  "dashboard.html@375x812": {
+    "url": "dashboard.html",
+    "viewport": [
+      375,
+      812
+    ],
+    "scrollW": 375,
+    "scrollH": 812,
+    "clientW": 375,
+    "clientH": 812,
+    "langRect": [
+      257,
+      16,
+      363,
+      44
+    ],
+    "map": [
+      27,
+      577,
+      348,
+      870,
+      321,
+      292
+    ],
+    "mapPanel": [
+      14,
+      410,
+      361,
+      1026,
+      347,
+      615
+    ],
+    "gridCols": "minmax(0px, 1fr)",
+    "globeReady": false,
+    "errors": []
+  },
+  "dashboard-a02.html@375x812": {
+    "url": "dashboard-a02.html",
+    "viewport": [
+      375,
+      812
+    ],
+    "scrollW": 375,
+    "scrollH": 812,
+    "clientW": 375,
+    "clientH": 812,
+    "langRect": [
+      257,
+      16,
+      363,
+      44
+    ],
+    "map": [
+      27,
+      560,
+      348,
+      853,
+      321,
+      292
+    ],
+    "mapPanel": [
+      14,
+      410,
+      361,
+      1009,
+      347,
+      598
+    ],
+    "gridCols": "minmax(0px, 1fr)",
+    "globeReady": false,
+    "errors": []
+  },
+  "dashboard-a03.html@375x812": {
+    "url": "dashboard-a03.html",
+    "viewport": [
+      375,
+      812
+    ],
+    "scrollW": 375,
+    "scrollH": 812,
+    "clientW": 375,
+    "clientH": 812,
+    "langRect": [
+      257,
+      16,
+      363,
+      44
+    ],
+    "map": [
+      27,
+      560,
+      348,
+      853,
+      321,
+      292
+    ],
+    "mapPanel": [
+      14,
+      410,
+      361,
+      1009,
+      347,
+      598
+    ],
+    "gridCols": "minmax(0px, 1fr)",
+    "globeReady": false,
+    "errors": []
+  },
+  "sensors.html@375x812": {
+    "url": "sensors.html",
+    "viewport": [
+      375,
+      812
+    ],
+    "scrollW": 375,
+    "scrollH": 2960,
+    "clientW": 375,
+    "clientH": 812,
+    "langRect": [
+      255,
+      18,
+      361,
+      46
+    ],
+    "map": null,
+    "mapPanel": null,
+    "gridCols": null,
+    "globeReady": false,
+    "errors": []
+  },
+  "telemetry.html@375x812": {
+    "url": "telemetry.html",
+    "viewport": [
+      375,
+      812
+    ],
+    "scrollW": 375,
+    "scrollH": 901,
+    "clientW": 375,
+    "clientH": 812,
+    "langRect": [
+      255,
+      18,
+      361,
+      46
+    ],
+    "map": null,
+    "mapPanel": null,
+    "gridCols": null,
+    "globeReady": false,
+    "errors": []
+  },
+  "hardware.html@375x812": {
+    "url": "hardware.html",
+    "viewport": [
+      375,
+      812
+    ],
+    "scrollW": 375,
+    "scrollH": 1699,
+    "clientW": 375,
+    "clientH": 812,
+    "langRect": [
+      255,
+      18,
+      361,
+      46
+    ],
+    "map": null,
+    "mapPanel": null,
+    "gridCols": null,
+    "globeReady": false,
+    "errors": []
+  },
+  "analysis.html@375x812": {
+    "url": "analysis.html",
+    "viewport": [
+      375,
+      812
+    ],
+    "scrollW": 375,
+    "scrollH": 2101,
+    "clientW": 375,
+    "clientH": 812,
+    "langRect": [
+      255,
+      18,
+      361,
+      46
+    ],
+    "map": null,
+    "mapPanel": null,
+    "gridCols": null,
+    "globeReady": false,
+    "errors": []
+  }
+}

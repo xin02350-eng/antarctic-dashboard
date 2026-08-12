@@ -1,0 +1,3285 @@
+{
+  "index.html@768x1024": {
+    "url": "index.html",
+    "viewport": [
+      768,
+      1024
+    ],
+    "orientation": "portrait",
+    "scrollW": 768,
+    "scrollH": 1024,
+    "clientW": 768,
+    "clientH": 1024,
+    "langRect": [
+      618,
+      35,
+      722,
+      65
+    ],
+    "langRightGap": 46,
+    "langTopGap": 35,
+    "header": [
+      0,
+      0,
+      768,
+      100,
+      768,
+      100
+    ],
+    "hero": [
+      22,
+      547,
+      267,
+      874,
+      245,
+      327
+    ],
+    "manifesto": [
+      46,
+      939,
+      204,
+      990,
+      158,
+      51
+    ],
+    "globe": {
+      "cx": 663,
+      "cy": 512,
+      "r": 310,
+      "bottom": 822
+    },
+    "main": null,
+    "missionGrid": null,
+    "gridCols": null,
+    "mapPanel": null,
+    "worldMap": null,
+    "mapOverlay": null,
+    "statusCard": null,
+    "stream": null,
+    "errors": []
+  },
+  "network.html@768x1024": {
+    "url": "network.html",
+    "viewport": [
+      768,
+      1024
+    ],
+    "orientation": "portrait",
+    "scrollW": 768,
+    "scrollH": 1024,
+    "clientW": 768,
+    "clientH": 1024,
+    "langRect": [
+      644,
+      14,
+      748,
+      44
+    ],
+    "langRightGap": 20,
+    "langTopGap": 14,
+    "header": [
+      0,
+      0,
+      768,
+      59,
+      768,
+      59
+    ],
+    "hero": null,
+    "manifesto": null,
+    "globe": null,
+    "main": [
+      0,
+      59,
+      768,
+      1016,
+      768,
+      957
+    ],
+    "missionGrid": null,
+    "gridCols": null,
+    "mapPanel": [
+      18,
+      209,
+      750,
+      598,
+      732,
+      389
+    ],
+    "worldMap": [
+      19,
+      257,
+      749,
+      687,
+      730,
+      430
+    ],
+    "mapOverlay": [
+      35,
+      409,
+      265,
+      551,
+      230,
+      142
+    ],
+    "statusCard": [
+      18,
+      608,
+      750,
+      1002,
+      732,
+      394
+    ],
+    "stream": null,
+    "errors": []
+  },
+  "location.html@768x1024": {
+    "url": "location.html",
+    "viewport": [
+      768,
+      1024
+    ],
+    "orientation": "portrait",
+    "scrollW": 768,
+    "scrollH": 1024,
+    "clientW": 768,
+    "clientH": 1024,
+    "langRect": [
+      648,
+      18,
+      754,
+      46
+    ],
+    "langRightGap": 14,
+    "langTopGap": 18,
+    "header": [
+      24,
+      64,
+      744,
+      208,
+      720,
+      144
+    ],
+    "hero": null,
+    "manifesto": null,
+    "globe": null,
+    "main": [
+      0,
+      0,
+      768,
+      1024,
+      768,
+      1024
+    ],
+    "missionGrid": null,
+    "gridCols": null,
+    "mapPanel": [
+      24,
+      220,
+      744,
+      906,
+      720,
+      686
+    ],
+    "worldMap": [
+      35,
+      243,
+      733,
+      775,
+      698,
+      532
+    ],
+    "mapOverlay": null,
+    "statusCard": [
+      24,
+      918,
+      744,
+      1008,
+      720,
+      90
+    ],
+    "stream": null,
+    "errors": []
+  },
+  "dashboard.html@768x1024": {
+    "url": "dashboard.html",
+    "viewport": [
+      768,
+      1024
+    ],
+    "orientation": "portrait",
+    "scrollW": 768,
+    "scrollH": 1024,
+    "clientW": 768,
+    "clientH": 1024,
+    "langRect": [
+      650,
+      16,
+      756,
+      44
+    ],
+    "langRightGap": 12,
+    "langTopGap": 16,
+    "header": [
+      14,
+      64,
+      754,
+      168,
+      740,
+      104
+    ],
+    "hero": null,
+    "manifesto": null,
+    "globe": null,
+    "main": [
+      0,
+      0,
+      768,
+      1024,
+      768,
+      1024
+    ],
+    "missionGrid": [
+      14,
+      329,
+      754,
+      906,
+      740,
+      577
+    ],
+    "gridCols": "740px",
+    "mapPanel": [
+      14,
+      329,
+      754,
+      750,
+      740,
+      421
+    ],
+    "worldMap": [
+      27,
+      461,
+      741,
+      737,
+      714,
+      276
+    ],
+    "mapOverlay": [
+      507,
+      606,
+      737,
+      733,
+      230,
+      127
+    ],
+    "statusCard": [
+      28,
+      800,
+      379,
+      896,
+      351,
+      96
+    ],
+    "stream": [
+      14,
+      918,
+      754,
+      1020,
+      740,
+      102
+    ],
+    "errors": []
+  },
+  "dashboard-a02.html@768x1024": {
+    "url": "dashboard-a02.html",
+    "viewport": [
+      768,
+      1024
+    ],
+    "orientation": "portrait",
+    "scrollW": 768,
+    "scrollH": 1024,
+    "clientW": 768,
+    "clientH": 1024,
+    "langRect": [
+      650,
+      16,
+      756,
+      44
+    ],
+    "langRightGap": 12,
+    "langTopGap": 16,
+    "header": [
+      14,
+      64,
+      754,
+      168,
+      740,
+      104
+    ],
+    "hero": null,
+    "manifesto": null,
+    "globe": null,
+    "main": [
+      0,
+      0,
+      768,
+      1024,
+      768,
+      1024
+    ],
+    "missionGrid": [
+      14,
+      329,
+      754,
+      906,
+      740,
+      577
+    ],
+    "gridCols": "740px",
+    "mapPanel": [
+      14,
+      329,
+      754,
+      750,
+      740,
+      421
+    ],
+    "worldMap": [
+      27,
+      461,
+      741,
+      737,
+      714,
+      276
+    ],
+    "mapOverlay": [
+      507,
+      606,
+      737,
+      733,
+      230,
+      127
+    ],
+    "statusCard": [
+      28,
+      800,
+      379,
+      896,
+      351,
+      96
+    ],
+    "stream": [
+      14,
+      918,
+      754,
+      1020,
+      740,
+      102
+    ],
+    "errors": []
+  },
+  "dashboard-a03.html@768x1024": {
+    "url": "dashboard-a03.html",
+    "viewport": [
+      768,
+      1024
+    ],
+    "orientation": "portrait",
+    "scrollW": 768,
+    "scrollH": 1024,
+    "clientW": 768,
+    "clientH": 1024,
+    "langRect": [
+      650,
+      16,
+      756,
+      44
+    ],
+    "langRightGap": 12,
+    "langTopGap": 16,
+    "header": [
+      14,
+      64,
+      754,
+      168,
+      740,
+      104
+    ],
+    "hero": null,
+    "manifesto": null,
+    "globe": null,
+    "main": [
+      0,
+      0,
+      768,
+      1024,
+      768,
+      1024
+    ],
+    "missionGrid": [
+      14,
+      329,
+      754,
+      906,
+      740,
+      577
+    ],
+    "gridCols": "740px",
+    "mapPanel": [
+      14,
+      329,
+      754,
+      750,
+      740,
+      421
+    ],
+    "worldMap": [
+      27,
+      461,
+      741,
+      737,
+      714,
+      276
+    ],
+    "mapOverlay": [
+      507,
+      606,
+      737,
+      733,
+      230,
+      127
+    ],
+    "statusCard": [
+      28,
+      800,
+      379,
+      896,
+      351,
+      96
+    ],
+    "stream": [
+      14,
+      918,
+      754,
+      1020,
+      740,
+      102
+    ],
+    "errors": []
+  },
+  "index.html@820x1180": {
+    "url": "index.html",
+    "viewport": [
+      820,
+      1180
+    ],
+    "orientation": "portrait",
+    "scrollW": 820,
+    "scrollH": 1180,
+    "clientW": 820,
+    "clientH": 1180,
+    "langRect": [
+      670,
+      35,
+      774,
+      65
+    ],
+    "langRightGap": 46,
+    "langTopGap": 35,
+    "header": [
+      0,
+      0,
+      820,
+      100,
+      820,
+      100
+    ],
+    "hero": [
+      22,
+      703,
+      267,
+      1030,
+      245,
+      327
+    ],
+    "manifesto": [
+      46,
+      1095,
+      204,
+      1146,
+      158,
+      51
+    ],
+    "globe": {
+      "cx": 732,
+      "cy": 590,
+      "r": 357,
+      "bottom": 947
+    },
+    "main": null,
+    "missionGrid": null,
+    "gridCols": null,
+    "mapPanel": null,
+    "worldMap": null,
+    "mapOverlay": null,
+    "statusCard": null,
+    "stream": null,
+    "errors": []
+  },
+  "network.html@820x1180": {
+    "url": "network.html",
+    "viewport": [
+      820,
+      1180
+    ],
+    "orientation": "portrait",
+    "scrollW": 820,
+    "scrollH": 1180,
+    "clientW": 820,
+    "clientH": 1180,
+    "langRect": [
+      696,
+      14,
+      800,
+      44
+    ],
+    "langRightGap": 20,
+    "langTopGap": 14,
+    "header": [
+      0,
+      0,
+      820,
+      59,
+      820,
+      59
+    ],
+    "hero": null,
+    "manifesto": null,
+    "globe": null,
+    "main": [
+      0,
+      59,
+      820,
+      1172,
+      820,
+      1113
+    ],
+    "missionGrid": null,
+    "gridCols": null,
+    "mapPanel": [
+      18,
+      257,
+      802,
+      706,
+      784,
+      448
+    ],
+    "worldMap": [
+      19,
+      305,
+      801,
+      735,
+      782,
+      430
+    ],
+    "mapOverlay": [
+      35,
+      517,
+      265,
+      659,
+      230,
+      142
+    ],
+    "statusCard": [
+      18,
+      716,
+      802,
+      1158,
+      784,
+      442
+    ],
+    "stream": null,
+    "errors": []
+  },
+  "location.html@820x1180": {
+    "url": "location.html",
+    "viewport": [
+      820,
+      1180
+    ],
+    "orientation": "portrait",
+    "scrollW": 820,
+    "scrollH": 1180,
+    "clientW": 820,
+    "clientH": 1180,
+    "langRect": [
+      672,
+      28,
+      788,
+      58
+    ],
+    "langRightGap": 32,
+    "langTopGap": 28,
+    "header": [
+      24,
+      115,
+      796,
+      263,
+      772,
+      148
+    ],
+    "hero": null,
+    "manifesto": null,
+    "globe": null,
+    "main": [
+      0,
+      99,
+      820,
+      1279,
+      820,
+      1180
+    ],
+    "missionGrid": null,
+    "gridCols": null,
+    "mapPanel": [
+      24,
+      275,
+      796,
+      1161,
+      772,
+      886
+    ],
+    "worldMap": [
+      39,
+      302,
+      781,
+      1146,
+      742,
+      844
+    ],
+    "mapOverlay": null,
+    "statusCard": [
+      24,
+      1173,
+      796,
+      1263,
+      772,
+      90
+    ],
+    "stream": null,
+    "errors": []
+  },
+  "dashboard.html@820x1180": {
+    "url": "dashboard.html",
+    "viewport": [
+      820,
+      1180
+    ],
+    "orientation": "portrait",
+    "scrollW": 820,
+    "scrollH": 1180,
+    "clientW": 820,
+    "clientH": 1180,
+    "langRect": [
+      663,
+      152,
+      779,
+      182
+    ],
+    "langRightGap": 41,
+    "langTopGap": 152,
+    "header": [
+      14,
+      113,
+      806,
+      220,
+      792,
+      107
+    ],
+    "hero": null,
+    "manifesto": null,
+    "globe": null,
+    "main": [
+      0,
+      99,
+      820,
+      1279,
+      820,
+      1180
+    ],
+    "missionGrid": [
+      14,
+      345,
+      806,
+      1159,
+      792,
+      814
+    ],
+    "gridCols": "792px",
+    "mapPanel": [
+      14,
+      345,
+      806,
+      1007,
+      792,
+      662
+    ],
+    "worldMap": [
+      27,
+      477,
+      793,
+      994,
+      766,
+      517
+    ],
+    "mapOverlay": [
+      559,
+      863,
+      789,
+      990,
+      230,
+      127
+    ],
+    "statusCard": [
+      28,
+      1053,
+      405,
+      1149,
+      377,
+      96
+    ],
+    "stream": [
+      14,
+      1173,
+      806,
+      1275,
+      792,
+      102
+    ],
+    "errors": []
+  },
+  "dashboard-a02.html@820x1180": {
+    "url": "dashboard-a02.html",
+    "viewport": [
+      820,
+      1180
+    ],
+    "orientation": "portrait",
+    "scrollW": 820,
+    "scrollH": 1180,
+    "clientW": 820,
+    "clientH": 1180,
+    "langRect": [
+      663,
+      152,
+      779,
+      182
+    ],
+    "langRightGap": 41,
+    "langTopGap": 152,
+    "header": [
+      14,
+      113,
+      806,
+      220,
+      792,
+      107
+    ],
+    "hero": null,
+    "manifesto": null,
+    "globe": null,
+    "main": [
+      0,
+      99,
+      820,
+      1279,
+      820,
+      1180
+    ],
+    "missionGrid": [
+      14,
+      345,
+      806,
+      1159,
+      792,
+      814
+    ],
+    "gridCols": "792px",
+    "mapPanel": [
+      14,
+      345,
+      806,
+      1007,
+      792,
+      662
+    ],
+    "worldMap": [
+      27,
+      477,
+      793,
+      994,
+      766,
+      517
+    ],
+    "mapOverlay": [
+      559,
+      863,
+      789,
+      990,
+      230,
+      127
+    ],
+    "statusCard": [
+      28,
+      1053,
+      405,
+      1149,
+      377,
+      96
+    ],
+    "stream": [
+      14,
+      1173,
+      806,
+      1275,
+      792,
+      102
+    ],
+    "errors": []
+  },
+  "dashboard-a03.html@820x1180": {
+    "url": "dashboard-a03.html",
+    "viewport": [
+      820,
+      1180
+    ],
+    "orientation": "portrait",
+    "scrollW": 820,
+    "scrollH": 1180,
+    "clientW": 820,
+    "clientH": 1180,
+    "langRect": [
+      663,
+      152,
+      779,
+      182
+    ],
+    "langRightGap": 41,
+    "langTopGap": 152,
+    "header": [
+      14,
+      113,
+      806,
+      220,
+      792,
+      107
+    ],
+    "hero": null,
+    "manifesto": null,
+    "globe": null,
+    "main": [
+      0,
+      99,
+      820,
+      1279,
+      820,
+      1180
+    ],
+    "missionGrid": [
+      14,
+      345,
+      806,
+      1159,
+      792,
+      814
+    ],
+    "gridCols": "792px",
+    "mapPanel": [
+      14,
+      345,
+      806,
+      1007,
+      792,
+      662
+    ],
+    "worldMap": [
+      27,
+      477,
+      793,
+      994,
+      766,
+      517
+    ],
+    "mapOverlay": [
+      559,
+      863,
+      789,
+      990,
+      230,
+      127
+    ],
+    "statusCard": [
+      28,
+      1053,
+      405,
+      1149,
+      377,
+      96
+    ],
+    "stream": [
+      14,
+      1173,
+      806,
+      1275,
+      792,
+      102
+    ],
+    "errors": []
+  },
+  "index.html@834x1194": {
+    "url": "index.html",
+    "viewport": [
+      834,
+      1194
+    ],
+    "orientation": "portrait",
+    "scrollW": 834,
+    "scrollH": 1194,
+    "clientW": 834,
+    "clientH": 1194,
+    "langRect": [
+      684,
+      35,
+      788,
+      65
+    ],
+    "langRightGap": 46,
+    "langTopGap": 35,
+    "header": [
+      0,
+      0,
+      834,
+      100,
+      834,
+      100
+    ],
+    "hero": [
+      22,
+      717,
+      267,
+      1044,
+      245,
+      327
+    ],
+    "manifesto": [
+      46,
+      1109,
+      204,
+      1160,
+      158,
+      51
+    ],
+    "globe": {
+      "cx": 743,
+      "cy": 597,
+      "r": 362,
+      "bottom": 959
+    },
+    "main": null,
+    "missionGrid": null,
+    "gridCols": null,
+    "mapPanel": null,
+    "worldMap": null,
+    "mapOverlay": null,
+    "statusCard": null,
+    "stream": null,
+    "errors": []
+  },
+  "network.html@834x1194": {
+    "url": "network.html",
+    "viewport": [
+      834,
+      1194
+    ],
+    "orientation": "portrait",
+    "scrollW": 834,
+    "scrollH": 1194,
+    "clientW": 834,
+    "clientH": 1194,
+    "langRect": [
+      710,
+      14,
+      814,
+      44
+    ],
+    "langRightGap": 20,
+    "langTopGap": 14,
+    "header": [
+      0,
+      0,
+      834,
+      59,
+      834,
+      59
+    ],
+    "hero": null,
+    "manifesto": null,
+    "globe": null,
+    "main": [
+      0,
+      59,
+      834,
+      1186,
+      834,
+      1127
+    ],
+    "missionGrid": null,
+    "gridCols": null,
+    "mapPanel": [
+      18,
+      262,
+      816,
+      715,
+      798,
+      454
+    ],
+    "worldMap": [
+      19,
+      310,
+      815,
+      740,
+      796,
+      430
+    ],
+    "mapOverlay": [
+      35,
+      526,
+      265,
+      668,
+      230,
+      142
+    ],
+    "statusCard": [
+      18,
+      725,
+      816,
+      1172,
+      798,
+      447
+    ],
+    "stream": null,
+    "errors": []
+  },
+  "location.html@834x1194": {
+    "url": "location.html",
+    "viewport": [
+      834,
+      1194
+    ],
+    "orientation": "portrait",
+    "scrollW": 834,
+    "scrollH": 1194,
+    "clientW": 834,
+    "clientH": 1194,
+    "langRect": [
+      686,
+      28,
+      802,
+      58
+    ],
+    "langRightGap": 32,
+    "langTopGap": 28,
+    "header": [
+      24,
+      115,
+      810,
+      263,
+      786,
+      148
+    ],
+    "hero": null,
+    "manifesto": null,
+    "globe": null,
+    "main": [
+      0,
+      99,
+      834,
+      1293,
+      834,
+      1194
+    ],
+    "missionGrid": null,
+    "gridCols": null,
+    "mapPanel": [
+      24,
+      275,
+      810,
+      1175,
+      786,
+      900
+    ],
+    "worldMap": [
+      39,
+      302,
+      795,
+      1160,
+      756,
+      858
+    ],
+    "mapOverlay": null,
+    "statusCard": [
+      24,
+      1187,
+      810,
+      1277,
+      786,
+      90
+    ],
+    "stream": null,
+    "errors": []
+  },
+  "dashboard.html@834x1194": {
+    "url": "dashboard.html",
+    "viewport": [
+      834,
+      1194
+    ],
+    "orientation": "portrait",
+    "scrollW": 834,
+    "scrollH": 1194,
+    "clientW": 834,
+    "clientH": 1194,
+    "langRect": [
+      677,
+      152,
+      793,
+      182
+    ],
+    "langRightGap": 41,
+    "langTopGap": 152,
+    "header": [
+      14,
+      113,
+      820,
+      221,
+      806,
+      108
+    ],
+    "hero": null,
+    "manifesto": null,
+    "globe": null,
+    "main": [
+      0,
+      99,
+      834,
+      1293,
+      834,
+      1194
+    ],
+    "missionGrid": [
+      14,
+      345,
+      820,
+      1173,
+      806,
+      827
+    ],
+    "gridCols": "806px",
+    "mapPanel": [
+      14,
+      345,
+      820,
+      1021,
+      806,
+      675
+    ],
+    "worldMap": [
+      27,
+      477,
+      807,
+      1008,
+      780,
+      530
+    ],
+    "mapOverlay": [
+      573,
+      877,
+      803,
+      1004,
+      230,
+      127
+    ],
+    "statusCard": [
+      28,
+      1067,
+      412,
+      1163,
+      384,
+      96
+    ],
+    "stream": [
+      14,
+      1187,
+      820,
+      1289,
+      806,
+      102
+    ],
+    "errors": []
+  },
+  "dashboard-a02.html@834x1194": {
+    "url": "dashboard-a02.html",
+    "viewport": [
+      834,
+      1194
+    ],
+    "orientation": "portrait",
+    "scrollW": 834,
+    "scrollH": 1194,
+    "clientW": 834,
+    "clientH": 1194,
+    "langRect": [
+      677,
+      152,
+      793,
+      182
+    ],
+    "langRightGap": 41,
+    "langTopGap": 152,
+    "header": [
+      14,
+      113,
+      820,
+      221,
+      806,
+      108
+    ],
+    "hero": null,
+    "manifesto": null,
+    "globe": null,
+    "main": [
+      0,
+      99,
+      834,
+      1293,
+      834,
+      1194
+    ],
+    "missionGrid": [
+      14,
+      345,
+      820,
+      1173,
+      806,
+      827
+    ],
+    "gridCols": "806px",
+    "mapPanel": [
+      14,
+      345,
+      820,
+      1021,
+      806,
+      675
+    ],
+    "worldMap": [
+      27,
+      477,
+      807,
+      1008,
+      780,
+      530
+    ],
+    "mapOverlay": [
+      573,
+      877,
+      803,
+      1004,
+      230,
+      127
+    ],
+    "statusCard": [
+      28,
+      1067,
+      412,
+      1163,
+      384,
+      96
+    ],
+    "stream": [
+      14,
+      1187,
+      820,
+      1289,
+      806,
+      102
+    ],
+    "errors": []
+  },
+  "dashboard-a03.html@834x1194": {
+    "url": "dashboard-a03.html",
+    "viewport": [
+      834,
+      1194
+    ],
+    "orientation": "portrait",
+    "scrollW": 834,
+    "scrollH": 1194,
+    "clientW": 834,
+    "clientH": 1194,
+    "langRect": [
+      677,
+      152,
+      793,
+      182
+    ],
+    "langRightGap": 41,
+    "langTopGap": 152,
+    "header": [
+      14,
+      113,
+      820,
+      221,
+      806,
+      108
+    ],
+    "hero": null,
+    "manifesto": null,
+    "globe": null,
+    "main": [
+      0,
+      99,
+      834,
+      1293,
+      834,
+      1194
+    ],
+    "missionGrid": [
+      14,
+      345,
+      820,
+      1173,
+      806,
+      827
+    ],
+    "gridCols": "806px",
+    "mapPanel": [
+      14,
+      345,
+      820,
+      1021,
+      806,
+      675
+    ],
+    "worldMap": [
+      27,
+      477,
+      807,
+      1008,
+      780,
+      530
+    ],
+    "mapOverlay": [
+      573,
+      877,
+      803,
+      1004,
+      230,
+      127
+    ],
+    "statusCard": [
+      28,
+      1067,
+      412,
+      1163,
+      384,
+      96
+    ],
+    "stream": [
+      14,
+      1187,
+      820,
+      1289,
+      806,
+      102
+    ],
+    "errors": []
+  },
+  "index.html@1024x1366": {
+    "url": "index.html",
+    "viewport": [
+      1024,
+      1366
+    ],
+    "orientation": "portrait",
+    "scrollW": 1024,
+    "scrollH": 1366,
+    "clientW": 1024,
+    "clientH": 1366,
+    "langRect": [
+      874,
+      35,
+      978,
+      65
+    ],
+    "langRightGap": 46,
+    "langTopGap": 35,
+    "header": [
+      0,
+      0,
+      1024,
+      100,
+      1024,
+      100
+    ],
+    "hero": [
+      22,
+      889,
+      267,
+      1216,
+      245,
+      327
+    ],
+    "manifesto": [
+      46,
+      1281,
+      204,
+      1332,
+      158,
+      51
+    ],
+    "globe": {
+      "cx": 884,
+      "cy": 683,
+      "r": 414,
+      "bottom": 1097
+    },
+    "main": null,
+    "missionGrid": null,
+    "gridCols": null,
+    "mapPanel": null,
+    "worldMap": null,
+    "mapOverlay": null,
+    "statusCard": null,
+    "stream": null,
+    "errors": []
+  },
+  "network.html@1024x1366": {
+    "url": "network.html",
+    "viewport": [
+      1024,
+      1366
+    ],
+    "orientation": "portrait",
+    "scrollW": 1024,
+    "scrollH": 1366,
+    "clientW": 1024,
+    "clientH": 1366,
+    "langRect": [
+      900,
+      14,
+      1004,
+      44
+    ],
+    "langRightGap": 20,
+    "langTopGap": 14,
+    "header": [
+      0,
+      0,
+      1024,
+      59,
+      1024,
+      59
+    ],
+    "hero": null,
+    "manifesto": null,
+    "globe": null,
+    "main": [
+      0,
+      59,
+      1024,
+      1358,
+      1024,
+      1299
+    ],
+    "missionGrid": null,
+    "gridCols": null,
+    "mapPanel": [
+      18,
+      315,
+      1006,
+      834,
+      988,
+      519
+    ],
+    "worldMap": [
+      19,
+      363,
+      1005,
+      801,
+      986,
+      438
+    ],
+    "mapOverlay": [
+      35,
+      645,
+      265,
+      787,
+      230,
+      142
+    ],
+    "statusCard": [
+      18,
+      844,
+      1006,
+      1344,
+      988,
+      500
+    ],
+    "stream": null,
+    "errors": []
+  },
+  "location.html@1024x1366": {
+    "url": "location.html",
+    "viewport": [
+      1024,
+      1366
+    ],
+    "orientation": "portrait",
+    "scrollW": 1024,
+    "scrollH": 1366,
+    "clientW": 1024,
+    "clientH": 1366,
+    "langRect": [
+      876,
+      28,
+      992,
+      58
+    ],
+    "langRightGap": 32,
+    "langTopGap": 28,
+    "header": [
+      274,
+      16,
+      1000,
+      98,
+      726,
+      82
+    ],
+    "hero": null,
+    "manifesto": null,
+    "globe": null,
+    "main": [
+      250,
+      0,
+      1024,
+      1366,
+      774,
+      1366
+    ],
+    "missionGrid": null,
+    "gridCols": null,
+    "mapPanel": [
+      274,
+      110,
+      1000,
+      1248,
+      726,
+      1138
+    ],
+    "worldMap": [
+      289,
+      137,
+      985,
+      1233,
+      696,
+      1096
+    ],
+    "mapOverlay": null,
+    "statusCard": [
+      274,
+      1260,
+      1000,
+      1350,
+      726,
+      90
+    ],
+    "stream": null,
+    "errors": []
+  },
+  "dashboard.html@1024x1366": {
+    "url": "dashboard.html",
+    "viewport": [
+      1024,
+      1366
+    ],
+    "orientation": "portrait",
+    "scrollW": 1024,
+    "scrollH": 1366,
+    "clientW": 1024,
+    "clientH": 1366,
+    "langRect": [
+      865,
+      61,
+      981,
+      91
+    ],
+    "langRightGap": 43,
+    "langTopGap": 61,
+    "header": [
+      266,
+      22,
+      1008,
+      131,
+      741,
+      109
+    ],
+    "hero": null,
+    "manifesto": null,
+    "globe": null,
+    "main": [
+      250,
+      0,
+      1024,
+      1366,
+      774,
+      1366
+    ],
+    "missionGrid": [
+      266,
+      259,
+      1008,
+      1244,
+      741,
+      985
+    ],
+    "gridCols": "741.25px",
+    "mapPanel": [
+      266,
+      259,
+      1008,
+      1236,
+      741,
+      977
+    ],
+    "worldMap": [
+      279,
+      391,
+      995,
+      1223,
+      715,
+      832
+    ],
+    "mapOverlay": [
+      761,
+      1092,
+      991,
+      1219,
+      230,
+      127
+    ],
+    "statusCard": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "stream": [
+      266,
+      1260,
+      1008,
+      1362,
+      741,
+      102
+    ],
+    "errors": []
+  },
+  "dashboard-a02.html@1024x1366": {
+    "url": "dashboard-a02.html",
+    "viewport": [
+      1024,
+      1366
+    ],
+    "orientation": "portrait",
+    "scrollW": 1024,
+    "scrollH": 1366,
+    "clientW": 1024,
+    "clientH": 1366,
+    "langRect": [
+      865,
+      61,
+      981,
+      91
+    ],
+    "langRightGap": 43,
+    "langTopGap": 61,
+    "header": [
+      266,
+      22,
+      1008,
+      131,
+      741,
+      109
+    ],
+    "hero": null,
+    "manifesto": null,
+    "globe": null,
+    "main": [
+      250,
+      0,
+      1024,
+      1366,
+      774,
+      1366
+    ],
+    "missionGrid": [
+      266,
+      259,
+      1008,
+      1244,
+      741,
+      985
+    ],
+    "gridCols": "741.25px",
+    "mapPanel": [
+      266,
+      259,
+      1008,
+      1236,
+      741,
+      977
+    ],
+    "worldMap": [
+      279,
+      391,
+      995,
+      1223,
+      715,
+      832
+    ],
+    "mapOverlay": [
+      761,
+      1092,
+      991,
+      1219,
+      230,
+      127
+    ],
+    "statusCard": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "stream": [
+      266,
+      1260,
+      1008,
+      1362,
+      741,
+      102
+    ],
+    "errors": []
+  },
+  "dashboard-a03.html@1024x1366": {
+    "url": "dashboard-a03.html",
+    "viewport": [
+      1024,
+      1366
+    ],
+    "orientation": "portrait",
+    "scrollW": 1024,
+    "scrollH": 1366,
+    "clientW": 1024,
+    "clientH": 1366,
+    "langRect": [
+      865,
+      61,
+      981,
+      91
+    ],
+    "langRightGap": 43,
+    "langTopGap": 61,
+    "header": [
+      266,
+      22,
+      1008,
+      131,
+      741,
+      109
+    ],
+    "hero": null,
+    "manifesto": null,
+    "globe": null,
+    "main": [
+      250,
+      0,
+      1024,
+      1366,
+      774,
+      1366
+    ],
+    "missionGrid": [
+      266,
+      259,
+      1008,
+      1244,
+      741,
+      985
+    ],
+    "gridCols": "741.25px",
+    "mapPanel": [
+      266,
+      259,
+      1008,
+      1236,
+      741,
+      977
+    ],
+    "worldMap": [
+      279,
+      391,
+      995,
+      1223,
+      715,
+      832
+    ],
+    "mapOverlay": [
+      761,
+      1092,
+      991,
+      1219,
+      230,
+      127
+    ],
+    "statusCard": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "stream": [
+      266,
+      1260,
+      1008,
+      1362,
+      741,
+      102
+    ],
+    "errors": []
+  },
+  "index.html@1024x768": {
+    "url": "index.html",
+    "viewport": [
+      1024,
+      768
+    ],
+    "orientation": "landscape",
+    "scrollW": 1024,
+    "scrollH": 768,
+    "clientW": 1024,
+    "clientH": 768,
+    "langRect": [
+      874,
+      35,
+      978,
+      65
+    ],
+    "langRightGap": 46,
+    "langTopGap": 35,
+    "header": [
+      0,
+      0,
+      1024,
+      100,
+      1024,
+      100
+    ],
+    "hero": [
+      72,
+      100,
+      317,
+      454,
+      245,
+      355
+    ],
+    "manifesto": [
+      46,
+      687,
+      204,
+      738,
+      158,
+      51
+    ],
+    "globe": {
+      "cx": 721,
+      "cy": 384,
+      "r": 233,
+      "bottom": 617
+    },
+    "main": null,
+    "missionGrid": null,
+    "gridCols": null,
+    "mapPanel": null,
+    "worldMap": null,
+    "mapOverlay": null,
+    "statusCard": null,
+    "stream": null,
+    "errors": []
+  },
+  "network.html@1024x768": {
+    "url": "network.html",
+    "viewport": [
+      1024,
+      768
+    ],
+    "orientation": "landscape",
+    "scrollW": 1024,
+    "scrollH": 768,
+    "clientW": 1024,
+    "clientH": 768,
+    "langRect": [
+      900,
+      14,
+      1004,
+      44
+    ],
+    "langRightGap": 20,
+    "langTopGap": 14,
+    "header": [
+      0,
+      0,
+      1024,
+      59,
+      1024,
+      59
+    ],
+    "hero": null,
+    "manifesto": null,
+    "globe": null,
+    "main": [
+      0,
+      59,
+      1024,
+      760,
+      1024,
+      701
+    ],
+    "missionGrid": null,
+    "gridCols": null,
+    "mapPanel": [
+      186,
+      73,
+      749,
+      746,
+      563,
+      673
+    ],
+    "worldMap": [
+      187,
+      121,
+      748,
+      713,
+      561,
+      592
+    ],
+    "mapOverlay": [
+      203,
+      557,
+      433,
+      699,
+      230,
+      142
+    ],
+    "statusCard": [
+      759,
+      73,
+      1006,
+      746,
+      247,
+      673
+    ],
+    "stream": null,
+    "errors": []
+  },
+  "location.html@1024x768": {
+    "url": "location.html",
+    "viewport": [
+      1024,
+      768
+    ],
+    "orientation": "landscape",
+    "scrollW": 1024,
+    "scrollH": 768,
+    "clientW": 1024,
+    "clientH": 768,
+    "langRect": [
+      876,
+      28,
+      992,
+      58
+    ],
+    "langRightGap": 32,
+    "langTopGap": 28,
+    "header": [
+      274,
+      12,
+      1000,
+      94,
+      726,
+      82
+    ],
+    "hero": null,
+    "manifesto": null,
+    "globe": null,
+    "main": [
+      250,
+      0,
+      1024,
+      768,
+      774,
+      768
+    ],
+    "missionGrid": null,
+    "gridCols": null,
+    "mapPanel": [
+      274,
+      104,
+      1000,
+      656,
+      726,
+      552
+    ],
+    "worldMap": [
+      289,
+      131,
+      985,
+      641,
+      696,
+      510
+    ],
+    "mapOverlay": null,
+    "statusCard": [
+      274,
+      666,
+      1000,
+      756,
+      726,
+      90
+    ],
+    "stream": null,
+    "errors": []
+  },
+  "dashboard.html@1024x768": {
+    "url": "dashboard.html",
+    "viewport": [
+      1024,
+      768
+    ],
+    "orientation": "landscape",
+    "scrollW": 1024,
+    "scrollH": 768,
+    "clientW": 1024,
+    "clientH": 768,
+    "langRect": [
+      865,
+      48,
+      981,
+      78
+    ],
+    "langRightGap": 43,
+    "langTopGap": 48,
+    "header": [
+      266,
+      12,
+      1008,
+      115,
+      741,
+      103
+    ],
+    "hero": null,
+    "manifesto": null,
+    "globe": null,
+    "main": [
+      250,
+      0,
+      1024,
+      768,
+      774,
+      768
+    ],
+    "missionGrid": [
+      266,
+      226,
+      1008,
+      661,
+      741,
+      435
+    ],
+    "gridCols": "741.25px",
+    "mapPanel": [
+      266,
+      226,
+      1008,
+      653,
+      741,
+      427
+    ],
+    "worldMap": [
+      279,
+      358,
+      995,
+      640,
+      715,
+      282
+    ],
+    "mapOverlay": [
+      761,
+      509,
+      991,
+      636,
+      230,
+      127
+    ],
+    "statusCard": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "stream": [
+      266,
+      671,
+      1008,
+      764,
+      741,
+      93
+    ],
+    "errors": []
+  },
+  "dashboard-a02.html@1024x768": {
+    "url": "dashboard-a02.html",
+    "viewport": [
+      1024,
+      768
+    ],
+    "orientation": "landscape",
+    "scrollW": 1024,
+    "scrollH": 768,
+    "clientW": 1024,
+    "clientH": 768,
+    "langRect": [
+      865,
+      48,
+      981,
+      78
+    ],
+    "langRightGap": 43,
+    "langTopGap": 48,
+    "header": [
+      266,
+      12,
+      1008,
+      115,
+      741,
+      103
+    ],
+    "hero": null,
+    "manifesto": null,
+    "globe": null,
+    "main": [
+      250,
+      0,
+      1024,
+      768,
+      774,
+      768
+    ],
+    "missionGrid": [
+      266,
+      226,
+      1008,
+      661,
+      741,
+      435
+    ],
+    "gridCols": "741.25px",
+    "mapPanel": [
+      266,
+      226,
+      1008,
+      653,
+      741,
+      427
+    ],
+    "worldMap": [
+      279,
+      358,
+      995,
+      640,
+      715,
+      282
+    ],
+    "mapOverlay": [
+      761,
+      509,
+      991,
+      636,
+      230,
+      127
+    ],
+    "statusCard": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "stream": [
+      266,
+      671,
+      1008,
+      764,
+      741,
+      93
+    ],
+    "errors": []
+  },
+  "dashboard-a03.html@1024x768": {
+    "url": "dashboard-a03.html",
+    "viewport": [
+      1024,
+      768
+    ],
+    "orientation": "landscape",
+    "scrollW": 1024,
+    "scrollH": 768,
+    "clientW": 1024,
+    "clientH": 768,
+    "langRect": [
+      865,
+      48,
+      981,
+      78
+    ],
+    "langRightGap": 43,
+    "langTopGap": 48,
+    "header": [
+      266,
+      12,
+      1008,
+      115,
+      741,
+      103
+    ],
+    "hero": null,
+    "manifesto": null,
+    "globe": null,
+    "main": [
+      250,
+      0,
+      1024,
+      768,
+      774,
+      768
+    ],
+    "missionGrid": [
+      266,
+      226,
+      1008,
+      661,
+      741,
+      435
+    ],
+    "gridCols": "741.25px",
+    "mapPanel": [
+      266,
+      226,
+      1008,
+      653,
+      741,
+      427
+    ],
+    "worldMap": [
+      279,
+      358,
+      995,
+      640,
+      715,
+      282
+    ],
+    "mapOverlay": [
+      761,
+      509,
+      991,
+      636,
+      230,
+      127
+    ],
+    "statusCard": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "stream": [
+      266,
+      671,
+      1008,
+      764,
+      741,
+      93
+    ],
+    "errors": []
+  },
+  "index.html@1180x820": {
+    "url": "index.html",
+    "viewport": [
+      1180,
+      820
+    ],
+    "orientation": "landscape",
+    "scrollW": 1180,
+    "scrollH": 820,
+    "clientW": 1180,
+    "clientH": 820,
+    "langRect": [
+      1030,
+      35,
+      1134,
+      65
+    ],
+    "langRightGap": 46,
+    "langTopGap": 35,
+    "header": [
+      0,
+      0,
+      1180,
+      100,
+      1180,
+      100
+    ],
+    "hero": [
+      83,
+      123,
+      381,
+      525,
+      298,
+      402
+    ],
+    "manifesto": [
+      46,
+      735,
+      204,
+      786,
+      158,
+      51
+    ],
+    "globe": {
+      "cx": 814,
+      "cy": 410,
+      "r": 248,
+      "bottom": 658
+    },
+    "main": null,
+    "missionGrid": null,
+    "gridCols": null,
+    "mapPanel": null,
+    "worldMap": null,
+    "mapOverlay": null,
+    "statusCard": null,
+    "stream": null,
+    "errors": []
+  },
+  "network.html@1180x820": {
+    "url": "network.html",
+    "viewport": [
+      1180,
+      820
+    ],
+    "orientation": "landscape",
+    "scrollW": 1180,
+    "scrollH": 820,
+    "clientW": 1180,
+    "clientH": 820,
+    "langRect": [
+      1056,
+      14,
+      1160,
+      44
+    ],
+    "langRightGap": 20,
+    "langTopGap": 14,
+    "header": [
+      0,
+      0,
+      1180,
+      59,
+      1180,
+      59
+    ],
+    "hero": null,
+    "manifesto": null,
+    "globe": null,
+    "main": [
+      0,
+      59,
+      1180,
+      812,
+      1180,
+      753
+    ],
+    "missionGrid": null,
+    "gridCols": null,
+    "mapPanel": [
+      211,
+      73,
+      866,
+      798,
+      655,
+      725
+    ],
+    "worldMap": [
+      212,
+      121,
+      865,
+      765,
+      653,
+      644
+    ],
+    "mapOverlay": [
+      228,
+      609,
+      458,
+      751,
+      230,
+      142
+    ],
+    "statusCard": [
+      876,
+      73,
+      1162,
+      798,
+      286,
+      725
+    ],
+    "stream": null,
+    "errors": []
+  },
+  "location.html@1180x820": {
+    "url": "location.html",
+    "viewport": [
+      1180,
+      820
+    ],
+    "orientation": "landscape",
+    "scrollW": 1180,
+    "scrollH": 820,
+    "clientW": 1180,
+    "clientH": 820,
+    "langRect": [
+      1032,
+      28,
+      1148,
+      58
+    ],
+    "langRightGap": 32,
+    "langTopGap": 28,
+    "header": [
+      274,
+      16,
+      1156,
+      98,
+      882,
+      82
+    ],
+    "hero": null,
+    "manifesto": null,
+    "globe": null,
+    "main": [
+      250,
+      0,
+      1180,
+      820,
+      930,
+      820
+    ],
+    "missionGrid": null,
+    "gridCols": null,
+    "mapPanel": [
+      274,
+      110,
+      1156,
+      702,
+      882,
+      592
+    ],
+    "worldMap": [
+      289,
+      137,
+      1141,
+      687,
+      852,
+      550
+    ],
+    "mapOverlay": null,
+    "statusCard": [
+      274,
+      714,
+      1156,
+      804,
+      882,
+      90
+    ],
+    "stream": null,
+    "errors": []
+  },
+  "dashboard.html@1180x820": {
+    "url": "dashboard.html",
+    "viewport": [
+      1180,
+      820
+    ],
+    "orientation": "landscape",
+    "scrollW": 1180,
+    "scrollH": 820,
+    "clientW": 1180,
+    "clientH": 820,
+    "langRect": [
+      1018,
+      51,
+      1134,
+      81
+    ],
+    "langRightGap": 46,
+    "langTopGap": 51,
+    "header": [
+      269,
+      13,
+      1161,
+      120,
+      892,
+      107
+    ],
+    "hero": null,
+    "manifesto": null,
+    "globe": null,
+    "main": [
+      250,
+      0,
+      1180,
+      820,
+      930,
+      820
+    ],
+    "missionGrid": [
+      269,
+      230,
+      1161,
+      713,
+      892,
+      483
+    ],
+    "gridCols": "892.25px",
+    "mapPanel": [
+      269,
+      230,
+      1161,
+      704,
+      892,
+      473
+    ],
+    "worldMap": [
+      282,
+      362,
+      1148,
+      691,
+      866,
+      328
+    ],
+    "mapOverlay": [
+      914,
+      560,
+      1144,
+      687,
+      230,
+      127
+    ],
+    "statusCard": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "stream": [
+      269,
+      723,
+      1161,
+      816,
+      892,
+      93
+    ],
+    "errors": []
+  },
+  "dashboard-a02.html@1180x820": {
+    "url": "dashboard-a02.html",
+    "viewport": [
+      1180,
+      820
+    ],
+    "orientation": "landscape",
+    "scrollW": 1180,
+    "scrollH": 820,
+    "clientW": 1180,
+    "clientH": 820,
+    "langRect": [
+      1018,
+      51,
+      1134,
+      81
+    ],
+    "langRightGap": 46,
+    "langTopGap": 51,
+    "header": [
+      269,
+      13,
+      1161,
+      120,
+      892,
+      107
+    ],
+    "hero": null,
+    "manifesto": null,
+    "globe": null,
+    "main": [
+      250,
+      0,
+      1180,
+      820,
+      930,
+      820
+    ],
+    "missionGrid": [
+      269,
+      230,
+      1161,
+      713,
+      892,
+      483
+    ],
+    "gridCols": "892.25px",
+    "mapPanel": [
+      269,
+      230,
+      1161,
+      704,
+      892,
+      473
+    ],
+    "worldMap": [
+      282,
+      362,
+      1148,
+      691,
+      866,
+      328
+    ],
+    "mapOverlay": [
+      914,
+      560,
+      1144,
+      687,
+      230,
+      127
+    ],
+    "statusCard": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "stream": [
+      269,
+      723,
+      1161,
+      816,
+      892,
+      93
+    ],
+    "errors": []
+  },
+  "dashboard-a03.html@1180x820": {
+    "url": "dashboard-a03.html",
+    "viewport": [
+      1180,
+      820
+    ],
+    "orientation": "landscape",
+    "scrollW": 1180,
+    "scrollH": 820,
+    "clientW": 1180,
+    "clientH": 820,
+    "langRect": [
+      1018,
+      51,
+      1134,
+      81
+    ],
+    "langRightGap": 46,
+    "langTopGap": 51,
+    "header": [
+      269,
+      13,
+      1161,
+      120,
+      892,
+      107
+    ],
+    "hero": null,
+    "manifesto": null,
+    "globe": null,
+    "main": [
+      250,
+      0,
+      1180,
+      820,
+      930,
+      820
+    ],
+    "missionGrid": [
+      269,
+      230,
+      1161,
+      713,
+      892,
+      483
+    ],
+    "gridCols": "892.25px",
+    "mapPanel": [
+      269,
+      230,
+      1161,
+      704,
+      892,
+      473
+    ],
+    "worldMap": [
+      282,
+      362,
+      1148,
+      691,
+      866,
+      328
+    ],
+    "mapOverlay": [
+      914,
+      560,
+      1144,
+      687,
+      230,
+      127
+    ],
+    "statusCard": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "stream": [
+      269,
+      723,
+      1161,
+      816,
+      892,
+      93
+    ],
+    "errors": []
+  },
+  "index.html@1194x834": {
+    "url": "index.html",
+    "viewport": [
+      1194,
+      834
+    ],
+    "orientation": "landscape",
+    "scrollW": 1194,
+    "scrollH": 834,
+    "clientW": 1194,
+    "clientH": 834,
+    "langRect": [
+      1044,
+      35,
+      1148,
+      65
+    ],
+    "langRightGap": 46,
+    "langTopGap": 35,
+    "header": [
+      0,
+      0,
+      1194,
+      100,
+      1194,
+      100
+    ],
+    "hero": [
+      84,
+      125,
+      385,
+      529,
+      302,
+      404
+    ],
+    "manifesto": [
+      46,
+      748,
+      206,
+      800,
+      160,
+      52
+    ],
+    "globe": {
+      "cx": 824,
+      "cy": 417,
+      "r": 253,
+      "bottom": 670
+    },
+    "main": null,
+    "missionGrid": null,
+    "gridCols": null,
+    "mapPanel": null,
+    "worldMap": null,
+    "mapOverlay": null,
+    "statusCard": null,
+    "stream": null,
+    "errors": []
+  },
+  "network.html@1194x834": {
+    "url": "network.html",
+    "viewport": [
+      1194,
+      834
+    ],
+    "orientation": "landscape",
+    "scrollW": 1194,
+    "scrollH": 834,
+    "clientW": 1194,
+    "clientH": 834,
+    "langRect": [
+      1070,
+      14,
+      1174,
+      44
+    ],
+    "langRightGap": 20,
+    "langTopGap": 14,
+    "header": [
+      0,
+      0,
+      1194,
+      59,
+      1194,
+      59
+    ],
+    "hero": null,
+    "manifesto": null,
+    "globe": null,
+    "main": [
+      0,
+      59,
+      1194,
+      826,
+      1194,
+      767
+    ],
+    "missionGrid": null,
+    "gridCols": null,
+    "mapPanel": [
+      213,
+      73,
+      877,
+      812,
+      663,
+      739
+    ],
+    "worldMap": [
+      214,
+      121,
+      876,
+      779,
+      661,
+      658
+    ],
+    "mapOverlay": [
+      230,
+      623,
+      460,
+      765,
+      230,
+      142
+    ],
+    "statusCard": [
+      887,
+      73,
+      1176,
+      812,
+      290,
+      739
+    ],
+    "stream": null,
+    "errors": []
+  },
+  "location.html@1194x834": {
+    "url": "location.html",
+    "viewport": [
+      1194,
+      834
+    ],
+    "orientation": "landscape",
+    "scrollW": 1194,
+    "scrollH": 834,
+    "clientW": 1194,
+    "clientH": 834,
+    "langRect": [
+      1046,
+      28,
+      1162,
+      58
+    ],
+    "langRightGap": 32,
+    "langTopGap": 28,
+    "header": [
+      274,
+      16,
+      1170,
+      98,
+      896,
+      82
+    ],
+    "hero": null,
+    "manifesto": null,
+    "globe": null,
+    "main": [
+      250,
+      0,
+      1194,
+      834,
+      944,
+      834
+    ],
+    "missionGrid": null,
+    "gridCols": null,
+    "mapPanel": [
+      274,
+      110,
+      1170,
+      716,
+      896,
+      606
+    ],
+    "worldMap": [
+      289,
+      137,
+      1155,
+      701,
+      866,
+      564
+    ],
+    "mapOverlay": null,
+    "statusCard": [
+      274,
+      728,
+      1170,
+      818,
+      896,
+      90
+    ],
+    "stream": null,
+    "errors": []
+  },
+  "dashboard.html@1194x834": {
+    "url": "dashboard.html",
+    "viewport": [
+      1194,
+      834
+    ],
+    "orientation": "landscape",
+    "scrollW": 1194,
+    "scrollH": 834,
+    "clientW": 1194,
+    "clientH": 834,
+    "langRect": [
+      1032,
+      55,
+      1148,
+      85
+    ],
+    "langRightGap": 46,
+    "langTopGap": 55,
+    "header": [
+      269,
+      13,
+      1175,
+      126,
+      906,
+      113
+    ],
+    "hero": null,
+    "manifesto": null,
+    "globe": null,
+    "main": [
+      250,
+      0,
+      1194,
+      834,
+      944,
+      834
+    ],
+    "missionGrid": [
+      269,
+      237,
+      1175,
+      724,
+      906,
+      487
+    ],
+    "gridCols": "905.812px",
+    "mapPanel": [
+      269,
+      237,
+      1175,
+      714,
+      906,
+      477
+    ],
+    "worldMap": [
+      282,
+      369,
+      1162,
+      701,
+      880,
+      332
+    ],
+    "mapOverlay": [
+      928,
+      570,
+      1158,
+      697,
+      230,
+      127
+    ],
+    "statusCard": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "stream": [
+      269,
+      734,
+      1175,
+      830,
+      906,
+      96
+    ],
+    "errors": []
+  },
+  "dashboard-a02.html@1194x834": {
+    "url": "dashboard-a02.html",
+    "viewport": [
+      1194,
+      834
+    ],
+    "orientation": "landscape",
+    "scrollW": 1194,
+    "scrollH": 834,
+    "clientW": 1194,
+    "clientH": 834,
+    "langRect": [
+      1032,
+      55,
+      1148,
+      85
+    ],
+    "langRightGap": 46,
+    "langTopGap": 55,
+    "header": [
+      269,
+      13,
+      1175,
+      126,
+      906,
+      113
+    ],
+    "hero": null,
+    "manifesto": null,
+    "globe": null,
+    "main": [
+      250,
+      0,
+      1194,
+      834,
+      944,
+      834
+    ],
+    "missionGrid": [
+      269,
+      237,
+      1175,
+      724,
+      906,
+      487
+    ],
+    "gridCols": "905.812px",
+    "mapPanel": [
+      269,
+      237,
+      1175,
+      714,
+      906,
+      477
+    ],
+    "worldMap": [
+      282,
+      369,
+      1162,
+      701,
+      880,
+      332
+    ],
+    "mapOverlay": [
+      928,
+      570,
+      1158,
+      697,
+      230,
+      127
+    ],
+    "statusCard": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "stream": [
+      269,
+      734,
+      1175,
+      830,
+      906,
+      96
+    ],
+    "errors": []
+  },
+  "dashboard-a03.html@1194x834": {
+    "url": "dashboard-a03.html",
+    "viewport": [
+      1194,
+      834
+    ],
+    "orientation": "landscape",
+    "scrollW": 1194,
+    "scrollH": 834,
+    "clientW": 1194,
+    "clientH": 834,
+    "langRect": [
+      1032,
+      55,
+      1148,
+      85
+    ],
+    "langRightGap": 46,
+    "langTopGap": 55,
+    "header": [
+      269,
+      13,
+      1175,
+      126,
+      906,
+      113
+    ],
+    "hero": null,
+    "manifesto": null,
+    "globe": null,
+    "main": [
+      250,
+      0,
+      1194,
+      834,
+      944,
+      834
+    ],
+    "missionGrid": [
+      269,
+      237,
+      1175,
+      724,
+      906,
+      487
+    ],
+    "gridCols": "905.812px",
+    "mapPanel": [
+      269,
+      237,
+      1175,
+      714,
+      906,
+      477
+    ],
+    "worldMap": [
+      282,
+      369,
+      1162,
+      701,
+      880,
+      332
+    ],
+    "mapOverlay": [
+      928,
+      570,
+      1158,
+      697,
+      230,
+      127
+    ],
+    "statusCard": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "stream": [
+      269,
+      734,
+      1175,
+      830,
+      906,
+      96
+    ],
+    "errors": []
+  }
+}

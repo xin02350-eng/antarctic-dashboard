@@ -1,0 +1,7510 @@
+{
+  "1024_index.html": {
+    "page": "index.html",
+    "viewport": [
+      1024,
+      1366
+    ],
+    "dsf": 1,
+    "errors": [],
+    "metric": {
+      "url": "index.html",
+      "viewport": [
+        1024,
+        1366
+      ],
+      "dpr": 1,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · 探索序章",
+      "scrollW": 1024,
+      "scrollH": 1366,
+      "clientW": 1024,
+      "clientH": 1366,
+      "langRect": [
+        874,
+        35,
+        978,
+        65
+      ],
+      "langRightGap": 46,
+      "langTopGap": 35,
+      "header": [
+        0,
+        0,
+        1024,
+        100,
+        1024,
+        100
+      ],
+      "worldMap": null,
+      "leaflet": false,
+      "tilesLoaded": null,
+      "grid": null,
+      "globeCv": {
+        "css": [
+          1024,
+          1366
+        ],
+        "buf": [
+          1024,
+          1366
+        ]
+      },
+      "globeReady": true,
+      "globeFallbackVisible": false,
+      "homeLoaded": true,
+      "deviceMap": false,
+      "deviceMarker": false,
+      "markerScreen": null,
+      "coreScreen": null
+    }
+  },
+  "1024_network.html": {
+    "page": "network.html",
+    "viewport": [
+      1024,
+      1366
+    ],
+    "dsf": 1,
+    "errors": [],
+    "metric": {
+      "url": "network.html",
+      "viewport": [
+        1024,
+        1366
+      ],
+      "dpr": 1,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · 观测网络",
+      "scrollW": 1024,
+      "scrollH": 1366,
+      "clientW": 1024,
+      "clientH": 1366,
+      "langRect": [
+        892,
+        18,
+        996,
+        48
+      ],
+      "langRightGap": 28,
+      "langTopGap": 18,
+      "header": [
+        0,
+        0,
+        1024,
+        67,
+        1024,
+        67
+      ],
+      "worldMap": [
+        23,
+        414,
+        1001,
+        844,
+        978,
+        430
+      ],
+      "leaflet": true,
+      "tilesLoaded": false,
+      "grid": null,
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": false,
+      "deviceMarker": false,
+      "markerScreen": null,
+      "coreScreen": null
+    }
+  },
+  "1024_location.html": {
+    "page": "location.html",
+    "viewport": [
+      1024,
+      1366
+    ],
+    "dsf": 1,
+    "errors": [],
+    "metric": {
+      "url": "location.html",
+      "viewport": [
+        1024,
+        1366
+      ],
+      "dpr": 1,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · 位置",
+      "scrollW": 1024,
+      "scrollH": 1366,
+      "clientW": 1024,
+      "clientH": 1366,
+      "langRect": [
+        876,
+        28,
+        992,
+        58
+      ],
+      "langRightGap": 32,
+      "langTopGap": 28,
+      "header": [
+        274,
+        16,
+        1000,
+        106,
+        726,
+        90
+      ],
+      "worldMap": [
+        289,
+        145,
+        985,
+        1229,
+        696,
+        1084
+      ],
+      "leaflet": true,
+      "tilesLoaded": false,
+      "grid": null,
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": true,
+      "deviceMarker": true,
+      "markerScreen": [
+        347,
+        541
+      ],
+      "coreScreen": [
+        348,
+        542
+      ]
+    }
+  },
+  "1024_dashboard.html": {
+    "page": "dashboard.html",
+    "viewport": [
+      1024,
+      1366
+    ],
+    "dsf": 1,
+    "errors": [],
+    "metric": {
+      "url": "dashboard.html",
+      "viewport": [
+        1024,
+        1366
+      ],
+      "dpr": 1,
+      "lang": "zh-CN",
+      "title": "自主观测系统",
+      "scrollW": 1024,
+      "scrollH": 1366,
+      "clientW": 1024,
+      "clientH": 1366,
+      "langRect": [
+        865,
+        61,
+        981,
+        91
+      ],
+      "langRightGap": 43,
+      "langTopGap": 61,
+      "header": [
+        266,
+        22,
+        1008,
+        131,
+        741,
+        109
+      ],
+      "worldMap": [
+        634,
+        422,
+        995,
+        1042,
+        361,
+        620
+      ],
+      "leaflet": true,
+      "tilesLoaded": true,
+      "grid": {
+        "css": [
+          359,
+          618
+        ],
+        "buf": [
+          359,
+          618
+        ]
+      },
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": true,
+      "deviceMarker": true,
+      "markerScreen": [
+        179,
+        309
+      ],
+      "coreScreen": [
+        180,
+        310
+      ]
+    }
+  },
+  "1024_dashboard-a02.html": {
+    "page": "dashboard-a02.html",
+    "viewport": [
+      1024,
+      1366
+    ],
+    "dsf": 1,
+    "errors": [],
+    "metric": {
+      "url": "dashboard-a02.html",
+      "viewport": [
+        1024,
+        1366
+      ],
+      "dpr": 1,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · ANT-A02",
+      "scrollW": 1024,
+      "scrollH": 1366,
+      "clientW": 1024,
+      "clientH": 1366,
+      "langRect": [
+        865,
+        61,
+        981,
+        91
+      ],
+      "langRightGap": 43,
+      "langTopGap": 61,
+      "header": [
+        266,
+        22,
+        1008,
+        131,
+        741,
+        109
+      ],
+      "worldMap": [
+        756,
+        422,
+        995,
+        1042,
+        239,
+        620
+      ],
+      "leaflet": true,
+      "tilesLoaded": true,
+      "grid": {
+        "css": [
+          237,
+          618
+        ],
+        "buf": [
+          237,
+          618
+        ]
+      },
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": true,
+      "deviceMarker": false,
+      "markerScreen": null,
+      "coreScreen": [
+        119,
+        310
+      ]
+    }
+  },
+  "1024_dashboard-a03.html": {
+    "page": "dashboard-a03.html",
+    "viewport": [
+      1024,
+      1366
+    ],
+    "dsf": 1,
+    "errors": [],
+    "metric": {
+      "url": "dashboard-a03.html",
+      "viewport": [
+        1024,
+        1366
+      ],
+      "dpr": 1,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · ANT-A03",
+      "scrollW": 1024,
+      "scrollH": 1366,
+      "clientW": 1024,
+      "clientH": 1366,
+      "langRect": [
+        865,
+        61,
+        981,
+        91
+      ],
+      "langRightGap": 43,
+      "langTopGap": 61,
+      "header": [
+        266,
+        22,
+        1008,
+        131,
+        741,
+        109
+      ],
+      "worldMap": [
+        756,
+        422,
+        995,
+        1042,
+        239,
+        620
+      ],
+      "leaflet": true,
+      "tilesLoaded": true,
+      "grid": {
+        "css": [
+          237,
+          618
+        ],
+        "buf": [
+          237,
+          618
+        ]
+      },
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": true,
+      "deviceMarker": false,
+      "markerScreen": null,
+      "coreScreen": [
+        119,
+        310
+      ]
+    }
+  },
+  "1024_sensors.html": {
+    "page": "sensors.html",
+    "viewport": [
+      1024,
+      1366
+    ],
+    "dsf": 1,
+    "errors": [],
+    "metric": {
+      "url": "sensors.html",
+      "viewport": [
+        1024,
+        1366
+      ],
+      "dpr": 1,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · 传感器",
+      "scrollW": 1024,
+      "scrollH": 1366,
+      "clientW": 1024,
+      "clientH": 1366,
+      "langRect": [
+        876,
+        28,
+        992,
+        58
+      ],
+      "langRightGap": 32,
+      "langTopGap": 28,
+      "header": [
+        270,
+        14,
+        1004,
+        96,
+        734,
+        82
+      ],
+      "worldMap": null,
+      "leaflet": false,
+      "tilesLoaded": null,
+      "grid": null,
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": false,
+      "deviceMarker": false,
+      "markerScreen": null,
+      "coreScreen": null
+    }
+  },
+  "1024_telemetry.html": {
+    "page": "telemetry.html",
+    "viewport": [
+      1024,
+      1366
+    ],
+    "dsf": 1,
+    "errors": [],
+    "metric": {
+      "url": "telemetry.html",
+      "viewport": [
+        1024,
+        1366
+      ],
+      "dpr": 1,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · 数据",
+      "scrollW": 1024,
+      "scrollH": 1366,
+      "clientW": 1024,
+      "clientH": 1366,
+      "langRect": [
+        876,
+        28,
+        992,
+        58
+      ],
+      "langRightGap": 32,
+      "langTopGap": 28,
+      "header": [
+        270,
+        14,
+        1004,
+        96,
+        734,
+        82
+      ],
+      "worldMap": null,
+      "leaflet": false,
+      "tilesLoaded": null,
+      "grid": null,
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": false,
+      "deviceMarker": false,
+      "markerScreen": null,
+      "coreScreen": null
+    }
+  },
+  "1024_hardware.html": {
+    "page": "hardware.html",
+    "viewport": [
+      1024,
+      1366
+    ],
+    "dsf": 1,
+    "errors": [],
+    "metric": {
+      "url": "hardware.html",
+      "viewport": [
+        1024,
+        1366
+      ],
+      "dpr": 1,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · 硬件档案",
+      "scrollW": 1024,
+      "scrollH": 1366,
+      "clientW": 1024,
+      "clientH": 1366,
+      "langRect": [
+        876,
+        28,
+        992,
+        58
+      ],
+      "langRightGap": 32,
+      "langTopGap": 28,
+      "header": [
+        264,
+        8,
+        1010,
+        52,
+        746,
+        44
+      ],
+      "worldMap": null,
+      "leaflet": false,
+      "tilesLoaded": null,
+      "grid": null,
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": false,
+      "deviceMarker": false,
+      "markerScreen": null,
+      "coreScreen": null
+    }
+  },
+  "1024_analysis.html": {
+    "page": "analysis.html",
+    "viewport": [
+      1024,
+      1366
+    ],
+    "dsf": 1,
+    "errors": [],
+    "metric": {
+      "url": "analysis.html",
+      "viewport": [
+        1024,
+        1366
+      ],
+      "dpr": 1,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · 任务成果分析",
+      "scrollW": 1009,
+      "scrollH": 1429,
+      "clientW": 1009,
+      "clientH": 1366,
+      "langRect": [
+        861,
+        28,
+        977,
+        58
+      ],
+      "langRightGap": 47,
+      "langTopGap": 28,
+      "header": [
+        268,
+        42,
+        991,
+        111,
+        723,
+        69
+      ],
+      "worldMap": null,
+      "leaflet": false,
+      "tilesLoaded": null,
+      "grid": null,
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": false,
+      "deviceMarker": false,
+      "markerScreen": null,
+      "coreScreen": null
+    }
+  },
+  "1024_location-a02.html": {
+    "page": "location-a02.html",
+    "viewport": [
+      1024,
+      1366
+    ],
+    "dsf": 1,
+    "errors": [],
+    "metric": {
+      "url": "location-a02.html",
+      "viewport": [
+        1024,
+        1366
+      ],
+      "dpr": 1,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · ANT-A02",
+      "scrollW": 1009,
+      "scrollH": 1377,
+      "clientW": 1009,
+      "clientH": 1366,
+      "langRect": [
+        861,
+        26,
+        977,
+        56
+      ],
+      "langRightGap": 47,
+      "langTopGap": 26,
+      "header": [
+        280,
+        26,
+        979,
+        108,
+        699,
+        82
+      ],
+      "worldMap": [
+        295,
+        140,
+        964,
+        740,
+        669,
+        600
+      ],
+      "leaflet": true,
+      "tilesLoaded": true,
+      "grid": null,
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": true,
+      "deviceMarker": false,
+      "markerScreen": null,
+      "coreScreen": null
+    }
+  },
+  "1024_location-a03.html": {
+    "page": "location-a03.html",
+    "viewport": [
+      1024,
+      1366
+    ],
+    "dsf": 1,
+    "errors": [],
+    "metric": {
+      "url": "location-a03.html",
+      "viewport": [
+        1024,
+        1366
+      ],
+      "dpr": 1,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · ANT-A03",
+      "scrollW": 1009,
+      "scrollH": 1377,
+      "clientW": 1009,
+      "clientH": 1366,
+      "langRect": [
+        861,
+        26,
+        977,
+        56
+      ],
+      "langRightGap": 47,
+      "langTopGap": 26,
+      "header": [
+        280,
+        26,
+        979,
+        108,
+        699,
+        82
+      ],
+      "worldMap": [
+        295,
+        140,
+        964,
+        740,
+        669,
+        600
+      ],
+      "leaflet": true,
+      "tilesLoaded": true,
+      "grid": null,
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": true,
+      "deviceMarker": false,
+      "markerScreen": null,
+      "coreScreen": null
+    }
+  },
+  "1024_sensors-a02.html": {
+    "page": "sensors-a02.html",
+    "viewport": [
+      1024,
+      1366
+    ],
+    "dsf": 1,
+    "errors": [],
+    "metric": {
+      "url": "sensors-a02.html",
+      "viewport": [
+        1024,
+        1366
+      ],
+      "dpr": 1,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · ANT-A02",
+      "scrollW": 1024,
+      "scrollH": 1366,
+      "clientW": 1024,
+      "clientH": 1366,
+      "langRect": [
+        876,
+        26,
+        992,
+        56
+      ],
+      "langRightGap": 32,
+      "langTopGap": 26,
+      "header": [
+        280,
+        26,
+        994,
+        108,
+        714,
+        82
+      ],
+      "worldMap": null,
+      "leaflet": false,
+      "tilesLoaded": null,
+      "grid": null,
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": false,
+      "deviceMarker": false,
+      "markerScreen": null,
+      "coreScreen": null
+    }
+  },
+  "1024_sensors-a03.html": {
+    "page": "sensors-a03.html",
+    "viewport": [
+      1024,
+      1366
+    ],
+    "dsf": 1,
+    "errors": [],
+    "metric": {
+      "url": "sensors-a03.html",
+      "viewport": [
+        1024,
+        1366
+      ],
+      "dpr": 1,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · ANT-A03",
+      "scrollW": 1024,
+      "scrollH": 1366,
+      "clientW": 1024,
+      "clientH": 1366,
+      "langRect": [
+        876,
+        26,
+        992,
+        56
+      ],
+      "langRightGap": 32,
+      "langTopGap": 26,
+      "header": [
+        280,
+        26,
+        994,
+        108,
+        714,
+        82
+      ],
+      "worldMap": null,
+      "leaflet": false,
+      "tilesLoaded": null,
+      "grid": null,
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": false,
+      "deviceMarker": false,
+      "markerScreen": null,
+      "coreScreen": null
+    }
+  },
+  "1024_telemetry-a02.html": {
+    "page": "telemetry-a02.html",
+    "viewport": [
+      1024,
+      1366
+    ],
+    "dsf": 1,
+    "errors": [],
+    "metric": {
+      "url": "telemetry-a02.html",
+      "viewport": [
+        1024,
+        1366
+      ],
+      "dpr": 1,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · ANT-A02",
+      "scrollW": 1024,
+      "scrollH": 1366,
+      "clientW": 1024,
+      "clientH": 1366,
+      "langRect": [
+        876,
+        26,
+        992,
+        56
+      ],
+      "langRightGap": 32,
+      "langTopGap": 26,
+      "header": [
+        280,
+        26,
+        994,
+        108,
+        714,
+        82
+      ],
+      "worldMap": null,
+      "leaflet": false,
+      "tilesLoaded": null,
+      "grid": null,
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": false,
+      "deviceMarker": false,
+      "markerScreen": null,
+      "coreScreen": null
+    }
+  },
+  "1024_telemetry-a03.html": {
+    "page": "telemetry-a03.html",
+    "viewport": [
+      1024,
+      1366
+    ],
+    "dsf": 1,
+    "errors": [],
+    "metric": {
+      "url": "telemetry-a03.html",
+      "viewport": [
+        1024,
+        1366
+      ],
+      "dpr": 1,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · ANT-A03",
+      "scrollW": 1024,
+      "scrollH": 1366,
+      "clientW": 1024,
+      "clientH": 1366,
+      "langRect": [
+        876,
+        26,
+        992,
+        56
+      ],
+      "langRightGap": 32,
+      "langTopGap": 26,
+      "header": [
+        280,
+        26,
+        994,
+        108,
+        714,
+        82
+      ],
+      "worldMap": null,
+      "leaflet": false,
+      "tilesLoaded": null,
+      "grid": null,
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": false,
+      "deviceMarker": false,
+      "markerScreen": null,
+      "coreScreen": null
+    }
+  },
+  "1024_hardware-a02.html": {
+    "page": "hardware-a02.html",
+    "viewport": [
+      1024,
+      1366
+    ],
+    "dsf": 1,
+    "errors": [],
+    "metric": {
+      "url": "hardware-a02.html",
+      "viewport": [
+        1024,
+        1366
+      ],
+      "dpr": 1,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · ANT-A02",
+      "scrollW": 1024,
+      "scrollH": 1366,
+      "clientW": 1024,
+      "clientH": 1366,
+      "langRect": [
+        876,
+        26,
+        992,
+        56
+      ],
+      "langRightGap": 32,
+      "langTopGap": 26,
+      "header": [
+        280,
+        26,
+        994,
+        87,
+        714,
+        61
+      ],
+      "worldMap": null,
+      "leaflet": false,
+      "tilesLoaded": null,
+      "grid": null,
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": false,
+      "deviceMarker": false,
+      "markerScreen": null,
+      "coreScreen": null
+    }
+  },
+  "1024_hardware-a03.html": {
+    "page": "hardware-a03.html",
+    "viewport": [
+      1024,
+      1366
+    ],
+    "dsf": 1,
+    "errors": [],
+    "metric": {
+      "url": "hardware-a03.html",
+      "viewport": [
+        1024,
+        1366
+      ],
+      "dpr": 1,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · ANT-A03",
+      "scrollW": 1024,
+      "scrollH": 1366,
+      "clientW": 1024,
+      "clientH": 1366,
+      "langRect": [
+        876,
+        26,
+        992,
+        56
+      ],
+      "langRightGap": 32,
+      "langTopGap": 26,
+      "header": [
+        280,
+        26,
+        994,
+        87,
+        714,
+        61
+      ],
+      "worldMap": null,
+      "leaflet": false,
+      "tilesLoaded": null,
+      "grid": null,
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": false,
+      "deviceMarker": false,
+      "markerScreen": null,
+      "coreScreen": null
+    }
+  },
+  "1024_analysis-a02.html": {
+    "page": "analysis-a02.html",
+    "viewport": [
+      1024,
+      1366
+    ],
+    "dsf": 1,
+    "errors": [],
+    "metric": {
+      "url": "analysis-a02.html",
+      "viewport": [
+        1024,
+        1366
+      ],
+      "dpr": 1,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · ANT-A02",
+      "scrollW": 1024,
+      "scrollH": 1366,
+      "clientW": 1024,
+      "clientH": 1366,
+      "langRect": [
+        876,
+        26,
+        992,
+        56
+      ],
+      "langRightGap": 32,
+      "langTopGap": 26,
+      "header": [
+        280,
+        26,
+        994,
+        93,
+        714,
+        67
+      ],
+      "worldMap": null,
+      "leaflet": false,
+      "tilesLoaded": null,
+      "grid": null,
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": false,
+      "deviceMarker": false,
+      "markerScreen": null,
+      "coreScreen": null
+    }
+  },
+  "1024_analysis-a03.html": {
+    "page": "analysis-a03.html",
+    "viewport": [
+      1024,
+      1366
+    ],
+    "dsf": 1,
+    "errors": [],
+    "metric": {
+      "url": "analysis-a03.html",
+      "viewport": [
+        1024,
+        1366
+      ],
+      "dpr": 1,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · ANT-A03",
+      "scrollW": 1024,
+      "scrollH": 1366,
+      "clientW": 1024,
+      "clientH": 1366,
+      "langRect": [
+        876,
+        26,
+        992,
+        56
+      ],
+      "langRightGap": 32,
+      "langTopGap": 26,
+      "header": [
+        280,
+        26,
+        994,
+        93,
+        714,
+        67
+      ],
+      "worldMap": null,
+      "leaflet": false,
+      "tilesLoaded": null,
+      "grid": null,
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": false,
+      "deviceMarker": false,
+      "markerScreen": null,
+      "coreScreen": null
+    }
+  },
+  "1024_a02.html": {
+    "page": "a02.html",
+    "viewport": [
+      1024,
+      1366
+    ],
+    "dsf": 1,
+    "errors": [],
+    "metric": {
+      "url": "a02.html",
+      "viewport": [
+        1024,
+        1366
+      ],
+      "dpr": 1,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · ANT-A02",
+      "scrollW": 1024,
+      "scrollH": 1366,
+      "clientW": 1024,
+      "clientH": 1366,
+      "langRect": [
+        876,
+        28,
+        992,
+        58
+      ],
+      "langRightGap": 32,
+      "langTopGap": 28,
+      "header": [
+        266,
+        22,
+        1008,
+        131,
+        741,
+        109
+      ],
+      "worldMap": [
+        508,
+        432,
+        995,
+        1204,
+        487,
+        772
+      ],
+      "leaflet": false,
+      "tilesLoaded": null,
+      "grid": {
+        "css": [
+          485,
+          260
+        ],
+        "buf": [
+          300,
+          150
+        ]
+      },
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": false,
+      "deviceMarker": false,
+      "markerScreen": null,
+      "coreScreen": null
+    }
+  },
+  "375_index.html": {
+    "page": "index.html",
+    "viewport": [
+      375,
+      812
+    ],
+    "dsf": 1,
+    "errors": [],
+    "metric": {
+      "url": "index.html",
+      "viewport": [
+        375,
+        812
+      ],
+      "dpr": 1,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · 探索序章",
+      "scrollW": 375,
+      "scrollH": 812,
+      "clientW": 375,
+      "clientH": 812,
+      "langRect": [
+        251,
+        21,
+        355,
+        51
+      ],
+      "langRightGap": 20,
+      "langTopGap": 21,
+      "header": [
+        0,
+        0,
+        375,
+        72,
+        375,
+        72
+      ],
+      "worldMap": null,
+      "leaflet": false,
+      "tilesLoaded": null,
+      "grid": null,
+      "globeCv": {
+        "css": [
+          375,
+          812
+        ],
+        "buf": [
+          375,
+          812
+        ]
+      },
+      "globeReady": true,
+      "globeFallbackVisible": false,
+      "homeLoaded": true,
+      "deviceMap": false,
+      "deviceMarker": false,
+      "markerScreen": null,
+      "coreScreen": null
+    }
+  },
+  "375_network.html": {
+    "page": "network.html",
+    "viewport": [
+      375,
+      812
+    ],
+    "dsf": 1,
+    "errors": [],
+    "metric": {
+      "url": "network.html",
+      "viewport": [
+        375,
+        812
+      ],
+      "dpr": 1,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · 观测网络",
+      "scrollW": 375,
+      "scrollH": 1242,
+      "clientW": 375,
+      "clientH": 812,
+      "langRect": [
+        255,
+        14,
+        359,
+        44
+      ],
+      "langRightGap": 16,
+      "langTopGap": 14,
+      "header": [
+        0,
+        0,
+        375,
+        59,
+        375,
+        59
+      ],
+      "worldMap": [
+        11,
+        257,
+        364,
+        557,
+        353,
+        300
+      ],
+      "leaflet": true,
+      "tilesLoaded": true,
+      "grid": null,
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": false,
+      "deviceMarker": false,
+      "markerScreen": null,
+      "coreScreen": null
+    }
+  },
+  "375_location.html": {
+    "page": "location.html",
+    "viewport": [
+      375,
+      812
+    ],
+    "dsf": 1,
+    "errors": [],
+    "metric": {
+      "url": "location.html",
+      "viewport": [
+        375,
+        812
+      ],
+      "dpr": 1,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · 位置",
+      "scrollW": 375,
+      "scrollH": 812,
+      "clientW": 375,
+      "clientH": 812,
+      "langRect": [
+        255,
+        18,
+        361,
+        46
+      ],
+      "langRightGap": 14,
+      "langTopGap": 18,
+      "header": [
+        24,
+        64,
+        351,
+        216,
+        327,
+        152
+      ],
+      "worldMap": [
+        35,
+        251,
+        340,
+        673,
+        305,
+        422
+      ],
+      "leaflet": true,
+      "tilesLoaded": true,
+      "grid": null,
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": true,
+      "deviceMarker": true,
+      "markerScreen": [
+        151,
+        210
+      ],
+      "coreScreen": [
+        152,
+        211
+      ]
+    }
+  },
+  "375_dashboard.html": {
+    "page": "dashboard.html",
+    "viewport": [
+      375,
+      812
+    ],
+    "dsf": 1,
+    "errors": [],
+    "metric": {
+      "url": "dashboard.html",
+      "viewport": [
+        375,
+        812
+      ],
+      "dpr": 1,
+      "lang": "zh-CN",
+      "title": "自主观测系统",
+      "scrollW": 375,
+      "scrollH": 812,
+      "clientW": 375,
+      "clientH": 812,
+      "langRect": [
+        257,
+        16,
+        363,
+        44
+      ],
+      "langRightGap": 12,
+      "langTopGap": 16,
+      "header": [
+        14,
+        64,
+        361,
+        240,
+        347,
+        176
+      ],
+      "worldMap": [
+        27,
+        577,
+        348,
+        870,
+        321,
+        292
+      ],
+      "leaflet": true,
+      "tilesLoaded": true,
+      "grid": {
+        "css": [
+          319,
+          290
+        ],
+        "buf": [
+          319,
+          290
+        ]
+      },
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": true,
+      "deviceMarker": true,
+      "markerScreen": [
+        159,
+        145
+      ],
+      "coreScreen": [
+        160,
+        146
+      ]
+    }
+  },
+  "375_dashboard-a02.html": {
+    "page": "dashboard-a02.html",
+    "viewport": [
+      375,
+      812
+    ],
+    "dsf": 1,
+    "errors": [],
+    "metric": {
+      "url": "dashboard-a02.html",
+      "viewport": [
+        375,
+        812
+      ],
+      "dpr": 1,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · ANT-A02",
+      "scrollW": 375,
+      "scrollH": 812,
+      "clientW": 375,
+      "clientH": 812,
+      "langRect": [
+        257,
+        16,
+        363,
+        44
+      ],
+      "langRightGap": 12,
+      "langTopGap": 16,
+      "header": [
+        14,
+        64,
+        361,
+        240,
+        347,
+        176
+      ],
+      "worldMap": [
+        27,
+        560,
+        348,
+        853,
+        321,
+        292
+      ],
+      "leaflet": true,
+      "tilesLoaded": true,
+      "grid": {
+        "css": [
+          319,
+          290
+        ],
+        "buf": [
+          319,
+          290
+        ]
+      },
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": true,
+      "deviceMarker": false,
+      "markerScreen": null,
+      "coreScreen": [
+        161,
+        146
+      ]
+    }
+  },
+  "375_dashboard-a03.html": {
+    "page": "dashboard-a03.html",
+    "viewport": [
+      375,
+      812
+    ],
+    "dsf": 1,
+    "errors": [],
+    "metric": {
+      "url": "dashboard-a03.html",
+      "viewport": [
+        375,
+        812
+      ],
+      "dpr": 1,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · ANT-A03",
+      "scrollW": 375,
+      "scrollH": 812,
+      "clientW": 375,
+      "clientH": 812,
+      "langRect": [
+        257,
+        16,
+        363,
+        44
+      ],
+      "langRightGap": 12,
+      "langTopGap": 16,
+      "header": [
+        14,
+        64,
+        361,
+        240,
+        347,
+        176
+      ],
+      "worldMap": [
+        27,
+        560,
+        348,
+        853,
+        321,
+        292
+      ],
+      "leaflet": true,
+      "tilesLoaded": true,
+      "grid": {
+        "css": [
+          319,
+          290
+        ],
+        "buf": [
+          319,
+          290
+        ]
+      },
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": true,
+      "deviceMarker": false,
+      "markerScreen": null,
+      "coreScreen": [
+        161,
+        146
+      ]
+    }
+  },
+  "dpr1_index.html": {
+    "page": "index.html",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "dsf": 1,
+    "errors": [],
+    "metric": {
+      "url": "index.html",
+      "viewport": [
+        1920,
+        1080
+      ],
+      "dpr": 1,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · 探索序章",
+      "scrollW": 1920,
+      "scrollH": 1080,
+      "clientW": 1920,
+      "clientH": 1080,
+      "langRect": [
+        1770,
+        35,
+        1874,
+        65
+      ],
+      "langRightGap": 46,
+      "langTopGap": 35,
+      "header": [
+        0,
+        0,
+        1920,
+        100,
+        1920,
+        100
+      ],
+      "worldMap": null,
+      "leaflet": false,
+      "tilesLoaded": null,
+      "grid": null,
+      "globeCv": {
+        "css": [
+          1920,
+          1080
+        ],
+        "buf": [
+          1920,
+          1080
+        ]
+      },
+      "globeReady": true,
+      "globeFallbackVisible": false,
+      "homeLoaded": true,
+      "deviceMap": false,
+      "deviceMarker": false,
+      "markerScreen": null,
+      "coreScreen": null
+    }
+  },
+  "dpr1_network.html": {
+    "page": "network.html",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "dsf": 1,
+    "errors": [],
+    "metric": {
+      "url": "network.html",
+      "viewport": [
+        1920,
+        1080
+      ],
+      "dpr": 1,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · 观测网络",
+      "scrollW": 1920,
+      "scrollH": 1080,
+      "clientW": 1920,
+      "clientH": 1080,
+      "langRect": [
+        1788,
+        18,
+        1892,
+        48
+      ],
+      "langRightGap": 28,
+      "langTopGap": 18,
+      "header": [
+        0,
+        0,
+        1920,
+        67,
+        1920,
+        67
+      ],
+      "worldMap": [
+        339,
+        133,
+        1412,
+        1029,
+        1073,
+        896
+      ],
+      "leaflet": true,
+      "tilesLoaded": true,
+      "grid": null,
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": false,
+      "deviceMarker": false,
+      "markerScreen": null,
+      "coreScreen": null
+    }
+  },
+  "dpr1_location.html": {
+    "page": "location.html",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "dsf": 1,
+    "errors": [],
+    "metric": {
+      "url": "location.html",
+      "viewport": [
+        1920,
+        1080
+      ],
+      "dpr": 1,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · 位置",
+      "scrollW": 1920,
+      "scrollH": 1080,
+      "clientW": 1920,
+      "clientH": 1080,
+      "langRect": [
+        1772,
+        28,
+        1888,
+        58
+      ],
+      "langRightGap": 32,
+      "langTopGap": 28,
+      "header": [
+        286,
+        22,
+        1884,
+        119,
+        1598,
+        97
+      ],
+      "worldMap": [
+        301,
+        163,
+        1869,
+        932,
+        1568,
+        769
+      ],
+      "leaflet": true,
+      "tilesLoaded": true,
+      "grid": null,
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": true,
+      "deviceMarker": true,
+      "markerScreen": [
+        783,
+        383
+      ],
+      "coreScreen": [
+        784,
+        384
+      ]
+    }
+  },
+  "dpr1_dashboard.html": {
+    "page": "dashboard.html",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "dsf": 1,
+    "errors": [],
+    "metric": {
+      "url": "dashboard.html",
+      "viewport": [
+        1920,
+        1080
+      ],
+      "dpr": 1,
+      "lang": "zh-CN",
+      "title": "自主观测系统",
+      "scrollW": 1920,
+      "scrollH": 1080,
+      "clientW": 1920,
+      "clientH": 1080,
+      "langRect": [
+        1737,
+        67,
+        1853,
+        97
+      ],
+      "langRightGap": 67,
+      "langTopGap": 67,
+      "header": [
+        290,
+        22,
+        1880,
+        143,
+        1590,
+        121
+      ],
+      "worldMap": [
+        303,
+        410,
+        1867,
+        933,
+        1564,
+        523
+      ],
+      "leaflet": true,
+      "tilesLoaded": true,
+      "grid": {
+        "css": [
+          1562,
+          521
+        ],
+        "buf": [
+          1562,
+          521
+        ]
+      },
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": true,
+      "deviceMarker": true,
+      "markerScreen": [
+        781,
+        260
+      ],
+      "coreScreen": [
+        782,
+        261
+      ]
+    }
+  },
+  "dpr1_dashboard-a02.html": {
+    "page": "dashboard-a02.html",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "dsf": 1,
+    "errors": [],
+    "metric": {
+      "url": "dashboard-a02.html",
+      "viewport": [
+        1920,
+        1080
+      ],
+      "dpr": 1,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · ANT-A02",
+      "scrollW": 1920,
+      "scrollH": 1080,
+      "clientW": 1920,
+      "clientH": 1080,
+      "langRect": [
+        1737,
+        67,
+        1853,
+        97
+      ],
+      "langRightGap": 67,
+      "langTopGap": 67,
+      "header": [
+        290,
+        22,
+        1880,
+        143,
+        1590,
+        121
+      ],
+      "worldMap": [
+        303,
+        410,
+        1867,
+        933,
+        1564,
+        523
+      ],
+      "leaflet": true,
+      "tilesLoaded": true,
+      "grid": {
+        "css": [
+          1562,
+          521
+        ],
+        "buf": [
+          1562,
+          521
+        ]
+      },
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": true,
+      "deviceMarker": false,
+      "markerScreen": null,
+      "coreScreen": [
+        782,
+        262
+      ]
+    }
+  },
+  "dpr1_dashboard-a03.html": {
+    "page": "dashboard-a03.html",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "dsf": 1,
+    "errors": [],
+    "metric": {
+      "url": "dashboard-a03.html",
+      "viewport": [
+        1920,
+        1080
+      ],
+      "dpr": 1,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · ANT-A03",
+      "scrollW": 1920,
+      "scrollH": 1080,
+      "clientW": 1920,
+      "clientH": 1080,
+      "langRect": [
+        1737,
+        67,
+        1853,
+        97
+      ],
+      "langRightGap": 67,
+      "langTopGap": 67,
+      "header": [
+        290,
+        22,
+        1880,
+        143,
+        1590,
+        121
+      ],
+      "worldMap": [
+        303,
+        410,
+        1867,
+        933,
+        1564,
+        523
+      ],
+      "leaflet": true,
+      "tilesLoaded": true,
+      "grid": {
+        "css": [
+          1562,
+          521
+        ],
+        "buf": [
+          1562,
+          521
+        ]
+      },
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": true,
+      "deviceMarker": false,
+      "markerScreen": null,
+      "coreScreen": [
+        782,
+        262
+      ]
+    }
+  },
+  "dpr1.25_index.html": {
+    "page": "index.html",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "dsf": 1.25,
+    "errors": [],
+    "metric": {
+      "__evalError": "TypeError: Cannot read properties of null (reading 'classList')"
+    }
+  },
+  "dpr1.25_network.html": {
+    "page": "network.html",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "dsf": 1.25,
+    "errors": [],
+    "metric": {
+      "url": "network.html",
+      "viewport": [
+        1920,
+        1080
+      ],
+      "dpr": 1.25,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · 观测网络",
+      "scrollW": 1920,
+      "scrollH": 1080,
+      "clientW": 1920,
+      "clientH": 1080,
+      "langRect": [
+        1788,
+        18,
+        1892,
+        48
+      ],
+      "langRightGap": 28,
+      "langTopGap": 18,
+      "header": [
+        0,
+        0,
+        1920,
+        67,
+        1920,
+        67
+      ],
+      "worldMap": [
+        339,
+        133,
+        1412,
+        1029,
+        1073,
+        896
+      ],
+      "leaflet": true,
+      "tilesLoaded": false,
+      "grid": null,
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": false,
+      "deviceMarker": false,
+      "markerScreen": null,
+      "coreScreen": null
+    }
+  },
+  "dpr1.25_location.html": {
+    "page": "location.html",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "dsf": 1.25,
+    "errors": [],
+    "metric": {
+      "url": "location.html",
+      "viewport": [
+        1920,
+        1080
+      ],
+      "dpr": 1.25,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · 位置",
+      "scrollW": 1920,
+      "scrollH": 1080,
+      "clientW": 1920,
+      "clientH": 1080,
+      "langRect": [
+        1772,
+        28,
+        1888,
+        58
+      ],
+      "langRightGap": 32,
+      "langTopGap": 28,
+      "header": [
+        286,
+        22,
+        1884,
+        119,
+        1598,
+        97
+      ],
+      "worldMap": [
+        301,
+        163,
+        1869,
+        932,
+        1568,
+        769
+      ],
+      "leaflet": true,
+      "tilesLoaded": true,
+      "grid": null,
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": true,
+      "deviceMarker": true,
+      "markerScreen": [
+        783,
+        383
+      ],
+      "coreScreen": [
+        784,
+        384
+      ]
+    }
+  },
+  "dpr1.25_dashboard.html": {
+    "page": "dashboard.html",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "dsf": 1.25,
+    "errors": [],
+    "metric": {
+      "url": "dashboard.html",
+      "viewport": [
+        1920,
+        1080
+      ],
+      "dpr": 1.25,
+      "lang": "zh-CN",
+      "title": "自主观测系统",
+      "scrollW": 1920,
+      "scrollH": 1080,
+      "clientW": 1920,
+      "clientH": 1080,
+      "langRect": [
+        1737,
+        67,
+        1853,
+        97
+      ],
+      "langRightGap": 67,
+      "langTopGap": 67,
+      "header": [
+        290,
+        22,
+        1880,
+        143,
+        1590,
+        121
+      ],
+      "worldMap": [
+        303,
+        410,
+        1867,
+        933,
+        1564,
+        523
+      ],
+      "leaflet": true,
+      "tilesLoaded": true,
+      "grid": {
+        "css": [
+          1562,
+          521
+        ],
+        "buf": [
+          1953,
+          651
+        ]
+      },
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": true,
+      "deviceMarker": true,
+      "markerScreen": [
+        781,
+        260
+      ],
+      "coreScreen": [
+        782,
+        261
+      ]
+    }
+  },
+  "dpr1.25_dashboard-a02.html": {
+    "page": "dashboard-a02.html",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "dsf": 1.25,
+    "errors": [],
+    "metric": {
+      "url": "dashboard-a02.html",
+      "viewport": [
+        1920,
+        1080
+      ],
+      "dpr": 1.25,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · ANT-A02",
+      "scrollW": 1920,
+      "scrollH": 1080,
+      "clientW": 1920,
+      "clientH": 1080,
+      "langRect": [
+        1737,
+        67,
+        1853,
+        97
+      ],
+      "langRightGap": 67,
+      "langTopGap": 67,
+      "header": [
+        290,
+        22,
+        1880,
+        143,
+        1590,
+        121
+      ],
+      "worldMap": [
+        303,
+        410,
+        1867,
+        933,
+        1564,
+        523
+      ],
+      "leaflet": true,
+      "tilesLoaded": true,
+      "grid": {
+        "css": [
+          1562,
+          521
+        ],
+        "buf": [
+          1953,
+          651
+        ]
+      },
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": true,
+      "deviceMarker": false,
+      "markerScreen": null,
+      "coreScreen": [
+        782,
+        262
+      ]
+    }
+  },
+  "dpr1.25_dashboard-a03.html": {
+    "page": "dashboard-a03.html",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "dsf": 1.25,
+    "errors": [],
+    "metric": {
+      "url": "dashboard-a03.html",
+      "viewport": [
+        1920,
+        1080
+      ],
+      "dpr": 1.25,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · ANT-A03",
+      "scrollW": 1920,
+      "scrollH": 1080,
+      "clientW": 1920,
+      "clientH": 1080,
+      "langRect": [
+        1737,
+        67,
+        1853,
+        97
+      ],
+      "langRightGap": 67,
+      "langTopGap": 67,
+      "header": [
+        290,
+        22,
+        1880,
+        143,
+        1590,
+        121
+      ],
+      "worldMap": [
+        303,
+        410,
+        1867,
+        933,
+        1564,
+        523
+      ],
+      "leaflet": true,
+      "tilesLoaded": true,
+      "grid": {
+        "css": [
+          1562,
+          521
+        ],
+        "buf": [
+          1953,
+          651
+        ]
+      },
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": true,
+      "deviceMarker": false,
+      "markerScreen": null,
+      "coreScreen": [
+        782,
+        262
+      ]
+    }
+  },
+  "dpr1.5_index.html": {
+    "page": "index.html",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "dsf": 1.5,
+    "errors": [],
+    "metric": {
+      "url": "index.html",
+      "viewport": [
+        1920,
+        1080
+      ],
+      "dpr": 1.5,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · 探索序章",
+      "scrollW": 1920,
+      "scrollH": 1080,
+      "clientW": 1920,
+      "clientH": 1080,
+      "langRect": [
+        1770,
+        35,
+        1874,
+        65
+      ],
+      "langRightGap": 46,
+      "langTopGap": 35,
+      "header": [
+        0,
+        0,
+        1920,
+        100,
+        1920,
+        100
+      ],
+      "worldMap": null,
+      "leaflet": false,
+      "tilesLoaded": null,
+      "grid": null,
+      "globeCv": {
+        "css": [
+          1920,
+          1080
+        ],
+        "buf": [
+          2880,
+          1620
+        ]
+      },
+      "globeReady": true,
+      "globeFallbackVisible": false,
+      "homeLoaded": false,
+      "deviceMap": false,
+      "deviceMarker": false,
+      "markerScreen": null,
+      "coreScreen": null
+    }
+  },
+  "dpr1.5_network.html": {
+    "page": "network.html",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "dsf": 1.5,
+    "errors": [],
+    "metric": {
+      "url": "network.html",
+      "viewport": [
+        1920,
+        1080
+      ],
+      "dpr": 1.5,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · 观测网络",
+      "scrollW": 1920,
+      "scrollH": 1080,
+      "clientW": 1920,
+      "clientH": 1080,
+      "langRect": [
+        1788,
+        18,
+        1892,
+        48
+      ],
+      "langRightGap": 28,
+      "langTopGap": 18,
+      "header": [
+        0,
+        0,
+        1920,
+        67,
+        1920,
+        67
+      ],
+      "worldMap": [
+        339,
+        133,
+        1412,
+        1029,
+        1073,
+        896
+      ],
+      "leaflet": true,
+      "tilesLoaded": false,
+      "grid": null,
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": false,
+      "deviceMarker": false,
+      "markerScreen": null,
+      "coreScreen": null
+    }
+  },
+  "dpr1.5_location.html": {
+    "page": "location.html",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "dsf": 1.5,
+    "errors": [],
+    "metric": {
+      "url": "location.html",
+      "viewport": [
+        1920,
+        1080
+      ],
+      "dpr": 1.5,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · 位置",
+      "scrollW": 1920,
+      "scrollH": 1080,
+      "clientW": 1920,
+      "clientH": 1080,
+      "langRect": [
+        1772,
+        28,
+        1888,
+        58
+      ],
+      "langRightGap": 32,
+      "langTopGap": 28,
+      "header": [
+        286,
+        22,
+        1884,
+        119,
+        1598,
+        97
+      ],
+      "worldMap": [
+        301,
+        163,
+        1869,
+        932,
+        1568,
+        769
+      ],
+      "leaflet": true,
+      "tilesLoaded": false,
+      "grid": null,
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": true,
+      "deviceMarker": true,
+      "markerScreen": [
+        783,
+        383
+      ],
+      "coreScreen": [
+        784,
+        384
+      ]
+    }
+  },
+  "dpr1.5_dashboard.html": {
+    "page": "dashboard.html",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "dsf": 1.5,
+    "errors": [],
+    "metric": {
+      "url": "dashboard.html",
+      "viewport": [
+        1920,
+        1080
+      ],
+      "dpr": 1.5,
+      "lang": "zh-CN",
+      "title": "自主观测系统",
+      "scrollW": 1920,
+      "scrollH": 1080,
+      "clientW": 1920,
+      "clientH": 1080,
+      "langRect": [
+        1737,
+        67,
+        1853,
+        97
+      ],
+      "langRightGap": 67,
+      "langTopGap": 67,
+      "header": [
+        290,
+        22,
+        1880,
+        143,
+        1590,
+        121
+      ],
+      "worldMap": [
+        303,
+        410,
+        1867,
+        933,
+        1564,
+        523
+      ],
+      "leaflet": true,
+      "tilesLoaded": false,
+      "grid": {
+        "css": [
+          1562,
+          521
+        ],
+        "buf": [
+          2343,
+          782
+        ]
+      },
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": true,
+      "deviceMarker": true,
+      "markerScreen": [
+        781,
+        260
+      ],
+      "coreScreen": [
+        782,
+        261
+      ]
+    }
+  },
+  "dpr1.5_dashboard-a02.html": {
+    "page": "dashboard-a02.html",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "dsf": 1.5,
+    "errors": [],
+    "metric": {
+      "url": "dashboard-a02.html",
+      "viewport": [
+        1920,
+        1080
+      ],
+      "dpr": 1.5,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · ANT-A02",
+      "scrollW": 1920,
+      "scrollH": 1080,
+      "clientW": 1920,
+      "clientH": 1080,
+      "langRect": [
+        1737,
+        67,
+        1853,
+        97
+      ],
+      "langRightGap": 67,
+      "langTopGap": 67,
+      "header": [
+        290,
+        22,
+        1880,
+        143,
+        1590,
+        121
+      ],
+      "worldMap": [
+        303,
+        410,
+        1867,
+        933,
+        1564,
+        523
+      ],
+      "leaflet": true,
+      "tilesLoaded": true,
+      "grid": {
+        "css": [
+          1562,
+          521
+        ],
+        "buf": [
+          2343,
+          782
+        ]
+      },
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": true,
+      "deviceMarker": false,
+      "markerScreen": null,
+      "coreScreen": [
+        782,
+        262
+      ]
+    }
+  },
+  "dpr1.5_dashboard-a03.html": {
+    "page": "dashboard-a03.html",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "dsf": 1.5,
+    "errors": [],
+    "metric": {
+      "url": "dashboard-a03.html",
+      "viewport": [
+        1920,
+        1080
+      ],
+      "dpr": 1.5,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · ANT-A03",
+      "scrollW": 1920,
+      "scrollH": 1080,
+      "clientW": 1920,
+      "clientH": 1080,
+      "langRect": [
+        1737,
+        67,
+        1853,
+        97
+      ],
+      "langRightGap": 67,
+      "langTopGap": 67,
+      "header": [
+        290,
+        22,
+        1880,
+        143,
+        1590,
+        121
+      ],
+      "worldMap": [
+        303,
+        410,
+        1867,
+        933,
+        1564,
+        523
+      ],
+      "leaflet": true,
+      "tilesLoaded": true,
+      "grid": {
+        "css": [
+          1562,
+          521
+        ],
+        "buf": [
+          2343,
+          782
+        ]
+      },
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": true,
+      "deviceMarker": false,
+      "markerScreen": null,
+      "coreScreen": [
+        782,
+        262
+      ]
+    }
+  },
+  "dpr2_index.html": {
+    "page": "index.html",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "dsf": 2,
+    "errors": [],
+    "metric": {
+      "url": "index.html",
+      "viewport": [
+        1920,
+        1080
+      ],
+      "dpr": 2,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · 探索序章",
+      "scrollW": 1920,
+      "scrollH": 1080,
+      "clientW": 1920,
+      "clientH": 1080,
+      "langRect": [
+        1770,
+        35,
+        1874,
+        65
+      ],
+      "langRightGap": 46,
+      "langTopGap": 35,
+      "header": [
+        0,
+        0,
+        1920,
+        100,
+        1920,
+        100
+      ],
+      "worldMap": null,
+      "leaflet": false,
+      "tilesLoaded": null,
+      "grid": null,
+      "globeCv": {
+        "css": [
+          1920,
+          1080
+        ],
+        "buf": [
+          2880,
+          1620
+        ]
+      },
+      "globeReady": true,
+      "globeFallbackVisible": false,
+      "homeLoaded": false,
+      "deviceMap": false,
+      "deviceMarker": false,
+      "markerScreen": null,
+      "coreScreen": null
+    }
+  },
+  "dpr2_network.html": {
+    "page": "network.html",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "dsf": 2,
+    "errors": [],
+    "metric": {
+      "url": "network.html",
+      "viewport": [
+        1920,
+        1080
+      ],
+      "dpr": 2,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · 观测网络",
+      "scrollW": 1920,
+      "scrollH": 1080,
+      "clientW": 1920,
+      "clientH": 1080,
+      "langRect": [
+        1788,
+        18,
+        1892,
+        48
+      ],
+      "langRightGap": 28,
+      "langTopGap": 18,
+      "header": [
+        0,
+        0,
+        1920,
+        67,
+        1920,
+        67
+      ],
+      "worldMap": [
+        339,
+        133,
+        1412,
+        1029,
+        1073,
+        896
+      ],
+      "leaflet": true,
+      "tilesLoaded": true,
+      "grid": null,
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": false,
+      "deviceMarker": false,
+      "markerScreen": null,
+      "coreScreen": null
+    }
+  },
+  "dpr2_location.html": {
+    "page": "location.html",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "dsf": 2,
+    "errors": [],
+    "metric": {
+      "url": "location.html",
+      "viewport": [
+        1920,
+        1080
+      ],
+      "dpr": 2,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · 位置",
+      "scrollW": 1920,
+      "scrollH": 1080,
+      "clientW": 1920,
+      "clientH": 1080,
+      "langRect": [
+        1772,
+        28,
+        1888,
+        58
+      ],
+      "langRightGap": 32,
+      "langTopGap": 28,
+      "header": [
+        286,
+        22,
+        1884,
+        119,
+        1598,
+        97
+      ],
+      "worldMap": [
+        301,
+        163,
+        1869,
+        932,
+        1568,
+        769
+      ],
+      "leaflet": true,
+      "tilesLoaded": true,
+      "grid": null,
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": true,
+      "deviceMarker": true,
+      "markerScreen": [
+        783,
+        383
+      ],
+      "coreScreen": [
+        784,
+        384
+      ]
+    }
+  },
+  "dpr2_dashboard.html": {
+    "page": "dashboard.html",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "dsf": 2,
+    "errors": [],
+    "metric": {
+      "url": "dashboard.html",
+      "viewport": [
+        1920,
+        1080
+      ],
+      "dpr": 2,
+      "lang": "zh-CN",
+      "title": "自主观测系统",
+      "scrollW": 1920,
+      "scrollH": 1080,
+      "clientW": 1920,
+      "clientH": 1080,
+      "langRect": [
+        1737,
+        67,
+        1853,
+        97
+      ],
+      "langRightGap": 67,
+      "langTopGap": 67,
+      "header": [
+        290,
+        22,
+        1880,
+        143,
+        1590,
+        121
+      ],
+      "worldMap": [
+        303,
+        410,
+        1867,
+        933,
+        1564,
+        523
+      ],
+      "leaflet": true,
+      "tilesLoaded": true,
+      "grid": {
+        "css": [
+          1562,
+          521
+        ],
+        "buf": [
+          2343,
+          782
+        ]
+      },
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": true,
+      "deviceMarker": true,
+      "markerScreen": [
+        781,
+        260
+      ],
+      "coreScreen": [
+        782,
+        261
+      ]
+    }
+  },
+  "dpr2_dashboard-a02.html": {
+    "page": "dashboard-a02.html",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "dsf": 2,
+    "errors": [],
+    "metric": {
+      "url": "dashboard-a02.html",
+      "viewport": [
+        1920,
+        1080
+      ],
+      "dpr": 2,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · ANT-A02",
+      "scrollW": 1920,
+      "scrollH": 1080,
+      "clientW": 1920,
+      "clientH": 1080,
+      "langRect": [
+        1737,
+        67,
+        1853,
+        97
+      ],
+      "langRightGap": 67,
+      "langTopGap": 67,
+      "header": [
+        290,
+        22,
+        1880,
+        143,
+        1590,
+        121
+      ],
+      "worldMap": [
+        303,
+        410,
+        1867,
+        933,
+        1564,
+        523
+      ],
+      "leaflet": true,
+      "tilesLoaded": true,
+      "grid": {
+        "css": [
+          1562,
+          521
+        ],
+        "buf": [
+          2343,
+          782
+        ]
+      },
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": true,
+      "deviceMarker": false,
+      "markerScreen": null,
+      "coreScreen": [
+        782,
+        262
+      ]
+    }
+  },
+  "dpr2_dashboard-a03.html": {
+    "page": "dashboard-a03.html",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "dsf": 2,
+    "errors": [],
+    "metric": {
+      "url": "dashboard-a03.html",
+      "viewport": [
+        1920,
+        1080
+      ],
+      "dpr": 2,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · ANT-A03",
+      "scrollW": 1920,
+      "scrollH": 1080,
+      "clientW": 1920,
+      "clientH": 1080,
+      "langRect": [
+        1737,
+        67,
+        1853,
+        97
+      ],
+      "langRightGap": 67,
+      "langTopGap": 67,
+      "header": [
+        290,
+        22,
+        1880,
+        143,
+        1590,
+        121
+      ],
+      "worldMap": [
+        303,
+        410,
+        1867,
+        933,
+        1564,
+        523
+      ],
+      "leaflet": true,
+      "tilesLoaded": true,
+      "grid": {
+        "css": [
+          1562,
+          521
+        ],
+        "buf": [
+          2343,
+          782
+        ]
+      },
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": true,
+      "deviceMarker": false,
+      "markerScreen": null,
+      "coreScreen": [
+        782,
+        262
+      ]
+    }
+  },
+  "dpr3_index.html": {
+    "page": "index.html",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "dsf": 3,
+    "errors": [],
+    "metric": {
+      "url": "index.html",
+      "viewport": [
+        1920,
+        1080
+      ],
+      "dpr": 3,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · 探索序章",
+      "scrollW": 1920,
+      "scrollH": 1080,
+      "clientW": 1920,
+      "clientH": 1080,
+      "langRect": [
+        1770,
+        35,
+        1874,
+        65
+      ],
+      "langRightGap": 46,
+      "langTopGap": 35,
+      "header": [
+        0,
+        0,
+        1920,
+        100,
+        1920,
+        100
+      ],
+      "worldMap": null,
+      "leaflet": false,
+      "tilesLoaded": null,
+      "grid": null,
+      "globeCv": {
+        "css": [
+          1920,
+          1080
+        ],
+        "buf": [
+          2880,
+          1620
+        ]
+      },
+      "globeReady": true,
+      "globeFallbackVisible": false,
+      "homeLoaded": true,
+      "deviceMap": false,
+      "deviceMarker": false,
+      "markerScreen": null,
+      "coreScreen": null
+    }
+  },
+  "dpr3_network.html": {
+    "page": "network.html",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "dsf": 3,
+    "errors": [],
+    "metric": {
+      "url": "network.html",
+      "viewport": [
+        1920,
+        1080
+      ],
+      "dpr": 3,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · 观测网络",
+      "scrollW": 1920,
+      "scrollH": 1080,
+      "clientW": 1920,
+      "clientH": 1080,
+      "langRect": [
+        1788,
+        18,
+        1892,
+        48
+      ],
+      "langRightGap": 28,
+      "langTopGap": 18,
+      "header": [
+        0,
+        0,
+        1920,
+        67,
+        1920,
+        67
+      ],
+      "worldMap": [
+        339,
+        133,
+        1412,
+        1029,
+        1073,
+        896
+      ],
+      "leaflet": true,
+      "tilesLoaded": true,
+      "grid": null,
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": false,
+      "deviceMarker": false,
+      "markerScreen": null,
+      "coreScreen": null
+    }
+  },
+  "dpr3_location.html": {
+    "page": "location.html",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "dsf": 3,
+    "errors": [],
+    "metric": {
+      "url": "location.html",
+      "viewport": [
+        1920,
+        1080
+      ],
+      "dpr": 3,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · 位置",
+      "scrollW": 1920,
+      "scrollH": 1080,
+      "clientW": 1920,
+      "clientH": 1080,
+      "langRect": [
+        1772,
+        28,
+        1888,
+        58
+      ],
+      "langRightGap": 32,
+      "langTopGap": 28,
+      "header": [
+        286,
+        22,
+        1884,
+        119,
+        1598,
+        97
+      ],
+      "worldMap": [
+        301,
+        163,
+        1869,
+        932,
+        1568,
+        769
+      ],
+      "leaflet": true,
+      "tilesLoaded": true,
+      "grid": null,
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": true,
+      "deviceMarker": true,
+      "markerScreen": [
+        783,
+        383
+      ],
+      "coreScreen": [
+        784,
+        384
+      ]
+    }
+  },
+  "dpr3_dashboard.html": {
+    "page": "dashboard.html",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "dsf": 3,
+    "errors": [],
+    "metric": {
+      "url": "dashboard.html",
+      "viewport": [
+        1920,
+        1080
+      ],
+      "dpr": 3,
+      "lang": "zh-CN",
+      "title": "自主观测系统",
+      "scrollW": 1920,
+      "scrollH": 1080,
+      "clientW": 1920,
+      "clientH": 1080,
+      "langRect": [
+        1737,
+        67,
+        1853,
+        97
+      ],
+      "langRightGap": 67,
+      "langTopGap": 67,
+      "header": [
+        290,
+        22,
+        1880,
+        143,
+        1590,
+        121
+      ],
+      "worldMap": [
+        303,
+        410,
+        1867,
+        933,
+        1564,
+        523
+      ],
+      "leaflet": true,
+      "tilesLoaded": true,
+      "grid": {
+        "css": [
+          1562,
+          521
+        ],
+        "buf": [
+          2343,
+          782
+        ]
+      },
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": true,
+      "deviceMarker": true,
+      "markerScreen": [
+        781,
+        260
+      ],
+      "coreScreen": [
+        782,
+        261
+      ]
+    }
+  },
+  "dpr3_dashboard-a02.html": {
+    "page": "dashboard-a02.html",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "dsf": 3,
+    "errors": [],
+    "metric": {
+      "url": "dashboard-a02.html",
+      "viewport": [
+        1920,
+        1080
+      ],
+      "dpr": 3,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · ANT-A02",
+      "scrollW": 1920,
+      "scrollH": 1080,
+      "clientW": 1920,
+      "clientH": 1080,
+      "langRect": [
+        1737,
+        67,
+        1853,
+        97
+      ],
+      "langRightGap": 67,
+      "langTopGap": 67,
+      "header": [
+        290,
+        22,
+        1880,
+        143,
+        1590,
+        121
+      ],
+      "worldMap": [
+        303,
+        410,
+        1867,
+        933,
+        1564,
+        523
+      ],
+      "leaflet": true,
+      "tilesLoaded": true,
+      "grid": {
+        "css": [
+          1562,
+          521
+        ],
+        "buf": [
+          2343,
+          782
+        ]
+      },
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": true,
+      "deviceMarker": false,
+      "markerScreen": null,
+      "coreScreen": [
+        782,
+        262
+      ]
+    }
+  },
+  "dpr3_dashboard-a03.html": {
+    "page": "dashboard-a03.html",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "dsf": 3,
+    "errors": [],
+    "metric": {
+      "url": "dashboard-a03.html",
+      "viewport": [
+        1920,
+        1080
+      ],
+      "dpr": 3,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · ANT-A03",
+      "scrollW": 1920,
+      "scrollH": 1080,
+      "clientW": 1920,
+      "clientH": 1080,
+      "langRect": [
+        1737,
+        67,
+        1853,
+        97
+      ],
+      "langRightGap": 67,
+      "langTopGap": 67,
+      "header": [
+        290,
+        22,
+        1880,
+        143,
+        1590,
+        121
+      ],
+      "worldMap": [
+        303,
+        410,
+        1867,
+        933,
+        1564,
+        523
+      ],
+      "leaflet": true,
+      "tilesLoaded": true,
+      "grid": {
+        "css": [
+          1562,
+          521
+        ],
+        "buf": [
+          2343,
+          782
+        ]
+      },
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": true,
+      "deviceMarker": false,
+      "markerScreen": null,
+      "coreScreen": [
+        782,
+        262
+      ]
+    }
+  },
+  "mobiledpr2_index.html": {
+    "page": "index.html",
+    "viewport": [
+      390,
+      844
+    ],
+    "dsf": 2,
+    "errors": [],
+    "metric": {
+      "url": "index.html",
+      "viewport": [
+        390,
+        844
+      ],
+      "dpr": 2,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · 探索序章",
+      "scrollW": 390,
+      "scrollH": 844,
+      "clientW": 390,
+      "clientH": 844,
+      "langRect": [
+        266,
+        21,
+        370,
+        51
+      ],
+      "langRightGap": 20,
+      "langTopGap": 21,
+      "header": [
+        0,
+        0,
+        390,
+        72,
+        390,
+        72
+      ],
+      "worldMap": null,
+      "leaflet": false,
+      "tilesLoaded": null,
+      "grid": null,
+      "globeCv": {
+        "css": [
+          390,
+          844
+        ],
+        "buf": [
+          585,
+          1266
+        ]
+      },
+      "globeReady": true,
+      "globeFallbackVisible": false,
+      "homeLoaded": true,
+      "deviceMap": false,
+      "deviceMarker": false,
+      "markerScreen": null,
+      "coreScreen": null
+    }
+  },
+  "mobiledpr2_network.html": {
+    "page": "network.html",
+    "viewport": [
+      390,
+      844
+    ],
+    "dsf": 2,
+    "errors": [],
+    "metric": {
+      "url": "network.html",
+      "viewport": [
+        390,
+        844
+      ],
+      "dpr": 2,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · 观测网络",
+      "scrollW": 390,
+      "scrollH": 1242,
+      "clientW": 390,
+      "clientH": 844,
+      "langRect": [
+        270,
+        14,
+        374,
+        44
+      ],
+      "langRightGap": 16,
+      "langTopGap": 14,
+      "header": [
+        0,
+        0,
+        390,
+        59,
+        390,
+        59
+      ],
+      "worldMap": [
+        11,
+        257,
+        379,
+        557,
+        368,
+        300
+      ],
+      "leaflet": true,
+      "tilesLoaded": true,
+      "grid": null,
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": false,
+      "deviceMarker": false,
+      "markerScreen": null,
+      "coreScreen": null
+    }
+  },
+  "mobiledpr2_dashboard.html": {
+    "page": "dashboard.html",
+    "viewport": [
+      390,
+      844
+    ],
+    "dsf": 2,
+    "errors": [],
+    "metric": {
+      "url": "dashboard.html",
+      "viewport": [
+        390,
+        844
+      ],
+      "dpr": 2,
+      "lang": "zh-CN",
+      "title": "自主观测系统",
+      "scrollW": 390,
+      "scrollH": 844,
+      "clientW": 390,
+      "clientH": 844,
+      "langRect": [
+        272,
+        16,
+        378,
+        44
+      ],
+      "langRightGap": 12,
+      "langTopGap": 16,
+      "header": [
+        14,
+        64,
+        376,
+        243,
+        362,
+        179
+      ],
+      "worldMap": [
+        27,
+        584,
+        363,
+        888,
+        336,
+        304
+      ],
+      "leaflet": true,
+      "tilesLoaded": true,
+      "grid": {
+        "css": [
+          334,
+          302
+        ],
+        "buf": [
+          501,
+          453
+        ]
+      },
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": true,
+      "deviceMarker": true,
+      "markerScreen": [
+        167,
+        151
+      ],
+      "coreScreen": [
+        168,
+        152
+      ]
+    }
+  },
+  "mobiledpr2_dashboard-a02.html": {
+    "page": "dashboard-a02.html",
+    "viewport": [
+      390,
+      844
+    ],
+    "dsf": 2,
+    "errors": [],
+    "metric": {
+      "url": "dashboard-a02.html",
+      "viewport": [
+        390,
+        844
+      ],
+      "dpr": 2,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · ANT-A02",
+      "scrollW": 390,
+      "scrollH": 844,
+      "clientW": 390,
+      "clientH": 844,
+      "langRect": [
+        272,
+        16,
+        378,
+        44
+      ],
+      "langRightGap": 12,
+      "langTopGap": 16,
+      "header": [
+        14,
+        64,
+        376,
+        243,
+        362,
+        179
+      ],
+      "worldMap": [
+        27,
+        567,
+        363,
+        871,
+        336,
+        304
+      ],
+      "leaflet": true,
+      "tilesLoaded": true,
+      "grid": {
+        "css": [
+          334,
+          302
+        ],
+        "buf": [
+          501,
+          453
+        ]
+      },
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": true,
+      "deviceMarker": false,
+      "markerScreen": null,
+      "coreScreen": [
+        168,
+        152
+      ]
+    }
+  },
+  "mobiledpr3_index.html": {
+    "page": "index.html",
+    "viewport": [
+      390,
+      844
+    ],
+    "dsf": 3,
+    "errors": [],
+    "metric": {
+      "url": "index.html",
+      "viewport": [
+        390,
+        844
+      ],
+      "dpr": 3,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · 探索序章",
+      "scrollW": 390,
+      "scrollH": 844,
+      "clientW": 390,
+      "clientH": 844,
+      "langRect": [
+        266,
+        21,
+        370,
+        51
+      ],
+      "langRightGap": 20,
+      "langTopGap": 21,
+      "header": [
+        0,
+        0,
+        390,
+        72,
+        390,
+        72
+      ],
+      "worldMap": null,
+      "leaflet": false,
+      "tilesLoaded": null,
+      "grid": null,
+      "globeCv": {
+        "css": [
+          390,
+          844
+        ],
+        "buf": [
+          585,
+          1266
+        ]
+      },
+      "globeReady": true,
+      "globeFallbackVisible": false,
+      "homeLoaded": true,
+      "deviceMap": false,
+      "deviceMarker": false,
+      "markerScreen": null,
+      "coreScreen": null
+    }
+  },
+  "mobiledpr3_network.html": {
+    "page": "network.html",
+    "viewport": [
+      390,
+      844
+    ],
+    "dsf": 3,
+    "errors": [],
+    "metric": {
+      "url": "network.html",
+      "viewport": [
+        390,
+        844
+      ],
+      "dpr": 3,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · 观测网络",
+      "scrollW": 390,
+      "scrollH": 1242,
+      "clientW": 390,
+      "clientH": 844,
+      "langRect": [
+        270,
+        14,
+        374,
+        44
+      ],
+      "langRightGap": 16,
+      "langTopGap": 14,
+      "header": [
+        0,
+        0,
+        390,
+        59,
+        390,
+        59
+      ],
+      "worldMap": [
+        11,
+        257,
+        379,
+        557,
+        368,
+        300
+      ],
+      "leaflet": true,
+      "tilesLoaded": true,
+      "grid": null,
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": false,
+      "deviceMarker": false,
+      "markerScreen": null,
+      "coreScreen": null
+    }
+  },
+  "mobiledpr3_dashboard.html": {
+    "page": "dashboard.html",
+    "viewport": [
+      390,
+      844
+    ],
+    "dsf": 3,
+    "errors": [],
+    "metric": {
+      "url": "dashboard.html",
+      "viewport": [
+        390,
+        844
+      ],
+      "dpr": 3,
+      "lang": "zh-CN",
+      "title": "自主观测系统",
+      "scrollW": 390,
+      "scrollH": 844,
+      "clientW": 390,
+      "clientH": 844,
+      "langRect": [
+        272,
+        16,
+        378,
+        44
+      ],
+      "langRightGap": 12,
+      "langTopGap": 16,
+      "header": [
+        14,
+        64,
+        376,
+        243,
+        362,
+        179
+      ],
+      "worldMap": [
+        27,
+        584,
+        363,
+        888,
+        336,
+        304
+      ],
+      "leaflet": true,
+      "tilesLoaded": true,
+      "grid": {
+        "css": [
+          334,
+          302
+        ],
+        "buf": [
+          501,
+          453
+        ]
+      },
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": true,
+      "deviceMarker": true,
+      "markerScreen": [
+        167,
+        151
+      ],
+      "coreScreen": [
+        168,
+        152
+      ]
+    }
+  },
+  "mobiledpr3_dashboard-a02.html": {
+    "page": "dashboard-a02.html",
+    "viewport": [
+      390,
+      844
+    ],
+    "dsf": 3,
+    "errors": [],
+    "metric": {
+      "url": "dashboard-a02.html",
+      "viewport": [
+        390,
+        844
+      ],
+      "dpr": 3,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · ANT-A02",
+      "scrollW": 390,
+      "scrollH": 844,
+      "clientW": 390,
+      "clientH": 844,
+      "langRect": [
+        272,
+        16,
+        378,
+        44
+      ],
+      "langRightGap": 12,
+      "langTopGap": 16,
+      "header": [
+        14,
+        64,
+        376,
+        243,
+        362,
+        179
+      ],
+      "worldMap": [
+        27,
+        567,
+        363,
+        871,
+        336,
+        304
+      ],
+      "leaflet": true,
+      "tilesLoaded": true,
+      "grid": {
+        "css": [
+          334,
+          302
+        ],
+        "buf": [
+          501,
+          453
+        ]
+      },
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": true,
+      "deviceMarker": false,
+      "markerScreen": null,
+      "coreScreen": [
+        168,
+        152
+      ]
+    }
+  },
+  "zoom100_index.html": {
+    "page": "index.html",
+    "viewport": [
+      1366,
+      768
+    ],
+    "dsf": 1,
+    "errors": [],
+    "metric": {
+      "url": "index.html",
+      "viewport": [
+        1366,
+        768
+      ],
+      "dpr": 1,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · 探索序章",
+      "scrollW": 1366,
+      "scrollH": 768,
+      "clientW": 1366,
+      "clientH": 768,
+      "langRect": [
+        1216,
+        35,
+        1320,
+        65
+      ],
+      "langRightGap": 46,
+      "langTopGap": 35,
+      "header": [
+        0,
+        0,
+        1366,
+        100,
+        1366,
+        100
+      ],
+      "worldMap": null,
+      "leaflet": false,
+      "tilesLoaded": null,
+      "grid": null,
+      "globeCv": {
+        "css": [
+          1366,
+          768
+        ],
+        "buf": [
+          1366,
+          768
+        ]
+      },
+      "globeReady": true,
+      "globeFallbackVisible": false,
+      "homeLoaded": true,
+      "deviceMap": false,
+      "deviceMarker": false,
+      "markerScreen": null,
+      "coreScreen": null
+    }
+  },
+  "zoom100_network.html": {
+    "page": "network.html",
+    "viewport": [
+      1366,
+      768
+    ],
+    "dsf": 1,
+    "errors": [],
+    "metric": {
+      "url": "network.html",
+      "viewport": [
+        1366,
+        768
+      ],
+      "dpr": 1,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · 观测网络",
+      "scrollW": 1366,
+      "scrollH": 768,
+      "clientW": 1366,
+      "clientH": 768,
+      "langRect": [
+        1234,
+        18,
+        1338,
+        48
+      ],
+      "langRightGap": 28,
+      "langTopGap": 18,
+      "header": [
+        0,
+        0,
+        1366,
+        67,
+        1366,
+        67
+      ],
+      "worldMap": [
+        251,
+        133,
+        997,
+        717,
+        746,
+        584
+      ],
+      "leaflet": true,
+      "tilesLoaded": true,
+      "grid": null,
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": false,
+      "deviceMarker": false,
+      "markerScreen": null,
+      "coreScreen": null
+    }
+  },
+  "zoom100_location.html": {
+    "page": "location.html",
+    "viewport": [
+      1366,
+      768
+    ],
+    "dsf": 1,
+    "errors": [],
+    "metric": {
+      "url": "location.html",
+      "viewport": [
+        1366,
+        768
+      ],
+      "dpr": 1,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · 位置",
+      "scrollW": 1366,
+      "scrollH": 768,
+      "clientW": 1366,
+      "clientH": 768,
+      "langRect": [
+        1218,
+        28,
+        1334,
+        58
+      ],
+      "langRightGap": 32,
+      "langTopGap": 28,
+      "header": [
+        274,
+        12,
+        1342,
+        102,
+        1068,
+        90
+      ],
+      "worldMap": [
+        289,
+        139,
+        1327,
+        637,
+        1038,
+        498
+      ],
+      "leaflet": true,
+      "tilesLoaded": true,
+      "grid": null,
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": true,
+      "deviceMarker": true,
+      "markerScreen": [
+        518,
+        248
+      ],
+      "coreScreen": [
+        519,
+        249
+      ]
+    }
+  },
+  "zoom100_dashboard.html": {
+    "page": "dashboard.html",
+    "viewport": [
+      1366,
+      768
+    ],
+    "dsf": 1,
+    "errors": [],
+    "metric": {
+      "url": "dashboard.html",
+      "viewport": [
+        1366,
+        768
+      ],
+      "dpr": 1,
+      "lang": "zh-CN",
+      "title": "自主观测系统",
+      "scrollW": 1366,
+      "scrollH": 768,
+      "clientW": 1366,
+      "clientH": 768,
+      "langRect": [
+        1197,
+        53,
+        1313,
+        83
+      ],
+      "langRightGap": 53,
+      "langTopGap": 53,
+      "header": [
+        276,
+        12,
+        1340,
+        123,
+        1064,
+        111
+      ],
+      "worldMap": [
+        289,
+        366,
+        1327,
+        640,
+        1038,
+        274
+      ],
+      "leaflet": true,
+      "tilesLoaded": true,
+      "grid": {
+        "css": [
+          1036,
+          272
+        ],
+        "buf": [
+          1036,
+          272
+        ]
+      },
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": true,
+      "deviceMarker": true,
+      "markerScreen": [
+        518,
+        136
+      ],
+      "coreScreen": [
+        519,
+        137
+      ]
+    }
+  },
+  "zoom100_dashboard-a02.html": {
+    "page": "dashboard-a02.html",
+    "viewport": [
+      1366,
+      768
+    ],
+    "dsf": 1,
+    "errors": [],
+    "metric": {
+      "url": "dashboard-a02.html",
+      "viewport": [
+        1366,
+        768
+      ],
+      "dpr": 1,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · ANT-A02",
+      "scrollW": 1366,
+      "scrollH": 768,
+      "clientW": 1366,
+      "clientH": 768,
+      "langRect": [
+        1197,
+        53,
+        1313,
+        83
+      ],
+      "langRightGap": 53,
+      "langTopGap": 53,
+      "header": [
+        276,
+        12,
+        1340,
+        123,
+        1064,
+        111
+      ],
+      "worldMap": [
+        289,
+        366,
+        1327,
+        640,
+        1038,
+        274
+      ],
+      "leaflet": true,
+      "tilesLoaded": true,
+      "grid": {
+        "css": [
+          1036,
+          272
+        ],
+        "buf": [
+          1036,
+          272
+        ]
+      },
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": true,
+      "deviceMarker": false,
+      "markerScreen": null,
+      "coreScreen": [
+        519,
+        137
+      ]
+    }
+  },
+  "zoom100_dashboard-a03.html": {
+    "page": "dashboard-a03.html",
+    "viewport": [
+      1366,
+      768
+    ],
+    "dsf": 1,
+    "errors": [],
+    "metric": {
+      "url": "dashboard-a03.html",
+      "viewport": [
+        1366,
+        768
+      ],
+      "dpr": 1,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · ANT-A03",
+      "scrollW": 1366,
+      "scrollH": 768,
+      "clientW": 1366,
+      "clientH": 768,
+      "langRect": [
+        1197,
+        53,
+        1313,
+        83
+      ],
+      "langRightGap": 53,
+      "langTopGap": 53,
+      "header": [
+        276,
+        12,
+        1340,
+        123,
+        1064,
+        111
+      ],
+      "worldMap": [
+        289,
+        366,
+        1327,
+        640,
+        1038,
+        274
+      ],
+      "leaflet": true,
+      "tilesLoaded": true,
+      "grid": {
+        "css": [
+          1036,
+          272
+        ],
+        "buf": [
+          1036,
+          272
+        ]
+      },
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": true,
+      "deviceMarker": false,
+      "markerScreen": null,
+      "coreScreen": [
+        519,
+        137
+      ]
+    }
+  },
+  "zoom110_index.html": {
+    "page": "index.html",
+    "viewport": [
+      1242,
+      698
+    ],
+    "dsf": 1.1,
+    "errors": [],
+    "metric": {
+      "url": "index.html",
+      "viewport": [
+        1242,
+        698
+      ],
+      "dpr": 1.100000023841858,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · 探索序章",
+      "scrollW": 1242,
+      "scrollH": 698,
+      "clientW": 1242,
+      "clientH": 698,
+      "langRect": [
+        1092,
+        35,
+        1196,
+        65
+      ],
+      "langRightGap": 46,
+      "langTopGap": 35,
+      "header": [
+        0,
+        0,
+        1242,
+        100,
+        1242,
+        100
+      ],
+      "worldMap": null,
+      "leaflet": false,
+      "tilesLoaded": null,
+      "grid": null,
+      "globeCv": {
+        "css": [
+          1242,
+          698
+        ],
+        "buf": [
+          1366,
+          767
+        ]
+      },
+      "globeReady": true,
+      "globeFallbackVisible": false,
+      "homeLoaded": true,
+      "deviceMap": false,
+      "deviceMarker": false,
+      "markerScreen": null,
+      "coreScreen": null
+    }
+  },
+  "zoom110_network.html": {
+    "page": "network.html",
+    "viewport": [
+      1242,
+      698
+    ],
+    "dsf": 1.1,
+    "errors": [],
+    "metric": {
+      "url": "network.html",
+      "viewport": [
+        1242,
+        698
+      ],
+      "dpr": 1.100000023841858,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · 观测网络",
+      "scrollW": 1242,
+      "scrollH": 698,
+      "clientW": 1242,
+      "clientH": 698,
+      "langRect": [
+        1110,
+        18,
+        1214,
+        48
+      ],
+      "langRightGap": 28,
+      "langTopGap": 18,
+      "header": [
+        0,
+        0,
+        1242,
+        67,
+        1242,
+        67
+      ],
+      "worldMap": [
+        231,
+        133,
+        904,
+        647,
+        673,
+        514
+      ],
+      "leaflet": true,
+      "tilesLoaded": true,
+      "grid": null,
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": false,
+      "deviceMarker": false,
+      "markerScreen": null,
+      "coreScreen": null
+    }
+  },
+  "zoom110_location.html": {
+    "page": "location.html",
+    "viewport": [
+      1242,
+      698
+    ],
+    "dsf": 1.1,
+    "errors": [],
+    "metric": {
+      "url": "location.html",
+      "viewport": [
+        1242,
+        698
+      ],
+      "dpr": 1.100000023841858,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · 位置",
+      "scrollW": 1242,
+      "scrollH": 698,
+      "clientW": 1242,
+      "clientH": 698,
+      "langRect": [
+        1094,
+        28,
+        1210,
+        58
+      ],
+      "langRightGap": 32,
+      "langTopGap": 28,
+      "header": [
+        274,
+        12,
+        1218,
+        102,
+        944,
+        90
+      ],
+      "worldMap": [
+        289,
+        139,
+        1203,
+        567,
+        914,
+        428
+      ],
+      "leaflet": true,
+      "tilesLoaded": true,
+      "grid": null,
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": true,
+      "deviceMarker": true,
+      "markerScreen": [
+        456,
+        213
+      ],
+      "coreScreen": [
+        457,
+        214
+      ]
+    }
+  },
+  "zoom110_dashboard.html": {
+    "page": "dashboard.html",
+    "viewport": [
+      1242,
+      698
+    ],
+    "dsf": 1.1,
+    "errors": [],
+    "metric": {
+      "url": "dashboard.html",
+      "viewport": [
+        1242,
+        698
+      ],
+      "dpr": 1.100000023841858,
+      "lang": "zh-CN",
+      "title": "自主观测系统",
+      "scrollW": 1242,
+      "scrollH": 698,
+      "clientW": 1242,
+      "clientH": 698,
+      "langRect": [
+        1079,
+        51,
+        1195,
+        81
+      ],
+      "langRightGap": 47,
+      "langTopGap": 51,
+      "header": [
+        270,
+        12,
+        1222,
+        120,
+        952,
+        108
+      ],
+      "worldMap": [
+        846,
+        363,
+        1209,
+        600,
+        363,
+        237
+      ],
+      "leaflet": true,
+      "tilesLoaded": true,
+      "grid": {
+        "css": [
+          361,
+          235
+        ],
+        "buf": [
+          397,
+          259
+        ]
+      },
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": true,
+      "deviceMarker": true,
+      "markerScreen": [
+        180,
+        117
+      ],
+      "coreScreen": [
+        181,
+        118
+      ]
+    }
+  },
+  "zoom110_dashboard-a02.html": {
+    "page": "dashboard-a02.html",
+    "viewport": [
+      1242,
+      698
+    ],
+    "dsf": 1.1,
+    "errors": [],
+    "metric": {
+      "url": "dashboard-a02.html",
+      "viewport": [
+        1242,
+        698
+      ],
+      "dpr": 1.100000023841858,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · ANT-A02",
+      "scrollW": 1242,
+      "scrollH": 698,
+      "clientW": 1242,
+      "clientH": 698,
+      "langRect": [
+        1079,
+        51,
+        1195,
+        81
+      ],
+      "langRightGap": 47,
+      "langTopGap": 51,
+      "header": [
+        270,
+        12,
+        1222,
+        120,
+        952,
+        108
+      ],
+      "worldMap": [
+        968,
+        363,
+        1209,
+        600,
+        241,
+        237
+      ],
+      "leaflet": true,
+      "tilesLoaded": true,
+      "grid": {
+        "css": [
+          239,
+          235
+        ],
+        "buf": [
+          263,
+          259
+        ]
+      },
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": true,
+      "deviceMarker": false,
+      "markerScreen": null,
+      "coreScreen": [
+        121,
+        119
+      ]
+    }
+  },
+  "zoom110_dashboard-a03.html": {
+    "page": "dashboard-a03.html",
+    "viewport": [
+      1242,
+      698
+    ],
+    "dsf": 1.1,
+    "errors": [],
+    "metric": {
+      "url": "dashboard-a03.html",
+      "viewport": [
+        1242,
+        698
+      ],
+      "dpr": 1.100000023841858,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · ANT-A03",
+      "scrollW": 1242,
+      "scrollH": 698,
+      "clientW": 1242,
+      "clientH": 698,
+      "langRect": [
+        1079,
+        51,
+        1195,
+        81
+      ],
+      "langRightGap": 47,
+      "langTopGap": 51,
+      "header": [
+        270,
+        12,
+        1222,
+        120,
+        952,
+        108
+      ],
+      "worldMap": [
+        968,
+        363,
+        1209,
+        600,
+        241,
+        237
+      ],
+      "leaflet": true,
+      "tilesLoaded": true,
+      "grid": {
+        "css": [
+          239,
+          235
+        ],
+        "buf": [
+          263,
+          259
+        ]
+      },
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": true,
+      "deviceMarker": false,
+      "markerScreen": null,
+      "coreScreen": [
+        121,
+        119
+      ]
+    }
+  },
+  "zoom125_index.html": {
+    "page": "index.html",
+    "viewport": [
+      1093,
+      614
+    ],
+    "dsf": 1.25,
+    "errors": [],
+    "metric": {
+      "url": "index.html",
+      "viewport": [
+        1093,
+        614
+      ],
+      "dpr": 1.25,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · 探索序章",
+      "scrollW": 1093,
+      "scrollH": 614,
+      "clientW": 1093,
+      "clientH": 614,
+      "langRect": [
+        943,
+        35,
+        1047,
+        65
+      ],
+      "langRightGap": 46,
+      "langTopGap": 35,
+      "header": [
+        0,
+        0,
+        1093,
+        100,
+        1093,
+        100
+      ],
+      "worldMap": null,
+      "leaflet": false,
+      "tilesLoaded": null,
+      "grid": null,
+      "globeCv": {
+        "css": [
+          1093,
+          614
+        ],
+        "buf": [
+          1366,
+          767
+        ]
+      },
+      "globeReady": true,
+      "globeFallbackVisible": false,
+      "homeLoaded": true,
+      "deviceMap": false,
+      "deviceMarker": false,
+      "markerScreen": null,
+      "coreScreen": null
+    }
+  },
+  "zoom125_network.html": {
+    "page": "network.html",
+    "viewport": [
+      1093,
+      614
+    ],
+    "dsf": 1.25,
+    "errors": [],
+    "metric": {
+      "url": "network.html",
+      "viewport": [
+        1093,
+        614
+      ],
+      "dpr": 1.25,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · 观测网络",
+      "scrollW": 1078,
+      "scrollH": 1093,
+      "clientW": 1078,
+      "clientH": 614,
+      "langRect": [
+        946,
+        18,
+        1050,
+        48
+      ],
+      "langRightGap": 43,
+      "langTopGap": 18,
+      "header": [
+        0,
+        0,
+        1078,
+        67,
+        1078,
+        67
+      ],
+      "worldMap": [
+        23,
+        277,
+        1055,
+        707,
+        1032,
+        430
+      ],
+      "leaflet": true,
+      "tilesLoaded": true,
+      "grid": null,
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": false,
+      "deviceMarker": false,
+      "markerScreen": null,
+      "coreScreen": null
+    }
+  },
+  "zoom125_location.html": {
+    "page": "location.html",
+    "viewport": [
+      1093,
+      614
+    ],
+    "dsf": 1.25,
+    "errors": [],
+    "metric": {
+      "url": "location.html",
+      "viewport": [
+        1093,
+        614
+      ],
+      "dpr": 1.25,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · 位置",
+      "scrollW": 1093,
+      "scrollH": 614,
+      "clientW": 1093,
+      "clientH": 614,
+      "langRect": [
+        945,
+        28,
+        1061,
+        58
+      ],
+      "langRightGap": 32,
+      "langTopGap": 28,
+      "header": [
+        274,
+        12,
+        1069,
+        102,
+        795,
+        90
+      ],
+      "worldMap": [
+        289,
+        139,
+        1054,
+        483,
+        765,
+        344
+      ],
+      "leaflet": true,
+      "tilesLoaded": true,
+      "grid": null,
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": true,
+      "deviceMarker": true,
+      "markerScreen": [
+        381,
+        171
+      ],
+      "coreScreen": [
+        382,
+        172
+      ]
+    }
+  },
+  "zoom125_dashboard.html": {
+    "page": "dashboard.html",
+    "viewport": [
+      1093,
+      614
+    ],
+    "dsf": 1.25,
+    "errors": [],
+    "metric": {
+      "url": "dashboard.html",
+      "viewport": [
+        1093,
+        614
+      ],
+      "dpr": 1.25,
+      "lang": "zh-CN",
+      "title": "自主观测系统",
+      "scrollW": 1093,
+      "scrollH": 614,
+      "clientW": 1093,
+      "clientH": 614,
+      "langRect": [
+        933,
+        49,
+        1049,
+        79
+      ],
+      "langRightGap": 44,
+      "langTopGap": 49,
+      "header": [
+        267,
+        12,
+        1076,
+        116,
+        808,
+        104
+      ],
+      "worldMap": [
+        701,
+        359,
+        1063,
+        568,
+        362,
+        209
+      ],
+      "leaflet": true,
+      "tilesLoaded": true,
+      "grid": {
+        "css": [
+          360,
+          207
+        ],
+        "buf": [
+          450,
+          259
+        ]
+      },
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": true,
+      "deviceMarker": true,
+      "markerScreen": [
+        180,
+        103
+      ],
+      "coreScreen": [
+        181,
+        104
+      ]
+    }
+  },
+  "zoom125_dashboard-a02.html": {
+    "page": "dashboard-a02.html",
+    "viewport": [
+      1093,
+      614
+    ],
+    "dsf": 1.25,
+    "errors": [],
+    "metric": {
+      "url": "dashboard-a02.html",
+      "viewport": [
+        1093,
+        614
+      ],
+      "dpr": 1.25,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · ANT-A02",
+      "scrollW": 1093,
+      "scrollH": 614,
+      "clientW": 1093,
+      "clientH": 614,
+      "langRect": [
+        933,
+        49,
+        1049,
+        79
+      ],
+      "langRightGap": 44,
+      "langTopGap": 49,
+      "header": [
+        267,
+        12,
+        1076,
+        116,
+        808,
+        104
+      ],
+      "worldMap": [
+        823,
+        359,
+        1063,
+        568,
+        240,
+        209
+      ],
+      "leaflet": true,
+      "tilesLoaded": true,
+      "grid": {
+        "css": [
+          238,
+          207
+        ],
+        "buf": [
+          298,
+          259
+        ]
+      },
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": true,
+      "deviceMarker": false,
+      "markerScreen": null,
+      "coreScreen": [
+        120,
+        104
+      ]
+    }
+  },
+  "zoom125_dashboard-a03.html": {
+    "page": "dashboard-a03.html",
+    "viewport": [
+      1093,
+      614
+    ],
+    "dsf": 1.25,
+    "errors": [],
+    "metric": {
+      "url": "dashboard-a03.html",
+      "viewport": [
+        1093,
+        614
+      ],
+      "dpr": 1.25,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · ANT-A03",
+      "scrollW": 1093,
+      "scrollH": 614,
+      "clientW": 1093,
+      "clientH": 614,
+      "langRect": [
+        933,
+        49,
+        1049,
+        79
+      ],
+      "langRightGap": 44,
+      "langTopGap": 49,
+      "header": [
+        267,
+        12,
+        1076,
+        116,
+        808,
+        104
+      ],
+      "worldMap": [
+        823,
+        359,
+        1063,
+        568,
+        240,
+        209
+      ],
+      "leaflet": true,
+      "tilesLoaded": true,
+      "grid": {
+        "css": [
+          238,
+          207
+        ],
+        "buf": [
+          298,
+          259
+        ]
+      },
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": true,
+      "deviceMarker": false,
+      "markerScreen": null,
+      "coreScreen": [
+        120,
+        104
+      ]
+    }
+  },
+  "zoom150_index.html": {
+    "page": "index.html",
+    "viewport": [
+      911,
+      512
+    ],
+    "dsf": 1.5,
+    "errors": [],
+    "metric": {
+      "url": "index.html",
+      "viewport": [
+        911,
+        512
+      ],
+      "dpr": 1.5,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · 探索序章",
+      "scrollW": 911,
+      "scrollH": 512,
+      "clientW": 911,
+      "clientH": 512,
+      "langRect": [
+        761,
+        35,
+        865,
+        65
+      ],
+      "langRightGap": 46,
+      "langTopGap": 35,
+      "header": [
+        0,
+        0,
+        911,
+        100,
+        911,
+        100
+      ],
+      "worldMap": null,
+      "leaflet": false,
+      "tilesLoaded": null,
+      "grid": null,
+      "globeCv": {
+        "css": [
+          911,
+          512
+        ],
+        "buf": [
+          1366,
+          768
+        ]
+      },
+      "globeReady": true,
+      "globeFallbackVisible": false,
+      "homeLoaded": true,
+      "deviceMap": false,
+      "deviceMarker": false,
+      "markerScreen": null,
+      "coreScreen": null
+    }
+  },
+  "zoom150_network.html": {
+    "page": "network.html",
+    "viewport": [
+      911,
+      512
+    ],
+    "dsf": 1.5,
+    "errors": [],
+    "metric": {
+      "url": "network.html",
+      "viewport": [
+        911,
+        512
+      ],
+      "dpr": 1.5,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · 观测网络",
+      "scrollW": 896,
+      "scrollH": 1093,
+      "clientW": 896,
+      "clientH": 512,
+      "langRect": [
+        764,
+        18,
+        868,
+        48
+      ],
+      "langRightGap": 43,
+      "langTopGap": 18,
+      "header": [
+        0,
+        0,
+        896,
+        67,
+        896,
+        67
+      ],
+      "worldMap": [
+        23,
+        277,
+        873,
+        707,
+        850,
+        430
+      ],
+      "leaflet": true,
+      "tilesLoaded": true,
+      "grid": null,
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": false,
+      "deviceMarker": false,
+      "markerScreen": null,
+      "coreScreen": null
+    }
+  },
+  "zoom150_location.html": {
+    "page": "location.html",
+    "viewport": [
+      911,
+      512
+    ],
+    "dsf": 1.5,
+    "errors": [],
+    "metric": {
+      "url": "location.html",
+      "viewport": [
+        911,
+        512
+      ],
+      "dpr": 1.5,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · 位置",
+      "scrollW": 911,
+      "scrollH": 512,
+      "clientW": 911,
+      "clientH": 512,
+      "langRect": [
+        763,
+        28,
+        879,
+        58
+      ],
+      "langRightGap": 32,
+      "langTopGap": 28,
+      "header": [
+        274,
+        12,
+        887,
+        102,
+        613,
+        90
+      ],
+      "worldMap": [
+        289,
+        139,
+        872,
+        439,
+        583,
+        300
+      ],
+      "leaflet": true,
+      "tilesLoaded": true,
+      "grid": null,
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": true,
+      "deviceMarker": true,
+      "markerScreen": [
+        290,
+        149
+      ],
+      "coreScreen": [
+        291,
+        150
+      ]
+    }
+  },
+  "zoom150_dashboard.html": {
+    "page": "dashboard.html",
+    "viewport": [
+      911,
+      512
+    ],
+    "dsf": 1.5,
+    "errors": [],
+    "metric": {
+      "url": "dashboard.html",
+      "viewport": [
+        911,
+        512
+      ],
+      "dpr": 1.5,
+      "lang": "zh-CN",
+      "title": "自主观测系统",
+      "scrollW": 911,
+      "scrollH": 512,
+      "clientW": 911,
+      "clientH": 512,
+      "langRect": [
+        753,
+        48,
+        869,
+        78
+      ],
+      "langRightGap": 42,
+      "langTopGap": 48,
+      "header": [
+        265,
+        12,
+        896,
+        114,
+        632,
+        102
+      ],
+      "worldMap": [
+        523,
+        381,
+        883,
+        581,
+        361,
+        200
+      ],
+      "leaflet": true,
+      "tilesLoaded": true,
+      "grid": {
+        "css": [
+          359,
+          198
+        ],
+        "buf": [
+          539,
+          297
+        ]
+      },
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": true,
+      "deviceMarker": true,
+      "markerScreen": [
+        179,
+        99
+      ],
+      "coreScreen": [
+        180,
+        100
+      ]
+    }
+  },
+  "zoom150_dashboard-a02.html": {
+    "page": "dashboard-a02.html",
+    "viewport": [
+      911,
+      512
+    ],
+    "dsf": 1.5,
+    "errors": [],
+    "metric": {
+      "url": "dashboard-a02.html",
+      "viewport": [
+        911,
+        512
+      ],
+      "dpr": 1.5,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · ANT-A02",
+      "scrollW": 911,
+      "scrollH": 512,
+      "clientW": 911,
+      "clientH": 512,
+      "langRect": [
+        753,
+        48,
+        869,
+        78
+      ],
+      "langRightGap": 42,
+      "langTopGap": 48,
+      "header": [
+        265,
+        12,
+        896,
+        114,
+        632,
+        102
+      ],
+      "worldMap": [
+        645,
+        381,
+        883,
+        581,
+        238,
+        200
+      ],
+      "leaflet": true,
+      "tilesLoaded": true,
+      "grid": {
+        "css": [
+          236,
+          198
+        ],
+        "buf": [
+          354,
+          297
+        ]
+      },
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": true,
+      "deviceMarker": false,
+      "markerScreen": null,
+      "coreScreen": [
+        119,
+        100
+      ]
+    }
+  },
+  "zoom150_dashboard-a03.html": {
+    "page": "dashboard-a03.html",
+    "viewport": [
+      911,
+      512
+    ],
+    "dsf": 1.5,
+    "errors": [],
+    "metric": {
+      "url": "dashboard-a03.html",
+      "viewport": [
+        911,
+        512
+      ],
+      "dpr": 1.5,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · ANT-A03",
+      "scrollW": 911,
+      "scrollH": 512,
+      "clientW": 911,
+      "clientH": 512,
+      "langRect": [
+        753,
+        48,
+        869,
+        78
+      ],
+      "langRightGap": 42,
+      "langTopGap": 48,
+      "header": [
+        265,
+        12,
+        896,
+        114,
+        632,
+        102
+      ],
+      "worldMap": [
+        645,
+        381,
+        883,
+        581,
+        238,
+        200
+      ],
+      "leaflet": true,
+      "tilesLoaded": true,
+      "grid": {
+        "css": [
+          236,
+          198
+        ],
+        "buf": [
+          354,
+          297
+        ]
+      },
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": true,
+      "deviceMarker": false,
+      "markerScreen": null,
+      "coreScreen": [
+        119,
+        100
+      ]
+    }
+  },
+  "webglSim": {
+    "page": "index.html",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "dsf": 1,
+    "errors": [],
+    "metric": {
+      "__evalError": "TypeError: Cannot read properties of null (reading 'classList')"
+    }
+  },
+  "cdnFallbackSim": {
+    "url": "index.html",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "dpr": 1,
+    "lang": "zh-CN",
+    "title": "自主观测系统 · 探索序章",
+    "scrollW": 1920,
+    "scrollH": 1080,
+    "clientW": 1920,
+    "clientH": 1080,
+    "langRect": [
+      1770,
+      35,
+      1874,
+      65
+    ],
+    "langRightGap": 46,
+    "langTopGap": 35,
+    "header": [
+      0,
+      0,
+      1920,
+      100,
+      1920,
+      100
+    ],
+    "worldMap": null,
+    "leaflet": false,
+    "tilesLoaded": null,
+    "grid": null,
+    "globeCv": {
+      "css": [
+        1920,
+        1080
+      ],
+      "buf": [
+        1920,
+        1080
+      ]
+    },
+    "globeReady": true,
+    "globeFallbackVisible": false,
+    "homeLoaded": true,
+    "deviceMap": false,
+    "deviceMarker": false,
+    "markerScreen": null,
+    "coreScreen": null
+  },
+  "resize_network.html": [
+    {
+      "vp": [
+        1920,
+        1080
+      ],
+      "metric": {
+        "url": "network.html",
+        "viewport": [
+          1920,
+          1080
+        ],
+        "dpr": 1,
+        "lang": "zh-CN",
+        "title": "自主观测系统 · 观测网络",
+        "scrollW": 1920,
+        "scrollH": 1080,
+        "clientW": 1920,
+        "clientH": 1080,
+        "langRect": [
+          1788,
+          18,
+          1892,
+          48
+        ],
+        "langRightGap": 28,
+        "langTopGap": 18,
+        "header": [
+          0,
+          0,
+          1920,
+          67,
+          1920,
+          67
+        ],
+        "worldMap": [
+          339,
+          133,
+          1412,
+          1029,
+          1073,
+          896
+        ],
+        "leaflet": true,
+        "tilesLoaded": true,
+        "grid": null,
+        "globeCv": null,
+        "globeReady": false,
+        "globeFallbackVisible": null,
+        "homeLoaded": false,
+        "deviceMap": false,
+        "deviceMarker": false,
+        "markerScreen": null,
+        "coreScreen": null
+      }
+    },
+    {
+      "vp": [
+        1280,
+        720
+      ],
+      "metric": {
+        "url": "network.html",
+        "viewport": [
+          1280,
+          720
+        ],
+        "dpr": 1,
+        "lang": "zh-CN",
+        "title": "自主观测系统 · 观测网络",
+        "scrollW": 1280,
+        "scrollH": 720,
+        "clientW": 1280,
+        "clientH": 720,
+        "langRect": [
+          1148,
+          18,
+          1252,
+          48
+        ],
+        "langRightGap": 28,
+        "langTopGap": 18,
+        "header": [
+          0,
+          0,
+          1280,
+          67,
+          1280,
+          67
+        ],
+        "worldMap": [
+          237,
+          133,
+          932,
+          669,
+          695,
+          536
+        ],
+        "leaflet": true,
+        "tilesLoaded": true,
+        "grid": null,
+        "globeCv": null,
+        "globeReady": false,
+        "globeFallbackVisible": null,
+        "homeLoaded": false,
+        "deviceMap": false,
+        "deviceMarker": false,
+        "markerScreen": null,
+        "coreScreen": null
+      }
+    },
+    {
+      "vp": [
+        1920,
+        1080
+      ],
+      "metric": {
+        "url": "network.html",
+        "viewport": [
+          1920,
+          1080
+        ],
+        "dpr": 1,
+        "lang": "zh-CN",
+        "title": "自主观测系统 · 观测网络",
+        "scrollW": 1920,
+        "scrollH": 1080,
+        "clientW": 1920,
+        "clientH": 1080,
+        "langRect": [
+          1788,
+          18,
+          1892,
+          48
+        ],
+        "langRightGap": 28,
+        "langTopGap": 18,
+        "header": [
+          0,
+          0,
+          1920,
+          67,
+          1920,
+          67
+        ],
+        "worldMap": [
+          339,
+          133,
+          1412,
+          1029,
+          1073,
+          896
+        ],
+        "leaflet": true,
+        "tilesLoaded": true,
+        "grid": null,
+        "globeCv": null,
+        "globeReady": false,
+        "globeFallbackVisible": null,
+        "homeLoaded": false,
+        "deviceMap": false,
+        "deviceMarker": false,
+        "markerScreen": null,
+        "coreScreen": null
+      }
+    }
+  ],
+  "resize_location.html": [
+    {
+      "vp": [
+        1920,
+        1080
+      ],
+      "metric": {
+        "url": "location.html",
+        "viewport": [
+          1920,
+          1080
+        ],
+        "dpr": 1,
+        "lang": "zh-CN",
+        "title": "自主观测系统 · 位置",
+        "scrollW": 1920,
+        "scrollH": 1080,
+        "clientW": 1920,
+        "clientH": 1080,
+        "langRect": [
+          1772,
+          28,
+          1888,
+          58
+        ],
+        "langRightGap": 32,
+        "langTopGap": 28,
+        "header": [
+          286,
+          22,
+          1884,
+          119,
+          1598,
+          97
+        ],
+        "worldMap": [
+          301,
+          163,
+          1869,
+          932,
+          1568,
+          769
+        ],
+        "leaflet": true,
+        "tilesLoaded": true,
+        "grid": null,
+        "globeCv": null,
+        "globeReady": false,
+        "globeFallbackVisible": null,
+        "homeLoaded": false,
+        "deviceMap": true,
+        "deviceMarker": true,
+        "markerScreen": [
+          783,
+          383
+        ],
+        "coreScreen": [
+          784,
+          384
+        ]
+      }
+    },
+    {
+      "vp": [
+        1280,
+        720
+      ],
+      "metric": {
+        "url": "location.html",
+        "viewport": [
+          1280,
+          720
+        ],
+        "dpr": 1,
+        "lang": "zh-CN",
+        "title": "自主观测系统 · 位置",
+        "scrollW": 1280,
+        "scrollH": 720,
+        "clientW": 1280,
+        "clientH": 720,
+        "langRect": [
+          1132,
+          28,
+          1248,
+          58
+        ],
+        "langRightGap": 32,
+        "langTopGap": 28,
+        "header": [
+          274,
+          12,
+          1256,
+          102,
+          982,
+          90
+        ],
+        "worldMap": [
+          289,
+          139,
+          1241,
+          589,
+          952,
+          450
+        ],
+        "leaflet": true,
+        "tilesLoaded": true,
+        "grid": null,
+        "globeCv": null,
+        "globeReady": false,
+        "globeFallbackVisible": null,
+        "homeLoaded": false,
+        "deviceMap": true,
+        "deviceMarker": true,
+        "markerScreen": [
+          475,
+          223
+        ],
+        "coreScreen": [
+          476,
+          224
+        ]
+      }
+    },
+    {
+      "vp": [
+        1920,
+        1080
+      ],
+      "metric": {
+        "url": "location.html",
+        "viewport": [
+          1920,
+          1080
+        ],
+        "dpr": 1,
+        "lang": "zh-CN",
+        "title": "自主观测系统 · 位置",
+        "scrollW": 1920,
+        "scrollH": 1080,
+        "clientW": 1920,
+        "clientH": 1080,
+        "langRect": [
+          1772,
+          28,
+          1888,
+          58
+        ],
+        "langRightGap": 32,
+        "langTopGap": 28,
+        "header": [
+          286,
+          22,
+          1884,
+          119,
+          1598,
+          97
+        ],
+        "worldMap": [
+          301,
+          163,
+          1869,
+          932,
+          1568,
+          769
+        ],
+        "leaflet": true,
+        "tilesLoaded": true,
+        "grid": null,
+        "globeCv": null,
+        "globeReady": false,
+        "globeFallbackVisible": null,
+        "homeLoaded": false,
+        "deviceMap": true,
+        "deviceMarker": true,
+        "markerScreen": [
+          783,
+          383
+        ],
+        "coreScreen": [
+          784,
+          384
+        ]
+      }
+    }
+  ],
+  "resize_dashboard.html": [
+    {
+      "vp": [
+        1920,
+        1080
+      ],
+      "metric": {
+        "url": "dashboard.html",
+        "viewport": [
+          1920,
+          1080
+        ],
+        "dpr": 1,
+        "lang": "zh-CN",
+        "title": "自主观测系统",
+        "scrollW": 1920,
+        "scrollH": 1080,
+        "clientW": 1920,
+        "clientH": 1080,
+        "langRect": [
+          1737,
+          67,
+          1853,
+          97
+        ],
+        "langRightGap": 67,
+        "langTopGap": 67,
+        "header": [
+          290,
+          22,
+          1880,
+          143,
+          1590,
+          121
+        ],
+        "worldMap": [
+          303,
+          410,
+          1867,
+          933,
+          1564,
+          523
+        ],
+        "leaflet": true,
+        "tilesLoaded": true,
+        "grid": {
+          "css": [
+            1562,
+            521
+          ],
+          "buf": [
+            1562,
+            521
+          ]
+        },
+        "globeCv": null,
+        "globeReady": false,
+        "globeFallbackVisible": null,
+        "homeLoaded": false,
+        "deviceMap": true,
+        "deviceMarker": true,
+        "markerScreen": [
+          781,
+          260
+        ],
+        "coreScreen": [
+          782,
+          261
+        ]
+      }
+    },
+    {
+      "vp": [
+        1280,
+        720
+      ],
+      "metric": {
+        "url": "dashboard.html",
+        "viewport": [
+          1280,
+          720
+        ],
+        "dpr": 1,
+        "lang": "zh-CN",
+        "title": "自主观测系统",
+        "scrollW": 1280,
+        "scrollH": 720,
+        "clientW": 1280,
+        "clientH": 720,
+        "langRect": [
+          1113,
+          51,
+          1229,
+          81
+        ],
+        "langRightGap": 51,
+        "langTopGap": 51,
+        "header": [
+          274,
+          12,
+          1256,
+          121,
+          981,
+          109
+        ],
+        "worldMap": [
+          879,
+          364,
+          1243,
+          609,
+          364,
+          245
+        ],
+        "leaflet": true,
+        "tilesLoaded": true,
+        "grid": {
+          "css": [
+            362,
+            243
+          ],
+          "buf": [
+            362,
+            243
+          ]
+        },
+        "globeCv": null,
+        "globeReady": false,
+        "globeFallbackVisible": null,
+        "homeLoaded": false,
+        "deviceMap": true,
+        "deviceMarker": true,
+        "markerScreen": [
+          181,
+          121
+        ],
+        "coreScreen": [
+          182,
+          122
+        ]
+      }
+    },
+    {
+      "vp": [
+        1920,
+        1080
+      ],
+      "metric": {
+        "url": "dashboard.html",
+        "viewport": [
+          1920,
+          1080
+        ],
+        "dpr": 1,
+        "lang": "zh-CN",
+        "title": "自主观测系统",
+        "scrollW": 1920,
+        "scrollH": 1080,
+        "clientW": 1920,
+        "clientH": 1080,
+        "langRect": [
+          1737,
+          67,
+          1853,
+          97
+        ],
+        "langRightGap": 67,
+        "langTopGap": 67,
+        "header": [
+          290,
+          22,
+          1880,
+          143,
+          1590,
+          121
+        ],
+        "worldMap": [
+          303,
+          410,
+          1867,
+          933,
+          1564,
+          523
+        ],
+        "leaflet": true,
+        "tilesLoaded": true,
+        "grid": {
+          "css": [
+            1562,
+            521
+          ],
+          "buf": [
+            1562,
+            521
+          ]
+        },
+        "globeCv": null,
+        "globeReady": false,
+        "globeFallbackVisible": null,
+        "homeLoaded": false,
+        "deviceMap": true,
+        "deviceMarker": true,
+        "markerScreen": [
+          781,
+          260
+        ],
+        "coreScreen": [
+          782,
+          261
+        ]
+      }
+    }
+  ],
+  "resize_dashboard-a02.html": [
+    {
+      "vp": [
+        1920,
+        1080
+      ],
+      "metric": {
+        "url": "dashboard-a02.html",
+        "viewport": [
+          1920,
+          1080
+        ],
+        "dpr": 1,
+        "lang": "zh-CN",
+        "title": "自主观测系统 · ANT-A02",
+        "scrollW": 1920,
+        "scrollH": 1080,
+        "clientW": 1920,
+        "clientH": 1080,
+        "langRect": [
+          1737,
+          67,
+          1853,
+          97
+        ],
+        "langRightGap": 67,
+        "langTopGap": 67,
+        "header": [
+          290,
+          22,
+          1880,
+          143,
+          1590,
+          121
+        ],
+        "worldMap": [
+          303,
+          410,
+          1867,
+          933,
+          1564,
+          523
+        ],
+        "leaflet": true,
+        "tilesLoaded": true,
+        "grid": {
+          "css": [
+            1562,
+            521
+          ],
+          "buf": [
+            1562,
+            521
+          ]
+        },
+        "globeCv": null,
+        "globeReady": false,
+        "globeFallbackVisible": null,
+        "homeLoaded": false,
+        "deviceMap": true,
+        "deviceMarker": false,
+        "markerScreen": null,
+        "coreScreen": [
+          782,
+          262
+        ]
+      }
+    },
+    {
+      "vp": [
+        1280,
+        720
+      ],
+      "metric": {
+        "url": "dashboard-a02.html",
+        "viewport": [
+          1280,
+          720
+        ],
+        "dpr": 1,
+        "lang": "zh-CN",
+        "title": "自主观测系统 · ANT-A02",
+        "scrollW": 1280,
+        "scrollH": 720,
+        "clientW": 1280,
+        "clientH": 720,
+        "langRect": [
+          1113,
+          51,
+          1229,
+          81
+        ],
+        "langRightGap": 51,
+        "langTopGap": 51,
+        "header": [
+          274,
+          12,
+          1256,
+          121,
+          981,
+          109
+        ],
+        "worldMap": [
+          1001,
+          364,
+          1243,
+          609,
+          242,
+          245
+        ],
+        "leaflet": true,
+        "tilesLoaded": true,
+        "grid": {
+          "css": [
+            240,
+            243
+          ],
+          "buf": [
+            240,
+            243
+          ]
+        },
+        "globeCv": null,
+        "globeReady": false,
+        "globeFallbackVisible": null,
+        "homeLoaded": false,
+        "deviceMap": true,
+        "deviceMarker": false,
+        "markerScreen": null,
+        "coreScreen": [
+          121,
+          122
+        ]
+      }
+    },
+    {
+      "vp": [
+        1920,
+        1080
+      ],
+      "metric": {
+        "url": "dashboard-a02.html",
+        "viewport": [
+          1920,
+          1080
+        ],
+        "dpr": 1,
+        "lang": "zh-CN",
+        "title": "自主观测系统 · ANT-A02",
+        "scrollW": 1920,
+        "scrollH": 1080,
+        "clientW": 1920,
+        "clientH": 1080,
+        "langRect": [
+          1737,
+          67,
+          1853,
+          97
+        ],
+        "langRightGap": 67,
+        "langTopGap": 67,
+        "header": [
+          290,
+          22,
+          1880,
+          143,
+          1590,
+          121
+        ],
+        "worldMap": [
+          303,
+          410,
+          1867,
+          933,
+          1564,
+          523
+        ],
+        "leaflet": true,
+        "tilesLoaded": true,
+        "grid": {
+          "css": [
+            1562,
+            521
+          ],
+          "buf": [
+            1562,
+            521
+          ]
+        },
+        "globeCv": null,
+        "globeReady": false,
+        "globeFallbackVisible": null,
+        "homeLoaded": false,
+        "deviceMap": true,
+        "deviceMarker": false,
+        "markerScreen": null,
+        "coreScreen": [
+          782,
+          262
+        ]
+      }
+    }
+  ],
+  "reload_index.html": {
+    "errors": [],
+    "metric": {
+      "url": "index.html",
+      "viewport": [
+        1366,
+        768
+      ],
+      "dpr": 1,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · 探索序章",
+      "scrollW": 1366,
+      "scrollH": 768,
+      "clientW": 1366,
+      "clientH": 768,
+      "langRect": [
+        1216,
+        35,
+        1320,
+        65
+      ],
+      "langRightGap": 46,
+      "langTopGap": 35,
+      "header": [
+        0,
+        0,
+        1366,
+        100,
+        1366,
+        100
+      ],
+      "worldMap": null,
+      "leaflet": false,
+      "tilesLoaded": null,
+      "grid": null,
+      "globeCv": {
+        "css": [
+          1366,
+          768
+        ],
+        "buf": [
+          1366,
+          768
+        ]
+      },
+      "globeReady": true,
+      "globeFallbackVisible": false,
+      "homeLoaded": true,
+      "deviceMap": false,
+      "deviceMarker": false,
+      "markerScreen": null,
+      "coreScreen": null
+    }
+  },
+  "reload_network.html": {
+    "errors": [],
+    "metric": {
+      "url": "network.html",
+      "viewport": [
+        1366,
+        768
+      ],
+      "dpr": 1,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · 观测网络",
+      "scrollW": 1366,
+      "scrollH": 768,
+      "clientW": 1366,
+      "clientH": 768,
+      "langRect": [
+        1234,
+        18,
+        1338,
+        48
+      ],
+      "langRightGap": 28,
+      "langTopGap": 18,
+      "header": [
+        0,
+        0,
+        1366,
+        67,
+        1366,
+        67
+      ],
+      "worldMap": [
+        251,
+        133,
+        997,
+        717,
+        746,
+        584
+      ],
+      "leaflet": true,
+      "tilesLoaded": true,
+      "grid": null,
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": false,
+      "deviceMarker": false,
+      "markerScreen": null,
+      "coreScreen": null
+    }
+  },
+  "reload_location.html": {
+    "errors": [],
+    "metric": {
+      "url": "location.html",
+      "viewport": [
+        1366,
+        768
+      ],
+      "dpr": 1,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · 位置",
+      "scrollW": 1366,
+      "scrollH": 768,
+      "clientW": 1366,
+      "clientH": 768,
+      "langRect": [
+        1218,
+        28,
+        1334,
+        58
+      ],
+      "langRightGap": 32,
+      "langTopGap": 28,
+      "header": [
+        274,
+        12,
+        1342,
+        102,
+        1068,
+        90
+      ],
+      "worldMap": [
+        289,
+        139,
+        1327,
+        637,
+        1038,
+        498
+      ],
+      "leaflet": true,
+      "tilesLoaded": true,
+      "grid": null,
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": true,
+      "deviceMarker": true,
+      "markerScreen": [
+        518,
+        248
+      ],
+      "coreScreen": [
+        519,
+        249
+      ]
+    }
+  },
+  "reload_dashboard.html": {
+    "errors": [],
+    "metric": {
+      "url": "dashboard.html",
+      "viewport": [
+        1366,
+        768
+      ],
+      "dpr": 1,
+      "lang": "zh-CN",
+      "title": "自主观测系统",
+      "scrollW": 1366,
+      "scrollH": 768,
+      "clientW": 1366,
+      "clientH": 768,
+      "langRect": [
+        1197,
+        53,
+        1313,
+        83
+      ],
+      "langRightGap": 53,
+      "langTopGap": 53,
+      "header": [
+        276,
+        12,
+        1340,
+        123,
+        1064,
+        111
+      ],
+      "worldMap": [
+        289,
+        366,
+        1327,
+        640,
+        1038,
+        274
+      ],
+      "leaflet": true,
+      "tilesLoaded": true,
+      "grid": {
+        "css": [
+          1036,
+          272
+        ],
+        "buf": [
+          1036,
+          272
+        ]
+      },
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": true,
+      "deviceMarker": true,
+      "markerScreen": [
+        518,
+        136
+      ],
+      "coreScreen": [
+        519,
+        137
+      ]
+    }
+  },
+  "reload_dashboard-a02.html": {
+    "errors": [],
+    "metric": {
+      "url": "dashboard-a02.html",
+      "viewport": [
+        1366,
+        768
+      ],
+      "dpr": 1,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · ANT-A02",
+      "scrollW": 1366,
+      "scrollH": 768,
+      "clientW": 1366,
+      "clientH": 768,
+      "langRect": [
+        1197,
+        53,
+        1313,
+        83
+      ],
+      "langRightGap": 53,
+      "langTopGap": 53,
+      "header": [
+        276,
+        12,
+        1340,
+        123,
+        1064,
+        111
+      ],
+      "worldMap": [
+        289,
+        366,
+        1327,
+        640,
+        1038,
+        274
+      ],
+      "leaflet": true,
+      "tilesLoaded": true,
+      "grid": {
+        "css": [
+          1036,
+          272
+        ],
+        "buf": [
+          1036,
+          272
+        ]
+      },
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": true,
+      "deviceMarker": false,
+      "markerScreen": null,
+      "coreScreen": [
+        519,
+        137
+      ]
+    }
+  },
+  "reload_dashboard-a03.html": {
+    "errors": [],
+    "metric": {
+      "url": "dashboard-a03.html",
+      "viewport": [
+        1366,
+        768
+      ],
+      "dpr": 1,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · ANT-A03",
+      "scrollW": 1366,
+      "scrollH": 768,
+      "clientW": 1366,
+      "clientH": 768,
+      "langRect": [
+        1197,
+        53,
+        1313,
+        83
+      ],
+      "langRightGap": 53,
+      "langTopGap": 53,
+      "header": [
+        276,
+        12,
+        1340,
+        123,
+        1064,
+        111
+      ],
+      "worldMap": [
+        289,
+        366,
+        1327,
+        640,
+        1038,
+        274
+      ],
+      "leaflet": true,
+      "tilesLoaded": true,
+      "grid": {
+        "css": [
+          1036,
+          272
+        ],
+        "buf": [
+          1036,
+          272
+        ]
+      },
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": true,
+      "deviceMarker": false,
+      "markerScreen": null,
+      "coreScreen": [
+        519,
+        137
+      ]
+    }
+  },
+  "reload_sensors.html": {
+    "errors": [],
+    "metric": {
+      "url": "sensors.html",
+      "viewport": [
+        1366,
+        768
+      ],
+      "dpr": 1,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · 传感器",
+      "scrollW": 1366,
+      "scrollH": 768,
+      "clientW": 1366,
+      "clientH": 768,
+      "langRect": [
+        1218,
+        28,
+        1334,
+        58
+      ],
+      "langRightGap": 32,
+      "langTopGap": 28,
+      "header": [
+        270,
+        12,
+        1346,
+        88,
+        1076,
+        76
+      ],
+      "worldMap": null,
+      "leaflet": false,
+      "tilesLoaded": null,
+      "grid": null,
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": false,
+      "deviceMarker": false,
+      "markerScreen": null,
+      "coreScreen": null
+    }
+  },
+  "reload_telemetry.html": {
+    "errors": [],
+    "metric": {
+      "url": "telemetry.html",
+      "viewport": [
+        1366,
+        768
+      ],
+      "dpr": 1,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · 数据",
+      "scrollW": 1366,
+      "scrollH": 768,
+      "clientW": 1366,
+      "clientH": 768,
+      "langRect": [
+        1218,
+        28,
+        1334,
+        58
+      ],
+      "langRightGap": 32,
+      "langTopGap": 28,
+      "header": [
+        270,
+        12,
+        1346,
+        88,
+        1076,
+        76
+      ],
+      "worldMap": null,
+      "leaflet": false,
+      "tilesLoaded": null,
+      "grid": null,
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": false,
+      "deviceMarker": false,
+      "markerScreen": null,
+      "coreScreen": null
+    }
+  },
+  "reload_hardware.html": {
+    "errors": [],
+    "metric": {
+      "url": "hardware.html",
+      "viewport": [
+        1366,
+        768
+      ],
+      "dpr": 1,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · 硬件档案",
+      "scrollW": 1366,
+      "scrollH": 768,
+      "clientW": 1366,
+      "clientH": 768,
+      "langRect": [
+        1218,
+        28,
+        1334,
+        58
+      ],
+      "langRightGap": 32,
+      "langTopGap": 28,
+      "header": [
+        264,
+        8,
+        1352,
+        52,
+        1088,
+        44
+      ],
+      "worldMap": null,
+      "leaflet": false,
+      "tilesLoaded": null,
+      "grid": null,
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": false,
+      "deviceMarker": false,
+      "markerScreen": null,
+      "coreScreen": null
+    }
+  },
+  "reload_analysis.html": {
+    "errors": [],
+    "metric": {
+      "url": "analysis.html",
+      "viewport": [
+        1366,
+        768
+      ],
+      "dpr": 1,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · 任务成果分析",
+      "scrollW": 1366,
+      "scrollH": 768,
+      "clientW": 1366,
+      "clientH": 768,
+      "langRect": [
+        1218,
+        28,
+        1334,
+        58
+      ],
+      "langRightGap": 32,
+      "langTopGap": 28,
+      "header": [
+        268,
+        31,
+        1348,
+        99,
+        1080,
+        68
+      ],
+      "worldMap": null,
+      "leaflet": false,
+      "tilesLoaded": null,
+      "grid": null,
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": false,
+      "deviceMarker": false,
+      "markerScreen": null,
+      "coreScreen": null
+    }
+  },
+  "reload_location-a02.html": {
+    "errors": [],
+    "metric": {
+      "url": "location-a02.html",
+      "viewport": [
+        1366,
+        768
+      ],
+      "dpr": 1,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · ANT-A02",
+      "scrollW": 1351,
+      "scrollH": 1136,
+      "clientW": 1351,
+      "clientH": 768,
+      "langRect": [
+        1203,
+        26,
+        1319,
+        56
+      ],
+      "langRightGap": 47,
+      "langTopGap": 26,
+      "header": [
+        280,
+        26,
+        1321,
+        102,
+        1041,
+        76
+      ],
+      "worldMap": [
+        436,
+        136,
+        1166,
+        489,
+        730,
+        353
+      ],
+      "leaflet": true,
+      "tilesLoaded": true,
+      "grid": null,
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": true,
+      "deviceMarker": false,
+      "markerScreen": null,
+      "coreScreen": null
+    }
+  },
+  "reload_location-a03.html": {
+    "errors": [],
+    "metric": {
+      "url": "location-a03.html",
+      "viewport": [
+        1366,
+        768
+      ],
+      "dpr": 1,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · ANT-A03",
+      "scrollW": 1351,
+      "scrollH": 1136,
+      "clientW": 1351,
+      "clientH": 768,
+      "langRect": [
+        1203,
+        26,
+        1319,
+        56
+      ],
+      "langRightGap": 47,
+      "langTopGap": 26,
+      "header": [
+        280,
+        26,
+        1321,
+        102,
+        1041,
+        76
+      ],
+      "worldMap": [
+        436,
+        136,
+        1166,
+        489,
+        730,
+        353
+      ],
+      "leaflet": true,
+      "tilesLoaded": true,
+      "grid": null,
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": true,
+      "deviceMarker": false,
+      "markerScreen": null,
+      "coreScreen": null
+    }
+  },
+  "reload_sensors-a02.html": {
+    "errors": [],
+    "metric": {
+      "url": "sensors-a02.html",
+      "viewport": [
+        1366,
+        768
+      ],
+      "dpr": 1,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · ANT-A02",
+      "scrollW": 1366,
+      "scrollH": 768,
+      "clientW": 1366,
+      "clientH": 768,
+      "langRect": [
+        1218,
+        26,
+        1334,
+        56
+      ],
+      "langRightGap": 32,
+      "langTopGap": 26,
+      "header": [
+        280,
+        26,
+        1336,
+        102,
+        1056,
+        76
+      ],
+      "worldMap": null,
+      "leaflet": false,
+      "tilesLoaded": null,
+      "grid": null,
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": false,
+      "deviceMarker": false,
+      "markerScreen": null,
+      "coreScreen": null
+    }
+  },
+  "reload_sensors-a03.html": {
+    "errors": [],
+    "metric": {
+      "url": "sensors-a03.html",
+      "viewport": [
+        1366,
+        768
+      ],
+      "dpr": 1,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · ANT-A03",
+      "scrollW": 1366,
+      "scrollH": 768,
+      "clientW": 1366,
+      "clientH": 768,
+      "langRect": [
+        1218,
+        26,
+        1334,
+        56
+      ],
+      "langRightGap": 32,
+      "langTopGap": 26,
+      "header": [
+        280,
+        26,
+        1336,
+        102,
+        1056,
+        76
+      ],
+      "worldMap": null,
+      "leaflet": false,
+      "tilesLoaded": null,
+      "grid": null,
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": false,
+      "deviceMarker": false,
+      "markerScreen": null,
+      "coreScreen": null
+    }
+  },
+  "reload_telemetry-a02.html": {
+    "errors": [],
+    "metric": {
+      "url": "telemetry-a02.html",
+      "viewport": [
+        1366,
+        768
+      ],
+      "dpr": 1,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · ANT-A02",
+      "scrollW": 1366,
+      "scrollH": 768,
+      "clientW": 1366,
+      "clientH": 768,
+      "langRect": [
+        1218,
+        26,
+        1334,
+        56
+      ],
+      "langRightGap": 32,
+      "langTopGap": 26,
+      "header": [
+        280,
+        26,
+        1336,
+        102,
+        1056,
+        76
+      ],
+      "worldMap": null,
+      "leaflet": false,
+      "tilesLoaded": null,
+      "grid": null,
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": false,
+      "deviceMarker": false,
+      "markerScreen": null,
+      "coreScreen": null
+    }
+  },
+  "reload_telemetry-a03.html": {
+    "errors": [],
+    "metric": {
+      "url": "telemetry-a03.html",
+      "viewport": [
+        1366,
+        768
+      ],
+      "dpr": 1,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · ANT-A03",
+      "scrollW": 1366,
+      "scrollH": 768,
+      "clientW": 1366,
+      "clientH": 768,
+      "langRect": [
+        1218,
+        26,
+        1334,
+        56
+      ],
+      "langRightGap": 32,
+      "langTopGap": 26,
+      "header": [
+        280,
+        26,
+        1336,
+        102,
+        1056,
+        76
+      ],
+      "worldMap": null,
+      "leaflet": false,
+      "tilesLoaded": null,
+      "grid": null,
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": false,
+      "deviceMarker": false,
+      "markerScreen": null,
+      "coreScreen": null
+    }
+  },
+  "reload_hardware-a02.html": {
+    "errors": [],
+    "metric": {
+      "url": "hardware-a02.html",
+      "viewport": [
+        1366,
+        768
+      ],
+      "dpr": 1,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · ANT-A02",
+      "scrollW": 1366,
+      "scrollH": 768,
+      "clientW": 1366,
+      "clientH": 768,
+      "langRect": [
+        1218,
+        26,
+        1334,
+        56
+      ],
+      "langRightGap": 32,
+      "langTopGap": 26,
+      "header": [
+        280,
+        26,
+        1336,
+        87,
+        1056,
+        61
+      ],
+      "worldMap": null,
+      "leaflet": false,
+      "tilesLoaded": null,
+      "grid": null,
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": false,
+      "deviceMarker": false,
+      "markerScreen": null,
+      "coreScreen": null
+    }
+  },
+  "reload_hardware-a03.html": {
+    "errors": [],
+    "metric": {
+      "url": "hardware-a03.html",
+      "viewport": [
+        1366,
+        768
+      ],
+      "dpr": 1,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · ANT-A03",
+      "scrollW": 1366,
+      "scrollH": 768,
+      "clientW": 1366,
+      "clientH": 768,
+      "langRect": [
+        1218,
+        26,
+        1334,
+        56
+      ],
+      "langRightGap": 32,
+      "langTopGap": 26,
+      "header": [
+        280,
+        26,
+        1336,
+        87,
+        1056,
+        61
+      ],
+      "worldMap": null,
+      "leaflet": false,
+      "tilesLoaded": null,
+      "grid": null,
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": false,
+      "deviceMarker": false,
+      "markerScreen": null,
+      "coreScreen": null
+    }
+  },
+  "reload_analysis-a02.html": {
+    "errors": [],
+    "metric": {
+      "url": "analysis-a02.html",
+      "viewport": [
+        1366,
+        768
+      ],
+      "dpr": 1,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · ANT-A02",
+      "scrollW": 1366,
+      "scrollH": 768,
+      "clientW": 1366,
+      "clientH": 768,
+      "langRect": [
+        1218,
+        26,
+        1334,
+        56
+      ],
+      "langRightGap": 32,
+      "langTopGap": 26,
+      "header": [
+        280,
+        26,
+        1336,
+        93,
+        1056,
+        67
+      ],
+      "worldMap": null,
+      "leaflet": false,
+      "tilesLoaded": null,
+      "grid": null,
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": false,
+      "deviceMarker": false,
+      "markerScreen": null,
+      "coreScreen": null
+    }
+  },
+  "reload_analysis-a03.html": {
+    "errors": [],
+    "metric": {
+      "url": "analysis-a03.html",
+      "viewport": [
+        1366,
+        768
+      ],
+      "dpr": 1,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · ANT-A03",
+      "scrollW": 1366,
+      "scrollH": 768,
+      "clientW": 1366,
+      "clientH": 768,
+      "langRect": [
+        1218,
+        26,
+        1334,
+        56
+      ],
+      "langRightGap": 32,
+      "langTopGap": 26,
+      "header": [
+        280,
+        26,
+        1336,
+        93,
+        1056,
+        67
+      ],
+      "worldMap": null,
+      "leaflet": false,
+      "tilesLoaded": null,
+      "grid": null,
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": false,
+      "deviceMarker": false,
+      "markerScreen": null,
+      "coreScreen": null
+    }
+  },
+  "reload_a02.html": {
+    "errors": [],
+    "metric": {
+      "url": "a02.html",
+      "viewport": [
+        1366,
+        768
+      ],
+      "dpr": 1,
+      "lang": "zh-CN",
+      "title": "自主观测系统 · ANT-A02",
+      "scrollW": 1366,
+      "scrollH": 768,
+      "clientW": 1366,
+      "clientH": 768,
+      "langRect": [
+        1218,
+        28,
+        1334,
+        58
+      ],
+      "langRightGap": 32,
+      "langTopGap": 28,
+      "header": [
+        276,
+        12,
+        1340,
+        123,
+        1064,
+        111
+      ],
+      "worldMap": [
+        580,
+        356,
+        1327,
+        629,
+        747,
+        273
+      ],
+      "leaflet": false,
+      "tilesLoaded": null,
+      "grid": {
+        "css": [
+          745,
+          260
+        ],
+        "buf": [
+          300,
+          150
+        ]
+      },
+      "globeCv": null,
+      "globeReady": false,
+      "globeFallbackVisible": null,
+      "homeLoaded": false,
+      "deviceMap": false,
+      "deviceMarker": false,
+      "markerScreen": null,
+      "coreScreen": null
+    }
+  }
+}

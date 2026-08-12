@@ -1,0 +1,57 @@
+{
+  "tiles_network.html": {
+    "count": 10,
+    "loaded": true,
+    "errors": []
+  },
+  "tiles_location.html": {
+    "count": 18,
+    "loaded": true,
+    "errors": []
+  },
+  "dpr125": {
+    "ready": true,
+    "bodyLoaded": true,
+    "canvas": [
+      2400,
+      1350,
+      1920,
+      1080
+    ],
+    "dpr": 1.25,
+    "errors": []
+  },
+  "webglSim": {
+    "fallbackVisible": false,
+    "bodyLoaded": true,
+    "heroOpacity": "1",
+    "globeCanvas": true,
+    "errors": []
+  },
+  "cdnSim": {
+    "globeReady": true,
+    "fallbackVisible": false,
+    "bodyLoaded": true,
+    "resources": [
+      "build/three.min.js",
+      "dist/three-globe.min.js",
+      "build/three.min.js",
+      "dist/three-globe.min.js",
+      "build/three.min.js",
+      "dist/three-globe.min.js"
+    ],
+    "errors": []
+  },
+  "networkMarkerResize": {
+    "before": {
+      "x": 536,
+      "y": 448,
+      "inside": true
+    },
+    "after": {
+      "x": 347,
+      "y": 268,
+      "inside": true
+    }
+  }
+}
