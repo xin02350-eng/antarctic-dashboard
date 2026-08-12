@@ -30,6 +30,27 @@
     body.dashboard-page .mission-grid{grid-template-columns:minmax(0,1fr)}
     body.dashboard-page .map-status-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
     body.dashboard-page .side-panel{grid-template-rows:auto repeat(2,minmax(0,1fr))}
+    /* V47.25 · 一屏版式：三状态模块等宽 + 纵向紧凑 */
+    body.dashboard-page .mission-info.dashboard-command-strip{grid-template-columns:repeat(3,1fr);gap:12px;margin-top:8px;padding:0 14px}
+    body.dashboard-page .dashboard-command-strip .cmd-cell{padding:10px 14px;border-radius:8px}
+    body.dashboard-page .cmd-value{font-size:20px;margin-top:6px}
+    body.dashboard-page .cmd-sub{margin-top:3px}
+    body.dashboard-page .mission-header{padding:12px 18px 6px}
+    body.dashboard-page .mission-grid{margin-top:8px}
+    body.dashboard-page main{min-height:calc(100vh - 4px);padding-bottom:4px}
+    body.dashboard-page .map-panel-head{padding:8px 14px}
+    body.dashboard-page .map-status-grid{margin:10px 0 12px}
+    body.dashboard-page #worldMap{flex:0 1 auto;height:clamp(280px,42vh,500px)}
+    body.dashboard-page .stream-panel{padding:6px 14px}
+    body.dashboard-page .stream-row{padding:4px 10px}
+    @media (max-height:850px){
+      body.dashboard-page .mission-header{padding:10px 18px 4px}
+      body.dashboard-page .dashboard-command-strip .cmd-cell{padding:8px 12px}
+      body.dashboard-page .cmd-value{font-size:18px}
+      body.dashboard-page .mission-grid{margin-top:6px}
+      body.dashboard-page #worldMap{height:clamp(220px,32vh,300px)}
+      body.dashboard-page .stream-row{padding:3px 8px}
+    }
   </style>
 
   <!-- Leaflet 地图（真实地图，由 main.js 初始化） -->

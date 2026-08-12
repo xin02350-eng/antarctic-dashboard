@@ -1,0 +1,86 @@
+{
+  "zh1920": {
+    "viewport": [
+      1920,
+      1080
+    ],
+    "scrollH": 1080,
+    "hasVScroll": false,
+    "cells": [
+      {
+        "w": 513,
+        "h": 84
+      },
+      {
+        "w": 513,
+        "h": 84
+      },
+      {
+        "w": 513,
+        "h": 84
+      }
+    ],
+    "equalCells": true,
+    "mapH": 497,
+    "brandText": "自主观测网络",
+    "hasA02": false,
+    "hasComms": false,
+    "overflow": false
+  },
+  "en1920": {
+    "viewport": [
+      1920,
+      1080
+    ],
+    "scrollH": 1080,
+    "hasVScroll": false,
+    "cells": [
+      {
+        "w": 513,
+        "h": 84
+      },
+      {
+        "w": 513,
+        "h": 84
+      },
+      {
+        "w": 513,
+        "h": 84
+      }
+    ],
+    "equalCells": true,
+    "mapH": 497,
+    "brandText": "AUTONOMOUSNEXUS",
+    "hasA02": false,
+    "hasComms": false,
+    "overflow": false
+  },
+  "zh1366": {
+    "viewport": [
+      1366,
+      768
+    ],
+    "scrollH": 768,
+    "hasVScroll": false,
+    "cells": [
+      {
+        "w": 337,
+        "h": 77
+      },
+      {
+        "w": 337,
+        "h": 77
+      },
+      {
+        "w": 337,
+        "h": 77
+      }
+    ],
+    "equalCells": true,
+    "mapH": 261,
+    "brandText": "自主观测网络",
+    "hasA02": false,
+    "hasComms": false,
+    "overflow": false
+  }
+}
