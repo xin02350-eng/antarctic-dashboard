@@ -51,6 +51,14 @@
       body.dashboard-page #worldMap{height:clamp(220px,32vh,300px)}
       body.dashboard-page .stream-row{padding:3px 8px}
     }
+    /* V47.26 · 单屏锁定：html/body 与主区域均锁定 100vh，禁止纵向滚动 */
+    html,body{height:100%;overflow:hidden}
+    body.dashboard-page .app{height:100vh;height:100dvh;overflow:hidden}
+    body.dashboard-page main{height:100vh;height:100dvh;min-height:0;overflow:hidden}
+    body.dashboard-page #mapGraticule{height:100%!important}
+    @media (max-width:768px){
+      body.dashboard-page main{overflow-y:auto}
+    }
   </style>
 
   <!-- Leaflet 地图（真实地图，由 main.js 初始化） -->
@@ -319,6 +327,24 @@
   /* 经纬网：步长随缩放级别自适应，保证任何缩放下网格都清晰可见 */
   function drawGraticule(map, ctx, w, h) {
     ctx.clearRect(0, 0, w, h);
+    /* 底层蓝图网格：固定像素间距铺满整个地图容器，四边完整连续 */
+    var gstep = 48;
+    ctx.strokeStyle = 'rgba(140,234,255,.055)';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    for (var gx = 0; gx <= w; gx += gstep) { ctx.moveTo(gx, 0); ctx.lineTo(gx, h); }
+    for (var gy = 0; gy <= h; gy += gstep) { ctx.moveTo(0, gy); ctx.lineTo(w, gy); }
+    ctx.stroke();
+    ctx.strokeStyle = 'rgba(140,234,255,.04)';
+    ctx.beginPath();
+    for (var gk = -h; gk <= w; gk += gstep) {
+      var gx1 = gk >= 0 ? gk : 0;
+      var gy1 = gk >= 0 ? 0 : -gk;
+      var gx2, gy2;
+      if (w - gk <= h) { gx2 = w; gy2 = w - gk; } else { gx2 = gk + h; gy2 = h; }
+      ctx.moveTo(gx1, gy1); ctx.lineTo(gx2, gy2);
+    }
+    ctx.stroke();
     var b = map.getBounds();
     var z = map.getZoom();
     var baseStep = z >= 10 ? 0.25 : z >= 8 ? 0.5 : z >= 6 ? 1 : z >= 4 ? 5 : 10;
