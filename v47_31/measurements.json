@@ -1,0 +1,222 @@
+{
+  "location-zh-1920x1080.png": {
+    "viewport": [
+      1920,
+      1080
+    ],
+    "docScrollH": 1080,
+    "hasVScroll": false,
+    "hOverflow": false,
+    "header": {
+      "t": 22,
+      "b": 119,
+      "l": 286,
+      "r": 1884,
+      "h": 97,
+      "w": 1598
+    },
+    "map": {
+      "t": 163,
+      "b": 932,
+      "l": 301,
+      "r": 1869,
+      "h": 769,
+      "w": 1568
+    },
+    "status": {
+      "t": 964,
+      "b": 1058,
+      "l": 286,
+      "r": 1884,
+      "h": 94,
+      "w": 1598
+    },
+    "card": [
+      1598,
+      94,
+      3
+    ],
+    "layers": {
+      "grid": true,
+      "halo": true,
+      "rings": true,
+      "core": true,
+      "label": true
+    },
+    "mp": {
+      "x": 1084,
+      "y": 546
+    },
+    "ringCentered": true,
+    "coreCentered": true,
+    "haloC": true,
+    "labelRight": true,
+    "labelText": "南京",
+    "hasForbidden": false
+  },
+  "location-en-1920x1080.png": {
+    "viewport": [
+      1920,
+      1080
+    ],
+    "docScrollH": 1080,
+    "hasVScroll": false,
+    "hOverflow": false,
+    "header": {
+      "t": 22,
+      "b": 119,
+      "l": 286,
+      "r": 1884,
+      "h": 97,
+      "w": 1598
+    },
+    "map": {
+      "t": 163,
+      "b": 932,
+      "l": 301,
+      "r": 1869,
+      "h": 769,
+      "w": 1568
+    },
+    "status": {
+      "t": 964,
+      "b": 1058,
+      "l": 286,
+      "r": 1884,
+      "h": 94,
+      "w": 1598
+    },
+    "card": [
+      1598,
+      94,
+      3
+    ],
+    "layers": {
+      "grid": true,
+      "halo": true,
+      "rings": true,
+      "core": true,
+      "label": true
+    },
+    "mp": {
+      "x": 1084,
+      "y": 546
+    },
+    "ringCentered": true,
+    "coreCentered": true,
+    "haloC": true,
+    "labelRight": true,
+    "labelText": "NANJING",
+    "hasForbidden": false
+  },
+  "location-zh-1366x768.png": {
+    "viewport": [
+      1366,
+      768
+    ],
+    "docScrollH": 768,
+    "hasVScroll": false,
+    "hOverflow": false,
+    "header": {
+      "t": 12,
+      "b": 102,
+      "l": 274,
+      "r": 1342,
+      "h": 90,
+      "w": 1068
+    },
+    "map": {
+      "t": 139,
+      "b": 637,
+      "l": 289,
+      "r": 1327,
+      "h": 498,
+      "w": 1038
+    },
+    "status": {
+      "t": 662,
+      "b": 756,
+      "l": 274,
+      "r": 1342,
+      "h": 94,
+      "w": 1068
+    },
+    "card": [
+      1068,
+      94,
+      3
+    ],
+    "layers": {
+      "grid": true,
+      "halo": true,
+      "rings": true,
+      "core": true,
+      "label": true
+    },
+    "mp": {
+      "x": 807,
+      "y": 387
+    },
+    "ringCentered": true,
+    "coreCentered": true,
+    "haloC": true,
+    "labelRight": true,
+    "labelText": "南京",
+    "hasForbidden": false
+  },
+  "location-zh-390x844.png": {
+    "viewport": [
+      390,
+      844
+    ],
+    "docScrollH": 844,
+    "hasVScroll": false,
+    "hOverflow": false,
+    "header": {
+      "t": 64,
+      "b": 216,
+      "l": 24,
+      "r": 366,
+      "h": 152,
+      "w": 342
+    },
+    "map": {
+      "t": 251,
+      "b": 690,
+      "l": 35,
+      "r": 355,
+      "h": 439,
+      "w": 320
+    },
+    "status": {
+      "t": 729,
+      "b": 828,
+      "l": 24,
+      "r": 366,
+      "h": 99,
+      "w": 342
+    },
+    "card": [
+      342,
+      99,
+      3
+    ],
+    "layers": {
+      "grid": true,
+      "halo": true,
+      "rings": true,
+      "core": true,
+      "label": true
+    },
+    "mp": {
+      "x": 194,
+      "y": 469
+    },
+    "ringCentered": true,
+    "coreCentered": true,
+    "haloC": true,
+    "labelRight": true,
+    "labelText": "南京",
+    "hasForbidden": false
+  }
+}

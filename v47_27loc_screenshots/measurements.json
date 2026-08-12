@@ -1,0 +1,132 @@
+{
+  "location-zh-1920x1080.png": {
+    "viewport": [
+      1920,
+      1080
+    ],
+    "docScrollH": 1080,
+    "hasVScroll": false,
+    "header": {
+      "t": 22,
+      "b": 120,
+      "h": 98,
+      "w": 1598
+    },
+    "mapPanel": {
+      "t": 137,
+      "b": 938,
+      "h": 801,
+      "w": 1598
+    },
+    "worldMap": {
+      "t": 171,
+      "b": 923,
+      "h": 752,
+      "w": 1568
+    },
+    "statusGrid": {
+      "t": 955,
+      "b": 1058,
+      "h": 103,
+      "w": 1598
+    },
+    "statusCards": 1,
+    "statusCard": {
+      "w": 1598,
+      "h": 103,
+      "subs": 3
+    },
+    "deviceMap": true,
+    "deviceMarker": true,
+    "hasDeploy": false,
+    "hasA02": false,
+    "hasLink": false
+  },
+  "location-en-1920x1080.png": {
+    "viewport": [
+      1920,
+      1080
+    ],
+    "docScrollH": 1080,
+    "hasVScroll": false,
+    "header": {
+      "t": 22,
+      "b": 120,
+      "h": 98,
+      "w": 1598
+    },
+    "mapPanel": {
+      "t": 137,
+      "b": 938,
+      "h": 801,
+      "w": 1598
+    },
+    "worldMap": {
+      "t": 171,
+      "b": 923,
+      "h": 752,
+      "w": 1568
+    },
+    "statusGrid": {
+      "t": 955,
+      "b": 1058,
+      "h": 103,
+      "w": 1598
+    },
+    "statusCards": 1,
+    "statusCard": {
+      "w": 1598,
+      "h": 103,
+      "subs": 3
+    },
+    "deviceMap": true,
+    "deviceMarker": true,
+    "hasDeploy": false,
+    "hasA02": false,
+    "hasLink": false
+  },
+  "location-zh-1366x768.png": {
+    "viewport": [
+      1366,
+      768
+    ],
+    "docScrollH": 768,
+    "hasVScroll": false,
+    "header": {
+      "t": 12,
+      "b": 88,
+      "h": 76,
+      "w": 1068
+    },
+    "mapPanel": {
+      "t": 98,
+      "b": 643,
+      "h": 545,
+      "w": 1068
+    },
+    "worldMap": {
+      "t": 132,
+      "b": 628,
+      "h": 496,
+      "w": 1038
+    },
+    "statusGrid": {
+      "t": 653,
+      "b": 756,
+      "h": 103,
+      "w": 1068
+    },
+    "statusCards": 1,
+    "statusCard": {
+      "w": 1068,
+      "h": 103,
+      "subs": 3
+    },
+    "deviceMap": true,
+    "deviceMarker": true,
+    "hasDeploy": false,
+    "hasA02": false,
+    "hasLink": false
+  },
+  "exceptions": []
+}

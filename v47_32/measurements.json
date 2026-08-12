@@ -1,0 +1,1598 @@
+{
+  "index.html@1920": {
+    "url": "index.html",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "switchCount": 1,
+    "hasFloat": false,
+    "swRect": [
+      1770,
+      35,
+      1874,
+      65
+    ],
+    "rightGap": 46,
+    "topGap": 35,
+    "overlapHeaderRight": false,
+    "hOverflow": false
+  },
+  "network.html@1920": {
+    "url": "network.html",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "switchCount": 1,
+    "hasFloat": false,
+    "swRect": [
+      1788,
+      18,
+      1892,
+      48
+    ],
+    "rightGap": 28,
+    "topGap": 18,
+    "overlapHeaderRight": false,
+    "hOverflow": false
+  },
+  "dashboard.html@1920": {
+    "url": "dashboard.html",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "switchCount": 1,
+    "hasFloat": false,
+    "swRect": [
+      1737,
+      67,
+      1853,
+      97
+    ],
+    "rightGap": 67,
+    "topGap": 67,
+    "overlapHeaderRight": false,
+    "hOverflow": false
+  },
+  "location.html@1920": {
+    "url": "location.html",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "switchCount": 1,
+    "hasFloat": true,
+    "swRect": [
+      1772,
+      28,
+      1888,
+      58
+    ],
+    "rightGap": 32,
+    "topGap": 28,
+    "overlapHeaderRight": false,
+    "hOverflow": false
+  },
+  "sensors.html@1920": {
+    "url": "sensors.html",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "switchCount": 1,
+    "hasFloat": true,
+    "swRect": [
+      1772,
+      28,
+      1888,
+      58
+    ],
+    "rightGap": 32,
+    "topGap": 28,
+    "overlapHeaderRight": false,
+    "hOverflow": false
+  },
+  "telemetry.html@1920": {
+    "url": "telemetry.html",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "switchCount": 1,
+    "hasFloat": true,
+    "swRect": [
+      1772,
+      28,
+      1888,
+      58
+    ],
+    "rightGap": 32,
+    "topGap": 28,
+    "overlapHeaderRight": false,
+    "hOverflow": false
+  },
+  "hardware.html@1920": {
+    "url": "hardware.html",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "switchCount": 1,
+    "hasFloat": true,
+    "swRect": [
+      1772,
+      28,
+      1888,
+      58
+    ],
+    "rightGap": 32,
+    "topGap": 28,
+    "overlapHeaderRight": false,
+    "hOverflow": false
+  },
+  "analysis.html@1920": {
+    "url": "analysis.html",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "switchCount": 1,
+    "hasFloat": true,
+    "swRect": [
+      1772,
+      28,
+      1888,
+      58
+    ],
+    "rightGap": 32,
+    "topGap": 28,
+    "overlapHeaderRight": false,
+    "hOverflow": false
+  },
+  "dashboard-a02.html@1920": {
+    "url": "dashboard-a02.html",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "switchCount": 1,
+    "hasFloat": true,
+    "swRect": [
+      1772,
+      26,
+      1888,
+      56
+    ],
+    "rightGap": 32,
+    "topGap": 26,
+    "overlapHeaderRight": false,
+    "hOverflow": false
+  },
+  "dashboard-a03.html@1920": {
+    "url": "dashboard-a03.html",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "switchCount": 1,
+    "hasFloat": true,
+    "swRect": [
+      1772,
+      26,
+      1888,
+      56
+    ],
+    "rightGap": 32,
+    "topGap": 26,
+    "overlapHeaderRight": false,
+    "hOverflow": false
+  },
+  "location-a02.html@1920": {
+    "url": "location-a02.html",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "switchCount": 1,
+    "hasFloat": true,
+    "swRect": [
+      1757,
+      26,
+      1873,
+      56
+    ],
+    "rightGap": 47,
+    "topGap": 26,
+    "overlapHeaderRight": false,
+    "hOverflow": false
+  },
+  "location-a03.html@1920": {
+    "url": "location-a03.html",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "switchCount": 1,
+    "hasFloat": true,
+    "swRect": [
+      1757,
+      26,
+      1873,
+      56
+    ],
+    "rightGap": 47,
+    "topGap": 26,
+    "overlapHeaderRight": false,
+    "hOverflow": false
+  },
+  "sensors-a02.html@1920": {
+    "url": "sensors-a02.html",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "switchCount": 1,
+    "hasFloat": true,
+    "swRect": [
+      1772,
+      26,
+      1888,
+      56
+    ],
+    "rightGap": 32,
+    "topGap": 26,
+    "overlapHeaderRight": false,
+    "hOverflow": false
+  },
+  "sensors-a03.html@1920": {
+    "url": "sensors-a03.html",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "switchCount": 1,
+    "hasFloat": true,
+    "swRect": [
+      1772,
+      26,
+      1888,
+      56
+    ],
+    "rightGap": 32,
+    "topGap": 26,
+    "overlapHeaderRight": false,
+    "hOverflow": false
+  },
+  "telemetry-a02.html@1920": {
+    "url": "telemetry-a02.html",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "switchCount": 1,
+    "hasFloat": true,
+    "swRect": [
+      1772,
+      26,
+      1888,
+      56
+    ],
+    "rightGap": 32,
+    "topGap": 26,
+    "overlapHeaderRight": false,
+    "hOverflow": false
+  },
+  "telemetry-a03.html@1920": {
+    "url": "telemetry-a03.html",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "switchCount": 1,
+    "hasFloat": true,
+    "swRect": [
+      1772,
+      26,
+      1888,
+      56
+    ],
+    "rightGap": 32,
+    "topGap": 26,
+    "overlapHeaderRight": false,
+    "hOverflow": false
+  },
+  "hardware-a02.html@1920": {
+    "url": "hardware-a02.html",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "switchCount": 1,
+    "hasFloat": true,
+    "swRect": [
+      1772,
+      26,
+      1888,
+      56
+    ],
+    "rightGap": 32,
+    "topGap": 26,
+    "overlapHeaderRight": false,
+    "hOverflow": false
+  },
+  "hardware-a03.html@1920": {
+    "url": "hardware-a03.html",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "switchCount": 1,
+    "hasFloat": true,
+    "swRect": [
+      1772,
+      26,
+      1888,
+      56
+    ],
+    "rightGap": 32,
+    "topGap": 26,
+    "overlapHeaderRight": false,
+    "hOverflow": false
+  },
+  "analysis-a02.html@1920": {
+    "url": "analysis-a02.html",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "switchCount": 1,
+    "hasFloat": true,
+    "swRect": [
+      1772,
+      26,
+      1888,
+      56
+    ],
+    "rightGap": 32,
+    "topGap": 26,
+    "overlapHeaderRight": false,
+    "hOverflow": false
+  },
+  "analysis-a03.html@1920": {
+    "url": "analysis-a03.html",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "switchCount": 1,
+    "hasFloat": true,
+    "swRect": [
+      1772,
+      26,
+      1888,
+      56
+    ],
+    "rightGap": 32,
+    "topGap": 26,
+    "overlapHeaderRight": false,
+    "hOverflow": false
+  },
+  "a02.html@1920": {
+    "url": "a02.html",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "switchCount": 1,
+    "hasFloat": true,
+    "swRect": [
+      1772,
+      28,
+      1888,
+      58
+    ],
+    "rightGap": 32,
+    "topGap": 28,
+    "overlapHeaderRight": false,
+    "hOverflow": false
+  },
+  "index.html@390": {
+    "url": "index.html",
+    "viewport": [
+      390,
+      844
+    ],
+    "switchCount": 1,
+    "hasFloat": false,
+    "swRect": [
+      266,
+      21,
+      370,
+      51
+    ],
+    "rightGap": 20,
+    "topGap": 21,
+    "overlapHeaderRight": false,
+    "hOverflow": false
+  },
+  "network.html@390": {
+    "url": "network.html",
+    "viewport": [
+      390,
+      844
+    ],
+    "switchCount": 1,
+    "hasFloat": false,
+    "swRect": [
+      270,
+      14,
+      374,
+      44
+    ],
+    "rightGap": 16,
+    "topGap": 14,
+    "overlapHeaderRight": false,
+    "hOverflow": false
+  },
+  "dashboard.html@390": {
+    "url": "dashboard.html",
+    "viewport": [
+      390,
+      844
+    ],
+    "switchCount": 1,
+    "hasFloat": false,
+    "swRect": [
+      272,
+      16,
+      378,
+      44
+    ],
+    "rightGap": 12,
+    "topGap": 16,
+    "overlapHeaderRight": false,
+    "hOverflow": false
+  },
+  "location.html@390": {
+    "url": "location.html",
+    "viewport": [
+      390,
+      844
+    ],
+    "switchCount": 1,
+    "hasFloat": true,
+    "swRect": [
+      270,
+      18,
+      376,
+      46
+    ],
+    "rightGap": 14,
+    "topGap": 18,
+    "overlapHeaderRight": false,
+    "hOverflow": false
+  },
+  "sensors.html@390": {
+    "url": "sensors.html",
+    "viewport": [
+      390,
+      844
+    ],
+    "switchCount": 1,
+    "hasFloat": true,
+    "swRect": [
+      270,
+      18,
+      376,
+      46
+    ],
+    "rightGap": 14,
+    "topGap": 18,
+    "overlapHeaderRight": false,
+    "hOverflow": false
+  },
+  "telemetry.html@390": {
+    "url": "telemetry.html",
+    "viewport": [
+      390,
+      844
+    ],
+    "switchCount": 1,
+    "hasFloat": true,
+    "swRect": [
+      270,
+      18,
+      376,
+      46
+    ],
+    "rightGap": 14,
+    "topGap": 18,
+    "overlapHeaderRight": false,
+    "hOverflow": false
+  },
+  "hardware.html@390": {
+    "url": "hardware.html",
+    "viewport": [
+      390,
+      844
+    ],
+    "switchCount": 1,
+    "hasFloat": true,
+    "swRect": [
+      270,
+      18,
+      376,
+      46
+    ],
+    "rightGap": 14,
+    "topGap": 18,
+    "overlapHeaderRight": false,
+    "hOverflow": false
+  },
+  "analysis.html@390": {
+    "url": "analysis.html",
+    "viewport": [
+      390,
+      844
+    ],
+    "switchCount": 1,
+    "hasFloat": true,
+    "swRect": [
+      270,
+      18,
+      376,
+      46
+    ],
+    "rightGap": 14,
+    "topGap": 18,
+    "overlapHeaderRight": false,
+    "hOverflow": false
+  },
+  "dashboard-a02.html@390": {
+    "url": "dashboard-a02.html",
+    "viewport": [
+      390,
+      844
+    ],
+    "switchCount": 1,
+    "hasFloat": true,
+    "swRect": [
+      252,
+      26,
+      358,
+      54
+    ],
+    "rightGap": 32,
+    "topGap": 26,
+    "overlapHeaderRight": false,
+    "hOverflow": false
+  },
+  "dashboard-a03.html@390": {
+    "url": "dashboard-a03.html",
+    "viewport": [
+      390,
+      844
+    ],
+    "switchCount": 1,
+    "hasFloat": true,
+    "swRect": [
+      252,
+      26,
+      358,
+      54
+    ],
+    "rightGap": 32,
+    "topGap": 26,
+    "overlapHeaderRight": false,
+    "hOverflow": false
+  },
+  "location-a02.html@390": {
+    "url": "location-a02.html",
+    "viewport": [
+      390,
+      844
+    ],
+    "switchCount": 1,
+    "hasFloat": true,
+    "swRect": [
+      252,
+      26,
+      358,
+      54
+    ],
+    "rightGap": 32,
+    "topGap": 26,
+    "overlapHeaderRight": false,
+    "hOverflow": false
+  },
+  "location-a03.html@390": {
+    "url": "location-a03.html",
+    "viewport": [
+      390,
+      844
+    ],
+    "switchCount": 1,
+    "hasFloat": true,
+    "swRect": [
+      252,
+      26,
+      358,
+      54
+    ],
+    "rightGap": 32,
+    "topGap": 26,
+    "overlapHeaderRight": false,
+    "hOverflow": false
+  },
+  "sensors-a02.html@390": {
+    "url": "sensors-a02.html",
+    "viewport": [
+      390,
+      844
+    ],
+    "switchCount": 1,
+    "hasFloat": true,
+    "swRect": [
+      252,
+      26,
+      358,
+      54
+    ],
+    "rightGap": 32,
+    "topGap": 26,
+    "overlapHeaderRight": false,
+    "hOverflow": false
+  },
+  "sensors-a03.html@390": {
+    "url": "sensors-a03.html",
+    "viewport": [
+      390,
+      844
+    ],
+    "switchCount": 1,
+    "hasFloat": true,
+    "swRect": [
+      252,
+      26,
+      358,
+      54
+    ],
+    "rightGap": 32,
+    "topGap": 26,
+    "overlapHeaderRight": false,
+    "hOverflow": false
+  },
+  "telemetry-a02.html@390": {
+    "url": "telemetry-a02.html",
+    "viewport": [
+      390,
+      844
+    ],
+    "switchCount": 1,
+    "hasFloat": true,
+    "swRect": [
+      252,
+      26,
+      358,
+      54
+    ],
+    "rightGap": 32,
+    "topGap": 26,
+    "overlapHeaderRight": false,
+    "hOverflow": false
+  },
+  "telemetry-a03.html@390": {
+    "url": "telemetry-a03.html",
+    "viewport": [
+      390,
+      844
+    ],
+    "switchCount": 1,
+    "hasFloat": true,
+    "swRect": [
+      252,
+      26,
+      358,
+      54
+    ],
+    "rightGap": 32,
+    "topGap": 26,
+    "overlapHeaderRight": false,
+    "hOverflow": false
+  },
+  "hardware-a02.html@390": {
+    "url": "hardware-a02.html",
+    "viewport": [
+      390,
+      844
+    ],
+    "switchCount": 1,
+    "hasFloat": true,
+    "swRect": [
+      252,
+      26,
+      358,
+      54
+    ],
+    "rightGap": 32,
+    "topGap": 26,
+    "overlapHeaderRight": false,
+    "hOverflow": false
+  },
+  "hardware-a03.html@390": {
+    "url": "hardware-a03.html",
+    "viewport": [
+      390,
+      844
+    ],
+    "switchCount": 1,
+    "hasFloat": true,
+    "swRect": [
+      252,
+      26,
+      358,
+      54
+    ],
+    "rightGap": 32,
+    "topGap": 26,
+    "overlapHeaderRight": false,
+    "hOverflow": false
+  },
+  "analysis-a02.html@390": {
+    "url": "analysis-a02.html",
+    "viewport": [
+      390,
+      844
+    ],
+    "switchCount": 1,
+    "hasFloat": true,
+    "swRect": [
+      252,
+      26,
+      358,
+      54
+    ],
+    "rightGap": 32,
+    "topGap": 26,
+    "overlapHeaderRight": false,
+    "hOverflow": false
+  },
+  "analysis-a03.html@390": {
+    "url": "analysis-a03.html",
+    "viewport": [
+      390,
+      844
+    ],
+    "switchCount": 1,
+    "hasFloat": true,
+    "swRect": [
+      252,
+      26,
+      358,
+      54
+    ],
+    "rightGap": 32,
+    "topGap": 26,
+    "overlapHeaderRight": false,
+    "hOverflow": false
+  },
+  "a02.html@390": {
+    "url": "a02.html",
+    "viewport": [
+      390,
+      844
+    ],
+    "switchCount": 1,
+    "hasFloat": true,
+    "swRect": [
+      270,
+      18,
+      376,
+      46
+    ],
+    "rightGap": 14,
+    "topGap": 18,
+    "overlapHeaderRight": false,
+    "hOverflow": false
+  },
+  "index.html@1366": {
+    "url": "index.html",
+    "viewport": [
+      1366,
+      768
+    ],
+    "switchCount": 1,
+    "hasFloat": false,
+    "swRect": [
+      1216,
+      35,
+      1320,
+      65
+    ],
+    "rightGap": 46,
+    "topGap": 35,
+    "overlapHeaderRight": false,
+    "hOverflow": false
+  },
+  "network.html@1366": {
+    "url": "network.html",
+    "viewport": [
+      1366,
+      768
+    ],
+    "switchCount": 1,
+    "hasFloat": false,
+    "swRect": [
+      1234,
+      18,
+      1338,
+      48
+    ],
+    "rightGap": 28,
+    "topGap": 18,
+    "overlapHeaderRight": false,
+    "hOverflow": false
+  },
+  "dashboard.html@1366": {
+    "url": "dashboard.html",
+    "viewport": [
+      1366,
+      768
+    ],
+    "switchCount": 1,
+    "hasFloat": false,
+    "swRect": [
+      1197,
+      53,
+      1313,
+      83
+    ],
+    "rightGap": 53,
+    "topGap": 53,
+    "overlapHeaderRight": false,
+    "hOverflow": false
+  },
+  "location.html@1366": {
+    "url": "location.html",
+    "viewport": [
+      1366,
+      768
+    ],
+    "switchCount": 1,
+    "hasFloat": true,
+    "swRect": [
+      1218,
+      28,
+      1334,
+      58
+    ],
+    "rightGap": 32,
+    "topGap": 28,
+    "overlapHeaderRight": false,
+    "hOverflow": false
+  },
+  "sensors.html@1366": {
+    "url": "sensors.html",
+    "viewport": [
+      1366,
+      768
+    ],
+    "switchCount": 1,
+    "hasFloat": true,
+    "swRect": [
+      1218,
+      28,
+      1334,
+      58
+    ],
+    "rightGap": 32,
+    "topGap": 28,
+    "overlapHeaderRight": false,
+    "hOverflow": false
+  },
+  "telemetry.html@1366": {
+    "url": "telemetry.html",
+    "viewport": [
+      1366,
+      768
+    ],
+    "switchCount": 1,
+    "hasFloat": true,
+    "swRect": [
+      1218,
+      28,
+      1334,
+      58
+    ],
+    "rightGap": 32,
+    "topGap": 28,
+    "overlapHeaderRight": false,
+    "hOverflow": false
+  },
+  "hardware.html@1366": {
+    "url": "hardware.html",
+    "viewport": [
+      1366,
+      768
+    ],
+    "switchCount": 1,
+    "hasFloat": true,
+    "swRect": [
+      1218,
+      28,
+      1334,
+      58
+    ],
+    "rightGap": 32,
+    "topGap": 28,
+    "overlapHeaderRight": false,
+    "hOverflow": false
+  },
+  "analysis.html@1366": {
+    "url": "analysis.html",
+    "viewport": [
+      1366,
+      768
+    ],
+    "switchCount": 1,
+    "hasFloat": true,
+    "swRect": [
+      1218,
+      28,
+      1334,
+      58
+    ],
+    "rightGap": 32,
+    "topGap": 28,
+    "overlapHeaderRight": false,
+    "hOverflow": false
+  },
+  "dashboard-a02.html@1366": {
+    "url": "dashboard-a02.html",
+    "viewport": [
+      1366,
+      768
+    ],
+    "switchCount": 1,
+    "hasFloat": true,
+    "swRect": [
+      1218,
+      26,
+      1334,
+      56
+    ],
+    "rightGap": 32,
+    "topGap": 26,
+    "overlapHeaderRight": false,
+    "hOverflow": false
+  },
+  "dashboard-a03.html@1366": {
+    "url": "dashboard-a03.html",
+    "viewport": [
+      1366,
+      768
+    ],
+    "switchCount": 1,
+    "hasFloat": true,
+    "swRect": [
+      1218,
+      26,
+      1334,
+      56
+    ],
+    "rightGap": 32,
+    "topGap": 26,
+    "overlapHeaderRight": false,
+    "hOverflow": false
+  },
+  "location-a02.html@1366": {
+    "url": "location-a02.html",
+    "viewport": [
+      1366,
+      768
+    ],
+    "switchCount": 1,
+    "hasFloat": true,
+    "swRect": [
+      1203,
+      26,
+      1319,
+      56
+    ],
+    "rightGap": 47,
+    "topGap": 26,
+    "overlapHeaderRight": false,
+    "hOverflow": false
+  },
+  "location-a03.html@1366": {
+    "url": "location-a03.html",
+    "viewport": [
+      1366,
+      768
+    ],
+    "switchCount": 1,
+    "hasFloat": true,
+    "swRect": [
+      1203,
+      26,
+      1319,
+      56
+    ],
+    "rightGap": 47,
+    "topGap": 26,
+    "overlapHeaderRight": false,
+    "hOverflow": false
+  },
+  "sensors-a02.html@1366": {
+    "url": "sensors-a02.html",
+    "viewport": [
+      1366,
+      768
+    ],
+    "switchCount": 1,
+    "hasFloat": true,
+    "swRect": [
+      1218,
+      26,
+      1334,
+      56
+    ],
+    "rightGap": 32,
+    "topGap": 26,
+    "overlapHeaderRight": false,
+    "hOverflow": false
+  },
+  "sensors-a03.html@1366": {
+    "url": "sensors-a03.html",
+    "viewport": [
+      1366,
+      768
+    ],
+    "switchCount": 1,
+    "hasFloat": true,
+    "swRect": [
+      1218,
+      26,
+      1334,
+      56
+    ],
+    "rightGap": 32,
+    "topGap": 26,
+    "overlapHeaderRight": false,
+    "hOverflow": false
+  },
+  "telemetry-a02.html@1366": {
+    "url": "telemetry-a02.html",
+    "viewport": [
+      1366,
+      768
+    ],
+    "switchCount": 1,
+    "hasFloat": true,
+    "swRect": [
+      1218,
+      26,
+      1334,
+      56
+    ],
+    "rightGap": 32,
+    "topGap": 26,
+    "overlapHeaderRight": false,
+    "hOverflow": false
+  },
+  "telemetry-a03.html@1366": {
+    "url": "telemetry-a03.html",
+    "viewport": [
+      1366,
+      768
+    ],
+    "switchCount": 1,
+    "hasFloat": true,
+    "swRect": [
+      1218,
+      26,
+      1334,
+      56
+    ],
+    "rightGap": 32,
+    "topGap": 26,
+    "overlapHeaderRight": false,
+    "hOverflow": false
+  },
+  "hardware-a02.html@1366": {
+    "url": "hardware-a02.html",
+    "viewport": [
+      1366,
+      768
+    ],
+    "switchCount": 1,
+    "hasFloat": true,
+    "swRect": [
+      1218,
+      26,
+      1334,
+      56
+    ],
+    "rightGap": 32,
+    "topGap": 26,
+    "overlapHeaderRight": false,
+    "hOverflow": false
+  },
+  "hardware-a03.html@1366": {
+    "url": "hardware-a03.html",
+    "viewport": [
+      1366,
+      768
+    ],
+    "switchCount": 1,
+    "hasFloat": true,
+    "swRect": [
+      1218,
+      26,
+      1334,
+      56
+    ],
+    "rightGap": 32,
+    "topGap": 26,
+    "overlapHeaderRight": false,
+    "hOverflow": false
+  },
+  "analysis-a02.html@1366": {
+    "url": "analysis-a02.html",
+    "viewport": [
+      1366,
+      768
+    ],
+    "switchCount": 1,
+    "hasFloat": true,
+    "swRect": [
+      1218,
+      26,
+      1334,
+      56
+    ],
+    "rightGap": 32,
+    "topGap": 26,
+    "overlapHeaderRight": false,
+    "hOverflow": false
+  },
+  "analysis-a03.html@1366": {
+    "url": "analysis-a03.html",
+    "viewport": [
+      1366,
+      768
+    ],
+    "switchCount": 1,
+    "hasFloat": true,
+    "swRect": [
+      1218,
+      26,
+      1334,
+      56
+    ],
+    "rightGap": 32,
+    "topGap": 26,
+    "overlapHeaderRight": false,
+    "hOverflow": false
+  },
+  "a02.html@1366": {
+    "url": "a02.html",
+    "viewport": [
+      1366,
+      768
+    ],
+    "switchCount": 1,
+    "hasFloat": true,
+    "swRect": [
+      1218,
+      28,
+      1334,
+      58
+    ],
+    "rightGap": 32,
+    "topGap": 28,
+    "overlapHeaderRight": false,
+    "hOverflow": false
+  },
+  "index.html@1024": {
+    "url": "index.html",
+    "viewport": [
+      1024,
+      1366
+    ],
+    "switchCount": 1,
+    "hasFloat": false,
+    "swRect": [
+      874,
+      35,
+      978,
+      65
+    ],
+    "rightGap": 46,
+    "topGap": 35,
+    "overlapHeaderRight": false,
+    "hOverflow": false
+  },
+  "network.html@1024": {
+    "url": "network.html",
+    "viewport": [
+      1024,
+      1366
+    ],
+    "switchCount": 1,
+    "hasFloat": false,
+    "swRect": [
+      892,
+      18,
+      996,
+      48
+    ],
+    "rightGap": 28,
+    "topGap": 18,
+    "overlapHeaderRight": false,
+    "hOverflow": false
+  },
+  "dashboard.html@1024": {
+    "url": "dashboard.html",
+    "viewport": [
+      1024,
+      1366
+    ],
+    "switchCount": 1,
+    "hasFloat": false,
+    "swRect": [
+      865,
+      61,
+      981,
+      91
+    ],
+    "rightGap": 43,
+    "topGap": 61,
+    "overlapHeaderRight": false,
+    "hOverflow": false
+  },
+  "location.html@1024": {
+    "url": "location.html",
+    "viewport": [
+      1024,
+      1366
+    ],
+    "switchCount": 1,
+    "hasFloat": true,
+    "swRect": [
+      876,
+      28,
+      992,
+      58
+    ],
+    "rightGap": 32,
+    "topGap": 28,
+    "overlapHeaderRight": false,
+    "hOverflow": false
+  },
+  "sensors.html@1024": {
+    "url": "sensors.html",
+    "viewport": [
+      1024,
+      1366
+    ],
+    "switchCount": 1,
+    "hasFloat": true,
+    "swRect": [
+      876,
+      28,
+      992,
+      58
+    ],
+    "rightGap": 32,
+    "topGap": 28,
+    "overlapHeaderRight": false,
+    "hOverflow": false
+  },
+  "telemetry.html@1024": {
+    "url": "telemetry.html",
+    "viewport": [
+      1024,
+      1366
+    ],
+    "switchCount": 1,
+    "hasFloat": true,
+    "swRect": [
+      876,
+      28,
+      992,
+      58
+    ],
+    "rightGap": 32,
+    "topGap": 28,
+    "overlapHeaderRight": false,
+    "hOverflow": false
+  },
+  "hardware.html@1024": {
+    "url": "hardware.html",
+    "viewport": [
+      1024,
+      1366
+    ],
+    "switchCount": 1,
+    "hasFloat": true,
+    "swRect": [
+      876,
+      28,
+      992,
+      58
+    ],
+    "rightGap": 32,
+    "topGap": 28,
+    "overlapHeaderRight": false,
+    "hOverflow": false
+  },
+  "analysis.html@1024": {
+    "url": "analysis.html",
+    "viewport": [
+      1024,
+      1366
+    ],
+    "switchCount": 1,
+    "hasFloat": true,
+    "swRect": [
+      861,
+      28,
+      977,
+      58
+    ],
+    "rightGap": 47,
+    "topGap": 28,
+    "overlapHeaderRight": false,
+    "hOverflow": false
+  },
+  "dashboard-a02.html@1024": {
+    "url": "dashboard-a02.html",
+    "viewport": [
+      1024,
+      1366
+    ],
+    "switchCount": 1,
+    "hasFloat": true,
+    "swRect": [
+      876,
+      26,
+      992,
+      56
+    ],
+    "rightGap": 32,
+    "topGap": 26,
+    "overlapHeaderRight": false,
+    "hOverflow": false
+  },
+  "dashboard-a03.html@1024": {
+    "url": "dashboard-a03.html",
+    "viewport": [
+      1024,
+      1366
+    ],
+    "switchCount": 1,
+    "hasFloat": true,
+    "swRect": [
+      876,
+      26,
+      992,
+      56
+    ],
+    "rightGap": 32,
+    "topGap": 26,
+    "overlapHeaderRight": false,
+    "hOverflow": false
+  },
+  "location-a02.html@1024": {
+    "url": "location-a02.html",
+    "viewport": [
+      1024,
+      1366
+    ],
+    "switchCount": 1,
+    "hasFloat": true,
+    "swRect": [
+      861,
+      26,
+      977,
+      56
+    ],
+    "rightGap": 47,
+    "topGap": 26,
+    "overlapHeaderRight": false,
+    "hOverflow": false
+  },
+  "location-a03.html@1024": {
+    "url": "location-a03.html",
+    "viewport": [
+      1024,
+      1366
+    ],
+    "switchCount": 1,
+    "hasFloat": true,
+    "swRect": [
+      861,
+      26,
+      977,
+      56
+    ],
+    "rightGap": 47,
+    "topGap": 26,
+    "overlapHeaderRight": false,
+    "hOverflow": false
+  },
+  "sensors-a02.html@1024": {
+    "url": "sensors-a02.html",
+    "viewport": [
+      1024,
+      1366
+    ],
+    "switchCount": 1,
+    "hasFloat": true,
+    "swRect": [
+      876,
+      26,
+      992,
+      56
+    ],
+    "rightGap": 32,
+    "topGap": 26,
+    "overlapHeaderRight": false,
+    "hOverflow": false
+  },
+  "sensors-a03.html@1024": {
+    "url": "sensors-a03.html",
+    "viewport": [
+      1024,
+      1366
+    ],
+    "switchCount": 1,
+    "hasFloat": true,
+    "swRect": [
+      876,
+      26,
+      992,
+      56
+    ],
+    "rightGap": 32,
+    "topGap": 26,
+    "overlapHeaderRight": false,
+    "hOverflow": false
+  },
+  "telemetry-a02.html@1024": {
+    "url": "telemetry-a02.html",
+    "viewport": [
+      1024,
+      1366
+    ],
+    "switchCount": 1,
+    "hasFloat": true,
+    "swRect": [
+      876,
+      26,
+      992,
+      56
+    ],
+    "rightGap": 32,
+    "topGap": 26,
+    "overlapHeaderRight": false,
+    "hOverflow": false
+  },
+  "telemetry-a03.html@1024": {
+    "url": "telemetry-a03.html",
+    "viewport": [
+      1024,
+      1366
+    ],
+    "switchCount": 1,
+    "hasFloat": true,
+    "swRect": [
+      876,
+      26,
+      992,
+      56
+    ],
+    "rightGap": 32,
+    "topGap": 26,
+    "overlapHeaderRight": false,
+    "hOverflow": false
+  },
+  "hardware-a02.html@1024": {
+    "url": "hardware-a02.html",
+    "viewport": [
+      1024,
+      1366
+    ],
+    "switchCount": 1,
+    "hasFloat": true,
+    "swRect": [
+      876,
+      26,
+      992,
+      56
+    ],
+    "rightGap": 32,
+    "topGap": 26,
+    "overlapHeaderRight": false,
+    "hOverflow": false
+  },
+  "hardware-a03.html@1024": {
+    "url": "hardware-a03.html",
+    "viewport": [
+      1024,
+      1366
+    ],
+    "switchCount": 1,
+    "hasFloat": true,
+    "swRect": [
+      876,
+      26,
+      992,
+      56
+    ],
+    "rightGap": 32,
+    "topGap": 26,
+    "overlapHeaderRight": false,
+    "hOverflow": false
+  },
+  "analysis-a02.html@1024": {
+    "url": "analysis-a02.html",
+    "viewport": [
+      1024,
+      1366
+    ],
+    "switchCount": 1,
+    "hasFloat": true,
+    "swRect": [
+      876,
+      26,
+      992,
+      56
+    ],
+    "rightGap": 32,
+    "topGap": 26,
+    "overlapHeaderRight": false,
+    "hOverflow": false
+  },
+  "analysis-a03.html@1024": {
+    "url": "analysis-a03.html",
+    "viewport": [
+      1024,
+      1366
+    ],
+    "switchCount": 1,
+    "hasFloat": true,
+    "swRect": [
+      876,
+      26,
+      992,
+      56
+    ],
+    "rightGap": 32,
+    "topGap": 26,
+    "overlapHeaderRight": false,
+    "hOverflow": false
+  },
+  "a02.html@1024": {
+    "url": "a02.html",
+    "viewport": [
+      1024,
+      1366
+    ],
+    "switchCount": 1,
+    "hasFloat": true,
+    "swRect": [
+      876,
+      28,
+      992,
+      58
+    ],
+    "rightGap": 32,
+    "topGap": 28,
+    "overlapHeaderRight": false,
+    "hOverflow": false
+  }
+}
