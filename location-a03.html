@@ -6,7 +6,7 @@
   <meta name="color-scheme" content="dark">
   <title data-title-en="AUTONOMOUS NEXUS · ANT-A03" data-title-zh="自主观测系统 · ANT-A03">AUTONOMOUS NEXUS · ANT-A03</title>
   <link rel="icon" href="data:,">
-  <link rel="stylesheet" href="./css/style.css?v=20260811">
+  <link rel="stylesheet" href="./css/style.css?v=20260812">
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
   <style>
@@ -99,16 +99,38 @@
       document.documentElement.setAttribute('data-lang', lang);
       document.documentElement.setAttribute('lang', lang === 'zh' ? 'zh-CN' : 'en');
       document.querySelectorAll('[data-lang]').forEach(function (el) {
+        if (el.tagName === 'BUTTON' && el.parentNode && el.parentNode.classList && el.parentNode.classList.contains('lang-switch')) return;
         el.style.display = (el.getAttribute('data-lang') === lang) ? '' : 'none';
+      });
+      document.querySelectorAll('.lang-switch button').forEach(function (b) {
+        var on = b.getAttribute('data-lang') === lang;
+        b.classList.toggle('active', on);
+        if (b.hasAttribute('aria-pressed')) b.setAttribute('aria-pressed', String(on));
       });
       try { localStorage.setItem('anx-lang', lang); } catch (e) {}
       window.anxCurrentLang = lang;
       window.anxApplyLang = apply;
       var titleEl = document.querySelector('title');
-      if (titleEl) { var tEn = titleEl.getAttribute('data-title-en'); var tZh = titleEl.getAttribute('data-title-zh'); if (tEn && tZh) titleEl.textContent = lang === 'zh' ? tZh : tEn; }
+      if (titleEl) {
+        var tEn = titleEl.getAttribute('data-title-en');
+        var tZh = titleEl.getAttribute('data-title-zh');
+        if (tEn && tZh) titleEl.textContent = lang === 'zh' ? tZh : tEn;
+      }
+      if (window.ANX_APPLY_I18N) window.ANX_APPLY_I18N(lang);
+      try { window.dispatchEvent(new CustomEvent('anx:langchange', { detail: { lang: lang } })); } catch (e) {}
     }
-    var saved = null; try { saved = localStorage.getItem('anx-lang'); } catch (e) {}
-    apply(saved === 'zh' ? 'zh' : 'en'); bind();
+    function bind() {
+      document.querySelectorAll('.lang-switch button').forEach(function (b) {
+        b.addEventListener('click', function (ev) {
+          ev.preventDefault();
+          apply(b.getAttribute('data-lang'));
+        });
+      });
+    }
+    var saved = null;
+    try { saved = localStorage.getItem('anx-lang'); } catch (e) {}
+    apply(saved === 'zh' ? 'zh' : 'en');
+    bind();
   })();
   </script>
 

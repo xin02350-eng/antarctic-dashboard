@@ -1,0 +1,1862 @@
+{
+  "dashboard.html@1920zh": {
+    "url": "dashboard.html",
+    "lang": "zh-CN",
+    "title": "自主观测系统",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "docScrollH": 1080,
+    "docClientH": 1080,
+    "bodyScrollH": 1080,
+    "scrollW": 1920,
+    "htmlOverflowY": "hidden",
+    "bodyOverflowY": "hidden",
+    "header": [
+      290,
+      22,
+      1880,
+      143,
+      1590,
+      121
+    ],
+    "heroMain": [
+      317,
+      45,
+      533,
+      120,
+      216,
+      75
+    ],
+    "heroStatus": [
+      1613,
+      56,
+      1723,
+      109,
+      110,
+      53
+    ],
+    "langRect": [
+      1737,
+      67,
+      1853,
+      97
+    ],
+    "langRightGap": 67,
+    "langTopGap": 67,
+    "cmdCells": [
+      [
+        304,
+        168,
+        513,
+        84
+      ],
+      [
+        829,
+        168,
+        513,
+        84
+      ],
+      [
+        1353,
+        168,
+        513,
+        84
+      ]
+    ],
+    "mapPanel": [
+      290,
+      278,
+      1880,
+      946,
+      1590,
+      668
+    ],
+    "mapPanelHead": [
+      303,
+      291,
+      1867,
+      324,
+      1564,
+      33
+    ],
+    "mapCells": [
+      [
+        303,
+        346,
+        515,
+        52
+      ],
+      [
+        828,
+        346,
+        515,
+        52
+      ],
+      [
+        1352,
+        346,
+        515,
+        52
+      ]
+    ],
+    "worldMap": [
+      303,
+      410,
+      1867,
+      933,
+      1564,
+      523
+    ],
+    "graticule": [
+      304,
+      411,
+      1866,
+      932,
+      1562,
+      521
+    ],
+    "mapOverlay": [
+      1629,
+      798,
+      1859,
+      925,
+      230,
+      127
+    ],
+    "sideRight": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "operationGrid": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "streamPanel": [
+      290,
+      974,
+      1880,
+      1076,
+      1590,
+      102
+    ],
+    "heroSub": "AUTONOMOUS ENVIRONMENTAL MONITORING PLATFORM · STATION ANT-A01自主环境监测平台 · 站点 ANT-A01",
+    "systemOnline": "SYSTEM ONLINE系统在线",
+    "missionValue": "正常",
+    "modeDisplay": "应急",
+    "mapModeValue": "应急",
+    "time": "2026-08-12 18:56:11",
+    "latitude": "32.049278",
+    "longitude": "118.793686",
+    "satellites": "12",
+    "mapHeadTitle": "节点定位 · GPS 跟踪",
+    "nodeBadge": "ANT-A01 · AUTONOMOUS STATION · REMOTE SENSOR NODE",
+    "streamRows": [
+      {
+        "text": "环境数据采集运行中",
+        "em": "运行中"
+      },
+      {
+        "text": "卫星定位运行中",
+        "em": "运行中"
+      },
+      {
+        "text": "长期监测模式",
+        "em": "运行中"
+      }
+    ],
+    "counts": {
+      "sensorCard": 2,
+      "cmdCell": 3,
+      "mapCell": 3,
+      "streamRow": 3,
+      "navItem": 6,
+      "mapLayer": 6
+    },
+    "deviceMap": true,
+    "deviceMarker": true
+  },
+  "dashboard-a02.html@1920zh": {
+    "url": "dashboard-a02.html",
+    "lang": "zh-CN",
+    "title": "自主观测系统 · ANT-A02",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "docScrollH": 1080,
+    "docClientH": 1080,
+    "bodyScrollH": 1080,
+    "scrollW": 1920,
+    "htmlOverflowY": "hidden",
+    "bodyOverflowY": "hidden",
+    "header": [
+      290,
+      22,
+      1880,
+      143,
+      1590,
+      121
+    ],
+    "heroMain": [
+      317,
+      45,
+      533,
+      120,
+      216,
+      75
+    ],
+    "heroStatus": [
+      1613,
+      56,
+      1723,
+      109,
+      110,
+      53
+    ],
+    "langRect": [
+      1737,
+      67,
+      1853,
+      97
+    ],
+    "langRightGap": 67,
+    "langTopGap": 67,
+    "cmdCells": [
+      [
+        304,
+        168,
+        513,
+        84
+      ],
+      [
+        829,
+        168,
+        513,
+        84
+      ],
+      [
+        1353,
+        168,
+        513,
+        84
+      ]
+    ],
+    "mapPanel": [
+      290,
+      278,
+      1880,
+      946,
+      1590,
+      668
+    ],
+    "mapPanelHead": [
+      303,
+      291,
+      1867,
+      324,
+      1564,
+      33
+    ],
+    "mapCells": [
+      [
+        303,
+        346,
+        515,
+        52
+      ],
+      [
+        828,
+        346,
+        515,
+        52
+      ],
+      [
+        1352,
+        346,
+        515,
+        52
+      ]
+    ],
+    "worldMap": [
+      303,
+      410,
+      1867,
+      933,
+      1564,
+      523
+    ],
+    "graticule": [
+      304,
+      411,
+      1866,
+      932,
+      1562,
+      521
+    ],
+    "mapOverlay": [
+      1629,
+      798,
+      1859,
+      925,
+      230,
+      127
+    ],
+    "sideRight": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "operationGrid": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "streamPanel": [
+      290,
+      974,
+      1880,
+      1076,
+      1590,
+      102
+    ],
+    "heroSub": "STATION ANT-A02 · AWAITING DEPLOYMENT站点 ANT-A02 · 等待部署",
+    "systemOnline": "AWAITING DEPLOYMENT等待部署",
+    "missionValue": "PENDING待命",
+    "modeDisplay": "节能",
+    "mapModeValue": "节能",
+    "time": "2026-08-12 18:56:15",
+    "latitude": "等待数据",
+    "longitude": "等待数据",
+    "satellites": "等待数据",
+    "mapHeadTitle": "NODE POSITIONING · NOT AVAILABLE节点定位 · 暂不可用",
+    "nodeBadge": "ANT-A02 · FUTURE STATION · AWAITING DEPLOYMENT",
+    "streamRows": [
+      {
+        "text": "站点等待部署",
+        "em": "--"
+      },
+      {
+        "text": "遥测链路未建立",
+        "em": "--"
+      },
+      {
+        "text": "模块处于待机",
+        "em": "--"
+      }
+    ],
+    "counts": {
+      "sensorCard": 2,
+      "cmdCell": 3,
+      "mapCell": 3,
+      "streamRow": 3,
+      "navItem": 6,
+      "mapLayer": 6
+    },
+    "deviceMap": true,
+    "deviceMarker": false
+  },
+  "dashboard-a03.html@1920zh": {
+    "url": "dashboard-a03.html",
+    "lang": "zh-CN",
+    "title": "自主观测系统 · ANT-A03",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "docScrollH": 1080,
+    "docClientH": 1080,
+    "bodyScrollH": 1080,
+    "scrollW": 1920,
+    "htmlOverflowY": "hidden",
+    "bodyOverflowY": "hidden",
+    "header": [
+      290,
+      22,
+      1880,
+      143,
+      1590,
+      121
+    ],
+    "heroMain": [
+      317,
+      45,
+      533,
+      120,
+      216,
+      75
+    ],
+    "heroStatus": [
+      1613,
+      56,
+      1723,
+      109,
+      110,
+      53
+    ],
+    "langRect": [
+      1737,
+      67,
+      1853,
+      97
+    ],
+    "langRightGap": 67,
+    "langTopGap": 67,
+    "cmdCells": [
+      [
+        304,
+        168,
+        513,
+        84
+      ],
+      [
+        829,
+        168,
+        513,
+        84
+      ],
+      [
+        1353,
+        168,
+        513,
+        84
+      ]
+    ],
+    "mapPanel": [
+      290,
+      278,
+      1880,
+      946,
+      1590,
+      668
+    ],
+    "mapPanelHead": [
+      303,
+      291,
+      1867,
+      324,
+      1564,
+      33
+    ],
+    "mapCells": [
+      [
+        303,
+        346,
+        515,
+        52
+      ],
+      [
+        828,
+        346,
+        515,
+        52
+      ],
+      [
+        1352,
+        346,
+        515,
+        52
+      ]
+    ],
+    "worldMap": [
+      303,
+      410,
+      1867,
+      933,
+      1564,
+      523
+    ],
+    "graticule": [
+      304,
+      411,
+      1866,
+      932,
+      1562,
+      521
+    ],
+    "mapOverlay": [
+      1629,
+      798,
+      1859,
+      925,
+      230,
+      127
+    ],
+    "sideRight": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "operationGrid": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "streamPanel": [
+      290,
+      974,
+      1880,
+      1076,
+      1590,
+      102
+    ],
+    "heroSub": "STATION ANT-A03 · AWAITING DEPLOYMENT站点 ANT-A03 · 等待部署",
+    "systemOnline": "AWAITING DEPLOYMENT等待部署",
+    "missionValue": "PENDING待命",
+    "modeDisplay": "节能",
+    "mapModeValue": "节能",
+    "time": "2026-08-12 18:56:19",
+    "latitude": "等待数据",
+    "longitude": "等待数据",
+    "satellites": "等待数据",
+    "mapHeadTitle": "NODE POSITIONING · NOT AVAILABLE节点定位 · 暂不可用",
+    "nodeBadge": "ANT-A03 · FUTURE STATION · AWAITING DEPLOYMENT",
+    "streamRows": [
+      {
+        "text": "站点等待部署",
+        "em": "--"
+      },
+      {
+        "text": "遥测链路未建立",
+        "em": "--"
+      },
+      {
+        "text": "模块处于待机",
+        "em": "--"
+      }
+    ],
+    "counts": {
+      "sensorCard": 2,
+      "cmdCell": 3,
+      "mapCell": 3,
+      "streamRow": 3,
+      "navItem": 6,
+      "mapLayer": 6
+    },
+    "deviceMap": true,
+    "deviceMarker": false
+  },
+  "dashboard.html@1366zh": {
+    "url": "dashboard.html",
+    "lang": "zh-CN",
+    "title": "自主观测系统",
+    "viewport": [
+      1366,
+      768
+    ],
+    "docScrollH": 768,
+    "docClientH": 768,
+    "bodyScrollH": 768,
+    "scrollW": 1366,
+    "htmlOverflowY": "hidden",
+    "bodyOverflowY": "hidden",
+    "header": [
+      276,
+      12,
+      1340,
+      123,
+      1064,
+      111
+    ],
+    "heroMain": [
+      303,
+      35,
+      495,
+      100,
+      192,
+      65
+    ],
+    "heroStatus": [
+      1073,
+      41,
+      1183,
+      94,
+      110,
+      53
+    ],
+    "langRect": [
+      1197,
+      53,
+      1313,
+      83
+    ],
+    "langRightGap": 53,
+    "langTopGap": 53,
+    "cmdCells": [
+      [
+        290,
+        141,
+        337,
+        77
+      ],
+      [
+        639,
+        141,
+        337,
+        77
+      ],
+      [
+        989,
+        141,
+        337,
+        77
+      ]
+    ],
+    "mapPanel": [
+      276,
+      234,
+      1340,
+      653,
+      1064,
+      419
+    ],
+    "mapPanelHead": [
+      289,
+      247,
+      1327,
+      280,
+      1038,
+      33
+    ],
+    "mapCells": [
+      [
+        289,
+        302,
+        341,
+        52
+      ],
+      [
+        638,
+        302,
+        341,
+        52
+      ],
+      [
+        986,
+        302,
+        341,
+        52
+      ]
+    ],
+    "worldMap": [
+      289,
+      366,
+      1327,
+      640,
+      1038,
+      274
+    ],
+    "graticule": [
+      290,
+      367,
+      1326,
+      639,
+      1036,
+      272
+    ],
+    "mapOverlay": [
+      1089,
+      505,
+      1319,
+      632,
+      230,
+      127
+    ],
+    "sideRight": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "operationGrid": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "streamPanel": [
+      276,
+      671,
+      1340,
+      764,
+      1064,
+      93
+    ],
+    "heroSub": "AUTONOMOUS ENVIRONMENTAL MONITORING PLATFORM · STATION ANT-A01自主环境监测平台 · 站点 ANT-A01",
+    "systemOnline": "SYSTEM ONLINE系统在线",
+    "missionValue": "正常",
+    "modeDisplay": "应急",
+    "mapModeValue": "应急",
+    "time": "2026-08-12 18:56:24",
+    "latitude": "32.049278",
+    "longitude": "118.793686",
+    "satellites": "12",
+    "mapHeadTitle": "节点定位 · GPS 跟踪",
+    "nodeBadge": "ANT-A01 · AUTONOMOUS STATION · REMOTE SENSOR NODE",
+    "streamRows": [
+      {
+        "text": "环境数据采集运行中",
+        "em": "运行中"
+      },
+      {
+        "text": "卫星定位运行中",
+        "em": "运行中"
+      },
+      {
+        "text": "长期监测模式",
+        "em": "运行中"
+      }
+    ],
+    "counts": {
+      "sensorCard": 2,
+      "cmdCell": 3,
+      "mapCell": 3,
+      "streamRow": 3,
+      "navItem": 6,
+      "mapLayer": 6
+    },
+    "deviceMap": true,
+    "deviceMarker": true
+  },
+  "dashboard-a02.html@1366zh": {
+    "url": "dashboard-a02.html",
+    "lang": "zh-CN",
+    "title": "自主观测系统 · ANT-A02",
+    "viewport": [
+      1366,
+      768
+    ],
+    "docScrollH": 768,
+    "docClientH": 768,
+    "bodyScrollH": 768,
+    "scrollW": 1366,
+    "htmlOverflowY": "hidden",
+    "bodyOverflowY": "hidden",
+    "header": [
+      276,
+      12,
+      1340,
+      123,
+      1064,
+      111
+    ],
+    "heroMain": [
+      303,
+      35,
+      495,
+      100,
+      192,
+      65
+    ],
+    "heroStatus": [
+      1073,
+      41,
+      1183,
+      94,
+      110,
+      53
+    ],
+    "langRect": [
+      1197,
+      53,
+      1313,
+      83
+    ],
+    "langRightGap": 53,
+    "langTopGap": 53,
+    "cmdCells": [
+      [
+        290,
+        141,
+        337,
+        77
+      ],
+      [
+        639,
+        141,
+        337,
+        77
+      ],
+      [
+        989,
+        141,
+        337,
+        77
+      ]
+    ],
+    "mapPanel": [
+      276,
+      234,
+      1340,
+      653,
+      1064,
+      419
+    ],
+    "mapPanelHead": [
+      289,
+      247,
+      1327,
+      280,
+      1038,
+      33
+    ],
+    "mapCells": [
+      [
+        289,
+        302,
+        341,
+        52
+      ],
+      [
+        638,
+        302,
+        341,
+        52
+      ],
+      [
+        986,
+        302,
+        341,
+        52
+      ]
+    ],
+    "worldMap": [
+      289,
+      366,
+      1327,
+      640,
+      1038,
+      274
+    ],
+    "graticule": [
+      290,
+      367,
+      1326,
+      639,
+      1036,
+      272
+    ],
+    "mapOverlay": [
+      1089,
+      505,
+      1319,
+      632,
+      230,
+      127
+    ],
+    "sideRight": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "operationGrid": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "streamPanel": [
+      276,
+      671,
+      1340,
+      764,
+      1064,
+      93
+    ],
+    "heroSub": "STATION ANT-A02 · AWAITING DEPLOYMENT站点 ANT-A02 · 等待部署",
+    "systemOnline": "AWAITING DEPLOYMENT等待部署",
+    "missionValue": "PENDING待命",
+    "modeDisplay": "节能",
+    "mapModeValue": "节能",
+    "time": "2026-08-12 18:56:28",
+    "latitude": "等待数据",
+    "longitude": "等待数据",
+    "satellites": "等待数据",
+    "mapHeadTitle": "NODE POSITIONING · NOT AVAILABLE节点定位 · 暂不可用",
+    "nodeBadge": "ANT-A02 · FUTURE STATION · AWAITING DEPLOYMENT",
+    "streamRows": [
+      {
+        "text": "站点等待部署",
+        "em": "--"
+      },
+      {
+        "text": "遥测链路未建立",
+        "em": "--"
+      },
+      {
+        "text": "模块处于待机",
+        "em": "--"
+      }
+    ],
+    "counts": {
+      "sensorCard": 2,
+      "cmdCell": 3,
+      "mapCell": 3,
+      "streamRow": 3,
+      "navItem": 6,
+      "mapLayer": 6
+    },
+    "deviceMap": true,
+    "deviceMarker": false
+  },
+  "dashboard-a03.html@1366zh": {
+    "url": "dashboard-a03.html",
+    "lang": "zh-CN",
+    "title": "自主观测系统 · ANT-A03",
+    "viewport": [
+      1366,
+      768
+    ],
+    "docScrollH": 768,
+    "docClientH": 768,
+    "bodyScrollH": 768,
+    "scrollW": 1366,
+    "htmlOverflowY": "hidden",
+    "bodyOverflowY": "hidden",
+    "header": [
+      276,
+      12,
+      1340,
+      123,
+      1064,
+      111
+    ],
+    "heroMain": [
+      303,
+      35,
+      495,
+      100,
+      192,
+      65
+    ],
+    "heroStatus": [
+      1073,
+      41,
+      1183,
+      94,
+      110,
+      53
+    ],
+    "langRect": [
+      1197,
+      53,
+      1313,
+      83
+    ],
+    "langRightGap": 53,
+    "langTopGap": 53,
+    "cmdCells": [
+      [
+        290,
+        141,
+        337,
+        77
+      ],
+      [
+        639,
+        141,
+        337,
+        77
+      ],
+      [
+        989,
+        141,
+        337,
+        77
+      ]
+    ],
+    "mapPanel": [
+      276,
+      234,
+      1340,
+      653,
+      1064,
+      419
+    ],
+    "mapPanelHead": [
+      289,
+      247,
+      1327,
+      280,
+      1038,
+      33
+    ],
+    "mapCells": [
+      [
+        289,
+        302,
+        341,
+        52
+      ],
+      [
+        638,
+        302,
+        341,
+        52
+      ],
+      [
+        986,
+        302,
+        341,
+        52
+      ]
+    ],
+    "worldMap": [
+      289,
+      366,
+      1327,
+      640,
+      1038,
+      274
+    ],
+    "graticule": [
+      290,
+      367,
+      1326,
+      639,
+      1036,
+      272
+    ],
+    "mapOverlay": [
+      1089,
+      505,
+      1319,
+      632,
+      230,
+      127
+    ],
+    "sideRight": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "operationGrid": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "streamPanel": [
+      276,
+      671,
+      1340,
+      764,
+      1064,
+      93
+    ],
+    "heroSub": "STATION ANT-A03 · AWAITING DEPLOYMENT站点 ANT-A03 · 等待部署",
+    "systemOnline": "AWAITING DEPLOYMENT等待部署",
+    "missionValue": "PENDING待命",
+    "modeDisplay": "节能",
+    "mapModeValue": "节能",
+    "time": "2026-08-12 18:56:32",
+    "latitude": "等待数据",
+    "longitude": "等待数据",
+    "satellites": "等待数据",
+    "mapHeadTitle": "NODE POSITIONING · NOT AVAILABLE节点定位 · 暂不可用",
+    "nodeBadge": "ANT-A03 · FUTURE STATION · AWAITING DEPLOYMENT",
+    "streamRows": [
+      {
+        "text": "站点等待部署",
+        "em": "--"
+      },
+      {
+        "text": "遥测链路未建立",
+        "em": "--"
+      },
+      {
+        "text": "模块处于待机",
+        "em": "--"
+      }
+    ],
+    "counts": {
+      "sensorCard": 2,
+      "cmdCell": 3,
+      "mapCell": 3,
+      "streamRow": 3,
+      "navItem": 6,
+      "mapLayer": 6
+    },
+    "deviceMap": true,
+    "deviceMarker": false
+  },
+  "dashboard.html@390zh": {
+    "url": "dashboard.html",
+    "lang": "zh-CN",
+    "title": "自主观测系统",
+    "viewport": [
+      390,
+      844
+    ],
+    "docScrollH": 844,
+    "docClientH": 844,
+    "bodyScrollH": 844,
+    "scrollW": 390,
+    "htmlOverflowY": "hidden",
+    "bodyOverflowY": "hidden",
+    "header": [
+      14,
+      64,
+      376,
+      243,
+      362,
+      179
+    ],
+    "heroMain": [
+      41,
+      87,
+      208,
+      147,
+      167,
+      60
+    ],
+    "heroStatus": [
+      41,
+      167,
+      151,
+      220,
+      110,
+      53
+    ],
+    "langRect": [
+      272,
+      16,
+      378,
+      44
+    ],
+    "langRightGap": 12,
+    "langTopGap": 16,
+    "cmdCells": [
+      [
+        28,
+        261,
+        103,
+        140
+      ],
+      [
+        143,
+        261,
+        103,
+        140
+      ],
+      [
+        259,
+        261,
+        103,
+        140
+      ]
+    ],
+    "mapPanel": [
+      14,
+      417,
+      376,
+      1044,
+      362,
+      627
+    ],
+    "mapPanelHead": [
+      27,
+      430,
+      363,
+      481,
+      336,
+      51
+    ],
+    "mapCells": [
+      [
+        27,
+        503,
+        108,
+        69
+      ],
+      [
+        141,
+        503,
+        108,
+        69
+      ],
+      [
+        255,
+        503,
+        108,
+        69
+      ]
+    ],
+    "worldMap": [
+      27,
+      584,
+      363,
+      888,
+      336,
+      304
+    ],
+    "graticule": [
+      28,
+      585,
+      362,
+      887,
+      334,
+      302
+    ],
+    "mapOverlay": [
+      27,
+      904,
+      257,
+      1031,
+      230,
+      127
+    ],
+    "sideRight": [
+      14,
+      1056,
+      376,
+      1338,
+      362,
+      282
+    ],
+    "operationGrid": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "streamPanel": [
+      14,
+      744,
+      376,
+      840,
+      362,
+      96
+    ],
+    "heroSub": "AUTONOMOUS ENVIRONMENTAL MONITORING PLATFORM · STATION ANT-A01自主环境监测平台 · 站点 ANT-A01",
+    "systemOnline": "SYSTEM ONLINE系统在线",
+    "missionValue": "正常",
+    "modeDisplay": "应急",
+    "mapModeValue": "应急",
+    "time": "2026-08-12 18:56:36",
+    "latitude": "32.049278",
+    "longitude": "118.793686",
+    "satellites": "12",
+    "mapHeadTitle": "节点定位 · GPS 跟踪",
+    "nodeBadge": "ANT-A01 · AUTONOMOUS STATION · REMOTE SENSOR NODE",
+    "streamRows": [
+      {
+        "text": "环境数据采集运行中",
+        "em": "运行中"
+      },
+      {
+        "text": "卫星定位运行中",
+        "em": "运行中"
+      },
+      {
+        "text": "长期监测模式",
+        "em": "运行中"
+      }
+    ],
+    "counts": {
+      "sensorCard": 2,
+      "cmdCell": 3,
+      "mapCell": 3,
+      "streamRow": 3,
+      "navItem": 6,
+      "mapLayer": 6
+    },
+    "deviceMap": true,
+    "deviceMarker": true
+  },
+  "dashboard-a02.html@390zh": {
+    "url": "dashboard-a02.html",
+    "lang": "zh-CN",
+    "title": "自主观测系统 · ANT-A02",
+    "viewport": [
+      390,
+      844
+    ],
+    "docScrollH": 844,
+    "docClientH": 844,
+    "bodyScrollH": 844,
+    "scrollW": 390,
+    "htmlOverflowY": "hidden",
+    "bodyOverflowY": "hidden",
+    "header": [
+      14,
+      64,
+      376,
+      243,
+      362,
+      179
+    ],
+    "heroMain": [
+      41,
+      87,
+      179,
+      147,
+      138,
+      60
+    ],
+    "heroStatus": [
+      41,
+      167,
+      151,
+      220,
+      110,
+      53
+    ],
+    "langRect": [
+      272,
+      16,
+      378,
+      44
+    ],
+    "langRightGap": 12,
+    "langTopGap": 16,
+    "cmdCells": [
+      [
+        28,
+        261,
+        103,
+        140
+      ],
+      [
+        143,
+        261,
+        103,
+        140
+      ],
+      [
+        259,
+        261,
+        103,
+        140
+      ]
+    ],
+    "mapPanel": [
+      14,
+      417,
+      376,
+      1027,
+      362,
+      610
+    ],
+    "mapPanelHead": [
+      27,
+      430,
+      363,
+      481,
+      336,
+      51
+    ],
+    "mapCells": [
+      [
+        27,
+        503,
+        108,
+        52
+      ],
+      [
+        141,
+        503,
+        108,
+        52
+      ],
+      [
+        255,
+        503,
+        108,
+        52
+      ]
+    ],
+    "worldMap": [
+      27,
+      567,
+      363,
+      871,
+      336,
+      304
+    ],
+    "graticule": [
+      28,
+      568,
+      362,
+      870,
+      334,
+      302
+    ],
+    "mapOverlay": [
+      27,
+      887,
+      257,
+      1014,
+      230,
+      127
+    ],
+    "sideRight": [
+      14,
+      1039,
+      376,
+      1321,
+      362,
+      282
+    ],
+    "operationGrid": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "streamPanel": [
+      14,
+      744,
+      376,
+      840,
+      362,
+      96
+    ],
+    "heroSub": "STATION ANT-A02 · AWAITING DEPLOYMENT站点 ANT-A02 · 等待部署",
+    "systemOnline": "AWAITING DEPLOYMENT等待部署",
+    "missionValue": "PENDING待命",
+    "modeDisplay": "节能",
+    "mapModeValue": "节能",
+    "time": "2026-08-12 18:56:40",
+    "latitude": "等待数据",
+    "longitude": "等待数据",
+    "satellites": "等待数据",
+    "mapHeadTitle": "NODE POSITIONING · NOT AVAILABLE节点定位 · 暂不可用",
+    "nodeBadge": "ANT-A02 · FUTURE STATION · AWAITING DEPLOYMENT",
+    "streamRows": [
+      {
+        "text": "站点等待部署",
+        "em": "--"
+      },
+      {
+        "text": "遥测链路未建立",
+        "em": "--"
+      },
+      {
+        "text": "模块处于待机",
+        "em": "--"
+      }
+    ],
+    "counts": {
+      "sensorCard": 2,
+      "cmdCell": 3,
+      "mapCell": 3,
+      "streamRow": 3,
+      "navItem": 6,
+      "mapLayer": 6
+    },
+    "deviceMap": true,
+    "deviceMarker": false
+  },
+  "dashboard-a03.html@390zh": {
+    "url": "dashboard-a03.html",
+    "lang": "zh-CN",
+    "title": "自主观测系统 · ANT-A03",
+    "viewport": [
+      390,
+      844
+    ],
+    "docScrollH": 844,
+    "docClientH": 844,
+    "bodyScrollH": 844,
+    "scrollW": 390,
+    "htmlOverflowY": "hidden",
+    "bodyOverflowY": "hidden",
+    "header": [
+      14,
+      64,
+      376,
+      243,
+      362,
+      179
+    ],
+    "heroMain": [
+      41,
+      87,
+      179,
+      147,
+      138,
+      60
+    ],
+    "heroStatus": [
+      41,
+      167,
+      151,
+      220,
+      110,
+      53
+    ],
+    "langRect": [
+      272,
+      16,
+      378,
+      44
+    ],
+    "langRightGap": 12,
+    "langTopGap": 16,
+    "cmdCells": [
+      [
+        28,
+        261,
+        103,
+        140
+      ],
+      [
+        143,
+        261,
+        103,
+        140
+      ],
+      [
+        259,
+        261,
+        103,
+        140
+      ]
+    ],
+    "mapPanel": [
+      14,
+      417,
+      376,
+      1027,
+      362,
+      610
+    ],
+    "mapPanelHead": [
+      27,
+      430,
+      363,
+      481,
+      336,
+      51
+    ],
+    "mapCells": [
+      [
+        27,
+        503,
+        108,
+        52
+      ],
+      [
+        141,
+        503,
+        108,
+        52
+      ],
+      [
+        255,
+        503,
+        108,
+        52
+      ]
+    ],
+    "worldMap": [
+      27,
+      567,
+      363,
+      871,
+      336,
+      304
+    ],
+    "graticule": [
+      28,
+      568,
+      362,
+      870,
+      334,
+      302
+    ],
+    "mapOverlay": [
+      27,
+      887,
+      257,
+      1014,
+      230,
+      127
+    ],
+    "sideRight": [
+      14,
+      1039,
+      376,
+      1321,
+      362,
+      282
+    ],
+    "operationGrid": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "streamPanel": [
+      14,
+      744,
+      376,
+      840,
+      362,
+      96
+    ],
+    "heroSub": "STATION ANT-A03 · AWAITING DEPLOYMENT站点 ANT-A03 · 等待部署",
+    "systemOnline": "AWAITING DEPLOYMENT等待部署",
+    "missionValue": "PENDING待命",
+    "modeDisplay": "节能",
+    "mapModeValue": "节能",
+    "time": "2026-08-12 18:56:43",
+    "latitude": "等待数据",
+    "longitude": "等待数据",
+    "satellites": "等待数据",
+    "mapHeadTitle": "NODE POSITIONING · NOT AVAILABLE节点定位 · 暂不可用",
+    "nodeBadge": "ANT-A03 · FUTURE STATION · AWAITING DEPLOYMENT",
+    "streamRows": [
+      {
+        "text": "站点等待部署",
+        "em": "--"
+      },
+      {
+        "text": "遥测链路未建立",
+        "em": "--"
+      },
+      {
+        "text": "模块处于待机",
+        "em": "--"
+      }
+    ],
+    "counts": {
+      "sensorCard": 2,
+      "cmdCell": 3,
+      "mapCell": 3,
+      "streamRow": 3,
+      "navItem": 6,
+      "mapLayer": 6
+    },
+    "deviceMap": true,
+    "deviceMarker": false
+  },
+  "dashboard-a02@1920en": {
+    "url": "dashboard-a02.html",
+    "lang": "en",
+    "title": "AUTONOMOUS NEXUS · ANT-A02",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "docScrollH": 1080,
+    "docClientH": 1080,
+    "bodyScrollH": 1080,
+    "scrollW": 1920,
+    "htmlOverflowY": "hidden",
+    "bodyOverflowY": "hidden",
+    "header": [
+      290,
+      22,
+      1880,
+      143,
+      1590,
+      121
+    ],
+    "heroMain": [
+      317,
+      45,
+      992,
+      120,
+      675,
+      75
+    ],
+    "heroStatus": [
+      1528,
+      56,
+      1723,
+      109,
+      195,
+      53
+    ],
+    "langRect": [
+      1737,
+      67,
+      1853,
+      97
+    ],
+    "langRightGap": 67,
+    "langTopGap": 67,
+    "cmdCells": [
+      [
+        304,
+        168,
+        513,
+        84
+      ],
+      [
+        829,
+        168,
+        513,
+        84
+      ],
+      [
+        1353,
+        168,
+        513,
+        84
+      ]
+    ],
+    "mapPanel": [
+      290,
+      278,
+      1880,
+      946,
+      1590,
+      668
+    ],
+    "mapPanelHead": [
+      303,
+      291,
+      1867,
+      324,
+      1564,
+      33
+    ],
+    "mapCells": [
+      [
+        303,
+        346,
+        515,
+        52
+      ],
+      [
+        828,
+        346,
+        515,
+        52
+      ],
+      [
+        1352,
+        346,
+        515,
+        52
+      ]
+    ],
+    "worldMap": [
+      303,
+      410,
+      1867,
+      933,
+      1564,
+      523
+    ],
+    "graticule": [
+      304,
+      411,
+      1866,
+      932,
+      1562,
+      521
+    ],
+    "mapOverlay": [
+      1629,
+      798,
+      1859,
+      925,
+      230,
+      127
+    ],
+    "sideRight": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "operationGrid": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "streamPanel": [
+      290,
+      974,
+      1880,
+      1076,
+      1590,
+      102
+    ],
+    "heroSub": "STATION ANT-A02 · AWAITING DEPLOYMENT站点 ANT-A02 · 等待部署",
+    "systemOnline": "AWAITING DEPLOYMENT等待部署",
+    "missionValue": "PENDING待命",
+    "modeDisplay": "Standby",
+    "mapModeValue": "Standby",
+    "time": "2026-08-12 18:56:47",
+    "latitude": "WAITING FOR DATA",
+    "longitude": "WAITING FOR DATA",
+    "satellites": "WAITING FOR DATA",
+    "mapHeadTitle": "NODE POSITIONING · NOT AVAILABLE节点定位 · 暂不可用",
+    "nodeBadge": "ANT-A02 · FUTURE STATION · AWAITING DEPLOYMENT",
+    "streamRows": [
+      {
+        "text": "STATION AWAITING DEPLOYMENT",
+        "em": "--"
+      },
+      {
+        "text": "TELEMETRY LINK NOT ESTABLISHED",
+        "em": "--"
+      },
+      {
+        "text": "MODULES IN STANDBY",
+        "em": "--"
+      }
+    ],
+    "counts": {
+      "sensorCard": 2,
+      "cmdCell": 3,
+      "mapCell": 3,
+      "streamRow": 3,
+      "navItem": 6,
+      "mapLayer": 6
+    },
+    "deviceMap": true,
+    "deviceMarker": false
+  }
+}

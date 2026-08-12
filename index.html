@@ -6,6 +6,34 @@
   <meta name="color-scheme" content="dark">
   <title data-title-en="AUTONOMOUS NEXUS · EXPLORATION" data-title-zh="自主观测系统 · 探索序章">AUTONOMOUS NEXUS · EXPLORATION</title>
   <link rel="icon" href="data:,">
+  <!-- V48.0 · CDN 备用加载：unpkg 不可用时自动改用 jsdelivr，避免 3D 地球白屏 -->
+  <script>
+  (function () {
+    window.__libFallback = function (name) {
+      if (name === 'three' && !window.THREE) {
+        return new Promise(function (resolve) {
+          var s = document.createElement('script');
+          s.src = 'https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js';
+          s.async = false;
+          s.onload = function () { resolve(true); };
+          s.onerror = function () { resolve(false); };
+          document.head.appendChild(s);
+        });
+      }
+      if (name === 'three-globe' && !window.ThreeGlobe) {
+        return new Promise(function (resolve) {
+          var s = document.createElement('script');
+          s.src = 'https://cdn.jsdelivr.net/npm/three-globe@2.31.0/dist/three-globe.min.js';
+          s.async = false;
+          s.onload = function () { resolve(true); };
+          s.onerror = function () { resolve(false); };
+          document.head.appendChild(s);
+        });
+      }
+      return Promise.resolve(false);
+    };
+  })();
+  </script>
   <script src="https://unpkg.com/three@0.128.0/build/three.min.js"></script>
   <script src="https://unpkg.com/three-globe@2.31.0/dist/three-globe.min.js"></script>
   <style>
@@ -492,6 +520,7 @@
       window.addEventListener('resize', function () {
         camera.aspect = window.innerWidth / window.innerHeight;
         camera.updateProjectionMatrix();
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
         renderer.setSize(window.innerWidth, window.innerHeight);
         if (bgPlane) sizeBgPlane();
         for (var zi = 0; zi < bgStarLayers.length; zi++) {
@@ -651,7 +680,25 @@ function animate() {
       animate();
       window.__globeReady = true;
     }
-    init();
+    /* V48.0 · 兜底启动：主 CDN 失败时切换备用源；WebGL 创建失败时显示静态降级层 */
+    function safeInit() {
+      try {
+        init();
+      } catch (e) {
+        var fb = document.querySelector('.globe-fallback');
+        if (fb) fb.style.display = 'block';
+      }
+    }
+    function boot() {
+      if ((!window.THREE || !window.ThreeGlobe) && window.__libFallback) {
+        Promise.all([window.__libFallback('three'), window.__libFallback('three-globe')]).then(function () {
+          safeInit();
+        });
+        return;
+      }
+      safeInit();
+    }
+    boot();
 
     setTimeout(function () { document.body.classList.add('loaded'); }, 180);
     var btn = document.getElementById('exploreBtn');

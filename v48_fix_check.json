@@ -1,0 +1,388 @@
+{
+  "location-a02.html": {
+    "zh": {
+      "url": "location-a02.html",
+      "title": "自主观测系统 · ANT-A02",
+      "h1": "AUTONOMOUSNEXUS自主观测网络",
+      "buttons": 2,
+      "visibleButtons": 2,
+      "active": [
+        "zh"
+      ],
+      "globeReady": false,
+      "fallbackVisible": null,
+      "attributionHidden": null,
+      "hasFallbackFn": false
+    },
+    "en": {
+      "lang": "en",
+      "title": "AUTONOMOUS NEXUS · ANT-A02",
+      "active": [
+        "en"
+      ],
+      "visibleButtons": 2
+    },
+    "errors": []
+  },
+  "location-a03.html": {
+    "zh": {
+      "url": "location-a03.html",
+      "title": "自主观测系统 · ANT-A03",
+      "h1": "AUTONOMOUSNEXUS自主观测网络",
+      "buttons": 2,
+      "visibleButtons": 2,
+      "active": [
+        "zh"
+      ],
+      "globeReady": false,
+      "fallbackVisible": null,
+      "attributionHidden": null,
+      "hasFallbackFn": false
+    },
+    "en": {
+      "lang": "en",
+      "title": "AUTONOMOUS NEXUS · ANT-A03",
+      "active": [
+        "en"
+      ],
+      "visibleButtons": 2
+    },
+    "errors": []
+  },
+  "sensors-a02.html": {
+    "zh": {
+      "url": "sensors-a02.html",
+      "title": "自主观测系统 · ANT-A02",
+      "h1": "AUTONOMOUSNEXUS自主观测网络",
+      "buttons": 2,
+      "visibleButtons": 2,
+      "active": [
+        "zh"
+      ],
+      "globeReady": false,
+      "fallbackVisible": null,
+      "attributionHidden": null,
+      "hasFallbackFn": false
+    },
+    "en": {
+      "lang": "en",
+      "title": "AUTONOMOUS NEXUS · ANT-A02",
+      "active": [
+        "en"
+      ],
+      "visibleButtons": 2
+    },
+    "errors": []
+  },
+  "sensors-a03.html": {
+    "zh": {
+      "url": "sensors-a03.html",
+      "title": "自主观测系统 · ANT-A03",
+      "h1": "AUTONOMOUSNEXUS自主观测网络",
+      "buttons": 2,
+      "visibleButtons": 2,
+      "active": [
+        "zh"
+      ],
+      "globeReady": false,
+      "fallbackVisible": null,
+      "attributionHidden": null,
+      "hasFallbackFn": false
+    },
+    "en": {
+      "lang": "en",
+      "title": "AUTONOMOUS NEXUS · ANT-A03",
+      "active": [
+        "en"
+      ],
+      "visibleButtons": 2
+    },
+    "errors": []
+  },
+  "telemetry-a02.html": {
+    "zh": {
+      "url": "telemetry-a02.html",
+      "title": "自主观测系统 · ANT-A02",
+      "h1": "AUTONOMOUSNEXUS自主观测网络",
+      "buttons": 2,
+      "visibleButtons": 2,
+      "active": [
+        "zh"
+      ],
+      "globeReady": false,
+      "fallbackVisible": null,
+      "attributionHidden": null,
+      "hasFallbackFn": false
+    },
+    "en": {
+      "lang": "en",
+      "title": "AUTONOMOUS NEXUS · ANT-A02",
+      "active": [
+        "en"
+      ],
+      "visibleButtons": 2
+    },
+    "errors": []
+  },
+  "telemetry-a03.html": {
+    "zh": {
+      "url": "telemetry-a03.html",
+      "title": "自主观测系统 · ANT-A03",
+      "h1": "AUTONOMOUSNEXUS自主观测网络",
+      "buttons": 2,
+      "visibleButtons": 2,
+      "active": [
+        "zh"
+      ],
+      "globeReady": false,
+      "fallbackVisible": null,
+      "attributionHidden": null,
+      "hasFallbackFn": false
+    },
+    "en": {
+      "lang": "en",
+      "title": "AUTONOMOUS NEXUS · ANT-A03",
+      "active": [
+        "en"
+      ],
+      "visibleButtons": 2
+    },
+    "errors": []
+  },
+  "hardware-a02.html": {
+    "zh": {
+      "url": "hardware-a02.html",
+      "title": "自主观测系统 · ANT-A02",
+      "h1": "AUTONOMOUSNEXUS自主观测网络",
+      "buttons": 2,
+      "visibleButtons": 2,
+      "active": [
+        "zh"
+      ],
+      "globeReady": false,
+      "fallbackVisible": null,
+      "attributionHidden": null,
+      "hasFallbackFn": false
+    },
+    "en": {
+      "lang": "en",
+      "title": "AUTONOMOUS NEXUS · ANT-A02",
+      "active": [
+        "en"
+      ],
+      "visibleButtons": 2
+    },
+    "errors": []
+  },
+  "hardware-a03.html": {
+    "zh": {
+      "url": "hardware-a03.html",
+      "title": "自主观测系统 · ANT-A03",
+      "h1": "AUTONOMOUSNEXUS自主观测网络",
+      "buttons": 2,
+      "visibleButtons": 2,
+      "active": [
+        "zh"
+      ],
+      "globeReady": false,
+      "fallbackVisible": null,
+      "attributionHidden": null,
+      "hasFallbackFn": false
+    },
+    "en": {
+      "lang": "en",
+      "title": "AUTONOMOUS NEXUS · ANT-A03",
+      "active": [
+        "en"
+      ],
+      "visibleButtons": 2
+    },
+    "errors": []
+  },
+  "analysis-a02.html": {
+    "zh": {
+      "url": "analysis-a02.html",
+      "title": "自主观测系统 · ANT-A02",
+      "h1": "AUTONOMOUSNEXUS自主观测网络",
+      "buttons": 2,
+      "visibleButtons": 2,
+      "active": [
+        "zh"
+      ],
+      "globeReady": false,
+      "fallbackVisible": null,
+      "attributionHidden": null,
+      "hasFallbackFn": false
+    },
+    "en": {
+      "lang": "en",
+      "title": "AUTONOMOUS NEXUS · ANT-A02",
+      "active": [
+        "en"
+      ],
+      "visibleButtons": 2
+    },
+    "errors": []
+  },
+  "analysis-a03.html": {
+    "zh": {
+      "url": "analysis-a03.html",
+      "title": "自主观测系统 · ANT-A03",
+      "h1": "AUTONOMOUSNEXUS自主观测网络",
+      "buttons": 2,
+      "visibleButtons": 2,
+      "active": [
+        "zh"
+      ],
+      "globeReady": false,
+      "fallbackVisible": null,
+      "attributionHidden": null,
+      "hasFallbackFn": false
+    },
+    "en": {
+      "lang": "en",
+      "title": "AUTONOMOUS NEXUS · ANT-A03",
+      "active": [
+        "en"
+      ],
+      "visibleButtons": 2
+    },
+    "errors": []
+  },
+  "sensors.html": {
+    "zh": {
+      "url": "sensors.html",
+      "title": "自主观测系统 · 传感器",
+      "h1": "AUTONOMOUSNEXUS自主观测网络",
+      "buttons": 2,
+      "visibleButtons": 2,
+      "active": [
+        "zh"
+      ],
+      "globeReady": false,
+      "fallbackVisible": null,
+      "attributionHidden": null,
+      "hasFallbackFn": false
+    },
+    "errors": []
+  },
+  "telemetry.html": {
+    "zh": {
+      "url": "telemetry.html",
+      "title": "自主观测系统 · 数据",
+      "h1": "AUTONOMOUSNEXUS自主观测网络",
+      "buttons": 2,
+      "visibleButtons": 2,
+      "active": [
+        "zh"
+      ],
+      "globeReady": false,
+      "fallbackVisible": null,
+      "attributionHidden": null,
+      "hasFallbackFn": false
+    },
+    "errors": []
+  },
+  "hardware.html": {
+    "zh": {
+      "url": "hardware.html",
+      "title": "自主观测系统 · 硬件档案",
+      "h1": "AUTONOMOUSNEXUS自主观测网络",
+      "buttons": 2,
+      "visibleButtons": 2,
+      "active": [
+        "zh"
+      ],
+      "globeReady": false,
+      "fallbackVisible": null,
+      "attributionHidden": null,
+      "hasFallbackFn": false
+    },
+    "errors": []
+  },
+  "analysis.html": {
+    "zh": {
+      "url": "analysis.html",
+      "title": "自主观测系统 · 任务成果分析",
+      "h1": "AUTONOMOUSNEXUS自主观测网络",
+      "buttons": 2,
+      "visibleButtons": 2,
+      "active": [
+        "zh"
+      ],
+      "globeReady": false,
+      "fallbackVisible": null,
+      "attributionHidden": null,
+      "hasFallbackFn": false
+    },
+    "errors": []
+  },
+  "dashboard.html": {
+    "zh": {
+      "url": "dashboard.html",
+      "title": "自主观测系统",
+      "h1": "AUTONOMOUSNEXUS自主观测网络",
+      "buttons": 2,
+      "visibleButtons": 2,
+      "active": [
+        "zh"
+      ],
+      "globeReady": false,
+      "fallbackVisible": null,
+      "attributionHidden": false,
+      "hasFallbackFn": false
+    },
+    "errors": []
+  },
+  "dashboard-a02.html": {
+    "zh": {
+      "url": "dashboard-a02.html",
+      "title": "自主观测系统 · ANT-A02",
+      "h1": "AUTONOMOUSNEXUS自主观测网络",
+      "buttons": 2,
+      "visibleButtons": 2,
+      "active": [
+        "zh"
+      ],
+      "globeReady": false,
+      "fallbackVisible": null,
+      "attributionHidden": false,
+      "hasFallbackFn": false
+    },
+    "errors": []
+  },
+  "dashboard-a03.html": {
+    "zh": {
+      "url": "dashboard-a03.html",
+      "title": "自主观测系统 · ANT-A03",
+      "h1": "AUTONOMOUSNEXUS自主观测网络",
+      "buttons": 2,
+      "visibleButtons": 2,
+      "active": [
+        "zh"
+      ],
+      "globeReady": false,
+      "fallbackVisible": null,
+      "attributionHidden": false,
+      "hasFallbackFn": false
+    },
+    "errors": []
+  },
+  "index.html": {
+    "zh": {
+      "url": "index.html",
+      "title": "自主观测系统 · 探索序章",
+      "h1": "AUTONOMOUS NEXUS自主观测网络",
+      "buttons": 2,
+      "visibleButtons": 2,
+      "active": [
+        "zh"
+      ],
+      "globeReady": true,
+      "fallbackVisible": false,
+      "attributionHidden": null,
+      "hasFallbackFn": true
+    },
+    "errors": []
+  }
+}

@@ -6,239 +6,733 @@
   <meta name="color-scheme" content="dark">
   <title data-title-en="AUTONOMOUS NEXUS · ANT-A03" data-title-zh="自主观测系统 · ANT-A03">AUTONOMOUS NEXUS · ANT-A03</title>
   <link rel="icon" href="data:,">
-  <link rel="stylesheet" href="./css/style.css?v=20260811">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
-  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-<style>
+  <link rel="stylesheet" href="./css/style.css?v=20260812">
+  <style>
+    /* V43 · Dashboard 简约化：隐藏底部统计卡（核心状态/传感器/地图/任务流保留） */
     body.dashboard-page .operation-grid{display:none}
     @media (min-width:901px){
       body.dashboard-page .side-right{display:none}
       body.dashboard-page .mission-grid{grid-template-columns:minmax(220px,26%) minmax(0,1fr)}
     }
-  </style>
-  <style>
-
-    /* V47 · 待部署节点统一视觉 */
+    @media (min-width:901px){
+      body.dashboard-page .mission-header{padding:22px 18px 12px}
+      body.dashboard-page .dashboard-kicker{letter-spacing:4px;font-size:9px}
+      body.dashboard-page .dashboard-title{font-size:clamp(22px,2.2vw,34px);letter-spacing:2px}
+      body.dashboard-page .mission-info{padding:8px 14px}
+      body.dashboard-page .sensor-card{padding:16px 16px 14px;background:linear-gradient(165deg,rgba(9,28,44,.5),rgba(5,16,28,.36));border:1px solid rgba(140,234,255,.1);border-top:2px solid rgba(98,217,255,.4);border-radius:8px}
+      body.dashboard-page .sensor-value strong{font-size:clamp(20px,1.8vw,28px)}
+      body.dashboard-page .map-panel{border-radius:10px;overflow:hidden}
+      body.dashboard-page .stream-panel{border-radius:8px}
+      body.dashboard-page .stream-row{padding:8px 14px}
+    }
+    .dashboard-hero .hero-controls{display:flex;align-items:center;gap:14px}
+    .dashboard-hero .hero-controls .lang-switch{flex:none}
+    body.dashboard-page .mission-grid{grid-template-columns:minmax(0,1fr)}
+    body.dashboard-page .map-status-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+    body.dashboard-page .side-panel{grid-template-rows:auto repeat(2,minmax(0,1fr))}
+    /* V47.25 · 一屏版式：三状态模块等宽 + 纵向紧凑 */
+    body.dashboard-page .mission-info.dashboard-command-strip{grid-template-columns:repeat(3,1fr);gap:12px;margin-top:8px;padding:0 14px}
+    body.dashboard-page .dashboard-command-strip .cmd-cell{padding:10px 14px;border-radius:8px}
+    body.dashboard-page .cmd-value{font-size:20px;margin-top:6px}
+    body.dashboard-page .cmd-sub{margin-top:3px}
+    body.dashboard-page .mission-header{padding:12px 18px 6px}
+    body.dashboard-page .mission-grid{margin-top:8px}
+    body.dashboard-page main{min-height:calc(100vh - 4px);padding-bottom:4px}
+    body.dashboard-page .map-panel-head{padding:8px 14px}
+    body.dashboard-page .map-status-grid{margin:10px 0 12px}
+    body.dashboard-page #worldMap{flex:0 1 auto;height:clamp(300px,52vh,620px)}
+    body.dashboard-page .stream-panel{padding:6px 14px}
+    body.dashboard-page .stream-row{padding:4px 10px}
+    @media (max-height:850px){
+      body.dashboard-page .mission-header{padding:10px 18px 4px}
+      body.dashboard-page .dashboard-command-strip .cmd-cell{padding:8px 12px}
+      body.dashboard-page .cmd-value{font-size:18px}
+      body.dashboard-page .mission-grid{margin-top:6px}
+      body.dashboard-page #worldMap{height:clamp(240px,36vh,340px)}
+      body.dashboard-page .stream-row{padding:3px 8px}
+    }
+    /* V47.26 · 单屏锁定：html/body 与主区域均锁定 100vh，禁止纵向滚动 */
+    html,body{height:100%;overflow:hidden}
+    body.dashboard-page .app{height:100vh;height:100dvh;overflow:hidden}
+    body.dashboard-page main{height:100vh;height:100dvh;min-height:0;overflow:hidden}
+    body.dashboard-page #mapGraticule{height:100%!important}
+    @media (max-width:768px){
+      body.dashboard-page main{overflow-y:auto}
+      .dashboard-hero .hero-controls .lang-switch{position:fixed;top:16px;right:12px;z-index:120}
+    }
+      /* V47.33 · 未来终端状态：等待部署（与 A01 同一组件，仅降低亮度） */
     body .system-online.pending{border-color:rgba(124,151,169,.35);color:#9fb3c2}
     body .system-online.pending > span:first-child{background:#7c97a9;box-shadow:0 0 8px rgba(124,151,169,.45)}
-    .waiting-panel{max-width:760px;margin:56px auto;padding:52px 40px;border:1px solid rgba(140,234,255,.14);border-radius:10px;background:linear-gradient(165deg,rgba(9,28,44,.5),rgba(5,16,28,.36));text-align:center;position:relative}
-    .waiting-panel::before{content:"";position:absolute;left:0;top:0;right:0;height:2px;background:linear-gradient(90deg,rgba(124,151,169,.7),rgba(98,217,255,.12))}
-    .waiting-mark{width:64px;height:64px;margin:0 auto 22px;border:1px solid rgba(140,234,255,.22);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#7c97a9}
-    .waiting-mark svg{width:28px;height:28px}
-    .waiting-eyebrow{font-size:9px;letter-spacing:3px;color:rgba(140,234,255,.55);text-transform:uppercase;margin-bottom:14px}
-    .waiting-panel h2{font-size:clamp(20px,2.2vw,30px);font-weight:200;letter-spacing:3px;color:#eafcff;margin-bottom:14px}
-    .waiting-panel p{font-size:12px;line-height:2;color:#9ab8ca;max-width:520px;margin:0 auto}
-    .waiting-tag{display:inline-block;margin-top:24px;font-size:9px;letter-spacing:2.5px;color:#9fb3c2;border:1px solid rgba(124,151,169,.35);border-radius:999px;padding:6px 16px;text-transform:uppercase}
-    .placeholder-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;max-width:760px;margin:24px auto 60px}
-    .placeholder-cell{border:1px solid rgba(140,234,255,.1);border-radius:8px;padding:18px;background:rgba(7,22,36,.3);text-align:center}
-    .placeholder-cell b{display:block;font-size:22px;font-weight:300;color:#6f93a8;letter-spacing:2px}
-    .placeholder-cell span{display:block;font-size:8px;letter-spacing:2px;color:#6f93a8;margin-top:8px;text-transform:uppercase}
-    body.location-page main,body.sensors-page main,body.telemetry-page main,body.hardware-page main,body.analysis-page main{height:auto!important;min-height:100vh;overflow:visible!important;display:block;padding:26px 30px}
-    @media (max-width:700px){
-      .waiting-panel{margin:30px 14px;padding:36px 22px}
-      .placeholder-grid{grid-template-columns:1fr;margin:18px 14px 40px}
-    }
-      .lang-float{position:fixed;top:26px;right:32px;z-index:120}
-      .hero-status{margin-right:150px}
   </style>
+
+  <!-- Leaflet 地图（真实地图，由 main.js 初始化） -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 </head>
-<body class="ambient-theme dashboard-page">
 
-<div class="lang-float"><div class="lang-switch"><span class="lang-pill" aria-hidden="true"></span><button type="button" data-lang="zh">中</button><button type="button" data-lang="en" class="active">EN</button></div></div>
+<!-- dashboard-page：Dashboard 专属样式作用域；ambient-theme：全局环境氛围 -->
+<body class="dashboard-page ambient-theme">
 
+<div class="app">
 
+  <!-- ====================== 侧边导航 ====================== -->
   <aside class="sidebar">
     <div class="brand">
       <div class="logo">AN</div>
       <div>
         <h1><span data-lang="en">AUTONOMOUS<br>NEXUS</span><span data-lang="zh">自主观测网络</span></h1>
-        <p><span data-lang="en">Autonomous Environmental Observatory</span><span data-lang="zh">自主环境观测平台</span></p>
+        <p data-i18n="brand_subtitle">Autonomous Environmental Observatory</p>
       </div>
     </div>
     <input type="checkbox" id="navToggle" class="nav-toggle" aria-hidden="true">
     <label for="navToggle" class="nav-toggle-btn" aria-label="MENU"><span></span><span></span><span></span></label>
     <nav class="sidebar-menu">
-      <a class="nav-item active" href="./dashboard-a03.html"><span data-lang="en">Dashboard</span><span data-lang="zh">仪表盘</span></a>
+      <a class="nav-item active"><span data-lang="en">Dashboard</span><span data-lang="zh">仪表盘</span></a>
       <a class="nav-item" href="./location-a03.html"><span data-lang="en">Location</span><span data-lang="zh">位置</span></a>
       <a class="nav-item" href="./sensors-a03.html"><span data-lang="en">Sensors</span><span data-lang="zh">传感器</span></a>
       <a class="nav-item" href="./telemetry-a03.html"><span data-lang="en">DATA</span><span data-lang="zh">数据</span></a>
       <a class="nav-item" href="./hardware-a03.html"><span data-lang="en">Hardware</span><span data-lang="zh">硬件</span></a>
-      <a class="nav-item" href="./analysis-a03.html"><span data-lang="en">Analysis</span><span data-lang="zh">分析</span></a>    </nav>
+      <a class="nav-item" href="./analysis-a03.html"><span data-lang="en">Analysis</span><span data-lang="zh">分析</span></a>
+    </nav>
     <label for="navToggle" class="nav-overlay" aria-hidden="true"></label>
   </aside>
+
+  <!-- ====================== 主区域 ====================== -->
   <main>
+
+    <!-- 顶部：任务标题区 -->
     <header class="mission-header dashboard-hero">
       <div class="hero-main">
-        <div class="dashboard-kicker"><span data-lang="en">AUTONOMOUS DIGITAL TWIN · FUTURE STATION</span><span data-lang="zh">自主数字孪生 · 未来站点</span></div>
+        <div class="dashboard-kicker"><span data-lang="en">AUTONOMOUS DIGITAL TWIN · MISSION CONTROL</span><span data-lang="zh">自主数字孪生 · 任务控制</span></div>
         <div class="dashboard-title"><span data-lang="en">AUTONOMOUS MONITORING SYSTEM</span><span data-lang="zh">自主观测系统</span></div>
         <div class="hero-sub"><span data-lang="en">STATION ANT-A03 · AWAITING DEPLOYMENT</span><span data-lang="zh">站点 ANT-A03 · 等待部署</span></div>
       </div>
-      <div class="hero-status">
-        <div class="system-online pending"><span></span><span data-lang="en">AWAITING DEPLOYMENT</span><span data-lang="zh">等待部署</span></div>
-        <div class="hero-station"><span data-lang="en">STATION ANT-A03</span><span data-lang="zh">站点 ANT-A03</span></div>
+      <div class="hero-controls">
+        <div class="hero-status">
+          <div class="system-online pending"><span></span><span data-lang="en">AWAITING DEPLOYMENT</span><span data-lang="zh">等待部署</span></div>
+          <div class="hero-station"><span data-lang="en">STATION ANT-A03</span><span data-lang="zh">站点 ANT-A03</span></div>
+        </div>
+        <div class="lang-switch"><span class="lang-pill" aria-hidden="true"></span><button type="button" data-lang="zh">中</button><button type="button" data-lang="en" class="active">EN</button></div>
       </div>
     </header>
+
+    <!-- 顶部：任务状态栏（MISSION STATUS / CURRENT TIME / OPERATION MODE） -->
     <section class="mission-info dashboard-command-strip">
       <div class="cmd-cell">
-        <span class="cmd-label"><span data-lang="en">MISSION STATUS</span><span data-lang="zh">任务状态</span></span>
+        <span class="cmd-label" data-i18n="mission_status">MISSION STATUS</span>
         <strong class="cmd-value"><i class="cmd-led"></i><span data-lang="en">PENDING</span><span data-lang="zh">待命</span></strong>
         <span class="cmd-sub"><span data-lang="en">WAITING FOR DEPLOYMENT</span><span data-lang="zh">等待部署</span></span>
       </div>
       <div class="cmd-cell">
-        <span class="cmd-label"><span data-lang="en">CURRENT TIME</span><span data-lang="zh">当前时间</span></span>
+        <span class="cmd-label" data-i18n="current_time">CURRENT TIME</span>
         <strong class="cmd-value" id="time">--</strong>
-        <span class="cmd-sub"><span data-lang="en">LOCAL TIME</span><span data-lang="zh">本地时间</span></span>
+        <span class="cmd-sub" data-i18n="local_time">LOCAL TIME</span>
       </div>
-      <div class="cmd-cell mode-wait" id="modeCell">
-        <span class="cmd-label"><span data-lang="en">OPERATION MODE</span><span data-lang="zh">运行模式</span></span>
-        <strong class="cmd-value"><i class="cmd-led mode-led"></i><span class="mode-text"><span data-lang="en">STANDBY</span><span data-lang="zh">待机</span></span></strong>
-        <span class="cmd-sub"><span data-lang="en">NO DATA AVAILABLE</span><span data-lang="zh">暂无数据</span></span>
+      <div class="cmd-cell" id="modeCell">
+        <span class="cmd-label" data-i18n="operation_mode">OPERATION MODE</span>
+        <strong class="cmd-value">
+          <i class="cmd-led mode-led"></i><span class="mode-text" id="modeDisplay">--</span>
+          <span id="systemMode" class="mode-raw" aria-hidden="true">S</span>
+        </strong>
+        <span class="cmd-sub" id="modeSub" data-i18n="autonomous">AUTONOMOUS</span>
       </div>
     </section>
+
+    <!-- 中部：大地图 + 两侧科研数据面板（非卡片堆叠） -->
     <section class="mission-grid">
-      <aside class="side-panel side-left">
-        <div class="side-panel-title"><span data-lang="en">POWER &amp; ENVIRONMENT</span><span data-lang="zh">电力与环境</span></div>
-        <div class="status-card sensor-card st-wait">
-          <div class="sensor-head">
-            <svg class="sensor-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4.8 13.4h5.2L9 22l9.2-11.6H13z"/></svg>
-            <span class="sensor-name"><span data-lang="en">VOLTAGE</span><span data-lang="zh">电压</span></span>
-            <span class="sensor-led"></span>
-          </div>
-          <div class="sensor-value"><strong>--</strong><span class="sensor-unit">V</span></div>
-          <div class="sensor-meta"><span><span data-lang="en">BATTERY BUS</span><span data-lang="zh">电池总线</span></span><span class="sensor-state"><span data-lang="en">NO DATA</span><span data-lang="zh">无数据</span></span></div>
-          <span class="sensor-index">01</span>
-        </div>
-        <div class="status-card sensor-card st-wait">
-          <div class="sensor-head">
-            <svg class="sensor-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h3l2-6 4 12 2-6h7"/></svg>
-            <span class="sensor-name"><span data-lang="en">CURRENT</span><span data-lang="zh">电流</span></span>
-            <span class="sensor-led"></span>
-          </div>
-          <div class="sensor-value"><strong>--</strong><span class="sensor-unit">mA</span></div>
-          <div class="sensor-meta"><span><span data-lang="en">LOAD DRAW</span><span data-lang="zh">负载电流</span></span><span class="sensor-state"><span data-lang="en">NO DATA</span><span data-lang="zh">无数据</span></span></div>
-          <span class="sensor-index">02</span>
-        </div>
-        <div class="status-card sensor-card st-wait">
-          <div class="sensor-head">
-            <svg class="sensor-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 4a2 2 0 1 1 4 0v9.5a4 4 0 1 1-4 0V4z"/><path d="M12 9v7"/></svg>
-            <span class="sensor-name"><span data-lang="en">TEMPERATURE</span><span data-lang="zh">温度</span></span>
-            <span class="sensor-led"></span>
-          </div>
-          <div class="sensor-value"><strong>--</strong><span class="sensor-unit">°C</span></div>
-          <div class="sensor-meta"><span><span data-lang="en">CABIN</span><span data-lang="zh">舱内</span></span><span class="sensor-state"><span data-lang="en">NO DATA</span><span data-lang="zh">无数据</span></span></div>
-          <span class="sensor-index">03</span>
-        </div>
-      </aside>
+
+      <!-- 中部：地图战区（视觉中心） -->
       <section class="map-panel">
         <div class="map-panel-head">
           <div class="panel-title"><span data-lang="en">NODE POSITIONING · NOT AVAILABLE</span><span data-lang="zh">节点定位 · 暂不可用</span></div>
           <div class="panel-title-tag"><span data-lang="en">NO TELEMETRY</span><span data-lang="zh">无遥测</span></div>
         </div>
+
         <div class="map-status-grid">
-          <div class="map-cell"><span><span data-lang="en">GPS STATUS</span><span data-lang="zh">GPS状态</span></span><strong>--</strong><i class="map-cell-led"></i></div>
-          <div class="map-cell"><span><span data-lang="en">MODE</span><span data-lang="zh">模式</span></span><strong>--</strong><i class="map-cell-led"></i></div>
-          <div class="map-cell"><span><span data-lang="en">POWER</span><span data-lang="zh">电源</span></span><strong>--</strong><i class="map-cell-led"></i></div>
-          <div class="map-cell"><span><span data-lang="en">COMMS</span><span data-lang="zh">通信</span></span><strong>--</strong><i class="map-cell-led"></i></div>
+          <div class="map-cell"><span data-i18n="gps_status">GPS STATUS</span><strong><span data-lang="en">NO FIX</span><span data-lang="zh">未定位</span></strong><i class="map-cell-led"></i></div>
+          <div class="map-cell" id="mapModeCell"><span data-i18n="mode">MODE</span><strong id="mapModeValue">--</strong><i class="map-cell-led"></i></div>
+          <div class="map-cell"><span data-i18n="power">POWER</span><strong><span data-lang="en">NO DATA</span><span data-lang="zh">暂无数据</span></strong><i class="map-cell-led"></i></div>
         </div>
-        <div id="worldMap"><div class="map-layer map-tint" aria-hidden="true"></div></div>
+
+        <!-- #worldMap 由 main.js 创建真实 Leaflet 地图；以下装饰层均为 pointer-events:none，不影响拖拽缩放 -->
+        <div id="worldMap">
+          <div class="map-layer map-tint" aria-hidden="true"></div>
+          <canvas id="mapGraticule" class="map-layer map-graticule" aria-hidden="true"></canvas>
+          <div class="map-layer map-scan" aria-hidden="true"></div>
+          <div class="map-layer map-radar" aria-hidden="true"><i></i></div>
+          <div class="map-layer gps-rings" aria-hidden="true"><i></i><i></i><i></i></div>
+          <div class="map-layer gps-core" aria-hidden="true"></div>
+        </div>
+
+        <!-- 坐标信息浮层 -->
         <div class="map-overlay">
           <h3>ANT-A03</h3>
-          <p><span data-lang="en">AWAITING DEPLOYMENT</span><span data-lang="zh">等待部署</span></p>
-          <p><span data-lang="en">NO POSITION DATA</span><span data-lang="zh">暂无坐标数据</span></p>
+          <p><span data-i18n="lat">LAT</span> <span id="latitude">--</span></p>
+          <p><span data-i18n="lon">LON</span> <span id="longitude">--</span></p>
+          <p><span data-i18n="satellites">SATELLITES</span> <span id="satellites">--</span></p>
         </div>
       </section>
+
+      <!-- 右侧面板：气候 / 通信 -->
       <aside class="side-panel side-right">
-        <div class="side-panel-title"><span data-lang="en">CLIMATE &amp; COMMS</span><span data-lang="zh">气候与通信</span></div>
-        <div class="status-card sensor-card st-wait">
+        <div class="side-panel-title"><span data-lang="en">CLIMATE</span><span data-lang="zh">气候</span></div>
+
+        <div class="status-card sensor-card">
           <div class="sensor-head">
             <svg class="sensor-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3s6 6.4 6 11a6 6 0 0 1-12 0c0-4.6 6-11 6-11z"/></svg>
-            <span class="sensor-name"><span data-lang="en">HUMIDITY</span><span data-lang="zh">湿度</span></span>
+            <span class="sensor-name" data-i18n="inside_humidity">HUMIDITY</span>
             <span class="sensor-led"></span>
           </div>
-          <div class="sensor-value"><strong>--</strong><span class="sensor-unit">%RH</span></div>
-          <div class="sensor-meta"><span><span data-lang="en">CABIN</span><span data-lang="zh">舱内</span></span><span class="sensor-state"><span data-lang="en">NO DATA</span><span data-lang="zh">无数据</span></span></div>
+          <div class="sensor-value"><strong id="humidity">--</strong><span class="sensor-unit">%RH</span></div>
+          <div class="sensor-meta"><span data-i18n="cabin">CABIN</span><span><span data-i18n="outside">OUTSIDE</span> <b id="outsideHumidity">--</b>%RH</span></div>
           <span class="sensor-index">04</span>
         </div>
-        <div class="status-card sensor-card st-wait">
+
+        <div class="status-card sensor-card">
           <div class="sensor-head">
             <svg class="sensor-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M19.1 4.9l-1.8 1.8M6.7 17.3l-1.8 1.8"/></svg>
-            <span class="sensor-name"><span data-lang="en">SOLAR RADIATION</span><span data-lang="zh">太阳辐射</span></span>
+            <span class="sensor-name" data-i18n="solar_radiation_label">SOLAR RADIATION</span>
             <span class="sensor-led"></span>
           </div>
-          <div class="sensor-value"><strong>--</strong><span class="sensor-unit">W/m²</span></div>
-          <div class="sensor-meta"><span><span data-lang="en">PYRANOMETER</span><span data-lang="zh">辐射计</span></span><span class="sensor-state"><span data-lang="en">NO DATA</span><span data-lang="zh">无数据</span></span></div>
+          <div class="sensor-value"><strong id="solar">--</strong><span class="sensor-unit">W/m²</span></div>
+          <div class="sensor-meta"><span data-i18n="pyranometer">PYRANOMETER</span><span class="sensor-state" data-i18n="nominal">NOMINAL</span></div>
           <span class="sensor-index">05</span>
         </div>
-        <div class="status-card sensor-card st-wait">
-          <div class="sensor-head">
-            <svg class="sensor-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20a12 12 0 0 1 16 0"/><path d="M8 16a8 8 0 0 1 8 0"/><circle cx="12" cy="12" r="1.6"/></svg>
-            <span class="sensor-name"><span data-lang="en">DATA LINK</span><span data-lang="zh">数据链路</span></span>
-            <span class="sensor-led"></span>
-          </div>
-          <div class="sensor-value"><strong>--</strong><span class="sensor-unit">FIX</span></div>
-          <div class="sensor-meta"><span><span data-lang="en">SATELLITES</span><span data-lang="zh">卫星数</span></span><span class="sensor-state"><span data-lang="en">NO DATA</span><span data-lang="zh">无数据</span></span></div>
-          <span class="sensor-index">06</span>
-        </div>
+
       </aside>
     </section>
+
+    <!-- 底部：任务统计（任务闭环） -->
     <section class="operation-grid">
-      <div class="operation-card"><span class="op-label"><span data-lang="en">OPERATION DAYS</span><span data-lang="zh">运行天数</span></span><strong>--</strong><span class="op-sub"><span data-lang="en">CONTINUOUS RUN</span><span data-lang="zh">连续运行</span></span></div>
-      <div class="operation-card"><span class="op-label"><span data-lang="en">DATA RECORDS</span><span data-lang="zh">数据记录</span></span><strong>--</strong><span class="op-sub"><span data-lang="en">TELEMETRY SAMPLES</span><span data-lang="zh">遥测样本</span></span></div>
-      <div class="operation-card"><span class="op-label"><span data-lang="en">LAST UPDATE</span><span data-lang="zh">最近更新</span></span><strong>--</strong><span class="op-sub"><span data-lang="en">LAST DATA CONTACT</span><span data-lang="zh">最后数据联系</span></span></div>
+      <div class="operation-card">
+        <span class="op-label" data-i18n="operation_days">OPERATION DAYS</span>
+        <strong id="runDays">--</strong>
+        <span class="op-sub" data-i18n="continuous_run">CONTINUOUS RUN</span>
+      </div>
+      <div class="operation-card">
+        <span class="op-label" data-i18n="data_records">DATA RECORDS</span>
+        <strong id="dataCount">--</strong>
+        <span class="op-sub" data-i18n="telemetry_samples">TELEMETRY SAMPLES</span>
+      </div>
+      <div class="operation-card">
+        <span class="op-label" data-i18n="last_update">LAST UPDATE</span>
+        <strong id="lastUpdate">--</strong>
+        <span class="op-sub" data-i18n="last_data_contact">LAST DATA CONTACT</span>
+      </div>
     </section>
+
+    <!-- 底部：任务流状态 -->
     <section class="stream-panel">
-      <div class="panel-title"><span data-lang="en">MISSION STREAM</span><span data-lang="zh">任务流</span></div>
+      <div class="panel-title" data-i18n="mission_stream">MISSION STREAM</div>
       <div class="stream">
         <div class="stream-row"><i class="stream-dot"></i><span data-lang="en">STATION AWAITING DEPLOYMENT</span><span data-lang="zh">站点等待部署</span><em>--</em></div>
         <div class="stream-row"><i class="stream-dot"></i><span data-lang="en">TELEMETRY LINK NOT ESTABLISHED</span><span data-lang="zh">遥测链路未建立</span><em>--</em></div>
         <div class="stream-row"><i class="stream-dot"></i><span data-lang="en">MODULES IN STANDBY</span><span data-lang="zh">模块处于待机</span><em>--</em></div>
       </div>
     </section>
-  </main>
+
+</main>
 </div>
 
+<!-- 地图：窗口/断点变化后刷新尺寸，避免空白（仅本页，不改 main.js） -->
+<script>
+(function () {
+  var t = null;
+  window.addEventListener('resize', function () {
+    clearTimeout(t);
+    t = setTimeout(function () {
+      try { if (window.deviceMap) window.deviceMap.invalidateSize(); } catch (e) {}
+    }, 150);
+  });
+})();
+</script>
+
+<!-- 全站暴风雪模块（模块化，自动创建背景/前景画布） -->
+<script src="./js/ambient.js?v=20260806b"></script>
+
+<!-- 页面级扫描线与设备编号铭牌（氛围层，不拦截交互） -->
+<div class="scan-line" aria-hidden="true"></div>
+<div class="node-badge">ANT-A03 · FUTURE STATION · AWAITING DEPLOYMENT</div>
+
+<!-- 数据核心与地图初始化（不允许修改） -->
+<script>
+/* V47.33 · ANT-A03 终端页本地数据层
+   不加载 js/main.js，避免将 ANT-A01 的 data.json 数据带入未来终端页。
+   页面模板与 ANT-A01 完全一致；地图使用同一 Leaflet + 蓝色网格视觉系统，
+   无真实坐标时不放置任何伪造节点。 */
+window.ANX_I18N = { en: {"satellites":"SATELLITES","pyranometer":"Solar Radiation Sensor","outside":"OUTSIDE","lat":"LAT","lon":"LON","current_time":"CURRENT TIME","operation_mode":"OPERATION MODE","continuous_run":"CONTINUOUS RUN","protective_mode":"PROTECTIVE MODE","brand_subtitle":"Autonomous Environmental Observatory","gps_status":"GPS STATUS","data_records":"DATA RECORDS","nominal":"NOMINAL","no_fix":"NO FIX","low_power_standby":"Standby","standby":"Standby","null":"NULL","inside_humidity":"INSIDE HUMIDITY","telemetry_samples":"TELEMETRY SAMPLES","last_data_contact":"LAST DATA CONTACT","no_signal":"WAITING FOR DATA","sensor_offline":"SENSOR OFFLINE","mission_status":"MISSION STATUS","emergency":"EMERGENCY","normal":"NORMAL","mission_stream":"MISSION STREAM","autonomous":"AUTONOMOUS","mode_unknown":"MODE UNKNOWN","cabin":"CABIN","power":"POWER","operation_days":"OPERATION DAYS","last_update":"LAST UPDATE","awaiting_sensor":"AWAITING SENSOR","no_telemetry":"WAITING FOR DATA","waiting_data":"WAITING FOR DATA","local_time":"LOCAL TIME","running":"RUNNING","normal_operation":"NORMAL OPERATION","mode":"MODE","solar_radiation_label":"SOLAR RADIATION"}, zh: {"satellites":"卫星数","pyranometer":"太阳能辐射传感器","outside":"舱外","lat":"纬度","lon":"经度","current_time":"当前时间","operation_mode":"运行模式","continuous_run":"持续运行","protective_mode":"保护模式","brand_subtitle":"自主环境观测站","gps_status":"GPS 状态","data_records":"数据记录","nominal":"正常","no_fix":"未定位","low_power_standby":"节能","standby":"节能","null":"无数据","inside_humidity":"舱内湿度","telemetry_samples":"遥测样本","last_data_contact":"最近数据联系","no_signal":"等待数据","sensor_offline":"传感器离线","mission_status":"任务状态","emergency":"应急","normal":"正常","mission_stream":"任务流","autonomous":"自动","mode_unknown":"模式未知","cabin":"舱内","power":"供电","operation_days":"运行天数","last_update":"最近更新","awaiting_sensor":"等待传感器","no_telemetry":"等待数据","waiting_data":"等待数据","local_time":"本地时间","running":"运行中","normal_operation":"正常运行","mode":"模式","solar_radiation_label":"太阳辐射"} };
+window.ANX_LANG = "en";
+window.ANX_T = function (key, params) {
+  var dict = (window.ANX_I18N && window.ANX_I18N[window.ANX_LANG]) || (window.ANX_I18N && window.ANX_I18N.en) || {};
+  var text = dict[key] !== undefined ? dict[key] : key;
+  if (params) {
+    Object.keys(params).forEach(function (k) {
+      text = String(text).split("{" + k + "}").join(params[k]);
+    });
+  }
+  return text;
+};
+window.ANX_APPLY_I18N = function (lang) {
+  window.ANX_LANG = lang === "zh" ? "zh" : "en";
+  document.querySelectorAll("[data-i18n]").forEach(function (el) {
+    var key = el.getAttribute("data-i18n");
+    if (key) el.textContent = window.ANX_T(key);
+  });
+};
+(function () {
+  'use strict';
+  /* 本地时钟（格式与全站一致） */
+  function tickClock() {
+    var el = document.getElementById('time');
+    if (!el) return;
+    var now = new Date();
+    var text = now.getFullYear() + '-' + String(now.getMonth() + 1).padStart(2, '0') + '-' + String(now.getDate()).padStart(2, '0') + ' ' + now.toLocaleTimeString();
+    if (el.textContent !== text) el.textContent = text;
+  }
+  tickClock();
+  setInterval(tickClock, 1000);
+  /* 地图：同一套 Leaflet 视觉系统（全球视图，无伪造节点坐标） */
+  function initMap() {
+    if (typeof L === 'undefined' || window.deviceMap) return;
+    var box = document.getElementById('worldMap');
+    if (!box) return;
+    window.deviceMap = L.map('worldMap', { zoomControl: false })
+      .setView([0, 0], 2);
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18 })
+      .addTo(window.deviceMap);
+  }
+  initMap();
+})();
+</script>
+
+<!-- =========================================================
+     Dashboard 专属前端装饰层（纯原生 JavaScript）
+     - 不读取、不修改 main.js 的任何逻辑
+     - 只负责：雪花粒子、地图经纬网、南半球强调、GPS 扫描定位、状态灯同步
+========================================================= -->
+<script>
+(function () {
+  'use strict';
+
+  /* 用户开启“减少动态效果”时，关闭雪花与所有装饰动画 */
+  var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* =========================================================
+     2. 地图装饰层（仅在 Dashboard 页面生效）
+        - 经纬网：按地图真实投影逐格绘制，随缩放/拖动重绘
+        - 南半球强调：极圈虚线 + 光晕，视口进入南半球时自动出现
+        - GPS 扫描：扫描线、雷达扫掠、扩散光圈跟随真实定位点
+        - 所有装饰层 pointer-events:none，不影响拖拽与缩放
+  ========================================================= */
+  var graticule = document.getElementById('mapGraticule');
+  var radar = document.querySelector('.map-radar');
+  var rings = document.querySelector('.gps-rings');
+  var core = document.querySelector('.gps-core');
+  var mapDpr = Math.min(window.devicePixelRatio || 1, 1.5);
+  var rafPending = false;
+
+  /* 画布尺寸对齐容器 */
+  function fitCanvas() {
+    if (!graticule) return;
+    var box = graticule.parentElement;
+    var w = box.clientWidth;
+    var h = box.clientHeight;
+    graticule.width = Math.round(w * mapDpr);
+    graticule.height = Math.round(h * mapDpr);
+    graticule.style.width = w + 'px';
+    graticule.style.height = h + 'px';
+  }
+
+  /* 两点距离 */
+  function dist(a, b) {
+    return Math.sqrt((a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y));
+  }
+
+  /* 绘制一条折线 */
+  function strokePath(ctx, pts, alpha, dash) {
+    if (!pts || pts.length < 2) return;
+    ctx.beginPath();
+    ctx.moveTo(pts[0].x, pts[0].y);
+    for (var i = 1; i < pts.length; i++) ctx.lineTo(pts[i].x, pts[i].y);
+    ctx.strokeStyle = 'rgba(140,234,255,' + alpha + ')';
+    ctx.lineWidth = 1;
+    ctx.setLineDash(dash || []);
+    ctx.stroke();
+    ctx.setLineDash([]);
+  }
+
+  /* 在路径上寻找一个可见点，用于绘制经纬度标注 */
+  function findLabelPoint(pts, w, h, preferBottom) {
+    for (var i = 0; i < pts.length; i++) {
+      var p = pts[i];
+      if (p.x >= 12 && p.x <= w - 46 && p.y >= 10 && p.y <= h - 10) return p;
+    }
+    if (preferBottom) {
+      for (var j = 0; j < pts.length; j++) {
+        var q = pts[j];
+        if (q.x >= 12 && q.x <= w - 12 && q.y >= h - 12 && q.y <= h + 60) return q;
+      }
+    }
+    return null;
+  }
+
+  /* 经纬网：步长随缩放级别自适应，保证任何缩放下网格都清晰可见 */
+  function drawGraticule(map, ctx, w, h) {
+    ctx.clearRect(0, 0, w, h);
+    /* 底层蓝图网格：固定像素间距铺满整个地图容器，四边完整连续 */
+    var gstep = 48;
+    ctx.strokeStyle = 'rgba(140,234,255,.055)';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    for (var gx = 0; gx <= w; gx += gstep) { ctx.moveTo(gx, 0); ctx.lineTo(gx, h); }
+    for (var gy = 0; gy <= h; gy += gstep) { ctx.moveTo(0, gy); ctx.lineTo(w, gy); }
+    ctx.stroke();
+    ctx.strokeStyle = 'rgba(140,234,255,.04)';
+    ctx.beginPath();
+    for (var gk = -h; gk <= w; gk += gstep) {
+      var gx1 = gk >= 0 ? gk : 0;
+      var gy1 = gk >= 0 ? 0 : -gk;
+      var gx2, gy2;
+      if (w - gk <= h) { gx2 = w; gy2 = w - gk; } else { gx2 = gk + h; gy2 = h; }
+      ctx.moveTo(gx1, gy1); ctx.lineTo(gx2, gy2);
+    }
+    ctx.stroke();
+    var b = map.getBounds();
+    var z = map.getZoom();
+    var baseStep = z >= 10 ? 0.25 : z >= 8 ? 0.5 : z >= 6 ? 1 : z >= 4 ? 5 : 10;
+
+    /* 纬线（横向） */
+    var latStart = Math.ceil(b.getSouth() / baseStep) * baseStep;
+    for (var lat = latStart; lat <= b.getNorth(); lat += baseStep) {
+      var major = (Math.abs(lat % (baseStep * 5)) < baseStep / 2) || (Math.abs(lat) % 30 === 0);
+      var pts = [];
+      var lonSample = Math.max((b.getEast() - b.getWest()) / 8, 0.05);
+      for (var lon = b.getWest(); lon <= b.getEast(); lon += lonSample) {
+        pts.push(map.latLngToContainerPoint([lat, lon]));
+      }
+      strokePath(ctx, pts, major ? 0.30 : 0.15);
+      /* 主纬线标注，如 75°S */
+      if (major && Math.abs(lat) % 5 === 0) {
+        var lp = findLabelPoint(pts, w, h, false);
+        if (lp) {
+          ctx.fillStyle = 'rgba(140,234,255,.5)';
+          ctx.font = '8px "Segoe UI", sans-serif';
+          ctx.fillText(Math.abs(lat) + '°' + (lat < 0 ? 'S' : 'N'), lp.x + 4, lp.y - 3);
+        }
+      }
+    }
+
+    /* 经线（纵向） */
+    var lonStart = Math.ceil(b.getWest() / baseStep) * baseStep;
+    for (var lon2 = lonStart; lon2 <= b.getEast(); lon2 += baseStep) {
+      var major2 = (Math.abs(lon2 % (baseStep * 5)) < baseStep / 2) || (Math.abs(lon2) % 60 === 0);
+      var pts2 = [];
+      var latSample = Math.max((b.getNorth() - b.getSouth()) / 8, 0.05);
+      for (var lat2 = b.getSouth(); lat2 <= b.getNorth(); lat2 += latSample) {
+        pts2.push(map.latLngToContainerPoint([lat2, lon2]));
+      }
+      strokePath(ctx, pts2, major2 ? 0.30 : 0.15);
+      if (major2 && Math.abs(lon2) % 30 === 0) {
+        var lp2 = findLabelPoint(pts2, w, h, true);
+        if (lp2) {
+          ctx.fillStyle = 'rgba(140,234,255,.45)';
+          ctx.font = '8px "Segoe UI", sans-serif';
+          ctx.fillText(Math.abs(lon2) + '°' + (lon2 < 0 ? 'W' : 'E'), lp2.x + 3, h - 3);
+        }
+      }
+    }
+  }
+
+  /* 南半球区域强调：光晕 + 60/70/80°S 极圈虚线（视口进入南半球才绘制） */
+  function drawSectorEmphasis(map, ctx, w, h) {
+    var pole = map.latLngToContainerPoint([-85, 0]);
+    if (pole.x < -800 || pole.x > w + 800 || pole.y < -800 || pole.y > h + 800) return;
+
+    var r60 = dist(pole, map.latLngToContainerPoint([-60, 0]));
+    var r70 = dist(pole, map.latLngToContainerPoint([-70, 0]));
+    var r80 = dist(pole, map.latLngToContainerPoint([-80, 0]));
+
+    /* 区域光晕（微弱，非廉价发光） */
+    var g = ctx.createRadialGradient(pole.x, pole.y, 0, pole.x, pole.y, r60);
+    g.addColorStop(0, 'rgba(98,217,255,.10)');
+    g.addColorStop(0.7, 'rgba(98,217,255,.045)');
+    g.addColorStop(1, 'rgba(98,217,255,0)');
+    ctx.fillStyle = g;
+    ctx.beginPath();
+    ctx.arc(pole.x, pole.y, r60, 0, Math.PI * 2);
+    ctx.fill();
+
+    /* 极圈虚线 */
+    ctx.setLineDash([6, 4]);
+    ctx.strokeStyle = 'rgba(140,234,255,.40)';
+    ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.arc(pole.x, pole.y, r60, 0, Math.PI * 2); ctx.stroke();
+    ctx.setLineDash([4, 4]);
+    ctx.strokeStyle = 'rgba(140,234,255,.26)';
+    ctx.beginPath(); ctx.arc(pole.x, pole.y, r70, 0, Math.PI * 2); ctx.stroke();
+    ctx.setLineDash([3, 4]);
+    ctx.strokeStyle = 'rgba(140,234,255,.16)';
+    ctx.beginPath(); ctx.arc(pole.x, pole.y, r80, 0, Math.PI * 2); ctx.stroke();
+    ctx.setLineDash([]);
+
+    ctx.fillStyle = 'rgba(140,234,255,.45)';
+    ctx.font = '8px "Segoe UI", sans-serif';
+    ctx.fillText('60°S · FUTURE SECTOR', pole.x + 6, pole.y - r60 - 4);
+  }
+
+  /* 站区作业圈：以真实定位点为中心，半径约 300km 的虚线圆 */
+  function drawStationZone(map, ctx, w, h) {
+    var marker = window.deviceMarker;
+    if (!marker) return;
+    var ll = marker.getLatLng();
+    var p = map.latLngToContainerPoint(ll);
+    if (p.x < -500 || p.x > w + 500 || p.y < -500 || p.y > h + 500) return;
+
+    /* 以经度差估算 300km 半径（装饰性量级） */
+    var east = map.latLngToContainerPoint([ll.lat, ll.lng + 3.2]);
+    var r = dist(p, east);
+    if (r < 8 || r > 1400) return;
+
+    ctx.setLineDash([3, 5]);
+    ctx.strokeStyle = 'rgba(98,217,255,.22)';
+    ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.arc(p.x, p.y, r, 0, Math.PI * 2); ctx.stroke();
+    ctx.setLineDash([]);
+
+    ctx.fillStyle = 'rgba(98,217,255,.4)';
+    ctx.font = '8px "Segoe UI", sans-serif';
+    ctx.fillText('R≈300KM · ANT-A03 ZONE', p.x + 5, p.y - r - 3);
+  }
+
+  /* 将雷达扫掠 / 扩散光圈 / 定位核心移动到真实标记点 */
+  function positionOverlays(map) {
+    var marker = window.deviceMarker;
+    var visible = marker ? 1 : 0;
+    if (marker) {
+      var p = map.latLngToContainerPoint(marker.getLatLng());
+      var x = p.x;
+      var y = p.y;
+      if (radar) { radar.style.left = x + 'px'; radar.style.top = y + 'px'; }
+      if (rings) { rings.style.left = x + 'px'; rings.style.top = y + 'px'; }
+      if (core) { core.style.left = x + 'px'; core.style.top = y + 'px'; }
+    }
+    if (radar) radar.style.opacity = visible;
+    if (rings) rings.style.opacity = visible;
+    if (core) core.style.opacity = visible;
+  }
+
+  /* 统一重绘：网格 + 南半球强调 + 站区圈 + 定位叠层（rAF 节流） */
+  function drawMapOverlays() {
+    var map = window.deviceMap;
+    if (!map || !graticule) return;
+    fitCanvas();
+    var ctx = graticule.getContext('2d');
+    var w = graticule.clientWidth;
+    var h = graticule.clientHeight;
+    ctx.setTransform(mapDpr, 0, 0, mapDpr, 0, 0);
+    drawGraticule(map, ctx, w, h);
+    drawSectorEmphasis(map, ctx, w, h);
+    drawStationZone(map, ctx, w, h);
+    positionOverlays(map);
+  }
+
+  function scheduleDraw() {
+    if (rafPending) return;
+    rafPending = true;
+    window.requestAnimationFrame(function () {
+      rafPending = false;
+      drawMapOverlays();
+    });
+  }
+
+  /* main.js 异步创建地图，轮询等待其就绪后再挂接重绘事件 */
+  function attachToMap() {
+    var map = window.deviceMap;
+    if (!map) return false;
+    map.on('move zoomend resize', scheduleDraw);
+    window.addEventListener('resize', scheduleDraw);
+    drawMapOverlays();
+    return true;
+  }
+  var tries = 0;
+  var poll = setInterval(function () {
+    if (attachToMap() || tries++ > 75) clearInterval(poll); // 最长等待约 30 秒
+  }, 400);
+
+  /* =========================================================
+     3. 状态显示辅助层（纯 DOM 展示逻辑，不影响 main.js 数据刷新）
+        - MODE: N/S/E → NORMAL / STANDBY / EMERGENCY + 状态灯颜色
+        - NULL: 按设备语义显示 NO SIGNAL / WAITING DATA / NO TELEMETRY / NO FIX
+        - 状态灯: 有效=绿 / 等待=黄 / 无信号=红（仅 opacity 呼吸）
+  ========================================================= */
+
+  /* MODE 状态映射（N / S / E → 科研设备状态标签） */
+  var L = function (k) { return window.ANX_T ? window.ANX_T(k) : k; };
+  var MODE_STATES = {
+    N:    { labelKey: 'normal',       subKey: 'normal_operation',  cls: 'mode-normal' },
+    S:    { labelKey: 'standby',      subKey: 'low_power_standby', cls: 'mode-standby' },
+    E:    { labelKey: 'emergency',    subKey: 'protective_mode',   cls: 'mode-emergency' },
+    '--': { labelKey: 'waiting_data', subKey: 'mode_unknown',      cls: 'mode-wait' },
+    NULL: { labelKey: 'no_signal',    subKey: 'mode_unknown',      cls: 'mode-off' }
+  };
+  var MODE_CLASSES = ['mode-normal', 'mode-standby', 'mode-emergency', 'mode-wait', 'mode-off'];
+
+  /* 根据 main.js 写入的原始 mode 值渲染状态标签（#systemMode 保留为隐藏原始值） */
+  function renderMode() {
+    var rawEl = document.getElementById('systemMode');
+    var cell = document.getElementById('modeCell');
+    var disp = document.getElementById('modeDisplay');
+    var sub = document.getElementById('modeSub');
+    var mapCell = document.getElementById('mapModeCell');
+    var mapVal = document.getElementById('mapModeValue');
+    if (!rawEl || !disp) return;
+    var raw = (rawEl.textContent || '').trim().toUpperCase();
+    if (raw === '') raw = '--';
+    var st = MODE_STATES[raw] || MODE_STATES.NULL;
+    disp.textContent = L(st.labelKey);
+    if (sub) sub.textContent = L(st.subKey);
+    if (cell) {
+      MODE_CLASSES.forEach(function (c) { cell.classList.remove(c); });
+      cell.classList.add(st.cls);
+    }
+    if (mapVal) mapVal.textContent = L(st.labelKey);
+    if (mapCell) {
+      MODE_CLASSES.forEach(function (c) { mapCell.classList.remove(c); });
+      mapCell.classList.add(st.cls);
+    }
+  }
+
+  /* 数值空态文案（按设备语义选择，不伪造数据） */
+  var VALUE_LABELS = {
+    voltage:         'no_signal',
+    current:         'no_signal',
+    insideTemp:      'no_telemetry',
+    outsideTemp:     'no_telemetry',
+    humidity:        'no_signal',
+    outsideHumidity: 'no_signal',
+    solar:           'waiting_data',
+    gpsStatusPage:   'no_fix',
+    satelliteSmall:  'no_fix',
+    satellites:      'no_fix',
+    latitude:        'no_fix',
+    longitude:       'no_fix'
+  };
+  var VALUE_IDS = Object.keys(VALUE_LABELS);
+
+  /* 只有主数值控制整卡状态；次级数值（外部温度/湿度/卫星数）只更新自身显示 */
+  var CARD_IDS = {
+    voltage: 1, current: 1, insideTemp: 1, humidity: 1, solar: 1, gpsStatusPage: 1
+  };
+
+  function refreshValue(el, id) {
+    if (!el) return;
+    var txt = (el.textContent || '').trim();
+    var state;
+    var label;
+    var key;
+
+    /* 若当前文字仍是本层渲染的占位文案，保持原状态（避免自触发死循环） */
+    if (el.dataset.state && txt === (el.dataset.label || '')) {
+      state = el.dataset.state;
+      key = el.dataset.key || '';
+      label = state === 'ok' ? '' : L(key);
+    } else if (txt === '--' || txt === '') {
+      state = 'wait';
+      key = 'waiting_data';
+      label = L(key);
+    } else if (/^null$/i.test(txt) || txt === (window.ANX_T ? window.ANX_T('null') : 'NULL')) {
+      state = 'off';
+      key = VALUE_LABELS[id] || 'no_signal';
+      label = L(key);
+    } else {
+      state = 'ok';
+      key = '';
+      label = '';
+    }
+
+    var card = CARD_IDS[id] ? el.closest('.sensor-card') : null;
+    if (card) {
+      card.classList.toggle('st-wait', state === 'wait');
+      card.classList.toggle('st-off', state === 'off');
+      card.classList.toggle('st-ok', state === 'ok');
+      var chip = card.querySelector('.sensor-state');
+      if (chip) {
+        chip.textContent = state === 'ok' ? L('nominal') : (state === 'wait' ? L('awaiting_sensor') : L('sensor_offline'));
+      }
+    }
+
+    el.classList.remove('st-wait', 'st-off', 'st-ok');
+    if (label) {
+      if (el.textContent !== label) el.textContent = label;
+      el.dataset.state = state;
+      el.dataset.key = key;
+      el.dataset.label = label;
+      el.classList.add('st-' + state);
+    } else {
+      delete el.dataset.state;
+      delete el.dataset.label;
+    }
+  }
+
+  function syncStatus() {
+    renderMode();
+    VALUE_IDS.forEach(function (id) { refreshValue(document.getElementById(id), id); });
+  }
+
+  syncStatus();
+  if (window.addEventListener) {
+    window.addEventListener('anx:langchange', function () { syncStatus(); });
+  }
+  if (window.MutationObserver) {
+    var statusObserver = new MutationObserver(syncStatus);
+    var statusIds = VALUE_IDS.concat(['systemMode']);
+    statusIds.forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) statusObserver.observe(el, { childList: true, subtree: true, characterData: true });
+    });
+  }
+})();
+</script>
+  <!-- 语言切换（全站统一） -->
   <script>
   (function () {
     function apply(lang) {
       document.documentElement.setAttribute('data-lang', lang);
       document.documentElement.setAttribute('lang', lang === 'zh' ? 'zh-CN' : 'en');
       document.querySelectorAll('[data-lang]').forEach(function (el) {
+        if (el.tagName === 'BUTTON' && el.parentNode && el.parentNode.classList && el.parentNode.classList.contains('lang-switch')) return;
         el.style.display = (el.getAttribute('data-lang') === lang) ? '' : 'none';
+      });
+      document.querySelectorAll('.lang-switch button').forEach(function (b) {
+        var on = b.getAttribute('data-lang') === lang;
+        b.classList.toggle('active', on);
+        if (b.hasAttribute('aria-pressed')) b.setAttribute('aria-pressed', String(on));
       });
       try { localStorage.setItem('anx-lang', lang); } catch (e) {}
       window.anxCurrentLang = lang;
       window.anxApplyLang = apply;
       var titleEl = document.querySelector('title');
-      if (titleEl) { var tEn = titleEl.getAttribute('data-title-en'); var tZh = titleEl.getAttribute('data-title-zh'); if (tEn && tZh) titleEl.textContent = lang === 'zh' ? tZh : tEn; }
+      if (titleEl) {
+        var tEn = titleEl.getAttribute('data-title-en');
+        var tZh = titleEl.getAttribute('data-title-zh');
+        if (tEn && tZh) titleEl.textContent = lang === 'zh' ? tZh : tEn;
+      }
+      if (window.ANX_APPLY_I18N) window.ANX_APPLY_I18N(lang);
+      try { window.dispatchEvent(new CustomEvent('anx:langchange', { detail: { lang: lang } })); } catch (e) {}
     }
-    var saved = null; try { saved = localStorage.getItem('anx-lang'); } catch (e) {}
-    apply(saved === 'zh' ? 'zh' : 'en'); bind();
+    function bind() {
+      document.querySelectorAll('.lang-switch button').forEach(function (b) {
+        b.addEventListener('click', function (ev) {
+          ev.preventDefault();
+          apply(b.getAttribute('data-lang'));
+        });
+      });
+    }
+    var saved = null;
+    try { saved = localStorage.getItem('anx-lang'); } catch (e) {}
+    apply(saved === 'zh' ? 'zh' : 'en');
+    bind();
   })();
   </script>
-
-  <script>
-  (function () {
-    var el = document.getElementById('time');
-    if (!el) return;
-    function tick() {
-      var d = new Date();
-      var p = function (n) { return (n < 10 ? '0' : '') + n; };
-      el.textContent = p(d.getHours()) + ':' + p(d.getMinutes()) + ':' + p(d.getSeconds());
-    }
-    tick();
-    setInterval(tick, 1000);
-  })();
-  </script>
-
-  <script>
-  (function () {
-    var box = document.getElementById('worldMap');
-    if (!box || !window.L) return;
-    var m = L.map(box, { zoomControl: false, attributionControl: false }).setView([18, 105], 2);
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '' }).addTo(m);
-    window.deviceMap = m;
-    setTimeout(function () { try { m.invalidateSize(); } catch (e) {} }, 350);
-    window.addEventListener('resize', function () { try { m.invalidateSize(); } catch (e) {} });
-  })();
-  </script></body>
+</body>
 </html>

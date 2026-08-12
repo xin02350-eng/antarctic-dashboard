@@ -1,0 +1,91 @@
+{
+  "navigation": [
+    {
+      "to": "index.html",
+      "url": "index.html",
+      "errors": []
+    },
+    {
+      "to": "network.html",
+      "url": "network.html",
+      "errors": []
+    },
+    {
+      "to": "location.html",
+      "url": "location.html",
+      "errors": []
+    },
+    {
+      "to": "dashboard.html",
+      "url": "dashboard.html",
+      "errors": []
+    },
+    {
+      "to": "dashboard-a02.html",
+      "url": "dashboard-a02.html",
+      "errors": []
+    },
+    {
+      "back": 1,
+      "url": "dashboard.html",
+      "errors": []
+    },
+    {
+      "back": 2,
+      "url": "location.html",
+      "errors": []
+    },
+    {
+      "back": 3,
+      "url": "network.html",
+      "errors": []
+    },
+    {
+      "back": 4,
+      "url": "index.html",
+      "errors": []
+    },
+    {
+      "forward": 1,
+      "url": "network.html",
+      "errors": []
+    },
+    {
+      "forward": 2,
+      "url": "location.html",
+      "errors": []
+    },
+    {
+      "forward": 3,
+      "url": "dashboard.html",
+      "errors": []
+    },
+    {
+      "forward": 4,
+      "url": "dashboard-a02.html",
+      "errors": []
+    }
+  ],
+  "focus": {
+    "total": 9,
+    "bad": 0,
+    "badSamples": []
+  },
+  "indexPerf": {
+    "globeReady": true,
+    "canvasCount": 2,
+    "avgFrameMs": 35.3,
+    "p95FrameMs": 50,
+    "fps": 28
+  },
+  "sensors": {
+    "chartGlobal": true,
+    "canvases": 9,
+    "hasChartCanvases": true
+  },
+  "refresh": {
+    "lang": "zh-CN",
+    "title": "自主观测系统",
+    "mode": "应急"
+  }
+}

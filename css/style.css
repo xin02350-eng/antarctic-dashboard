@@ -13233,3 +13233,7 @@ width:106px;
 height:28px;
 }
 }
+/* V48.0 · Dashboard 地图版权条与全站深色科研视觉统一（与其他地图页一致隐藏） */
+body.dashboard-page .leaflet-control-attribution{
+display:none;
+}
