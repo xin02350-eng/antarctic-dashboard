@@ -268,14 +268,14 @@
         return;
       }
       scene = new THREE.Scene();
-      scene.add(new THREE.AmbientLight(0x9fb4c8, 1.35));
+      scene.add(new THREE.AmbientLight(0x9fb4c8, 1.55));
       var key = new THREE.DirectionalLight(0xffffff, 1.25);
       key.position.set(220, 120, 320);
       scene.add(key);
       var fill = new THREE.DirectionalLight(0x5b87ad, 0.7);
       fill.position.set(-260, -140, -220);
       scene.add(fill);
-      var southLight = new THREE.DirectionalLight(0xcfeaff, 1.12);
+      var southLight = new THREE.DirectionalLight(0xd8f0ff, 1.5);
       southLight.position.set(0, -260, 140);
       scene.add(southLight);
       camera = new THREE.PerspectiveCamera(42, window.innerWidth / window.innerHeight, 1, 1200);
@@ -354,14 +354,30 @@
         for (var k = 0; k < 90; k++) lctx.fillRect(Math.round(rnd() * w), Math.round(rnd() * h), dot, dot);
       }
       drawBase();
-      function drawIce(gj) {
+      function drawIce(gj, iceGj) {
         var w = lineCv.width, h = lineCv.height;
         var lw = Math.max(1, Math.round(w / 2048));
         drawBase();
-        var iceFill = 'rgba(255,255,255,0.98)';
-        var iceStroke = 'rgba(215,242,255,0.98)';
-        var feats = gj && gj.features ? gj.features : [];
-        function icePath(ring) {
+        /* V49.10 · 冷白半透明冰面：底层蓝线可隐约透出，非纯白贴片 */
+        var iceFill = 'rgba(238,251,255,0.96)';
+        var iceStroke = 'rgba(210,242,255,0.92)';
+        var landFill = 'rgba(13,42,70,0.48)';
+        var landStroke = 'rgba(140,234,255,0.9)';
+        var useIceData = !!(iceGj && iceGj.features && iceGj.features.length);
+        var landFeats = [], iceFeats = [];
+        if (useIceData) {
+          iceFeats = iceGj.features;
+          landFeats = window.__landFeats || [];
+        } else if (gj && gj.features) {
+          window.__landFeats = gj.features;
+          for (var fz = 0; fz < gj.features.length; fz++) {
+            var pz = gj.features[fz].properties || {};
+            var nz = pz.ADMIN || pz.NAME || '';
+            if (nz === 'Antarctica' || nz === 'Greenland') iceFeats.push(gj.features[fz]);
+            else landFeats.push(gj.features[fz]);
+          }
+        }
+        function traceRingCoords(ring, closePath) {
           lctx.beginPath();
           var first = true, prevX = null;
           for (var i = 0; i < ring.length; i++) {
@@ -375,77 +391,112 @@
             } else lctx.lineTo(x, y);
             prevX = x;
           }
-          lctx.closePath();
+          if (closePath) lctx.closePath();
         }
-        for (var f = 0; f < feats.length; f++) {
-          var props = feats[f].properties || {};
-          var name = props.ADMIN || props.NAME || '';
-          if (name !== 'Antarctica' && name !== 'Greenland') continue;
-          var geom = feats[f].geometry;
-          if (!geom) continue;
-          var polys = geom.type === 'Polygon' ? [geom.coordinates] : (geom.type === 'MultiPolygon' ? geom.coordinates : null);
-          if (!polys) continue;
-          for (var pp = 0; pp < polys.length; pp++) {
-            for (var rr = 0; rr < polys[pp].length; rr++) {
-              for (var dx = -1; dx <= 1; dx++) {
-                lctx.save();
-                lctx.translate(dx * w, 0);
-                icePath(polys[pp][rr]);
-                lctx.fillStyle = iceFill;
-                lctx.fill();
-                lctx.strokeStyle = iceStroke;
-                lctx.lineWidth = lw * 2.2;
-                lctx.stroke();
-                lctx.restore();
+        function drawFeats(list, isIce, mode) {
+          for (var f = 0; f < list.length; f++) {
+            var geom = list[f].geometry;
+            if (!geom) continue;
+            var polys = geom.type === 'Polygon' ? [geom.coordinates] : (geom.type === 'MultiPolygon' ? geom.coordinates : null);
+            if (!polys) continue;
+            for (var pp = 0; pp < polys.length; pp++) {
+              for (var rr = 0; rr < polys[pp].length; rr++) {
+                for (var dx = -1; dx <= 1; dx++) {
+                  lctx.save();
+                  lctx.translate(dx * w, 0);
+                  traceRingCoords(polys[pp][rr], true);
+                  if (mode === 'fill') {
+                    lctx.fillStyle = isIce ? iceFill : landFill;
+                    lctx.fill();
+                  } else {
+                    lctx.strokeStyle = isIce ? iceStroke : landStroke;
+                    lctx.lineWidth = isIce ? lw * 2.2 : lw * 1.8;
+                    lctx.stroke();
+                  }
+                  lctx.restore();
+                }
               }
             }
           }
         }
-        /* 南极冰盖辉光：极区柔和冷白渐晕，保证任意视角下南极下缘清晰可辨 */
+        function drawIceGrain(list) {
+          lctx.save();
+          lctx.beginPath();
+          for (var f = 0; f < list.length; f++) {
+            var geom = list[f].geometry;
+            if (!geom) continue;
+            var polys = geom.type === 'Polygon' ? [geom.coordinates] : (geom.type === 'MultiPolygon' ? geom.coordinates : null);
+            if (!polys) continue;
+            for (var pp = 0; pp < polys.length; pp++) {
+              for (var rr = 0; rr < polys[pp].length; rr++) {
+                for (var dx = -1; dx <= 1; dx++) {
+                  lctx.save();
+                  lctx.translate(dx * w, 0);
+                  traceRingCoords(polys[pp][rr], true);
+                  lctx.restore();
+                }
+              }
+            }
+          }
+          lctx.clip();
+          lctx.fillStyle = 'rgba(240,252,255,0.20)';
+          var seed = 20260814;
+          function rnd() { seed = (seed * 1664525 + 1013904223) >>> 0; return seed / 4294967296; }
+          var grain = Math.max(500, Math.round(w * 0.18));
+          for (var s = 0; s < grain; s++) {
+            lctx.fillRect(Math.round(rnd() * w), Math.round(rnd() * h), lw, lw);
+          }
+          lctx.restore();
+        }
+        function drawSecondaryLines() {
+          var geo = window.__geoLineFeats || [];
+          var rivers = window.__riverFeats || [];
+          function trace(list, color, width) {
+            for (var f = 0; f < list.length; f++) {
+              var geom = list[f].geometry;
+              if (!geom) continue;
+              var lines = geom.type === 'LineString' ? [geom.coordinates] : (geom.type === 'MultiLineString' ? geom.coordinates : null);
+              if (!lines) continue;
+              for (var li = 0; li < lines.length; li++) {
+                for (var dx = -1; dx <= 1; dx++) {
+                  lctx.save();
+                  lctx.translate(dx * w, 0);
+                  traceRingCoords(lines[li], false);
+                  lctx.strokeStyle = color;
+                  lctx.lineWidth = width;
+                  lctx.stroke();
+                  lctx.restore();
+                }
+              }
+            }
+          }
+          trace(geo, 'rgba(150,210,240,0.22)', lw * 1.2);
+          trace(rivers, 'rgba(120,190,235,0.30)', lw * 1.4);
+        }
+        /* 层级：填充（陆地/冰面）→ 冰面雪纹 → 辉光/北极带 → 描边（轮廓在冰雪之上）→ 辅助地理线 */
+        drawFeats(landFeats, false, 'fill');
+        drawFeats(iceFeats, true, 'fill');
+        drawIceGrain(iceFeats);
         var sg2 = lctx.createRadialGradient(w / 2, 0, 0, w / 2, 0, h * 0.42);
-        sg2.addColorStop(0, 'rgba(238,253,255,0.78)');
-        sg2.addColorStop(0.4, 'rgba(222,247,255,0.55)');
-        sg2.addColorStop(0.75, 'rgba(210,240,255,0.14)');
+        sg2.addColorStop(0, 'rgba(238,253,255,0.72)');
+        sg2.addColorStop(0.4, 'rgba(222,247,255,0.50)');
+        sg2.addColorStop(0.75, 'rgba(210,240,255,0.12)');
         sg2.addColorStop(1, 'rgba(210,240,255,0)');
         lctx.fillStyle = sg2;
         lctx.fillRect(0, 0, w, h * 0.5);
-        lctx.strokeStyle = 'rgba(240,253,255,0.75)';
-        lctx.lineWidth = lw * 2.8;
-        lctx.beginPath(); lctx.moveTo(0, h * 0.13); lctx.lineTo(w, h * 0.13); lctx.stroke();
-                /* 南极冷色微光（画布顶部=南极） */
-        var sg = lctx.createRadialGradient(w / 2, 0, 0, w / 2, 0, h * 0.28);
-        sg.addColorStop(0, 'rgba(205,242,255,0.26)');
-        sg.addColorStop(1, 'rgba(200,240,255,0)');
-        lctx.fillStyle = sg;
-        lctx.fillRect(0, 0, w, h * 0.42);
-        /* 北极极淡冰盖（>82.5°N，画布底部） */
         var arY = Math.round((90 - 82.5) / 180 * h);
-        lctx.fillStyle = 'rgba(215,242,255,0.14)';
+        lctx.fillStyle = 'rgba(215,242,255,0.12)';
         lctx.fillRect(0, arY, w, h - arY);
-        lctx.strokeStyle = 'rgba(215,242,255,0.22)';
-        lctx.lineWidth = lw;
-        lctx.beginPath(); lctx.moveTo(0, arY); lctx.lineTo(w, arY); lctx.stroke();
-        /* 高纬冰区细雪点 */
-        lctx.fillStyle = 'rgba(255,255,255,0.30)';
-        var seed = 20260813;
-        function rnd() { seed = (seed * 1664525 + 1013904223) >>> 0; return seed / 4294967296; }
-        for (var s = 0; s < 600; s++) {
-          var px2 = Math.round(rnd() * w);
-          var py2 = Math.round(rnd() * h);
-          var lat = py2 / h * 180 - 90;
-          if (lat < -55 || lat > 70) lctx.fillRect(px2, py2, lw, lw);
-        }
+        drawFeats(landFeats, false, 'stroke');
+        drawFeats(iceFeats, true, 'stroke');
+        drawSecondaryLines();
         applyLineTexture();
         window.__earthIce = true;
-      }
-      globe = new window.ThreeGlobe()
+      }globe = new window.ThreeGlobe()
         .globeMaterial(earthMat)
         .atmosphereColor('#3d7ea6')
         .atmosphereAltitude(0.02)
-                .polygonAltitude(0.03)
-        .polygonCapColor(function () { return 'rgba(0,0,0,0)'; })
-        .polygonSideColor(function () { return 'rgba(98,217,255,0)'; })
-        .polygonStrokeColor(function () { return 'rgba(140,234,255,0.85)'; }).pointsData(nodeData)
+        .pointsData(nodeData)
         .pointLat('lat').pointLng('lng').pointColor('color').pointAltitude('alt').pointRadius('radius')
         .arcsData(arcData)
         .arcStartLat('startLat').arcStartLng('startLng').arcEndLat('endLat').arcEndLng('endLng')
@@ -456,16 +507,41 @@
       function fetchGeo(url) {
         return fetch(url).then(function (r) { return r.json(); }).catch(function () { return null; });
       }
-      var geoUrls = window.__earthWantHigh
-        ? ['https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_50m_admin_0_countries.geojson',
-           'https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_110m_admin_0_countries.geojson']
-        : ['https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_110m_admin_0_countries.geojson'];
+      var geoUrls = ['https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_110m_admin_0_countries.geojson'];
       (function tryGeo(i) {
         if (i >= geoUrls.length) return;
         fetchGeo(geoUrls[i]).then(function (gj) {
-  if (gj && gj.features && gj.features.length) { globe.polygonsData(gj.features); drawIce(gj); window.__earthLand = gj.features.length; }
+  if (gj && gj.features && gj.features.length) { window.__landGJ = gj; drawIce(gj, null); window.__earthLand = gj.features.length; }
           else tryGeo(i + 1);
         }).catch(function () { tryGeo(i + 1); });
+      })(0);
+      /* V49.7 · 真实冰盖数据（Natural Earth glaciated areas，官方科研制图数据） */
+      var iceUrls = window.__earthWantHigh
+        ? ['https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_50m_glaciated_areas.geojson',
+           'https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_110m_glaciated_areas.geojson']
+        : ['https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_110m_glaciated_areas.geojson'];
+      (function tryIce(i) {
+        if (i >= iceUrls.length) return;
+        fetchGeo(iceUrls[i]).then(function (gj) {
+          if (gj && gj.features && gj.features.length) drawIce(null, gj);
+          else tryIce(i + 1);
+        }).catch(function () { tryIce(i + 1); });
+      })(0);
+      /* V49.10 · 第二层真实地理线稿：地理参考线 + 河流（Natural Earth） */
+      var lineUrls = [
+        'https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_110m_geographic_lines.geojson',
+        'https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_110m_rivers_lake_centerlines.geojson'
+      ];
+      (function tryLines(i) {
+        if (i >= lineUrls.length) return;
+        fetchGeo(lineUrls[i]).then(function (gj) {
+          if (gj && gj.features && gj.features.length) {
+            if (i === 0) window.__geoLineFeats = gj.features;
+            else window.__riverFeats = gj.features;
+            if (window.__landGJ) drawIce(window.__landGJ, null);
+          }
+          tryLines(i + 1);
+        }).catch(function () { tryLines(i + 1); });
       })(0);
 /* 少量漂浮粒子（地球外围） */
       var floatGeo = new THREE.BufferGeometry();
@@ -647,7 +723,7 @@
         camera.getWorldDirection(dir);
         _right.crossVectors(dir, new THREE.Vector3(0, 1, 0)).normalize();
         var small = window.innerWidth <= 700;
-        var k = small ? 34 : 90;
+        var k = small ? 34 : 113;
         var s = small ? 0.55 : 1;
         globe.scale.set(s, s, s);
         globe.position.copy(_right).multiplyScalar(k);
@@ -663,7 +739,15 @@
       for (var i = 0; i < 8; i++) {
         particles.push({ lat: 0, lng: 0, color: '#bff3ff', radius: 0.12, alt: 0.03 });
       }
-      globe.pointsData(nodeData.concat(particles));
+      globe.pointsData(nodeData);
+      /* V49.7 · 路线流动粒子：独立 Points，逐帧只更新 8 个位置，不再重建 pointsData */
+      var routeGeo = new THREE.BufferGeometry();
+      routeGeo.setAttribute('position', new THREE.Float32BufferAttribute(new Float32Array(8 * 3), 3));
+      var routePos = routeGeo.attributes.position.array;
+      var routeMat = new THREE.PointsMaterial({ color: 0xbff3ff, size: 0.75, transparent: true, opacity: 0.92, depthWrite: false });
+      var routePts = new THREE.Points(routeGeo, routeMat);
+      globe.add(routePts);
+      globe.rotation.y = 0.6; /* V49.9 · 初始朝向：中国大陆正对屏幕（在 pointsData 之后设置） */
 
       window.addEventListener('resize', function () {
         camera.aspect = window.innerWidth / window.innerHeight;
@@ -674,9 +758,11 @@
         for (var zi = 0; zi < bgStarLayers.length; zi++) {
           bgStarLayers[zi].material.uniforms.uScale.value = window.innerHeight * 1.302;
         }
+        labelW = 0; labelH = 0;
+        cacheLeaderLabel();
       });
 
-      var camDist = 430, camLat = 12, camLng = 110, tick = 0;
+      var camDist = 430, camLat = 20, camLng = 110, tick = 0;
       function setCam(lat, lng) {
         var phi = (90 - lat) * Math.PI / 180;
         var theta = (lng + 180) * Math.PI / 180;
@@ -687,28 +773,29 @@
         );
         camera.lookAt(0, 0, 0);
       }
-      function updateLeader() {
+      var leaderLabelWorld = new THREE.Vector3();
+      function cacheLeaderLabel() {
         try {
-          var rr = 100 * 1.02;
-          var phi = (90 - AN.lat) * Math.PI / 180;
-          var theta = (90 - AN.lng) * Math.PI / 180;
-          var v = new THREE.Vector3(
-            rr * Math.sin(phi) * Math.cos(theta),
-            rr * Math.cos(phi),
-            rr * Math.sin(phi) * Math.sin(theta)
-          );
-          globe.updateMatrixWorld();
-          var w = v.clone().applyMatrix4(globe.matrixWorld);
           var labelEl = document.querySelector('.an-label');
           var r = labelEl.getBoundingClientRect();
           var ndcX = ((r.left + r.width / 2) / window.innerWidth) * 2 - 1;
           var ndcY = -(((r.top + r.height / 2) / window.innerHeight) * 2 - 1);
           var vec = new THREE.Vector3(ndcX, ndcY, 0.5).unproject(camera);
           var dir = vec.sub(camera.position).normalize();
-          var labelWorld = camera.position.clone().add(dir.clone().multiplyScalar(camera.position.length()));
+          leaderLabelWorld.copy(camera.position).add(dir.clone().multiplyScalar(camera.position.length()));
+        } catch (e) {}
+      }
+      function updateLeader() {
+        try {
+          var rr = 100 * 1.02;
+          var phi = (90 - AN.lat) * Math.PI / 180;
+          var theta = (90 - AN.lng) * Math.PI / 180;
+          var v = new THREE.Vector3(rr * Math.sin(phi) * Math.cos(theta), rr * Math.cos(phi), rr * Math.sin(phi) * Math.sin(theta));
+          globe.updateMatrixWorld();
+          var w = v.clone().applyMatrix4(globe.matrixWorld);
           var pos = leaderLine.geometry.attributes.position;
           pos.setXYZ(0, w.x, w.y, w.z);
-          pos.setXYZ(1, labelWorld.x, labelWorld.y, labelWorld.z);
+          pos.setXYZ(1, leaderLabelWorld.x, leaderLabelWorld.y, leaderLabelWorld.z);
           pos.needsUpdate = true;
         } catch (e) {}
       }
@@ -720,10 +807,15 @@
         labelLang = lang;
         window.__labelLang = lang;
               };
+      var labelW = 0, labelH = 0;
       function drawLabels2D(t) {
-        labelCv.width = window.innerWidth;
-        labelCv.height = window.innerHeight;
-        labelCtx.clearRect(0, 0, labelCv.width, labelCv.height);
+        if (labelW !== window.innerWidth || labelH !== window.innerHeight) {
+          labelW = window.innerWidth;
+          labelH = window.innerHeight;
+          labelCv.width = labelW;
+          labelCv.height = labelH;
+        }
+        labelCtx.clearRect(0, 0, labelW, labelH);
         var items = [
           { node: NJ, dy: 12 },
           { node: NE, dy: -26 }
@@ -753,10 +845,10 @@
           var sp1 = sw.clone().project(camera);
           var sp2 = lw.clone().project(camera);
           if (sp1.z > 1 || sp1.z < -1 || sp2.z > 1 || sp2.z < -1) continue;
-          var sx = (sp1.x * 0.5 + 0.5) * window.innerWidth;
-          var sy = (-sp1.y * 0.5 + 0.5) * window.innerHeight;
-          var lx = (sp2.x * 0.5 + 0.5) * window.innerWidth;
-          var ly = (-sp2.y * 0.5 + 0.5) * window.innerHeight;
+          var sx = (sp1.x * 0.5 + 0.5) * labelW;
+          var sy = (-sp1.y * 0.5 + 0.5) * labelH;
+          var lx = (sp2.x * 0.5 + 0.5) * labelW;
+          var ly = (-sp2.y * 0.5 + 0.5) * labelH;
           labelCtx.strokeStyle = 'rgba(140,234,255,.45)';
           labelCtx.lineWidth = 1;
           labelCtx.beginPath();
@@ -797,7 +889,7 @@
 function animate() {
         requestAnimationFrame(animate);
         tick++;
-        globe.rotation.y += 0.00015;
+        globe.rotation.y = 0.6 + tick * 0.00015; /* V49.9 · 从中国正面缓慢进入自转 */
         floatPts.rotation.y += 0.00008;
         var bgT = performance.now() / 1000;
         for (var si = 0; si < bgStarLayers.length; si++) {
@@ -807,24 +899,29 @@ function animate() {
           var nb = bgNebula[ni];
           nb.material.opacity = nb.material.userData.base * (0.78 + 0.22 * Math.sin(bgT * nb.material.userData.speed + nb.material.userData.phase));
         }
-        setCam(camLat, camLng);
-        setGlobeOffset();
         updateLeader();
         drawLabels2D(tick);
-        /* 粒子沿两条球面弧线缓慢流动 */
+        /* 粒子沿两条球面弧线缓慢流动（只更新 8 个位置，不重建几何） */
         for (var i = 0; i < 8; i++) {
           var route = i < 4 ? R1 : R2;
           var speed = i < 4 ? 8000 : 14000;
           var f = ((tick / speed) + (i % 4) / 4) % 1;
           var idx = f * (route.length - 1);
           var i0 = Math.floor(idx), i1 = Math.min(i0 + 1, route.length - 1), fr = idx - i0;
-          particles[i].lat = route[i0].lat + (route[i1].lat - route[i0].lat) * fr;
-          particles[i].lng = route[i0].lng + (route[i1].lng - route[i0].lng) * fr;
+          var plat = route[i0].lat + (route[i1].lat - route[i0].lat) * fr;
+          var plng = route[i0].lng + (route[i1].lng - route[i0].lng) * fr;
+          var rphi = (90 - plat) * Math.PI / 180;
+          var rtheta = (90 - plng) * Math.PI / 180;
+          routePos[i * 3] = 100.04 * Math.sin(rphi) * Math.cos(rtheta);
+          routePos[i * 3 + 1] = 100.04 * Math.cos(rphi);
+          routePos[i * 3 + 2] = 100.04 * Math.sin(rphi) * Math.sin(rtheta);
         }
-        globe.pointsData(nodeData.concat(particles));
+        routeGeo.attributes.position.needsUpdate = true;
         renderer.render(scene, camera);
       }
       setCam(camLat, camLng);
+      setGlobeOffset();
+      cacheLeaderLabel();
       animate();
       window.__globeReady = true;
     }

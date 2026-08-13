@@ -1,0 +1,118 @@
+{
+  "1920x1080": {
+    "avgMs": 39.5,
+    "p95Ms": 50.1,
+    "fps": 25,
+    "rotY": 0.06254999999999958,
+    "ready": true,
+    "land": 177,
+    "ice": true,
+    "texW": 4096,
+    "heap": 265,
+    "errors": []
+  },
+  "2560x1440": {
+    "avgMs": 52.9,
+    "p95Ms": 66.7,
+    "fps": 19,
+    "rotY": 0.04754999999999984,
+    "ready": true,
+    "land": 177,
+    "ice": true,
+    "texW": 4096,
+    "heap": 266,
+    "errors": []
+  },
+  "1366x768": {
+    "avgMs": 34.6,
+    "p95Ms": 183.3,
+    "fps": 29,
+    "rotY": 0.08474999999999919,
+    "ready": true,
+    "land": 177,
+    "ice": true,
+    "texW": 4096,
+    "heap": 306,
+    "errors": []
+  },
+  "stability60": [
+    {
+      "at": 0,
+      "avgMs": 35.2,
+      "p95Ms": 50,
+      "fps": 28,
+      "rotY": 0.044549999999999895,
+      "ready": true,
+      "land": 177,
+      "ice": true,
+      "texW": 4096,
+      "heap": 303,
+      "errors": []
+    },
+    {
+      "at": 10,
+      "avgMs": 35,
+      "p95Ms": 50,
+      "fps": 29,
+      "rotY": 0.09689999999999897,
+      "ready": true,
+      "land": 177,
+      "ice": true,
+      "texW": 4096,
+      "heap": 266,
+      "errors": []
+    },
+    {
+      "at": 20,
+      "avgMs": 35.6,
+      "p95Ms": 50,
+      "fps": 28,
+      "rotY": 0.14865000000000025,
+      "ready": true,
+      "land": 177,
+      "ice": true,
+      "texW": 4096,
+      "heap": 265,
+      "errors": []
+    },
+    {
+      "at": 30,
+      "avgMs": 36.1,
+      "p95Ms": 50,
+      "fps": 28,
+      "rotY": 0.2068500000000046,
+      "ready": true,
+      "land": 177,
+      "ice": true,
+      "texW": 4096,
+      "heap": 266,
+      "errors": []
+    },
+    {
+      "at": 40,
+      "avgMs": 35.9,
+      "p95Ms": 50,
+      "fps": 28,
+      "rotY": 0.27450000000000513,
+      "ready": true,
+      "land": 177,
+      "ice": true,
+      "texW": 4096,
+      "heap": 266,
+      "errors": []
+    },
+    {
+      "at": 50,
+      "avgMs": 37.5,
+      "p95Ms": 50.1,
+      "fps": 27,
+      "rotY": 0.32624999999999943,
+      "ready": true,
+      "land": 177,
+      "ice": true,
+      "texW": 4096,
+      "heap": 266,
+      "errors": []
+    }
+  ]
+}
