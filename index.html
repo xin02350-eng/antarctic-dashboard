@@ -807,13 +807,17 @@
         labelLang = lang;
         window.__labelLang = lang;
               };
-      var labelW = 0, labelH = 0;
+      var labelW = 0, labelH = 0, labelDpr = 1;
       function drawLabels2D(t) {
-        if (labelW !== window.innerWidth || labelH !== window.innerHeight) {
+        if (labelW !== window.innerWidth || labelH !== window.innerHeight || labelDpr !== Math.min(window.devicePixelRatio || 1, 2)) {
           labelW = window.innerWidth;
           labelH = window.innerHeight;
-          labelCv.width = labelW;
-          labelCv.height = labelH;
+          labelDpr = Math.min(window.devicePixelRatio || 1, 2);
+          labelCv.width = Math.round(labelW * labelDpr);
+          labelCv.height = Math.round(labelH * labelDpr);
+          labelCv.style.width = labelW + 'px';
+          labelCv.style.height = labelH + 'px';
+          labelCtx.setTransform(labelDpr, 0, 0, labelDpr, 0, 0);
         }
         labelCtx.clearRect(0, 0, labelW, labelH);
         var items = [
@@ -848,41 +852,61 @@
           var sy = (-sp1.y * 0.5 + 0.5) * labelH;
           var lx = (sp2.x * 0.5 + 0.5) * labelW;
           var ly = (-sp2.y * 0.5 + 0.5) * labelH;
-          labelCtx.strokeStyle = 'rgba(150,238,255,.6)';
-          labelCtx.lineWidth = 1.2;
+          /* 引导线：极细、低亮度、锐利 */
+          labelCtx.strokeStyle = 'rgba(160,235,255,0.5)';
+          labelCtx.lineWidth = 1;
           labelCtx.beginPath();
           labelCtx.moveTo(sx, sy);
           labelCtx.lineTo(lx, ly);
           labelCtx.stroke();
-          /* 节点发光标记：确保节点清晰可见 */
+          /* 节点：克制光晕 + 锐利核心（亮心 + 青蓝外圈） */
           var nodeColor = li === 0 ? '0,229,168' : '140,234,255';
-          var glowR = labelCtx.createRadialGradient(sx, sy, 0, sx, sy, 18);
-          glowR.addColorStop(0, 'rgba(' + nodeColor + ',.9)');
+          var glowR = labelCtx.createRadialGradient(sx, sy, 0, sx, sy, 11);
+          glowR.addColorStop(0, 'rgba(' + nodeColor + ',.3)');
           glowR.addColorStop(1, 'rgba(' + nodeColor + ',0)');
           labelCtx.fillStyle = glowR;
           labelCtx.beginPath();
-          labelCtx.arc(sx, sy, 18, 0, Math.PI * 2);
+          labelCtx.arc(sx, sy, 11, 0, Math.PI * 2);
           labelCtx.fill();
           labelCtx.fillStyle = li === 0 ? '#00e5a8' : '#8ceaff';
           labelCtx.beginPath();
-          labelCtx.arc(sx, sy, 4, 0, Math.PI * 2);
+          labelCtx.arc(sx, sy, 4.5, 0, Math.PI * 2);
           labelCtx.fill();
-          /* 标签文字：冷白加粗 + 深色描影，保证高于地图线 */
-          labelCtx.font = '600 12px "Segoe UI","Microsoft YaHei",sans-serif';
-          labelCtx.fillStyle = li === 0 ? '#d9fff4' : '#e8f8ff';
+          labelCtx.fillStyle = '#ffffff';
+          labelCtx.beginPath();
+          labelCtx.arc(sx, sy, 1.8, 0, Math.PI * 2);
+          labelCtx.fill();
+          /* 标签：干净暗底 + 冷白高清文字 */
+          labelCtx.font = '600 13px "Segoe UI","Microsoft YaHei",sans-serif';
+          var tw = labelCtx.measureText(names[li]).width;
+          var ty = ly + it.dy;
+          labelCtx.fillStyle = 'rgba(3,14,24,0.55)';
+          labelCtx.beginPath();
+          var rx = lx - tw / 2 - 7, ry = ty - 10, rw = tw + 14, rh = 20, rad = 5;
+          labelCtx.moveTo(rx + rad, ry);
+          labelCtx.arcTo(rx + rw, ry, rx + rw, ry + rh, rad);
+          labelCtx.arcTo(rx + rw, ry + rh, rx, ry + rh, rad);
+          labelCtx.arcTo(rx, ry + rh, rx, ry, rad);
+          labelCtx.arcTo(rx, ry, rx + rw, ry, rad);
+          labelCtx.closePath();
+          labelCtx.fill();
+          labelCtx.strokeStyle = 'rgba(140,234,255,0.12)';
+          labelCtx.lineWidth = 1;
+          labelCtx.stroke();
+          labelCtx.fillStyle = '#f2fdff';
           labelCtx.textBaseline = 'middle';
-          labelCtx.shadowColor = 'rgba(2,10,18,0.9)';
-          labelCtx.shadowBlur = 8;
+          labelCtx.shadowColor = 'rgba(2,10,18,0.85)';
+          labelCtx.shadowBlur = 6;
           labelCtx.shadowOffsetY = 1;
-          labelCtx.fillText(names[li], lx, ly + it.dy);
+          labelCtx.fillText(names[li], lx, ty);
           labelCtx.shadowBlur = 0;
           labelCtx.shadowOffsetY = 0;
           if (li === 0) {
             var pulse = 0.5 + 0.5 * Math.sin(t / 320);
             labelCtx.beginPath();
             labelCtx.arc(sx, sy, 12 + 6 * pulse, 0, Math.PI * 2);
-            labelCtx.strokeStyle = 'rgba(0,229,168,' + (0.5 * pulse).toFixed(2) + ')';
-            labelCtx.lineWidth = 1.2;
+            labelCtx.strokeStyle = 'rgba(0,229,168,' + (0.32 * pulse).toFixed(2) + ')';
+            labelCtx.lineWidth = 1;
             labelCtx.stroke();
           }
         }
