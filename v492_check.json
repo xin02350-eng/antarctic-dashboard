@@ -1,0 +1,426 @@
+{
+  "1920x1080zh": {
+    "lang": "zh-CN",
+    "title": "自主观测系统 · 探索序章",
+    "subExists": false,
+    "kicker": [
+      134,
+      162,
+      559,
+      174,
+      425,
+      12
+    ],
+    "h1": [
+      134,
+      202,
+      559,
+      386,
+      425,
+      184
+    ],
+    "btn": [
+      134,
+      442,
+      232,
+      474,
+      97,
+      32
+    ],
+    "hero": [
+      134,
+      162,
+      559,
+      474,
+      425,
+      312
+    ],
+    "gapTitleBtn": 56,
+    "globe": {
+      "cx": 1254,
+      "cy": 540,
+      "r": 327
+    },
+    "overlap": false,
+    "scroll": [
+      1920,
+      1080,
+      1920,
+      1080
+    ],
+    "text": "AN\n分布式监测系统\n\n自主环境观测计划\n\n中\nEN\n自主环境观测计划\n始于观测，\n走向未知\n开启探索→\n\n未知之境，需要探索者的脚步；\n无人之地，需要第一组观测数据。\n\n南极大陆\n未来目标",
+    "globeReady": true,
+    "errors": []
+  },
+  "1920x1080en": {
+    "lang": "en",
+    "title": "DISTRIBUTED MONITORING SYSTEM · EXPLORATION",
+    "subExists": false,
+    "kicker": [
+      134,
+      162,
+      741,
+      174,
+      607,
+      12
+    ],
+    "h1": [
+      134,
+      190,
+      741,
+      338,
+      607,
+      148
+    ],
+    "btn": [
+      134,
+      400,
+      360,
+      432,
+      226,
+      32
+    ],
+    "hero": [
+      134,
+      162,
+      741,
+      432,
+      607,
+      270
+    ],
+    "gapTitleBtn": 62,
+    "globe": {
+      "cx": 1254,
+      "cy": 540,
+      "r": 327
+    },
+    "overlap": false,
+    "scroll": [
+      1920,
+      1080,
+      1920,
+      1080
+    ],
+    "text": "AN\nDISTRIBUTED MONITORING SYSTEM\n\nENVIRONMENTAL OBSERVATION PROGRAMME\n\n中\nEN\nAUTONOMOUS ENVIRONMENTAL OBSERVATION PROGRAMME\nFrom Observation,\nToward the Unknown\nSTART EXPLORATION→\n\nThe unknown requires explorers;\nUninhabited lands require the first set of observations.\n\nANTARCTICA\nFUTURE GOAL",
+    "globeReady": true,
+    "errors": []
+  },
+  "1366x768zh": {
+    "lang": "zh-CN",
+    "title": "自主观测系统 · 探索序章",
+    "subExists": false,
+    "kicker": [
+      96,
+      115,
+      438,
+      127,
+      343,
+      12
+    ],
+    "h1": [
+      96,
+      155,
+      438,
+      302,
+      343,
+      147
+    ],
+    "btn": [
+      96,
+      358,
+      193,
+      390,
+      97,
+      32
+    ],
+    "hero": [
+      96,
+      115,
+      438,
+      390,
+      343,
+      275
+    ],
+    "gapTitleBtn": 56,
+    "globe": {
+      "cx": 892,
+      "cy": 384,
+      "r": 233
+    },
+    "overlap": false,
+    "scroll": [
+      1366,
+      768,
+      1366,
+      768
+    ],
+    "text": "AN\n分布式监测系统\n\n自主环境观测计划\n\n中\nEN\n自主环境观测计划\n始于观测，\n走向未知\n开启探索→\n\n未知之境，需要探索者的脚步；\n无人之地，需要第一组观测数据。\n\n南极大陆\n未来目标",
+    "globeReady": true,
+    "errors": []
+  },
+  "1366x768en": {
+    "lang": "en",
+    "title": "DISTRIBUTED MONITORING SYSTEM · EXPLORATION",
+    "subExists": false,
+    "kicker": [
+      96,
+      115,
+      620,
+      126,
+      525,
+      11
+    ],
+    "h1": [
+      96,
+      142,
+      620,
+      269,
+      525,
+      127
+    ],
+    "btn": [
+      96,
+      331,
+      321,
+      363,
+      226,
+      32
+    ],
+    "hero": [
+      96,
+      115,
+      620,
+      363,
+      525,
+      248
+    ],
+    "gapTitleBtn": 62,
+    "globe": {
+      "cx": 892,
+      "cy": 384,
+      "r": 233
+    },
+    "overlap": false,
+    "scroll": [
+      1366,
+      768,
+      1366,
+      768
+    ],
+    "text": "AN\nDISTRIBUTED MONITORING SYSTEM\n\nENVIRONMENTAL OBSERVATION PROGRAMME\n\n中\nEN\nAUTONOMOUS ENVIRONMENTAL OBSERVATION PROGRAMME\nFrom Observation,\nToward the Unknown\nSTART EXPLORATION→\n\nThe unknown requires explorers;\nUninhabited lands require the first set of observations.\n\nANTARCTICA\nFUTURE GOAL",
+    "globeReady": true,
+    "errors": []
+  },
+  "768x1024zh": {
+    "lang": "zh-CN",
+    "title": "自主观测系统 · 探索序章",
+    "subExists": false,
+    "kicker": [
+      22,
+      665,
+      267,
+      677,
+      245,
+      12
+    ],
+    "h1": [
+      22,
+      705,
+      267,
+      808,
+      245,
+      103
+    ],
+    "btn": [
+      22,
+      842,
+      119,
+      874,
+      97,
+      32
+    ],
+    "hero": [
+      22,
+      665,
+      267,
+      874,
+      245,
+      209
+    ],
+    "gapTitleBtn": 34,
+    "globe": {
+      "cx": 663,
+      "cy": 512,
+      "r": 310
+    },
+    "overlap": false,
+    "scroll": [
+      768,
+      1024,
+      768,
+      1024
+    ],
+    "text": "AN\n分布式监测系统\n\n自主环境观测计划\n\n中\nEN\n自主环境观测计划\n始于观测，\n走向未知\n开启探索→\n\n未知之境，需要探索者的脚步；\n无人之地，需要第一组观测数据。\n\n南极大陆\n未来目标",
+    "globeReady": true,
+    "errors": []
+  },
+  "768x1024en": {
+    "lang": "en",
+    "title": "DISTRIBUTED MONITORING SYSTEM · EXPLORATION",
+    "subExists": false,
+    "kicker": [
+      22,
+      691,
+      352,
+      713,
+      330,
+      22
+    ],
+    "h1": [
+      22,
+      741,
+      352,
+      808,
+      330,
+      67
+    ],
+    "btn": [
+      22,
+      842,
+      248,
+      874,
+      226,
+      32
+    ],
+    "hero": [
+      22,
+      691,
+      352,
+      874,
+      330,
+      183
+    ],
+    "gapTitleBtn": 34,
+    "globe": {
+      "cx": 663,
+      "cy": 512,
+      "r": 310
+    },
+    "overlap": false,
+    "scroll": [
+      768,
+      1024,
+      768,
+      1024
+    ],
+    "text": "AN\nDISTRIBUTED MONITORING SYSTEM\n\nENVIRONMENTAL OBSERVATION PROGRAMME\n\n中\nEN\nAUTONOMOUS ENVIRONMENTAL OBSERVATION PROGRAMME\nFrom Observation,\nToward the Unknown\nSTART EXPLORATION→\n\nThe unknown requires explorers;\nUninhabited lands require the first set of observations.\n\nANTARCTICA\nFUTURE GOAL",
+    "globeReady": true,
+    "errors": []
+  },
+  "390x844zh": {
+    "lang": "zh-CN",
+    "title": "自主观测系统 · 探索序章",
+    "subExists": false,
+    "kicker": [
+      22,
+      546,
+      368,
+      558,
+      346,
+      12
+    ],
+    "h1": [
+      22,
+      586,
+      368,
+      665,
+      346,
+      79
+    ],
+    "btn": [
+      22,
+      693,
+      105,
+      724,
+      83,
+      31
+    ],
+    "hero": [
+      22,
+      546,
+      368,
+      724,
+      346,
+      178
+    ],
+    "gapTitleBtn": 28,
+    "globe": {
+      "cx": 285,
+      "cy": 243,
+      "r": 145
+    },
+    "overlap": false,
+    "scroll": [
+      390,
+      844,
+      390,
+      844
+    ],
+    "text": "AN\n分布式监测系统\n中\nEN\n自主环境观测计划\n始于观测，\n走向未知\n开启探索→\n\n未知之境，需要探索者的脚步；\n无人之地，需要第一组观测数据。\n\n南极大陆\n未来目标",
+    "globeReady": true,
+    "errors": []
+  },
+  "390x844en": {
+    "lang": "en",
+    "title": "DISTRIBUTED MONITORING SYSTEM · EXPLORATION",
+    "subExists": false,
+    "kicker": [
+      22,
+      544,
+      368,
+      566,
+      346,
+      22
+    ],
+    "h1": [
+      22,
+      594,
+      368,
+      665,
+      346,
+      71
+    ],
+    "btn": [
+      22,
+      693,
+      202,
+      724,
+      180,
+      31
+    ],
+    "hero": [
+      22,
+      544,
+      368,
+      724,
+      346,
+      180
+    ],
+    "gapTitleBtn": 28,
+    "globe": {
+      "cx": 285,
+      "cy": 243,
+      "r": 145
+    },
+    "overlap": false,
+    "scroll": [
+      390,
+      844,
+      390,
+      844
+    ],
+    "text": "AN\nDISTRIBUTED MONITORING SYSTEM\n中\nEN\nAUTONOMOUS ENVIRONMENTAL OBSERVATION PROGRAMME\nFrom Observation,\nToward the Unknown\nSTART EXPLORATION→\n\nThe unknown requires explorers;\nUninhabited lands require the first set of observations.\n\nANTARCTICA\nFUTURE GOAL",
+    "globeReady": true,
+    "errors": []
+  }
+}

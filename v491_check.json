@@ -1,0 +1,5042 @@
+{
+  "index.html@1920en": {
+    "url": "index.html",
+    "lang": "en",
+    "title": "DISTRIBUTED MONITORING SYSTEM · EXPLORATION",
+    "brand": {
+      "scrollW": 379,
+      "clientW": 379,
+      "rect": [
+        46,
+        30,
+        479,
+        70,
+        433,
+        40
+      ],
+      "txt": "DISTRIBUTED MONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      0,
+      0,
+      1920,
+      100,
+      1920,
+      100
+    ],
+    "langRect": [
+      1770,
+      35,
+      1874,
+      65
+    ],
+    "scroll": [
+      1920,
+      1080,
+      1920,
+      1080
+    ],
+    "bodyText": "AN\nDISTRIBUTED MONITORING SYSTEM\n\nENVIRONMENTAL OBSERVATION PROGRAMME\n\n中\nEN\nAUTONOMOUS ENVIRONMENTAL OBSERVATION PROGRAMME\nFrom Observation,\nToward the Unknown\n\nStarting from Nanjing, we are building\nan autonomous environmental observation network,\nusing long-term collected data as the foundation\nfor exploring unknown environments.\n\nSTART EXPLORATION→\n\nThe unknown requires explorers;\nUninhabited l",
+    "errors": []
+  },
+  "network.html@1920en": {
+    "url": "network.html",
+    "lang": "en",
+    "title": "DISTRIBUTED MONITORING SYSTEM · OBSERVATION NETWORK",
+    "brand": {
+      "scrollW": 304,
+      "clientW": 304,
+      "rect": [
+        28,
+        16,
+        378,
+        50,
+        350,
+        34
+      ],
+      "txt": "DISTRIBUTED MONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      0,
+      0,
+      1920,
+      67,
+      1920,
+      67
+    ],
+    "langRect": [
+      1788,
+      18,
+      1892,
+      48
+    ],
+    "scroll": [
+      1920,
+      1080,
+      1920,
+      1080
+    ],
+    "bodyText": "AN\nDISTRIBUTED MONITORING SYSTEM\n\nOBSERVATION NETWORK\n\nExploration\n中\nEN\nNODE ARCHIVE\nObservation\nNetwork\n01\nANT-A01\nACTIVE NODE\nNanjing · 32.05N 118.79E\n02\nANT-A02\nCOMING SOON\nPhase 02 · Planned\n03\nANT-A03\nCOMING SOON\nPhase 03 · Planned\nArchive 01 — Active · 02/03 Planned\nNode 01 — ANT-A01\nOnline\nNANJING\nANT-A01\nNANJING OBSERVATION NODE\n476\nDATA RECORDS\nLoRa\nUPLINK\n32.05°N\nLATITUDE\n118.79°E\nLONGIT",
+    "errors": []
+  },
+  "location.html@1920en": {
+    "url": "location.html",
+    "lang": "en",
+    "title": "DISTRIBUTED MONITORING SYSTEM - LOCATION",
+    "brand": {
+      "scrollW": 171,
+      "clientW": 171,
+      "rect": [
+        16,
+        22,
+        233,
+        119,
+        217,
+        97
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      286,
+      22,
+      1884,
+      119,
+      1598,
+      97
+    ],
+    "langRect": [
+      1772,
+      28,
+      1888,
+      58
+    ],
+    "scroll": [
+      1920,
+      1080,
+      1920,
+      1080
+    ],
+    "bodyText": "中\nEN\nAN\nDISTRIBUTED\nMONITORING SYSTEM\n\nAutonomous Environmental Observatory\n\nDashboard\nLocation\nSensors\nDATA\nHardware\nAnalysis\nGLOBAL POSITIONING\n\nSatellite navigation · test location\n\nSYSTEM ONLINE\nGPS STATUS\nONLINE\nREAL WORLD MAP\nNANJING\nANT-A01 POSITION\nLATITUDE\n32.049278\nLONGITUDE\n118.793686\nSATELLITES\n12",
+    "errors": []
+  },
+  "dashboard.html@1920en": {
+    "url": "dashboard.html",
+    "lang": "en",
+    "title": "DISTRIBUTED MONITORING SYSTEM",
+    "brand": {
+      "scrollW": 171,
+      "clientW": 171,
+      "rect": [
+        16,
+        22,
+        233,
+        119,
+        217,
+        97
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      290,
+      22,
+      1880,
+      143,
+      1590,
+      121
+    ],
+    "langRect": [
+      1737,
+      67,
+      1853,
+      97
+    ],
+    "scroll": [
+      1920,
+      1080,
+      1920,
+      1080
+    ],
+    "bodyText": "AN\nDISTRIBUTED\nMONITORING SYSTEM\n\nAutonomous Environmental Observatory\n\nDashboard\nLocation\nSensors\nDATA\nHardware\nAnalysis\nAUTONOMOUS DIGITAL TWIN · MISSION CONTROL\nAUTONOMOUS MONITORING SYSTEM\nAUTONOMOUS ENVIRONMENTAL MONITORING PLATFORM · STATION ANT-A01\nSYSTEM ONLINE\nSTATION ANT-A01\n中\nEN\nMISSION STATUS\nNOMINAL\nALL SYSTEMS CHECK\nCURRENT TIME\n2026-08-13 16:43:18\nLOCAL TIME\nOPERATION MODE\nEMERGENCY",
+    "errors": []
+  },
+  "dashboard-a02.html@1920en": {
+    "url": "dashboard-a02.html",
+    "lang": "en",
+    "title": "DISTRIBUTED MONITORING SYSTEM · ANT-A02",
+    "brand": {
+      "scrollW": 171,
+      "clientW": 171,
+      "rect": [
+        16,
+        22,
+        233,
+        119,
+        217,
+        97
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      290,
+      22,
+      1880,
+      143,
+      1590,
+      121
+    ],
+    "langRect": [
+      1737,
+      67,
+      1853,
+      97
+    ],
+    "scroll": [
+      1920,
+      1080,
+      1920,
+      1080
+    ],
+    "bodyText": "AN\nDISTRIBUTED\nMONITORING SYSTEM\n\nAutonomous Environmental Observatory\n\nDashboard\nLocation\nSensors\nDATA\nHardware\nAnalysis\nAUTONOMOUS DIGITAL TWIN · MISSION CONTROL\nAUTONOMOUS MONITORING SYSTEM\nSTATION ANT-A02 · AWAITING DEPLOYMENT\nAWAITING DEPLOYMENT\nSTATION ANT-A02\n中\nEN\nMISSION STATUS\nPENDING\nWAITING FOR DEPLOYMENT\nCURRENT TIME\n2026-08-13 16:43:20\nLOCAL TIME\nOPERATION MODE\nStandby\nStandby\nNODE PO",
+    "errors": []
+  },
+  "dashboard-a03.html@1920en": {
+    "url": "dashboard-a03.html",
+    "lang": "en",
+    "title": "DISTRIBUTED MONITORING SYSTEM · ANT-A03",
+    "brand": {
+      "scrollW": 171,
+      "clientW": 171,
+      "rect": [
+        16,
+        22,
+        233,
+        119,
+        217,
+        97
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      290,
+      22,
+      1880,
+      143,
+      1590,
+      121
+    ],
+    "langRect": [
+      1737,
+      67,
+      1853,
+      97
+    ],
+    "scroll": [
+      1920,
+      1080,
+      1920,
+      1080
+    ],
+    "bodyText": "AN\nDISTRIBUTED\nMONITORING SYSTEM\n\nAutonomous Environmental Observatory\n\nDashboard\nLocation\nSensors\nDATA\nHardware\nAnalysis\nAUTONOMOUS DIGITAL TWIN · MISSION CONTROL\nAUTONOMOUS MONITORING SYSTEM\nSTATION ANT-A03 · AWAITING DEPLOYMENT\nAWAITING DEPLOYMENT\nSTATION ANT-A03\n中\nEN\nMISSION STATUS\nPENDING\nWAITING FOR DEPLOYMENT\nCURRENT TIME\n2026-08-13 16:43:23\nLOCAL TIME\nOPERATION MODE\nStandby\nStandby\nNODE PO",
+    "errors": []
+  },
+  "sensors.html@1920en": {
+    "url": "sensors.html",
+    "lang": "en",
+    "title": "DISTRIBUTED MONITORING SYSTEM - SENSORS",
+    "brand": {
+      "scrollW": 171,
+      "clientW": 171,
+      "rect": [
+        16,
+        22,
+        233,
+        119,
+        217,
+        97
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      286,
+      22,
+      1884,
+      120,
+      1598,
+      98
+    ],
+    "langRect": [
+      1772,
+      28,
+      1888,
+      58
+    ],
+    "scroll": [
+      1920,
+      1080,
+      1920,
+      1080
+    ],
+    "bodyText": "中\nEN\nAN\nDISTRIBUTED\nMONITORING SYSTEM\n\nAutonomous Environmental Observatory\n\nDashboard\nLocation\nSensors\nDATA\nHardware\nAnalysis\nENVIRONMENT MONITORING\n\nMulti-channel sensor acquisition system\n\nSYSTEM ONLINE\nSENSOR ARRAY\nData Acquisition\nCABIN TEMPERATURE\nRS485\nCABIN HUMIDITY\nRS485\nOUTSIDE TEMPERATURE\nSHT35\nOUTSIDE HUMIDITY\nSHT35\nSOLAR IRRADIANCE\nSolar Radiation Sensor · W/m²\nCURRENT (mA)\nVOLTAGE\nWI",
+    "errors": []
+  },
+  "telemetry.html@1920en": {
+    "url": "telemetry.html",
+    "lang": "en",
+    "title": "DISTRIBUTED MONITORING SYSTEM - DATA",
+    "brand": {
+      "scrollW": 171,
+      "clientW": 171,
+      "rect": [
+        16,
+        22,
+        233,
+        119,
+        217,
+        97
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      286,
+      22,
+      1884,
+      120,
+      1598,
+      98
+    ],
+    "langRect": [
+      1772,
+      28,
+      1888,
+      58
+    ],
+    "scroll": [
+      1920,
+      1080,
+      1920,
+      1080
+    ],
+    "bodyText": "中\nEN\nAN\nDISTRIBUTED\nMONITORING SYSTEM\n\nAutonomous Environmental Observatory\n\nDashboard\nLocation\nSensors\nDATA\nHardware\nAnalysis\nDATA\n\nAUTONOMOUS DATA TRANSMISSION\n\nSYSTEM ONLINE\nDATA LINK\nLoRa Communication · ONLINE\nLATEST 476 RECORDS · 13 Data Types\nTIME\tMODE\tVOLTAGE\n(V)\n\tCURRENT\n(mA)\n\tSOLAR IRRADIANCE\n(W/m²)\n\tINSIDE TEMP\n(°C)\n\tINSIDE HUMIDITY\n(%RH)\n\tOUTSIDE TEMP\n(°C)\n\tOUTSIDE HUMIDITY\n(%RH)\n\tLATI",
+    "errors": []
+  },
+  "hardware.html@1920en": {
+    "url": "hardware.html",
+    "lang": "en",
+    "title": "DISTRIBUTED MONITORING SYSTEM - HARDWARE DOCUMENTATION",
+    "brand": {
+      "scrollW": 171,
+      "clientW": 171,
+      "rect": [
+        16,
+        22,
+        233,
+        119,
+        217,
+        97
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      264,
+      8,
+      1906,
+      52,
+      1642,
+      44
+    ],
+    "langRect": [
+      1772,
+      28,
+      1888,
+      58
+    ],
+    "scroll": [
+      1920,
+      1080,
+      1920,
+      1080
+    ],
+    "bodyText": "中\nEN\nAN\nDISTRIBUTED\nMONITORING SYSTEM\n\nAutonomous Environmental Observatory\n\nDashboard\nLocation\nSensors\nDATA\nHardware\nAnalysis\nANT-A01 HARDWARE DOCUMENTATION\n\nAUTONOMOUS MONITORING NODE · ENGINEERING FILE\n\nACTIVE\nIDENTIFICATION\nDESIGNATION\nANT-A01\nTYPE\nAUTONOMOUS NODE\nVERSION\nV0.4\nSTATUS\nACTIVE\nSPECIFICATIONS\nENCLOSURE\nIP66\nPOWER SYSTEM\n☀\nSolar Power\n🔋\nLithium Titanate Battery\nDATA TYPES\nTEMPERAT",
+    "errors": []
+  },
+  "analysis.html@1920en": {
+    "url": "analysis.html",
+    "lang": "en",
+    "title": "DISTRIBUTED MONITORING SYSTEM - MISSION ANALYTICS",
+    "brand": {
+      "scrollW": 171,
+      "clientW": 171,
+      "rect": [
+        16,
+        22,
+        233,
+        119,
+        217,
+        97
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      268,
+      42,
+      1902,
+      111,
+      1634,
+      69
+    ],
+    "langRect": [
+      1772,
+      28,
+      1888,
+      58
+    ],
+    "scroll": [
+      1920,
+      1080,
+      1920,
+      1080
+    ],
+    "bodyText": "中\nEN\nAN\nDISTRIBUTED\nMONITORING SYSTEM\n\nAutonomous Environmental Observatory\n\nDashboard\nLocation\nSensors\nDATA\nHardware\nAnalysis\nAUTONOMOUS MONITORING MISSION SUMMARY\nMISSION ANALYTICS\nAn autonomous monitoring node · long-term environmental data collection and transmission.\nMISSION ID\nANT-A01\nVERSION\nV0.4\nSTATUS\nOPERATIONAL\nMISSION OVERVIEW\nCore results of the autonomous monitoring mission.\nDATA REC",
+    "errors": []
+  },
+  "location-a02.html@1920en": {
+    "url": "location-a02.html",
+    "lang": "en",
+    "title": "DISTRIBUTED MONITORING SYSTEM · ANT-A02",
+    "brand": {
+      "scrollW": 171,
+      "clientW": 171,
+      "rect": [
+        16,
+        22,
+        233,
+        119,
+        217,
+        97
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      280,
+      26,
+      1875,
+      124,
+      1595,
+      98
+    ],
+    "langRect": [
+      1757,
+      26,
+      1873,
+      56
+    ],
+    "scroll": [
+      1905,
+      1301,
+      1905,
+      1080
+    ],
+    "bodyText": "中\nEN\nAN\nDISTRIBUTED\nMONITORING SYSTEM\n\nAutonomous Environmental Observatory\n\nDashboard\nLocation\nSensors\nDATA\nHardware\nAnalysis\nLocation\n\nStation ANT-A02 · awaiting deployment\n\nAWAITING DEPLOYMENT\nNODE STATUS\nNOT DEPLOYED\nREAL WORLD MAP · NOT AVAILABLE\nANT-A02\n\nAWAITING DEPLOYMENT\n\nFUTURE NODE · ANT-A02\nNo Data Available\n\nThis module will activate once the station is deployed and telemetry is estab",
+    "errors": []
+  },
+  "location-a03.html@1920en": {
+    "url": "location-a03.html",
+    "lang": "en",
+    "title": "DISTRIBUTED MONITORING SYSTEM · ANT-A03",
+    "brand": {
+      "scrollW": 171,
+      "clientW": 171,
+      "rect": [
+        16,
+        22,
+        233,
+        119,
+        217,
+        97
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      280,
+      26,
+      1875,
+      124,
+      1595,
+      98
+    ],
+    "langRect": [
+      1757,
+      26,
+      1873,
+      56
+    ],
+    "scroll": [
+      1905,
+      1301,
+      1905,
+      1080
+    ],
+    "bodyText": "中\nEN\nAN\nDISTRIBUTED\nMONITORING SYSTEM\n\nAutonomous Environmental Observatory\n\nDashboard\nLocation\nSensors\nDATA\nHardware\nAnalysis\nLocation\n\nStation ANT-A03 · awaiting deployment\n\nAWAITING DEPLOYMENT\nNODE STATUS\nNOT DEPLOYED\nREAL WORLD MAP · NOT AVAILABLE\nANT-A03\n\nAWAITING DEPLOYMENT\n\nFUTURE NODE · ANT-A03\nNo Data Available\n\nThis module will activate once the station is deployed and telemetry is estab",
+    "errors": []
+  },
+  "sensors-a02.html@1920en": {
+    "url": "sensors-a02.html",
+    "lang": "en",
+    "title": "DISTRIBUTED MONITORING SYSTEM · ANT-A02",
+    "brand": {
+      "scrollW": 171,
+      "clientW": 171,
+      "rect": [
+        16,
+        22,
+        233,
+        119,
+        217,
+        97
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      280,
+      26,
+      1890,
+      124,
+      1610,
+      98
+    ],
+    "langRect": [
+      1772,
+      26,
+      1888,
+      56
+    ],
+    "scroll": [
+      1920,
+      1080,
+      1920,
+      1080
+    ],
+    "bodyText": "中\nEN\nAN\nDISTRIBUTED\nMONITORING SYSTEM\n\nAutonomous Environmental Observatory\n\nDashboard\nLocation\nSensors\nDATA\nHardware\nAnalysis\nSensors\n\nStation ANT-A02 · awaiting deployment\n\nAWAITING DEPLOYMENT\nNODE STATUS\nNOT DEPLOYED\nFUTURE NODE · ANT-A02\nNo Data Available\n\nThis module will activate once the station is deployed and telemetry is established.\n\nWAITING FOR DEPLOYMENT\n--\nDATA\n--\nSTATUS\n--\nLINK",
+    "errors": []
+  },
+  "sensors-a03.html@1920en": {
+    "url": "sensors-a03.html",
+    "lang": "en",
+    "title": "DISTRIBUTED MONITORING SYSTEM · ANT-A03",
+    "brand": {
+      "scrollW": 171,
+      "clientW": 171,
+      "rect": [
+        16,
+        22,
+        233,
+        119,
+        217,
+        97
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      280,
+      26,
+      1890,
+      124,
+      1610,
+      98
+    ],
+    "langRect": [
+      1772,
+      26,
+      1888,
+      56
+    ],
+    "scroll": [
+      1920,
+      1080,
+      1920,
+      1080
+    ],
+    "bodyText": "中\nEN\nAN\nDISTRIBUTED\nMONITORING SYSTEM\n\nAutonomous Environmental Observatory\n\nDashboard\nLocation\nSensors\nDATA\nHardware\nAnalysis\nSensors\n\nStation ANT-A03 · awaiting deployment\n\nAWAITING DEPLOYMENT\nNODE STATUS\nNOT DEPLOYED\nFUTURE NODE · ANT-A03\nNo Data Available\n\nThis module will activate once the station is deployed and telemetry is established.\n\nWAITING FOR DEPLOYMENT\n--\nDATA\n--\nSTATUS\n--\nLINK",
+    "errors": []
+  },
+  "telemetry-a02.html@1920en": {
+    "url": "telemetry-a02.html",
+    "lang": "en",
+    "title": "DISTRIBUTED MONITORING SYSTEM · ANT-A02",
+    "brand": {
+      "scrollW": 171,
+      "clientW": 171,
+      "rect": [
+        16,
+        22,
+        233,
+        119,
+        217,
+        97
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      280,
+      26,
+      1890,
+      124,
+      1610,
+      98
+    ],
+    "langRect": [
+      1772,
+      26,
+      1888,
+      56
+    ],
+    "scroll": [
+      1920,
+      1080,
+      1920,
+      1080
+    ],
+    "bodyText": "中\nEN\nAN\nDISTRIBUTED\nMONITORING SYSTEM\n\nAutonomous Environmental Observatory\n\nDashboard\nLocation\nSensors\nDATA\nHardware\nAnalysis\nDATA\n\nStation ANT-A02 · awaiting deployment\n\nAWAITING DEPLOYMENT\nNODE STATUS\nNOT DEPLOYED\nFUTURE NODE · ANT-A02\nNo Data Available\n\nThis module will activate once the station is deployed and telemetry is established.\n\nWAITING FOR DEPLOYMENT\n--\nDATA\n--\nSTATUS\n--\nLINK",
+    "errors": []
+  },
+  "telemetry-a03.html@1920en": {
+    "url": "telemetry-a03.html",
+    "lang": "en",
+    "title": "DISTRIBUTED MONITORING SYSTEM · ANT-A03",
+    "brand": {
+      "scrollW": 171,
+      "clientW": 171,
+      "rect": [
+        16,
+        22,
+        233,
+        119,
+        217,
+        97
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      280,
+      26,
+      1890,
+      124,
+      1610,
+      98
+    ],
+    "langRect": [
+      1772,
+      26,
+      1888,
+      56
+    ],
+    "scroll": [
+      1920,
+      1080,
+      1920,
+      1080
+    ],
+    "bodyText": "中\nEN\nAN\nDISTRIBUTED\nMONITORING SYSTEM\n\nAutonomous Environmental Observatory\n\nDashboard\nLocation\nSensors\nDATA\nHardware\nAnalysis\nDATA\n\nStation ANT-A03 · awaiting deployment\n\nAWAITING DEPLOYMENT\nNODE STATUS\nNOT DEPLOYED\nFUTURE NODE · ANT-A03\nNo Data Available\n\nThis module will activate once the station is deployed and telemetry is established.\n\nWAITING FOR DEPLOYMENT\n--\nDATA\n--\nSTATUS\n--\nLINK",
+    "errors": []
+  },
+  "hardware-a02.html@1920en": {
+    "url": "hardware-a02.html",
+    "lang": "en",
+    "title": "DISTRIBUTED MONITORING SYSTEM · ANT-A02",
+    "brand": {
+      "scrollW": 171,
+      "clientW": 171,
+      "rect": [
+        16,
+        22,
+        233,
+        119,
+        217,
+        97
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      280,
+      26,
+      1890,
+      87,
+      1610,
+      61
+    ],
+    "langRect": [
+      1772,
+      26,
+      1888,
+      56
+    ],
+    "scroll": [
+      1920,
+      1080,
+      1920,
+      1080
+    ],
+    "bodyText": "中\nEN\nAN\nDISTRIBUTED\nMONITORING SYSTEM\n\nAutonomous Environmental Observatory\n\nDashboard\nLocation\nSensors\nDATA\nHardware\nAnalysis\nHardware\n\nStation ANT-A02 · awaiting deployment\n\nAWAITING DEPLOYMENT\nNODE STATUS\nNOT DEPLOYED\nFUTURE NODE · ANT-A02\nNo Data Available\n\nThis module will activate once the station is deployed and telemetry is established.\n\nWAITING FOR DEPLOYMENT\n--\nDATA\n--\nSTATUS\n--\nLINK",
+    "errors": []
+  },
+  "hardware-a03.html@1920en": {
+    "url": "hardware-a03.html",
+    "lang": "en",
+    "title": "DISTRIBUTED MONITORING SYSTEM · ANT-A03",
+    "brand": {
+      "scrollW": 171,
+      "clientW": 171,
+      "rect": [
+        16,
+        22,
+        233,
+        119,
+        217,
+        97
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      280,
+      26,
+      1890,
+      87,
+      1610,
+      61
+    ],
+    "langRect": [
+      1772,
+      26,
+      1888,
+      56
+    ],
+    "scroll": [
+      1920,
+      1080,
+      1920,
+      1080
+    ],
+    "bodyText": "中\nEN\nAN\nDISTRIBUTED\nMONITORING SYSTEM\n\nAutonomous Environmental Observatory\n\nDashboard\nLocation\nSensors\nDATA\nHardware\nAnalysis\nHardware\n\nStation ANT-A03 · awaiting deployment\n\nAWAITING DEPLOYMENT\nNODE STATUS\nNOT DEPLOYED\nFUTURE NODE · ANT-A03\nNo Data Available\n\nThis module will activate once the station is deployed and telemetry is established.\n\nWAITING FOR DEPLOYMENT\n--\nDATA\n--\nSTATUS\n--\nLINK",
+    "errors": []
+  },
+  "analysis-a02.html@1920en": {
+    "url": "analysis-a02.html",
+    "lang": "en",
+    "title": "DISTRIBUTED MONITORING SYSTEM · ANT-A02",
+    "brand": {
+      "scrollW": 171,
+      "clientW": 171,
+      "rect": [
+        16,
+        22,
+        233,
+        119,
+        217,
+        97
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      280,
+      26,
+      1890,
+      93,
+      1610,
+      67
+    ],
+    "langRect": [
+      1772,
+      26,
+      1888,
+      56
+    ],
+    "scroll": [
+      1920,
+      1080,
+      1920,
+      1080
+    ],
+    "bodyText": "中\nEN\nAN\nDISTRIBUTED\nMONITORING SYSTEM\n\nAutonomous Environmental Observatory\n\nDashboard\nLocation\nSensors\nDATA\nHardware\nAnalysis\nAnalysis\n\nStation ANT-A02 · awaiting deployment\n\nAWAITING DEPLOYMENT\nNODE STATUS\nNOT DEPLOYED\nFUTURE NODE · ANT-A02\nNo Data Available\n\nThis module will activate once the station is deployed and telemetry is established.\n\nWAITING FOR DEPLOYMENT\n--\nDATA\n--\nSTATUS\n--\nLINK",
+    "errors": []
+  },
+  "analysis-a03.html@1920en": {
+    "url": "analysis-a03.html",
+    "lang": "en",
+    "title": "DISTRIBUTED MONITORING SYSTEM · ANT-A03",
+    "brand": {
+      "scrollW": 171,
+      "clientW": 171,
+      "rect": [
+        16,
+        22,
+        233,
+        119,
+        217,
+        97
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      280,
+      26,
+      1890,
+      93,
+      1610,
+      67
+    ],
+    "langRect": [
+      1772,
+      26,
+      1888,
+      56
+    ],
+    "scroll": [
+      1920,
+      1080,
+      1920,
+      1080
+    ],
+    "bodyText": "中\nEN\nAN\nDISTRIBUTED\nMONITORING SYSTEM\n\nAutonomous Environmental Observatory\n\nDashboard\nLocation\nSensors\nDATA\nHardware\nAnalysis\nAnalysis\n\nStation ANT-A03 · awaiting deployment\n\nAWAITING DEPLOYMENT\nNODE STATUS\nNOT DEPLOYED\nFUTURE NODE · ANT-A03\nNo Data Available\n\nThis module will activate once the station is deployed and telemetry is established.\n\nWAITING FOR DEPLOYMENT\n--\nDATA\n--\nSTATUS\n--\nLINK",
+    "errors": []
+  },
+  "a02.html@1920en": {
+    "url": "a02.html",
+    "lang": "en",
+    "title": "DISTRIBUTED MONITORING SYSTEM · ANT-A02",
+    "brand": {
+      "scrollW": 171,
+      "clientW": 171,
+      "rect": [
+        16,
+        22,
+        233,
+        119,
+        217,
+        97
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM"
+    },
+    "header": [
+      290,
+      22,
+      1880,
+      143,
+      1590,
+      121
+    ],
+    "langRect": [
+      1772,
+      28,
+      1888,
+      58
+    ],
+    "scroll": [
+      1920,
+      1080,
+      1920,
+      1080
+    ],
+    "bodyText": "中\nEN\nAN\nDISTRIBUTED\nMONITORING SYSTEM\n\nAutonomous Environmental Observatory\n\nDashboard\nLocation\nSensors\nDATA\nHardware\nAnalysis\nANT-A02\nDISTRIBUTED MONITORING SYSTEM · TERMINAL ANT-A02\nAUTONOMOUS MONITORING SYSTEM\nAUTONOMOUS ENVIRONMENTAL MONITORING PLATFORM · STATION ANT-A02\nWAITING FOR DEPLOYMENT\nSTATION ANT-A02\nMISSION STATUS\nPENDING\nWAITING FOR DEPLOYMENT\nCURRENT TIME\n--\nLOCAL TIME\nOPERATION MO",
+    "errors": []
+  },
+  "index.html@1920zh": {
+    "url": "index.html",
+    "lang": "zh-CN",
+    "title": "自主观测系统 · 探索序章",
+    "brand": {
+      "scrollW": 133,
+      "clientW": 133,
+      "rect": [
+        46,
+        30,
+        233,
+        70,
+        187,
+        40
+      ],
+      "txt": "DISTRIBUTED MONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      0,
+      0,
+      1920,
+      100,
+      1920,
+      100
+    ],
+    "langRect": [
+      1770,
+      35,
+      1874,
+      65
+    ],
+    "scroll": [
+      1920,
+      1080,
+      1920,
+      1080
+    ],
+    "bodyText": "AN\n分布式监测系统\n\n自主环境观测计划\n\n中\nEN\n自主环境观测计划\n始于观测，\n走向未知\n\n从南京出发，\n构建自主环境观测网络；\n以持续积累的数据，\n为未来探索未知环境提供基础。\n\n开启探索→\n\n未知之境，需要探索者的脚步；\n无人之地，需要第一组观测数据。\n\n南极大陆\n未来目标",
+    "errors": []
+  },
+  "network.html@1920zh": {
+    "url": "network.html",
+    "lang": "zh-CN",
+    "title": "自主观测系统 · 观测网络",
+    "brand": {
+      "scrollW": 112,
+      "clientW": 112,
+      "rect": [
+        28,
+        16,
+        186,
+        50,
+        158,
+        34
+      ],
+      "txt": "DISTRIBUTED MONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      0,
+      0,
+      1920,
+      67,
+      1920,
+      67
+    ],
+    "langRect": [
+      1788,
+      18,
+      1892,
+      48
+    ],
+    "scroll": [
+      1920,
+      1080,
+      1920,
+      1080
+    ],
+    "bodyText": "AN\n分布式监测系统\n\n观测网络\n\n探索首页\n中\nEN\n节点档案\n观测网络\n01\nANT-A01\n当前运行\n南京 · 32.05N 118.79E\n02\nANT-A02\n待部署\n阶段 02 · 规划中\n03\nANT-A03\n待部署\n阶段 03 · 规划中\n档案 01 — 运行中 · 02/03 规划中\n节点 01 — ANT-A01\n在线\n南京\nANT-A01\n南京观测节点\n476\n数据记录\nLoRa\n上行链路\n32.05°N\n纬度\n118.79°E\n经度\n坐标 · 32.0491° N / 118.7937° E\n站点 · 南京\n数据记录 · 476\n选择观测终端\n\n未来终端档案\n\nANT-A01\n运行节点\n部署地点\n南京，中国\n运行状态\n在线\n476\n记录\nLoRa\n上行\n进入终端\nANT-A02\n即将上线\n\n未来观测节点\n\n等待部署\n进入终端\nANT-A03\n即将上线\n\n未来观测节点",
+    "errors": []
+  },
+  "location.html@1920zh": {
+    "url": "location.html",
+    "lang": "zh-CN",
+    "title": "自主观测系统 · 位置",
+    "brand": {
+      "scrollW": 133,
+      "clientW": 133,
+      "rect": [
+        16,
+        22,
+        233,
+        66,
+        217,
+        44
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      286,
+      22,
+      1884,
+      119,
+      1598,
+      97
+    ],
+    "langRect": [
+      1772,
+      28,
+      1888,
+      58
+    ],
+    "scroll": [
+      1920,
+      1080,
+      1920,
+      1080
+    ],
+    "bodyText": "中\nEN\nAN\n分布式监测系统\n\n自主环境观测站\n\n仪表盘\n位置\n传感器\n数据\n硬件\n分析\n全球定位\n\n卫星导航 · 测试坐标\n\n系统在线\nGPS状态\n在线\n实景地图\n南京\nANT-A01 位置\n纬度\n32.049278\n经度\n118.793686\n卫星数\n12",
+    "errors": []
+  },
+  "dashboard.html@1920zh": {
+    "url": "dashboard.html",
+    "lang": "zh-CN",
+    "title": "自主观测系统",
+    "brand": {
+      "scrollW": 133,
+      "clientW": 133,
+      "rect": [
+        16,
+        22,
+        233,
+        66,
+        217,
+        44
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      290,
+      22,
+      1880,
+      143,
+      1590,
+      121
+    ],
+    "langRect": [
+      1737,
+      67,
+      1853,
+      97
+    ],
+    "scroll": [
+      1920,
+      1080,
+      1920,
+      1080
+    ],
+    "bodyText": "AN\n分布式监测系统\n\n自主环境观测站\n\n仪表盘\n位置\n传感器\n数据\n硬件\n分析\n自主数字孪生 · 任务控制\n自主观测系统\n自主环境监测平台 · 站点 ANT-A01\n系统在线\n站点 ANT-A01\n中\nEN\n任务状态\n正常\n全系统自检\n当前时间\n2026-08-13 16:44:12\n本地时间\n运行模式\n应急\n保护模式\n节点定位 · GPS 跟踪\n实时遥测\nGPS 状态\n跟踪中\n模式\n应急\n供电\n太阳能 + 电池\nANT-A01\n\n纬度\n32.049278\n\n经度\n118.793686\n\n卫星数\n12\n\n任务流\n环境数据采集运行中\n运行中\n卫星定位运行中\n运行中\n长期监测模式\n运行中\nANT-A01 · AUTONOMOUS STATION · REMOTE SENSOR NODE",
+    "errors": []
+  },
+  "dashboard-a02.html@1920zh": {
+    "url": "dashboard-a02.html",
+    "lang": "zh-CN",
+    "title": "自主观测系统 · ANT-A02",
+    "brand": {
+      "scrollW": 133,
+      "clientW": 133,
+      "rect": [
+        16,
+        22,
+        233,
+        66,
+        217,
+        44
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      290,
+      22,
+      1880,
+      143,
+      1590,
+      121
+    ],
+    "langRect": [
+      1737,
+      67,
+      1853,
+      97
+    ],
+    "scroll": [
+      1920,
+      1080,
+      1920,
+      1080
+    ],
+    "bodyText": "AN\n分布式监测系统\n\n自主环境观测站\n\n仪表盘\n位置\n传感器\n数据\n硬件\n分析\n自主数字孪生 · 任务控制\n自主观测系统\n站点 ANT-A02 · 等待部署\n等待部署\n站点 ANT-A02\n中\nEN\n任务状态\n待命\n等待部署\n当前时间\n2026-08-13 16:44:15\n本地时间\n运行模式\n节能\n节能\n节点定位 · 暂不可用\n无遥测\nGPS 状态\n未定位\n模式\n节能\n供电\n暂无数据\nANT-A02\n\n纬度\n等待数据\n\n经度\n等待数据\n\n卫星数\n等待数据\n\n任务流\n站点等待部署\n--\n遥测链路未建立\n--\n模块处于待机\n--\nANT-A02 · FUTURE STATION · AWAITING DEPLOYMENT",
+    "errors": []
+  },
+  "dashboard-a03.html@1920zh": {
+    "url": "dashboard-a03.html",
+    "lang": "zh-CN",
+    "title": "自主观测系统 · ANT-A03",
+    "brand": {
+      "scrollW": 133,
+      "clientW": 133,
+      "rect": [
+        16,
+        22,
+        233,
+        66,
+        217,
+        44
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      290,
+      22,
+      1880,
+      143,
+      1590,
+      121
+    ],
+    "langRect": [
+      1737,
+      67,
+      1853,
+      97
+    ],
+    "scroll": [
+      1920,
+      1080,
+      1920,
+      1080
+    ],
+    "bodyText": "AN\n分布式监测系统\n\n自主环境观测站\n\n仪表盘\n位置\n传感器\n数据\n硬件\n分析\n自主数字孪生 · 任务控制\n自主观测系统\n站点 ANT-A03 · 等待部署\n等待部署\n站点 ANT-A03\n中\nEN\n任务状态\n待命\n等待部署\n当前时间\n2026-08-13 16:44:17\n本地时间\n运行模式\n节能\n节能\n节点定位 · 暂不可用\n无遥测\nGPS 状态\n未定位\n模式\n节能\n供电\n暂无数据\nANT-A03\n\n纬度\n等待数据\n\n经度\n等待数据\n\n卫星数\n等待数据\n\n任务流\n站点等待部署\n--\n遥测链路未建立\n--\n模块处于待机\n--\nANT-A03 · FUTURE STATION · AWAITING DEPLOYMENT",
+    "errors": []
+  },
+  "sensors.html@1920zh": {
+    "url": "sensors.html",
+    "lang": "zh-CN",
+    "title": "自主观测系统 · 传感器",
+    "brand": {
+      "scrollW": 133,
+      "clientW": 133,
+      "rect": [
+        16,
+        22,
+        233,
+        66,
+        217,
+        44
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      286,
+      22,
+      1884,
+      120,
+      1598,
+      98
+    ],
+    "langRect": [
+      1772,
+      28,
+      1888,
+      58
+    ],
+    "scroll": [
+      1920,
+      1080,
+      1920,
+      1080
+    ],
+    "bodyText": "中\nEN\nAN\n分布式监测系统\n\n自主环境观测站\n\n仪表盘\n位置\n传感器\n数据\n硬件\n分析\n环境监测\n\n多通道传感器采集系统\n\n系统在线\n传感器阵列\n数据采集单元\n舱内温度\nRS485\n舱内湿度\nRS485\n舱外温度\nSHT35\n舱外湿度\nSHT35\n太阳辐射\n太阳能辐射传感器 · W/m²\n电流 (mA)\n电压\n风速\n暂无数据\nANT-A01 · AUTONOMOUS STATION · REMOTE SENSOR NODE",
+    "errors": []
+  },
+  "telemetry.html@1920zh": {
+    "url": "telemetry.html",
+    "lang": "zh-CN",
+    "title": "自主观测系统 · 数据",
+    "brand": {
+      "scrollW": 133,
+      "clientW": 133,
+      "rect": [
+        16,
+        22,
+        233,
+        66,
+        217,
+        44
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      286,
+      22,
+      1884,
+      120,
+      1598,
+      98
+    ],
+    "langRect": [
+      1772,
+      28,
+      1888,
+      58
+    ],
+    "scroll": [
+      1920,
+      1080,
+      1920,
+      1080
+    ],
+    "bodyText": "中\nEN\nAN\n分布式监测系统\n\n自主环境观测站\n\n仪表盘\n位置\n传感器\n数据\n硬件\n分析\n数据\n\n自主采集数据回传\n\n系统在线\n数据链路\nLoRa通信 · 在线\n最新 476 条记录 · 13 类采集数据\n时间\t模式\t电压\n(V)\n\t电流\n(mA)\n\t太阳辐射\n(W/m²)\n\t舱内温度\n(°C)\n\t舱内湿度\n(%RH)\n\t舱外温度\n(°C)\n\t舱外湿度\n(%RH)\n\t纬度\n(°)\n\t经度\n(°)\n\t卫星数\tGPS 状态\t模式\tE\tI\tQ\tR\n2026-08-04 18:56\t应急\t9 V\t75 mA\t--\t--\t--\t--\t--\t--\t--\t--\t--\t应急\t0\t192\t440\t2\n2026-08-04 18:56\t应急\t9 V\t75 mA\t--\t--\t--\t--\t--\t--\t--\t--\t--\t应急\t0\t192\t440\t1\n2026-08-04 16:56\t应急\t9 V\t72 mA\t--",
+    "errors": []
+  },
+  "hardware.html@1920zh": {
+    "url": "hardware.html",
+    "lang": "zh-CN",
+    "title": "自主观测系统 · 硬件档案",
+    "brand": {
+      "scrollW": 133,
+      "clientW": 133,
+      "rect": [
+        16,
+        22,
+        233,
+        66,
+        217,
+        44
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      264,
+      8,
+      1906,
+      52,
+      1642,
+      44
+    ],
+    "langRect": [
+      1772,
+      28,
+      1888,
+      58
+    ],
+    "scroll": [
+      1920,
+      1080,
+      1920,
+      1080
+    ],
+    "bodyText": "中\nEN\nAN\n分布式监测系统\n\n自主环境观测站\n\n仪表盘\n位置\n传感器\n数据\n硬件\n分析\nANT-A01 硬件档案\n\n自主监测节点 · 工程档案\n\n运行中\n识别信息\n编号\nANT-A01\n类型\n观测节点\n版本\nV0.4\n状态\n运行中\n规格参数\n防护等级\nIP66\n供电系统\n☀\n太阳能供电\n🔋\n钛酸锂电池\n采集数据类型\n温度\n湿度\n气压\n太阳辐射\n电流\n电压\nGPS定位\n风速\n通信\nGPS · LoRa\n设备实拍 · 测试场地\n文件：ANT-A01_001 · 版本 V0.4\n\n真实设备照片\n\n图片位 · 替换为测试照片\n\n拍摄状态：待补充\n地点：地面测试站点\n档案：硬件档案\n实时遥测\n供电 · 太阳能\n等待数据\nW/m²\n电池\n9\nV\n传感器 · 舱内\n等待数据\n°C\nGPS\n在线\n部署信息\n站点\n测试地点\n安装方式\n地面锚定\n通信链路\nLoRa 上行链路\nANT-A01\n→\n太阳能\n",
+    "errors": []
+  },
+  "analysis.html@1920zh": {
+    "url": "analysis.html",
+    "lang": "zh-CN",
+    "title": "自主观测系统 · 任务成果分析",
+    "brand": {
+      "scrollW": 133,
+      "clientW": 133,
+      "rect": [
+        16,
+        22,
+        233,
+        66,
+        217,
+        44
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      268,
+      42,
+      1902,
+      111,
+      1634,
+      69
+    ],
+    "langRect": [
+      1772,
+      28,
+      1888,
+      58
+    ],
+    "scroll": [
+      1920,
+      1080,
+      1920,
+      1080
+    ],
+    "bodyText": "中\nEN\nAN\n分布式监测系统\n\n自主环境观测站\n\n仪表盘\n位置\n传感器\n数据\n硬件\n分析\n自主观测系统 · 任务成果分析\n任务成果分析\n自主监测节点 · 长期采集并稳定回传环境数据。\n任务编号\nANT-A01\n版本\nV0.4\n状态\n运行中\n任务概览\n自主监测任务的核心成果。\n数据记录\n476\n条\n遥测记录\n采集数据种类\n8\n种\n数据类别\n运行天数\n11\n天\n持续运行\n最近更新\n2026-08-04 18:56\n最近同步\n传感器数据覆盖率\n\n表示各类传感器有效数据记录在全部遥测记录中的覆盖比例。\n\n编号 · 类型\n数据覆盖率\n覆盖率\n占比\n传感器1\n舱内温湿度\n424/476\n89.1%\n传感器2\n舱外环境\n451/476\n94.7%\n传感器3\n太阳辐射\n372/476\n78.2%\n传感器4\n电源状态\n474/476\n99.6%\n传感器5\nGPS定位\n9/476\n1.9%\n传感器6\n风速监",
+    "errors": []
+  },
+  "location-a02.html@1920zh": {
+    "url": "location-a02.html",
+    "lang": "zh-CN",
+    "title": "自主观测系统 · ANT-A02",
+    "brand": {
+      "scrollW": 133,
+      "clientW": 133,
+      "rect": [
+        16,
+        22,
+        233,
+        66,
+        217,
+        44
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      280,
+      26,
+      1875,
+      124,
+      1595,
+      98
+    ],
+    "langRect": [
+      1757,
+      26,
+      1873,
+      56
+    ],
+    "scroll": [
+      1905,
+      1302,
+      1905,
+      1080
+    ],
+    "bodyText": "中\nEN\nAN\n分布式监测系统\n\n自主环境观测平台\n\n仪表盘\n位置\n传感器\n数据\n硬件\n分析\n位置\n\n站点 ANT-A02 · 等待部署\n\n等待部署\n节点状态\n未部署\n真实地图 · 暂不可用\nANT-A02\n\n等待部署\n\n未来节点 · ANT-A02\n暂无数据\n\n站点部署并建立遥测后，本模块将自动启用。\n\n等待部署\n--\n数据\n--\n状态\n--\n链路",
+    "errors": []
+  },
+  "location-a03.html@1920zh": {
+    "url": "location-a03.html",
+    "lang": "zh-CN",
+    "title": "自主观测系统 · ANT-A03",
+    "brand": {
+      "scrollW": 133,
+      "clientW": 133,
+      "rect": [
+        16,
+        22,
+        233,
+        66,
+        217,
+        44
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      280,
+      26,
+      1875,
+      124,
+      1595,
+      98
+    ],
+    "langRect": [
+      1757,
+      26,
+      1873,
+      56
+    ],
+    "scroll": [
+      1905,
+      1302,
+      1905,
+      1080
+    ],
+    "bodyText": "中\nEN\nAN\n分布式监测系统\n\n自主环境观测平台\n\n仪表盘\n位置\n传感器\n数据\n硬件\n分析\n位置\n\n站点 ANT-A03 · 等待部署\n\n等待部署\n节点状态\n未部署\n真实地图 · 暂不可用\nANT-A03\n\n等待部署\n\n未来节点 · ANT-A03\n暂无数据\n\n站点部署并建立遥测后，本模块将自动启用。\n\n等待部署\n--\n数据\n--\n状态\n--\n链路",
+    "errors": []
+  },
+  "sensors-a02.html@1920zh": {
+    "url": "sensors-a02.html",
+    "lang": "zh-CN",
+    "title": "自主观测系统 · ANT-A02",
+    "brand": {
+      "scrollW": 133,
+      "clientW": 133,
+      "rect": [
+        16,
+        22,
+        233,
+        66,
+        217,
+        44
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      280,
+      26,
+      1890,
+      124,
+      1610,
+      98
+    ],
+    "langRect": [
+      1772,
+      26,
+      1888,
+      56
+    ],
+    "scroll": [
+      1920,
+      1080,
+      1920,
+      1080
+    ],
+    "bodyText": "中\nEN\nAN\n分布式监测系统\n\n自主环境观测平台\n\n仪表盘\n位置\n传感器\n数据\n硬件\n分析\n传感器\n\n站点 ANT-A02 · 等待部署\n\n等待部署\n节点状态\n未部署\n未来节点 · ANT-A02\n暂无数据\n\n站点部署并建立遥测后，本模块将自动启用。\n\n等待部署\n--\n数据\n--\n状态\n--\n链路",
+    "errors": []
+  },
+  "sensors-a03.html@1920zh": {
+    "url": "sensors-a03.html",
+    "lang": "zh-CN",
+    "title": "自主观测系统 · ANT-A03",
+    "brand": {
+      "scrollW": 133,
+      "clientW": 133,
+      "rect": [
+        16,
+        22,
+        233,
+        66,
+        217,
+        44
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      280,
+      26,
+      1890,
+      124,
+      1610,
+      98
+    ],
+    "langRect": [
+      1772,
+      26,
+      1888,
+      56
+    ],
+    "scroll": [
+      1920,
+      1080,
+      1920,
+      1080
+    ],
+    "bodyText": "中\nEN\nAN\n分布式监测系统\n\n自主环境观测平台\n\n仪表盘\n位置\n传感器\n数据\n硬件\n分析\n传感器\n\n站点 ANT-A03 · 等待部署\n\n等待部署\n节点状态\n未部署\n未来节点 · ANT-A03\n暂无数据\n\n站点部署并建立遥测后，本模块将自动启用。\n\n等待部署\n--\n数据\n--\n状态\n--\n链路",
+    "errors": []
+  },
+  "telemetry-a02.html@1920zh": {
+    "url": "telemetry-a02.html",
+    "lang": "zh-CN",
+    "title": "自主观测系统 · ANT-A02",
+    "brand": {
+      "scrollW": 133,
+      "clientW": 133,
+      "rect": [
+        16,
+        22,
+        233,
+        66,
+        217,
+        44
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      280,
+      26,
+      1890,
+      124,
+      1610,
+      98
+    ],
+    "langRect": [
+      1772,
+      26,
+      1888,
+      56
+    ],
+    "scroll": [
+      1920,
+      1080,
+      1920,
+      1080
+    ],
+    "bodyText": "中\nEN\nAN\n分布式监测系统\n\n自主环境观测平台\n\n仪表盘\n位置\n传感器\n数据\n硬件\n分析\n数据\n\n站点 ANT-A02 · 等待部署\n\n等待部署\n节点状态\n未部署\n未来节点 · ANT-A02\n暂无数据\n\n站点部署并建立遥测后，本模块将自动启用。\n\n等待部署\n--\n数据\n--\n状态\n--\n链路",
+    "errors": []
+  },
+  "telemetry-a03.html@1920zh": {
+    "url": "telemetry-a03.html",
+    "lang": "zh-CN",
+    "title": "自主观测系统 · ANT-A03",
+    "brand": {
+      "scrollW": 133,
+      "clientW": 133,
+      "rect": [
+        16,
+        22,
+        233,
+        66,
+        217,
+        44
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      280,
+      26,
+      1890,
+      124,
+      1610,
+      98
+    ],
+    "langRect": [
+      1772,
+      26,
+      1888,
+      56
+    ],
+    "scroll": [
+      1920,
+      1080,
+      1920,
+      1080
+    ],
+    "bodyText": "中\nEN\nAN\n分布式监测系统\n\n自主环境观测平台\n\n仪表盘\n位置\n传感器\n数据\n硬件\n分析\n数据\n\n站点 ANT-A03 · 等待部署\n\n等待部署\n节点状态\n未部署\n未来节点 · ANT-A03\n暂无数据\n\n站点部署并建立遥测后，本模块将自动启用。\n\n等待部署\n--\n数据\n--\n状态\n--\n链路",
+    "errors": []
+  },
+  "hardware-a02.html@1920zh": {
+    "url": "hardware-a02.html",
+    "lang": "zh-CN",
+    "title": "自主观测系统 · ANT-A02",
+    "brand": {
+      "scrollW": 133,
+      "clientW": 133,
+      "rect": [
+        16,
+        22,
+        233,
+        66,
+        217,
+        44
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      280,
+      26,
+      1890,
+      87,
+      1610,
+      61
+    ],
+    "langRect": [
+      1772,
+      26,
+      1888,
+      56
+    ],
+    "scroll": [
+      1920,
+      1080,
+      1920,
+      1080
+    ],
+    "bodyText": "中\nEN\nAN\n分布式监测系统\n\n自主环境观测平台\n\n仪表盘\n位置\n传感器\n数据\n硬件\n分析\n硬件\n\n站点 ANT-A02 · 等待部署\n\n等待部署\n节点状态\n未部署\n未来节点 · ANT-A02\n暂无数据\n\n站点部署并建立遥测后，本模块将自动启用。\n\n等待部署\n--\n数据\n--\n状态\n--\n链路",
+    "errors": []
+  },
+  "hardware-a03.html@1920zh": {
+    "url": "hardware-a03.html",
+    "lang": "zh-CN",
+    "title": "自主观测系统 · ANT-A03",
+    "brand": {
+      "scrollW": 133,
+      "clientW": 133,
+      "rect": [
+        16,
+        22,
+        233,
+        66,
+        217,
+        44
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      280,
+      26,
+      1890,
+      87,
+      1610,
+      61
+    ],
+    "langRect": [
+      1772,
+      26,
+      1888,
+      56
+    ],
+    "scroll": [
+      1920,
+      1080,
+      1920,
+      1080
+    ],
+    "bodyText": "中\nEN\nAN\n分布式监测系统\n\n自主环境观测平台\n\n仪表盘\n位置\n传感器\n数据\n硬件\n分析\n硬件\n\n站点 ANT-A03 · 等待部署\n\n等待部署\n节点状态\n未部署\n未来节点 · ANT-A03\n暂无数据\n\n站点部署并建立遥测后，本模块将自动启用。\n\n等待部署\n--\n数据\n--\n状态\n--\n链路",
+    "errors": []
+  },
+  "analysis-a02.html@1920zh": {
+    "url": "analysis-a02.html",
+    "lang": "zh-CN",
+    "title": "自主观测系统 · ANT-A02",
+    "brand": {
+      "scrollW": 133,
+      "clientW": 133,
+      "rect": [
+        16,
+        22,
+        233,
+        66,
+        217,
+        44
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      280,
+      26,
+      1890,
+      93,
+      1610,
+      67
+    ],
+    "langRect": [
+      1772,
+      26,
+      1888,
+      56
+    ],
+    "scroll": [
+      1920,
+      1080,
+      1920,
+      1080
+    ],
+    "bodyText": "中\nEN\nAN\n分布式监测系统\n\n自主环境观测平台\n\n仪表盘\n位置\n传感器\n数据\n硬件\n分析\n分析\n\n站点 ANT-A02 · 等待部署\n\n等待部署\n节点状态\n未部署\n未来节点 · ANT-A02\n暂无数据\n\n站点部署并建立遥测后，本模块将自动启用。\n\n等待部署\n--\n数据\n--\n状态\n--\n链路",
+    "errors": []
+  },
+  "analysis-a03.html@1920zh": {
+    "url": "analysis-a03.html",
+    "lang": "zh-CN",
+    "title": "自主观测系统 · ANT-A03",
+    "brand": {
+      "scrollW": 133,
+      "clientW": 133,
+      "rect": [
+        16,
+        22,
+        233,
+        66,
+        217,
+        44
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      280,
+      26,
+      1890,
+      93,
+      1610,
+      67
+    ],
+    "langRect": [
+      1772,
+      26,
+      1888,
+      56
+    ],
+    "scroll": [
+      1920,
+      1080,
+      1920,
+      1080
+    ],
+    "bodyText": "中\nEN\nAN\n分布式监测系统\n\n自主环境观测平台\n\n仪表盘\n位置\n传感器\n数据\n硬件\n分析\n分析\n\n站点 ANT-A03 · 等待部署\n\n等待部署\n节点状态\n未部署\n未来节点 · ANT-A03\n暂无数据\n\n站点部署并建立遥测后，本模块将自动启用。\n\n等待部署\n--\n数据\n--\n状态\n--\n链路",
+    "errors": []
+  },
+  "a02.html@1920zh": {
+    "url": "a02.html",
+    "lang": "zh-CN",
+    "title": "自主观测系统 · ANT-A02",
+    "brand": {
+      "scrollW": 171,
+      "clientW": 171,
+      "rect": [
+        16,
+        22,
+        233,
+        119,
+        217,
+        97
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM"
+    },
+    "header": [
+      290,
+      22,
+      1880,
+      143,
+      1590,
+      121
+    ],
+    "langRect": [
+      1772,
+      28,
+      1888,
+      58
+    ],
+    "scroll": [
+      1920,
+      1080,
+      1920,
+      1080
+    ],
+    "bodyText": "中\nEN\nAN\nDISTRIBUTED\nMONITORING SYSTEM\n\nAutonomous Environmental Observatory\n\n仪表盘\n位置\n传感器\n数据\n硬件\n分析\nANT-A02\n自主观测系统 · 终端 ANT-A02\n自主观测系统\n自主环境监测平台 · 站点 ANT-A02\n等待部署\n站点 ANT-A02\nMISSION STATUS\n待部署\n等待部署\nCURRENT TIME\n--\nLOCAL TIME\nOPERATION MODE\nwaiting_data\nmode_unknown\nPOWER & ENVIRONMENT\nVOLTAGE\nwaiting_data\nV\nBATTERY BUS\n01\nCURRENT\nwaiting_data\nmA\nLOAD DRAW\n02\nTEMPERATURE\nwaiting_data\n°C\nCABIN\nOUTSIDE w",
+    "errors": []
+  },
+  "index.html@1366en": {
+    "url": "index.html",
+    "lang": "en",
+    "title": "DISTRIBUTED MONITORING SYSTEM · EXPLORATION",
+    "brand": {
+      "scrollW": 379,
+      "clientW": 379,
+      "rect": [
+        46,
+        30,
+        479,
+        70,
+        433,
+        40
+      ],
+      "txt": "DISTRIBUTED MONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      0,
+      0,
+      1366,
+      100,
+      1366,
+      100
+    ],
+    "langRect": [
+      1216,
+      35,
+      1320,
+      65
+    ],
+    "scroll": [
+      1366,
+      768,
+      1366,
+      768
+    ],
+    "bodyText": "AN\nDISTRIBUTED MONITORING SYSTEM\n\nENVIRONMENTAL OBSERVATION PROGRAMME\n\n中\nEN\nAUTONOMOUS ENVIRONMENTAL OBSERVATION PROGRAMME\nFrom Observation,\nToward the Unknown\n\nStarting from Nanjing, we are building\nan autonomous environmental observation network,\nusing long-term collected data as the foundation\nfor exploring unknown environments.\n\nSTART EXPLORATION→\n\nThe unknown requires explorers;\nUninhabited l",
+    "errors": []
+  },
+  "network.html@1366en": {
+    "url": "network.html",
+    "lang": "en",
+    "title": "DISTRIBUTED MONITORING SYSTEM · OBSERVATION NETWORK",
+    "brand": {
+      "scrollW": 304,
+      "clientW": 304,
+      "rect": [
+        28,
+        16,
+        378,
+        50,
+        350,
+        34
+      ],
+      "txt": "DISTRIBUTED MONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      0,
+      0,
+      1366,
+      67,
+      1366,
+      67
+    ],
+    "langRect": [
+      1234,
+      18,
+      1338,
+      48
+    ],
+    "scroll": [
+      1366,
+      768,
+      1366,
+      768
+    ],
+    "bodyText": "AN\nDISTRIBUTED MONITORING SYSTEM\n\nOBSERVATION NETWORK\n\nExploration\n中\nEN\nNODE ARCHIVE\nObservation\nNetwork\n01\nANT-A01\nACTIVE NODE\nNanjing · 32.05N 118.79E\n02\nANT-A02\nCOMING SOON\nPhase 02 · Planned\n03\nANT-A03\nCOMING SOON\nPhase 03 · Planned\nArchive 01 — Active · 02/03 Planned\nNode 01 — ANT-A01\nOnline\nNANJING\nANT-A01\nNANJING OBSERVATION NODE\n476\nDATA RECORDS\nLoRa\nUPLINK\n32.05°N\nLATITUDE\n118.79°E\nLONGIT",
+    "errors": []
+  },
+  "location.html@1366en": {
+    "url": "location.html",
+    "lang": "en",
+    "title": "DISTRIBUTED MONITORING SYSTEM - LOCATION",
+    "brand": {
+      "scrollW": 171,
+      "clientW": 171,
+      "rect": [
+        16,
+        22,
+        233,
+        119,
+        217,
+        97
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      274,
+      12,
+      1342,
+      102,
+      1068,
+      90
+    ],
+    "langRect": [
+      1218,
+      28,
+      1334,
+      58
+    ],
+    "scroll": [
+      1366,
+      768,
+      1366,
+      768
+    ],
+    "bodyText": "中\nEN\nAN\nDISTRIBUTED\nMONITORING SYSTEM\n\nAutonomous Environmental Observatory\n\nDashboard\nLocation\nSensors\nDATA\nHardware\nAnalysis\nGLOBAL POSITIONING\n\nSatellite navigation · test location\n\nSYSTEM ONLINE\nGPS STATUS\nONLINE\nREAL WORLD MAP\nNANJING\nANT-A01 POSITION\nLATITUDE\n32.049278\nLONGITUDE\n118.793686\nSATELLITES\n12",
+    "errors": []
+  },
+  "dashboard.html@1366en": {
+    "url": "dashboard.html",
+    "lang": "en",
+    "title": "DISTRIBUTED MONITORING SYSTEM",
+    "brand": {
+      "scrollW": 171,
+      "clientW": 171,
+      "rect": [
+        16,
+        22,
+        233,
+        119,
+        217,
+        97
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      276,
+      12,
+      1340,
+      123,
+      1064,
+      111
+    ],
+    "langRect": [
+      1197,
+      53,
+      1313,
+      83
+    ],
+    "scroll": [
+      1366,
+      768,
+      1366,
+      768
+    ],
+    "bodyText": "AN\nDISTRIBUTED\nMONITORING SYSTEM\n\nAutonomous Environmental Observatory\n\nDashboard\nLocation\nSensors\nDATA\nHardware\nAnalysis\nAUTONOMOUS DIGITAL TWIN · MISSION CONTROL\nAUTONOMOUS MONITORING SYSTEM\nAUTONOMOUS ENVIRONMENTAL MONITORING PLATFORM · STATION ANT-A01\nSYSTEM ONLINE\nSTATION ANT-A01\n中\nEN\nMISSION STATUS\nNOMINAL\nALL SYSTEMS CHECK\nCURRENT TIME\n2026-08-13 16:45:06\nLOCAL TIME\nOPERATION MODE\nEMERGENCY",
+    "errors": []
+  },
+  "dashboard-a02.html@1366en": {
+    "url": "dashboard-a02.html",
+    "lang": "en",
+    "title": "DISTRIBUTED MONITORING SYSTEM · ANT-A02",
+    "brand": {
+      "scrollW": 171,
+      "clientW": 171,
+      "rect": [
+        16,
+        22,
+        233,
+        119,
+        217,
+        97
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      276,
+      12,
+      1340,
+      123,
+      1064,
+      111
+    ],
+    "langRect": [
+      1197,
+      53,
+      1313,
+      83
+    ],
+    "scroll": [
+      1366,
+      768,
+      1366,
+      768
+    ],
+    "bodyText": "AN\nDISTRIBUTED\nMONITORING SYSTEM\n\nAutonomous Environmental Observatory\n\nDashboard\nLocation\nSensors\nDATA\nHardware\nAnalysis\nAUTONOMOUS DIGITAL TWIN · MISSION CONTROL\nAUTONOMOUS MONITORING SYSTEM\nSTATION ANT-A02 · AWAITING DEPLOYMENT\nAWAITING DEPLOYMENT\nSTATION ANT-A02\n中\nEN\nMISSION STATUS\nPENDING\nWAITING FOR DEPLOYMENT\nCURRENT TIME\n2026-08-13 16:45:09\nLOCAL TIME\nOPERATION MODE\nStandby\nStandby\nNODE PO",
+    "errors": []
+  },
+  "dashboard-a03.html@1366en": {
+    "url": "dashboard-a03.html",
+    "lang": "en",
+    "title": "DISTRIBUTED MONITORING SYSTEM · ANT-A03",
+    "brand": {
+      "scrollW": 171,
+      "clientW": 171,
+      "rect": [
+        16,
+        22,
+        233,
+        119,
+        217,
+        97
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      276,
+      12,
+      1340,
+      123,
+      1064,
+      111
+    ],
+    "langRect": [
+      1197,
+      53,
+      1313,
+      83
+    ],
+    "scroll": [
+      1366,
+      768,
+      1366,
+      768
+    ],
+    "bodyText": "AN\nDISTRIBUTED\nMONITORING SYSTEM\n\nAutonomous Environmental Observatory\n\nDashboard\nLocation\nSensors\nDATA\nHardware\nAnalysis\nAUTONOMOUS DIGITAL TWIN · MISSION CONTROL\nAUTONOMOUS MONITORING SYSTEM\nSTATION ANT-A03 · AWAITING DEPLOYMENT\nAWAITING DEPLOYMENT\nSTATION ANT-A03\n中\nEN\nMISSION STATUS\nPENDING\nWAITING FOR DEPLOYMENT\nCURRENT TIME\n2026-08-13 16:45:11\nLOCAL TIME\nOPERATION MODE\nStandby\nStandby\nNODE PO",
+    "errors": []
+  },
+  "sensors.html@1366en": {
+    "url": "sensors.html",
+    "lang": "en",
+    "title": "DISTRIBUTED MONITORING SYSTEM - SENSORS",
+    "brand": {
+      "scrollW": 171,
+      "clientW": 171,
+      "rect": [
+        16,
+        22,
+        233,
+        119,
+        217,
+        97
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      270,
+      12,
+      1346,
+      88,
+      1076,
+      76
+    ],
+    "langRect": [
+      1218,
+      28,
+      1334,
+      58
+    ],
+    "scroll": [
+      1366,
+      768,
+      1366,
+      768
+    ],
+    "bodyText": "中\nEN\nAN\nDISTRIBUTED\nMONITORING SYSTEM\n\nAutonomous Environmental Observatory\n\nDashboard\nLocation\nSensors\nDATA\nHardware\nAnalysis\nENVIRONMENT MONITORING\n\nMulti-channel sensor acquisition system\n\nSYSTEM ONLINE\nSENSOR ARRAY\nData Acquisition\nCABIN TEMPERATURE\nRS485\nCABIN HUMIDITY\nRS485\nOUTSIDE TEMPERATURE\nSHT35\nOUTSIDE HUMIDITY\nSHT35\nSOLAR IRRADIANCE\nSolar Radiation Sensor · W/m²\nCURRENT (mA)\nVOLTAGE\nWI",
+    "errors": []
+  },
+  "telemetry.html@1366en": {
+    "url": "telemetry.html",
+    "lang": "en",
+    "title": "DISTRIBUTED MONITORING SYSTEM - DATA",
+    "brand": {
+      "scrollW": 171,
+      "clientW": 171,
+      "rect": [
+        16,
+        22,
+        233,
+        119,
+        217,
+        97
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      270,
+      12,
+      1346,
+      88,
+      1076,
+      76
+    ],
+    "langRect": [
+      1218,
+      28,
+      1334,
+      58
+    ],
+    "scroll": [
+      1366,
+      768,
+      1366,
+      768
+    ],
+    "bodyText": "中\nEN\nAN\nDISTRIBUTED\nMONITORING SYSTEM\n\nAutonomous Environmental Observatory\n\nDashboard\nLocation\nSensors\nDATA\nHardware\nAnalysis\nDATA\n\nAUTONOMOUS DATA TRANSMISSION\n\nSYSTEM ONLINE\nDATA LINK\nLoRa Communication · ONLINE\nLATEST 476 RECORDS · 13 Data Types\nTIME\tMODE\tVOLTAGE\n(V)\n\tCURRENT\n(mA)\n\tSOLAR IRRADIANCE\n(W/m²)\n\tINSIDE TEMP\n(°C)\n\tINSIDE HUMIDITY\n(%RH)\n\tOUTSIDE TEMP\n(°C)\n\tOUTSIDE HUMIDITY\n(%RH)\n\tLATI",
+    "errors": []
+  },
+  "hardware.html@1366en": {
+    "url": "hardware.html",
+    "lang": "en",
+    "title": "DISTRIBUTED MONITORING SYSTEM - HARDWARE DOCUMENTATION",
+    "brand": {
+      "scrollW": 171,
+      "clientW": 171,
+      "rect": [
+        16,
+        22,
+        233,
+        119,
+        217,
+        97
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      264,
+      8,
+      1352,
+      52,
+      1088,
+      44
+    ],
+    "langRect": [
+      1218,
+      28,
+      1334,
+      58
+    ],
+    "scroll": [
+      1366,
+      768,
+      1366,
+      768
+    ],
+    "bodyText": "中\nEN\nAN\nDISTRIBUTED\nMONITORING SYSTEM\n\nAutonomous Environmental Observatory\n\nDashboard\nLocation\nSensors\nDATA\nHardware\nAnalysis\nANT-A01 HARDWARE DOCUMENTATION\n\nAUTONOMOUS MONITORING NODE · ENGINEERING FILE\n\nACTIVE\nIDENTIFICATION\nDESIGNATION\nANT-A01\nTYPE\nAUTONOMOUS NODE\nVERSION\nV0.4\nSTATUS\nACTIVE\nSPECIFICATIONS\nENCLOSURE\nIP66\nPOWER SYSTEM\n☀\nSolar Power\n🔋\nLithium Titanate Battery\nDATA TYPES\nTEMPERAT",
+    "errors": []
+  },
+  "analysis.html@1366en": {
+    "url": "analysis.html",
+    "lang": "en",
+    "title": "DISTRIBUTED MONITORING SYSTEM - MISSION ANALYTICS",
+    "brand": {
+      "scrollW": 171,
+      "clientW": 171,
+      "rect": [
+        16,
+        22,
+        233,
+        119,
+        217,
+        97
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      268,
+      31,
+      1348,
+      99,
+      1080,
+      68
+    ],
+    "langRect": [
+      1218,
+      28,
+      1334,
+      58
+    ],
+    "scroll": [
+      1366,
+      768,
+      1366,
+      768
+    ],
+    "bodyText": "中\nEN\nAN\nDISTRIBUTED\nMONITORING SYSTEM\n\nAutonomous Environmental Observatory\n\nDashboard\nLocation\nSensors\nDATA\nHardware\nAnalysis\nAUTONOMOUS MONITORING MISSION SUMMARY\nMISSION ANALYTICS\nAn autonomous monitoring node · long-term environmental data collection and transmission.\nMISSION ID\nANT-A01\nVERSION\nV0.4\nSTATUS\nOPERATIONAL\nMISSION OVERVIEW\nCore results of the autonomous monitoring mission.\nDATA REC",
+    "errors": []
+  },
+  "location-a02.html@1366en": {
+    "url": "location-a02.html",
+    "lang": "en",
+    "title": "DISTRIBUTED MONITORING SYSTEM · ANT-A02",
+    "brand": {
+      "scrollW": 171,
+      "clientW": 171,
+      "rect": [
+        16,
+        22,
+        233,
+        119,
+        217,
+        97
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      280,
+      26,
+      1321,
+      102,
+      1041,
+      76
+    ],
+    "langRect": [
+      1203,
+      26,
+      1319,
+      56
+    ],
+    "scroll": [
+      1351,
+      1135,
+      1351,
+      768
+    ],
+    "bodyText": "中\nEN\nAN\nDISTRIBUTED\nMONITORING SYSTEM\n\nAutonomous Environmental Observatory\n\nDashboard\nLocation\nSensors\nDATA\nHardware\nAnalysis\nLocation\n\nStation ANT-A02 · awaiting deployment\n\nAWAITING DEPLOYMENT\nNODE STATUS\nNOT DEPLOYED\nREAL WORLD MAP · NOT AVAILABLE\nANT-A02\n\nAWAITING DEPLOYMENT\n\nFUTURE NODE · ANT-A02\nNo Data Available\n\nThis module will activate once the station is deployed and telemetry is estab",
+    "errors": []
+  },
+  "location-a03.html@1366en": {
+    "url": "location-a03.html",
+    "lang": "en",
+    "title": "DISTRIBUTED MONITORING SYSTEM · ANT-A03",
+    "brand": {
+      "scrollW": 171,
+      "clientW": 171,
+      "rect": [
+        16,
+        22,
+        233,
+        119,
+        217,
+        97
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      280,
+      26,
+      1321,
+      102,
+      1041,
+      76
+    ],
+    "langRect": [
+      1203,
+      26,
+      1319,
+      56
+    ],
+    "scroll": [
+      1351,
+      1135,
+      1351,
+      768
+    ],
+    "bodyText": "中\nEN\nAN\nDISTRIBUTED\nMONITORING SYSTEM\n\nAutonomous Environmental Observatory\n\nDashboard\nLocation\nSensors\nDATA\nHardware\nAnalysis\nLocation\n\nStation ANT-A03 · awaiting deployment\n\nAWAITING DEPLOYMENT\nNODE STATUS\nNOT DEPLOYED\nREAL WORLD MAP · NOT AVAILABLE\nANT-A03\n\nAWAITING DEPLOYMENT\n\nFUTURE NODE · ANT-A03\nNo Data Available\n\nThis module will activate once the station is deployed and telemetry is estab",
+    "errors": []
+  },
+  "sensors-a02.html@1366en": {
+    "url": "sensors-a02.html",
+    "lang": "en",
+    "title": "DISTRIBUTED MONITORING SYSTEM · ANT-A02",
+    "brand": {
+      "scrollW": 171,
+      "clientW": 171,
+      "rect": [
+        16,
+        22,
+        233,
+        119,
+        217,
+        97
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      280,
+      26,
+      1336,
+      102,
+      1056,
+      76
+    ],
+    "langRect": [
+      1218,
+      26,
+      1334,
+      56
+    ],
+    "scroll": [
+      1366,
+      768,
+      1366,
+      768
+    ],
+    "bodyText": "中\nEN\nAN\nDISTRIBUTED\nMONITORING SYSTEM\n\nAutonomous Environmental Observatory\n\nDashboard\nLocation\nSensors\nDATA\nHardware\nAnalysis\nSensors\n\nStation ANT-A02 · awaiting deployment\n\nAWAITING DEPLOYMENT\nNODE STATUS\nNOT DEPLOYED\nFUTURE NODE · ANT-A02\nNo Data Available\n\nThis module will activate once the station is deployed and telemetry is established.\n\nWAITING FOR DEPLOYMENT\n--\nDATA\n--\nSTATUS\n--\nLINK",
+    "errors": []
+  },
+  "sensors-a03.html@1366en": {
+    "url": "sensors-a03.html",
+    "lang": "en",
+    "title": "DISTRIBUTED MONITORING SYSTEM · ANT-A03",
+    "brand": {
+      "scrollW": 171,
+      "clientW": 171,
+      "rect": [
+        16,
+        22,
+        233,
+        119,
+        217,
+        97
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      280,
+      26,
+      1336,
+      102,
+      1056,
+      76
+    ],
+    "langRect": [
+      1218,
+      26,
+      1334,
+      56
+    ],
+    "scroll": [
+      1366,
+      768,
+      1366,
+      768
+    ],
+    "bodyText": "中\nEN\nAN\nDISTRIBUTED\nMONITORING SYSTEM\n\nAutonomous Environmental Observatory\n\nDashboard\nLocation\nSensors\nDATA\nHardware\nAnalysis\nSensors\n\nStation ANT-A03 · awaiting deployment\n\nAWAITING DEPLOYMENT\nNODE STATUS\nNOT DEPLOYED\nFUTURE NODE · ANT-A03\nNo Data Available\n\nThis module will activate once the station is deployed and telemetry is established.\n\nWAITING FOR DEPLOYMENT\n--\nDATA\n--\nSTATUS\n--\nLINK",
+    "errors": []
+  },
+  "telemetry-a02.html@1366en": {
+    "url": "telemetry-a02.html",
+    "lang": "en",
+    "title": "DISTRIBUTED MONITORING SYSTEM · ANT-A02",
+    "brand": {
+      "scrollW": 171,
+      "clientW": 171,
+      "rect": [
+        16,
+        22,
+        233,
+        119,
+        217,
+        97
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      280,
+      26,
+      1336,
+      102,
+      1056,
+      76
+    ],
+    "langRect": [
+      1218,
+      26,
+      1334,
+      56
+    ],
+    "scroll": [
+      1366,
+      768,
+      1366,
+      768
+    ],
+    "bodyText": "中\nEN\nAN\nDISTRIBUTED\nMONITORING SYSTEM\n\nAutonomous Environmental Observatory\n\nDashboard\nLocation\nSensors\nDATA\nHardware\nAnalysis\nDATA\n\nStation ANT-A02 · awaiting deployment\n\nAWAITING DEPLOYMENT\nNODE STATUS\nNOT DEPLOYED\nFUTURE NODE · ANT-A02\nNo Data Available\n\nThis module will activate once the station is deployed and telemetry is established.\n\nWAITING FOR DEPLOYMENT\n--\nDATA\n--\nSTATUS\n--\nLINK",
+    "errors": []
+  },
+  "telemetry-a03.html@1366en": {
+    "url": "telemetry-a03.html",
+    "lang": "en",
+    "title": "DISTRIBUTED MONITORING SYSTEM · ANT-A03",
+    "brand": {
+      "scrollW": 171,
+      "clientW": 171,
+      "rect": [
+        16,
+        22,
+        233,
+        119,
+        217,
+        97
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      280,
+      26,
+      1336,
+      102,
+      1056,
+      76
+    ],
+    "langRect": [
+      1218,
+      26,
+      1334,
+      56
+    ],
+    "scroll": [
+      1366,
+      768,
+      1366,
+      768
+    ],
+    "bodyText": "中\nEN\nAN\nDISTRIBUTED\nMONITORING SYSTEM\n\nAutonomous Environmental Observatory\n\nDashboard\nLocation\nSensors\nDATA\nHardware\nAnalysis\nDATA\n\nStation ANT-A03 · awaiting deployment\n\nAWAITING DEPLOYMENT\nNODE STATUS\nNOT DEPLOYED\nFUTURE NODE · ANT-A03\nNo Data Available\n\nThis module will activate once the station is deployed and telemetry is established.\n\nWAITING FOR DEPLOYMENT\n--\nDATA\n--\nSTATUS\n--\nLINK",
+    "errors": []
+  },
+  "hardware-a02.html@1366en": {
+    "url": "hardware-a02.html",
+    "lang": "en",
+    "title": "DISTRIBUTED MONITORING SYSTEM · ANT-A02",
+    "brand": {
+      "scrollW": 171,
+      "clientW": 171,
+      "rect": [
+        16,
+        22,
+        233,
+        119,
+        217,
+        97
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      280,
+      26,
+      1336,
+      87,
+      1056,
+      61
+    ],
+    "langRect": [
+      1218,
+      26,
+      1334,
+      56
+    ],
+    "scroll": [
+      1366,
+      768,
+      1366,
+      768
+    ],
+    "bodyText": "中\nEN\nAN\nDISTRIBUTED\nMONITORING SYSTEM\n\nAutonomous Environmental Observatory\n\nDashboard\nLocation\nSensors\nDATA\nHardware\nAnalysis\nHardware\n\nStation ANT-A02 · awaiting deployment\n\nAWAITING DEPLOYMENT\nNODE STATUS\nNOT DEPLOYED\nFUTURE NODE · ANT-A02\nNo Data Available\n\nThis module will activate once the station is deployed and telemetry is established.\n\nWAITING FOR DEPLOYMENT\n--\nDATA\n--\nSTATUS\n--\nLINK",
+    "errors": []
+  },
+  "hardware-a03.html@1366en": {
+    "url": "hardware-a03.html",
+    "lang": "en",
+    "title": "DISTRIBUTED MONITORING SYSTEM · ANT-A03",
+    "brand": {
+      "scrollW": 171,
+      "clientW": 171,
+      "rect": [
+        16,
+        22,
+        233,
+        119,
+        217,
+        97
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      280,
+      26,
+      1336,
+      87,
+      1056,
+      61
+    ],
+    "langRect": [
+      1218,
+      26,
+      1334,
+      56
+    ],
+    "scroll": [
+      1366,
+      768,
+      1366,
+      768
+    ],
+    "bodyText": "中\nEN\nAN\nDISTRIBUTED\nMONITORING SYSTEM\n\nAutonomous Environmental Observatory\n\nDashboard\nLocation\nSensors\nDATA\nHardware\nAnalysis\nHardware\n\nStation ANT-A03 · awaiting deployment\n\nAWAITING DEPLOYMENT\nNODE STATUS\nNOT DEPLOYED\nFUTURE NODE · ANT-A03\nNo Data Available\n\nThis module will activate once the station is deployed and telemetry is established.\n\nWAITING FOR DEPLOYMENT\n--\nDATA\n--\nSTATUS\n--\nLINK",
+    "errors": []
+  },
+  "analysis-a02.html@1366en": {
+    "url": "analysis-a02.html",
+    "lang": "en",
+    "title": "DISTRIBUTED MONITORING SYSTEM · ANT-A02",
+    "brand": {
+      "scrollW": 171,
+      "clientW": 171,
+      "rect": [
+        16,
+        22,
+        233,
+        119,
+        217,
+        97
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      280,
+      26,
+      1336,
+      93,
+      1056,
+      67
+    ],
+    "langRect": [
+      1218,
+      26,
+      1334,
+      56
+    ],
+    "scroll": [
+      1366,
+      768,
+      1366,
+      768
+    ],
+    "bodyText": "中\nEN\nAN\nDISTRIBUTED\nMONITORING SYSTEM\n\nAutonomous Environmental Observatory\n\nDashboard\nLocation\nSensors\nDATA\nHardware\nAnalysis\nAnalysis\n\nStation ANT-A02 · awaiting deployment\n\nAWAITING DEPLOYMENT\nNODE STATUS\nNOT DEPLOYED\nFUTURE NODE · ANT-A02\nNo Data Available\n\nThis module will activate once the station is deployed and telemetry is established.\n\nWAITING FOR DEPLOYMENT\n--\nDATA\n--\nSTATUS\n--\nLINK",
+    "errors": []
+  },
+  "analysis-a03.html@1366en": {
+    "url": "analysis-a03.html",
+    "lang": "en",
+    "title": "DISTRIBUTED MONITORING SYSTEM · ANT-A03",
+    "brand": {
+      "scrollW": 171,
+      "clientW": 171,
+      "rect": [
+        16,
+        22,
+        233,
+        119,
+        217,
+        97
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      280,
+      26,
+      1336,
+      93,
+      1056,
+      67
+    ],
+    "langRect": [
+      1218,
+      26,
+      1334,
+      56
+    ],
+    "scroll": [
+      1366,
+      768,
+      1366,
+      768
+    ],
+    "bodyText": "中\nEN\nAN\nDISTRIBUTED\nMONITORING SYSTEM\n\nAutonomous Environmental Observatory\n\nDashboard\nLocation\nSensors\nDATA\nHardware\nAnalysis\nAnalysis\n\nStation ANT-A03 · awaiting deployment\n\nAWAITING DEPLOYMENT\nNODE STATUS\nNOT DEPLOYED\nFUTURE NODE · ANT-A03\nNo Data Available\n\nThis module will activate once the station is deployed and telemetry is established.\n\nWAITING FOR DEPLOYMENT\n--\nDATA\n--\nSTATUS\n--\nLINK",
+    "errors": []
+  },
+  "a02.html@1366en": {
+    "url": "a02.html",
+    "lang": "en",
+    "title": "DISTRIBUTED MONITORING SYSTEM · ANT-A02",
+    "brand": {
+      "scrollW": 171,
+      "clientW": 171,
+      "rect": [
+        16,
+        22,
+        233,
+        119,
+        217,
+        97
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM"
+    },
+    "header": [
+      276,
+      12,
+      1340,
+      123,
+      1064,
+      111
+    ],
+    "langRect": [
+      1218,
+      28,
+      1334,
+      58
+    ],
+    "scroll": [
+      1366,
+      768,
+      1366,
+      768
+    ],
+    "bodyText": "中\nEN\nAN\nDISTRIBUTED\nMONITORING SYSTEM\n\nAutonomous Environmental Observatory\n\nDashboard\nLocation\nSensors\nDATA\nHardware\nAnalysis\nANT-A02\nDISTRIBUTED MONITORING SYSTEM · TERMINAL ANT-A02\nAUTONOMOUS MONITORING SYSTEM\nAUTONOMOUS ENVIRONMENTAL MONITORING PLATFORM · STATION ANT-A02\nWAITING FOR DEPLOYMENT\nSTATION ANT-A02\nMISSION STATUS\nPENDING\nWAITING FOR DEPLOYMENT\nCURRENT TIME\n--\nLOCAL TIME\nOPERATION MO",
+    "errors": []
+  },
+  "index.html@1366zh": {
+    "url": "index.html",
+    "lang": "zh-CN",
+    "title": "自主观测系统 · 探索序章",
+    "brand": {
+      "scrollW": 133,
+      "clientW": 133,
+      "rect": [
+        46,
+        30,
+        233,
+        70,
+        187,
+        40
+      ],
+      "txt": "DISTRIBUTED MONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      0,
+      0,
+      1366,
+      100,
+      1366,
+      100
+    ],
+    "langRect": [
+      1216,
+      35,
+      1320,
+      65
+    ],
+    "scroll": [
+      1366,
+      768,
+      1366,
+      768
+    ],
+    "bodyText": "AN\n分布式监测系统\n\n自主环境观测计划\n\n中\nEN\n自主环境观测计划\n始于观测，\n走向未知\n\n从南京出发，\n构建自主环境观测网络；\n以持续积累的数据，\n为未来探索未知环境提供基础。\n\n开启探索→\n\n未知之境，需要探索者的脚步；\n无人之地，需要第一组观测数据。\n\n南极大陆\n未来目标",
+    "errors": []
+  },
+  "network.html@1366zh": {
+    "url": "network.html",
+    "lang": "zh-CN",
+    "title": "自主观测系统 · 观测网络",
+    "brand": {
+      "scrollW": 112,
+      "clientW": 112,
+      "rect": [
+        28,
+        16,
+        186,
+        50,
+        158,
+        34
+      ],
+      "txt": "DISTRIBUTED MONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      0,
+      0,
+      1366,
+      67,
+      1366,
+      67
+    ],
+    "langRect": [
+      1234,
+      18,
+      1338,
+      48
+    ],
+    "scroll": [
+      1366,
+      768,
+      1366,
+      768
+    ],
+    "bodyText": "AN\n分布式监测系统\n\n观测网络\n\n探索首页\n中\nEN\n节点档案\n观测网络\n01\nANT-A01\n当前运行\n南京 · 32.05N 118.79E\n02\nANT-A02\n待部署\n阶段 02 · 规划中\n03\nANT-A03\n待部署\n阶段 03 · 规划中\n档案 01 — 运行中 · 02/03 规划中\n节点 01 — ANT-A01\n在线\n南京\nANT-A01\n南京观测节点\n476\n数据记录\nLoRa\n上行链路\n32.05°N\n纬度\n118.79°E\n经度\n坐标 · 32.0491° N / 118.7937° E\n站点 · 南京\n数据记录 · 476\n选择观测终端\n\n未来终端档案\n\nANT-A01\n运行节点\n部署地点\n南京，中国\n运行状态\n在线\n476\n记录\nLoRa\n上行\n进入终端\nANT-A02\n即将上线\n\n未来观测节点\n\n等待部署\n进入终端\nANT-A03\n即将上线\n\n未来观测节点",
+    "errors": []
+  },
+  "location.html@1366zh": {
+    "url": "location.html",
+    "lang": "zh-CN",
+    "title": "自主观测系统 · 位置",
+    "brand": {
+      "scrollW": 133,
+      "clientW": 133,
+      "rect": [
+        16,
+        22,
+        233,
+        66,
+        217,
+        44
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      274,
+      12,
+      1342,
+      102,
+      1068,
+      90
+    ],
+    "langRect": [
+      1218,
+      28,
+      1334,
+      58
+    ],
+    "scroll": [
+      1366,
+      768,
+      1366,
+      768
+    ],
+    "bodyText": "中\nEN\nAN\n分布式监测系统\n\n自主环境观测站\n\n仪表盘\n位置\n传感器\n数据\n硬件\n分析\n全球定位\n\n卫星导航 · 测试坐标\n\n系统在线\nGPS状态\n在线\n实景地图\n南京\nANT-A01 位置\n纬度\n32.049278\n经度\n118.793686\n卫星数\n12",
+    "errors": []
+  },
+  "dashboard.html@1366zh": {
+    "url": "dashboard.html",
+    "lang": "zh-CN",
+    "title": "自主观测系统",
+    "brand": {
+      "scrollW": 133,
+      "clientW": 133,
+      "rect": [
+        16,
+        22,
+        233,
+        66,
+        217,
+        44
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      276,
+      12,
+      1340,
+      123,
+      1064,
+      111
+    ],
+    "langRect": [
+      1197,
+      53,
+      1313,
+      83
+    ],
+    "scroll": [
+      1366,
+      768,
+      1366,
+      768
+    ],
+    "bodyText": "AN\n分布式监测系统\n\n自主环境观测站\n\n仪表盘\n位置\n传感器\n数据\n硬件\n分析\n自主数字孪生 · 任务控制\n自主观测系统\n自主环境监测平台 · 站点 ANT-A01\n系统在线\n站点 ANT-A01\n中\nEN\n任务状态\n正常\n全系统自检\n当前时间\n2026-08-13 16:46:00\n本地时间\n运行模式\n应急\n保护模式\n节点定位 · GPS 跟踪\n实时遥测\nGPS 状态\n跟踪中\n模式\n应急\n供电\n太阳能 + 电池\nANT-A01\n\n纬度\n32.049278\n\n经度\n118.793686\n\n卫星数\n12\n\n任务流\n环境数据采集运行中\n运行中\n卫星定位运行中\n运行中\n长期监测模式\n运行中\nANT-A01 · AUTONOMOUS STATION · REMOTE SENSOR NODE",
+    "errors": []
+  },
+  "dashboard-a02.html@1366zh": {
+    "url": "dashboard-a02.html",
+    "lang": "zh-CN",
+    "title": "自主观测系统 · ANT-A02",
+    "brand": {
+      "scrollW": 133,
+      "clientW": 133,
+      "rect": [
+        16,
+        22,
+        233,
+        66,
+        217,
+        44
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      276,
+      12,
+      1340,
+      123,
+      1064,
+      111
+    ],
+    "langRect": [
+      1197,
+      53,
+      1313,
+      83
+    ],
+    "scroll": [
+      1366,
+      768,
+      1366,
+      768
+    ],
+    "bodyText": "AN\n分布式监测系统\n\n自主环境观测站\n\n仪表盘\n位置\n传感器\n数据\n硬件\n分析\n自主数字孪生 · 任务控制\n自主观测系统\n站点 ANT-A02 · 等待部署\n等待部署\n站点 ANT-A02\n中\nEN\n任务状态\n待命\n等待部署\n当前时间\n2026-08-13 16:46:03\n本地时间\n运行模式\n节能\n节能\n节点定位 · 暂不可用\n无遥测\nGPS 状态\n未定位\n模式\n节能\n供电\n暂无数据\nANT-A02\n\n纬度\n等待数据\n\n经度\n等待数据\n\n卫星数\n等待数据\n\n任务流\n站点等待部署\n--\n遥测链路未建立\n--\n模块处于待机\n--\nANT-A02 · FUTURE STATION · AWAITING DEPLOYMENT",
+    "errors": []
+  },
+  "dashboard-a03.html@1366zh": {
+    "url": "dashboard-a03.html",
+    "lang": "zh-CN",
+    "title": "自主观测系统 · ANT-A03",
+    "brand": {
+      "scrollW": 133,
+      "clientW": 133,
+      "rect": [
+        16,
+        22,
+        233,
+        66,
+        217,
+        44
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      276,
+      12,
+      1340,
+      123,
+      1064,
+      111
+    ],
+    "langRect": [
+      1197,
+      53,
+      1313,
+      83
+    ],
+    "scroll": [
+      1366,
+      768,
+      1366,
+      768
+    ],
+    "bodyText": "AN\n分布式监测系统\n\n自主环境观测站\n\n仪表盘\n位置\n传感器\n数据\n硬件\n分析\n自主数字孪生 · 任务控制\n自主观测系统\n站点 ANT-A03 · 等待部署\n等待部署\n站点 ANT-A03\n中\nEN\n任务状态\n待命\n等待部署\n当前时间\n2026-08-13 16:46:06\n本地时间\n运行模式\n节能\n节能\n节点定位 · 暂不可用\n无遥测\nGPS 状态\n未定位\n模式\n节能\n供电\n暂无数据\nANT-A03\n\n纬度\n等待数据\n\n经度\n等待数据\n\n卫星数\n等待数据\n\n任务流\n站点等待部署\n--\n遥测链路未建立\n--\n模块处于待机\n--\nANT-A03 · FUTURE STATION · AWAITING DEPLOYMENT",
+    "errors": []
+  },
+  "sensors.html@1366zh": {
+    "url": "sensors.html",
+    "lang": "zh-CN",
+    "title": "自主观测系统 · 传感器",
+    "brand": {
+      "scrollW": 133,
+      "clientW": 133,
+      "rect": [
+        16,
+        22,
+        233,
+        66,
+        217,
+        44
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      270,
+      12,
+      1346,
+      88,
+      1076,
+      76
+    ],
+    "langRect": [
+      1218,
+      28,
+      1334,
+      58
+    ],
+    "scroll": [
+      1366,
+      768,
+      1366,
+      768
+    ],
+    "bodyText": "中\nEN\nAN\n分布式监测系统\n\n自主环境观测站\n\n仪表盘\n位置\n传感器\n数据\n硬件\n分析\n环境监测\n\n多通道传感器采集系统\n\n系统在线\n传感器阵列\n数据采集单元\n舱内温度\nRS485\n舱内湿度\nRS485\n舱外温度\nSHT35\n舱外湿度\nSHT35\n太阳辐射\n太阳能辐射传感器 · W/m²\n电流 (mA)\n电压\n风速\n暂无数据\nANT-A01 · AUTONOMOUS STATION · REMOTE SENSOR NODE",
+    "errors": []
+  },
+  "telemetry.html@1366zh": {
+    "url": "telemetry.html",
+    "lang": "zh-CN",
+    "title": "自主观测系统 · 数据",
+    "brand": {
+      "scrollW": 133,
+      "clientW": 133,
+      "rect": [
+        16,
+        22,
+        233,
+        66,
+        217,
+        44
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      270,
+      12,
+      1346,
+      88,
+      1076,
+      76
+    ],
+    "langRect": [
+      1218,
+      28,
+      1334,
+      58
+    ],
+    "scroll": [
+      1366,
+      768,
+      1366,
+      768
+    ],
+    "bodyText": "中\nEN\nAN\n分布式监测系统\n\n自主环境观测站\n\n仪表盘\n位置\n传感器\n数据\n硬件\n分析\n数据\n\n自主采集数据回传\n\n系统在线\n数据链路\nLoRa通信 · 在线\n最新 476 条记录 · 13 类采集数据\n时间\t模式\t电压\n(V)\n\t电流\n(mA)\n\t太阳辐射\n(W/m²)\n\t舱内温度\n(°C)\n\t舱内湿度\n(%RH)\n\t舱外温度\n(°C)\n\t舱外湿度\n(%RH)\n\t纬度\n(°)\n\t经度\n(°)\n\t卫星数\tGPS 状态\t模式\tE\tI\tQ\tR\n2026-08-04 18:56\t应急\t9 V\t75 mA\t--\t--\t--\t--\t--\t--\t--\t--\t--\t应急\t0\t192\t440\t2\n2026-08-04 18:56\t应急\t9 V\t75 mA\t--\t--\t--\t--\t--\t--\t--\t--\t--\t应急\t0\t192\t440\t1\n2026-08-04 16:56\t应急\t9 V\t72 mA\t--",
+    "errors": []
+  },
+  "hardware.html@1366zh": {
+    "url": "hardware.html",
+    "lang": "zh-CN",
+    "title": "自主观测系统 · 硬件档案",
+    "brand": {
+      "scrollW": 133,
+      "clientW": 133,
+      "rect": [
+        16,
+        22,
+        233,
+        66,
+        217,
+        44
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      264,
+      8,
+      1352,
+      52,
+      1088,
+      44
+    ],
+    "langRect": [
+      1218,
+      28,
+      1334,
+      58
+    ],
+    "scroll": [
+      1366,
+      768,
+      1366,
+      768
+    ],
+    "bodyText": "中\nEN\nAN\n分布式监测系统\n\n自主环境观测站\n\n仪表盘\n位置\n传感器\n数据\n硬件\n分析\nANT-A01 硬件档案\n\n自主监测节点 · 工程档案\n\n运行中\n识别信息\n编号\nANT-A01\n类型\n观测节点\n版本\nV0.4\n状态\n运行中\n规格参数\n防护等级\nIP66\n供电系统\n☀\n太阳能供电\n🔋\n钛酸锂电池\n采集数据类型\n温度\n湿度\n气压\n太阳辐射\n电流\n电压\nGPS定位\n风速\n通信\nGPS · LoRa\n设备实拍 · 测试场地\n文件：ANT-A01_001 · 版本 V0.4\n\n真实设备照片\n\n图片位 · 替换为测试照片\n\n拍摄状态：待补充\n地点：地面测试站点\n档案：硬件档案\n实时遥测\n供电 · 太阳能\n等待数据\nW/m²\n电池\n9\nV\n传感器 · 舱内\n等待数据\n°C\nGPS\n在线\n部署信息\n站点\n测试地点\n安装方式\n地面锚定\n通信链路\nLoRa 上行链路\nANT-A01\n→\n太阳能\n",
+    "errors": []
+  },
+  "analysis.html@1366zh": {
+    "url": "analysis.html",
+    "lang": "zh-CN",
+    "title": "自主观测系统 · 任务成果分析",
+    "brand": {
+      "scrollW": 133,
+      "clientW": 133,
+      "rect": [
+        16,
+        22,
+        233,
+        66,
+        217,
+        44
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      268,
+      31,
+      1348,
+      99,
+      1080,
+      68
+    ],
+    "langRect": [
+      1218,
+      28,
+      1334,
+      58
+    ],
+    "scroll": [
+      1366,
+      768,
+      1366,
+      768
+    ],
+    "bodyText": "中\nEN\nAN\n分布式监测系统\n\n自主环境观测站\n\n仪表盘\n位置\n传感器\n数据\n硬件\n分析\n自主观测系统 · 任务成果分析\n任务成果分析\n自主监测节点 · 长期采集并稳定回传环境数据。\n任务编号\nANT-A01\n版本\nV0.4\n状态\n运行中\n任务概览\n自主监测任务的核心成果。\n数据记录\n476\n条\n遥测记录\n采集数据种类\n8\n种\n数据类别\n运行天数\n11\n天\n持续运行\n最近更新\n2026-08-04 18:56\n最近同步\n传感器数据覆盖率\n\n表示各类传感器有效数据记录在全部遥测记录中的覆盖比例。\n\n编号 · 类型\n数据覆盖率\n覆盖率\n占比\n传感器1\n舱内温湿度\n424/476\n89.1%\n传感器2\n舱外环境\n451/476\n94.7%\n传感器3\n太阳辐射\n372/476\n78.2%\n传感器4\n电源状态\n474/476\n99.6%\n传感器5\nGPS定位\n9/476\n1.9%\n传感器6\n风速监",
+    "errors": []
+  },
+  "location-a02.html@1366zh": {
+    "url": "location-a02.html",
+    "lang": "zh-CN",
+    "title": "自主观测系统 · ANT-A02",
+    "brand": {
+      "scrollW": 133,
+      "clientW": 133,
+      "rect": [
+        16,
+        22,
+        233,
+        66,
+        217,
+        44
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      280,
+      26,
+      1321,
+      102,
+      1041,
+      76
+    ],
+    "langRect": [
+      1203,
+      26,
+      1319,
+      56
+    ],
+    "scroll": [
+      1351,
+      1136,
+      1351,
+      768
+    ],
+    "bodyText": "中\nEN\nAN\n分布式监测系统\n\n自主环境观测平台\n\n仪表盘\n位置\n传感器\n数据\n硬件\n分析\n位置\n\n站点 ANT-A02 · 等待部署\n\n等待部署\n节点状态\n未部署\n真实地图 · 暂不可用\nANT-A02\n\n等待部署\n\n未来节点 · ANT-A02\n暂无数据\n\n站点部署并建立遥测后，本模块将自动启用。\n\n等待部署\n--\n数据\n--\n状态\n--\n链路",
+    "errors": []
+  },
+  "location-a03.html@1366zh": {
+    "url": "location-a03.html",
+    "lang": "zh-CN",
+    "title": "自主观测系统 · ANT-A03",
+    "brand": {
+      "scrollW": 133,
+      "clientW": 133,
+      "rect": [
+        16,
+        22,
+        233,
+        66,
+        217,
+        44
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      280,
+      26,
+      1321,
+      102,
+      1041,
+      76
+    ],
+    "langRect": [
+      1203,
+      26,
+      1319,
+      56
+    ],
+    "scroll": [
+      1351,
+      1136,
+      1351,
+      768
+    ],
+    "bodyText": "中\nEN\nAN\n分布式监测系统\n\n自主环境观测平台\n\n仪表盘\n位置\n传感器\n数据\n硬件\n分析\n位置\n\n站点 ANT-A03 · 等待部署\n\n等待部署\n节点状态\n未部署\n真实地图 · 暂不可用\nANT-A03\n\n等待部署\n\n未来节点 · ANT-A03\n暂无数据\n\n站点部署并建立遥测后，本模块将自动启用。\n\n等待部署\n--\n数据\n--\n状态\n--\n链路",
+    "errors": []
+  },
+  "sensors-a02.html@1366zh": {
+    "url": "sensors-a02.html",
+    "lang": "zh-CN",
+    "title": "自主观测系统 · ANT-A02",
+    "brand": {
+      "scrollW": 133,
+      "clientW": 133,
+      "rect": [
+        16,
+        22,
+        233,
+        66,
+        217,
+        44
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      280,
+      26,
+      1336,
+      102,
+      1056,
+      76
+    ],
+    "langRect": [
+      1218,
+      26,
+      1334,
+      56
+    ],
+    "scroll": [
+      1366,
+      768,
+      1366,
+      768
+    ],
+    "bodyText": "中\nEN\nAN\n分布式监测系统\n\n自主环境观测平台\n\n仪表盘\n位置\n传感器\n数据\n硬件\n分析\n传感器\n\n站点 ANT-A02 · 等待部署\n\n等待部署\n节点状态\n未部署\n未来节点 · ANT-A02\n暂无数据\n\n站点部署并建立遥测后，本模块将自动启用。\n\n等待部署\n--\n数据\n--\n状态\n--\n链路",
+    "errors": []
+  },
+  "sensors-a03.html@1366zh": {
+    "url": "sensors-a03.html",
+    "lang": "zh-CN",
+    "title": "自主观测系统 · ANT-A03",
+    "brand": {
+      "scrollW": 133,
+      "clientW": 133,
+      "rect": [
+        16,
+        22,
+        233,
+        66,
+        217,
+        44
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      280,
+      26,
+      1336,
+      102,
+      1056,
+      76
+    ],
+    "langRect": [
+      1218,
+      26,
+      1334,
+      56
+    ],
+    "scroll": [
+      1366,
+      768,
+      1366,
+      768
+    ],
+    "bodyText": "中\nEN\nAN\n分布式监测系统\n\n自主环境观测平台\n\n仪表盘\n位置\n传感器\n数据\n硬件\n分析\n传感器\n\n站点 ANT-A03 · 等待部署\n\n等待部署\n节点状态\n未部署\n未来节点 · ANT-A03\n暂无数据\n\n站点部署并建立遥测后，本模块将自动启用。\n\n等待部署\n--\n数据\n--\n状态\n--\n链路",
+    "errors": []
+  },
+  "telemetry-a02.html@1366zh": {
+    "url": "telemetry-a02.html",
+    "lang": "zh-CN",
+    "title": "自主观测系统 · ANT-A02",
+    "brand": {
+      "scrollW": 133,
+      "clientW": 133,
+      "rect": [
+        16,
+        22,
+        233,
+        66,
+        217,
+        44
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      280,
+      26,
+      1336,
+      102,
+      1056,
+      76
+    ],
+    "langRect": [
+      1218,
+      26,
+      1334,
+      56
+    ],
+    "scroll": [
+      1366,
+      768,
+      1366,
+      768
+    ],
+    "bodyText": "中\nEN\nAN\n分布式监测系统\n\n自主环境观测平台\n\n仪表盘\n位置\n传感器\n数据\n硬件\n分析\n数据\n\n站点 ANT-A02 · 等待部署\n\n等待部署\n节点状态\n未部署\n未来节点 · ANT-A02\n暂无数据\n\n站点部署并建立遥测后，本模块将自动启用。\n\n等待部署\n--\n数据\n--\n状态\n--\n链路",
+    "errors": []
+  },
+  "telemetry-a03.html@1366zh": {
+    "url": "telemetry-a03.html",
+    "lang": "zh-CN",
+    "title": "自主观测系统 · ANT-A03",
+    "brand": {
+      "scrollW": 133,
+      "clientW": 133,
+      "rect": [
+        16,
+        22,
+        233,
+        66,
+        217,
+        44
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      280,
+      26,
+      1336,
+      102,
+      1056,
+      76
+    ],
+    "langRect": [
+      1218,
+      26,
+      1334,
+      56
+    ],
+    "scroll": [
+      1366,
+      768,
+      1366,
+      768
+    ],
+    "bodyText": "中\nEN\nAN\n分布式监测系统\n\n自主环境观测平台\n\n仪表盘\n位置\n传感器\n数据\n硬件\n分析\n数据\n\n站点 ANT-A03 · 等待部署\n\n等待部署\n节点状态\n未部署\n未来节点 · ANT-A03\n暂无数据\n\n站点部署并建立遥测后，本模块将自动启用。\n\n等待部署\n--\n数据\n--\n状态\n--\n链路",
+    "errors": []
+  },
+  "hardware-a02.html@1366zh": {
+    "url": "hardware-a02.html",
+    "lang": "zh-CN",
+    "title": "自主观测系统 · ANT-A02",
+    "brand": {
+      "scrollW": 133,
+      "clientW": 133,
+      "rect": [
+        16,
+        22,
+        233,
+        66,
+        217,
+        44
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      280,
+      26,
+      1336,
+      87,
+      1056,
+      61
+    ],
+    "langRect": [
+      1218,
+      26,
+      1334,
+      56
+    ],
+    "scroll": [
+      1366,
+      768,
+      1366,
+      768
+    ],
+    "bodyText": "中\nEN\nAN\n分布式监测系统\n\n自主环境观测平台\n\n仪表盘\n位置\n传感器\n数据\n硬件\n分析\n硬件\n\n站点 ANT-A02 · 等待部署\n\n等待部署\n节点状态\n未部署\n未来节点 · ANT-A02\n暂无数据\n\n站点部署并建立遥测后，本模块将自动启用。\n\n等待部署\n--\n数据\n--\n状态\n--\n链路",
+    "errors": []
+  },
+  "hardware-a03.html@1366zh": {
+    "url": "hardware-a03.html",
+    "lang": "zh-CN",
+    "title": "自主观测系统 · ANT-A03",
+    "brand": {
+      "scrollW": 133,
+      "clientW": 133,
+      "rect": [
+        16,
+        22,
+        233,
+        66,
+        217,
+        44
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      280,
+      26,
+      1336,
+      87,
+      1056,
+      61
+    ],
+    "langRect": [
+      1218,
+      26,
+      1334,
+      56
+    ],
+    "scroll": [
+      1366,
+      768,
+      1366,
+      768
+    ],
+    "bodyText": "中\nEN\nAN\n分布式监测系统\n\n自主环境观测平台\n\n仪表盘\n位置\n传感器\n数据\n硬件\n分析\n硬件\n\n站点 ANT-A03 · 等待部署\n\n等待部署\n节点状态\n未部署\n未来节点 · ANT-A03\n暂无数据\n\n站点部署并建立遥测后，本模块将自动启用。\n\n等待部署\n--\n数据\n--\n状态\n--\n链路",
+    "errors": []
+  },
+  "analysis-a02.html@1366zh": {
+    "url": "analysis-a02.html",
+    "lang": "zh-CN",
+    "title": "自主观测系统 · ANT-A02",
+    "brand": {
+      "scrollW": 133,
+      "clientW": 133,
+      "rect": [
+        16,
+        22,
+        233,
+        66,
+        217,
+        44
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      280,
+      26,
+      1336,
+      93,
+      1056,
+      67
+    ],
+    "langRect": [
+      1218,
+      26,
+      1334,
+      56
+    ],
+    "scroll": [
+      1366,
+      768,
+      1366,
+      768
+    ],
+    "bodyText": "中\nEN\nAN\n分布式监测系统\n\n自主环境观测平台\n\n仪表盘\n位置\n传感器\n数据\n硬件\n分析\n分析\n\n站点 ANT-A02 · 等待部署\n\n等待部署\n节点状态\n未部署\n未来节点 · ANT-A02\n暂无数据\n\n站点部署并建立遥测后，本模块将自动启用。\n\n等待部署\n--\n数据\n--\n状态\n--\n链路",
+    "errors": []
+  },
+  "analysis-a03.html@1366zh": {
+    "url": "analysis-a03.html",
+    "lang": "zh-CN",
+    "title": "自主观测系统 · ANT-A03",
+    "brand": {
+      "scrollW": 133,
+      "clientW": 133,
+      "rect": [
+        16,
+        22,
+        233,
+        66,
+        217,
+        44
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      280,
+      26,
+      1336,
+      93,
+      1056,
+      67
+    ],
+    "langRect": [
+      1218,
+      26,
+      1334,
+      56
+    ],
+    "scroll": [
+      1366,
+      768,
+      1366,
+      768
+    ],
+    "bodyText": "中\nEN\nAN\n分布式监测系统\n\n自主环境观测平台\n\n仪表盘\n位置\n传感器\n数据\n硬件\n分析\n分析\n\n站点 ANT-A03 · 等待部署\n\n等待部署\n节点状态\n未部署\n未来节点 · ANT-A03\n暂无数据\n\n站点部署并建立遥测后，本模块将自动启用。\n\n等待部署\n--\n数据\n--\n状态\n--\n链路",
+    "errors": []
+  },
+  "a02.html@1366zh": {
+    "url": "a02.html",
+    "lang": "zh-CN",
+    "title": "自主观测系统 · ANT-A02",
+    "brand": {
+      "scrollW": 171,
+      "clientW": 171,
+      "rect": [
+        16,
+        22,
+        233,
+        119,
+        217,
+        97
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM"
+    },
+    "header": [
+      276,
+      12,
+      1340,
+      123,
+      1064,
+      111
+    ],
+    "langRect": [
+      1218,
+      28,
+      1334,
+      58
+    ],
+    "scroll": [
+      1366,
+      768,
+      1366,
+      768
+    ],
+    "bodyText": "中\nEN\nAN\nDISTRIBUTED\nMONITORING SYSTEM\n\nAutonomous Environmental Observatory\n\n仪表盘\n位置\n传感器\n数据\n硬件\n分析\nANT-A02\n自主观测系统 · 终端 ANT-A02\n自主观测系统\n自主环境监测平台 · 站点 ANT-A02\n等待部署\n站点 ANT-A02\nMISSION STATUS\n待部署\n等待部署\nCURRENT TIME\n--\nLOCAL TIME\nOPERATION MODE\nwaiting_data\nmode_unknown\nPOWER & ENVIRONMENT\nVOLTAGE\nwaiting_data\nV\nBATTERY BUS\n01\nCURRENT\nwaiting_data\nmA\nLOAD DRAW\n02\nTEMPERATURE\nwaiting_data\n°C\nCABIN\nOUTSIDE w",
+    "errors": []
+  },
+  "index.html@768en": {
+    "url": "index.html",
+    "lang": "en",
+    "title": "DISTRIBUTED MONITORING SYSTEM · EXPLORATION",
+    "brand": {
+      "scrollW": 379,
+      "clientW": 379,
+      "rect": [
+        46,
+        30,
+        479,
+        70,
+        433,
+        40
+      ],
+      "txt": "DISTRIBUTED MONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      0,
+      0,
+      768,
+      100,
+      768,
+      100
+    ],
+    "langRect": [
+      618,
+      35,
+      722,
+      65
+    ],
+    "scroll": [
+      768,
+      1024,
+      768,
+      1024
+    ],
+    "bodyText": "AN\nDISTRIBUTED MONITORING SYSTEM\n\nENVIRONMENTAL OBSERVATION PROGRAMME\n\n中\nEN\nAUTONOMOUS ENVIRONMENTAL OBSERVATION PROGRAMME\nFrom Observation,\nToward the Unknown\n\nStarting from Nanjing, we are building\nan autonomous environmental observation network,\nusing long-term collected data as the foundation\nfor exploring unknown environments.\n\nSTART EXPLORATION→\n\nThe unknown requires explorers;\nUninhabited l",
+    "errors": []
+  },
+  "network.html@768en": {
+    "url": "network.html",
+    "lang": "en",
+    "title": "DISTRIBUTED MONITORING SYSTEM · OBSERVATION NETWORK",
+    "brand": {
+      "scrollW": 304,
+      "clientW": 304,
+      "rect": [
+        20,
+        12,
+        370,
+        46,
+        350,
+        34
+      ],
+      "txt": "DISTRIBUTED MONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      0,
+      0,
+      768,
+      59,
+      768,
+      59
+    ],
+    "langRect": [
+      644,
+      14,
+      748,
+      44
+    ],
+    "scroll": [
+      768,
+      1024,
+      768,
+      1024
+    ],
+    "bodyText": "AN\nDISTRIBUTED MONITORING SYSTEM\n\nOBSERVATION NETWORK\n\nExploration\n中\nEN\nNODE ARCHIVE\nObservation\nNetwork\n01\nANT-A01\nACTIVE NODE\nNanjing · 32.05N 118.79E\n02\nANT-A02\nCOMING SOON\nPhase 02 · Planned\n03\nANT-A03\nCOMING SOON\nPhase 03 · Planned\nNode 01 — ANT-A01\nOnline\nNANJING\nANT-A01\nNANJING OBSERVATION NODE\n476\nDATA RECORDS\nLoRa\nUPLINK\n32.05°N\nLATITUDE\n118.79°E\nLONGITUDE\nPosition · 32.0491° N / 118.7937",
+    "errors": []
+  },
+  "location.html@768en": {
+    "url": "location.html",
+    "lang": "en",
+    "title": "DISTRIBUTED MONITORING SYSTEM - LOCATION",
+    "brand": {
+      "scrollW": 164,
+      "clientW": 164,
+      "rect": [
+        12,
+        12,
+        218,
+        46,
+        206,
+        34
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      24,
+      64,
+      744,
+      208,
+      720,
+      144
+    ],
+    "langRect": [
+      648,
+      18,
+      754,
+      46
+    ],
+    "scroll": [
+      768,
+      1024,
+      768,
+      1024
+    ],
+    "bodyText": "中\nEN\nAN\nDISTRIBUTED\nMONITORING SYSTEM\nGLOBAL POSITIONING\n\nSatellite navigation · test location\n\nSYSTEM ONLINE\nGPS STATUS\nONLINE\nREAL WORLD MAP\nNANJING\nANT-A01 POSITION\nLATITUDE\n32.049278\nLONGITUDE\n118.793686\nSATELLITES\n12",
+    "errors": []
+  },
+  "dashboard.html@768en": {
+    "url": "dashboard.html",
+    "lang": "en",
+    "title": "DISTRIBUTED MONITORING SYSTEM",
+    "brand": {
+      "scrollW": 164,
+      "clientW": 164,
+      "rect": [
+        12,
+        12,
+        218,
+        46,
+        206,
+        34
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      14,
+      64,
+      754,
+      168,
+      740,
+      104
+    ],
+    "langRect": [
+      650,
+      16,
+      756,
+      44
+    ],
+    "scroll": [
+      768,
+      1024,
+      768,
+      1024
+    ],
+    "bodyText": "AN\nDISTRIBUTED\nMONITORING SYSTEM\nAUTONOMOUS DIGITAL TWIN · MISSION CONTROL\nAUTONOMOUS MONITORING SYSTEM\nAUTONOMOUS ENVIRONMENTAL MONITORING PLATFORM · STATION ANT-A01\nSYSTEM ONLINE\nSTATION ANT-A01\n中\nEN\nMISSION STATUS\nNOMINAL\nALL SYSTEMS CHECK\nCURRENT TIME\n2026-08-13 16:46:54\nLOCAL TIME\nOPERATION MODE\nEMERGENCY\nPROTECTIVE MODE\nNODE POSITIONING · GPS TRACKING\nReal-time Telemetry\nGPS STATUS\nTRACKING\n",
+    "errors": []
+  },
+  "dashboard-a02.html@768en": {
+    "url": "dashboard-a02.html",
+    "lang": "en",
+    "title": "DISTRIBUTED MONITORING SYSTEM · ANT-A02",
+    "brand": {
+      "scrollW": 164,
+      "clientW": 164,
+      "rect": [
+        12,
+        12,
+        218,
+        46,
+        206,
+        34
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      14,
+      64,
+      754,
+      168,
+      740,
+      104
+    ],
+    "langRect": [
+      650,
+      16,
+      756,
+      44
+    ],
+    "scroll": [
+      768,
+      1024,
+      768,
+      1024
+    ],
+    "bodyText": "AN\nDISTRIBUTED\nMONITORING SYSTEM\nAUTONOMOUS DIGITAL TWIN · MISSION CONTROL\nAUTONOMOUS MONITORING SYSTEM\nSTATION ANT-A02 · AWAITING DEPLOYMENT\nAWAITING DEPLOYMENT\nSTATION ANT-A02\n中\nEN\nMISSION STATUS\nPENDING\nWAITING FOR DEPLOYMENT\nCURRENT TIME\n2026-08-13 16:46:57\nLOCAL TIME\nOPERATION MODE\nStandby\nStandby\nNODE POSITIONING · NOT AVAILABLE\nNO TELEMETRY\nGPS STATUS\nNO FIX\nMODE\nStandby\nPOWER\nNO DATA\nANT-A",
+    "errors": []
+  },
+  "dashboard-a03.html@768en": {
+    "url": "dashboard-a03.html",
+    "lang": "en",
+    "title": "DISTRIBUTED MONITORING SYSTEM · ANT-A03",
+    "brand": {
+      "scrollW": 164,
+      "clientW": 164,
+      "rect": [
+        12,
+        12,
+        218,
+        46,
+        206,
+        34
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      14,
+      64,
+      754,
+      168,
+      740,
+      104
+    ],
+    "langRect": [
+      650,
+      16,
+      756,
+      44
+    ],
+    "scroll": [
+      768,
+      1024,
+      768,
+      1024
+    ],
+    "bodyText": "AN\nDISTRIBUTED\nMONITORING SYSTEM\nAUTONOMOUS DIGITAL TWIN · MISSION CONTROL\nAUTONOMOUS MONITORING SYSTEM\nSTATION ANT-A03 · AWAITING DEPLOYMENT\nAWAITING DEPLOYMENT\nSTATION ANT-A03\n中\nEN\nMISSION STATUS\nPENDING\nWAITING FOR DEPLOYMENT\nCURRENT TIME\n2026-08-13 16:47:00\nLOCAL TIME\nOPERATION MODE\nStandby\nStandby\nNODE POSITIONING · NOT AVAILABLE\nNO TELEMETRY\nGPS STATUS\nNO FIX\nMODE\nStandby\nPOWER\nNO DATA\nANT-A",
+    "errors": []
+  },
+  "sensors.html@768en": {
+    "url": "sensors.html",
+    "lang": "en",
+    "title": "DISTRIBUTED MONITORING SYSTEM - SENSORS",
+    "brand": {
+      "scrollW": 164,
+      "clientW": 164,
+      "rect": [
+        12,
+        12,
+        218,
+        46,
+        206,
+        34
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      20,
+      64,
+      733,
+      217,
+      713,
+      153
+    ],
+    "langRect": [
+      633,
+      18,
+      739,
+      46
+    ],
+    "scroll": [
+      753,
+      2965,
+      753,
+      1024
+    ],
+    "bodyText": "中\nEN\nAN\nDISTRIBUTED\nMONITORING SYSTEM\nENVIRONMENT MONITORING\n\nMulti-channel sensor acquisition system\n\nSYSTEM ONLINE\nSENSOR ARRAY\nData Acquisition\nCABIN TEMPERATURE\nRS485\nCABIN HUMIDITY\nRS485\nOUTSIDE TEMPERATURE\nSHT35\nOUTSIDE HUMIDITY\nSHT35\nSOLAR IRRADIANCE\nSolar Radiation Sensor · W/m²\nCURRENT (mA)\nVOLTAGE\nWIND SPEED\nNO DATA AVAILABLE\nANT-A01 · AUTONOMOUS STATION · REMOTE SENSOR NODE",
+    "errors": []
+  },
+  "telemetry.html@768en": {
+    "url": "telemetry.html",
+    "lang": "en",
+    "title": "DISTRIBUTED MONITORING SYSTEM - DATA",
+    "brand": {
+      "scrollW": 164,
+      "clientW": 164,
+      "rect": [
+        12,
+        12,
+        218,
+        46,
+        206,
+        34
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      20,
+      64,
+      733,
+      217,
+      713,
+      153
+    ],
+    "langRect": [
+      633,
+      18,
+      739,
+      46
+    ],
+    "scroll": [
+      753,
+      1120,
+      753,
+      1024
+    ],
+    "bodyText": "中\nEN\nAN\nDISTRIBUTED\nMONITORING SYSTEM\nDATA\n\nAUTONOMOUS DATA TRANSMISSION\n\nSYSTEM ONLINE\nDATA LINK\nLoRa Communication · ONLINE\nLATEST 476 RECORDS · 13 Data Types\nTIME\tMODE\tVOLTAGE\n(V)\n\tCURRENT\n(mA)\n\tSOLAR IRRADIANCE\n(W/m²)\n\tINSIDE TEMP\n(°C)\n\tINSIDE HUMIDITY\n(%RH)\n\tOUTSIDE TEMP\n(°C)\n\tOUTSIDE HUMIDITY\n(%RH)\n\tLATITUDE\n(°)\n\tLONGITUDE\n(°)\n\tSATELLITES\tGPS STATUS\tMODE\tE\tI\tQ\tR\n2026-08-04 18:56\tEMERGENCY\t9 ",
+    "errors": []
+  },
+  "hardware.html@768en": {
+    "url": "hardware.html",
+    "lang": "en",
+    "title": "DISTRIBUTED MONITORING SYSTEM - HARDWARE DOCUMENTATION",
+    "brand": {
+      "scrollW": 164,
+      "clientW": 164,
+      "rect": [
+        12,
+        12,
+        218,
+        46,
+        206,
+        34
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      14,
+      64,
+      739,
+      140,
+      725,
+      76
+    ],
+    "langRect": [
+      633,
+      18,
+      739,
+      46
+    ],
+    "scroll": [
+      753,
+      1800,
+      753,
+      1024
+    ],
+    "bodyText": "中\nEN\nAN\nDISTRIBUTED\nMONITORING SYSTEM\nANT-A01 HARDWARE DOCUMENTATION\n\nAUTONOMOUS MONITORING NODE · ENGINEERING FILE\n\nACTIVE\nIDENTIFICATION\nDESIGNATION\nANT-A01\nTYPE\nAUTONOMOUS NODE\nVERSION\nV0.4\nSTATUS\nACTIVE\nSPECIFICATIONS\nENCLOSURE\nIP66\nPOWER SYSTEM\n☀\nSolar Power\n🔋\nLithium Titanate Battery\nDATA TYPES\nTEMPERATURE\nHUMIDITY\nPRESSURE\nSOLAR RADIATION\nCURRENT\nVOLTAGE\nGPS\nWIND SPEED\nCOMMS\nGPS · LoRa\nDEV",
+    "errors": []
+  },
+  "analysis.html@768en": {
+    "url": "analysis.html",
+    "lang": "en",
+    "title": "DISTRIBUTED MONITORING SYSTEM - MISSION ANALYTICS",
+    "brand": {
+      "scrollW": 164,
+      "clientW": 164,
+      "rect": [
+        12,
+        12,
+        218,
+        46,
+        206,
+        34
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      18,
+      42,
+      735,
+      149,
+      717,
+      107
+    ],
+    "langRect": [
+      633,
+      18,
+      739,
+      46
+    ],
+    "scroll": [
+      753,
+      1533,
+      753,
+      1024
+    ],
+    "bodyText": "中\nEN\nAN\nDISTRIBUTED\nMONITORING SYSTEM\nAUTONOMOUS MONITORING MISSION SUMMARY\nMISSION ANALYTICS\nAn autonomous monitoring node · long-term environmental data collection and transmission.\nMISSION ID\nANT-A01\nVERSION\nV0.4\nSTATUS\nOPERATIONAL\nMISSION OVERVIEW\nCore results of the autonomous monitoring mission.\nDATA RECORDS\n476\nREC\nTELEMETRY\nData Types Collected\n8\nTYPES\nDATA TYPES\nOPERATION DAYS\n11\nDAYS\nCON",
+    "errors": []
+  },
+  "location-a02.html@768en": {
+    "url": "location-a02.html",
+    "lang": "en",
+    "title": "DISTRIBUTED MONITORING SYSTEM · ANT-A02",
+    "brand": {
+      "scrollW": 164,
+      "clientW": 164,
+      "rect": [
+        12,
+        12,
+        218,
+        46,
+        206,
+        34
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      30,
+      26,
+      723,
+      179,
+      693,
+      153
+    ],
+    "langRect": [
+      615,
+      26,
+      721,
+      54
+    ],
+    "scroll": [
+      753,
+      1178,
+      753,
+      1024
+    ],
+    "bodyText": "中\nEN\nAN\nDISTRIBUTED\nMONITORING SYSTEM\nLocation\n\nStation ANT-A02 · awaiting deployment\n\nAWAITING DEPLOYMENT\nNODE STATUS\nNOT DEPLOYED\nREAL WORLD MAP · NOT AVAILABLE\nANT-A02\n\nAWAITING DEPLOYMENT\n\nFUTURE NODE · ANT-A02\nNo Data Available\n\nThis module will activate once the station is deployed and telemetry is established.\n\nWAITING FOR DEPLOYMENT\n--\nDATA\n--\nSTATUS\n--\nLINK",
+    "errors": []
+  },
+  "location-a03.html@768en": {
+    "url": "location-a03.html",
+    "lang": "en",
+    "title": "DISTRIBUTED MONITORING SYSTEM · ANT-A03",
+    "brand": {
+      "scrollW": 164,
+      "clientW": 164,
+      "rect": [
+        12,
+        12,
+        218,
+        46,
+        206,
+        34
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      30,
+      26,
+      723,
+      179,
+      693,
+      153
+    ],
+    "langRect": [
+      615,
+      26,
+      721,
+      54
+    ],
+    "scroll": [
+      753,
+      1178,
+      753,
+      1024
+    ],
+    "bodyText": "中\nEN\nAN\nDISTRIBUTED\nMONITORING SYSTEM\nLocation\n\nStation ANT-A03 · awaiting deployment\n\nAWAITING DEPLOYMENT\nNODE STATUS\nNOT DEPLOYED\nREAL WORLD MAP · NOT AVAILABLE\nANT-A03\n\nAWAITING DEPLOYMENT\n\nFUTURE NODE · ANT-A03\nNo Data Available\n\nThis module will activate once the station is deployed and telemetry is established.\n\nWAITING FOR DEPLOYMENT\n--\nDATA\n--\nSTATUS\n--\nLINK",
+    "errors": []
+  },
+  "sensors-a02.html@768en": {
+    "url": "sensors-a02.html",
+    "lang": "en",
+    "title": "DISTRIBUTED MONITORING SYSTEM · ANT-A02",
+    "brand": {
+      "scrollW": 164,
+      "clientW": 164,
+      "rect": [
+        12,
+        12,
+        218,
+        46,
+        206,
+        34
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      30,
+      26,
+      738,
+      179,
+      708,
+      153
+    ],
+    "langRect": [
+      630,
+      26,
+      736,
+      54
+    ],
+    "scroll": [
+      768,
+      1024,
+      768,
+      1024
+    ],
+    "bodyText": "中\nEN\nAN\nDISTRIBUTED\nMONITORING SYSTEM\nSensors\n\nStation ANT-A02 · awaiting deployment\n\nAWAITING DEPLOYMENT\nNODE STATUS\nNOT DEPLOYED\nFUTURE NODE · ANT-A02\nNo Data Available\n\nThis module will activate once the station is deployed and telemetry is established.\n\nWAITING FOR DEPLOYMENT\n--\nDATA\n--\nSTATUS\n--\nLINK",
+    "errors": []
+  },
+  "sensors-a03.html@768en": {
+    "url": "sensors-a03.html",
+    "lang": "en",
+    "title": "DISTRIBUTED MONITORING SYSTEM · ANT-A03",
+    "brand": {
+      "scrollW": 164,
+      "clientW": 164,
+      "rect": [
+        12,
+        12,
+        218,
+        46,
+        206,
+        34
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      30,
+      26,
+      738,
+      179,
+      708,
+      153
+    ],
+    "langRect": [
+      630,
+      26,
+      736,
+      54
+    ],
+    "scroll": [
+      768,
+      1024,
+      768,
+      1024
+    ],
+    "bodyText": "中\nEN\nAN\nDISTRIBUTED\nMONITORING SYSTEM\nSensors\n\nStation ANT-A03 · awaiting deployment\n\nAWAITING DEPLOYMENT\nNODE STATUS\nNOT DEPLOYED\nFUTURE NODE · ANT-A03\nNo Data Available\n\nThis module will activate once the station is deployed and telemetry is established.\n\nWAITING FOR DEPLOYMENT\n--\nDATA\n--\nSTATUS\n--\nLINK",
+    "errors": []
+  },
+  "telemetry-a02.html@768en": {
+    "url": "telemetry-a02.html",
+    "lang": "en",
+    "title": "DISTRIBUTED MONITORING SYSTEM · ANT-A02",
+    "brand": {
+      "scrollW": 164,
+      "clientW": 164,
+      "rect": [
+        12,
+        12,
+        218,
+        46,
+        206,
+        34
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      30,
+      26,
+      738,
+      179,
+      708,
+      153
+    ],
+    "langRect": [
+      630,
+      26,
+      736,
+      54
+    ],
+    "scroll": [
+      768,
+      1024,
+      768,
+      1024
+    ],
+    "bodyText": "中\nEN\nAN\nDISTRIBUTED\nMONITORING SYSTEM\nDATA\n\nStation ANT-A02 · awaiting deployment\n\nAWAITING DEPLOYMENT\nNODE STATUS\nNOT DEPLOYED\nFUTURE NODE · ANT-A02\nNo Data Available\n\nThis module will activate once the station is deployed and telemetry is established.\n\nWAITING FOR DEPLOYMENT\n--\nDATA\n--\nSTATUS\n--\nLINK",
+    "errors": []
+  },
+  "telemetry-a03.html@768en": {
+    "url": "telemetry-a03.html",
+    "lang": "en",
+    "title": "DISTRIBUTED MONITORING SYSTEM · ANT-A03",
+    "brand": {
+      "scrollW": 164,
+      "clientW": 164,
+      "rect": [
+        12,
+        12,
+        218,
+        46,
+        206,
+        34
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      30,
+      26,
+      738,
+      179,
+      708,
+      153
+    ],
+    "langRect": [
+      630,
+      26,
+      736,
+      54
+    ],
+    "scroll": [
+      768,
+      1024,
+      768,
+      1024
+    ],
+    "bodyText": "中\nEN\nAN\nDISTRIBUTED\nMONITORING SYSTEM\nDATA\n\nStation ANT-A03 · awaiting deployment\n\nAWAITING DEPLOYMENT\nNODE STATUS\nNOT DEPLOYED\nFUTURE NODE · ANT-A03\nNo Data Available\n\nThis module will activate once the station is deployed and telemetry is established.\n\nWAITING FOR DEPLOYMENT\n--\nDATA\n--\nSTATUS\n--\nLINK",
+    "errors": []
+  },
+  "hardware-a02.html@768en": {
+    "url": "hardware-a02.html",
+    "lang": "en",
+    "title": "DISTRIBUTED MONITORING SYSTEM · ANT-A02",
+    "brand": {
+      "scrollW": 164,
+      "clientW": 164,
+      "rect": [
+        12,
+        12,
+        218,
+        46,
+        206,
+        34
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      30,
+      26,
+      738,
+      139,
+      708,
+      113
+    ],
+    "langRect": [
+      630,
+      26,
+      736,
+      54
+    ],
+    "scroll": [
+      768,
+      1024,
+      768,
+      1024
+    ],
+    "bodyText": "中\nEN\nAN\nDISTRIBUTED\nMONITORING SYSTEM\nHardware\n\nStation ANT-A02 · awaiting deployment\n\nAWAITING DEPLOYMENT\nNODE STATUS\nNOT DEPLOYED\nFUTURE NODE · ANT-A02\nNo Data Available\n\nThis module will activate once the station is deployed and telemetry is established.\n\nWAITING FOR DEPLOYMENT\n--\nDATA\n--\nSTATUS\n--\nLINK",
+    "errors": []
+  },
+  "hardware-a03.html@768en": {
+    "url": "hardware-a03.html",
+    "lang": "en",
+    "title": "DISTRIBUTED MONITORING SYSTEM · ANT-A03",
+    "brand": {
+      "scrollW": 164,
+      "clientW": 164,
+      "rect": [
+        12,
+        12,
+        218,
+        46,
+        206,
+        34
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      30,
+      26,
+      738,
+      139,
+      708,
+      113
+    ],
+    "langRect": [
+      630,
+      26,
+      736,
+      54
+    ],
+    "scroll": [
+      768,
+      1024,
+      768,
+      1024
+    ],
+    "bodyText": "中\nEN\nAN\nDISTRIBUTED\nMONITORING SYSTEM\nHardware\n\nStation ANT-A03 · awaiting deployment\n\nAWAITING DEPLOYMENT\nNODE STATUS\nNOT DEPLOYED\nFUTURE NODE · ANT-A03\nNo Data Available\n\nThis module will activate once the station is deployed and telemetry is established.\n\nWAITING FOR DEPLOYMENT\n--\nDATA\n--\nSTATUS\n--\nLINK",
+    "errors": []
+  },
+  "analysis-a02.html@768en": {
+    "url": "analysis-a02.html",
+    "lang": "en",
+    "title": "DISTRIBUTED MONITORING SYSTEM · ANT-A02",
+    "brand": {
+      "scrollW": 164,
+      "clientW": 164,
+      "rect": [
+        12,
+        12,
+        218,
+        46,
+        206,
+        34
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      30,
+      26,
+      738,
+      157,
+      708,
+      131
+    ],
+    "langRect": [
+      630,
+      26,
+      736,
+      54
+    ],
+    "scroll": [
+      768,
+      1024,
+      768,
+      1024
+    ],
+    "bodyText": "中\nEN\nAN\nDISTRIBUTED\nMONITORING SYSTEM\nAnalysis\n\nStation ANT-A02 · awaiting deployment\n\nAWAITING DEPLOYMENT\nNODE STATUS\nNOT DEPLOYED\nFUTURE NODE · ANT-A02\nNo Data Available\n\nThis module will activate once the station is deployed and telemetry is established.\n\nWAITING FOR DEPLOYMENT\n--\nDATA\n--\nSTATUS\n--\nLINK",
+    "errors": []
+  },
+  "analysis-a03.html@768en": {
+    "url": "analysis-a03.html",
+    "lang": "en",
+    "title": "DISTRIBUTED MONITORING SYSTEM · ANT-A03",
+    "brand": {
+      "scrollW": 164,
+      "clientW": 164,
+      "rect": [
+        12,
+        12,
+        218,
+        46,
+        206,
+        34
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      30,
+      26,
+      738,
+      157,
+      708,
+      131
+    ],
+    "langRect": [
+      630,
+      26,
+      736,
+      54
+    ],
+    "scroll": [
+      768,
+      1024,
+      768,
+      1024
+    ],
+    "bodyText": "中\nEN\nAN\nDISTRIBUTED\nMONITORING SYSTEM\nAnalysis\n\nStation ANT-A03 · awaiting deployment\n\nAWAITING DEPLOYMENT\nNODE STATUS\nNOT DEPLOYED\nFUTURE NODE · ANT-A03\nNo Data Available\n\nThis module will activate once the station is deployed and telemetry is established.\n\nWAITING FOR DEPLOYMENT\n--\nDATA\n--\nSTATUS\n--\nLINK",
+    "errors": []
+  },
+  "a02.html@768en": {
+    "url": "a02.html",
+    "lang": "en",
+    "title": "DISTRIBUTED MONITORING SYSTEM · ANT-A02",
+    "brand": {
+      "scrollW": 164,
+      "clientW": 164,
+      "rect": [
+        12,
+        12,
+        218,
+        46,
+        206,
+        34
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM"
+    },
+    "header": [
+      14,
+      64,
+      739,
+      241,
+      725,
+      177
+    ],
+    "langRect": [
+      633,
+      18,
+      739,
+      46
+    ],
+    "scroll": [
+      753,
+      1871,
+      753,
+      1024
+    ],
+    "bodyText": "中\nEN\nAN\nDISTRIBUTED\nMONITORING SYSTEM\nDISTRIBUTED MONITORING SYSTEM · TERMINAL ANT-A02\nAUTONOMOUS MONITORING SYSTEM\nAUTONOMOUS ENVIRONMENTAL MONITORING PLATFORM · STATION ANT-A02\nWAITING FOR DEPLOYMENT\nSTATION ANT-A02\nMISSION STATUS\nPENDING\nWAITING FOR DEPLOYMENT\nCURRENT TIME\n--\nLOCAL TIME\nOPERATION MODE\nwaiting_data\nmode_unknown\nPOWER & ENVIRONMENT\nVOLTAGE\nwaiting_data\nV\nBATTERY BUS\n01\nCURRENT\nwa",
+    "errors": []
+  },
+  "index.html@768zh": {
+    "url": "index.html",
+    "lang": "zh-CN",
+    "title": "自主观测系统 · 探索序章",
+    "brand": {
+      "scrollW": 133,
+      "clientW": 133,
+      "rect": [
+        46,
+        30,
+        233,
+        70,
+        187,
+        40
+      ],
+      "txt": "DISTRIBUTED MONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      0,
+      0,
+      768,
+      100,
+      768,
+      100
+    ],
+    "langRect": [
+      618,
+      35,
+      722,
+      65
+    ],
+    "scroll": [
+      768,
+      1024,
+      768,
+      1024
+    ],
+    "bodyText": "AN\n分布式监测系统\n\n自主环境观测计划\n\n中\nEN\n自主环境观测计划\n始于观测，\n走向未知\n\n从南京出发，\n构建自主环境观测网络；\n以持续积累的数据，\n为未来探索未知环境提供基础。\n\n开启探索→\n\n未知之境，需要探索者的脚步；\n无人之地，需要第一组观测数据。\n\n南极大陆\n未来目标",
+    "errors": []
+  },
+  "network.html@768zh": {
+    "url": "network.html",
+    "lang": "zh-CN",
+    "title": "自主观测系统 · 观测网络",
+    "brand": {
+      "scrollW": 112,
+      "clientW": 112,
+      "rect": [
+        20,
+        12,
+        178,
+        46,
+        158,
+        34
+      ],
+      "txt": "DISTRIBUTED MONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      0,
+      0,
+      768,
+      59,
+      768,
+      59
+    ],
+    "langRect": [
+      644,
+      14,
+      748,
+      44
+    ],
+    "scroll": [
+      768,
+      1024,
+      768,
+      1024
+    ],
+    "bodyText": "AN\n分布式监测系统\n\n观测网络\n\n探索首页\n中\nEN\n节点档案\n观测网络\n01\nANT-A01\n当前运行\n南京 · 32.05N 118.79E\n02\nANT-A02\n待部署\n阶段 02 · 规划中\n03\nANT-A03\n待部署\n阶段 03 · 规划中\n节点 01 — ANT-A01\n在线\n南京\nANT-A01\n南京观测节点\n476\n数据记录\nLoRa\n上行链路\n32.05°N\n纬度\n118.79°E\n经度\n坐标 · 32.0491° N / 118.7937° E\n站点 · 南京\n数据记录 · 476\n选择观测终端\n\n未来终端档案\n\nANT-A01\n运行节点\n部署地点\n南京，中国\n运行状态\n在线\n476\n记录\nLoRa\n上行\n进入终端\nANT-A02\n即将上线\n\n未来观测节点\n\n等待部署\n进入终端\nANT-A03\n即将上线\n\n未来观测节点\n\n等待部署\n进入终端\n网络状态\n运行节点\n01",
+    "errors": []
+  },
+  "location.html@768zh": {
+    "url": "location.html",
+    "lang": "zh-CN",
+    "title": "自主观测系统 · 位置",
+    "brand": {
+      "scrollW": 102,
+      "clientW": 102,
+      "rect": [
+        12,
+        12,
+        156,
+        46,
+        144,
+        34
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      24,
+      64,
+      744,
+      208,
+      720,
+      144
+    ],
+    "langRect": [
+      648,
+      18,
+      754,
+      46
+    ],
+    "scroll": [
+      768,
+      1024,
+      768,
+      1024
+    ],
+    "bodyText": "中\nEN\nAN\n分布式监测系统\n全球定位\n\n卫星导航 · 测试坐标\n\n系统在线\nGPS状态\n在线\n实景地图\n南京\nANT-A01 位置\n纬度\n32.049278\n经度\n118.793686\n卫星数\n12",
+    "errors": []
+  },
+  "dashboard.html@768zh": {
+    "url": "dashboard.html",
+    "lang": "zh-CN",
+    "title": "自主观测系统",
+    "brand": {
+      "scrollW": 102,
+      "clientW": 102,
+      "rect": [
+        12,
+        12,
+        156,
+        46,
+        144,
+        34
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      14,
+      64,
+      754,
+      168,
+      740,
+      104
+    ],
+    "langRect": [
+      650,
+      16,
+      756,
+      44
+    ],
+    "scroll": [
+      768,
+      1024,
+      768,
+      1024
+    ],
+    "bodyText": "AN\n分布式监测系统\n自主数字孪生 · 任务控制\n自主观测系统\n自主环境监测平台 · 站点 ANT-A01\n系统在线\n站点 ANT-A01\n中\nEN\n任务状态\n正常\n全系统自检\n当前时间\n2026-08-13 16:47:48\n本地时间\n运行模式\n应急\n保护模式\n节点定位 · GPS 跟踪\n实时遥测\nGPS 状态\n跟踪中\n模式\n应急\n供电\n太阳能 + 电池\nANT-A01\n\n纬度\n32.049278\n\n经度\n118.793686\n\n卫星数\n12\n\n气候\n舱内湿度\n等待数据\n%RH\n舱内\n舱外 等待数据%RH\n04\n太阳辐射\n等待数据\nW/m²\n太阳能辐射传感器\n传感器离线\n05\n任务流\n环境数据采集运行中\n运行中\n卫星定位运行中\n运行中\n长期监测模式\n运行中\nANT-A01 · AUTONOMOUS STATION · REMOTE SENSOR NODE",
+    "errors": []
+  },
+  "dashboard-a02.html@768zh": {
+    "url": "dashboard-a02.html",
+    "lang": "zh-CN",
+    "title": "自主观测系统 · ANT-A02",
+    "brand": {
+      "scrollW": 102,
+      "clientW": 102,
+      "rect": [
+        12,
+        12,
+        156,
+        46,
+        144,
+        34
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      14,
+      64,
+      754,
+      168,
+      740,
+      104
+    ],
+    "langRect": [
+      650,
+      16,
+      756,
+      44
+    ],
+    "scroll": [
+      768,
+      1024,
+      768,
+      1024
+    ],
+    "bodyText": "AN\n分布式监测系统\n自主数字孪生 · 任务控制\n自主观测系统\n站点 ANT-A02 · 等待部署\n等待部署\n站点 ANT-A02\n中\nEN\n任务状态\n待命\n等待部署\n当前时间\n2026-08-13 16:47:51\n本地时间\n运行模式\n节能\n节能\n节点定位 · 暂不可用\n无遥测\nGPS 状态\n未定位\n模式\n节能\n供电\n暂无数据\nANT-A02\n\n纬度\n等待数据\n\n经度\n等待数据\n\n卫星数\n等待数据\n\n气候\n舱内湿度\n等待数据\n%RH\n舱内\n舱外 等待数据%RH\n04\n太阳辐射\n等待数据\nW/m²\n太阳能辐射传感器\n等待传感器\n05\n任务流\n站点等待部署\n--\n遥测链路未建立\n--\n模块处于待机\n--\nANT-A02 · FUTURE STATION · AWAITING DEPLOYMENT",
+    "errors": []
+  },
+  "dashboard-a03.html@768zh": {
+    "url": "dashboard-a03.html",
+    "lang": "zh-CN",
+    "title": "自主观测系统 · ANT-A03",
+    "brand": {
+      "scrollW": 102,
+      "clientW": 102,
+      "rect": [
+        12,
+        12,
+        156,
+        46,
+        144,
+        34
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      14,
+      64,
+      754,
+      168,
+      740,
+      104
+    ],
+    "langRect": [
+      650,
+      16,
+      756,
+      44
+    ],
+    "scroll": [
+      768,
+      1024,
+      768,
+      1024
+    ],
+    "bodyText": "AN\n分布式监测系统\n自主数字孪生 · 任务控制\n自主观测系统\n站点 ANT-A03 · 等待部署\n等待部署\n站点 ANT-A03\n中\nEN\n任务状态\n待命\n等待部署\n当前时间\n2026-08-13 16:47:53\n本地时间\n运行模式\n节能\n节能\n节点定位 · 暂不可用\n无遥测\nGPS 状态\n未定位\n模式\n节能\n供电\n暂无数据\nANT-A03\n\n纬度\n等待数据\n\n经度\n等待数据\n\n卫星数\n等待数据\n\n气候\n舱内湿度\n等待数据\n%RH\n舱内\n舱外 等待数据%RH\n04\n太阳辐射\n等待数据\nW/m²\n太阳能辐射传感器\n等待传感器\n05\n任务流\n站点等待部署\n--\n遥测链路未建立\n--\n模块处于待机\n--\nANT-A03 · FUTURE STATION · AWAITING DEPLOYMENT",
+    "errors": []
+  },
+  "sensors.html@768zh": {
+    "url": "sensors.html",
+    "lang": "zh-CN",
+    "title": "自主观测系统 · 传感器",
+    "brand": {
+      "scrollW": 102,
+      "clientW": 102,
+      "rect": [
+        12,
+        12,
+        156,
+        46,
+        144,
+        34
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      20,
+      64,
+      733,
+      217,
+      713,
+      153
+    ],
+    "langRect": [
+      633,
+      18,
+      739,
+      46
+    ],
+    "scroll": [
+      753,
+      2965,
+      753,
+      1024
+    ],
+    "bodyText": "中\nEN\nAN\n分布式监测系统\n环境监测\n\n多通道传感器采集系统\n\n系统在线\n传感器阵列\n数据采集单元\n舱内温度\nRS485\n舱内湿度\nRS485\n舱外温度\nSHT35\n舱外湿度\nSHT35\n太阳辐射\n太阳能辐射传感器 · W/m²\n电流 (mA)\n电压\n风速\n暂无数据\nANT-A01 · AUTONOMOUS STATION · REMOTE SENSOR NODE",
+    "errors": []
+  },
+  "telemetry.html@768zh": {
+    "url": "telemetry.html",
+    "lang": "zh-CN",
+    "title": "自主观测系统 · 数据",
+    "brand": {
+      "scrollW": 102,
+      "clientW": 102,
+      "rect": [
+        12,
+        12,
+        156,
+        46,
+        144,
+        34
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      20,
+      64,
+      733,
+      217,
+      713,
+      153
+    ],
+    "langRect": [
+      633,
+      18,
+      739,
+      46
+    ],
+    "scroll": [
+      753,
+      1120,
+      753,
+      1024
+    ],
+    "bodyText": "中\nEN\nAN\n分布式监测系统\n数据\n\n自主采集数据回传\n\n系统在线\n数据链路\nLoRa通信 · 在线\n最新 476 条记录 · 13 类采集数据\n时间\t模式\t电压\n(V)\n\t电流\n(mA)\n\t太阳辐射\n(W/m²)\n\t舱内温度\n(°C)\n\t舱内湿度\n(%RH)\n\t舱外温度\n(°C)\n\t舱外湿度\n(%RH)\n\t纬度\n(°)\n\t经度\n(°)\n\t卫星数\tGPS 状态\t模式\tE\tI\tQ\tR\n2026-08-04 18:56\t应急\t9 V\t75 mA\t--\t--\t--\t--\t--\t--\t--\t--\t--\t应急\t0\t192\t440\t2\n2026-08-04 18:56\t应急\t9 V\t75 mA\t--\t--\t--\t--\t--\t--\t--\t--\t--\t应急\t0\t192\t440\t1\n2026-08-04 16:56\t应急\t9 V\t72 mA\t--\t--\t--\t--\t--\t--\t--\t--\t--\t应急\t0\t",
+    "errors": []
+  },
+  "hardware.html@768zh": {
+    "url": "hardware.html",
+    "lang": "zh-CN",
+    "title": "自主观测系统 · 硬件档案",
+    "brand": {
+      "scrollW": 102,
+      "clientW": 102,
+      "rect": [
+        12,
+        12,
+        156,
+        46,
+        144,
+        34
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      14,
+      64,
+      739,
+      140,
+      725,
+      76
+    ],
+    "langRect": [
+      633,
+      18,
+      739,
+      46
+    ],
+    "scroll": [
+      753,
+      1800,
+      753,
+      1024
+    ],
+    "bodyText": "中\nEN\nAN\n分布式监测系统\nANT-A01 硬件档案\n\n自主监测节点 · 工程档案\n\n运行中\n识别信息\n编号\nANT-A01\n类型\n观测节点\n版本\nV0.4\n状态\n运行中\n规格参数\n防护等级\nIP66\n供电系统\n☀\n太阳能供电\n🔋\n钛酸锂电池\n采集数据类型\n温度\n湿度\n气压\n太阳辐射\n电流\n电压\nGPS定位\n风速\n通信\nGPS · LoRa\n设备实拍 · 测试场地\n文件：ANT-A01_001 · 版本 V0.4\n\n真实设备照片\n\n图片位 · 替换为测试照片\n\n拍摄状态：待补充\n地点：地面测试站点\n档案：硬件档案\n实时遥测\n供电 · 太阳能\n等待数据\nW/m²\n电池\n9\nV\n传感器 · 舱内\n等待数据\n°C\nGPS\n在线\n部署信息\n站点\n测试地点\n安装方式\n地面锚定\n通信链路\nLoRa 上行链路\nANT-A01\n→\n太阳能\n→\n电池\n→\nMCU\n→\n传感器\n→\nGPS / LoRa",
+    "errors": []
+  },
+  "analysis.html@768zh": {
+    "url": "analysis.html",
+    "lang": "zh-CN",
+    "title": "自主观测系统 · 任务成果分析",
+    "brand": {
+      "scrollW": 102,
+      "clientW": 102,
+      "rect": [
+        12,
+        12,
+        156,
+        46,
+        144,
+        34
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      18,
+      42,
+      735,
+      149,
+      717,
+      107
+    ],
+    "langRect": [
+      633,
+      18,
+      739,
+      46
+    ],
+    "scroll": [
+      753,
+      1533,
+      753,
+      1024
+    ],
+    "bodyText": "中\nEN\nAN\n分布式监测系统\n自主观测系统 · 任务成果分析\n任务成果分析\n自主监测节点 · 长期采集并稳定回传环境数据。\n任务编号\nANT-A01\n版本\nV0.4\n状态\n运行中\n任务概览\n自主监测任务的核心成果。\n数据记录\n476\n条\n遥测记录\n采集数据种类\n8\n种\n数据类别\n运行天数\n11\n天\n持续运行\n最近更新\n2026-08-04 18:56\n最近同步\n传感器数据覆盖率\n\n表示各类传感器有效数据记录在全部遥测记录中的覆盖比例。\n\n编号 · 类型\n数据覆盖率\n覆盖率\n占比\n传感器1\n舱内温湿度\n424/476\n89.1%\n传感器2\n舱外环境\n451/476\n94.7%\n传感器3\n太阳辐射\n372/476\n78.2%\n传感器4\n电源状态\n474/476\n99.6%\n传感器5\nGPS定位\n9/476\n1.9%\n传感器6\n风速监测\n--\n--\n0\n%\nSOC\n\n电池状态：电量耗尽\n\n电压",
+    "errors": []
+  },
+  "location-a02.html@768zh": {
+    "url": "location-a02.html",
+    "lang": "zh-CN",
+    "title": "自主观测系统 · ANT-A02",
+    "brand": {
+      "scrollW": 102,
+      "clientW": 102,
+      "rect": [
+        12,
+        12,
+        156,
+        46,
+        144,
+        34
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      30,
+      26,
+      723,
+      179,
+      693,
+      153
+    ],
+    "langRect": [
+      615,
+      26,
+      721,
+      54
+    ],
+    "scroll": [
+      753,
+      1179,
+      753,
+      1024
+    ],
+    "bodyText": "中\nEN\nAN\n分布式监测系统\n位置\n\n站点 ANT-A02 · 等待部署\n\n等待部署\n节点状态\n未部署\n真实地图 · 暂不可用\nANT-A02\n\n等待部署\n\n未来节点 · ANT-A02\n暂无数据\n\n站点部署并建立遥测后，本模块将自动启用。\n\n等待部署\n--\n数据\n--\n状态\n--\n链路",
+    "errors": []
+  },
+  "location-a03.html@768zh": {
+    "url": "location-a03.html",
+    "lang": "zh-CN",
+    "title": "自主观测系统 · ANT-A03",
+    "brand": {
+      "scrollW": 102,
+      "clientW": 102,
+      "rect": [
+        12,
+        12,
+        156,
+        46,
+        144,
+        34
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      30,
+      26,
+      723,
+      179,
+      693,
+      153
+    ],
+    "langRect": [
+      615,
+      26,
+      721,
+      54
+    ],
+    "scroll": [
+      753,
+      1179,
+      753,
+      1024
+    ],
+    "bodyText": "中\nEN\nAN\n分布式监测系统\n位置\n\n站点 ANT-A03 · 等待部署\n\n等待部署\n节点状态\n未部署\n真实地图 · 暂不可用\nANT-A03\n\n等待部署\n\n未来节点 · ANT-A03\n暂无数据\n\n站点部署并建立遥测后，本模块将自动启用。\n\n等待部署\n--\n数据\n--\n状态\n--\n链路",
+    "errors": []
+  },
+  "sensors-a02.html@768zh": {
+    "url": "sensors-a02.html",
+    "lang": "zh-CN",
+    "title": "自主观测系统 · ANT-A02",
+    "brand": {
+      "scrollW": 102,
+      "clientW": 102,
+      "rect": [
+        12,
+        12,
+        156,
+        46,
+        144,
+        34
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      30,
+      26,
+      738,
+      179,
+      708,
+      153
+    ],
+    "langRect": [
+      630,
+      26,
+      736,
+      54
+    ],
+    "scroll": [
+      768,
+      1024,
+      768,
+      1024
+    ],
+    "bodyText": "中\nEN\nAN\n分布式监测系统\n传感器\n\n站点 ANT-A02 · 等待部署\n\n等待部署\n节点状态\n未部署\n未来节点 · ANT-A02\n暂无数据\n\n站点部署并建立遥测后，本模块将自动启用。\n\n等待部署\n--\n数据\n--\n状态\n--\n链路",
+    "errors": []
+  },
+  "sensors-a03.html@768zh": {
+    "url": "sensors-a03.html",
+    "lang": "zh-CN",
+    "title": "自主观测系统 · ANT-A03",
+    "brand": {
+      "scrollW": 102,
+      "clientW": 102,
+      "rect": [
+        12,
+        12,
+        156,
+        46,
+        144,
+        34
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      30,
+      26,
+      738,
+      179,
+      708,
+      153
+    ],
+    "langRect": [
+      630,
+      26,
+      736,
+      54
+    ],
+    "scroll": [
+      768,
+      1024,
+      768,
+      1024
+    ],
+    "bodyText": "中\nEN\nAN\n分布式监测系统\n传感器\n\n站点 ANT-A03 · 等待部署\n\n等待部署\n节点状态\n未部署\n未来节点 · ANT-A03\n暂无数据\n\n站点部署并建立遥测后，本模块将自动启用。\n\n等待部署\n--\n数据\n--\n状态\n--\n链路",
+    "errors": []
+  },
+  "telemetry-a02.html@768zh": {
+    "url": "telemetry-a02.html",
+    "lang": "zh-CN",
+    "title": "自主观测系统 · ANT-A02",
+    "brand": {
+      "scrollW": 102,
+      "clientW": 102,
+      "rect": [
+        12,
+        12,
+        156,
+        46,
+        144,
+        34
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      30,
+      26,
+      738,
+      179,
+      708,
+      153
+    ],
+    "langRect": [
+      630,
+      26,
+      736,
+      54
+    ],
+    "scroll": [
+      768,
+      1024,
+      768,
+      1024
+    ],
+    "bodyText": "中\nEN\nAN\n分布式监测系统\n数据\n\n站点 ANT-A02 · 等待部署\n\n等待部署\n节点状态\n未部署\n未来节点 · ANT-A02\n暂无数据\n\n站点部署并建立遥测后，本模块将自动启用。\n\n等待部署\n--\n数据\n--\n状态\n--\n链路",
+    "errors": []
+  },
+  "telemetry-a03.html@768zh": {
+    "url": "telemetry-a03.html",
+    "lang": "zh-CN",
+    "title": "自主观测系统 · ANT-A03",
+    "brand": {
+      "scrollW": 102,
+      "clientW": 102,
+      "rect": [
+        12,
+        12,
+        156,
+        46,
+        144,
+        34
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      30,
+      26,
+      738,
+      179,
+      708,
+      153
+    ],
+    "langRect": [
+      630,
+      26,
+      736,
+      54
+    ],
+    "scroll": [
+      768,
+      1024,
+      768,
+      1024
+    ],
+    "bodyText": "中\nEN\nAN\n分布式监测系统\n数据\n\n站点 ANT-A03 · 等待部署\n\n等待部署\n节点状态\n未部署\n未来节点 · ANT-A03\n暂无数据\n\n站点部署并建立遥测后，本模块将自动启用。\n\n等待部署\n--\n数据\n--\n状态\n--\n链路",
+    "errors": []
+  },
+  "hardware-a02.html@768zh": {
+    "url": "hardware-a02.html",
+    "lang": "zh-CN",
+    "title": "自主观测系统 · ANT-A02",
+    "brand": {
+      "scrollW": 102,
+      "clientW": 102,
+      "rect": [
+        12,
+        12,
+        156,
+        46,
+        144,
+        34
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      30,
+      26,
+      738,
+      139,
+      708,
+      113
+    ],
+    "langRect": [
+      630,
+      26,
+      736,
+      54
+    ],
+    "scroll": [
+      768,
+      1024,
+      768,
+      1024
+    ],
+    "bodyText": "中\nEN\nAN\n分布式监测系统\n硬件\n\n站点 ANT-A02 · 等待部署\n\n等待部署\n节点状态\n未部署\n未来节点 · ANT-A02\n暂无数据\n\n站点部署并建立遥测后，本模块将自动启用。\n\n等待部署\n--\n数据\n--\n状态\n--\n链路",
+    "errors": []
+  },
+  "hardware-a03.html@768zh": {
+    "url": "hardware-a03.html",
+    "lang": "zh-CN",
+    "title": "自主观测系统 · ANT-A03",
+    "brand": {
+      "scrollW": 102,
+      "clientW": 102,
+      "rect": [
+        12,
+        12,
+        156,
+        46,
+        144,
+        34
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      30,
+      26,
+      738,
+      139,
+      708,
+      113
+    ],
+    "langRect": [
+      630,
+      26,
+      736,
+      54
+    ],
+    "scroll": [
+      768,
+      1024,
+      768,
+      1024
+    ],
+    "bodyText": "中\nEN\nAN\n分布式监测系统\n硬件\n\n站点 ANT-A03 · 等待部署\n\n等待部署\n节点状态\n未部署\n未来节点 · ANT-A03\n暂无数据\n\n站点部署并建立遥测后，本模块将自动启用。\n\n等待部署\n--\n数据\n--\n状态\n--\n链路",
+    "errors": []
+  },
+  "analysis-a02.html@768zh": {
+    "url": "analysis-a02.html",
+    "lang": "zh-CN",
+    "title": "自主观测系统 · ANT-A02",
+    "brand": {
+      "scrollW": 102,
+      "clientW": 102,
+      "rect": [
+        12,
+        12,
+        156,
+        46,
+        144,
+        34
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      30,
+      26,
+      738,
+      157,
+      708,
+      131
+    ],
+    "langRect": [
+      630,
+      26,
+      736,
+      54
+    ],
+    "scroll": [
+      768,
+      1024,
+      768,
+      1024
+    ],
+    "bodyText": "中\nEN\nAN\n分布式监测系统\n分析\n\n站点 ANT-A02 · 等待部署\n\n等待部署\n节点状态\n未部署\n未来节点 · ANT-A02\n暂无数据\n\n站点部署并建立遥测后，本模块将自动启用。\n\n等待部署\n--\n数据\n--\n状态\n--\n链路",
+    "errors": []
+  },
+  "analysis-a03.html@768zh": {
+    "url": "analysis-a03.html",
+    "lang": "zh-CN",
+    "title": "自主观测系统 · ANT-A03",
+    "brand": {
+      "scrollW": 102,
+      "clientW": 102,
+      "rect": [
+        12,
+        12,
+        156,
+        46,
+        144,
+        34
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM分布式监测系统"
+    },
+    "header": [
+      30,
+      26,
+      738,
+      157,
+      708,
+      131
+    ],
+    "langRect": [
+      630,
+      26,
+      736,
+      54
+    ],
+    "scroll": [
+      768,
+      1024,
+      768,
+      1024
+    ],
+    "bodyText": "中\nEN\nAN\n分布式监测系统\n分析\n\n站点 ANT-A03 · 等待部署\n\n等待部署\n节点状态\n未部署\n未来节点 · ANT-A03\n暂无数据\n\n站点部署并建立遥测后，本模块将自动启用。\n\n等待部署\n--\n数据\n--\n状态\n--\n链路",
+    "errors": []
+  },
+  "a02.html@768zh": {
+    "url": "a02.html",
+    "lang": "zh-CN",
+    "title": "自主观测系统 · ANT-A02",
+    "brand": {
+      "scrollW": 164,
+      "clientW": 164,
+      "rect": [
+        12,
+        12,
+        218,
+        46,
+        206,
+        34
+      ],
+      "txt": "DISTRIBUTEDMONITORING SYSTEM"
+    },
+    "header": [
+      14,
+      64,
+      739,
+      241,
+      725,
+      177
+    ],
+    "langRect": [
+      633,
+      18,
+      739,
+      46
+    ],
+    "scroll": [
+      753,
+      1871,
+      753,
+      1024
+    ],
+    "bodyText": "中\nEN\nAN\nDISTRIBUTED\nMONITORING SYSTEM\n自主观测系统 · 终端 ANT-A02\n自主观测系统\n自主环境监测平台 · 站点 ANT-A02\n等待部署\n站点 ANT-A02\nMISSION STATUS\n待部署\n等待部署\nCURRENT TIME\n--\nLOCAL TIME\nOPERATION MODE\nwaiting_data\nmode_unknown\nPOWER & ENVIRONMENT\nVOLTAGE\nwaiting_data\nV\nBATTERY BUS\n01\nCURRENT\nwaiting_data\nmA\nLOAD DRAW\n02\nTEMPERATURE\nwaiting_data\n°C\nCABIN\nOUTSIDE waiting_data°C\n03\nNODE POSITIONING · GPS TRACKING\n等待部署\nGPS STATUS\n待部",
+    "errors": []
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "1920x1080": {
+    "ready": true,
+    "earthTexW": 4096,
+    "earthLand": 242,
+    "canvas": [
+      1920,
+      1080
+    ],
+    "dpr": 1,
+    "region": {
+      "cx": 1254,
+      "cy": 540,
+      "r": 327
+    },
+    "errors": []
+  },
+  "2560x1440": {
+    "ready": true,
+    "earthTexW": 4096,
+    "earthLand": 242,
+    "canvas": [
+      2560,
+      1440
+    ],
+    "dpr": 1,
+    "region": {
+      "cx": 1673,
+      "cy": 720,
+      "r": 436
+    },
+    "errors": []
+  },
+  "1366x768": {
+    "ready": true,
+    "earthTexW": 4096,
+    "earthLand": 242,
+    "canvas": [
+      1366,
+      768
+    ],
+    "dpr": 1,
+    "region": {
+      "cx": 892,
+      "cy": 384,
+      "r": 233
+    },
+    "errors": []
+  },
+  "390x844": {
+    "ready": true,
+    "earthTexW": 2048,
+    "earthLand": 177,
+    "canvas": [
+      390,
+      844
+    ],
+    "dpr": 1,
+    "region": {
+      "cx": 285,
+      "cy": 243,
+      "r": 145
+    },
+    "errors": []
+  }
+}
