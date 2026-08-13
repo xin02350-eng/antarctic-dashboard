@@ -362,7 +362,7 @@
         var iceFill = 'rgba(238,251,255,0.96)';
         var iceStroke = 'rgba(210,242,255,0.92)';
         var landFill = 'rgba(13,42,70,0.48)';
-        var landStroke = 'rgba(140,234,255,0.9)';
+        var landStroke = 'rgba(150,240,255,1)';
         var useIceData = !!(iceGj && iceGj.features && iceGj.features.length);
         var landFeats = [], iceFeats = [];
         if (useIceData) {
@@ -410,7 +410,7 @@
                     lctx.fill();
                   } else {
                     lctx.strokeStyle = isIce ? iceStroke : landStroke;
-                    lctx.lineWidth = isIce ? lw * 2.2 : lw * 1.8;
+                    lctx.lineWidth = isIce ? lw * 2.2 : lw * 2.0;
                     lctx.stroke();
                   }
                   lctx.restore();
@@ -817,8 +817,8 @@
         }
         labelCtx.clearRect(0, 0, labelW, labelH);
         var items = [
-          { node: NJ, dy: 12 },
-          { node: NE, dy: -26 }
+          { node: NJ, dy: 18 },
+          { node: NE, dy: -30 }
         ];
         var names = labelLang === 'zh' ? ['南京', '东北地区'] : ['NANJING', 'NORTHEAST CHINA'];
         for (var li = 0; li < items.length; li++) {
@@ -848,36 +848,41 @@
           var sy = (-sp1.y * 0.5 + 0.5) * labelH;
           var lx = (sp2.x * 0.5 + 0.5) * labelW;
           var ly = (-sp2.y * 0.5 + 0.5) * labelH;
-          labelCtx.strokeStyle = 'rgba(140,234,255,.45)';
-          labelCtx.lineWidth = 1;
+          labelCtx.strokeStyle = 'rgba(150,238,255,.6)';
+          labelCtx.lineWidth = 1.2;
           labelCtx.beginPath();
           labelCtx.moveTo(sx, sy);
           labelCtx.lineTo(lx, ly);
           labelCtx.stroke();
           /* 节点发光标记：确保节点清晰可见 */
           var nodeColor = li === 0 ? '0,229,168' : '140,234,255';
-          var glowR = labelCtx.createRadialGradient(sx, sy, 0, sx, sy, 14);
-          glowR.addColorStop(0, 'rgba(' + nodeColor + ',.85)');
+          var glowR = labelCtx.createRadialGradient(sx, sy, 0, sx, sy, 18);
+          glowR.addColorStop(0, 'rgba(' + nodeColor + ',.9)');
           glowR.addColorStop(1, 'rgba(' + nodeColor + ',0)');
           labelCtx.fillStyle = glowR;
           labelCtx.beginPath();
-          labelCtx.arc(sx, sy, 14, 0, Math.PI * 2);
+          labelCtx.arc(sx, sy, 18, 0, Math.PI * 2);
           labelCtx.fill();
           labelCtx.fillStyle = li === 0 ? '#00e5a8' : '#8ceaff';
           labelCtx.beginPath();
-          labelCtx.arc(sx, sy, 3, 0, Math.PI * 2);
+          labelCtx.arc(sx, sy, 4, 0, Math.PI * 2);
           labelCtx.fill();
-          /* 标签文字：页面字体渲染，中文不会变成 ?? */
-          labelCtx.font = '500 10px "Segoe UI","Microsoft YaHei",sans-serif';
-          labelCtx.fillStyle = it.color;
+          /* 标签文字：冷白加粗 + 深色描影，保证高于地图线 */
+          labelCtx.font = '600 12px "Segoe UI","Microsoft YaHei",sans-serif';
+          labelCtx.fillStyle = li === 0 ? '#d9fff4' : '#e8f8ff';
           labelCtx.textBaseline = 'middle';
-          labelCtx.fillText(names[li], lx, ly);
+          labelCtx.shadowColor = 'rgba(2,10,18,0.9)';
+          labelCtx.shadowBlur = 8;
+          labelCtx.shadowOffsetY = 1;
+          labelCtx.fillText(names[li], lx, ly + it.dy);
+          labelCtx.shadowBlur = 0;
+          labelCtx.shadowOffsetY = 0;
           if (li === 0) {
             var pulse = 0.5 + 0.5 * Math.sin(t / 320);
             labelCtx.beginPath();
             labelCtx.arc(sx, sy, 12 + 6 * pulse, 0, Math.PI * 2);
-            labelCtx.strokeStyle = 'rgba(0,229,168,' + (0.4 * pulse).toFixed(2) + ')';
-            labelCtx.lineWidth = 1;
+            labelCtx.strokeStyle = 'rgba(0,229,168,' + (0.5 * pulse).toFixed(2) + ')';
+            labelCtx.lineWidth = 1.2;
             labelCtx.stroke();
           }
         }
