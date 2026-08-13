@@ -821,7 +821,6 @@
           { node: NE, dy: -26 }
         ];
         var names = labelLang === 'zh' ? ['南京', '东北地区'] : ['NANJING', 'NORTHEAST CHINA'];
-        var coords = ['31.9N · 118.8E', '45.75N · 126.65E'];
         for (var li = 0; li < items.length; li++) {
           var it = items[li];
           var phi = (90 - it.node.lat) * Math.PI / 180;
@@ -873,9 +872,6 @@
           labelCtx.fillStyle = it.color;
           labelCtx.textBaseline = 'middle';
           labelCtx.fillText(names[li], lx, ly);
-          labelCtx.font = '400 8px "Segoe UI","Microsoft YaHei",sans-serif';
-          labelCtx.fillStyle = 'rgba(140,234,255,.6)';
-          labelCtx.fillText(coords[li], lx, ly + 12);
           if (li === 0) {
             var pulse = 0.5 + 0.5 * Math.sin(t / 320);
             labelCtx.beginPath();
