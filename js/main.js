@@ -909,7 +909,7 @@ document.getElementById(
 if(solar){
 
 solar.innerHTML=
-showValue(d.s);
+showValue(d.l);
 
 }
 
@@ -1038,7 +1038,7 @@ if(solar){
 
 
 solar.innerHTML=
-showValue(d.s);
+showValue(d.l);
 
 
 }
@@ -1528,7 +1528,7 @@ name:"OUTSIDE HUMIDITY"
 
 {
 id:"chartSolar",
-key:"s",
+key:"l",
 name:"SOLAR RADIATION"
 },
 

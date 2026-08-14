@@ -1,0 +1,11 @@
+{
+  "dataLen": 3,
+  "solar": "1",
+  "hasSolarEl": true,
+  "hasVoltageEl": false,
+  "L": "undefined",
+  "errors": [
+    "LOG: Failed to load resource: net::ERR_NETWORK_ACCESS_DENIED",
+    "LOG: Failed to load resource: net::ERR_NETWORK_ACCESS_DENIED"
+  ]
+}

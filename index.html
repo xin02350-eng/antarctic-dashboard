@@ -34,8 +34,8 @@
     };
   })();
   </script>
-  <script src="https://unpkg.com/three@0.128.0/build/three.min.js"></script>
-  <script src="https://unpkg.com/three-globe@2.31.0/dist/three-globe.min.js"></script>
+  <script src="./assets/three.min.js"></script>
+  <script src="./assets/three-globe.min.js"></script>
   <style>
     *{box-sizing:border-box;margin:0;padding:0}
     html,body{height:100%;overflow:hidden}
@@ -228,7 +228,7 @@
     var NE = { lat: 45.75, lng: 126.65 };           // Harbin，中国东北
     var AN = { lat: -82.0, lng: 70.0 };             // 南极大陆内部（恩德比地，已验证落在 Antarctica polygon 内）
     var LABELS = {
-      zh: { nanjing: '南京', northeast: '东北地区', antarctica: '南极大陆' },
+      zh: { nanjing: '南京', northeast: '东北', antarctica: '南极大陆' },
       en: { nanjing: 'NANJING', northeast: 'NORTHEAST CHINA', antarctica: 'ANTARCTICA' }
     };
     window.__globeLabels = LABELS;
@@ -510,7 +510,7 @@
       function fetchGeo(url) {
         return fetch(url).then(function (r) { return r.json(); }).catch(function () { return null; });
       }
-      var geoUrls = ['https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_110m_admin_0_countries.geojson'];
+      var geoUrls = ['./assets/geo/countries.json'];
       (function tryGeo(i) {
         if (i >= geoUrls.length) return;
         fetchGeo(geoUrls[i]).then(function (gj) {
@@ -519,10 +519,7 @@
         }).catch(function () { tryGeo(i + 1); });
       })(0);
       /* V49.7 · 真实冰盖数据（Natural Earth glaciated areas，官方科研制图数据） */
-      var iceUrls = window.__earthWantHigh
-        ? ['https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_50m_glaciated_areas.geojson',
-           'https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_110m_glaciated_areas.geojson']
-        : ['https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_110m_glaciated_areas.geojson'];
+      var iceUrls = ['./assets/geo/glaciated.json'];
       (function tryIce(i) {
         if (i >= iceUrls.length) return;
         fetchGeo(iceUrls[i]).then(function (gj) {
@@ -532,8 +529,8 @@
       })(0);
       /* V49.10 · 第二层真实地理线稿：地理参考线 + 河流（Natural Earth） */
       var lineUrls = [
-        'https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_110m_geographic_lines.geojson',
-        'https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_110m_rivers_lake_centerlines.geojson'
+        './assets/geo/geolines.json',
+        './assets/geo/rivers.json'
       ];
       (function tryLines(i) {
         if (i >= lineUrls.length) return;
@@ -823,11 +820,12 @@
           labelCtx.setTransform(labelDpr, 0, 0, labelDpr, 0, 0);
         }
         labelCtx.clearRect(0, 0, labelW, labelH);
+        var u = Math.max(0.8, Math.min(1.33, labelH / 1080));
         var items = [
-          { node: NJ, dy: 16 },
-          { node: NE, dy: -28 }
+          { node: NJ, dy: 18 },
+          { node: NE, dy: -30 }
         ];
-        var names = labelLang === 'zh' ? ['南京', '东北地区'] : ['NANJING', 'NORTHEAST CHINA'];
+        var names = labelLang === 'zh' ? ['南京', '东北'] : ['NANJING', 'NORTHEAST CHINA'];
         for (var li = 0; li < items.length; li++) {
           var it = items[li];
           var phi = (90 - it.node.lat) * Math.PI / 180;
@@ -838,9 +836,9 @@
             102 * Math.sin(phi) * Math.sin(theta)
           );
           var lv = new THREE.Vector3(
-            120 * Math.sin(phi) * Math.cos(theta),
-            120 * Math.cos(phi),
-            120 * Math.sin(phi) * Math.sin(theta)
+            124 * Math.sin(phi) * Math.cos(theta),
+            124 * Math.cos(phi),
+            124 * Math.sin(phi) * Math.sin(theta)
           );
           var sn = sv.clone().normalize();
           globe.updateMatrixWorld();
@@ -855,42 +853,80 @@
           var sy = (-sp1.y * 0.5 + 0.5) * labelH;
           var lx = (sp2.x * 0.5 + 0.5) * labelW;
           var ly = (-sp2.y * 0.5 + 0.5) * labelH;
-          /* V49.14 · 极细引导线：几乎不发光的短连接 */
-          labelCtx.strokeStyle = 'rgba(150,225,250,0.38)';
+
+          var accent = li === 0 ? '103,255,214' : '191,238,255';
+
+          /* V49.17 · 极细引导线：节点 → 标签左缘 */
+          labelCtx.strokeStyle = 'rgba(150,225,250,0.36)';
           labelCtx.lineWidth = 1;
           labelCtx.beginPath();
           labelCtx.moveTo(sx, sy);
-          labelCtx.lineTo(lx, ly);
+          labelCtx.lineTo(lx - 3 * u, ly + it.dy);
           labelCtx.stroke();
-          /* V49.14 · 精致科研定位点：细环 + 亮心，无大光晕 */
-          labelCtx.strokeStyle = li === 0 ? 'rgba(0,229,168,0.75)' : 'rgba(140,234,255,0.75)';
-          labelCtx.lineWidth = 1.2;
+
+          /* 精密细环：1px，缓慢呼吸 */
+          var breath = 0.5 + 0.5 * Math.sin(t / 800);
+          var R = 8.5 * u + 1.5 * u * breath;
+          labelCtx.strokeStyle = 'rgba(' + accent + ',' + (0.34 + 0.26 * breath).toFixed(3) + ')';
+          labelCtx.lineWidth = 1;
           labelCtx.beginPath();
-          labelCtx.arc(sx, sy, 3.5, 0, Math.PI * 2);
+          labelCtx.arc(sx, sy, R, 0, Math.PI * 2);
           labelCtx.stroke();
-          labelCtx.fillStyle = li === 0 ? '#8fffd9' : '#bfeeff';
-          labelCtx.beginPath();
-          labelCtx.arc(sx, sy, 1.6, 0, Math.PI * 2);
-          labelCtx.fill();
-          /* V49.14 · 简洁地点标注：克制字号、冷白、轻微描影 */
-          labelCtx.font = '500 11px "Segoe UI","Microsoft YaHei",sans-serif';
-          labelCtx.fillStyle = '#dff4ff';
-          labelCtx.textBaseline = 'middle';
-          labelCtx.shadowColor = 'rgba(2,10,18,0.7)';
-          labelCtx.shadowBlur = 3;
-          labelCtx.shadowOffsetY = 1;
-          labelCtx.fillText(names[li], lx, ly + it.dy);
-          labelCtx.shadowBlur = 0;
-          labelCtx.shadowOffsetY = 0;
-          /* 南京：保留极轻微呼吸细环 */
-          if (li === 0) {
-            var pulse = 0.5 + 0.5 * Math.sin(t / 320);
+
+          /* 四个极短定位刻线（precision reticle） */
+          var rIn = R + 2.5 * u;
+          var rOut = R + 6.8 * u;
+          labelCtx.strokeStyle = 'rgba(' + accent + ',0.72)';
+          labelCtx.lineWidth = 1;
+          for (var k = 0; k < 4; k++) {
+            var ang = k * Math.PI / 2;
             labelCtx.beginPath();
-            labelCtx.arc(sx, sy, 7 + 2 * pulse, 0, Math.PI * 2);
-            labelCtx.strokeStyle = 'rgba(0,229,168,' + (0.22 * pulse).toFixed(2) + ')';
-            labelCtx.lineWidth = 1;
+            labelCtx.moveTo(sx + Math.cos(ang) * rIn, sy + Math.sin(ang) * rIn);
+            labelCtx.lineTo(sx + Math.cos(ang) * rOut, sy + Math.sin(ang) * rOut);
             labelCtx.stroke();
           }
+
+          /* 克制的外圈柔光（非大Glow） */
+          var haloR = 4.4 * u;
+          var grad = labelCtx.createRadialGradient(sx, sy, 0, sx, sy, haloR);
+          grad.addColorStop(0, 'rgba(' + accent + ',0.30)');
+          grad.addColorStop(1, 'rgba(' + accent + ',0)');
+          labelCtx.fillStyle = grad;
+          labelCtx.beginPath();
+          labelCtx.arc(sx, sy, haloR, 0, Math.PI * 2);
+          labelCtx.fill();
+
+          /* 锐利核心 + 白色高光中心 */
+          labelCtx.fillStyle = 'rgb(' + accent + ')';
+          labelCtx.beginPath();
+          labelCtx.arc(sx, sy, 2.8 * u, 0, Math.PI * 2);
+          labelCtx.fill();
+          labelCtx.fillStyle = 'rgba(255,255,255,0.96)';
+          labelCtx.beginPath();
+          labelCtx.arc(sx, sy, 1.05 * u, 0, Math.PI * 2);
+          labelCtx.fill();
+
+          /* 极轻扫描弧 */
+          var scanA = t / 1200;
+          labelCtx.strokeStyle = 'rgba(' + accent + ',0.34)';
+          labelCtx.lineWidth = 1.2;
+          labelCtx.beginPath();
+          labelCtx.arc(sx, sy, R + 4 * u, scanA, scanA + 1.05);
+          labelCtx.stroke();
+
+          /* 标签：冷白 + 极轻蓝光 + 锐利主体 */
+          labelCtx.font = '500 ' + Math.round(13 * u) + 'px "Segoe UI","Microsoft YaHei",sans-serif';
+          labelCtx.textBaseline = 'middle';
+          labelCtx.shadowColor = 'rgba(70,170,220,0.55)';
+          labelCtx.shadowBlur = Math.round(6 * u);
+          labelCtx.shadowOffsetY = 1;
+          labelCtx.fillStyle = '#d8f4ff';
+          labelCtx.fillText(names[li], lx, ly + it.dy);
+          labelCtx.shadowColor = 'transparent';
+          labelCtx.shadowBlur = 0;
+          labelCtx.shadowOffsetY = 0;
+          labelCtx.fillStyle = '#f4feff';
+          labelCtx.fillText(names[li], lx, ly + it.dy);
         }
       }
 function animate() {

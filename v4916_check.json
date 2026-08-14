@@ -1,0 +1,126 @@
+{
+  "index-1920x1080-zh.png": {
+    "ready": true,
+    "globe": true,
+    "rotationY": 0.627,
+    "landGJ": true,
+    "earthLand": 177,
+    "geoLineFeats": 6,
+    "riverFeats": 13,
+    "landFeats": 177,
+    "texW": 4096,
+    "lineCv": [
+      4096,
+      2048
+    ],
+    "hist": {
+      "samples": 131072,
+      "ice": 0,
+      "white": 9354,
+      "blue": 4677
+    },
+    "labels": true,
+    "leaderCv": true,
+    "anLabel": true,
+    "scroll": [
+      1920,
+      1920
+    ],
+    "lang": "zh",
+    "errors": [],
+    "resolution": "1920x1080"
+  },
+  "index-1920x1080-en.png": {
+    "ready": true,
+    "globe": true,
+    "rotationY": 0.6264,
+    "landGJ": true,
+    "earthLand": 177,
+    "geoLineFeats": 6,
+    "riverFeats": 13,
+    "landFeats": 177,
+    "texW": 4096,
+    "lineCv": [
+      4096,
+      2048
+    ],
+    "hist": {
+      "samples": 131072,
+      "ice": 0,
+      "white": 9354,
+      "blue": 4677
+    },
+    "labels": true,
+    "leaderCv": true,
+    "anLabel": true,
+    "scroll": [
+      1920,
+      1920
+    ],
+    "lang": "en",
+    "errors": [],
+    "resolution": "1920x1080"
+  },
+  "index-1366x768-zh.png": {
+    "ready": true,
+    "globe": true,
+    "rotationY": 0.6512,
+    "landGJ": true,
+    "earthLand": 177,
+    "geoLineFeats": 6,
+    "riverFeats": 13,
+    "landFeats": 177,
+    "texW": 4096,
+    "lineCv": [
+      4096,
+      2048
+    ],
+    "hist": {
+      "samples": 131072,
+      "ice": 0,
+      "white": 9354,
+      "blue": 4677
+    },
+    "labels": true,
+    "leaderCv": true,
+    "anLabel": true,
+    "scroll": [
+      1366,
+      1366
+    ],
+    "lang": "zh",
+    "errors": [],
+    "resolution": "1366x768"
+  },
+  "index-2560x1440-zh.png": {
+    "ready": true,
+    "globe": true,
+    "rotationY": 0.6192,
+    "landGJ": true,
+    "earthLand": 177,
+    "geoLineFeats": 6,
+    "riverFeats": 13,
+    "landFeats": 177,
+    "texW": 4096,
+    "lineCv": [
+      4096,
+      2048
+    ],
+    "hist": {
+      "samples": 131072,
+      "ice": 0,
+      "white": 9354,
+      "blue": 4677
+    },
+    "labels": true,
+    "leaderCv": true,
+    "anLabel": true,
+    "scroll": [
+      2560,
+      2560
+    ],
+    "lang": "zh",
+    "errors": [],
+    "resolution": "2560x1440"
+  }
+}

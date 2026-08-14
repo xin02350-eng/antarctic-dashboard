@@ -1,0 +1,178 @@
+{
+  "index-1920x1080-zh.png": {
+    "ready": true,
+    "rotationY": 0.6292,
+    "earth": {
+      "landGJ": true,
+      "earthLand": 177,
+      "geoLineFeats": 6,
+      "riverFeats": 13,
+      "texW": 4096
+    },
+    "earthHist": {
+      "n": 131072,
+      "white": 11852,
+      "blue": 4677
+    },
+    "markers": {
+      "cv": [
+        1920,
+        1080
+      ],
+      "n": 230400,
+      "cyan": 93,
+      "white": 26
+    },
+    "labels": {
+      "zh": {
+        "nanjing": "南京",
+        "northeast": "东北",
+        "antarctica": "南极大陆"
+      },
+      "en": {
+        "nanjing": "NANJING",
+        "northeast": "NORTHEAST CHINA",
+        "antarctica": "ANTARCTICA"
+      }
+    },
+    "labelLang": "zh",
+    "scroll": [
+      1920,
+      1920
+    ],
+    "errors": [],
+    "resolution": "1920x1080"
+  },
+  "index-1920x1080-en.png": {
+    "ready": true,
+    "rotationY": 0.6288,
+    "earth": {
+      "landGJ": true,
+      "earthLand": 177,
+      "geoLineFeats": 6,
+      "riverFeats": 13,
+      "texW": 4096
+    },
+    "earthHist": {
+      "n": 131072,
+      "white": 11852,
+      "blue": 4677
+    },
+    "markers": {
+      "cv": [
+        1920,
+        1080
+      ],
+      "n": 230400,
+      "cyan": 147,
+      "white": 84
+    },
+    "labels": {
+      "zh": {
+        "nanjing": "南京",
+        "northeast": "东北",
+        "antarctica": "南极大陆"
+      },
+      "en": {
+        "nanjing": "NANJING",
+        "northeast": "NORTHEAST CHINA",
+        "antarctica": "ANTARCTICA"
+      }
+    },
+    "labelLang": "en",
+    "scroll": [
+      1920,
+      1920
+    ],
+    "errors": [],
+    "resolution": "1920x1080"
+  },
+  "index-1366x768-zh.png": {
+    "ready": true,
+    "rotationY": 0.6505,
+    "earth": {
+      "landGJ": true,
+      "earthLand": 177,
+      "geoLineFeats": 6,
+      "riverFeats": 13,
+      "texW": 4096
+    },
+    "earthHist": {
+      "n": 131072,
+      "white": 11852,
+      "blue": 4677
+    },
+    "markers": {
+      "cv": [
+        1366,
+        768
+      ],
+      "n": 116736,
+      "cyan": 61,
+      "white": 19
+    },
+    "labels": {
+      "zh": {
+        "nanjing": "南京",
+        "northeast": "东北",
+        "antarctica": "南极大陆"
+      },
+      "en": {
+        "nanjing": "NANJING",
+        "northeast": "NORTHEAST CHINA",
+        "antarctica": "ANTARCTICA"
+      }
+    },
+    "labelLang": "zh",
+    "scroll": [
+      1366,
+      1366
+    ],
+    "errors": [],
+    "resolution": "1366x768"
+  },
+  "index-2560x1440-zh.png": {
+    "ready": true,
+    "rotationY": 0.6183,
+    "earth": {
+      "landGJ": true,
+      "earthLand": 177,
+      "geoLineFeats": 6,
+      "riverFeats": 13,
+      "texW": 4096
+    },
+    "earthHist": {
+      "n": 131072,
+      "white": 11852,
+      "blue": 4677
+    },
+    "markers": {
+      "cv": [
+        2560,
+        1440
+      ],
+      "n": 409920,
+      "cyan": 162,
+      "white": 23
+    },
+    "labels": {
+      "zh": {
+        "nanjing": "南京",
+        "northeast": "东北",
+        "antarctica": "南极大陆"
+      },
+      "en": {
+        "nanjing": "NANJING",
+        "northeast": "NORTHEAST CHINA",
+        "antarctica": "ANTARCTICA"
+      }
+    },
+    "labelLang": "zh",
+    "scroll": [
+      2560,
+      2560
+    ],
+    "errors": [],
+    "resolution": "2560x1440"
+  }
+}

@@ -224,18 +224,19 @@
   var FIELD_META = {
     v:    { labelKey: 'voltage',          unit: 'V' },
     a:    { labelKey: 'current',          unit: 'mA' },
-    s:    { labelKey: 'solar_irradiance', unit: 'W/m²' },
+    l:    { labelKey: 'solar_irradiance', unit: 'W/m²' },
     t:    { labelKey: 'inside_temp',      unit: '°C' },
     h:    { labelKey: 'inside_humidity',  unit: '%RH' },
     j:    { labelKey: 'outside_temp',     unit: '°C' },
     k:    { labelKey: 'outside_humidity', unit: '%RH' },
+    wind: { labelKey: 'wind_speed',       unit: 'm/s' },
     x:    { labelKey: 'latitude',         unit: '°' },
     y:    { labelKey: 'longitude',        unit: '°' },
     n:    { labelKey: 'satellites',       unit: '' },
     g:    { labelKey: 'gps_status',       unit: '' },
     mode: { labelKey: 'mode',             unit: '' }
   };
-  var KNOWN_ORDER = ['v', 'a', 's', 't', 'h', 'j', 'k', 'x', 'y', 'n', 'g', 'mode'];
+  var KNOWN_ORDER = ['v', 'a', 'l', 't', 'h', 'j', 'k', 'wind', 'x', 'y', 'n', 'g', 'mode'];
 
   /* 动态收集所有字段（含 i/q/r/e 等未知字段），保持稳定顺序 */
   function collectKeys(list) {

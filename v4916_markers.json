@@ -1,0 +1,11 @@
+{
+  "leaderCv": [
+    1920,
+    1080
+  ],
+  "samples": 129600,
+  "cyan": 42,
+  "white": 15,
+  "lang": "zh",
+  "labels": true
+}
