@@ -1,0 +1,158 @@
+{
+  "zh1920": {
+    "w": 4096,
+    "h": 2048,
+    "tempSamples": [
+      {
+        "lat": 31.9,
+        "lng": 118.8,
+        "t": 30
+      },
+      {
+        "lat": 45.75,
+        "lng": 126.65,
+        "t": 18
+      },
+      {
+        "lat": -82,
+        "lng": 70,
+        "t": -25.6
+      }
+    ],
+    "tempBuilt": true,
+    "earthIce": false,
+    "samples": {
+      "nanjing": [
+        69,
+        167,
+        220
+      ],
+      "northeast": [
+        51,
+        150,
+        214
+      ],
+      "antarctica": [
+        7,
+        23,
+        60
+      ],
+      "pacific": [
+        95,
+        154,
+        175
+      ],
+      "atlantic": [
+        30,
+        58,
+        72
+      ]
+    },
+    "ready": true,
+    "errors": []
+  },
+  "zh2560": {
+    "w": 4096,
+    "h": 2048,
+    "tempSamples": [
+      {
+        "lat": 31.9,
+        "lng": 118.8,
+        "t": 30
+      },
+      {
+        "lat": 45.75,
+        "lng": 126.65,
+        "t": 18
+      },
+      {
+        "lat": -82,
+        "lng": 70,
+        "t": -25.6
+      }
+    ],
+    "tempBuilt": true,
+    "earthIce": false,
+    "samples": {
+      "nanjing": [
+        69,
+        167,
+        220
+      ],
+      "northeast": [
+        51,
+        150,
+        214
+      ],
+      "antarctica": [
+        7,
+        23,
+        60
+      ],
+      "pacific": [
+        95,
+        154,
+        175
+      ],
+      "atlantic": [
+        30,
+        58,
+        72
+      ]
+    },
+    "ready": true,
+    "errors": []
+  },
+  "en1920": {
+    "w": 4096,
+    "h": 2048,
+    "tempSamples": [
+      {
+        "lat": 31.9,
+        "lng": 118.8,
+        "t": 30
+      },
+      {
+        "lat": 45.75,
+        "lng": 126.65,
+        "t": 18
+      },
+      {
+        "lat": -82,
+        "lng": 70,
+        "t": -25.6
+      }
+    ],
+    "tempBuilt": true,
+    "earthIce": false,
+    "samples": {
+      "nanjing": [
+        69,
+        167,
+        220
+      ],
+      "northeast": [
+        51,
+        150,
+        214
+      ],
+      "antarctica": [
+        7,
+        23,
+        60
+      ],
+      "pacific": [
+        95,
+        154,
+        175
+      ],
+      "atlantic": [
+        30,
+        58,
+        72
+      ]
+    },
+    "ready": true,
+    "errors": []
+  }
+}

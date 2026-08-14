@@ -1,0 +1,20 @@
+{
+  "zh": {
+    "dataLen": 366,
+    "windNoDataText": "暂无数据",
+    "windNoDataDisplay": "none",
+    "windNoDataInlineDisplay": "none",
+    "windPoints": 366,
+    "lang": "zh",
+    "errors": []
+  },
+  "en": {
+    "dataLen": 366,
+    "windNoDataText": "NO DATA AVAILABLE",
+    "windNoDataDisplay": "none",
+    "windNoDataInlineDisplay": "none",
+    "windPoints": 366,
+    "lang": "en",
+    "errors": []
+  }
+}

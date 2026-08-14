@@ -1,0 +1,262 @@
+{
+  "zh1920": {
+    "w": 4096,
+    "h": 2048,
+    "floeFeats": 1745,
+    "floeInPatch": 1745,
+    "floeOutPatch": 0,
+    "seaIceFeats": 4,
+    "earthIce": true,
+    "samples": {
+      "arcticPatch": [
+        152,
+        169,
+        178
+      ],
+      "arcticOutside": [
+        64,
+        112,
+        127
+      ],
+      "arcticOutside2": [
+        0,
+        0,
+        0
+      ],
+      "china": [
+        14,
+        39,
+        59
+      ],
+      "antarctica": [
+        238,
+        251,
+        255
+      ]
+    },
+    "rows": {
+      "arcticLat82": {
+        "bright": 937,
+        "dark": 3047,
+        "runs": 57,
+        "total": 4096
+      },
+      "chinaLat35": {
+        "bright": 161,
+        "dark": 3885,
+        "runs": 21,
+        "total": 4096
+      }
+    },
+    "ready": true,
+    "errors": []
+  },
+  "zh2560": {
+    "w": 4096,
+    "h": 2048,
+    "floeFeats": 1745,
+    "floeInPatch": 1745,
+    "floeOutPatch": 0,
+    "seaIceFeats": 4,
+    "earthIce": true,
+    "samples": {
+      "arcticPatch": [
+        152,
+        169,
+        178
+      ],
+      "arcticOutside": [
+        64,
+        112,
+        127
+      ],
+      "arcticOutside2": [
+        0,
+        0,
+        0
+      ],
+      "china": [
+        14,
+        39,
+        59
+      ],
+      "antarctica": [
+        238,
+        251,
+        255
+      ]
+    },
+    "rows": {
+      "arcticLat82": {
+        "bright": 937,
+        "dark": 3047,
+        "runs": 57,
+        "total": 4096
+      },
+      "chinaLat35": {
+        "bright": 161,
+        "dark": 3885,
+        "runs": 21,
+        "total": 4096
+      }
+    },
+    "ready": true,
+    "errors": []
+  },
+  "tablet": {
+    "w": 4096,
+    "h": 2048,
+    "floeFeats": 1745,
+    "floeInPatch": 1745,
+    "floeOutPatch": 0,
+    "seaIceFeats": 4,
+    "earthIce": true,
+    "samples": {
+      "arcticPatch": [
+        152,
+        169,
+        178
+      ],
+      "arcticOutside": [
+        64,
+        112,
+        127
+      ],
+      "arcticOutside2": [
+        0,
+        0,
+        0
+      ],
+      "china": [
+        14,
+        39,
+        59
+      ],
+      "antarctica": [
+        238,
+        251,
+        255
+      ]
+    },
+    "rows": {
+      "arcticLat82": {
+        "bright": 937,
+        "dark": 3047,
+        "runs": 57,
+        "total": 4096
+      },
+      "chinaLat35": {
+        "bright": 161,
+        "dark": 3885,
+        "runs": 21,
+        "total": 4096
+      }
+    },
+    "ready": true,
+    "errors": []
+  },
+  "mobile": {
+    "w": 2048,
+    "h": 1024,
+    "floeFeats": 1745,
+    "floeInPatch": 1745,
+    "floeOutPatch": 0,
+    "seaIceFeats": 4,
+    "earthIce": true,
+    "samples": {
+      "arcticPatch": [
+        151,
+        167,
+        175
+      ],
+      "arcticOutside": [
+        34,
+        63,
+        77
+      ],
+      "arcticOutside2": [
+        0,
+        0,
+        0
+      ],
+      "china": [
+        10,
+        33,
+        52
+      ],
+      "antarctica": [
+        238,
+        251,
+        255
+      ]
+    },
+    "rows": {
+      "arcticLat82": {
+        "bright": 443,
+        "dark": 1476,
+        "runs": 48,
+        "total": 2048
+      },
+      "chinaLat35": {
+        "bright": 76,
+        "dark": 1931,
+        "runs": 22,
+        "total": 2048
+      }
+    },
+    "ready": true,
+    "errors": []
+  },
+  "en1920": {
+    "w": 4096,
+    "h": 2048,
+    "floeFeats": 1745,
+    "floeInPatch": 1745,
+    "floeOutPatch": 0,
+    "seaIceFeats": 4,
+    "earthIce": true,
+    "samples": {
+      "arcticPatch": [
+        152,
+        169,
+        178
+      ],
+      "arcticOutside": [
+        64,
+        112,
+        127
+      ],
+      "arcticOutside2": [
+        0,
+        0,
+        0
+      ],
+      "china": [
+        14,
+        39,
+        59
+      ],
+      "antarctica": [
+        238,
+        251,
+        255
+      ]
+    },
+    "rows": {
+      "arcticLat82": {
+        "bright": 937,
+        "dark": 3047,
+        "runs": 57,
+        "total": 4096
+      },
+      "chinaLat35": {
+        "bright": 161,
+        "dark": 3885,
+        "runs": 21,
+        "total": 4096
+      }
+    },
+    "ready": true,
+    "errors": []
+  }
+}

@@ -1,0 +1,176 @@
+{
+  "index-1920x1080-zh.png": {
+    "ready": true,
+    "rotationY": 0.627,
+    "landGJ": true,
+    "earthLand": 177,
+    "texW": 4096,
+    "an": {
+      "bText": "ANTARCTICA",
+      "spanText": "FUTURE DESTINATION",
+      "bFontSize": "14px",
+      "spanFontSize": "10px",
+      "bWeight": "500",
+      "rect": [
+        1714,
+        803,
+        1786,
+        842
+      ]
+    },
+    "canvasLabels": {
+      "n": 378,
+      "bbox": [
+        1390,
+        264,
+        1510,
+        464
+      ]
+    },
+    "viewport": [
+      1920,
+      1080
+    ],
+    "lang": "zh",
+    "errors": [],
+    "resolution": "1920x1080"
+  },
+  "index-1920x1080-en.png": {
+    "ready": true,
+    "rotationY": 0.624,
+    "landGJ": true,
+    "earthLand": 177,
+    "texW": 4096,
+    "an": {
+      "bText": "ANTARCTICA",
+      "spanText": "FUTURE DESTINATION",
+      "bFontSize": "14px",
+      "spanFontSize": "10px",
+      "bWeight": "500",
+      "rect": [
+        1633,
+        803,
+        1786,
+        842
+      ]
+    },
+    "canvasLabels": {
+      "n": 930,
+      "bbox": [
+        1390,
+        264,
+        1628,
+        464
+      ]
+    },
+    "viewport": [
+      1920,
+      1080
+    ],
+    "lang": "en",
+    "errors": [],
+    "resolution": "1920x1080"
+  },
+  "index-1366x768-zh.png": {
+    "ready": true,
+    "rotationY": 0.646,
+    "landGJ": true,
+    "earthLand": 177,
+    "texW": 4096,
+    "an": {
+      "bText": "ANTARCTICA",
+      "spanText": "FUTURE DESTINATION",
+      "bFontSize": "14px",
+      "spanFontSize": "10px",
+      "bWeight": "500",
+      "rect": [
+        1198,
+        560,
+        1270,
+        599
+      ]
+    },
+    "canvasLabels": {
+      "n": 268,
+      "bbox": [
+        994,
+        178,
+        1082,
+        332
+      ]
+    },
+    "viewport": [
+      1366,
+      768
+    ],
+    "lang": "zh",
+    "errors": [],
+    "resolution": "1366x768"
+  },
+  "index-820x1180-tablet-zh.png": {
+    "ready": true,
+    "rotationY": 0.654,
+    "landGJ": true,
+    "earthLand": 177,
+    "texW": 2048,
+    "an": {
+      "bText": "ANTARCTICA",
+      "spanText": "FUTURE DESTINATION",
+      "bFontSize": "14px",
+      "spanFontSize": "10px",
+      "bWeight": "500",
+      "rect": [
+        24,
+        150,
+        96,
+        189
+      ]
+    },
+    "canvasLabels": {
+      "n": 0
+    },
+    "viewport": [
+      820,
+      1180
+    ],
+    "lang": "zh",
+    "errors": [],
+    "resolution": "820x1180"
+  },
+  "index-390x844-mobile-zh.png": {
+    "ready": true,
+    "rotationY": 0.68,
+    "landGJ": true,
+    "earthLand": 177,
+    "texW": 2048,
+    "an": {
+      "bText": "ANTARCTICA",
+      "spanText": "FUTURE DESTINATION",
+      "bFontSize": "11px",
+      "spanFontSize": "9px",
+      "bWeight": "500",
+      "rect": [
+        14,
+        150,
+        66,
+        183
+      ]
+    },
+    "canvasLabels": {
+      "n": 182,
+      "bbox": [
+        292,
+        4,
+        350,
+        126
+      ]
+    },
+    "viewport": [
+      390,
+      844
+    ],
+    "lang": "zh",
+    "errors": [],
+    "resolution": "390x844"
+  }
+}

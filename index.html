@@ -45,16 +45,16 @@
 
     /* ---------- 3D 地球画布 ---------- */
     #globe3d{position:fixed;inset:0;z-index:1}
-    #globe3d canvas{display:block;filter:grayscale(.08) brightness(1.02) contrast(1.05) saturate(.88)}
-    .globe-halo{position:fixed;left:66%;top:50%;z-index:0;width:min(56vh,56vw);aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,rgba(12,52,84,.62),rgba(5,28,50,.28) 46%,transparent 70%);box-shadow:0 0 140px rgba(76,150,205,.16),0 0 300px rgba(45,110,170,.10);pointer-events:none}
+    #globe3d canvas{display:block;filter:grayscale(.06) brightness(.96) contrast(1.02) saturate(.9)}
+    .globe-halo{position:fixed;left:66%;top:50%;z-index:0;width:min(56vh,56vw);aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,rgba(8,34,56,.38),rgba(4,20,38,.16) 46%,transparent 70%);box-shadow:0 0 90px rgba(50,110,160,.10),0 0 200px rgba(30,75,115,.06);pointer-events:none}
     .globe-fallback{position:fixed;inset:0;z-index:1;display:none;background:radial-gradient(ellipse at 50% 45%,#062030 0%,#01060d 72%)}
     #leaderCv{position:fixed;inset:0;z-index:3;width:100%;height:100%;pointer-events:none}
 
     /* ---------- 南极引导标签（固定于空白区） ---------- */
     .an-label{position:fixed;right:7%;bottom:22%;z-index:12;text-align:right;pointer-events:none;opacity:0;transition:opacity 1.6s ease 1.4s}
     .home-page.loaded .an-label{opacity:1}
-    .an-label b{display:block;font-size:11px;letter-spacing:4px;color:#cdeaf7;font-weight:400}
-    .an-label span{display:block;font-size:8px;letter-spacing:3px;color:rgba(140,234,255,.6);margin-top:5px;text-transform:uppercase}
+    .an-label b{display:block;font-size:14px;letter-spacing:4px;color:#e6f7ff;font-weight:500}
+    .an-label span{display:block;font-size:10px;letter-spacing:3px;color:rgba(170,240,255,.8);margin-top:6px;text-transform:uppercase}
     .globe-node-label{position:absolute;pointer-events:none;white-space:nowrap;padding-left:16px;font-size:10px;letter-spacing:2px;color:rgba(234,252,255,.92);text-shadow:0 1px 5px rgba(1,6,13,.85);font-weight:400}
     .globe-node-label span{display:block;font-size:7px;letter-spacing:1.5px;color:rgba(140,234,255,.6);margin-top:2px}
 
@@ -141,8 +141,8 @@
     }
     @media (max-width:700px){
       .an-label{left:14px;right:auto;top:150px;bottom:auto;text-align:left}
-      .an-label b{font-size:9px;letter-spacing:2px}
-      .an-label span{font-size:7px}
+      .an-label b{font-size:11px;letter-spacing:2px}
+      .an-label span{font-size:9px}
       .top{padding:16px 20px}
       .brand p{display:none}
       .brand h1{font-size:12px;letter-spacing:2px}
@@ -194,7 +194,7 @@
 
   <div class="an-label">
     <b data-lang="en">ANTARCTICA</b><b data-lang="zh">南极大陆</b>
-    <span data-lang="en">Future Goal</span><span data-lang="zh">未来目标</span>
+    <span data-lang="en">FUTURE DESTINATION</span><span data-lang="zh">未来目标</span>
   </div>
 
   <script>
@@ -268,14 +268,14 @@
         return;
       }
       scene = new THREE.Scene();
-      scene.add(new THREE.AmbientLight(0x9fb4c8, 1.55));
-      var key = new THREE.DirectionalLight(0xffffff, 1.25);
+      scene.add(new THREE.AmbientLight(0x8ba4b8, 0.85));
+      var key = new THREE.DirectionalLight(0xffffff, 0.85);
       key.position.set(220, 120, 320);
       scene.add(key);
-      var fill = new THREE.DirectionalLight(0x5b87ad, 0.7);
+      var fill = new THREE.DirectionalLight(0x5b87ad, 0.45);
       fill.position.set(-260, -140, -220);
       scene.add(fill);
-      var southLight = new THREE.DirectionalLight(0xd8f0ff, 1.5);
+      var southLight = new THREE.DirectionalLight(0xc8e4f0, 0.95);
       southLight.position.set(0, -260, 140);
       scene.add(southLight);
       camera = new THREE.PerspectiveCamera(42, window.innerWidth / window.innerHeight, 1, 1200);
@@ -326,13 +326,16 @@
         }
         window.__earthTexW = lineCv.width;
       }
-      function drawBase() {
+      function drawBg() {
         var w = lineCv.width, h = lineCv.height;
-        var lw = Math.max(1, Math.round(w / 2048));
         lctx.clearRect(0, 0, w, h);
         var bg = lctx.createLinearGradient(0, 0, 0, h);
         bg.addColorStop(0, '#061a2c'); bg.addColorStop(0.5, '#04111f'); bg.addColorStop(1, '#020a13');
         lctx.fillStyle = bg; lctx.fillRect(0, 0, w, h);
+      }
+      function drawGraticule() {
+        var w = lineCv.width, h = lineCv.height;
+        var lw = Math.max(1, Math.round(w / 2048));
         lctx.lineWidth = lw;
         for (var gi = 0; gi <= 24; gi++) {
           var x = Math.round(gi / 24 * w);
@@ -347,35 +350,57 @@
         lctx.strokeStyle = 'rgba(140,234,255,.32)';
         lctx.beginPath(); lctx.moveTo(0, h / 2); lctx.lineTo(w, h / 2); lctx.stroke();
         lctx.beginPath(); lctx.moveTo(w / 2, 0); lctx.lineTo(w / 2, h); lctx.stroke();
-        lctx.fillStyle = 'rgba(140,234,255,.24)';
-        var seed = 20260811;
-        function rnd() { seed = (seed * 1664525 + 1013904223) >>> 0; return seed / 4294967296; }
-        var dot = Math.max(1, Math.round(w / 2048) * 2);
-        for (var k = 0; k < 90; k++) lctx.fillRect(Math.round(rnd() * w), Math.round(rnd() * h), dot, dot);
       }
+      function drawBase() { drawBg(); drawGraticule(); }
+
+      /* ===== V49.31 · 纬度温度渐变：只由纬度决定（越近赤道越亮蓝、越近两极越深蓝），不使用实时温度 ===== */
+      var tempCv = document.createElement('canvas');
+      tempCv.width = 720; tempCv.height = 360;
+      var tempCtx = tempCv.getContext('2d');
+      var tempBuilt = false;
+      function buildLatGradient() {
+        var H = tempCv.height;
+        var g = tempCtx.createLinearGradient(0, 0, 0, H);
+        /* V49.33 · 继续整体降亮度（所有色停再统一×0.78），纬度关系保持不变 */
+        g.addColorStop(0.00, '#040D24');  /* 南极：最深蓝 */
+        g.addColorStop(0.12, '#061941');  /* 南纬高纬 */
+        g.addColorStop(0.30, '#0C375D');  /* 南纬中纬 */
+        g.addColorStop(0.42, '#1A5176');  /* 南纬低纬 */
+        g.addColorStop(0.50, '#256388');  /* 赤道：最亮蓝 */
+        g.addColorStop(0.58, '#1A5176');  /* 北纬低纬 */
+        g.addColorStop(0.70, '#0C375D');  /* 北纬中纬 */
+        g.addColorStop(0.88, '#061941');  /* 北纬高纬 */
+        g.addColorStop(1.00, '#040D24');  /* 北极：最深蓝 */
+        tempCtx.fillStyle = g;
+        tempCtx.fillRect(0, 0, tempCv.width, H);
+        tempBuilt = true;
+        window.__tempBuilt = true;
+        window.__latGradient = true;
+      }
+      function drawTemp() {
+        if (!tempBuilt) return;
+        lctx.save();
+        lctx.imageSmoothingEnabled = true;
+        lctx.imageSmoothingQuality = 'high';
+        lctx.drawImage(tempCv, 0, 0, lineCv.width, lineCv.height);
+        lctx.restore();
+      }
+      buildLatGradient();
       drawBase();
-      function drawIce(gj, iceGj) {
+      function drawIce(gj) {
         var w = lineCv.width, h = lineCv.height;
         var lw = Math.max(1, Math.round(w / 2048));
-        drawBase();
-        /* V49.10 · 冷白半透明冰面：底层蓝线可隐约透出，非纯白贴片 */
-        var iceFill = 'rgba(238,251,255,0.96)';
-        var iceStroke = 'rgba(210,242,255,0.92)';
+        drawBg();
+        /* V49.24 · 回滚到“蓝线地球”原始高级版本：移除雪原/冰盖/海冰/浮冰，仅保留蓝色地球主体 + 大陆蓝线 */
         var landFill = 'rgba(13,42,70,0.48)';
         var landStroke = 'rgba(150,240,255,1)';
-        var useIceData = !!(iceGj && iceGj.features && iceGj.features.length);
-        var landFeats = [], iceFeats = [];
-        if (useIceData) {
-          iceFeats = iceGj.features;
-          landFeats = window.__landFeats || [];
-        } else if (gj && gj.features) {
+        var landFeats = [];
+        if (gj && gj.features) {
+          window.__landGJ = gj;
           window.__landFeats = gj.features;
-          for (var fz = 0; fz < gj.features.length; fz++) {
-            var pz = gj.features[fz].properties || {};
-            var nz = pz.ADMIN || pz.NAME || '';
-            if (nz === 'Antarctica' || nz === 'Greenland') iceFeats.push(gj.features[fz]);
-            else landFeats.push(gj.features[fz]);
-          }
+          landFeats = gj.features;
+        } else {
+          landFeats = window.__landFeats || [];
         }
         function traceRingCoords(ring, closePath) {
           lctx.beginPath();
@@ -393,7 +418,7 @@
           }
           if (closePath) lctx.closePath();
         }
-        function drawFeats(list, isIce, mode) {
+        function drawFeats(list, mode) {
           for (var f = 0; f < list.length; f++) {
             var geom = list[f].geometry;
             if (!geom) continue;
@@ -408,12 +433,12 @@
                   lctx.translate(dx * w, 0);
                   traceRingCoords(polys[pp][rr], true);
                   if (mode === 'fill') {
-                    lctx.fillStyle = isIce ? iceFill : landFill;
+                    lctx.fillStyle = landFill;
                     lctx.fill();
                   } else {
                     /* V49.14 · 中国作为正面视觉焦点：轮廓略清晰于普通大陆 */
-                    lctx.strokeStyle = isChina ? 'rgba(170,244,255,1)' : (isIce ? iceStroke : landStroke);
-                    lctx.lineWidth = isIce ? lw * 2.2 : (isChina ? lw * 2.5 : lw * 2.0);
+                    lctx.strokeStyle = isChina ? 'rgba(170,244,255,1)' : landStroke;
+                    lctx.lineWidth = isChina ? lw * 2.5 : lw * 2.0;
                     lctx.stroke();
                   }
                   lctx.restore();
@@ -421,35 +446,6 @@
               }
             }
           }
-        }
-        function drawIceGrain(list) {
-          lctx.save();
-          lctx.beginPath();
-          for (var f = 0; f < list.length; f++) {
-            var geom = list[f].geometry;
-            if (!geom) continue;
-            var polys = geom.type === 'Polygon' ? [geom.coordinates] : (geom.type === 'MultiPolygon' ? geom.coordinates : null);
-            if (!polys) continue;
-            for (var pp = 0; pp < polys.length; pp++) {
-              for (var rr = 0; rr < polys[pp].length; rr++) {
-                for (var dx = -1; dx <= 1; dx++) {
-                  lctx.save();
-                  lctx.translate(dx * w, 0);
-                  traceRingCoords(polys[pp][rr], true);
-                  lctx.restore();
-                }
-              }
-            }
-          }
-          lctx.clip();
-          lctx.fillStyle = 'rgba(240,252,255,0.20)';
-          var seed = 20260814;
-          function rnd() { seed = (seed * 1664525 + 1013904223) >>> 0; return seed / 4294967296; }
-          var grain = Math.max(500, Math.round(w * 0.18));
-          for (var s = 0; s < grain; s++) {
-            lctx.fillRect(Math.round(rnd() * w), Math.round(rnd() * h), lw, lw);
-          }
-          lctx.restore();
         }
         function drawSecondaryLines() {
           var geo = window.__geoLineFeats || [];
@@ -476,29 +472,18 @@
           trace(geo, 'rgba(150,210,240,0.22)', lw * 1.2);
           trace(rivers, 'rgba(120,190,235,0.30)', lw * 1.4);
         }
-        /* 层级：填充（陆地/冰面）→ 冰面雪纹 → 辉光/北极带 → 描边（轮廓在冰雪之上）→ 辅助地理线 */
-        drawFeats(landFeats, false, 'fill');
-        drawFeats(iceFeats, true, 'fill');
-        drawIceGrain(iceFeats);
-        var sg2 = lctx.createRadialGradient(w / 2, 0, 0, w / 2, 0, h * 0.42);
-        sg2.addColorStop(0, 'rgba(238,253,255,0.72)');
-        sg2.addColorStop(0.4, 'rgba(222,247,255,0.50)');
-        sg2.addColorStop(0.75, 'rgba(210,240,255,0.12)');
-        sg2.addColorStop(1, 'rgba(210,240,255,0)');
-        lctx.fillStyle = sg2;
-        lctx.fillRect(0, 0, w, h * 0.5);
-        var arY = Math.round((90 - 82.5) / 180 * h);
-        lctx.fillStyle = 'rgba(215,242,255,0.12)';
-        lctx.fillRect(0, arY, w, h - arY);
-        drawFeats(landFeats, false, 'stroke');
-        drawFeats(iceFeats, true, 'stroke');
+        /* V49.29 · 层级：陆地填充 → 温度面 → 经纬线 → 大陆蓝线描边 → 辅助地理线 */
+        drawFeats(landFeats, 'fill');
+        drawTemp();
+        drawGraticule();
+        drawFeats(landFeats, 'stroke');
         drawSecondaryLines();
         applyLineTexture();
-        window.__earthIce = true;
+        window.__earthIce = false;
       }globe = new window.ThreeGlobe()
         .globeMaterial(earthMat)
-        .atmosphereColor('#3d7ea6')
-        .atmosphereAltitude(0.02)
+        .atmosphereColor('#1f4a66')
+        .atmosphereAltitude(0.012)
         .pointsData(nodeData)
         .pointLat('lat').pointLng('lng').pointColor('color').pointAltitude('alt').pointRadius('radius')
         .arcsData(arcData)
@@ -514,18 +499,9 @@
       (function tryGeo(i) {
         if (i >= geoUrls.length) return;
         fetchGeo(geoUrls[i]).then(function (gj) {
-  if (gj && gj.features && gj.features.length) { window.__landGJ = gj; drawIce(gj, null); window.__earthLand = gj.features.length; }
+  if (gj && gj.features && gj.features.length) { window.__landGJ = gj; drawIce(gj); window.__earthLand = gj.features.length; }
           else tryGeo(i + 1);
         }).catch(function () { tryGeo(i + 1); });
-      })(0);
-      /* V49.7 · 真实冰盖数据（Natural Earth glaciated areas，官方科研制图数据） */
-      var iceUrls = ['./assets/geo/glaciated.json'];
-      (function tryIce(i) {
-        if (i >= iceUrls.length) return;
-        fetchGeo(iceUrls[i]).then(function (gj) {
-          if (gj && gj.features && gj.features.length) drawIce(null, gj);
-          else tryIce(i + 1);
-        }).catch(function () { tryIce(i + 1); });
       })(0);
       /* V49.10 · 第二层真实地理线稿：地理参考线 + 河流（Natural Earth） */
       var lineUrls = [
@@ -538,27 +514,12 @@
           if (gj && gj.features && gj.features.length) {
             if (i === 0) window.__geoLineFeats = gj.features;
             else window.__riverFeats = gj.features;
-            if (window.__landGJ) drawIce(window.__landGJ, null);
+            if (window.__landGJ) drawIce(window.__landGJ);
           }
           tryLines(i + 1);
         }).catch(function () { tryLines(i + 1); });
       })(0);
-/* 少量漂浮粒子（地球外围） */
-      var floatGeo = new THREE.BufferGeometry();
-      var fpos = [];
-      var seed3 = 20260812;
-      function rnd3() { seed3 = (seed3 * 1664525 + 1013904223) >>> 0; return seed3 / 4294967296; }
-      for (var fi = 0; fi < 90; fi++) {
-        var phi = rnd3() * Math.PI * 2;
-        var cost = rnd3() * 2 - 1;
-        var rad = 150 + rnd3() * 140;
-        var sp = Math.sqrt(1 - cost * cost);
-        fpos.push(rad * sp * Math.cos(phi), rad * cost, rad * sp * Math.sin(phi));
-      }
-      floatGeo.setAttribute('position', new THREE.Float32BufferAttribute(fpos, 3));
-      var floatMat = new THREE.PointsMaterial({ color: 0x7fb8d8, size: 1.2, transparent: true, opacity: 0.45, depthWrite: false });
-      var floatPts = new THREE.Points(floatGeo, floatMat);
-      scene.add(floatPts);
+      /* V49.23 · 移除地球外围随机漂浮粒子：避免中国大陆附近出现无数据意义的散点 */
       /* 背景深空星光层：Shader 控制逐星大小/亮度/2-5 秒呼吸，冷白·淡蓝·冰蓝，仅背景视觉 */
       (function () {
         var vertSrc = [
@@ -915,7 +876,7 @@
           labelCtx.stroke();
 
           /* 标签：冷白 + 极轻蓝光 + 锐利主体 */
-          labelCtx.font = '500 ' + Math.round(13 * u) + 'px "Segoe UI","Microsoft YaHei",sans-serif';
+          labelCtx.font = '500 ' + Math.round(17 * u) + 'px "Segoe UI","Microsoft YaHei",sans-serif';
           labelCtx.textBaseline = 'middle';
           labelCtx.shadowColor = 'rgba(70,170,220,0.55)';
           labelCtx.shadowBlur = Math.round(6 * u);
@@ -933,7 +894,6 @@ function animate() {
         requestAnimationFrame(animate);
         tick++;
         globe.rotation.y = 0.6 + tick * 0.00015; /* V49.9 · 从中国正面缓慢进入自转 */
-        floatPts.rotation.y += 0.00008;
         var bgT = performance.now() / 1000;
         for (var si = 0; si < bgStarLayers.length; si++) {
           bgStarLayers[si].material.uniforms.uTime.value = bgT;

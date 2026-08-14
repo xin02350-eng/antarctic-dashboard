@@ -1,0 +1,41 @@
+{
+  "dataLen": 0,
+  "chartJsType": "function",
+  "chartJsLoaded": true,
+  "hasChartsGlobal": true,
+  "chartState": {
+    "chartInTemp": {
+      "exists": true,
+      "hasChart": false
+    },
+    "chartInHum": {
+      "exists": true,
+      "hasChart": false
+    },
+    "chartOutTemp": {
+      "exists": true,
+      "hasChart": false
+    },
+    "chartOutHum": {
+      "exists": true,
+      "hasChart": false
+    },
+    "chartSolar": {
+      "exists": true,
+      "hasChart": false
+    },
+    "chartCurrent": {
+      "exists": true,
+      "hasChart": false
+    },
+    "chartVoltage": {
+      "exists": true,
+      "hasChart": false
+    },
+    "chartWind": {
+      "exists": true,
+      "hasChart": false
+    }
+  },
+  "errors": []
+}

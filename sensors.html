@@ -113,7 +113,7 @@
       </div>
 
       <div class="panel">
-        <div class="panel-title"><span data-i18n="wind_speed">WIND SPEED</span><br><span data-i18n="no_data_available">NO DATA AVAILABLE</span></div>
+        <div class="panel-title"><span data-i18n="wind_speed">WIND SPEED</span><br><span data-i18n="no_data_available" id="windNoData">NO DATA AVAILABLE</span></div>
         <canvas id="chartWind"></canvas>
       </div>
 
@@ -422,6 +422,31 @@
 
 <!-- 数据核心与图表创建（main.js 保持不变） -->
 <script src="./js/main.js?v=20260806b"></script>
+  <!-- V49.19 · 风速“暂无数据”占位：有有效风速数据时隐藏，无数据时显示（不动图表/数据逻辑） -->
+  <script>
+  (function () {
+    'use strict';
+    var el = document.getElementById('windNoData');
+    if (!el) return;
+    function refresh() {
+      var hasWind = false;
+      try {
+        if (typeof DATA !== 'undefined' && Array.isArray(DATA)) {
+          hasWind = DATA.some(function (d) {
+            return d && d.wind !== null && d.wind !== undefined;
+          });
+        }
+      } catch (e) { /* DATA 尚未就绪时忽略 */ }
+      el.style.display = hasWind ? 'none' : '';
+    }
+    refresh();
+    var tries = 0;
+    var timer = setInterval(function () {
+      refresh();
+      if (++tries >= 60) clearInterval(timer);
+    }, 300);
+  })();
+  </script>
   <!-- 语言切换（全站统一） -->
   <script>
   (function () {

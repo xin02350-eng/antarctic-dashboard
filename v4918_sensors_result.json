@@ -1,0 +1,47 @@
+{
+  "dataLen": 366,
+  "chartJs": true,
+  "st": {
+    "chartInTemp": {
+      "points": 366,
+      "first": -23.4,
+      "last": -25
+    },
+    "chartInHum": {
+      "points": 366,
+      "first": 29.5,
+      "last": 27
+    },
+    "chartOutTemp": {
+      "points": 366,
+      "first": -25.6,
+      "last": -26.8
+    },
+    "chartOutHum": {
+      "points": 366,
+      "first": 25,
+      "last": 23.6
+    },
+    "chartSolar": {
+      "points": 366,
+      "first": 2,
+      "last": 1
+    },
+    "chartCurrent": {
+      "points": 366,
+      "first": 60,
+      "last": 64
+    },
+    "chartVoltage": {
+      "points": 366,
+      "first": 15.5,
+      "last": 13.6
+    },
+    "chartWind": {
+      "points": 366,
+      "first": 0,
+      "last": 0
+    }
+  },
+  "errors": []
+}

@@ -1,0 +1,342 @@
+{
+  "zh1920": {
+    "w": 4096,
+    "h": 2048,
+    "floeFeats": 9539,
+    "seaIceFeats": 4,
+    "landIceFeats": 2,
+    "earthIce": true,
+    "rows": [
+      {
+        "label": "antarctica-ice(lat-80)",
+        "nearWhite": 2943,
+        "iceBlue": 304,
+        "dark": 817,
+        "runs": 7,
+        "total": 4096
+      },
+      {
+        "label": "antarctic-seaice(lat-61)",
+        "nearWhite": 0,
+        "iceBlue": 2917,
+        "dark": 1084,
+        "runs": 10,
+        "total": 4096
+      },
+      {
+        "label": "mid-ocean(lat-36)",
+        "nearWhite": 0,
+        "iceBlue": 30,
+        "dark": 4056,
+        "runs": 7,
+        "total": 4096
+      },
+      {
+        "label": "equator(lat0)",
+        "nearWhite": 0,
+        "iceBlue": 91,
+        "dark": 0,
+        "runs": 18,
+        "total": 4096
+      },
+      {
+        "label": "arctic-edge(lat+68)",
+        "nearWhite": 203,
+        "iceBlue": 443,
+        "dark": 3349,
+        "runs": 36,
+        "total": 4096
+      },
+      {
+        "label": "arctic-pack(lat+77)",
+        "nearWhite": 2836,
+        "iceBlue": 1257,
+        "dark": 2,
+        "runs": 1,
+        "total": 4096
+      },
+      {
+        "label": "arctic-pole(lat+84)",
+        "nearWhite": 660,
+        "iceBlue": 1993,
+        "dark": 1033,
+        "runs": 235,
+        "total": 4096
+      }
+    ],
+    "ready": true,
+    "errors": []
+  },
+  "zh2560": {
+    "w": 4096,
+    "h": 2048,
+    "floeFeats": 9539,
+    "seaIceFeats": 4,
+    "landIceFeats": 2,
+    "earthIce": true,
+    "rows": [
+      {
+        "label": "antarctica-ice(lat-80)",
+        "nearWhite": 2943,
+        "iceBlue": 304,
+        "dark": 817,
+        "runs": 7,
+        "total": 4096
+      },
+      {
+        "label": "antarctic-seaice(lat-61)",
+        "nearWhite": 0,
+        "iceBlue": 2917,
+        "dark": 1084,
+        "runs": 10,
+        "total": 4096
+      },
+      {
+        "label": "mid-ocean(lat-36)",
+        "nearWhite": 0,
+        "iceBlue": 30,
+        "dark": 4056,
+        "runs": 7,
+        "total": 4096
+      },
+      {
+        "label": "equator(lat0)",
+        "nearWhite": 0,
+        "iceBlue": 91,
+        "dark": 0,
+        "runs": 18,
+        "total": 4096
+      },
+      {
+        "label": "arctic-edge(lat+68)",
+        "nearWhite": 203,
+        "iceBlue": 443,
+        "dark": 3349,
+        "runs": 36,
+        "total": 4096
+      },
+      {
+        "label": "arctic-pack(lat+77)",
+        "nearWhite": 2836,
+        "iceBlue": 1257,
+        "dark": 2,
+        "runs": 1,
+        "total": 4096
+      },
+      {
+        "label": "arctic-pole(lat+84)",
+        "nearWhite": 660,
+        "iceBlue": 1993,
+        "dark": 1033,
+        "runs": 235,
+        "total": 4096
+      }
+    ],
+    "ready": true,
+    "errors": []
+  },
+  "tablet": {
+    "w": 4096,
+    "h": 2048,
+    "floeFeats": 9539,
+    "seaIceFeats": 4,
+    "landIceFeats": 2,
+    "earthIce": true,
+    "rows": [
+      {
+        "label": "antarctica-ice(lat-80)",
+        "nearWhite": 2943,
+        "iceBlue": 304,
+        "dark": 817,
+        "runs": 7,
+        "total": 4096
+      },
+      {
+        "label": "antarctic-seaice(lat-61)",
+        "nearWhite": 0,
+        "iceBlue": 2917,
+        "dark": 1084,
+        "runs": 10,
+        "total": 4096
+      },
+      {
+        "label": "mid-ocean(lat-36)",
+        "nearWhite": 0,
+        "iceBlue": 30,
+        "dark": 4056,
+        "runs": 7,
+        "total": 4096
+      },
+      {
+        "label": "equator(lat0)",
+        "nearWhite": 0,
+        "iceBlue": 91,
+        "dark": 0,
+        "runs": 18,
+        "total": 4096
+      },
+      {
+        "label": "arctic-edge(lat+68)",
+        "nearWhite": 203,
+        "iceBlue": 443,
+        "dark": 3349,
+        "runs": 36,
+        "total": 4096
+      },
+      {
+        "label": "arctic-pack(lat+77)",
+        "nearWhite": 2836,
+        "iceBlue": 1257,
+        "dark": 2,
+        "runs": 1,
+        "total": 4096
+      },
+      {
+        "label": "arctic-pole(lat+84)",
+        "nearWhite": 660,
+        "iceBlue": 1993,
+        "dark": 1033,
+        "runs": 235,
+        "total": 4096
+      }
+    ],
+    "ready": true,
+    "errors": []
+  },
+  "mobile": {
+    "w": 2048,
+    "h": 1024,
+    "floeFeats": 9539,
+    "seaIceFeats": 4,
+    "landIceFeats": 2,
+    "earthIce": true,
+    "rows": [
+      {
+        "label": "antarctica-ice(lat-80)",
+        "nearWhite": 1473,
+        "iceBlue": 143,
+        "dark": 410,
+        "runs": 6,
+        "total": 2048
+      },
+      {
+        "label": "antarctic-seaice(lat-61)",
+        "nearWhite": 0,
+        "iceBlue": 1433,
+        "dark": 569,
+        "runs": 9,
+        "total": 2048
+      },
+      {
+        "label": "mid-ocean(lat-36)",
+        "nearWhite": 0,
+        "iceBlue": 12,
+        "dark": 2025,
+        "runs": 7,
+        "total": 2048
+      },
+      {
+        "label": "equator(lat0)",
+        "nearWhite": 0,
+        "iceBlue": 35,
+        "dark": 377,
+        "runs": 19,
+        "total": 2048
+      },
+      {
+        "label": "arctic-edge(lat+68)",
+        "nearWhite": 103,
+        "iceBlue": 193,
+        "dark": 1657,
+        "runs": 36,
+        "total": 2048
+      },
+      {
+        "label": "arctic-pack(lat+77)",
+        "nearWhite": 926,
+        "iceBlue": 1120,
+        "dark": 1,
+        "runs": 1,
+        "total": 2048
+      },
+      {
+        "label": "arctic-pole(lat+84)",
+        "nearWhite": 255,
+        "iceBlue": 868,
+        "dark": 577,
+        "runs": 235,
+        "total": 2048
+      }
+    ],
+    "ready": true,
+    "errors": []
+  },
+  "en1920": {
+    "w": 4096,
+    "h": 2048,
+    "floeFeats": 9539,
+    "seaIceFeats": 4,
+    "landIceFeats": 2,
+    "earthIce": true,
+    "rows": [
+      {
+        "label": "antarctica-ice(lat-80)",
+        "nearWhite": 2943,
+        "iceBlue": 304,
+        "dark": 817,
+        "runs": 7,
+        "total": 4096
+      },
+      {
+        "label": "antarctic-seaice(lat-61)",
+        "nearWhite": 0,
+        "iceBlue": 2917,
+        "dark": 1084,
+        "runs": 10,
+        "total": 4096
+      },
+      {
+        "label": "mid-ocean(lat-36)",
+        "nearWhite": 0,
+        "iceBlue": 30,
+        "dark": 4056,
+        "runs": 7,
+        "total": 4096
+      },
+      {
+        "label": "equator(lat0)",
+        "nearWhite": 0,
+        "iceBlue": 91,
+        "dark": 0,
+        "runs": 18,
+        "total": 4096
+      },
+      {
+        "label": "arctic-edge(lat+68)",
+        "nearWhite": 203,
+        "iceBlue": 443,
+        "dark": 3349,
+        "runs": 36,
+        "total": 4096
+      },
+      {
+        "label": "arctic-pack(lat+77)",
+        "nearWhite": 2836,
+        "iceBlue": 1257,
+        "dark": 2,
+        "runs": 1,
+        "total": 4096
+      },
+      {
+        "label": "arctic-pole(lat+84)",
+        "nearWhite": 660,
+        "iceBlue": 1993,
+        "dark": 1033,
+        "runs": 235,
+        "total": 4096
+      }
+    ],
+    "ready": true,
+    "errors": []
+  }
+}

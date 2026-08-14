@@ -1,0 +1,237 @@
+{
+  "zh1920": {
+    "w": 4096,
+    "h": 2048,
+    "earthIce": false,
+    "seaIceFeats": null,
+    "floeFeats": null,
+    "iceGJ": false,
+    "landFeats": 177,
+    "samples": {
+      "antarctica": [
+        22,
+        55,
+        76
+      ],
+      "antarctica2": [
+        15,
+        43,
+        65
+      ],
+      "greenland": [
+        14,
+        37,
+        56
+      ],
+      "arctic": [
+        15,
+        33,
+        43
+      ],
+      "china": [
+        14,
+        39,
+        59
+      ],
+      "ocean": [
+        5,
+        19,
+        34
+      ]
+    },
+    "whiteCount": {
+      "antarcticaRow": 0,
+      "arcticRow": 0
+    },
+    "ready": true,
+    "errors": []
+  },
+  "zh2560": {
+    "w": 4096,
+    "h": 2048,
+    "earthIce": false,
+    "seaIceFeats": null,
+    "floeFeats": null,
+    "iceGJ": false,
+    "landFeats": 177,
+    "samples": {
+      "antarctica": [
+        22,
+        55,
+        76
+      ],
+      "antarctica2": [
+        15,
+        43,
+        65
+      ],
+      "greenland": [
+        14,
+        37,
+        56
+      ],
+      "arctic": [
+        15,
+        33,
+        43
+      ],
+      "china": [
+        14,
+        39,
+        59
+      ],
+      "ocean": [
+        5,
+        19,
+        34
+      ]
+    },
+    "whiteCount": {
+      "antarcticaRow": 0,
+      "arcticRow": 0
+    },
+    "ready": true,
+    "errors": []
+  },
+  "tablet": {
+    "w": 4096,
+    "h": 2048,
+    "earthIce": false,
+    "seaIceFeats": null,
+    "floeFeats": null,
+    "iceGJ": false,
+    "landFeats": 177,
+    "samples": {
+      "antarctica": [
+        22,
+        55,
+        76
+      ],
+      "antarctica2": [
+        15,
+        43,
+        65
+      ],
+      "greenland": [
+        14,
+        37,
+        56
+      ],
+      "arctic": [
+        15,
+        33,
+        43
+      ],
+      "china": [
+        14,
+        39,
+        59
+      ],
+      "ocean": [
+        5,
+        19,
+        34
+      ]
+    },
+    "whiteCount": {
+      "antarcticaRow": 0,
+      "arcticRow": 0
+    },
+    "ready": true,
+    "errors": []
+  },
+  "mobile": {
+    "w": 2048,
+    "h": 1024,
+    "earthIce": false,
+    "seaIceFeats": null,
+    "floeFeats": null,
+    "iceGJ": false,
+    "landFeats": 177,
+    "samples": {
+      "antarctica": [
+        15,
+        43,
+        65
+      ],
+      "antarctica2": [
+        12,
+        38,
+        60
+      ],
+      "greenland": [
+        10,
+        31,
+        49
+      ],
+      "arctic": [
+        9,
+        22,
+        31
+      ],
+      "china": [
+        10,
+        33,
+        52
+      ],
+      "ocean": [
+        4,
+        19,
+        34
+      ]
+    },
+    "whiteCount": {
+      "antarcticaRow": 0,
+      "arcticRow": 0
+    },
+    "ready": true,
+    "errors": []
+  },
+  "en1920": {
+    "w": 4096,
+    "h": 2048,
+    "earthIce": false,
+    "seaIceFeats": null,
+    "floeFeats": null,
+    "iceGJ": false,
+    "landFeats": 177,
+    "samples": {
+      "antarctica": [
+        22,
+        55,
+        76
+      ],
+      "antarctica2": [
+        15,
+        43,
+        65
+      ],
+      "greenland": [
+        14,
+        37,
+        56
+      ],
+      "arctic": [
+        15,
+        33,
+        43
+      ],
+      "china": [
+        14,
+        39,
+        59
+      ],
+      "ocean": [
+        5,
+        19,
+        34
+      ]
+    },
+    "whiteCount": {
+      "antarcticaRow": 0,
+      "arcticRow": 0
+    },
+    "ready": true,
+    "errors": []
+  }
+}
