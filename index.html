@@ -397,6 +397,8 @@
           for (var f = 0; f < list.length; f++) {
             var geom = list[f].geometry;
             if (!geom) continue;
+            var fname = list[f].properties ? (list[f].properties.ADMIN || list[f].properties.NAME || '') : '';
+            var isChina = fname === 'China';
             var polys = geom.type === 'Polygon' ? [geom.coordinates] : (geom.type === 'MultiPolygon' ? geom.coordinates : null);
             if (!polys) continue;
             for (var pp = 0; pp < polys.length; pp++) {
@@ -409,8 +411,9 @@
                     lctx.fillStyle = isIce ? iceFill : landFill;
                     lctx.fill();
                   } else {
-                    lctx.strokeStyle = isIce ? iceStroke : landStroke;
-                    lctx.lineWidth = isIce ? lw * 2.2 : lw * 2.0;
+                    /* V49.14 · 中国作为正面视觉焦点：轮廓略清晰于普通大陆 */
+                    lctx.strokeStyle = isChina ? 'rgba(170,244,255,1)' : (isIce ? iceStroke : landStroke);
+                    lctx.lineWidth = isIce ? lw * 2.2 : (isChina ? lw * 2.5 : lw * 2.0);
                     lctx.stroke();
                   }
                   lctx.restore();
@@ -821,8 +824,8 @@
         }
         labelCtx.clearRect(0, 0, labelW, labelH);
         var items = [
-          { node: NJ, dy: 18 },
-          { node: NE, dy: -30 }
+          { node: NJ, dy: 16 },
+          { node: NE, dy: -28 }
         ];
         var names = labelLang === 'zh' ? ['南京', '东北地区'] : ['NANJING', 'NORTHEAST CHINA'];
         for (var li = 0; li < items.length; li++) {
@@ -852,60 +855,39 @@
           var sy = (-sp1.y * 0.5 + 0.5) * labelH;
           var lx = (sp2.x * 0.5 + 0.5) * labelW;
           var ly = (-sp2.y * 0.5 + 0.5) * labelH;
-          /* 引导线：极细、低亮度、锐利 */
-          labelCtx.strokeStyle = 'rgba(160,235,255,0.5)';
+          /* V49.14 · 极细引导线：几乎不发光的短连接 */
+          labelCtx.strokeStyle = 'rgba(150,225,250,0.38)';
           labelCtx.lineWidth = 1;
           labelCtx.beginPath();
           labelCtx.moveTo(sx, sy);
           labelCtx.lineTo(lx, ly);
           labelCtx.stroke();
-          /* 节点：克制光晕 + 锐利核心（亮心 + 青蓝外圈） */
-          var nodeColor = li === 0 ? '0,229,168' : '140,234,255';
-          var glowR = labelCtx.createRadialGradient(sx, sy, 0, sx, sy, 11);
-          glowR.addColorStop(0, 'rgba(' + nodeColor + ',.3)');
-          glowR.addColorStop(1, 'rgba(' + nodeColor + ',0)');
-          labelCtx.fillStyle = glowR;
+          /* V49.14 · 精致科研定位点：细环 + 亮心，无大光晕 */
+          labelCtx.strokeStyle = li === 0 ? 'rgba(0,229,168,0.75)' : 'rgba(140,234,255,0.75)';
+          labelCtx.lineWidth = 1.2;
           labelCtx.beginPath();
-          labelCtx.arc(sx, sy, 11, 0, Math.PI * 2);
-          labelCtx.fill();
-          labelCtx.fillStyle = li === 0 ? '#00e5a8' : '#8ceaff';
-          labelCtx.beginPath();
-          labelCtx.arc(sx, sy, 4.5, 0, Math.PI * 2);
-          labelCtx.fill();
-          labelCtx.fillStyle = '#ffffff';
-          labelCtx.beginPath();
-          labelCtx.arc(sx, sy, 1.8, 0, Math.PI * 2);
-          labelCtx.fill();
-          /* 标签：干净暗底 + 冷白高清文字 */
-          labelCtx.font = '600 13px "Segoe UI","Microsoft YaHei",sans-serif';
-          var tw = labelCtx.measureText(names[li]).width;
-          var ty = ly + it.dy;
-          labelCtx.fillStyle = 'rgba(3,14,24,0.55)';
-          labelCtx.beginPath();
-          var rx = lx - tw / 2 - 7, ry = ty - 10, rw = tw + 14, rh = 20, rad = 5;
-          labelCtx.moveTo(rx + rad, ry);
-          labelCtx.arcTo(rx + rw, ry, rx + rw, ry + rh, rad);
-          labelCtx.arcTo(rx + rw, ry + rh, rx, ry + rh, rad);
-          labelCtx.arcTo(rx, ry + rh, rx, ry, rad);
-          labelCtx.arcTo(rx, ry, rx + rw, ry, rad);
-          labelCtx.closePath();
-          labelCtx.fill();
-          labelCtx.strokeStyle = 'rgba(140,234,255,0.12)';
-          labelCtx.lineWidth = 1;
+          labelCtx.arc(sx, sy, 3.5, 0, Math.PI * 2);
           labelCtx.stroke();
-          labelCtx.fillStyle = '#f2fdff';
+          labelCtx.fillStyle = li === 0 ? '#8fffd9' : '#bfeeff';
+          labelCtx.beginPath();
+          labelCtx.arc(sx, sy, 1.6, 0, Math.PI * 2);
+          labelCtx.fill();
+          /* V49.14 · 简洁地点标注：克制字号、冷白、轻微描影 */
+          labelCtx.font = '500 11px "Segoe UI","Microsoft YaHei",sans-serif';
+          labelCtx.fillStyle = '#dff4ff';
           labelCtx.textBaseline = 'middle';
-          labelCtx.shadowColor = 'rgba(2,10,18,0.85)';
-          labelCtx.shadowBlur = 6;
+          labelCtx.shadowColor = 'rgba(2,10,18,0.7)';
+          labelCtx.shadowBlur = 3;
           labelCtx.shadowOffsetY = 1;
-          labelCtx.fillText(names[li], lx, ty);
+          labelCtx.fillText(names[li], lx, ly + it.dy);
           labelCtx.shadowBlur = 0;
           labelCtx.shadowOffsetY = 0;
+          /* 南京：保留极轻微呼吸细环 */
           if (li === 0) {
             var pulse = 0.5 + 0.5 * Math.sin(t / 320);
             labelCtx.beginPath();
-            labelCtx.arc(sx, sy, 12 + 6 * pulse, 0, Math.PI * 2);
-            labelCtx.strokeStyle = 'rgba(0,229,168,' + (0.32 * pulse).toFixed(2) + ')';
+            labelCtx.arc(sx, sy, 7 + 2 * pulse, 0, Math.PI * 2);
+            labelCtx.strokeStyle = 'rgba(0,229,168,' + (0.22 * pulse).toFixed(2) + ')';
             labelCtx.lineWidth = 1;
             labelCtx.stroke();
           }
