@@ -1,0 +1,230 @@
+{
+  "desktopZh": {
+    "state": {
+      "btn": {
+        "x": 134,
+        "y": 667,
+        "w": 115,
+        "h": 36
+      },
+      "title": {
+        "x": 134,
+        "top": 202,
+        "bottom": 386
+      },
+      "manifesto": {
+        "x": 46,
+        "y": 984,
+        "bottom": 1046
+      },
+      "hero": {
+        "y": 162,
+        "bottom": 519
+      },
+      "btnBelowTitle": true,
+      "btnAboveManifesto": true,
+      "btnLeftAlignedWithTitle": true,
+      "btnCenterY": 685,
+      "midpoint": 685,
+      "btnCenterNearMidpoint": true,
+      "btnAnim": "lockGlow",
+      "arrowAnim": "lockArrow",
+      "cornerAnim": "lockCorner",
+      "scanAnim": "lockScan",
+      "pulseAnim": "lockPulse",
+      "scrollW": 1920,
+      "innerW": 1920
+    },
+    "errors": []
+  },
+  "desktopEn": {
+    "state": {
+      "btn": {
+        "x": 134,
+        "y": 643,
+        "w": 244,
+        "h": 36
+      },
+      "title": {
+        "x": 134,
+        "top": 190,
+        "bottom": 338
+      },
+      "manifesto": {
+        "x": 46,
+        "y": 984,
+        "bottom": 1046
+      },
+      "hero": {
+        "y": 162,
+        "bottom": 472
+      },
+      "btnBelowTitle": true,
+      "btnAboveManifesto": true,
+      "btnLeftAlignedWithTitle": true,
+      "btnCenterY": 661,
+      "midpoint": 661,
+      "btnCenterNearMidpoint": true,
+      "btnAnim": "lockGlow",
+      "arrowAnim": "lockArrow",
+      "cornerAnim": "lockCorner",
+      "scanAnim": "lockScan",
+      "pulseAnim": "lockPulse",
+      "scrollW": 1920,
+      "innerW": 1920
+    },
+    "errors": []
+  },
+  "laptop": {
+    "state": {
+      "btn": {
+        "x": 96,
+        "y": 471,
+        "w": 115,
+        "h": 36
+      },
+      "title": {
+        "x": 96,
+        "top": 155,
+        "bottom": 302
+      },
+      "manifesto": {
+        "x": 46,
+        "y": 677,
+        "bottom": 734
+      },
+      "hero": {
+        "y": 115,
+        "bottom": 407
+      },
+      "btnBelowTitle": true,
+      "btnAboveManifesto": true,
+      "btnLeftAlignedWithTitle": true,
+      "btnCenterY": 489,
+      "midpoint": 489,
+      "btnCenterNearMidpoint": true,
+      "btnAnim": "lockGlow",
+      "arrowAnim": "lockArrow",
+      "cornerAnim": "lockCorner",
+      "scanAnim": "lockScan",
+      "pulseAnim": "lockPulse",
+      "scrollW": 1366,
+      "innerW": 1366
+    },
+    "errors": []
+  },
+  "tablet": {
+    "state": {
+      "btn": {
+        "x": 72,
+        "y": 447,
+        "w": 115,
+        "h": 36
+      },
+      "title": {
+        "x": 72,
+        "top": 140,
+        "bottom": 243
+      },
+      "manifesto": {
+        "x": 46,
+        "y": 687,
+        "bottom": 738
+      },
+      "hero": {
+        "y": 100,
+        "bottom": 348
+      },
+      "btnBelowTitle": true,
+      "btnAboveManifesto": true,
+      "btnLeftAlignedWithTitle": true,
+      "btnCenterY": 465,
+      "midpoint": 465,
+      "btnCenterNearMidpoint": true,
+      "btnAnim": "lockGlow",
+      "arrowAnim": "lockArrow",
+      "cornerAnim": "lockCorner",
+      "scanAnim": "lockScan",
+      "pulseAnim": "lockPulse",
+      "scrollW": 1024,
+      "innerW": 1024
+    },
+    "errors": []
+  },
+  "tabletPortrait": {
+    "state": {
+      "btn": {
+        "x": 22,
+        "y": 824,
+        "w": 115,
+        "h": 36
+      },
+      "title": {
+        "x": 22,
+        "top": 643,
+        "bottom": 746
+      },
+      "manifesto": {
+        "x": 46,
+        "y": 939,
+        "bottom": 990
+      },
+      "hero": {
+        "y": 603,
+        "bottom": 874
+      },
+      "btnBelowTitle": true,
+      "btnAboveManifesto": true,
+      "btnLeftAlignedWithTitle": true,
+      "btnCenterY": 842,
+      "midpoint": 842,
+      "btnCenterNearMidpoint": true,
+      "btnAnim": "lockGlow",
+      "arrowAnim": "lockArrow",
+      "cornerAnim": "lockCorner",
+      "scanAnim": "lockScan",
+      "pulseAnim": "lockPulse",
+      "scrollW": 768,
+      "innerW": 768
+    },
+    "errors": []
+  },
+  "mobile": {
+    "state": {
+      "btn": {
+        "x": 22,
+        "y": 683,
+        "w": 101,
+        "h": 35
+      },
+      "title": {
+        "x": 22,
+        "top": 551,
+        "bottom": 630
+      },
+      "manifesto": {
+        "x": 22,
+        "y": 771,
+        "bottom": 826
+      },
+      "hero": {
+        "y": 511,
+        "bottom": 724
+      },
+      "btnBelowTitle": true,
+      "btnAboveManifesto": true,
+      "btnLeftAlignedWithTitle": true,
+      "btnCenterY": 701,
+      "midpoint": 701,
+      "btnCenterNearMidpoint": true,
+      "btnAnim": "lockGlow",
+      "arrowAnim": "lockArrow",
+      "cornerAnim": "lockCorner",
+      "scanAnim": "lockScan",
+      "pulseAnim": "lockPulse",
+      "scrollW": 390,
+      "innerW": 390
+    },
+    "errors": []
+  }
+}

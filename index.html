@@ -89,12 +89,33 @@
     .hero h1 em{font-style:normal;background:linear-gradient(180deg,#f2fdff 24%,#8ceaff 92%);-webkit-background-clip:text;background-clip:text;color:transparent}
     .home-page.loaded .hero h1{opacity:1;transform:none;transition:opacity 1s ease .55s,transform 1s ease .55s}
     /* V49.2 · 精简说明文字后的留白层级：标题 → 探索按钮 */
-    .hero .btn{margin-top:46px;display:inline-block;position:relative;padding:6px 0 10px;font-size:12px;letter-spacing:5px;color:#eafcff;text-decoration:none;text-transform:uppercase;cursor:pointer;border:0;background:none;font-family:inherit;opacity:0;transform:translateY(14px)}
-    .hero .btn::after{content:"";position:absolute;left:0;bottom:0;width:100%;height:1px;background:rgba(98,217,255,.55);transition:transform .35s ease,background .35s ease}
-    .hero .btn:hover::after{transform:scaleX(1.12);background:#00e5a8}
-    .hero .btn b{color:#8ceaff;font-weight:400;margin-left:14px}
+    /* V49.39 · 探索入口：主标题与理念文案之间的行动节点（Mission Pulse） */
+    /* V49.45 · MISSION LOCK 强化：四角更亮更长、扫描更明显、箭头推进更大、脉冲+余辉（位置完全不变） */
+    .hero .btn{position:fixed;left:7vw;top:61.7%;display:inline-block;padding:8px 18px 12px 0;font-size:12px;letter-spacing:5px;color:#eafcff;text-decoration:none;text-transform:uppercase;cursor:pointer;border:0;background:none;font-family:inherit;opacity:0;transform:translateY(14px);animation:lockGlow 4.2s ease-in-out infinite}
+    .hero .btn-ghost{display:block;height:calc(9vh + 36px)}
+    .hero .btn::after{content:"";position:absolute;left:0;right:18px;bottom:0;height:1px;background:rgba(98,217,255,.45);transition:background .35s ease}
+    .hero .btn::before{content:"";position:absolute;left:0;top:-6px;bottom:-6px;width:4px;border-radius:2px;background:linear-gradient(180deg,rgba(140,234,255,0),rgba(200,250,255,1),rgba(140,234,255,0));box-shadow:0 0 14px rgba(140,234,255,1),0 0 26px rgba(98,217,255,.55);opacity:0;animation:lockScan 4.2s ease-in-out infinite}
+    .hero .btn .ck{position:absolute;width:25px;height:25px;opacity:0;pointer-events:none;animation:lockCorner 4.2s ease-out infinite}
+    .hero .btn .ck1{top:-7px;left:-7px;border-top:2.5px solid rgba(175,242,255,1);border-left:2.5px solid rgba(175,242,255,1);box-shadow:0 0 8px rgba(140,234,255,.7)}
+    .hero .btn .ck2{top:-7px;right:-7px;border-top:2.5px solid rgba(175,242,255,1);border-right:2.5px solid rgba(175,242,255,1);box-shadow:0 0 8px rgba(140,234,255,.7);animation-delay:.06s}
+    .hero .btn .ck3{bottom:-7px;right:-7px;border-bottom:2.5px solid rgba(175,242,255,1);border-right:2.5px solid rgba(175,242,255,1);box-shadow:0 0 8px rgba(140,234,255,.7);animation-delay:.12s}
+    .hero .btn .ck4{bottom:-7px;left:-7px;border-bottom:2.5px solid rgba(175,242,255,1);border-left:2.5px solid rgba(175,242,255,1);box-shadow:0 0 8px rgba(140,234,255,.7);animation-delay:.18s}
+    .hero .btn .pulse{position:absolute;left:-6px;right:-6px;top:-6px;bottom:-6px;border-radius:6px;border:1.5px solid rgba(140,234,255,.85);box-shadow:0 0 18px rgba(98,217,255,.4),inset 0 0 12px rgba(98,217,255,.2);opacity:0;animation:lockPulse 4.2s ease-out infinite;pointer-events:none}
+    .hero .btn b{color:#8ceaff;font-weight:400;margin-left:14px;display:inline-block;animation:lockArrow 4.2s ease-in-out infinite}
+    .hero .btn:hover{color:#fff;text-shadow:0 0 14px rgba(135,228,255,.55);box-shadow:0 0 0 1px rgba(150,240,255,.4)}
+    .hero .btn:hover b{color:#e8fbff;transform:translateX(5px)}
+    .hero .btn:hover .ck{animation:none;opacity:1}
+    .hero .btn:hover::after{background:rgba(160,242,255,.95)}
+    .hero .btn:active{color:#fff;text-shadow:0 0 24px rgba(165,244,255,1),0 0 50px rgba(98,217,255,.6)}
+    .hero .btn:focus-visible{outline:1px solid rgba(140,234,255,.75);outline-offset:10px;border-radius:2px}
     .home-page.loaded .hero .btn{opacity:1;transform:none;transition:opacity 1s ease .85s,transform 1s ease .85s}
+    @keyframes lockCorner{0%,2%{opacity:0;transform:scale(.75)}4.5%{opacity:1;transform:scale(1)}20%{opacity:.85}22%{opacity:1;filter:brightness(2)}25%,100%{opacity:0;filter:brightness(1)}}
+    @keyframes lockScan{0%,12%{left:0;opacity:0}13%{opacity:1}20.5%{left:calc(100% - 4px);opacity:1}22.5%,100%{left:calc(100% - 4px);opacity:0}}
+    @keyframes lockGlow{0%,12%,28%,100%{color:#eafcff;text-shadow:0 0 8px rgba(98,217,255,.12),0 0 22px rgba(98,217,255,.05)}15%{color:#fff;text-shadow:0 0 20px rgba(165,244,255,1),0 0 55px rgba(98,217,255,.65)}20%{color:#fff;text-shadow:0 0 16px rgba(165,244,255,.7),0 0 42px rgba(98,217,255,.4)}22.5%{color:#fff;text-shadow:0 0 24px rgba(170,246,255,1),0 0 65px rgba(98,217,255,.8)}26%,100%{color:#eafcff;text-shadow:0 0 8px rgba(98,217,255,.12),0 0 22px rgba(98,217,255,.05)}}
+    @keyframes lockArrow{0%,21%,30%,100%{transform:translateX(0);color:#8ceaff}23%{transform:translateX(18px);color:#f0fdff;text-shadow:0 0 16px rgba(180,245,255,1),0 0 34px rgba(98,217,255,.75)}27%{transform:translateX(18px);color:#d5f7ff}30%{transform:translateX(0);color:#8ceaff}}
+    @keyframes lockPulse{0%,27%{opacity:0;transform:scale(.9)}29%{opacity:.95;transform:scale(1)}34%{opacity:0;transform:scale(1.22)}37%{opacity:.45;transform:scale(1.08)}42%,100%{opacity:0;transform:scale(1.12)}}
 
+    /* V49.41 · 恢复“未知之境”原始左下角位置（依据 git HEAD：position:fixed;left:46px;bottom:34px） */
     .manifesto{position:fixed;left:46px;bottom:34px;z-index:12;max-width:480px;pointer-events:none;opacity:0;transition:opacity 1.2s ease 1.05s}
     .home-page.loaded .manifesto{opacity:1}
     .manifesto::before{content:"";display:block;width:100%;height:1px;background:linear-gradient(90deg,rgba(98,217,255,.35),transparent 80%);margin-bottom:12px}
@@ -112,12 +133,11 @@
       html[data-lang="en"] .hero h1 em{display:inline-block}
       html[data-lang="en"] .hero h1 em:nth-of-type(1){font-size:.9em}
       html[data-lang="en"] .hero h1 em:nth-of-type(2){font-size:1em;letter-spacing:2.5px}
-      html[data-lang="en"] .hero .btn{margin-top:62px}
-      .hero .btn{margin-top:56px}
     }
     @media (max-width:1024px){
       .hero{left:22px;right:22px;top:auto;bottom:120px;max-width:none}
       .hero h1{font-size:clamp(30px,6vw,46px)}
+      .hero .btn{left:22px}
     }
     @media (max-width:1024px) and (min-width:701px){
       .hero{max-width:520px;right:auto}
@@ -129,12 +149,13 @@
     /* V48.2 · Tablet 专用：横屏恢复左侧构图，竖屏平衡地球与文字 */
     @media (min-width:701px) and (max-width:1024px) and (orientation:landscape){
       .hero{left:7vw;right:auto;top:13%;bottom:auto;max-width:520px}
+      .hero .btn{left:7vw;top:58.2%}
       .manifesto{left:46px;bottom:30px}
       .an-label{right:6%;bottom:20%}
     }
     @media (min-width:768px) and (max-width:1024px) and (orientation:portrait){
       .hero{bottom:150px}
-      .hero .btn{margin-top:34px}
+      .hero .btn{top:89%}
       html[data-lang="en"] .hero{max-width:330px}
       html[data-lang="en"] .hero h1{font-size:clamp(22px,4.8vw,30px)}
       .an-label{left:24px;right:auto;top:150px;bottom:auto;text-align:left}
@@ -148,7 +169,9 @@
       .brand h1{font-size:12px;letter-spacing:2px}
       .hero{left:22px;right:22px;top:auto;bottom:120px;max-width:none}
       .hero h1{font-size:clamp(30px,9vw,44px);letter-spacing:2px}
-      .hero .btn{margin-top:28px;font-size:11px;letter-spacing:3px}
+      .hero .btn{left:22px;top:81%;font-size:11px;letter-spacing:3px}
+      .hero .btn-ghost{height:calc(7vh + 35px)}
+      .hero .btn .ck{animation-delay:0s;width:18px;height:18px}
       html[data-lang="en"] .hero h1{font-size:clamp(28px,8vw,36px);line-height:1.14}
       .manifesto{left:22px;right:22px;bottom:18px;max-width:none}
       .manifesto p{font-size:11px}
@@ -181,7 +204,13 @@
         <span data-lang="en"><em>From Observation,</em><br><em>Toward the Unknown</em></span>
         <span data-lang="zh"><em>始于观测，</em><br><em>走向未知</em></span>
       </h1>
+      <div class="btn-ghost" aria-hidden="true"></div>
       <button type="button" class="btn" id="exploreBtn">
+        <i class="ck ck1" aria-hidden="true"></i>
+        <i class="ck ck2" aria-hidden="true"></i>
+        <i class="ck ck3" aria-hidden="true"></i>
+        <i class="ck ck4" aria-hidden="true"></i>
+        <span class="pulse" aria-hidden="true"></span>
         <span data-lang="en">Start Exploration</span><span data-lang="zh">开启探索</span><b>→</b>
       </button>
     </div>
@@ -815,8 +844,6 @@
           var lx = (sp2.x * 0.5 + 0.5) * labelW;
           var ly = (-sp2.y * 0.5 + 0.5) * labelH;
 
-          var accent = li === 0 ? '103,255,214' : '191,238,255';
-
           /* V49.17 · 极细引导线：节点 → 标签左缘 */
           labelCtx.strokeStyle = 'rgba(150,225,250,0.36)';
           labelCtx.lineWidth = 1;
@@ -825,61 +852,70 @@
           labelCtx.lineTo(lx - 3 * u, ly + it.dy);
           labelCtx.stroke();
 
-          /* 精密细环：1px，缓慢呼吸 */
-          var breath = 0.5 + 0.5 * Math.sin(t / 800);
-          var R = 8.5 * u + 1.5 * u * breath;
-          labelCtx.strokeStyle = 'rgba(' + accent + ',' + (0.34 + 0.26 * breath).toFixed(3) + ')';
-          labelCtx.lineWidth = 1;
-          labelCtx.beginPath();
-          labelCtx.arc(sx, sy, R, 0, Math.PI * 2);
-          labelCtx.stroke();
+          /* V49.36 · 科幻科研信标：核心 + 精密局部环 + 极慢扫描 + 微弱脉冲 */
+          var ms = t * 16.67;
+          var bs = u * 1.05;
+          var coreR = 5.0 * bs * (1 + 0.08 * Math.sin(ms / 3000 * Math.PI * 2)); /* 核心：稍大、锐利、3s 呼吸 */
+          var scanA = ms / 3200 * Math.PI * 2; /* 3.2s 一圈，极慢扫描 */
 
-          /* 四个极短定位刻线（precision reticle） */
-          var rIn = R + 2.5 * u;
-          var rOut = R + 6.8 * u;
-          labelCtx.strokeStyle = 'rgba(' + accent + ',0.72)';
-          labelCtx.lineWidth = 1;
-          for (var k = 0; k < 4; k++) {
-            var ang = k * Math.PI / 2;
+          /* 微弱外扩脉冲（Network 同款扩散逻辑，更小更弱） */
+          var pprog = ((ms - 600) % 4200) / 4200;
+          if (pprog < 0) pprog += 1;
+          var pop = 0.22 * (1 - pprog);
+          if (pop > 0.003) {
+            labelCtx.strokeStyle = 'rgba(140,234,255,' + pop.toFixed(3) + ')';
+            labelCtx.lineWidth = 0.8 * u;
             labelCtx.beginPath();
-            labelCtx.moveTo(sx + Math.cos(ang) * rIn, sy + Math.sin(ang) * rIn);
-            labelCtx.lineTo(sx + Math.cos(ang) * rOut, sy + Math.sin(ang) * rOut);
+            labelCtx.arc(sx, sy, (10 + 30 * pprog) * bs, 0, Math.PI * 2);
             labelCtx.stroke();
           }
 
-          /* 克制的外圈柔光（非大Glow） */
-          var haloR = 4.4 * u;
-          var grad = labelCtx.createRadialGradient(sx, sy, 0, sx, sy, haloR);
-          grad.addColorStop(0, 'rgba(' + accent + ',0.30)');
-          grad.addColorStop(1, 'rgba(' + accent + ',0)');
-          labelCtx.fillStyle = grad;
+          /* 第一环：3/4 精密环（细、清晰） */
+          labelCtx.strokeStyle = 'rgba(140,234,255,0.72)';
+          labelCtx.lineWidth = 1.0 * u;
           labelCtx.beginPath();
-          labelCtx.arc(sx, sy, haloR, 0, Math.PI * 2);
-          labelCtx.fill();
+          labelCtx.arc(sx, sy, 13 * bs, 0.45, 0.45 + Math.PI * 1.5);
+          labelCtx.stroke();
 
-          /* 锐利核心 + 白色高光中心 */
-          labelCtx.fillStyle = 'rgb(' + accent + ')';
+          /* 第二环：低透明度 3/4 弧（开口错位） */
+          labelCtx.strokeStyle = 'rgba(98,217,255,0.30)';
+          labelCtx.lineWidth = 0.8 * u;
           labelCtx.beginPath();
-          labelCtx.arc(sx, sy, 2.8 * u, 0, Math.PI * 2);
+          labelCtx.arc(sx, sy, 26 * bs, 0.45 + Math.PI, 0.45 + Math.PI + Math.PI * 1.5);
+          labelCtx.stroke();
+
+          /* 第三环：四段短弧（精密刻度感） */
+          labelCtx.strokeStyle = 'rgba(0,229,168,0.16)';
+          labelCtx.lineWidth = 0.6 * u;
+          for (var q = 0; q < 4; q++) {
+            var qa = q * Math.PI / 2 + 0.35;
+            labelCtx.beginPath();
+            labelCtx.arc(sx, sy, 39 * bs, qa, qa + 0.42);
+            labelCtx.stroke();
+          }
+
+          /* 扫描弧：第一环上的短亮弧，极慢旋转 */
+          labelCtx.strokeStyle = 'rgba(190,245,255,0.55)';
+          labelCtx.lineWidth = 1.2 * u;
+          labelCtx.beginPath();
+          labelCtx.arc(sx, sy, 13 * bs, scanA, scanA + 0.55);
+          labelCtx.stroke();
+
+          /* 核心点：青蓝实心 + 冷白高光 */
+          labelCtx.fillStyle = '#00e5a8';
+          labelCtx.beginPath();
+          labelCtx.arc(sx, sy, coreR, 0, Math.PI * 2);
           labelCtx.fill();
           labelCtx.fillStyle = 'rgba(255,255,255,0.96)';
           labelCtx.beginPath();
-          labelCtx.arc(sx, sy, 1.05 * u, 0, Math.PI * 2);
+          labelCtx.arc(sx, sy, coreR * 0.42, 0, Math.PI * 2);
           labelCtx.fill();
 
-          /* 极轻扫描弧 */
-          var scanA = t / 1200;
-          labelCtx.strokeStyle = 'rgba(' + accent + ',0.34)';
-          labelCtx.lineWidth = 1.2;
-          labelCtx.beginPath();
-          labelCtx.arc(sx, sy, R + 4 * u, scanA, scanA + 1.05);
-          labelCtx.stroke();
-
-          /* 标签：冷白 + 极轻蓝光 + 锐利主体 */
-          labelCtx.font = '500 ' + Math.round(17 * u) + 'px "Segoe UI","Microsoft YaHei",sans-serif';
+          /* 标签：冷白 + 极轻蓝光 + 锐利主体（稍醒目） */
+          labelCtx.font = '600 ' + Math.round(18 * u) + 'px "Segoe UI","Microsoft YaHei",sans-serif';
           labelCtx.textBaseline = 'middle';
-          labelCtx.shadowColor = 'rgba(70,170,220,0.55)';
-          labelCtx.shadowBlur = Math.round(6 * u);
+          labelCtx.shadowColor = 'rgba(90,190,235,0.70)';
+          labelCtx.shadowBlur = Math.round(7 * u);
           labelCtx.shadowOffsetY = 1;
           labelCtx.fillStyle = '#d8f4ff';
           labelCtx.fillText(names[li], lx, ly + it.dy);
@@ -951,6 +987,21 @@ function animate() {
     setTimeout(function () { document.body.classList.add('loaded'); }, 180);
     var btn = document.getElementById('exploreBtn');
     if (btn) btn.addEventListener('click', function () { if (btn.dataset.busy) return; btn.dataset.busy = '1'; document.body.classList.add('is-leaving'); setTimeout(function () { location.href = './network.html'; }, 850); });
+    /* V49.43 · 开始探索：精确落在“走向未知”与“未知之境”的垂直中点 */
+    function positionExploreBtn() {
+      var h1el = document.querySelector('.hero h1');
+      var mfel = document.querySelector('.manifesto');
+      var btel = document.getElementById('exploreBtn');
+      if (!h1el || !mfel || !btel) return;
+      var tb = h1el.getBoundingClientRect().bottom;
+      var mt = mfel.getBoundingClientRect().top;
+      btel.style.top = Math.round((tb + mt) / 2 - btel.offsetHeight / 2) + 'px';
+    }
+    positionExploreBtn();
+    setTimeout(positionExploreBtn, 350);
+    setTimeout(positionExploreBtn, 1800);
+    window.addEventListener('resize', positionExploreBtn);
+    window.addEventListener('anx:langchange', function () { setTimeout(positionExploreBtn, 60); });
   })();
   </script>
 </body>
