@@ -1,0 +1,41 @@
+# V49.53 · 测试截图 / 视觉验收截图一律不入库
+# 页面截图、浏览器截图、兼容性截图只作为当前对话的临时验收材料，
+# 不 git add / commit / push。
+
+# 通用截图目录
+screenshots/
+test-screens/
+preview/
+preview-images/
+debug-screenshots/
+compatibility_screenshots/
+final_compatibility_screenshots/
+final_review_screenshots/
+final_screenshots/
+
+# 历史版本截图目录（vXX_screenshots / vXX_shots）
+v*_screenshots/
+v*_shots/
+
+# 不带 _screenshots 后缀的历史截图目录
+v47_28/
+v47_28_r1/
+v47_28_r2/
+v47_29/
+v47_29_r1/
+v47_31/
+v47_31_r1/
+v47_32/
+
+# 历史根目录测试图片
+v49_3_screenshots-index.png
+v496_texture.png
+
+# 单张截图命名（防止误提交）
+*_screenshot.png
+*_screenshot.jpg
+*_screenshot.jpeg
+*_screenshot.webp
+
+# 注意：不使用 *.png / *.jpg 等宽泛规则，
+# 项目真实的图片资源（assets/ 等）不受影响。
