@@ -95,19 +95,24 @@
     .hero .btn-ghost{display:block;height:calc(9vh + 36px)}
     .hero .btn::after{content:"";position:absolute;inset:-2px 0 2px -18px;border:1px solid rgba(98,217,255,.28);border-radius:5px;pointer-events:none;transition:border-color .3s ease}
     .hero .btn::before{content:"";position:absolute;inset:-3px -1px 1px -19px;border-radius:6px;padding:1px;background:conic-gradient(from var(--flow-angle),rgba(98,217,255,0) 0 62%,rgba(98,217,255,.32) 70%,rgba(150,238,255,.92) 78%,#f0fdff 83%,rgba(150,238,255,.82) 87%,rgba(98,217,255,.26) 93%,rgba(98,217,255,0) 98%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude;animation:flowBorder 2.8s linear infinite;pointer-events:none}
-    .hero .btn .btn-txt{color:#bfe6ff;background-image:linear-gradient(90deg,#bfe6ff 0%,#bfe6ff 30%,#d3f0ff 36%,#eafcff 42%,#f6feff 46%,#ffffff 50%,#f6feff 54%,#eafcff 58%,#d3f0ff 64%,#bfe6ff 70%,#bfe6ff 100%);background-size:220% 100%;background-position:130% 0;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:txtSweep 3.2s linear infinite}
+    .hero .btn .btn-txt{position:relative;display:inline-block;color:#bfe6ff;-webkit-text-fill-color:#bfe6ff;font-size:16px;line-height:1;letter-spacing:1px}
+    html[data-lang="en"] .hero .btn .btn-txt{letter-spacing:3px}
+    .hero .btn .btn-txt .explore-base{display:inline-block;animation:txtPreheat 2.8s linear infinite}
+    .hero .btn .btn-txt .explore-shine{position:absolute;inset:0;color:#f4fdff;-webkit-text-fill-color:#f4fdff;text-shadow:0 0 5px rgba(150,235,255,.65),0 0 12px rgba(120,220,255,.4);clip-path:inset(-0.4em 100% -0.4em -2.5em);animation:txtSweep 2.8s linear infinite;pointer-events:none}
     .hero .btn b{color:#8ceaff;font-weight:400;margin-left:14px;display:inline-block;transition:transform .3s ease,color .3s ease}
     .hero .btn:hover{filter:brightness(1.15)}
     .hero .btn:hover b{color:#e8fbff;transform:translateX(4px)}
     .hero .btn:hover::after{border-color:rgba(150,240,255,.55)}
     .hero .btn:hover::before{animation-duration:2s}
-    .hero .btn:hover .btn-txt{animation-duration:2.2s}
+    .hero .btn:hover .btn-txt .explore-shine{animation-duration:2.2s}
+    .hero .btn:hover .btn-txt .explore-base{animation-duration:2.2s}
     .hero .btn:active{filter:brightness(1.4)}
     .hero .btn:focus-visible{outline:1px solid rgba(140,234,255,.75);outline-offset:10px;border-radius:4px}
     .home-page.loaded .hero .btn{opacity:1;transform:none;transition:opacity 1s ease .85s,transform 1s ease .85s,filter .3s ease}
     @property --flow-angle{syntax:'<angle>';inherits:false;initial-value:0deg}
     @keyframes flowBorder{to{--flow-angle:360deg}}
-    @keyframes txtSweep{0%,56%{background-position:130% 0}84%,100%{background-position:-40% 0}}
+    @keyframes txtSweep{0%,58%{clip-path:inset(-0.4em 100% -0.4em -2.5em)}90%,100%{clip-path:inset(-0.4em -2.5em -0.4em 100%)}}
+    @keyframes txtPreheat{0%,54%{filter:brightness(1)}57%{filter:brightness(1.1)}61%{filter:brightness(1)}90%,100%{filter:brightness(1)}}
 
     /* V49.41 · 恢复“未知之境”原始左下角位置（依据 git HEAD：position:fixed;left:46px;bottom:34px） */
     .manifesto{position:fixed;left:46px;bottom:34px;z-index:12;max-width:480px;pointer-events:none;opacity:0;transition:opacity 1.2s ease 1.05s}
@@ -199,7 +204,7 @@
       </h1>
       <div class="btn-ghost" aria-hidden="true"></div>
       <button type="button" class="btn" id="exploreBtn">
-        <span class="btn-txt" data-lang="en">Start Exploration</span><span class="btn-txt" data-lang="zh">开启探索</span><b>→</b>
+        <span class="btn-txt" data-lang="en"><span class="explore-base">Start Exploration</span><span class="explore-shine" aria-hidden="true">Start Exploration</span></span><span class="btn-txt" data-lang="zh"><span class="explore-base">开启探索</span><span class="explore-shine" aria-hidden="true">开启探索</span></span><b>→</b>
       </button>
     </div>
   </section>
