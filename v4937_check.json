@@ -34,7 +34,7 @@
         "bottom": 10
       },
       "btnAnim": "none",
-      "txtAnim": "txtFlow",
+      "txtAnim": "txtShimmer",
       "frameAnim": "none",
       "flowAnim": "flowBorder",
       "scrollW": 1920,
@@ -77,7 +77,7 @@
         "bottom": 10
       },
       "btnAnim": "none",
-      "txtAnim": "txtFlow",
+      "txtAnim": "txtShimmer",
       "frameAnim": "none",
       "flowAnim": "flowBorder",
       "scrollW": 1920,
@@ -120,7 +120,7 @@
         "bottom": 10
       },
       "btnAnim": "none",
-      "txtAnim": "txtFlow",
+      "txtAnim": "txtShimmer",
       "frameAnim": "none",
       "flowAnim": "flowBorder",
       "scrollW": 1366,
@@ -163,7 +163,7 @@
         "bottom": 10
       },
       "btnAnim": "none",
-      "txtAnim": "txtFlow",
+      "txtAnim": "txtShimmer",
       "frameAnim": "none",
       "flowAnim": "flowBorder",
       "scrollW": 1024,
@@ -206,7 +206,7 @@
         "bottom": 10
       },
       "btnAnim": "none",
-      "txtAnim": "txtFlow",
+      "txtAnim": "txtShimmer",
       "frameAnim": "none",
       "flowAnim": "flowBorder",
       "scrollW": 768,
@@ -249,7 +249,7 @@
         "bottom": 10
       },
       "btnAnim": "none",
-      "txtAnim": "txtFlow",
+      "txtAnim": "txtShimmer",
       "frameAnim": "none",
       "flowAnim": "flowBorder",
       "scrollW": 390,
