@@ -93,26 +93,40 @@
     /* V49.49 · 外框居中留白 + 边框流光强化 + 文字流光强化（文字位置完全不变） */
     .hero .btn{position:fixed;left:7vw;top:61.7%;display:inline-block;padding:8px 18px 12px 0;font-size:12px;letter-spacing:5px;color:#eafcff;text-decoration:none;text-transform:uppercase;cursor:pointer;border:0;background:none;font-family:inherit;opacity:0;transform:translateY(14px);border-radius:4px}
     .hero .btn-ghost{display:block;height:calc(9vh + 36px)}
-    .hero .btn::after{content:"";position:absolute;inset:-2px 0 2px -18px;border:1px solid rgba(98,217,255,.28);border-radius:5px;pointer-events:none;transition:border-color .3s ease}
-    .hero .btn::before{content:"";position:absolute;inset:-3px -1px 1px -19px;border-radius:6px;padding:1px;background:conic-gradient(from var(--flow-angle),rgba(98,217,255,0) 0 62%,rgba(98,217,255,.32) 70%,rgba(150,238,255,.92) 78%,#f0fdff 83%,rgba(150,238,255,.82) 87%,rgba(98,217,255,.26) 93%,rgba(98,217,255,0) 98%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude;animation:flowBorder 2.8s linear infinite;pointer-events:none}
-    .hero .btn .btn-txt{position:relative;display:inline-block;color:#bfe6ff;-webkit-text-fill-color:#bfe6ff;font-size:16px;line-height:1;letter-spacing:1px}
+    .hero .btn::before{content:"";position:absolute;inset:-3px -1px 1px -19px;border-radius:8px;padding:2px;background:conic-gradient(from var(--flow-angle),rgba(105,150,185,0) 0 60%,rgba(120,180,215,.28) 68%,rgba(160,215,240,.70) 74%,#eefcff 77%,rgba(210,245,255,.92) 80%,rgba(150,210,235,.50) 85%,rgba(110,170,205,.20) 90%,rgba(105,150,185,0) 96%,rgba(105,150,185,0) 100%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude;animation:flowBorder 1.7s linear infinite;pointer-events:none}
+    .hero .btn .explore-panel{position:absolute;inset:-2px 0 2px -18px;border:1px solid rgba(105,145,175,.26);border-radius:7px;background:linear-gradient(180deg,rgba(6,18,32,.36),rgba(3,10,20,.26));box-shadow:inset 0 0 0 1px rgba(170,205,230,.08),inset 0 1px 0 rgba(180,215,240,.06);pointer-events:none}
+    .hero .btn .btn-txt{position:relative;display:inline-block;color:#d7edf7;-webkit-text-fill-color:#d7edf7;font-size:16px;line-height:1;letter-spacing:1px}
     html[data-lang="en"] .hero .btn .btn-txt{letter-spacing:3px}
-    .hero .btn .btn-txt .explore-base{display:inline-block;animation:txtPreheat 2.8s linear infinite}
-    .hero .btn .btn-txt .explore-shine{position:absolute;inset:0;color:#f4fdff;-webkit-text-fill-color:#f4fdff;text-shadow:0 0 5px rgba(150,235,255,.65),0 0 12px rgba(120,220,255,.4);clip-path:inset(-0.4em 100% -0.4em -2.5em);animation:txtSweep 2.8s linear infinite;pointer-events:none}
-    .hero .btn b{color:#8ceaff;font-weight:400;margin-left:14px;display:inline-block;transition:transform .3s ease,color .3s ease}
-    .hero .btn:hover{filter:brightness(1.15)}
-    .hero .btn:hover b{color:#e8fbff;transform:translateX(4px)}
-    .hero .btn:hover::after{border-color:rgba(150,240,255,.55)}
-    .hero .btn:hover::before{animation-duration:2s}
-    .hero .btn:hover .btn-txt .explore-shine{animation-duration:2.2s}
-    .hero .btn:hover .btn-txt .explore-base{animation-duration:2.2s}
+    .hero .btn .btn-txt .explore-base{display:inline-block}
+    .hero .btn .btn-txt .explore-shine{position:absolute;inset:0;color:#f4fdff;-webkit-text-fill-color:#f4fdff;text-shadow:0 0 3px rgba(190,240,255,.7);clip-path:inset(-0.4em 100% -0.4em -1.6em);animation:txtSweep 2.6s linear infinite;pointer-events:none}
+    .hero .btn .explore-arrow{position:relative;display:inline-block;width:32px;height:14px;margin-left:12px;vertical-align:middle;animation:arrowAdvance 2.6s ease-in-out infinite}
+    .hero .btn .explore-arrow .arrow-axis{fill:none;stroke:#9fc8de;stroke-width:1.2;stroke-linecap:round;opacity:.75}
+    .hero .btn .explore-arrow .arrow-wing{fill:none;stroke:#c6e2f2;stroke-width:1.3;stroke-linecap:round;stroke-linejoin:miter;opacity:.95;animation:tipFlash 2.6s ease-in-out infinite}
+    .hero .btn .explore-arrow .speed{fill:none;stroke:#8fb6cf;stroke-width:1;stroke-linecap:round}
+    .hero .btn .explore-arrow .s1{opacity:.22;animation:speed1 2.6s ease-in-out infinite}
+    .hero .btn .explore-arrow .s2{opacity:.34;animation:speed2 2.6s ease-in-out infinite}
+    .hero .btn .explore-arrow .s3{opacity:.45;animation:speed3 2.6s ease-in-out infinite}
+    .hero .btn .explore-arrow .flow-core{fill:none;stroke:#f2fdff;stroke-width:1.6;stroke-linecap:round;stroke-dasharray:16 84;stroke-dashoffset:-24;opacity:0;animation:flowCore 2.6s linear infinite}
+    .hero .btn .explore-arrow .flow-body{fill:none;stroke:#7fc6ea;stroke-width:1.2;stroke-linecap:round;stroke-dasharray:44 56;stroke-dashoffset:0;opacity:0;animation:flowBody 2.6s linear infinite}
+    .hero .btn:hover{filter:brightness(1.12)}
+    .hero .btn:hover::before{animation-duration:1.4s}
+    .hero .btn:hover .btn-txt .explore-shine{animation-duration:2s}
+    .hero .btn:hover .explore-arrow .flow-core,.hero .btn:hover .explore-arrow .flow-body,.hero .btn:hover .explore-arrow .arrow-wing,.hero .btn:hover .explore-arrow .speed,.hero .btn:hover .explore-arrow{animation-duration:2s}
+    .hero .btn:hover .btn-txt .explore-shine{animation-duration:2s}
+    .hero .btn:hover .btn-txt .explore-base{animation-duration:2s}
     .hero .btn:active{filter:brightness(1.4)}
     .hero .btn:focus-visible{outline:1px solid rgba(140,234,255,.75);outline-offset:10px;border-radius:4px}
     .home-page.loaded .hero .btn{opacity:1;transform:none;transition:opacity 1s ease .85s,transform 1s ease .85s,filter .3s ease}
     @property --flow-angle{syntax:'<angle>';inherits:false;initial-value:0deg}
     @keyframes flowBorder{to{--flow-angle:360deg}}
-    @keyframes txtSweep{0%,58%{clip-path:inset(-0.4em 100% -0.4em -2.5em)}90%,100%{clip-path:inset(-0.4em -2.5em -0.4em 100%)}}
-    @keyframes txtPreheat{0%,54%{filter:brightness(1)}57%{filter:brightness(1.1)}61%{filter:brightness(1)}90%,100%{filter:brightness(1)}}
+    @keyframes txtSweep{0%,64%{clip-path:inset(-0.4em 100% -0.4em -1.6em)}92%,100%{clip-path:inset(-0.4em -1.6em -0.4em 100%)}}
+    @keyframes flowCore{0%,60%{opacity:0;stroke-dashoffset:-24}63%{opacity:1;stroke-dashoffset:-24}82%{opacity:1;stroke-dashoffset:-80}88%,100%{opacity:0;stroke-dashoffset:-80}}
+    @keyframes flowBody{0%,60%{opacity:0;stroke-dashoffset:0}63%{opacity:.55;stroke-dashoffset:0}82%{opacity:.55;stroke-dashoffset:-56}88%,100%{opacity:0;stroke-dashoffset:-56}}
+    @keyframes tipFlash{0%,76%{stroke:#c6e2f2;stroke-width:1.3}84%,90%{stroke:#f4fdff;stroke-width:2}96%,100%{stroke:#c6e2f2;stroke-width:1.3}}
+    @keyframes arrowAdvance{0%,78%{transform:translateX(0)}86%{transform:translateX(4px)}94%,100%{transform:translateX(0)}}
+    @keyframes speed1{0%,70%{opacity:.22}78%{opacity:.7}90%,100%{opacity:.22}}
+    @keyframes speed2{0%,66%{opacity:.34}74%{opacity:.85}86%,100%{opacity:.34}}
+    @keyframes speed3{0%,62%{opacity:.45}70%{opacity:.95}82%,100%{opacity:.45}}
 
     /* V49.41 · 恢复“未知之境”原始左下角位置（依据 git HEAD：position:fixed;left:46px;bottom:34px） */
     .manifesto{position:fixed;left:46px;bottom:34px;z-index:12;max-width:480px;pointer-events:none;opacity:0;transition:opacity 1.2s ease 1.05s}
@@ -169,6 +183,7 @@
       .hero{left:22px;right:22px;top:auto;bottom:120px;max-width:none}
       .hero h1{font-size:clamp(30px,9vw,44px);letter-spacing:2px}
       .hero .btn{left:22px;top:81%;font-size:11px;letter-spacing:3px}
+      .hero .btn::before{left:-19px}
       .hero .btn-ghost{height:calc(7vh + 35px)}
       html[data-lang="en"] .hero h1{font-size:clamp(28px,8vw,36px);line-height:1.14}
       .manifesto{left:22px;right:22px;bottom:18px;max-width:none}
@@ -204,7 +219,8 @@
       </h1>
       <div class="btn-ghost" aria-hidden="true"></div>
       <button type="button" class="btn" id="exploreBtn">
-        <span class="btn-txt" data-lang="en"><span class="explore-base">Start Exploration</span><span class="explore-shine" aria-hidden="true">Start Exploration</span></span><span class="btn-txt" data-lang="zh"><span class="explore-base">开启探索</span><span class="explore-shine" aria-hidden="true">开启探索</span></span><b>→</b>
+        <span class="explore-panel" aria-hidden="true"></span>
+        <span class="btn-txt" data-lang="en"><span class="explore-base">Start Exploration</span><span class="explore-shine" aria-hidden="true">Start Exploration</span></span><span class="btn-txt" data-lang="zh"><span class="explore-base">开启探索</span><span class="explore-shine" aria-hidden="true">开启探索</span></span><span class="explore-arrow" aria-hidden="true"><svg width="32" height="14" viewBox="0 0 32 14"><line class="speed s1" x1="0" y1="4.8" x2="5" y2="4.8"></line><line class="speed s2" x1="2.5" y1="6.4" x2="9.5" y2="6.4"></line><line class="speed s3" x1="5.5" y1="10.6" x2="13" y2="10.6"></line><line class="arrow-axis" x1="0" y1="8" x2="22" y2="8"></line><line class="arrow-wing" x1="15" y1="2.3" x2="29.5" y2="8"></line><line class="arrow-wing" x1="15" y1="11.7" x2="29.5" y2="8"></line><path class="flow-body" pathLength="100" d="M0 8 H29.5"></path><path class="flow-core" pathLength="100" d="M0 8 H29.5"></path></svg></span>
       </button>
     </div>
   </section>
