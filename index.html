@@ -90,30 +90,24 @@
     .home-page.loaded .hero h1{opacity:1;transform:none;transition:opacity 1s ease .55s,transform 1s ease .55s}
     /* V49.2 · 精简说明文字后的留白层级：标题 → 探索按钮 */
     /* V49.39 · 探索入口：主标题与理念文案之间的行动节点（Mission Pulse） */
-    /* V49.45 · MISSION LOCK 强化：四角更亮更长、扫描更明显、箭头推进更大、脉冲+余辉（位置完全不变） */
-    .hero .btn{position:fixed;left:7vw;top:61.7%;display:inline-block;padding:8px 18px 12px 0;font-size:12px;letter-spacing:5px;color:#eafcff;text-decoration:none;text-transform:uppercase;cursor:pointer;border:0;background:none;font-family:inherit;opacity:0;transform:translateY(14px);animation:lockGlow 4.2s ease-in-out infinite}
+    /* V49.49 · 外框居中留白 + 边框流光强化 + 文字流光强化（文字位置完全不变） */
+    .hero .btn{position:fixed;left:7vw;top:61.7%;display:inline-block;padding:8px 18px 12px 0;font-size:12px;letter-spacing:5px;color:#eafcff;text-decoration:none;text-transform:uppercase;cursor:pointer;border:0;background:none;font-family:inherit;opacity:0;transform:translateY(14px);border-radius:4px}
     .hero .btn-ghost{display:block;height:calc(9vh + 36px)}
-    .hero .btn::after{content:"";position:absolute;left:0;right:18px;bottom:0;height:1px;background:rgba(98,217,255,.45);transition:background .35s ease}
-    .hero .btn::before{content:"";position:absolute;left:0;top:-6px;bottom:-6px;width:4px;border-radius:2px;background:linear-gradient(180deg,rgba(140,234,255,0),rgba(200,250,255,1),rgba(140,234,255,0));box-shadow:0 0 14px rgba(140,234,255,1),0 0 26px rgba(98,217,255,.55);opacity:0;animation:lockScan 4.2s ease-in-out infinite}
-    .hero .btn .ck{position:absolute;width:25px;height:25px;opacity:0;pointer-events:none;animation:lockCorner 4.2s ease-out infinite}
-    .hero .btn .ck1{top:-7px;left:-7px;border-top:2.5px solid rgba(175,242,255,1);border-left:2.5px solid rgba(175,242,255,1);box-shadow:0 0 8px rgba(140,234,255,.7)}
-    .hero .btn .ck2{top:-7px;right:-7px;border-top:2.5px solid rgba(175,242,255,1);border-right:2.5px solid rgba(175,242,255,1);box-shadow:0 0 8px rgba(140,234,255,.7);animation-delay:.06s}
-    .hero .btn .ck3{bottom:-7px;right:-7px;border-bottom:2.5px solid rgba(175,242,255,1);border-right:2.5px solid rgba(175,242,255,1);box-shadow:0 0 8px rgba(140,234,255,.7);animation-delay:.12s}
-    .hero .btn .ck4{bottom:-7px;left:-7px;border-bottom:2.5px solid rgba(175,242,255,1);border-left:2.5px solid rgba(175,242,255,1);box-shadow:0 0 8px rgba(140,234,255,.7);animation-delay:.18s}
-    .hero .btn .pulse{position:absolute;left:-6px;right:-6px;top:-6px;bottom:-6px;border-radius:6px;border:1.5px solid rgba(140,234,255,.85);box-shadow:0 0 18px rgba(98,217,255,.4),inset 0 0 12px rgba(98,217,255,.2);opacity:0;animation:lockPulse 4.2s ease-out infinite;pointer-events:none}
-    .hero .btn b{color:#8ceaff;font-weight:400;margin-left:14px;display:inline-block;animation:lockArrow 4.2s ease-in-out infinite}
-    .hero .btn:hover{color:#fff;text-shadow:0 0 14px rgba(135,228,255,.55);box-shadow:0 0 0 1px rgba(150,240,255,.4)}
-    .hero .btn:hover b{color:#e8fbff;transform:translateX(5px)}
-    .hero .btn:hover .ck{animation:none;opacity:1}
-    .hero .btn:hover::after{background:rgba(160,242,255,.95)}
-    .hero .btn:active{color:#fff;text-shadow:0 0 24px rgba(165,244,255,1),0 0 50px rgba(98,217,255,.6)}
-    .hero .btn:focus-visible{outline:1px solid rgba(140,234,255,.75);outline-offset:10px;border-radius:2px}
-    .home-page.loaded .hero .btn{opacity:1;transform:none;transition:opacity 1s ease .85s,transform 1s ease .85s}
-    @keyframes lockCorner{0%,2%{opacity:0;transform:scale(.75)}4.5%{opacity:1;transform:scale(1)}20%{opacity:.85}22%{opacity:1;filter:brightness(2)}25%,100%{opacity:0;filter:brightness(1)}}
-    @keyframes lockScan{0%,12%{left:0;opacity:0}13%{opacity:1}20.5%{left:calc(100% - 4px);opacity:1}22.5%,100%{left:calc(100% - 4px);opacity:0}}
-    @keyframes lockGlow{0%,12%,28%,100%{color:#eafcff;text-shadow:0 0 8px rgba(98,217,255,.12),0 0 22px rgba(98,217,255,.05)}15%{color:#fff;text-shadow:0 0 20px rgba(165,244,255,1),0 0 55px rgba(98,217,255,.65)}20%{color:#fff;text-shadow:0 0 16px rgba(165,244,255,.7),0 0 42px rgba(98,217,255,.4)}22.5%{color:#fff;text-shadow:0 0 24px rgba(170,246,255,1),0 0 65px rgba(98,217,255,.8)}26%,100%{color:#eafcff;text-shadow:0 0 8px rgba(98,217,255,.12),0 0 22px rgba(98,217,255,.05)}}
-    @keyframes lockArrow{0%,21%,30%,100%{transform:translateX(0);color:#8ceaff}23%{transform:translateX(18px);color:#f0fdff;text-shadow:0 0 16px rgba(180,245,255,1),0 0 34px rgba(98,217,255,.75)}27%{transform:translateX(18px);color:#d5f7ff}30%{transform:translateX(0);color:#8ceaff}}
-    @keyframes lockPulse{0%,27%{opacity:0;transform:scale(.9)}29%{opacity:.95;transform:scale(1)}34%{opacity:0;transform:scale(1.22)}37%{opacity:.45;transform:scale(1.08)}42%,100%{opacity:0;transform:scale(1.12)}}
+    .hero .btn::after{content:"";position:absolute;inset:-2px 0 2px -18px;border:1px solid rgba(98,217,255,.28);border-radius:5px;pointer-events:none;transition:border-color .3s ease}
+    .hero .btn::before{content:"";position:absolute;inset:-3px -1px 1px -19px;border-radius:6px;padding:1px;background:conic-gradient(from var(--flow-angle),rgba(98,217,255,0) 0 62%,rgba(98,217,255,.32) 70%,rgba(150,238,255,.92) 78%,#f0fdff 83%,rgba(150,238,255,.82) 87%,rgba(98,217,255,.26) 93%,rgba(98,217,255,0) 98%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude;animation:flowBorder 2.8s linear infinite;pointer-events:none}
+    .hero .btn .btn-txt{color:transparent;background:linear-gradient(105deg,#eafcff 0%,#eafcff 43%,#bdeaf7 47%,#ffffff 50%,#bdeaf7 53%,#eafcff 57%,#eafcff 100%);background-size:220% 100%;background-position:200% 0;-webkit-background-clip:text;background-clip:text;animation:txtFlow 3.4s ease-in-out infinite}
+    .hero .btn b{color:#8ceaff;font-weight:400;margin-left:14px;display:inline-block;transition:transform .3s ease,color .3s ease}
+    .hero .btn:hover{filter:brightness(1.15)}
+    .hero .btn:hover b{color:#e8fbff;transform:translateX(4px)}
+    .hero .btn:hover::after{border-color:rgba(150,240,255,.55)}
+    .hero .btn:hover::before{animation-duration:2s}
+    .hero .btn:hover .btn-txt{animation-duration:2.2s}
+    .hero .btn:active{filter:brightness(1.4)}
+    .hero .btn:focus-visible{outline:1px solid rgba(140,234,255,.75);outline-offset:10px;border-radius:4px}
+    .home-page.loaded .hero .btn{opacity:1;transform:none;transition:opacity 1s ease .85s,transform 1s ease .85s,filter .3s ease}
+    @property --flow-angle{syntax:'<angle>';inherits:false;initial-value:0deg}
+    @keyframes flowBorder{to{--flow-angle:360deg}}
+    @keyframes txtFlow{0%,72%{background-position:200% 0}94%{background-position:-100% 0}100%{background-position:-100% 0}}
 
     /* V49.41 · 恢复“未知之境”原始左下角位置（依据 git HEAD：position:fixed;left:46px;bottom:34px） */
     .manifesto{position:fixed;left:46px;bottom:34px;z-index:12;max-width:480px;pointer-events:none;opacity:0;transition:opacity 1.2s ease 1.05s}
@@ -171,7 +165,6 @@
       .hero h1{font-size:clamp(30px,9vw,44px);letter-spacing:2px}
       .hero .btn{left:22px;top:81%;font-size:11px;letter-spacing:3px}
       .hero .btn-ghost{height:calc(7vh + 35px)}
-      .hero .btn .ck{animation-delay:0s;width:18px;height:18px}
       html[data-lang="en"] .hero h1{font-size:clamp(28px,8vw,36px);line-height:1.14}
       .manifesto{left:22px;right:22px;bottom:18px;max-width:none}
       .manifesto p{font-size:11px}
@@ -206,12 +199,7 @@
       </h1>
       <div class="btn-ghost" aria-hidden="true"></div>
       <button type="button" class="btn" id="exploreBtn">
-        <i class="ck ck1" aria-hidden="true"></i>
-        <i class="ck ck2" aria-hidden="true"></i>
-        <i class="ck ck3" aria-hidden="true"></i>
-        <i class="ck ck4" aria-hidden="true"></i>
-        <span class="pulse" aria-hidden="true"></span>
-        <span data-lang="en">Start Exploration</span><span data-lang="zh">开启探索</span><b>→</b>
+        <span class="btn-txt" data-lang="en">Start Exploration</span><span class="btn-txt" data-lang="zh">开启探索</span><b>→</b>
       </button>
     </div>
   </section>

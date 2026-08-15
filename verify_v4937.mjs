@@ -34,11 +34,24 @@ async function run(width, height, lang, tag) {
     const m = manifesto.getBoundingClientRect();
     const h = hero.getBoundingClientRect();
     const t = h1.getBoundingClientRect();
+    const spans = btn.querySelectorAll('.btn-txt');
+    let visSpan = spans[0];
+    for (const s of spans) { if (s.getClientRects().length) { visSpan = s; break; } }
+    const txt = visSpan.getBoundingClientRect();
+    const arr = btn.querySelector('b').getBoundingClientRect();
+    const compL = Math.min(txt.left, arr.left);
+    const compR = Math.max(txt.right, arr.right);
+    const compT = Math.min(txt.top, arr.top);
+    const compB = Math.max(txt.bottom, arr.bottom);
+    const aCs = getComputedStyle(btn, '::after');
+    const frameL = b.left + parseFloat(aCs.left);
+    const frameR = b.right - parseFloat(aCs.right);
+    const frameT = b.top + parseFloat(aCs.top);
+    const frameB = b.bottom - parseFloat(aCs.bottom);
     const cs = getComputedStyle(btn);
-    const arrowCs = getComputedStyle(btn.querySelector('b'));
-    const ckCs = getComputedStyle(btn.querySelector('.ck1'));
+    const txtCs = getComputedStyle(btn.querySelector('.btn-txt'));
     const beforeCs = getComputedStyle(btn, '::before');
-    const pulseCs = getComputedStyle(btn.querySelector('.pulse'));
+    const afterCs = getComputedStyle(btn, '::after');
     return {
       btn: { x: Math.round(b.left), y: Math.round(b.top), w: Math.round(b.width), h: Math.round(b.height) },
       title: { x: Math.round(t.left), top: Math.round(t.top), bottom: Math.round(t.bottom) },
@@ -50,11 +63,16 @@ async function run(width, height, lang, tag) {
       btnCenterY: Math.round(b.top + b.height / 2),
       midpoint: Math.round((t.bottom + m.top) / 2),
       btnCenterNearMidpoint: Math.abs((b.top + b.height / 2) - (t.bottom + m.top) / 2) <= 25,
+      framePadding: {
+        left: Math.round(compL - frameL),
+        right: Math.round(frameR - compR),
+        top: Math.round(compT - frameT),
+        bottom: Math.round(frameB - compB)
+      },
       btnAnim: cs.animationName,
-      arrowAnim: arrowCs.animationName,
-      cornerAnim: ckCs.animationName,
-      scanAnim: beforeCs.animationName,
-      pulseAnim: pulseCs.animationName,
+      txtAnim: txtCs.animationName,
+      frameAnim: afterCs.animationName,
+      flowAnim: beforeCs.animationName,
       scrollW: document.documentElement.scrollWidth,
       innerW: window.innerWidth
     };
