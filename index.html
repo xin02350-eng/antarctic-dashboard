@@ -112,16 +112,19 @@
     .hero .btn .explore-arrow .flow-arrow{fill:none;stroke:#cfe9f8;stroke-width:6.5;stroke-linecap:round;stroke-linejoin:round;opacity:0;mix-blend-mode:screen;-webkit-mask-image:linear-gradient(90deg,transparent 0,transparent 43%,rgba(0,0,0,.18) 47%,#000 50%,rgba(0,0,0,.18) 53%,transparent 57%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,transparent 43%,rgba(0,0,0,.18) 47%,#000 50%,rgba(0,0,0,.18) 53%,transparent 57%,transparent 100%);-webkit-mask-size:300% 100%;mask-size:300% 100%;-webkit-mask-position:100% 0;mask-position:100% 0;animation:arrowFlow 6.5s ease-in-out infinite;pointer-events:none}
     .hero .btn .explore-arrow .wing-inner{fill:none;stroke:#d7edf7;stroke-width:2;stroke-linecap:round;stroke-linejoin:miter;opacity:.9;animation:tipFlash 2.6s ease-in-out infinite}
     .hero .btn .explore-arrow .tip-glint{fill:none;stroke:#f4fdff;stroke-width:1.8;stroke-linecap:round;opacity:0;animation:tipGlint 2.6s ease-in-out infinite}
-    .hero .btn:hover{filter:brightness(1.12)}
-    .hero .btn:hover::before{animation-duration:5s}
-    .hero .btn:hover .btn-txt .explore-shine{animation-duration:5s}
-    .hero .btn:hover .explore-arrow{animation-duration:5s}
-    .hero .btn:hover .explore-arrow .flow-arrow{animation-duration:5s}
-    .hero .btn:hover .btn-txt .explore-shine{animation-duration:5s}
-    .hero .btn:hover .btn-txt .explore-base{animation-duration:5s}
+    .home-page.loaded .hero .btn:hover{transform:scale(1.06);filter:brightness(1.25) drop-shadow(0 0 16px rgba(100,200,240,.28))}
+    .hero .btn:hover .explore-panel{border-color:rgba(160,215,245,.55);box-shadow:inset 0 0 0 1px rgba(190,230,250,.22),inset 0 1px 0 rgba(210,240,255,.16),0 0 24px rgba(80,180,230,.22),0 6px 30px rgba(0,10,22,.45)}
+    .hero .btn:hover .btn-txt .explore-base{filter:drop-shadow(0 0 10px rgba(120,215,250,.35)) drop-shadow(0 0 22px rgba(90,190,235,.20)) drop-shadow(0 1px 0 rgba(235,250,255,.16))}
+    .hero .btn:hover .explore-arrow .arrow-shape{opacity:1;filter:drop-shadow(0 0 5px rgba(150,225,250,.28))}
+    .hero .btn:hover::before{animation-duration:3.2s}
+    .hero .btn:hover .btn-txt .explore-shine{animation-duration:3.2s}
+    .hero .btn:hover .explore-arrow{animation-duration:3.2s}
+    .hero .btn:hover .explore-arrow .flow-arrow{animation-duration:3.2s}
+    .hero .btn:hover .btn-txt .explore-shine{animation-duration:3.2s}
+    .hero .btn:hover .btn-txt .explore-base{animation-duration:3.2s}
     .hero .btn:active{filter:brightness(1.4)}
     .hero .btn:focus-visible{outline:1px solid rgba(140,234,255,.75);outline-offset:10px;border-radius:4px}
-    .home-page.loaded .hero .btn{opacity:1;transform:none;transition:opacity 1s ease .85s,transform 1s ease .85s,filter .3s ease}
+    .home-page.loaded .hero .btn{opacity:1;transform:none;transition:opacity 1s ease .85s,transform .45s cubic-bezier(.22,1,.36,1),filter .35s ease}
     @property --flow-angle{syntax:'<angle>';inherits:false;initial-value:0deg}
     @keyframes flowBorder{to{--flow-angle:360deg}}
     @keyframes txtSweep{0%,46%{opacity:0;background-position:130% 0}50%{opacity:1}52%{opacity:1;background-position:130% 0}78%{background-position:-30% 0}82%,100%{opacity:0;background-position:-30% 0}}
