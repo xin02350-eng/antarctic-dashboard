@@ -75,12 +75,12 @@ await wait(150);
 let cap = await send('Page.captureScreenshot', { format: 'png', clip });
 writeFileSync(join(shotDir, 'arrow_rest.png'), Buffer.from(cap.data, 'base64'));
 
-await setPhase({ flowCore: 1850, flowBody: 1850, speed1: 2000, speed2: 1900, speed3: 1780 });
+await setPhase({ flowCore: 1850, flowBody: 1850, trail1: 1950, trail2: 1870, trail3: 1790 });
 await wait(150);
 cap = await send('Page.captureScreenshot', { format: 'png', clip });
 writeFileSync(join(shotDir, 'arrow_mid.png'), Buffer.from(cap.data, 'base64'));
 
-await setPhase({ flowCore: 2160, flowBody: 2160, tipFlash: 2160, arrowAdvance: 2160, speed1: 2100, speed2: 2050, speed3: 2000 });
+await setPhase({ flowCore: 2260, flowBody: 2260, tipFlash: 2260, tipGlint: 2260, arrowAdvance: 2260, trail1: 2100, trail2: 2050, trail3: 2000 });
 await wait(150);
 cap = await send('Page.captureScreenshot', { format: 'png', clip });
 writeFileSync(join(shotDir, 'arrow_tip.png'), Buffer.from(cap.data, 'base64'));

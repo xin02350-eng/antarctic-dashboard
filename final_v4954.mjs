@@ -79,17 +79,17 @@ await wait(150);
 let cap = await send('Page.captureScreenshot', { format: 'png', clip });
 writeFileSync(join(shotDir, 'v4954_rest.png'), Buffer.from(cap.data, 'base64'));
 
-await setPhase({ txtSweep: 2028, flowCore: 1900, flowBody: 1900, tipFlash: 2160, arrowAdvance: 2160, speed1: 2000, speed2: 1900, speed3: 1800 });
+await setPhase({ txtSweep: 1850, flowCore: 1850, flowBody: 1850, tipFlash: 2260, tipGlint: 2260, trail1: 2000, trail2: 1900, trail3: 1800 });
 await wait(150);
 cap = await send('Page.captureScreenshot', { format: 'png', clip });
 writeFileSync(join(shotDir, 'v4954_textsweep_arrow.png'), Buffer.from(cap.data, 'base64'));
 
-await setPhase({ txtSweep: 0, flowCore: 0, flowBody: 0, tipFlash: 0, arrowAdvance: 0, speed1: 0, speed2: 0, speed3: 0 });
+await setPhase({ txtSweep: 0, flowCore: 0, flowBody: 0, tipFlash: 0, tipGlint: 0, trail1: 0, trail2: 0, trail3: 0 });
 await wait(150);
 cap = await send('Page.captureScreenshot', { format: 'png', clip });
 writeFileSync(join(shotDir, 'v4954_pulse.png'), Buffer.from(cap.data, 'base64'));
 
-await setPhase({ txtSweep: 0, flowCore: 0, flowBody: 0, tipFlash: 0, arrowAdvance: 0, speed1: 0, speed2: 0, speed3: 0, flowBorder: 850 });
+await setPhase({ txtSweep: 0, flowCore: 0, flowBody: 0, tipFlash: 0, tipGlint: 0, trail1: 0, trail2: 0, trail3: 0, flowBorder: 1100 });
 await wait(150);
 cap = await send('Page.captureScreenshot', { format: 'png' });
 writeFileSync(join(shotDir, 'v4954_full.png'), Buffer.from(cap.data, 'base64'));
