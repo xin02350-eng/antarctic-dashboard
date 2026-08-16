@@ -66,7 +66,7 @@
       linear-gradient(180deg,rgba(1,6,13,.4),rgba(1,6,13,0) 20%,rgba(1,6,13,0) 62%,rgba(1,6,13,.55) 100%)}
 
     /* ---------- 顶栏 ---------- */
-    .top{position:fixed;top:0;left:0;right:0;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:30px 46px;pointer-events:none;opacity:0;transition:opacity 1.2s ease .2s}
+    .top{position:fixed;top:0;left:0;right:0;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:30px 46px 30px 86px;pointer-events:none;opacity:0;transition:opacity 1.2s ease .2s}
     .home-page.loaded .top{opacity:1}
     .top>*{pointer-events:auto}
     .brand{display:flex;align-items:center;gap:14px}
@@ -82,7 +82,7 @@
     .lang-switch button.active{color:#eafcff;text-shadow:0 0 8px rgba(140,234,255,.35)}
 
     /* ---------- Hero ---------- */
-    .hero{position:fixed;left:7vw;top:15%;z-index:10;max-width:640px}
+    .hero{position:fixed;left:calc(7vw + 50px);top:15%;z-index:10;max-width:640px}
     .hero-content{position:relative;display:block}
     .hero-content>*{margin-left:0;padding-left:0;text-align:left}
     .kicker{display:flex;align-items:center;gap:16px;font-size:11px;letter-spacing:.52em;color:rgba(140,234,255,.68);margin-bottom:34px;text-transform:uppercase;opacity:0;transform:translateY(14px)}
@@ -102,9 +102,9 @@
     /* V49.2 · 精简说明文字后的留白层级：标题 → 探索按钮 */
     /* V49.39 · 探索入口：主标题与理念文案之间的行动节点（Mission Pulse） */
     /* V49.49 · 外框居中留白 + 边框流光强化 + 文字流光强化（文字位置完全不变） */
-    .hero .btn{position:fixed;left:7vw;top:49.5%;display:inline-block;padding:6px 14px 6px 14px;font-size:12px;letter-spacing:5px;color:#eafcff;text-decoration:none;text-transform:uppercase;cursor:pointer;border:0;background:none;font-family:inherit;opacity:0;transform:translateY(14px);border-radius:4px}
+    .hero .btn{position:fixed;left:calc(7vw + 50px);top:49.5%;display:inline-block;padding:6px 14px 6px 14px;font-size:12px;letter-spacing:5px;color:#eafcff;text-decoration:none;text-transform:uppercase;cursor:pointer;border:0;background:none;font-family:inherit;opacity:0;transform:translateY(14px);border-radius:4px}
     .hero .btn-ghost{display:block;height:calc(9vh + 36px)}
-    .hero .btn::before{content:"";position:absolute;inset:-4px -2px 0 -20px;border-radius:9px;padding:4px;background:conic-gradient(from var(--flow-angle),rgba(105,150,185,0) 0 56%,rgba(110,175,210,.34) 64%,rgba(150,210,240,.72) 70%,rgba(205,245,255,1) 77%,#f2fdff 81%,rgba(190,240,255,1) 85%,rgba(120,195,230,.52) 91%,rgba(105,150,185,0) 97%,rgba(105,150,185,0) 100%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude;animation:flowBorder 6.5s linear infinite;pointer-events:none}
+    .hero .btn::before{content:"";position:absolute;inset:-2px -18px 2px -18px;border-radius:7px;padding:4px;background:conic-gradient(from var(--flow-angle),rgba(105,150,185,0) 0 56%,rgba(110,175,210,.34) 64%,rgba(150,210,240,.72) 70%,rgba(205,245,255,1) 77%,#f2fdff 81%,rgba(190,240,255,1) 85%,rgba(120,195,230,.52) 91%,rgba(105,150,185,0) 97%,rgba(105,150,185,0) 100%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude;animation:flowBorder 6.5s linear infinite;pointer-events:none}
     .hero .btn .explore-panel{position:absolute;inset:-2px -18px 2px -18px;border:1px solid rgba(110,160,195,.26);border-radius:7px;background:linear-gradient(180deg,rgba(8,22,38,.62),rgba(3,11,22,.56));box-shadow:inset 0 0 0 1px rgba(160,200,225,.07),inset 0 1px 0 rgba(175,215,235,.05);pointer-events:none}
     .hero .btn .btn-txt{position:relative;display:inline-block;color:#8ec9e8;-webkit-text-fill-color:#8ec9e8;font-size:26px;font-weight:600;line-height:1;letter-spacing:1px;top:-0.5px}
     html[data-lang="en"] .hero .btn .btn-txt{font-size:23px;letter-spacing:3px}
@@ -149,7 +149,7 @@
     @keyframes trail1{0%,66%{opacity:.18}74%{opacity:.65}90%,100%{opacity:.18}}
 
     /* V49.41 · 恢复“未知之境”原始左下角位置（依据 git HEAD：position:fixed;left:46px;bottom:34px） */
-    .manifesto{position:fixed;left:46px;bottom:34px;z-index:12;max-width:480px;pointer-events:none;opacity:0;transition:opacity 1.2s ease 1.05s}
+    .manifesto{position:fixed;left:66px;bottom:34px;z-index:12;max-width:480px;pointer-events:none;opacity:0;transition:opacity 1.2s ease 1.05s}
     .home-page.loaded .manifesto{opacity:1}
     .manifesto::before{content:"";display:block;width:100%;height:1px;background:linear-gradient(90deg,rgba(98,217,255,.35),transparent 80%);margin-bottom:12px}
     .manifesto p{font-size:clamp(12px,1.05vw,17px);line-height:1.9;color:rgba(202,229,242,.85);letter-spacing:.6px}
@@ -214,7 +214,7 @@
       .hero .btn .btn-txt{font-size:14px;top:0.3px}
       .hero .btn .explore-arrow{width:34px;height:14px;top:-3.1px}
       html[data-lang="zh"] .hero .btn .explore-arrow{top:-2.3px}
-      .hero .btn::before{left:-19px}
+      .hero .btn::before{left:-18px}
       .hero .btn-ghost{height:calc(7vh + 35px)}
       html[data-lang="en"] .hero h1{font-size:clamp(24px,6.5vw,32px);line-height:1.14}
       .manifesto{left:22px;right:22px;bottom:18px;max-width:none}
@@ -759,11 +759,11 @@
         camera.getWorldDirection(dir);
         _right.crossVectors(dir, new THREE.Vector3(0, 1, 0)).normalize();
         var small = window.innerWidth <= 700;
-        var k = small ? 34 : 113;
-        var s = small ? 0.55 : 1;
+        var k = small ? 34 : 114;
+        var s = small ? 0.55 : 1.14;
         globe.scale.set(s, s, s);
         globe.position.copy(_right).multiplyScalar(k);
-        globe.position.y = small ? 69 : 0;
+        globe.position.y = small ? 69 : 6;
       }
       window.__scene = scene;
       window.__camera = camera;
@@ -1003,12 +1003,15 @@ function animate() {
         }
         routeGeo.attributes.position.needsUpdate = true;
         renderer.render(scene, camera);
+        globe.scale.set(1.14, 1.14, 1.14);
       }
       setCam(camLat, camLng);
       setGlobeOffset();
+      globe.scale.set(1.14, 1.14, 1.14);
       cacheLeaderLabel();
       animate();
       window.__globeReady = true;
+      requestAnimationFrame(function(){ globe.scale.set(1.14, 1.14, 1.14); });
     }
     /* V48.0 · 兜底启动：主 CDN 失败时切换备用源；WebGL 创建失败时显示静态降级层 */
     function safeInit() {
