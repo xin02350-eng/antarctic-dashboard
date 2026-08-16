@@ -82,11 +82,14 @@
     .hero{position:fixed;left:7vw;top:15%;z-index:10;max-width:640px}
     .hero-content{position:relative;display:block}
     .hero-content>*{margin-left:0;padding-left:0;text-align:left}
-    .kicker{display:flex;align-items:center;gap:16px;font-size:11px;letter-spacing:6px;color:rgba(140,234,255,.65);margin-bottom:28px;text-transform:uppercase;opacity:0;transform:translateY(14px)}
-    .kicker::before{content:"";width:52px;height:1px;background:linear-gradient(90deg,rgba(98,217,255,.8),transparent)}
+    .kicker{display:flex;align-items:center;gap:14px;font-size:10px;letter-spacing:.48em;color:rgba(140,234,255,.68);margin-bottom:30px;text-transform:uppercase;opacity:0;transform:translateY(14px)}
+    .kicker::before{content:"";width:44px;height:1px;background:linear-gradient(90deg,rgba(98,217,255,.8),transparent)}
     .home-page.loaded .kicker{opacity:1;transform:none;transition:opacity .9s ease .4s,transform .9s ease .4s}
-    .hero h1{font-size:clamp(32px,3.6vw,62px);line-height:1.12;font-weight:200;letter-spacing:3px;opacity:0;transform:translateY(20px)}
+    .hero h1{font-size:clamp(34px,3.8vw,66px);line-height:1.3;font-weight:200;letter-spacing:.1em;opacity:0;transform:translateY(20px)}
+    .hero h1 > span{display:flex;flex-direction:column;align-items:flex-start;gap:18px}
     .hero h1 em{font-style:normal;background:linear-gradient(180deg,#f2fdff 24%,#8ceaff 92%);-webkit-background-clip:text;background-clip:text;color:transparent}
+    .hero h1 em:first-child{font-size:.6em;font-weight:300;letter-spacing:.34em;background:none;color:rgba(170,215,238,.82);-webkit-text-fill-color:rgba(170,215,238,.82)}
+    .hero h1 em:last-child{font-size:1em;font-weight:200;letter-spacing:.18em}
     .home-page.loaded .hero h1{opacity:1;transform:none;transition:opacity 1s ease .55s,transform 1s ease .55s}
     /* V49.2 · 精简说明文字后的留白层级：标题 → 探索按钮 */
     /* V49.39 · 探索入口：主标题与理念文案之间的行动节点（Mission Pulse） */
@@ -94,11 +97,11 @@
     .hero .btn{position:fixed;left:7vw;top:61.7%;display:inline-block;padding:8px 18px 12px 0;font-size:12px;letter-spacing:5px;color:#eafcff;text-decoration:none;text-transform:uppercase;cursor:pointer;border:0;background:none;font-family:inherit;opacity:0;transform:translateY(14px);border-radius:4px}
     .hero .btn-ghost{display:block;height:calc(9vh + 36px)}
     .hero .btn::before{content:"";position:absolute;inset:-4px -2px 0 -20px;border-radius:9px;padding:4px;background:conic-gradient(from var(--flow-angle),rgba(105,150,185,0) 0 56%,rgba(110,175,210,.30) 64%,rgba(150,210,240,.65) 70%,rgba(205,245,255,.95) 77%,#f2fdff 81%,rgba(190,240,255,.9) 85%,rgba(120,195,230,.45) 91%,rgba(105,150,185,0) 97%,rgba(105,150,185,0) 100%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude;animation:flowBorder 6.5s linear infinite;pointer-events:none}
-    .hero .btn .explore-panel{position:absolute;inset:-2px 0 2px -18px;border:1px solid rgba(120,170,205,.34);border-radius:7px;background:linear-gradient(180deg,rgba(10,28,46,.78),rgba(4,14,26,.72));box-shadow:inset 0 0 0 1px rgba(170,210,235,.12),inset 0 1px 0 rgba(190,225,245,.10),0 0 18px rgba(60,140,190,.12),0 4px 24px rgba(0,8,18,.35);pointer-events:none}
+    .hero .btn .explore-panel{position:absolute;inset:-2px 0 2px -18px;border:1px solid rgba(110,160,195,.26);border-radius:7px;background:linear-gradient(180deg,rgba(8,22,38,.62),rgba(3,11,22,.56));box-shadow:inset 0 0 0 1px rgba(160,200,225,.07),inset 0 1px 0 rgba(175,215,235,.05);pointer-events:none}
     .hero .btn .btn-txt{position:relative;display:inline-block;color:#8ec9e8;-webkit-text-fill-color:#8ec9e8;font-size:22px;font-weight:500;line-height:1;letter-spacing:1px;top:3.5px}
     html[data-lang="en"] .hero .btn .btn-txt{font-size:20px;letter-spacing:3px}
     html[data-lang="en"] .kicker{font-size:10px}
-    .hero .btn .btn-txt .explore-base{display:inline-block;background:linear-gradient(105deg,transparent 44%,rgba(240,252,255,.9) 50%,transparent 56%),linear-gradient(180deg,rgba(235,250,255,.95) 0%,rgba(160,220,245,.35) 14%,rgba(110,185,220,.12) 26%,transparent 42%),linear-gradient(180deg,#eaf7fe 0%,#a9d4ec 40%,#7fa9c8 60%,#4c7594 100%);background-size:220% 100%,100% 100%,100% 100%;background-position:60% 0,0 0,0 0;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;filter:drop-shadow(0 0 8px rgba(110,210,245,.24)) drop-shadow(0 0 18px rgba(80,170,220,.12)) drop-shadow(0 1px 0 rgba(225,248,255,.12))}
+    .hero .btn .btn-txt .explore-base{display:inline-block;background:linear-gradient(180deg,#e6f7fe 0%,#a9d4ec 40%,#7fa9c8 62%,#4c7594 100%);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;filter:drop-shadow(0 0 8px rgba(110,210,245,.20)) drop-shadow(0 1px 0 rgba(225,248,255,.10))}
     .hero .btn .btn-txt .explore-shine{position:absolute;inset:0;color:transparent;background:linear-gradient(100deg,rgba(150,210,240,0) 36%,rgba(240,252,255,1) 50%,rgba(150,210,240,0) 64%);background-size:220% 100%;background-position:130% 0;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 0 9px rgba(180,235,255,.38));animation:txtSweep 6.5s ease-in-out infinite;pointer-events:none}
     .hero .btn .explore-arrow{position:relative;display:inline-block;width:60px;height:24px;margin-left:12px;top:-1.5px;vertical-align:middle;animation:arrowAdvance 6.5s ease-in-out infinite}
     .hero .btn .explore-arrow svg{display:block;width:100%;height:100%}
@@ -154,10 +157,10 @@
     }
     @media (min-width:1025px){
       html[data-lang="en"] .kicker{margin-bottom:40px}
-      html[data-lang="en"] .hero h1{margin-top:-24px;font-size:clamp(32px,3vw,52px);line-height:1.16;letter-spacing:2px}
-      html[data-lang="en"] .hero h1 em{display:inline-block}
-      html[data-lang="en"] .hero h1 em:nth-of-type(1){font-size:.9em}
-      html[data-lang="en"] .hero h1 em:nth-of-type(2){font-size:1em;letter-spacing:2.5px}
+      html[data-lang="en"] .hero h1{margin-top:-24px;font-size:clamp(30px,3vw,52px);line-height:1.32;letter-spacing:.08em}
+      html[data-lang="en"] .hero h1 em{display:inline}
+      html[data-lang="en"] .hero h1 em:first-child{font-size:.56em;letter-spacing:.30em}
+      html[data-lang="en"] .hero h1 em:last-child{font-size:1em;letter-spacing:.14em}
     }
     @media (max-width:1024px){
       .hero{left:22px;right:22px;top:auto;bottom:120px;max-width:none}
@@ -194,6 +197,8 @@
       .brand h1{font-size:12px;letter-spacing:2px}
       .hero{left:22px;right:22px;top:auto;bottom:120px;max-width:none}
       .hero h1{font-size:clamp(26px,7.5vw,38px);letter-spacing:2px}
+      .hero h1 > span{gap:10px}
+      .hero h1 em:first-child{letter-spacing:.26em}
       .hero .btn{left:22px;top:81%;font-size:11px;letter-spacing:3px}
       .hero .btn::after{content:"";position:absolute;inset:-8px -12px;border-radius:6px}
       .hero .btn .btn-txt{font-size:17px;top:2.1px}
@@ -236,8 +241,8 @@
     <div class="hero-content">
       <div class="kicker"><span data-lang="en">Autonomous Observation Network</span><span data-lang="zh">自主观测网络</span></div>
       <h1>
-        <span data-lang="en"><em>From Observation,</em><br><em>Toward the Unknown</em></span>
-        <span data-lang="zh"><em>始于观测，</em><br><em>走向未知</em></span>
+        <span data-lang="en"><em>From Observation,</em><em>Toward the Unknown</em></span>
+        <span data-lang="zh"><em>始于观测，</em><em>走向未知</em></span>
       </h1>
       <div class="btn-ghost" aria-hidden="true"></div>
       <button type="button" class="btn" id="exploreBtn">
