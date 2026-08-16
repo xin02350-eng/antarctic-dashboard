@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500&family=Noto+Sans+SC:wght@200;300&family=Ma+Shan+Zheng&family=Zhi+Mang+Xing&family=Liu+Jian+Mao+Cao&display=swap" rel="stylesheet">
+  <link rel="preload" href="assets/fonts/LXGWWenKai-Medium.ttf" as="font" type="font/ttf" crossorigin>
   <!-- V48.0 · CDN 备用加载：unpkg 不可用时自动改用 jsdelivr，避免 3D 地球白屏 -->
   <script>
   (function () {
@@ -300,6 +301,9 @@
     function bind() { document.querySelectorAll('.lang-switch button').forEach(function (b) { b.addEventListener('click', function (ev) { ev.preventDefault(); apply(b.getAttribute('data-lang')); }); }); }
     var saved = null; try { saved = localStorage.getItem('anx-lang'); } catch (e) {}
     apply(saved === 'zh' ? 'zh' : 'en'); bind();
+    if (document.fonts && document.fonts.load) {
+      try { document.fonts.load('500 16px "LXGW WenKai"', '自主观测网络始于观测走向未知开启探索未知之境无人之地分布式监测系统南极大陆未来目标南京东北').catch(function(){}); } catch (e) {}
+    }
   })();
   </script>
 
