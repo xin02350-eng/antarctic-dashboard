@@ -93,14 +93,14 @@
     /* V49.49 · 外框居中留白 + 边框流光强化 + 文字流光强化（文字位置完全不变） */
     .hero .btn{position:fixed;left:7vw;top:61.7%;display:inline-block;padding:8px 18px 12px 0;font-size:12px;letter-spacing:5px;color:#eafcff;text-decoration:none;text-transform:uppercase;cursor:pointer;border:0;background:none;font-family:inherit;opacity:0;transform:translateY(14px);border-radius:4px}
     .hero .btn-ghost{display:block;height:calc(9vh + 36px)}
-    .hero .btn::before{content:"";position:absolute;inset:-4px -2px 0 -20px;border-radius:9px;padding:4px;background:conic-gradient(from var(--flow-angle),rgba(105,150,185,0) 0 56%,rgba(110,175,210,.30) 64%,rgba(150,210,240,.65) 70%,rgba(205,245,255,.95) 77%,#f2fdff 81%,rgba(190,240,255,.9) 85%,rgba(120,195,230,.45) 91%,rgba(105,150,185,0) 97%,rgba(105,150,185,0) 100%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude;animation:flowBorder 4.8s linear infinite;pointer-events:none}
-    .hero .btn .explore-panel{position:absolute;inset:-2px 0 2px -18px;border:1px solid rgba(105,145,175,.26);border-radius:7px;background:linear-gradient(180deg,rgba(6,18,32,.36),rgba(3,10,20,.26));box-shadow:inset 0 0 0 1px rgba(170,205,230,.08),inset 0 1px 0 rgba(180,215,240,.06);pointer-events:none}
-    .hero .btn .btn-txt{position:relative;display:inline-block;color:#6f93ad;-webkit-text-fill-color:#6f93ad;font-size:22px;line-height:1;letter-spacing:1px;top:3.5px}
+    .hero .btn::before{content:"";position:absolute;inset:-4px -2px 0 -20px;border-radius:9px;padding:4px;background:conic-gradient(from var(--flow-angle),rgba(105,150,185,0) 0 56%,rgba(110,175,210,.30) 64%,rgba(150,210,240,.65) 70%,rgba(205,245,255,.95) 77%,#f2fdff 81%,rgba(190,240,255,.9) 85%,rgba(120,195,230,.45) 91%,rgba(105,150,185,0) 97%,rgba(105,150,185,0) 100%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude;animation:flowBorder 6.5s linear infinite;pointer-events:none}
+    .hero .btn .explore-panel{position:absolute;inset:-2px 0 2px -18px;border:1px solid rgba(120,170,205,.34);border-radius:7px;background:linear-gradient(180deg,rgba(10,28,46,.78),rgba(4,14,26,.72));box-shadow:inset 0 0 0 1px rgba(170,210,235,.12),inset 0 1px 0 rgba(190,225,245,.10),0 0 18px rgba(60,140,190,.12),0 4px 24px rgba(0,8,18,.35);pointer-events:none}
+    .hero .btn .btn-txt{position:relative;display:inline-block;color:#8ec9e8;-webkit-text-fill-color:#8ec9e8;font-size:22px;font-weight:500;line-height:1;letter-spacing:1px;top:3.5px}
     html[data-lang="en"] .hero .btn .btn-txt{font-size:20px;letter-spacing:3px}
     html[data-lang="en"] .kicker{font-size:10px}
-    .hero .btn .btn-txt .explore-base{display:inline-block}
-    .hero .btn .btn-txt .explore-shine{position:absolute;inset:0;color:transparent;background:linear-gradient(100deg,rgba(150,210,240,0) 36%,rgba(240,252,255,1) 50%,rgba(150,210,240,0) 64%);background-size:220% 100%;background-position:130% 0;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 0 9px rgba(180,235,255,.38));animation:txtSweep 4.8s ease-in-out infinite;pointer-events:none}
-    .hero .btn .explore-arrow{position:relative;display:inline-block;width:60px;height:24px;margin-left:12px;top:-1.5px;vertical-align:middle;animation:arrowAdvance 4.8s ease-in-out infinite}
+    .hero .btn .btn-txt .explore-base{display:inline-block;background:linear-gradient(105deg,transparent 44%,rgba(240,252,255,.9) 50%,transparent 56%),linear-gradient(180deg,rgba(235,250,255,.95) 0%,rgba(160,220,245,.35) 14%,rgba(110,185,220,.12) 26%,transparent 42%),linear-gradient(180deg,#eaf7fe 0%,#a9d4ec 40%,#7fa9c8 60%,#4c7594 100%);background-size:220% 100%,100% 100%,100% 100%;background-position:60% 0,0 0,0 0;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;filter:drop-shadow(0 0 8px rgba(110,210,245,.24)) drop-shadow(0 0 18px rgba(80,170,220,.12)) drop-shadow(0 1px 0 rgba(225,248,255,.12))}
+    .hero .btn .btn-txt .explore-shine{position:absolute;inset:0;color:transparent;background:linear-gradient(100deg,rgba(150,210,240,0) 36%,rgba(240,252,255,1) 50%,rgba(150,210,240,0) 64%);background-size:220% 100%;background-position:130% 0;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 0 9px rgba(180,235,255,.38));animation:txtSweep 6.5s ease-in-out infinite;pointer-events:none}
+    .hero .btn .explore-arrow{position:relative;display:inline-block;width:60px;height:24px;margin-left:12px;top:-1.5px;vertical-align:middle;animation:arrowAdvance 6.5s ease-in-out infinite}
     .hero .btn .explore-arrow svg{display:block;width:100%;height:100%}
     html[data-lang="zh"] .hero .btn .explore-arrow{top:-2.5px}
     .hero .btn .explore-arrow .trail{fill:none;stroke:#8fb6cf;stroke-width:1.8;stroke-linecap:round}
@@ -108,24 +108,24 @@
     .hero .btn .explore-arrow .t2{opacity:.30;animation:trail2 2.6s ease-in-out infinite}
     .hero .btn .explore-arrow .t3{opacity:.42;animation:trail3 2.6s ease-in-out infinite}
     .hero .btn .explore-arrow .rail{fill:none;stroke:#5f87a5;stroke-width:3;stroke-linecap:round;opacity:.55}
-    .hero .btn .explore-arrow .arrow-shape{fill:none;stroke:url(#arrowGrad);stroke-width:7.5;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 2px rgba(120,205,240,.18)) drop-shadow(0 0 8px rgba(70,150,195,.10));opacity:.92}
-    .hero .btn .explore-arrow .flow-arrow{fill:none;stroke:#eafcff;stroke-width:6.5;stroke-linecap:round;stroke-linejoin:round;opacity:0;mix-blend-mode:screen;filter:drop-shadow(0 0 3px rgba(160,225,250,.30));-webkit-mask-image:linear-gradient(90deg,transparent 0,transparent 43%,rgba(0,0,0,.18) 47%,#000 50%,rgba(0,0,0,.18) 53%,transparent 57%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,transparent 43%,rgba(0,0,0,.18) 47%,#000 50%,rgba(0,0,0,.18) 53%,transparent 57%,transparent 100%);-webkit-mask-size:300% 100%;mask-size:300% 100%;-webkit-mask-position:100% 0;mask-position:100% 0;animation:arrowFlow 4.8s ease-in-out infinite;pointer-events:none}
+    .hero .btn .explore-arrow .arrow-shape{fill:none;stroke:url(#arrowGrad);stroke-width:7.5;stroke-linecap:round;stroke-linejoin:round;opacity:.94}
+    .hero .btn .explore-arrow .flow-arrow{fill:none;stroke:#cfe9f8;stroke-width:6.5;stroke-linecap:round;stroke-linejoin:round;opacity:0;mix-blend-mode:screen;-webkit-mask-image:linear-gradient(90deg,transparent 0,transparent 43%,rgba(0,0,0,.18) 47%,#000 50%,rgba(0,0,0,.18) 53%,transparent 57%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,transparent 43%,rgba(0,0,0,.18) 47%,#000 50%,rgba(0,0,0,.18) 53%,transparent 57%,transparent 100%);-webkit-mask-size:300% 100%;mask-size:300% 100%;-webkit-mask-position:100% 0;mask-position:100% 0;animation:arrowFlow 6.5s ease-in-out infinite;pointer-events:none}
     .hero .btn .explore-arrow .wing-inner{fill:none;stroke:#d7edf7;stroke-width:2;stroke-linecap:round;stroke-linejoin:miter;opacity:.9;animation:tipFlash 2.6s ease-in-out infinite}
     .hero .btn .explore-arrow .tip-glint{fill:none;stroke:#f4fdff;stroke-width:1.8;stroke-linecap:round;opacity:0;animation:tipGlint 2.6s ease-in-out infinite}
     .hero .btn:hover{filter:brightness(1.12)}
-    .hero .btn:hover::before{animation-duration:3.6s}
-    .hero .btn:hover .btn-txt .explore-shine{animation-duration:3.6s}
-    .hero .btn:hover .explore-arrow{animation-duration:3.6s}
-    .hero .btn:hover .explore-arrow .flow-arrow{animation-duration:3.6s}
-    .hero .btn:hover .btn-txt .explore-shine{animation-duration:3.6s}
-    .hero .btn:hover .btn-txt .explore-base{animation-duration:3.6s}
+    .hero .btn:hover::before{animation-duration:5s}
+    .hero .btn:hover .btn-txt .explore-shine{animation-duration:5s}
+    .hero .btn:hover .explore-arrow{animation-duration:5s}
+    .hero .btn:hover .explore-arrow .flow-arrow{animation-duration:5s}
+    .hero .btn:hover .btn-txt .explore-shine{animation-duration:5s}
+    .hero .btn:hover .btn-txt .explore-base{animation-duration:5s}
     .hero .btn:active{filter:brightness(1.4)}
     .hero .btn:focus-visible{outline:1px solid rgba(140,234,255,.75);outline-offset:10px;border-radius:4px}
     .home-page.loaded .hero .btn{opacity:1;transform:none;transition:opacity 1s ease .85s,transform 1s ease .85s,filter .3s ease}
     @property --flow-angle{syntax:'<angle>';inherits:false;initial-value:0deg}
     @keyframes flowBorder{to{--flow-angle:360deg}}
     @keyframes txtSweep{0%,46%{opacity:0;background-position:130% 0}50%{opacity:1}52%{opacity:1;background-position:130% 0}78%{background-position:-30% 0}82%,100%{opacity:0;background-position:-30% 0}}
-    @keyframes arrowFlow{0%,72%{opacity:0;-webkit-mask-position:100% 0;mask-position:100% 0}76%{opacity:.85}78%{opacity:.85;-webkit-mask-position:100% 0;mask-position:100% 0}92%{opacity:.85;-webkit-mask-position:0% 0;mask-position:0% 0}96%,100%{opacity:0;-webkit-mask-position:0% 0;mask-position:0% 0}}
+    @keyframes arrowFlow{0%,72%{opacity:0;-webkit-mask-position:100% 0;mask-position:100% 0}76%{opacity:.75}78%{opacity:.75;-webkit-mask-position:100% 0;mask-position:100% 0}92%{opacity:.75;-webkit-mask-position:0% 0;mask-position:0% 0}96%,100%{opacity:0;-webkit-mask-position:0% 0;mask-position:0% 0}}
     @keyframes arrowAdvance{0%,84%{transform:translateX(0)}90%{transform:translateX(2px)}95%,100%{transform:translateX(0)}}
     @keyframes tipFlash{0%,85%{stroke:#d7edf7}91%{stroke:#f4fdff}95%,100%{stroke:#d7edf7}}
     @keyframes tipGlint{0%,85%{opacity:0}90%{opacity:.95}94%,100%{opacity:0}}
@@ -236,7 +236,7 @@
       <div class="btn-ghost" aria-hidden="true"></div>
       <button type="button" class="btn" id="exploreBtn">
         <span class="explore-panel" aria-hidden="true"></span>
-        <span class="btn-txt" data-lang="en"><span class="explore-base">Start Exploration</span><span class="explore-shine" aria-hidden="true">Start Exploration</span></span><span class="btn-txt" data-lang="zh"><span class="explore-base">开启探索</span><span class="explore-shine" aria-hidden="true">开启探索</span></span><span class="explore-arrow" aria-hidden="true"><svg width="60" height="24" viewBox="0 0 60 24"><defs><linearGradient id="arrowGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#3b5c77"></stop><stop offset="0.55" stop-color="#5f87a5"></stop><stop offset="1" stop-color="#a6c9de"></stop></linearGradient></defs><path class="arrow-shape" d="M0 12 H55.2 M37.2 3.75 L55.2 12 M37.2 20.25 L55.2 12"></path><path class="flow-arrow" d="M0 12 H55.2 M37.2 3.75 L55.2 12 M37.2 20.25 L55.2 12"></path></svg></span>
+        <span class="btn-txt" data-lang="en"><span class="explore-base">Start Exploration</span><span class="explore-shine" aria-hidden="true">Start Exploration</span></span><span class="btn-txt" data-lang="zh"><span class="explore-base">开启探索</span><span class="explore-shine" aria-hidden="true">开启探索</span></span><span class="explore-arrow" aria-hidden="true"><svg width="60" height="24" viewBox="0 0 60 24"><defs><linearGradient id="arrowGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#34536e"></stop><stop offset="0.55" stop-color="#5b84a3"></stop><stop offset="1" stop-color="#96bcd4"></stop></linearGradient></defs><path class="arrow-shape" d="M0 12 H55.2 M37.2 3.75 L55.2 12 M37.2 20.25 L55.2 12"></path><path class="flow-arrow" d="M0 12 H55.2 M37.2 3.75 L55.2 12 M37.2 20.25 L55.2 12"></path></svg></span>
       </button>
     </div>
   </section>
