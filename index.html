@@ -820,7 +820,7 @@
         cacheLeaderLabel();
       });
 
-      var camDist = 430, camLat = 20, camLng = 110, tick = 0;
+      var camDist = 430, camLat = 20, camLng = 110, tick = 0, rotDir = 1, rotMin = 0.55, rotMax = 1.15, rotSpeed = 0.00015;
       function setCam(lat, lng) {
         var phi = (90 - lat) * Math.PI / 180;
         var theta = (lng + 180) * Math.PI / 180;
@@ -994,10 +994,12 @@
           labelCtx.fillText(names[li], lx, ly + it.dy);
         }
       }
-function animate() {
+      function animate() {
         requestAnimationFrame(animate);
         tick++;
-        globe.rotation.y = 0.6 + tick * 0.00015; /* V49.9 · 从中国正面缓慢进入自转 */
+        globe.rotation.y += rotDir * rotSpeed;
+        if (globe.rotation.y >= rotMax) { globe.rotation.y = rotMax; rotDir = -1; }
+        if (globe.rotation.y <= rotMin) { globe.rotation.y = rotMin; rotDir = 1; }
         var bgT = performance.now() / 1000;
         for (var si = 0; si < bgStarLayers.length; si++) {
           bgStarLayers[si].material.uniforms.uTime.value = bgT;
