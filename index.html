@@ -58,8 +58,8 @@
     /* ---------- 南极引导标签（固定于空白区） ---------- */
     .an-label{position:fixed;right:7%;bottom:22%;z-index:12;text-align:right;pointer-events:none;opacity:0;transition:opacity 1.6s ease 1.4s}
     .home-page.loaded .an-label{opacity:1}
-    .an-label b{display:block;font-size:14px;letter-spacing:4px;color:#e6f7ff;font-weight:500}
-    .an-label span{display:block;font-size:10px;letter-spacing:3px;color:rgba(170,240,255,.8);margin-top:6px;text-transform:uppercase}
+    .an-label b{display:block;font-size:18px;letter-spacing:5px;color:#e6f7ff;font-weight:500}
+    .an-label span{display:block;font-size:13px;letter-spacing:3px;color:rgba(170,240,255,.8);margin-top:8px;text-transform:uppercase}
     .globe-node-label{position:absolute;pointer-events:none;white-space:nowrap;padding-left:16px;font-size:10px;letter-spacing:2px;color:rgba(234,252,255,.92);text-shadow:0 1px 5px rgba(1,6,13,.85);font-weight:400}
     .globe-node-label span{display:block;font-size:7px;letter-spacing:1.5px;color:rgba(140,234,255,.6);margin-top:2px}
 
@@ -169,10 +169,10 @@
       .hero .btn:hover::after{opacity:.9;transform:scaleX(1)}
     }
     @media (min-width:1025px){
-      html[data-lang="en"] .kicker{margin-bottom:40px}
+      html[data-lang="en"] .kicker{margin-bottom:40px;margin-left:-50px}
       html[data-lang="en"] .hero h1{margin-top:-24px;font-size:clamp(25px,2.5vw,44px);line-height:1.32;letter-spacing:.08em}
       html[data-lang="en"] .hero h1 em{display:inline}
-      html[data-lang="en"] .hero h1 em:first-child{font-size:.56em;letter-spacing:.30em}
+      html[data-lang="en"] .hero h1 em:first-child{font-size:.56em;letter-spacing:.30em;margin-left:-20px}
       html[data-lang="en"] .hero h1 em:last-child{font-family:"Playfair Display","Georgia","Times New Roman",serif;font-size:1em;font-weight:400;letter-spacing:.06em;margin-left:calc(1.05em + 40px)}
     }
     @media (max-width:1024px){
@@ -962,7 +962,7 @@
           labelCtx.fill();
 
           /* 标签：冷白 + 极轻蓝光 + 锐利主体（稍醒目） */
-          labelCtx.font = '600 ' + Math.round(18 * u) + 'px "Segoe UI","Microsoft YaHei",sans-serif';
+          labelCtx.font = '600 ' + Math.round(24 * u) + 'px "Segoe UI","Microsoft YaHei",sans-serif';
           labelCtx.textBaseline = 'middle';
           labelCtx.shadowColor = 'rgba(90,190,235,0.70)';
           labelCtx.shadowBlur = Math.round(7 * u);
