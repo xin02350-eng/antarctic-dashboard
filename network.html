@@ -348,6 +348,11 @@
         go(el.getAttribute('data-href'));
       });
     });
+    window.addEventListener('pageshow', function () {
+      document.body.classList.remove('is-leaving');
+      document.body.dataset.busy = '';
+      if (window.networkMap) setTimeout(function () { window.networkMap.invalidateSize(); }, 60);
+    });
   })();
   </script>
 </body>

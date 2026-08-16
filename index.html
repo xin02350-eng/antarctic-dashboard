@@ -285,6 +285,17 @@
     function apply(lang) {
       document.documentElement.setAttribute('data-lang', lang);
       document.documentElement.setAttribute('lang', lang === 'zh' ? 'zh-CN' : 'en');
+      if (lang === 'zh') {
+        document.body.style.fontFamily = '"LXGW WenKai","Ma Shan Zheng","STXingkai","KaiTi","楷体",cursive';
+        document.querySelectorAll('.hero h1 em').forEach(function (em) {
+          em.style.fontFamily = '"LXGW WenKai","Ma Shan Zheng","Zhi Mang Xing","STXingkai","KaiTi","STKaiti","楷体",cursive';
+        });
+      } else {
+        document.body.style.fontFamily = '';
+        document.querySelectorAll('.hero h1 em').forEach(function (em) {
+          em.style.fontFamily = '';
+        });
+      }
       document.querySelectorAll('[data-lang]').forEach(function (el) {
         if (el.tagName === 'BUTTON' && el.parentNode && el.parentNode.classList && el.parentNode.classList.contains('lang-switch')) return;
         el.style.display = (el.getAttribute('data-lang') === lang) ? '' : 'none';
@@ -1062,6 +1073,12 @@ function animate() {
     setTimeout(positionExploreBtn, 1800);
     window.addEventListener('resize', positionExploreBtn);
     window.addEventListener('anx:langchange', function () { setTimeout(positionExploreBtn, 60); });
+    window.addEventListener('pageshow', function () {
+      document.body.classList.remove('is-leaving');
+      var btn = document.getElementById('exploreBtn');
+      if (btn) btn.dataset.busy = '';
+      setTimeout(positionExploreBtn, 60);
+    });
   })();
   </script>
 </body>
