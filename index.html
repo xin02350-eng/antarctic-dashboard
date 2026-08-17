@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
@@ -8,7 +8,8 @@
   <link rel="icon" href="data:,">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500&family=Noto+Sans+SC:wght@200;300&family=Ma+Shan+Zheng&family=Zhi+Mang+Xing&family=Liu+Jian+Mao+Cao&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500&family=Noto+Sans+SC:wght@200;300&family=Ma+Shan+Zheng&family=Zhi+Mang+Xing&family=Liu+Jian+Mao+Cao&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500&family=Noto+Sans+SC:wght@200;300&family=Ma+Shan+Zheng&family=Zhi+Mang+Xing&family=Liu+Jian+Mao+Cao&display=swap" rel="stylesheet"></noscript>
   <link rel="preload" href="assets/fonts/LXGWWenKai-Home.woff2" as="font" type="font/woff2" crossorigin>
   <!-- V48.0 · CDN 备用加载：unpkg 不可用时自动改用 jsdelivr，避免 3D 地球白屏 -->
   <script>
@@ -44,6 +45,7 @@
     @font-face{font-family:'LXGW WenKai';src:url('assets/fonts/LXGWWenKai-Home.woff2') format('woff2'),url('assets/fonts/LXGWWenKai-Medium.ttf') format('truetype');font-weight:500;font-display:block}
     *{box-sizing:border-box;margin:0;padding:0}
     html,body{height:100%;overflow:hidden}
+    html{font-size:16px;font-size:clamp(12px, 0.833333vw, 20px);-webkit-text-size-adjust:100%;text-size-adjust:100%}
     body{background:radial-gradient(ellipse at 66% 42%,#071a2c 0%,#020a14 48%,#01060d 82%);color:#dff6ff;font-family:"Segoe UI",system-ui,-apple-system,"Microsoft YaHei",sans-serif;position:relative}
     html[data-lang="zh"] body{font-family:"LXGW WenKai","Ma Shan Zheng","STXingkai","KaiTi","楷体",cursive}
     html:lang(zh-CN) body{font-family:"LXGW WenKai","Ma Shan Zheng","STXingkai","KaiTi","楷体",cursive}
@@ -61,8 +63,8 @@
     /* ---------- 南极引导标签（固定于空白区） ---------- */
     .an-label{position:fixed;right:7%;bottom:22%;z-index:12;text-align:right;pointer-events:none;opacity:0;transition:opacity 1.6s ease 1.4s}
     .home-page.loaded .an-label{opacity:1}
-    .an-label b{display:block;font-size:18px;letter-spacing:5px;color:#e6f7ff;font-weight:500}
-    .an-label span{display:block;font-size:13px;letter-spacing:3px;color:rgba(170,240,255,.8);margin-top:8px;text-transform:uppercase}
+    .an-label b{display:block;font-size:1.125rem;letter-spacing:5px;color:#e6f7ff;font-weight:500}
+    .an-label span{display:block;font-size:0.8125rem;letter-spacing:3px;color:rgba(170,240,255,.8);margin-top:0.5rem;text-transform:uppercase}
     .globe-node-label{position:absolute;pointer-events:none;white-space:nowrap;padding-left:16px;font-size:10px;letter-spacing:2px;color:rgba(234,252,255,.92);text-shadow:0 1px 5px rgba(1,6,13,.85);font-weight:400}
     .globe-node-label span{display:block;font-size:7px;letter-spacing:1.5px;color:rgba(140,234,255,.6);margin-top:2px}
 
@@ -71,56 +73,56 @@
       linear-gradient(180deg,rgba(1,6,13,.4),rgba(1,6,13,0) 20%,rgba(1,6,13,0) 62%,rgba(1,6,13,.55) 100%)}
 
     /* ---------- 顶栏 ---------- */
-    .top{position:fixed;top:0;left:0;right:0;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:30px 46px 30px 46px;pointer-events:none;opacity:0;transition:opacity 1.2s ease .2s}
+    .top{position:fixed;top:0;left:0;right:0;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:1.875rem 2.875rem;pointer-events:none;opacity:0;transition:opacity 1.2s ease .2s}
     .home-page.loaded .top{opacity:1}
     .top>*{pointer-events:auto}
     .brand{display:flex;align-items:center;gap:14px}
     .logo{width:40px;height:40px;border:1px solid rgba(98,217,255,.38);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:600;letter-spacing:1px;color:#8ceaff;background:rgba(6,20,34,.3)}
-    .brand h1{font-size:14px;letter-spacing:5px;color:#eafcff;font-weight:500}
+    .brand h1{font-size:0.875rem;letter-spacing:5px;color:#eafcff;font-weight:500}
     .brand h1 span{display:inline}
     .brand p{font-size:8px;letter-spacing:3px;color:#6f93a8;margin-top:3px;text-transform:uppercase}
     .lang-switch{position:relative;display:flex;width:104px;height:30px;border:1px solid rgba(140,234,255,.16);border-radius:999px;background:rgba(7,20,34,.52);backdrop-filter:blur(10px);overflow:hidden;box-shadow:inset 0 0 10px rgba(2,10,18,.35),0 0 16px rgba(98,217,255,.06)}
     .lang-switch .pill{position:absolute;top:3px;left:3px;z-index:1;width:calc(50% - 3px);height:calc(100% - 6px);border-radius:999px;background:linear-gradient(135deg,rgba(45,212,170,.32),rgba(98,217,255,.26));box-shadow:0 0 10px rgba(98,217,255,.10);transition:transform .3s cubic-bezier(.4,0,.2,1)}
     html[data-lang="en"] .lang-switch .pill{transform:translateX(100%)}
-    .lang-switch button{position:relative;z-index:2;flex:1;border:0;background:transparent;color:rgba(140,234,255,.55);font-size:9px;letter-spacing:2px;cursor:pointer;font-family:inherit;transition:color .25s ease,text-shadow .25s ease}
+    .lang-switch button{position:relative;z-index:2;flex:1;border:0;background:transparent;color:rgba(140,234,255,.55);font-size:0.5625rem;letter-spacing:2px;cursor:pointer;font-family:inherit;transition:color .25s ease,text-shadow .25s ease}
     .lang-switch button:hover{color:#cfe9ff}
     .lang-switch button.active{color:#eafcff;text-shadow:0 0 8px rgba(140,234,255,.35)}
 
     /* ---------- Hero ---------- */
-    .hero{position:fixed;left:calc(7vw + 50px);top:15%;z-index:10;max-width:640px}
+    .hero{position:fixed;left:calc(7vw + 3.125rem);top:15%;z-index:10;max-width:40rem}
     .hero-content{position:relative;display:block}
     .hero-content>*{margin-left:0;padding-left:0;text-align:left}
-    .kicker{display:flex;align-items:center;gap:16px;font-size:11px;letter-spacing:.52em;color:rgba(140,234,255,.68);margin-bottom:34px;text-transform:uppercase;opacity:0;transform:translateY(14px)}
+    .kicker{display:flex;align-items:center;gap:1rem;font-size:0.6875rem;letter-spacing:.52em;color:rgba(140,234,255,.68);margin-bottom:2.125rem;text-transform:uppercase;opacity:0;transform:translateY(14px)}
     .kicker::before{content:"";width:44px;height:1px;background:linear-gradient(90deg,rgba(98,217,255,.8),transparent)}
-    html[data-lang="zh"] .kicker{margin-bottom:30px}
+    html[data-lang="zh"] .kicker{margin-bottom:1.875rem}
     .home-page.loaded .kicker{opacity:1;transform:none;transition:opacity .9s ease .4s,transform .9s ease .4s}
-    .hero h1{font-size:clamp(28px,3.2vw,55px);line-height:1.3;font-weight:200;letter-spacing:.1em;opacity:0;transform:translateY(20px)}
-    .hero h1 > span{display:flex;flex-direction:column;align-items:flex-start;gap:18px}
-    html[data-lang="zh"] .hero h1 > span{gap:32px}
+    .hero h1{font-size:36px;font-size:clamp(28px,3.2vw,55px);line-height:1.3;font-weight:200;letter-spacing:.1em;opacity:0;transform:translateY(20px)}
+    .hero h1 > span{display:flex;flex-direction:column;align-items:flex-start;gap:1.125rem}
+    html[data-lang="zh"] .hero h1 > span{gap:2rem}
     .hero h1 em{font-style:normal;background:linear-gradient(180deg,#f2fdff 24%,#8ceaff 92%);-webkit-background-clip:text;background-clip:text;color:transparent}
     .hero h1 em:first-child{font-family:"Noto Sans SC","Segoe UI Light","Microsoft YaHei UI Light","Microsoft YaHei","PingFang SC",sans-serif;font-size:.6em;font-weight:300;letter-spacing:.34em;background:none;color:rgba(170,215,238,.82);-webkit-text-fill-color:rgba(170,215,238,.82);-webkit-mask-image:linear-gradient(90deg,#000 60%,transparent 98%);mask-image:linear-gradient(90deg,#000 60%,transparent 98%)}
     .hero h1 em:last-child{font-family:"Noto Serif SC","Source Han Serif SC","Songti SC","STSong","SimSun",serif;font-size:1em;font-weight:400;letter-spacing:.12em;margin-left:1.05em}
-    .hero h1 em:last-child::after{content:"";display:block;width:92%;max-width:420px;height:1px;margin-top:16px;background:linear-gradient(90deg,rgba(140,234,255,.55),rgba(140,234,255,.08) 72%,transparent);opacity:.8}
-    html[data-lang="zh"] .hero h1{font-size:62px}
+    .hero h1 em:last-child::after{content:"";display:block;width:92%;max-width:26.25rem;height:1px;margin-top:1rem;background:linear-gradient(90deg,rgba(140,234,255,.55),rgba(140,234,255,.08) 72%,transparent);opacity:.8}
+    html[data-lang="zh"] .hero h1{font-size:3.875rem}
     html[data-lang="zh"] .hero h1 em:first-child{font-family:"LXGW WenKai","Ma Shan Zheng","Zhi Mang Xing","STXingkai","KaiTi","STKaiti","楷体",cursive;letter-spacing:.38em;transform:scaleX(1.04);transform-origin:left center;color:rgba(190,228,244,.9);-webkit-text-fill-color:rgba(190,228,244,.9)}
-    html[data-lang="zh"] .hero h1 em:last-child{font-family:"LXGW WenKai","Ma Shan Zheng","Zhi Mang Xing","STXingkai","KaiTi","STKaiti","楷体",cursive;letter-spacing:.30em;margin-left:calc(1.05em + 45px);font-weight:600;-webkit-text-stroke:0.7px rgba(140,205,235,.30);background:linear-gradient(180deg,#eaf8ff 0%,#b9e2f7 38%,#7fc4ea 72%,#4f8fb8 100%);-webkit-background-clip:text;background-clip:text;color:transparent;transform:scaleX(1.05);transform-origin:left center}
+    html[data-lang="zh"] .hero h1 em:last-child{font-family:"LXGW WenKai","Ma Shan Zheng","Zhi Mang Xing","STXingkai","KaiTi","STKaiti","楷体",cursive;letter-spacing:.30em;margin-left:calc(1.05em + 2.8125rem);font-weight:600;-webkit-text-stroke:0.7px rgba(140,205,235,.30);background:linear-gradient(180deg,#eaf8ff 0%,#b9e2f7 38%,#7fc4ea 72%,#4f8fb8 100%);-webkit-background-clip:text;background-clip:text;color:transparent;transform:scaleX(1.05);transform-origin:left center}
     .home-page.loaded .hero h1{opacity:1;transform:none;transition:opacity 1s ease .55s,transform 1s ease .55s}
     /* V49.2 · 精简说明文字后的留白层级：标题 → 探索按钮 */
     /* V49.39 · 探索入口：主标题与理念文案之间的行动节点（Mission Pulse） */
     /* V49.49 · 外框居中留白 + 边框流光强化 + 文字流光强化（文字位置完全不变） */
-    .hero .btn{position:fixed;left:calc(7vw + 146px);top:49.5%;display:inline-block;padding:6px 14px 6px 14px;font-size:12px;letter-spacing:5px;color:#eafcff;text-decoration:none;text-transform:uppercase;cursor:pointer;border:0;background:none;font-family:inherit;opacity:0;transform:translateY(14px);border-radius:4px}
-    html[data-lang="en"] .hero .btn{left:calc(7vw + 123px)}
+    .hero .btn{position:fixed;left:calc(7vw + 9.125rem);top:68.8%;display:inline-block;padding:0.375rem 0.875rem;font-size:0.75rem;letter-spacing:5px;color:#eafcff;text-decoration:none;text-transform:uppercase;cursor:pointer;border:0;background:none;font-family:inherit;opacity:0;transform:translateY(14px);border-radius:4px}
+    html[data-lang="en"] .hero .btn{left:calc(7vw + 7.6875rem)}
     .hero .btn-ghost{display:block;height:calc(9vh + 36px)}
     .hero .btn::before{content:"";position:absolute;inset:-2px -18px 2px -18px;border-radius:7px;padding:4px;background:conic-gradient(from var(--flow-angle),rgba(105,150,185,0) 0 56%,rgba(110,175,210,.34) 64%,rgba(150,210,240,.72) 70%,rgba(205,245,255,1) 77%,#f2fdff 81%,rgba(190,240,255,1) 85%,rgba(120,195,230,.52) 91%,rgba(105,150,185,0) 97%,rgba(105,150,185,0) 100%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude;animation:flowBorder 6.5s linear infinite;pointer-events:none}
     .hero .btn .explore-panel{position:absolute;inset:-2px -18px 2px -18px;border:1px solid transparent;border-radius:7px;background:transparent;box-shadow:none;opacity:0;pointer-events:none}
-    .hero .btn .btn-txt{position:relative;display:inline-block;color:#8ec9e8;-webkit-text-fill-color:#8ec9e8;font-size:26px;font-weight:600;line-height:1;letter-spacing:1px;top:-0.5px}
-    html[data-lang="en"] .hero .btn .btn-txt{font-size:23px;letter-spacing:3px}
+    .hero .btn .btn-txt{position:relative;display:inline-block;color:#8ec9e8;-webkit-text-fill-color:#8ec9e8;font-size:1.625rem;font-weight:600;line-height:1;letter-spacing:1px;top:-0.5px}
+    html[data-lang="en"] .hero .btn .btn-txt{font-size:1.4375rem;letter-spacing:3px}
     html[data-lang="en"] .kicker{font-size:10px}
     .hero .btn .btn-txt .explore-base{display:inline-block;background:linear-gradient(180deg,#e6f7fe 0%,#a9d4ec 40%,#7fa9c8 62%,#4c7594 100%);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;filter:drop-shadow(0 0 8px rgba(110,210,245,.20)) drop-shadow(0 1px 0 rgba(225,248,255,.10))}
     .hero .btn .btn-txt .explore-shine{position:absolute;inset:0;color:transparent;background:linear-gradient(100deg,rgba(150,210,240,0) 36%,rgba(240,252,255,1) 50%,rgba(150,210,240,0) 64%);background-size:220% 100%;background-position:130% 0;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 0 9px rgba(180,235,255,.38));animation:txtSweep 6.5s ease-in-out infinite;pointer-events:none}
-    .hero .btn .explore-arrow{position:relative;display:inline-block;width:48px;height:16px;margin-left:12px;top:-7px;vertical-align:middle;animation:arrowAdvance 6.5s ease-in-out infinite}
+    .hero .btn .explore-arrow{position:relative;display:inline-block;width:3rem;height:1rem;margin-left:0.75rem;top:-7px;vertical-align:middle;animation:arrowAdvance 6.5s ease-in-out infinite}
     .hero .btn .explore-arrow svg{display:block;width:100%;height:100%}
-    html[data-lang="zh"] .hero .btn .explore-arrow{top:-8px;margin-left:18px;width:52px}
+    html[data-lang="zh"] .hero .btn .explore-arrow{top:-8px;margin-left:1.125rem;width:3.25rem}
     html[data-lang="zh"] .hero .btn .btn-txt{letter-spacing:.22em}
     .hero .btn .explore-arrow .trail{fill:none;stroke:#8fb6cf;stroke-width:1.8;stroke-linecap:round}
     .hero .btn .explore-arrow .t1{opacity:.18;animation:trail1 2.6s ease-in-out infinite}
@@ -156,10 +158,10 @@
     @keyframes trail1{0%,66%{opacity:.18}74%{opacity:.65}90%,100%{opacity:.18}}
 
     /* V49.41 · 恢复“未知之境”原始左下角位置（依据 git HEAD：position:fixed;left:46px;bottom:34px） */
-    .manifesto{position:fixed;left:66px;bottom:34px;z-index:12;max-width:480px;pointer-events:none;opacity:0;transition:opacity 1.2s ease 1.05s}
+    .manifesto{position:fixed;left:4.125rem;bottom:2.125rem;z-index:12;max-width:30rem;pointer-events:none;opacity:0;transition:opacity 1.2s ease 1.05s}
     .home-page.loaded .manifesto{opacity:1}
     .manifesto::before{content:"";display:block;width:100%;height:1px;background:linear-gradient(90deg,rgba(98,217,255,.35),transparent 80%);margin-bottom:12px}
-    .manifesto p{font-size:clamp(12px,1.05vw,17px);line-height:1.9;color:rgba(202,229,242,.85);letter-spacing:.6px}
+    .manifesto p{font-size:14px;font-size:clamp(0.75rem,1.05vw,1.0625rem);line-height:1.9;color:rgba(202,229,242,.85);letter-spacing:.6px}
 
     /* ---------- 离场 ---------- */
     body.is-leaving #globe3d{opacity:.15;transition:opacity .9s ease}
@@ -172,16 +174,16 @@
       .hero .btn:hover::after{opacity:.9;transform:scaleX(1)}
     }
     @media (min-width:1025px){
-      html[data-lang="en"] .kicker{margin-bottom:40px;margin-left:-74px}
-      html[data-lang="en"] .hero h1{margin-top:-24px;font-size:clamp(25px,2.5vw,44px);line-height:1.32;letter-spacing:.08em}
-      html[data-lang="en"] .hero h1 > span{margin-left:-24px}
+      html[data-lang="en"] .kicker{margin-bottom:2.5rem;margin-left:-4.625rem}
+      html[data-lang="en"] .hero h1{margin-top:-1.5rem;font-size:32px;font-size:clamp(25px,2.5vw,44px);line-height:1.32;letter-spacing:.08em}
+      html[data-lang="en"] .hero h1 > span{margin-left:-1.5rem}
       html[data-lang="en"] .hero h1 em{display:inline}
-      html[data-lang="en"] .hero h1 em:first-child{font-size:.56em;letter-spacing:.30em;margin-left:-20px}
-      html[data-lang="en"] .hero h1 em:last-child{font-family:"Playfair Display","Georgia","Times New Roman",serif;font-size:1em;font-weight:400;letter-spacing:.06em;margin-left:calc(1.05em + 40px)}
+      html[data-lang="en"] .hero h1 em:first-child{font-size:.56em;letter-spacing:.30em;margin-left:-1.25rem}
+      html[data-lang="en"] .hero h1 em:last-child{font-family:"Playfair Display","Georgia","Times New Roman",serif;font-size:1em;font-weight:400;letter-spacing:.06em;margin-left:calc(1.05em + 2.5rem)}
     }
     @media (max-width:1024px){
       .hero{left:22px;right:22px;top:auto;bottom:120px;max-width:none}
-      .hero h1{font-size:clamp(30px,6vw,46px)}
+      .hero h1{font-size:38px;font-size:clamp(30px,6vw,46px)}
       .hero .btn{left:22px}
     }
     @media (max-width:1024px) and (min-width:701px){
@@ -194,7 +196,7 @@
     /* V48.2 · Tablet 专用：横屏恢复左侧构图，竖屏平衡地球与文字 */
     @media (min-width:701px) and (max-width:1024px) and (orientation:landscape){
       .hero{left:7vw;right:auto;top:13%;bottom:auto;max-width:520px}
-      .hero .btn{left:7vw;top:58.2%}
+      .hero .btn{left:7vw;top:68.8%}
       .manifesto{left:46px;bottom:30px}
       .an-label{right:6%;bottom:20%}
     }
@@ -202,7 +204,7 @@
       .hero{bottom:150px}
       .hero .btn{top:89%}
       html[data-lang="en"] .hero{max-width:330px}
-      html[data-lang="en"] .hero h1{font-size:clamp(22px,4.8vw,30px)}
+      html[data-lang="en"] .hero h1{font-size:26px;font-size:clamp(22px,4.8vw,30px)}
       .an-label{left:24px;right:auto;top:150px;bottom:auto;text-align:left}
     }
     @media (max-width:700px){
@@ -213,7 +215,7 @@
       .brand p{display:none}
       .brand h1{font-size:12px;letter-spacing:2px}
       .hero{left:22px;right:22px;top:auto;bottom:120px;max-width:none}
-      .hero h1{font-size:clamp(30px,8.5vw,44px);letter-spacing:2px}
+      .hero h1{font-size:36px;font-size:clamp(30px,8.5vw,44px);letter-spacing:2px}
       .hero h1 > span{gap:12px}
       .hero h1 em:first-child{letter-spacing:.26em}
       .hero h1 em:last-child{margin-left:.6em}
@@ -224,7 +226,7 @@
       html[data-lang="zh"] .hero .btn .explore-arrow{top:-2.3px}
       .hero .btn::before{left:-18px}
       .hero .btn-ghost{height:calc(7vh + 35px)}
-      html[data-lang="en"] .hero h1{font-size:clamp(24px,6.5vw,32px);line-height:1.14}
+      html[data-lang="en"] .hero h1{font-size:28px;font-size:clamp(24px,6.5vw,32px);line-height:1.14}
       .manifesto{left:22px;right:22px;bottom:18px;max-width:none}
       .manifesto p{font-size:11px}
     }
@@ -1068,11 +1070,35 @@
       if (!h1el || !mfel || !btel) return;
       var tb = h1el.getBoundingClientRect().bottom;
       var mt = mfel.getBoundingClientRect().top;
-      btel.style.top = Math.round(tb + (mt - tb) * 0.65 - btel.offsetHeight / 2) + 'px';
+      var top = tb + (mt - tb) * 0.65 - btel.offsetHeight / 2;
+      top = Math.max(tb + 40, Math.min(mt - btel.offsetHeight - 40, top));
+      btel.style.top = Math.round(top) + 'px';
+      var spans = document.querySelectorAll('.hero h1 > span');
+      var visible = null;
+      for (var si = 0; si < spans.length; si++) {
+        if (getComputedStyle(spans[si]).display !== 'none') { visible = spans[si]; break; }
+      }
+      var texts = document.querySelectorAll('.btn-txt');
+      var text = null;
+      for (var ti = 0; ti < texts.length; ti++) {
+        var r = texts[ti].getBoundingClientRect();
+        if (r.width > 0 && getComputedStyle(texts[ti]).display !== 'none') { text = texts[ti]; break; }
+      }
+      if (visible && text) {
+        var line2 = visible.querySelectorAll('em')[1];
+        var offset = (window.anxCurrentLang === 'zh') ? 0 : 25;
+        var target = line2.getBoundingClientRect().left + offset;
+        var cur = text.getBoundingClientRect().left;
+        var btnRect = btel.getBoundingClientRect();
+        var left = btnRect.left + (target - cur);
+        left = Math.max(20, Math.min(window.innerWidth - btnRect.width - 20, left));
+        btel.style.left = Math.round(left) + 'px';
+      }
     }
     positionExploreBtn();
     setTimeout(positionExploreBtn, 350);
     setTimeout(positionExploreBtn, 1800);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { setTimeout(positionExploreBtn, 60); });
     window.addEventListener('resize', positionExploreBtn);
     window.addEventListener('anx:langchange', function () { setTimeout(positionExploreBtn, 60); });
     window.addEventListener('pageshow', function () {
@@ -1081,6 +1107,11 @@
       if (btn) btn.dataset.busy = '';
       setTimeout(positionExploreBtn, 60);
     });
+    /* 兼容性硬保证：加载完成、窗口获得焦点、以及每 1 秒持续复核并强制锁位，
+       即使字体加载很晚、系统缩放变化或外部因素改变布局，最终都会收敛到同一套约束。 */
+    window.addEventListener('load', function () { setTimeout(positionExploreBtn, 120); });
+    window.addEventListener('focus', function () { setTimeout(positionExploreBtn, 80); });
+    setInterval(function () { try { positionExploreBtn(); } catch (e) {} }, 1000);
   })();
   </script>
 </body>
