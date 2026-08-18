@@ -79,13 +79,19 @@
     #networkMap::before{content:"";position:absolute;inset:0;z-index:440;pointer-events:none;background:radial-gradient(ellipse 45% 45% at 50% 50%,rgba(140,210,255,.05),transparent 70%)}
     #networkMap::after{content:"";position:absolute;inset:0;z-index:450;pointer-events:none;background:rgba(25,70,115,.10)}
     .net-marker{position:relative;width:24px;height:24px}
-    .net-marker .core{position:absolute;left:50%;top:50%;width:13px;height:13px;margin:-6.5px 0 0 -6.5px;border-radius:50%;background:#00e5a8}
-    .net-marker .ring{position:absolute;left:50%;top:50%;width:88px;height:88px;margin:-44px 0 0 -44px;border-radius:50%;border:1px solid rgba(140,234,255,.55);pointer-events:none;animation:dashRing 3.4s ease-out infinite}
-    .net-marker .ring.r2{animation-delay:.68s}
-    .net-marker .ring.r3{animation-delay:1.36s}
-    .net-marker .ring.r4{animation-delay:2.04s}
-    .net-marker .ring.r5{animation-delay:2.72s}
-    @keyframes dashRing{0%{transform:scale(.3);opacity:.85}100%{transform:scale(1.7);opacity:0}}
+    .net-marker .core{position:absolute;left:50%;top:50%;width:16px;height:16px;margin:-8px 0 0 -8px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#eafffd,#00e5a8 55%,rgba(0,229,168,.35));box-shadow:0 0 12px rgba(0,229,168,.9),0 0 30px rgba(0,229,168,.45);animation:coreBreath 2.6s ease-in-out infinite}
+    .net-marker .core::before,.net-marker .core::after{content:"";position:absolute;left:50%;top:50%;background:rgba(195,246,255,.9);box-shadow:0 0 4px rgba(140,234,255,.6)}
+    .net-marker .core::before{width:1px;height:30px;transform:translate(-50%,-50%)}
+    .net-marker .core::after{width:30px;height:1px;transform:translate(-50%,-50%)}
+    @keyframes coreBreath{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
+    .net-marker .ring{position:absolute;left:50%;top:50%;border-radius:50%;pointer-events:none}
+    .net-marker .ring.r1{width:34px;height:34px;margin:-17px 0 0 -17px;border:2px solid rgba(195,246,255,.95);box-shadow:0 0 8px rgba(140,234,255,.45)}
+    .net-marker .ring.r1::after{content:"";position:absolute;inset:-9px;border:1px solid rgba(140,220,255,.7);border-radius:50%}
+    .net-marker .ring.r2,.net-marker .ring.r3,.net-marker .ring.r4,.net-marker .ring.r5{width:120px;height:120px;margin:-60px 0 0 -60px;background:radial-gradient(circle at center,transparent 0 76%,rgba(195,246,255,.95) 78%,rgba(195,246,255,.95) 79%,rgba(30,130,210,.9) 80%,rgba(30,130,210,.9) 88%,rgba(30,130,210,0) 91%);box-shadow:0 0 16px rgba(30,130,210,.45),0 0 30px rgba(30,130,210,.22);animation:dashRing 4.5s ease-out infinite}
+    .net-marker .ring.r3{animation-delay:1.125s}
+    .net-marker .ring.r4{animation-delay:2.25s}
+    .net-marker .ring.r5{animation-delay:3.375s}
+    @keyframes dashRing{0%{transform:scale(.4);opacity:.9}100%{transform:scale(1.6);opacity:.25}}
     .net-marker .lab{position:absolute;top:100%;left:50%;transform:translateX(-50%);margin-top:6px;font-size:9px;letter-spacing:1.5px;color:#f2fbff;white-space:nowrap}
     .map-foot{display:flex;align-items:center;justify-content:space-between;padding:12px 16px 15px;border-top:1px solid rgba(98,217,255,.07);font-size:10px;letter-spacing:1px;color:#6f93a8}
     .map-foot b{color:#9fd8c2;font-weight:500;font-size:11px}
@@ -158,6 +164,7 @@
       .term .enter::before,.term .enter .enter-shine,.term .enter .enter-arrow,.term .enter .enter-arrow *{animation:none !important}
       .term .enter-arrow::after{animation:none !important}
       .net-marker .ring{animation:none !important}
+      .net-marker .core{animation:none !important}
       .term .th-right .onlbl{animation:none !important}
       .term .enter .enter-shine{opacity:0}
       .term .enter .enter-arrow{transform:none !important}
