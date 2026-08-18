@@ -82,7 +82,6 @@
     .net-marker .core{position:absolute;left:50%;top:50%;width:11px;height:11px;margin:-5.5px 0 0 -5.5px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#eafffd,#00e5a8 55%,rgba(0,150,110,.9));box-shadow:0 0 10px rgba(0,229,168,.9),0 0 22px rgba(0,229,168,.45);animation:coreBreath 2.6s ease-in-out infinite}
     @keyframes coreBreath{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
     .net-marker .ring{position:absolute;left:50%;top:50%;border-radius:50%;pointer-events:none}
-    .net-marker .ring.r1{width:24px;height:24px;margin:-12px 0 0 -12px;border:2px solid rgba(190,240,255,.95);box-shadow:0 0 8px rgba(150,225,255,.5)}
     .net-marker .ring.r2,.net-marker .ring.r3,.net-marker .ring.r4{width:100px;height:100px;margin:-50px 0 0 -50px;border:2px solid rgba(120,195,240,.9);box-shadow:0 0 10px rgba(100,180,235,.45);animation:dashRing 4.5s ease-out infinite}
     .net-marker .ring.r3{animation-delay:1.5s}
     .net-marker .ring.r4{animation-delay:3s}
@@ -90,17 +89,17 @@
     .net-marker .lab{position:absolute;top:100%;left:50%;transform:translateX(-50%);margin-top:6px;font-size:9px;letter-spacing:1.5px;color:#f2fbff;white-space:nowrap}
     .map-foot{display:flex;align-items:center;justify-content:space-between;padding:12px 16px 15px;border-top:1px solid rgba(98,217,255,.07);font-size:10px;letter-spacing:1px;color:#6f93a8}
     .map-foot b{color:#9fd8c2;font-weight:500;font-size:11px}
-    .dossier{position:absolute;left:16px;bottom:46px;z-index:6;min-width:420px;border:1px solid rgba(0,229,168,.34);border-left:2px solid #00e5a8;background:radial-gradient(120% 90% at 16% 0%,rgba(0,229,168,.07),transparent 55%),radial-gradient(100% 70% at 88% 100%,rgba(2,10,18,.5),transparent 60%),rgba(3,14,24,.96);box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 12px 28px rgba(0,0,0,.3);backdrop-filter:blur(10px);padding:24px 26px;border-radius:6px}
-    .dossier h4{display:flex;align-items:center;gap:8px;font-size:22px;letter-spacing:2px;color:#eafcff;font-weight:600}
-    .dossier h4::before{content:"";width:2px;height:18px;border-radius:1px;background:#8ceaff}
-    .dossier .dsub{font-size:14px;letter-spacing:1.5px;color:#9fd8c2;margin-top:7px;text-transform:uppercase}
-    .dtele{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:16px;padding-top:14px;border-top:1px solid rgba(98,217,255,.07)}
-    .dtele b{display:block;font-size:21px;color:#8ceaff;font-weight:500;letter-spacing:.5px;font-variant-numeric:tabular-nums}
-    .dtele i{display:block;font-style:normal;font-size:10px;letter-spacing:1.2px;color:#6f93a8;margin-top:3px;text-transform:uppercase}
-    .spark{margin-top:16px;padding-top:14px;border-top:1px solid rgba(98,217,255,.07)}
-    .spark-head{display:flex;align-items:center;justify-content:space-between;font-size:12px;letter-spacing:1.5px;color:#8aa9bc;text-transform:uppercase;margin-bottom:10px}
+    .dossier{position:absolute;left:16px;bottom:46px;z-index:6;min-width:330px;border:1px solid rgba(0,229,168,.34);border-left:2px solid #00e5a8;background:radial-gradient(120% 90% at 16% 0%,rgba(0,229,168,.07),transparent 55%),radial-gradient(100% 70% at 88% 100%,rgba(2,10,18,.5),transparent 60%),rgba(3,14,24,.96);box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 12px 28px rgba(0,0,0,.3);backdrop-filter:blur(10px);padding:16px 18px;border-radius:6px}
+    .dossier h4{display:flex;align-items:center;gap:8px;font-size:16px;letter-spacing:2px;color:#eafcff;font-weight:600}
+    .dossier h4::before{content:"";width:2px;height:12px;border-radius:1px;background:#8ceaff}
+    .dossier .dsub{font-size:10px;letter-spacing:1.5px;color:#9fd8c2;margin-top:5px;text-transform:uppercase}
+    .dtele{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-top:12px;padding-top:10px;border-top:1px solid rgba(98,217,255,.07)}
+    .dtele b{display:block;font-size:15px;color:#8ceaff;font-weight:500;letter-spacing:.5px;font-variant-numeric:tabular-nums}
+    .dtele i{display:block;font-style:normal;font-size:8px;letter-spacing:1.2px;color:#6f93a8;margin-top:3px;text-transform:uppercase}
+    .spark{margin-top:12px;padding-top:10px;border-top:1px solid rgba(98,217,255,.07)}
+    .spark-head{display:flex;align-items:center;justify-content:space-between;font-size:9px;letter-spacing:1.5px;color:#8aa9bc;text-transform:uppercase;margin-bottom:6px}
     .spark-head b{font-weight:500;color:#8ceaff;letter-spacing:1px;font-variant-numeric:tabular-nums}
-    .spark svg{display:block;width:100%;height:80px}
+    .spark svg{display:block;width:100%;height:46px}
     .spark #sparkArea{opacity:.22}
 
     /* 右侧：未来终端管理入口 */
@@ -124,7 +123,7 @@
     .term .identity{display:flex;align-items:center;gap:8px;font-size:12.5px;letter-spacing:1.8px;color:#9fd8c2;text-transform:uppercase;margin-top:6px}
     .term .identity::before{content:"";width:14px;height:1px;background:rgba(0,229,168,.6);flex:none}
     .node-id{flex:1;display:flex;flex-direction:column;justify-content:center;gap:10px;padding:0 6px;min-height:0}
-    .ni-num{font-size:62px;font-weight:200;line-height:1;letter-spacing:2px;color:rgba(125,165,195,.26);-webkit-text-stroke:1px rgba(150,210,245,.28);font-variant-numeric:tabular-nums;text-shadow:0 0 22px rgba(120,190,230,.12)}
+    .ni-num{font-size:62px;font-weight:200;line-height:1;letter-spacing:2px;background:linear-gradient(180deg,#f2fbff 0%,#cfe4f2 28%,#a3c8e2 52%,#6f9cbd 76%,#35648a 100%);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;-webkit-text-stroke:1.2px rgba(150,215,245,.38);font-variant-numeric:tabular-nums;filter:drop-shadow(0 1px 0 rgba(235,250,255,.4)) drop-shadow(0 -1px 1px rgba(10,36,58,.5)) drop-shadow(0 0 18px rgba(110,190,235,.22))}
     .ni-label{font-size:12px;letter-spacing:3.5px;color:#7fa3bc;text-transform:uppercase}
     .ni-line{height:1px;background:linear-gradient(90deg,transparent,rgba(140,234,255,.22) 30%,rgba(140,234,255,.06) 85%,transparent);margin:8px 0 4px}
     .node-layout-a .node-id{align-items:flex-end;text-align:right;padding-bottom:18px}
@@ -384,7 +383,7 @@
     if (window.L) {
       var map = L.map('networkMap', { zoomControl: false, attributionControl: false }).setView([32.049141, 118.793686], 6);
       L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '' }).addTo(map);
-      var icon = L.divIcon({ className: 'net-marker', html: '<span class="core"></span><span class="ring r1"></span><span class="ring r2"></span><span class="ring r3"></span><span class="ring r4"></span><span class="lab" data-lang="en">NANJING</span><span class="lab" data-lang="zh">南京</span>', iconSize: [24, 24], iconAnchor: [12, 12] });
+      var icon = L.divIcon({ className: 'net-marker', html: '<span class="core"></span><span class="ring r2"></span><span class="ring r3"></span><span class="ring r4"></span><span class="lab" data-lang="en">NANJING</span><span class="lab" data-lang="zh">南京</span>', iconSize: [24, 24], iconAnchor: [12, 12] });
       L.marker([32.049141, 118.793686], { icon: icon }).addTo(map).bindPopup('ANT-A01 · NANJING');
       window.networkMap = map;
       setTimeout(function () { map.invalidateSize(); }, 400);
