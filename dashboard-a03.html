@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <meta name="color-scheme" content="dark">
-  <title data-title-en="DISTRIBUTED MONITORING SYSTEM · ANT-A03" data-title-zh="自主观测系统 · ANT-A03">DISTRIBUTED MONITORING SYSTEM · ANT-A03</title>
+  <title data-title-en="DISTRIBUTED MONITORING SYSTEM · DMS-A03" data-title-zh="自主观测系统 · DMS-A03">DISTRIBUTED MONITORING SYSTEM · DMS-A03</title>
   <link rel="icon" href="data:,">
   <link rel="stylesheet" href="./css/style.css?v=20260812">
   <style>html{font-size:16px;font-size:clamp(12px, 0.833333vw, 20px);-webkit-text-size-adjust:100%;text-size-adjust:100%}
@@ -118,12 +118,12 @@
       <div class="hero-main">
         <div class="dashboard-kicker"><span data-lang="en">AUTONOMOUS DIGITAL TWIN · MISSION CONTROL</span><span data-lang="zh">自主数字孪生 · 任务控制</span></div>
         <div class="dashboard-title"><span data-lang="en">AUTONOMOUS MONITORING SYSTEM</span><span data-lang="zh">自主观测系统</span></div>
-        <div class="hero-sub"><span data-lang="en">STATION ANT-A03 · AWAITING DEPLOYMENT</span><span data-lang="zh">站点 ANT-A03 · 等待部署</span></div>
+        <div class="hero-sub"><span data-lang="en">STATION DMS-A03 · AWAITING DEPLOYMENT</span><span data-lang="zh">站点 DMS-A03 · 等待部署</span></div>
       </div>
       <div class="hero-controls">
         <div class="hero-status">
           <div class="system-online pending"><span></span><span data-lang="en">AWAITING DEPLOYMENT</span><span data-lang="zh">等待部署</span></div>
-          <div class="hero-station"><span data-lang="en">STATION ANT-A03</span><span data-lang="zh">站点 ANT-A03</span></div>
+          <div class="hero-station"><span data-lang="en">STATION DMS-A03</span><span data-lang="zh">站点 DMS-A03</span></div>
         </div>
         <div class="lang-switch"><span class="lang-pill" aria-hidden="true"></span><button type="button" data-lang="zh">中</button><button type="button" data-lang="en" class="active">EN</button></div>
       </div>
@@ -179,7 +179,7 @@
 
         <!-- 坐标信息浮层 -->
         <div class="map-overlay">
-          <h3>ANT-A03</h3>
+          <h3>DMS-A03</h3>
           <p><span data-i18n="lat">LAT</span> <span id="latitude">--</span></p>
           <p><span data-i18n="lon">LON</span> <span id="longitude">--</span></p>
           <p><span data-i18n="satellites">SATELLITES</span> <span id="satellites">--</span></p>
@@ -268,9 +268,9 @@
 
 <!-- 数据核心与地图初始化（不允许修改） -->
 <script>
-/* V47.33 · ANT-A03 终端页本地数据层
-   不加载 js/main.js，避免将 ANT-A01 的 data.json 数据带入未来终端页。
-   页面模板与 ANT-A01 完全一致；地图使用同一 Leaflet + 蓝色网格视觉系统，
+/* V47.33 · DMS-A03 终端页本地数据层
+   不加载 js/main.js，避免将 DMS-A01 的 data.json 数据带入未来终端页。
+   页面模板与 DMS-A01 完全一致；地图使用同一 Leaflet + 蓝色网格视觉系统，
    无真实坐标时不放置任何伪造节点。 */
 window.ANX_I18N = { en: {"satellites":"SATELLITES","pyranometer":"Solar Radiation Sensor","outside":"OUTSIDE","lat":"LAT","lon":"LON","current_time":"CURRENT TIME","operation_mode":"OPERATION MODE","continuous_run":"CONTINUOUS RUN","protective_mode":"PROTECTIVE MODE","brand_subtitle":"Autonomous Environmental Observatory","gps_status":"GPS STATUS","data_records":"DATA RECORDS","nominal":"NOMINAL","no_fix":"NO FIX","low_power_standby":"Standby","standby":"Standby","null":"NULL","inside_humidity":"INSIDE HUMIDITY","telemetry_samples":"TELEMETRY SAMPLES","last_data_contact":"LAST DATA CONTACT","no_signal":"WAITING FOR DATA","sensor_offline":"SENSOR OFFLINE","mission_status":"MISSION STATUS","emergency":"EMERGENCY","normal":"NORMAL","mission_stream":"MISSION STREAM","autonomous":"AUTONOMOUS","mode_unknown":"MODE UNKNOWN","cabin":"CABIN","power":"POWER","operation_days":"OPERATION DAYS","last_update":"LAST UPDATE","awaiting_sensor":"AWAITING SENSOR","no_telemetry":"WAITING FOR DATA","waiting_data":"WAITING FOR DATA","local_time":"LOCAL TIME","running":"RUNNING","normal_operation":"NORMAL OPERATION","mode":"MODE","solar_radiation_label":"SOLAR RADIATION"}, zh: {"satellites":"卫星数","pyranometer":"太阳能辐射传感器","outside":"舱外","lat":"纬度","lon":"经度","current_time":"当前时间","operation_mode":"运行模式","continuous_run":"持续运行","protective_mode":"保护模式","brand_subtitle":"自主环境观测站","gps_status":"GPS 状态","data_records":"数据记录","nominal":"正常","no_fix":"未定位","low_power_standby":"节能","standby":"节能","null":"无数据","inside_humidity":"舱内湿度","telemetry_samples":"遥测样本","last_data_contact":"最近数据联系","no_signal":"等待数据","sensor_offline":"传感器离线","mission_status":"任务状态","emergency":"应急","normal":"正常","mission_stream":"任务流","autonomous":"自动","mode_unknown":"模式未知","cabin":"舱内","power":"供电","operation_days":"运行天数","last_update":"最近更新","awaiting_sensor":"等待传感器","no_telemetry":"等待数据","waiting_data":"等待数据","local_time":"本地时间","running":"运行中","normal_operation":"正常运行","mode":"模式","solar_radiation_label":"太阳辐射"} };
 window.ANX_LANG = "en";
@@ -513,7 +513,7 @@ window.ANX_APPLY_I18N = function (lang) {
 
     ctx.fillStyle = 'rgba(98,217,255,.4)';
     ctx.font = '8px "Segoe UI", sans-serif';
-    ctx.fillText('R≈300KM · ANT-A03 ZONE', p.x + 5, p.y - r - 3);
+    ctx.fillText('R≈300KM · DMS-A03 ZONE', p.x + 5, p.y - r - 3);
   }
 
   /* 将雷达扫掠 / 扩散光圈 / 定位核心移动到真实标记点 */

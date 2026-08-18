@@ -4,14 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <meta name="color-scheme" content="dark">
-  <title data-title-en="DISTRIBUTED MONITORING SYSTEM · ANT-A02" data-title-zh="自主观测系统 · ANT-A02">DISTRIBUTED MONITORING SYSTEM · ANT-A02</title>
+  <title data-title-en="DISTRIBUTED MONITORING SYSTEM · DMS-A02" data-title-zh="自主观测系统 · DMS-A02">DISTRIBUTED MONITORING SYSTEM · DMS-A02</title>
   <link rel="icon" href="data:,">
   <link rel="stylesheet" href="./css/style.css?v=20260812">
   <style>html{font-size:16px;font-size:clamp(12px, 0.833333vw, 20px);-webkit-text-size-adjust:100%;text-size-adjust:100%}
 
     /* V43 · Dashboard 简约化：隐藏底部统计卡（核心状态/传感器/地图/任务流保留） */
     body.dashboard-page .operation-grid{display:none}
-    /* ANT-A02：等待部署终端 */
+    /* DMS-A02：等待部署终端 */
     body.a02-page .system-online{color:#e6c07a;border-color:rgba(230,192,122,.35)}
     body.a02-page .system-online span:first-child{background:#e6c07a;box-shadow:0 0 8px rgba(230,192,122,.5);animation:none}
     body.a02-page .cmd-value{color:#e6c07a}
@@ -78,7 +78,7 @@
       <a class="nav-item" href="./telemetry.html"><span data-lang="en">DATA</span><span data-lang="zh">数据</span></a>
       <a class="nav-item" href="./hardware.html"><span data-lang="en">Hardware</span><span data-lang="zh">硬件</span></a>
       <a class="nav-item" href="./analysis.html"><span data-lang="en">Analysis</span><span data-lang="zh">分析</span></a>
-      <a class="nav-item active" href="./a02.html"><span data-lang="en">ANT-A02</span><span data-lang="zh">ANT-A02</span></a>
+      <a class="nav-item active" href="./a02.html"><span data-lang="en">DMS-A02</span><span data-lang="zh">DMS-A02</span></a>
       
     </nav>
     <label for="navToggle" class="nav-overlay" aria-hidden="true"></label>
@@ -90,13 +90,13 @@
     <!-- 顶部：任务标题区 -->
     <header class="mission-header dashboard-hero">
       <div class="hero-main">
-        <div class="dashboard-kicker"><span data-lang="en">DISTRIBUTED MONITORING SYSTEM · TERMINAL ANT-A02</span><span data-lang="zh">自主观测系统 · 终端 ANT-A02</span></div>
+        <div class="dashboard-kicker"><span data-lang="en">DISTRIBUTED MONITORING SYSTEM · TERMINAL DMS-A02</span><span data-lang="zh">自主观测系统 · 终端 DMS-A02</span></div>
         <div class="dashboard-title"><span data-lang="en">AUTONOMOUS MONITORING SYSTEM</span><span data-lang="zh">自主观测系统</span></div>
-        <div class="hero-sub"><span data-lang="en">AUTONOMOUS ENVIRONMENTAL MONITORING PLATFORM · STATION ANT-A02</span><span data-lang="zh">自主环境监测平台 · 站点 ANT-A02</span></div>
+        <div class="hero-sub"><span data-lang="en">AUTONOMOUS ENVIRONMENTAL MONITORING PLATFORM · STATION DMS-A02</span><span data-lang="zh">自主环境监测平台 · 站点 DMS-A02</span></div>
       </div>
       <div class="hero-status">
         <div class="system-online"><span></span><span data-lang="en">WAITING FOR DEPLOYMENT</span><span data-lang="zh">等待部署</span></div>
-        <div class="hero-station"><span data-lang="en">STATION ANT-A02</span><span data-lang="zh">站点 ANT-A02</span></div>
+        <div class="hero-station"><span data-lang="en">STATION DMS-A02</span><span data-lang="zh">站点 DMS-A02</span></div>
       </div>
     </header>
 
@@ -179,7 +179,7 @@
 
         <!-- #worldMap 由 main.js 创建真实 Leaflet 地图；以下装饰层均为 pointer-events:none，不影响拖拽缩放 -->
         <div id="worldMap">
-          <div class="a02-map-msg"><b>ANT-A02</b><span data-lang="en">PENDING DEPLOYMENT</span><span data-lang="zh">等待部署</span></div>
+          <div class="a02-map-msg"><b>DMS-A02</b><span data-lang="en">PENDING DEPLOYMENT</span><span data-lang="zh">等待部署</span></div>
           <div class="map-layer map-tint" aria-hidden="true"></div>
           <canvas id="mapGraticule" class="map-layer map-graticule" aria-hidden="true"></canvas>
           <div class="map-layer map-scan" aria-hidden="true"></div>
@@ -190,7 +190,7 @@
 
         <!-- 坐标信息浮层 -->
         <div class="map-overlay">
-          <h3>ANT-A02</h3>
+          <h3>DMS-A02</h3>
           <p><span data-i18n="lat">LAT</span> <span id="latitude">--</span></p>
           <p><span data-i18n="lon">LON</span> <span id="longitude">--</span></p>
           <p><span data-i18n="satellites">SATELLITES</span> <span id="satellites">--</span></p>
@@ -466,7 +466,7 @@
 
     ctx.fillStyle = 'rgba(98,217,255,.4)';
     ctx.font = '8px "Segoe UI", sans-serif';
-    ctx.fillText('R≈300KM · ANT-A01 ZONE', p.x + 5, p.y - r - 3);
+    ctx.fillText('R≈300KM · DMS-A01 ZONE', p.x + 5, p.y - r - 3);
   }
 
   /* 将雷达扫掠 / 扩散光圈 / 定位核心移动到真实标记点 */

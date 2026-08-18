@@ -296,12 +296,12 @@
 
     <section class="map-wrap">
       <div class="map-head">
-        <span class="t"><span data-lang="en">Node 01</span><span data-lang="zh">节点 01</span> / <b>ANT-A01</b></span>
+        <span class="t"><span data-lang="en">Node 01</span><span data-lang="zh">节点 01</span> / <b>DMS-A01</b></span>
         <span class="live" aria-label="Online"><i></i></span>
       </div>
       <div id="networkMap"></div>
       <div class="dossier">
-        <h4>ANT-A01</h4>
+        <h4>DMS-A01</h4>
         <div class="dsub"><span data-lang="en">Nanjing Observation Node</span><span data-lang="zh">南京观测节点</span></div>
         <div class="dtele">
           <span><b id="teleV">--</b><i data-lang="en">Voltage</i><i data-lang="zh">电压</i></span>
@@ -325,7 +325,7 @@
       </div>
       <div class="term active">
         <div class="th">
-          <div class="id-left"><h4>ANT-A01</h4></div>
+          <div class="id-left"><h4>DMS-A01</h4></div>
           <span class="th-right"><span class="node-led" aria-hidden="true"></span><b class="onlbl"><span data-lang="en">Online</span><span data-lang="zh">在线</span></b></span>
         </div>
         <p class="identity"><span data-lang="en">Nanjing Observation Node</span><span data-lang="zh">南京观测节点</span></p>
@@ -339,7 +339,7 @@
 
       <div class="term future">
         <div class="th">
-          <div class="id-left"><h4>ANT-A02</h4></div>
+          <div class="id-left"><h4>DMS-A02</h4></div>
           <span class="th-right"><span class="node-led off" aria-hidden="true"></span><b class="stlbl"><span data-lang="en">Not Deployed</span><span data-lang="zh">未部署</span></b></span>
         </div>
         <p class="identity"><span data-lang="en">Future Observation Node</span><span data-lang="zh">未来观测节点</span></p>
@@ -352,7 +352,7 @@
       </div>
       <div class="term future">
         <div class="th">
-          <div class="id-left"><h4>ANT-A03</h4></div>
+          <div class="id-left"><h4>DMS-A03</h4></div>
           <span class="th-right"><span class="node-led off" aria-hidden="true"></span><b class="stlbl"><span data-lang="en">Not Deployed</span><span data-lang="zh">未部署</span></b></span>
         </div>
         <p class="identity"><span data-lang="en">Future Observation Node</span><span data-lang="zh">未来观测节点</span></p>
@@ -395,7 +395,7 @@
       var map = L.map('networkMap', { zoomControl: false, attributionControl: false }).setView([32.049141, 118.793686], 6);
       L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '' }).addTo(map);
       var icon = L.divIcon({ className: 'net-marker', html: '<span class="core"></span><span class="ring r2"></span><span class="ring r3"></span><span class="ring r4"></span><span class="lab" data-lang="en">NANJING</span><span class="lab" data-lang="zh">南京</span>', iconSize: [24, 24], iconAnchor: [12, 12] });
-      L.marker([32.049141, 118.793686], { icon: icon }).addTo(map).bindPopup('ANT-A01 · NANJING');
+      L.marker([32.049141, 118.793686], { icon: icon }).addTo(map).bindPopup('DMS-A01 · NANJING');
       window.networkMap = map;
       setTimeout(function () { map.invalidateSize(); }, 400);
       window.addEventListener('resize', function () { map.invalidateSize(); });

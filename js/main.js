@@ -121,7 +121,7 @@ lat:"LAT",
 lon:"LON",
 brand_subtitle:"Autonomous Environmental Observatory",
 real_world_map:"REAL WORLD MAP",
-ant_a01_position:"ANT-A01 POSITION",
+ant_a01_position:"DMS-A01 POSITION",
 deployment_nodes:"DEPLOYMENT NODES",
 position_fix:"POSITION FIX",
 identification:"IDENTIFICATION",
@@ -138,7 +138,7 @@ power_system:"POWER SYSTEM",
 solar_power:"Solar Power",
 lithium_titanate:"Lithium Titanate Battery",
 device_photograph:"DEVICE PHOTOGRAPH · TEST SITE",
-file_label:"FILE: ANT-A01_001 · REV V0.4",
+file_label:"FILE: DMS-A01_001 · REV V0.4",
 real_device_photo:"REAL DEVICE PHOTO",
 image_slot:"IMAGE SLOT · REPLACE WITH TEST PHOTOGRAPH",
 captured_pending:"CAPTURED: PENDING",
@@ -254,7 +254,7 @@ lat:"纬度",
 lon:"经度",
 brand_subtitle:"自主环境观测站",
 real_world_map:"实景地图",
-ant_a01_position:"ANT-A01 位置",
+ant_a01_position:"DMS-A01 位置",
 deployment_nodes:"部署节点",
 position_fix:"定位有效",
 identification:"识别信息",
@@ -271,7 +271,7 @@ power_system:"供电系统",
 solar_power:"太阳能供电",
 lithium_titanate:"钛酸锂电池",
 device_photograph:"设备实拍 · 测试场地",
-file_label:"文件：ANT-A01_001 · 版本 V0.4",
+file_label:"文件：DMS-A01_001 · 版本 V0.4",
 real_device_photo:"真实设备照片",
 image_slot:"图片位 · 替换为测试照片",
 captured_pending:"拍摄状态：待补充",
@@ -1437,7 +1437,7 @@ window.deviceMap
 )
 .bindPopup(
 
-"ANT-A01"
+"DMS-A01"
 
 );
 
