@@ -46,6 +46,9 @@
     *{box-sizing:border-box;margin:0;padding:0}
     html,body{height:100%;overflow:hidden}
     html{font-size:16px;font-size:clamp(12px, 0.833333vw, 20px);-webkit-text-size-adjust:100%;text-size-adjust:100%}
+    html[data-lang="en"] [data-lang="zh"]{display:none}
+    html[data-lang="zh"] [data-lang="en"]{display:none}
+    html[data-lang] .lang-switch button{display:inline-block}
     body{background:radial-gradient(ellipse at 66% 42%,#071a2c 0%,#020a14 48%,#01060d 82%);color:#dff6ff;font-family:"Segoe UI",system-ui,-apple-system,"Microsoft YaHei",sans-serif;position:relative}
     html[data-lang="zh"] body{font-family:"LXGW WenKai","Ma Shan Zheng","STXingkai","KaiTi","楷体",cursive}
     html:lang(zh-CN) body{font-family:"LXGW WenKai","Ma Shan Zheng","STXingkai","KaiTi","楷体",cursive}
@@ -165,7 +168,7 @@
 
     /* ---------- 离场 ---------- */
     body.is-leaving #globe3d{opacity:.15;transition:opacity .9s ease}
-    body.is-leaving .hero{opacity:0;transform:translateY(-4%);transition:all .45s ease}
+    body.is-leaving .hero{opacity:0;transition:opacity .45s ease}
     body.is-leaving::after{content:"";position:fixed;inset:0;z-index:99;background:radial-gradient(ellipse at 50% 50%,#062033,#01060d 75%);opacity:0;animation:leaveFade .7s ease forwards;pointer-events:none}
     @keyframes leaveFade{to{opacity:1}}
 
