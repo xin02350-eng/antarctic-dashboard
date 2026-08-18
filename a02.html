@@ -7,7 +7,8 @@
   <title data-title-en="DISTRIBUTED MONITORING SYSTEM · ANT-A02" data-title-zh="自主观测系统 · ANT-A02">DISTRIBUTED MONITORING SYSTEM · ANT-A02</title>
   <link rel="icon" href="data:,">
   <link rel="stylesheet" href="./css/style.css?v=20260812">
-  <style>
+  <style>html{font-size:16px;font-size:clamp(12px, 0.833333vw, 20px);-webkit-text-size-adjust:100%;text-size-adjust:100%}
+
     /* V43 · Dashboard 简约化：隐藏底部统计卡（核心状态/传感器/地图/任务流保留） */
     body.dashboard-page .operation-grid{display:none}
     /* ANT-A02：等待部署终端 */
@@ -32,15 +33,27 @@
       body.a02-page .stream-panel{border-radius:8px}
       body.a02-page .stream-row{padding:8px 14px}
     }
-    .a02-map-msg{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;z-index:5;pointer-events:none;background:rgba(3,13,24,.55)}
-    .a02-map-msg b{font-size:13px;letter-spacing:4px;color:#e6c07a;font-weight:500}
-    .a02-map-msg span{font-size:9px;letter-spacing:2px;color:#9ab8ca}
+    @media (max-height:820px){
+      body.a02-page main{gap:0.375rem}
+      body.a02-page .mission-header{padding:12px 18px 8px}
+      body.a02-page .mission-info{padding:5px 14px}
+      body.a02-page #worldMap{height:clamp(8rem,20vh,18rem)!important;min-height:clamp(8rem,20vh,18rem)!important}
+      body.a02-page .sensor-card{min-height:7.25rem;padding:10px 14px 10px}
+      body.a02-page .sensor-value{margin:0.25rem 0 0.125rem}
+      body.a02-page .sensor-value strong{font-size:clamp(18px,1.6vw,24px)}
+      body.a02-page .sensor-meta{padding-top:0.25rem}
+      body.a02-page .stream-panel{padding:0.375rem 0.875rem}
+      body.a02-page .stream-row{padding:0.125rem 0}
+    }
+    .a02-map-msg{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.5rem;z-index:5;pointer-events:none;background:rgba(3,13,24,.55)}
+    .a02-map-msg b{font-size:0.8125rem;letter-spacing:4px;color:#e6c07a;font-weight:500}
+    .a02-map-msg span{font-size:0.5625rem;letter-spacing:2px;color:#9ab8ca}
   </style>
 
   <!-- Leaflet 地图（真实地图，由 main.js 初始化） -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-<style>.lang-float{position:fixed;top:28px;right:32px;z-index:120}.header-right{margin-right:150px}@media (max-width:768px){.lang-float{top:18px;right:14px}.header-right{margin-right:0}}</style></head>
+<style>.lang-float{position:fixed;top:1.75rem;right:2rem;z-index:120}.header-right{margin-right:9.375rem}@media (max-width:768px){.lang-float{top:18px;right:14px}.header-right{margin-right:0}}</style></head>
 
 <!-- dashboard-page：Dashboard 专属样式作用域；ambient-theme：全局环境氛围 -->
 <body class="dashboard-page ambient-theme a02-page"><div class="lang-float"><div class="lang-switch"><span class="lang-pill" aria-hidden="true"></span><button type="button" data-lang="zh">中</button><button type="button" data-lang="en" class="active">EN</button></div></div>
@@ -272,7 +285,6 @@
 
 <!-- 页面级扫描线与设备编号铭牌（氛围层，不拦截交互） -->
 <div class="scan-line" aria-hidden="true"></div>
-<div class="node-badge">ANT-A02 · PENDING DEPLOYMENT · FUTURE STATION</div>
 
 <!-- 数据核心与地图初始化（不允许修改） -->
 

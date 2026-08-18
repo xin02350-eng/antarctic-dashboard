@@ -11,25 +11,39 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
   <!-- Sensors 图表面板：右侧 REAL TIME 状态标（仅本页） -->
-  <style>
+  <style>html{font-size:16px;font-size:clamp(12px, 0.833333vw, 20px);-webkit-text-size-adjust:100%;text-size-adjust:100%}
+
     .sensors-page .sensor-grid .panel-title{
       position:relative;
-      padding-right:64px;
+      padding-right:4rem;
     }
     .sensors-page .sensor-grid .panel-title::after{
       content:"REAL TIME";
       position:absolute;
       right:0;
-      top:2px;
-      font-size:8px;
+      top:0.125rem;
+      font-size:0.5rem;
       letter-spacing:1.5px;
       color:#6f93a8;
     }
     html[data-lang="zh"] .sensors-page .sensor-grid .panel-title::after{
       content:"实时";
     }
+    @media (min-width:901px) and (max-width:1100px){
+      body.sensors-page .sensor-grid{
+        grid-template-columns:repeat(2,minmax(0,1fr))!important;
+        grid-template-rows:repeat(4,minmax(0,1fr))!important;
+        gap:0.375rem!important;
+      }
+      body.sensors-page .sensor-grid .panel{
+        padding:0.375rem 0.5rem!important;
+      }
+      body.sensors-page .sensor-grid canvas{
+        height:clamp(6.25rem,20vh,9.375rem)!important;
+      }
+    }
   </style>
-<style>.lang-float{position:fixed;top:28px;right:32px;z-index:120}.header-right{margin-right:150px}@media (max-width:768px){.lang-float{top:18px;right:14px}.header-right{margin-right:0}}</style></head>
+<style>.lang-float{position:fixed;top:1.75rem;right:2rem;z-index:120}.header-right{margin-right:9.375rem}@media (max-width:768px){.lang-float{top:18px;right:14px}.header-right{margin-right:0}}</style></head>
 
 <!-- ambient-theme：环境氛围（极光/雾效/雪花/扫描线）；sensors-page：本页专属样式 -->
 <body class="ambient-theme sensors-page"><div class="lang-float"><div class="lang-switch"><span class="lang-pill" aria-hidden="true"></span><button type="button" data-lang="zh">中</button><button type="button" data-lang="en" class="active">EN</button></div></div>
@@ -126,7 +140,6 @@
 <!-- 全站暴风雪模块（模块化，自动创建背景/前景画布） -->
 <script src="./js/ambient.js?v=20260806b"></script>
 <div class="scan-line" aria-hidden="true"></div>
-<div class="node-badge">ANT-A01 · AUTONOMOUS STATION · REMOTE SENSOR NODE</div>
 
 <!-- =========================================================
      SOLAR IRRADIANCE 图表辅助配置（纯显示层）

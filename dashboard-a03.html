@@ -7,7 +7,8 @@
   <title data-title-en="DISTRIBUTED MONITORING SYSTEM · ANT-A03" data-title-zh="自主观测系统 · ANT-A03">DISTRIBUTED MONITORING SYSTEM · ANT-A03</title>
   <link rel="icon" href="data:,">
   <link rel="stylesheet" href="./css/style.css?v=20260812">
-  <style>
+  <style>html{font-size:16px;font-size:clamp(12px, 0.833333vw, 20px);-webkit-text-size-adjust:100%;text-size-adjust:100%}
+
     /* V43 · Dashboard 简约化：隐藏底部统计卡（核心状态/传感器/地图/任务流保留） */
     body.dashboard-page .operation-grid{display:none}
     @media (min-width:901px){
@@ -25,24 +26,24 @@
       body.dashboard-page .stream-panel{border-radius:8px}
       body.dashboard-page .stream-row{padding:8px 14px}
     }
-    .dashboard-hero .hero-controls{display:flex;align-items:center;gap:14px}
+    .dashboard-hero .hero-controls{display:flex;align-items:center;gap:0.875rem}
     .dashboard-hero .hero-controls .lang-switch{flex:none}
     body.dashboard-page .mission-grid{grid-template-columns:minmax(0,1fr)}
     body.dashboard-page .map-status-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
     body.dashboard-page .side-panel{grid-template-rows:auto repeat(2,minmax(0,1fr))}
     /* V47.25 · 一屏版式：三状态模块等宽 + 纵向紧凑 */
-    body.dashboard-page .mission-info.dashboard-command-strip{grid-template-columns:repeat(3,1fr);gap:12px;margin-top:8px;padding:0 14px}
-    body.dashboard-page .dashboard-command-strip .cmd-cell{padding:10px 14px;border-radius:8px}
-    body.dashboard-page .cmd-value{font-size:20px;margin-top:6px}
-    body.dashboard-page .cmd-sub{margin-top:3px}
-    body.dashboard-page .mission-header{padding:12px 18px 6px}
-    body.dashboard-page .mission-grid{margin-top:8px}
-    body.dashboard-page main{min-height:calc(100vh - 4px);padding-bottom:4px}
-    body.dashboard-page .map-panel-head{padding:8px 14px}
-    body.dashboard-page .map-status-grid{margin:10px 0 12px}
-    body.dashboard-page #worldMap{flex:0 1 auto;height:clamp(300px,52vh,620px)}
-    body.dashboard-page .stream-panel{padding:6px 14px}
-    body.dashboard-page .stream-row{padding:4px 10px}
+    body.dashboard-page .mission-info.dashboard-command-strip{grid-template-columns:repeat(3,1fr);gap:0.75rem;margin-top:0.5rem;padding:0 0.875rem}
+    body.dashboard-page .dashboard-command-strip .cmd-cell{padding:0.625rem 0.875rem;border-radius:0.5rem}
+    body.dashboard-page .cmd-value{font-size:1.25rem;margin-top:0.375rem}
+    body.dashboard-page .cmd-sub{margin-top:0.1875rem}
+    body.dashboard-page .mission-header{padding:0.75rem 1.125rem 0.375rem}
+    body.dashboard-page .mission-grid{margin-top:0.5rem}
+    body.dashboard-page main{min-height:calc(100vh - 0.25rem);padding-bottom:0.25rem}
+    body.dashboard-page .map-panel-head{padding:0.5rem 0.875rem}
+    body.dashboard-page .map-status-grid{margin:0.625rem 0 0.75rem}
+    body.dashboard-page #worldMap{flex:0 1 auto;height:clamp(18.75rem,52vh,38.75rem)}
+    body.dashboard-page .stream-panel{padding:0.375rem 0.875rem}
+    body.dashboard-page .stream-row{padding:0.25rem 0.625rem}
     @media (max-height:850px){
       body.dashboard-page .mission-header{padding:10px 18px 4px}
       body.dashboard-page .dashboard-command-strip .cmd-cell{padding:8px 12px}
@@ -66,14 +67,14 @@
     /* V48.2 · Tablet 专用（768–1200px）：地图铺满，消除桌面压缩感 */
     @media (min-width:768px) and (max-width:1200px){
       body.dashboard-page main{display:flex;flex-direction:column}
-            body.dashboard-page .dashboard-hero{flex-direction:row;justify-content:space-between;align-items:center;gap:12px}
+            body.dashboard-page .dashboard-hero{flex-direction:row;justify-content:space-between;align-items:center;gap:0.75rem}
       body.dashboard-page .hero-main{min-width:0;flex:1 1 auto}
       body.dashboard-page .hero-status{flex:none}
-      body.dashboard-page .dashboard-command-strip .cmd-cell{padding:8px 10px;min-height:0}
+      body.dashboard-page .dashboard-command-strip .cmd-cell{padding:0.5rem 0.625rem;min-height:0}
       body.dashboard-page .stream-panel{margin-top:0}
-      body.dashboard-page .mission-grid{display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(360px,1fr) auto;flex:1 1 auto;min-height:0}
+      body.dashboard-page .mission-grid{display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(22.5rem,1fr) auto;flex:1 1 auto;min-height:0}
       body.dashboard-page .map-panel{grid-column:1;grid-row:1;min-height:0}
-      body.dashboard-page #worldMap{height:auto;flex:1 1 auto;min-height:260px;max-height:none;aspect-ratio:auto}
+      body.dashboard-page #worldMap{height:auto;flex:1 1 auto;min-height:16.25rem;max-height:none;aspect-ratio:auto}
     }
   </style>
 
@@ -264,7 +265,6 @@
 
 <!-- 页面级扫描线与设备编号铭牌（氛围层，不拦截交互） -->
 <div class="scan-line" aria-hidden="true"></div>
-<div class="node-badge">ANT-A03 · FUTURE STATION · AWAITING DEPLOYMENT</div>
 
 <!-- 数据核心与地图初始化（不允许修改） -->
 <script>
