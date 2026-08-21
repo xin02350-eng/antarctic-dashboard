@@ -276,8 +276,8 @@
       <div class="ov-health">
         <div class="ov-row">
           <span class="ov-label"><span data-lang="en">SOC</span><span data-lang="zh">电量</span></span>
-          <span class="meter" aria-hidden="true"><i style="width:82%"></i></span>
-          <b>82%</b>
+          <span class="meter" aria-hidden="true"><i id="socMeter" style="width:0%"></i></span>
+          <b id="socVal">--</b>
         </div>
         <div class="ov-row">
           <span class="ov-label"><span data-lang="en">Signal</span><span data-lang="zh">信号</span></span>
@@ -407,7 +407,50 @@
       if (!Array.isArray(d) || !d.length) return;
       var last = d[d.length - 1];
       var setTxt = function (id, v) { var el = document.getElementById(id); if (el && v !== undefined && v !== null && v !== '') el.textContent = v; };
-      if (last && typeof last.v === 'number') { var vTxt = last.v.toFixed(1) + 'V'; setTxt('teleV', vTxt); setTxt('tVoltage', last.v.toFixed(1)); }
+      function voltageToSoc(v) {
+        if (v === null || v === undefined || isNaN(v)) return null;
+        if (v >= 13.5) return 100;
+        if (v >= 13.4) return 99;
+        if (v >= 13.3) return 98;
+        if (v >= 13.1) return 97;
+        if (v >= 13.0) return 96;
+        if (v >= 12.9) return 95;
+        if (v >= 12.8) return 93;
+        if (v >= 12.7) return 91;
+        if (v >= 12.6) return 89;
+        if (v >= 12.5) return 87;
+        if (v >= 12.4) return 85;
+        if (v >= 12.3) return 83;
+        if (v >= 12.2) return 81;
+        if (v >= 12.1) return 79;
+        if (v >= 12.0) return 76;
+        if (v >= 11.9) return 74;
+        if (v >= 11.8) return 70;
+        if (v >= 11.7) return 68;
+        if (v >= 11.6) return 64;
+        if (v >= 11.5) return 60;
+        if (v >= 11.4) return 55;
+        if (v >= 11.3) return 49;
+        if (v >= 11.2) return 42;
+        if (v >= 11.1) return 33;
+        if (v >= 11.0) return 25;
+        if (v >= 10.9) return 17;
+        if (v >= 10.8) return 11;
+        if (v >= 10.7) return 6;
+        if (v >= 10.6) return 3;
+        if (v >= 10.5) return 2;
+        return 0;
+      }
+      if (last && typeof last.v === 'number') {
+        var vTxt = last.v.toFixed(1) + 'V';
+        setTxt('teleV', vTxt); setTxt('tVoltage', last.v.toFixed(1));
+        var soc = voltageToSoc(last.v);
+        if (soc !== null) {
+          setTxt('socVal', soc + '%');
+          var socMeter = document.getElementById('socMeter');
+          if (socMeter) socMeter.style.width = soc + '%';
+        }
+      }
       if (last && typeof last.t === 'number') { var tTxt = last.t.toFixed(1) + '°C'; setTxt('teleT', tTxt); setTxt('tTemp', last.t.toFixed(1)); }
       if (last && typeof last.h === 'number') { var hTxt = last.h.toFixed(1) + '%'; setTxt('teleH', hTxt); setTxt('tHumid', last.h.toFixed(1)); }
       if (last && last.time) {
