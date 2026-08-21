@@ -99,6 +99,8 @@ outside_temperature:"OUTSIDE TEMPERATURE",
 outside_humidity:"OUTSIDE HUMIDITY",
 solar_radiation:"SOLAR IRRADIANCE",
 wind_speed:"WIND SPEED",
+pressure:"ATMOSPHERIC PRESSURE",
+wind_direction:"WIND DIRECTION",
 no_data:"NO DATA",
 no_data_available:"NO DATA AVAILABLE",
 real_time:"REAL TIME",
@@ -232,6 +234,8 @@ outside_temperature:"舱外温度",
 outside_humidity:"舱外湿度",
 solar_radiation:"太阳辐射",
 wind_speed:"风速",
+pressure:"大气压强",
+wind_direction:"风向",
 no_data:"无数据",
 no_data_available:"暂无数据",
 real_time:"实时",
@@ -486,8 +490,6 @@ gpsData.lng=d.y;
 
 gpsData.sat=d.n;
 
-gpsData.status=d.g;
-
 
 break;
 
@@ -716,8 +718,6 @@ return window.ANX_T ? window.ANX_T("null") : "NULL";
 
 return showValue(
 latest.mode
-||
-latest.g
 ||
 "N"
 );
@@ -1551,6 +1551,20 @@ name:"VOLTAGE"
 id:"chartWind",
 key:"wind",
 name:"WIND SPEED"
+},
+
+
+{
+id:"chartPressure",
+key:"b",
+name:"ATMOSPHERIC PRESSURE"
+},
+
+
+{
+id:"chartWindDir",
+key:"d",
+name:"WIND DIRECTION"
 }
 
 ];

@@ -31,15 +31,15 @@
     }
     @media (min-width:901px) and (max-width:1100px){
       body.sensors-page .sensor-grid{
-        grid-template-columns:repeat(2,minmax(0,1fr))!important;
-        grid-template-rows:repeat(4,minmax(0,1fr))!important;
+        grid-template-columns:repeat(5,minmax(0,1fr))!important;
+        grid-template-rows:repeat(2,minmax(0,1fr))!important;
         gap:0.375rem!important;
       }
       body.sensors-page .sensor-grid .panel{
         padding:0.375rem 0.5rem!important;
       }
       body.sensors-page .sensor-grid canvas{
-        height:clamp(6.25rem,20vh,9.375rem)!important;
+        height:clamp(5rem,18vh,9rem)!important;
       }
     }
   </style>
@@ -88,7 +88,7 @@
       </div>
     </header>
 
-    <!-- 八通道传感器曲线（hud-frame 提供面板角标） -->
+    <!-- 十通道传感器曲线（hud-frame 提供面板角标） -->
     <section class="sensor-grid hud-frame">
 
       <div class="panel">
@@ -131,6 +131,16 @@
         <canvas id="chartWind"></canvas>
       </div>
 
+      <div class="panel">
+        <div class="panel-title"><span data-i18n="pressure">ATMOSPHERIC PRESSURE</span><br><span data-lang="en">Barometer</span><span data-lang="zh">气压计</span> · hPa</div>
+        <canvas id="chartPressure"></canvas>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title"><span data-i18n="wind_direction">WIND DIRECTION</span><br><span data-lang="en">North = 0°</span><span data-lang="zh">正北为 0°</span></div>
+        <canvas id="chartWindDir"></canvas>
+      </div>
+
     </section>
 
   </main>
@@ -171,7 +181,9 @@
         chartSolar: '#FFD166',
         chartCurrent: '#56F2A8',
         chartVoltage: '#8CD9FF',
-        chartWind: '#A7C7E7'
+        chartWind: '#A7C7E7',
+        chartPressure: '#7FD1AE',
+        chartWindDir: '#8CEAFF'
       };
       var color = palette[ctx.id] || '#8ceaff';
 
@@ -320,7 +332,9 @@
         chartSolar: 'W/m²',
         chartCurrent: 'mA',
         chartVoltage: 'V',
-        chartWind: 'm/s'
+        chartWind: 'm/s',
+        chartPressure: 'hPa',
+        chartWindDir: '°'
       };
       if (unitTitle[ctx.id]) {
         cfg.options.scales.y.title = cfg.options.scales.y.title || {};
@@ -339,7 +353,9 @@
         chartSolar: ' W/m²',
         chartCurrent: ' mA',
         chartVoltage: ' V',
-        chartWind: ' m/s'
+        chartWind: ' m/s',
+        chartPressure: ' hPa',
+        chartWindDir: ' °'
       };
       tt.callbacks = tt.callbacks || {};
       tt.callbacks.title = function (items) {
@@ -424,12 +440,33 @@
         return g;
       };
     }
+
+    /* 风向通道：0–360°（正北为 0），刻度按 90° 一格 */
+    if (ctx && ctx.id === 'chartWindDir' && cfg) {
+      cfg.options = cfg.options || {};
+      cfg.options.scales = cfg.options.scales || {};
+      cfg.options.scales.y = cfg.options.scales.y || {};
+      cfg.options.scales.y.beginAtZero = true;
+      cfg.options.scales.y.suggestedMax = 360;
+      cfg.options.scales.y.stepSize = 90;
+      cfg.options.scales.y.ticks = cfg.options.scales.y.ticks || {};
+      cfg.options.scales.y.ticks.callback = function (v) { return v + '°'; };
+      cfg.options.plugins = cfg.options.plugins || {};
+      cfg.options.plugins.tooltip = cfg.options.plugins.tooltip || {};
+      cfg.options.plugins.tooltip.callbacks = cfg.options.plugins.tooltip.callbacks || {};
+      cfg.options.plugins.tooltip.callbacks.label = function (context) {
+        var v = context.parsed && context.parsed.y;
+        if (typeof v !== 'number' || isNaN(v)) return window.ANX_T ? window.ANX_T('no_data') : 'NO DATA';
+        return parseFloat(v.toFixed(1)) + '°';
+      };
+    }
     return new RealChart(ctx, cfg);
   };
 
   /* 保留 Chart.js 静态接口，避免影响其他页面逻辑 */
   window.Chart.register = RealChart.register;
   window.Chart.unregister = RealChart.unregister;
+  window.Chart.getChart = RealChart.getChart;
 })();
 </script>
 

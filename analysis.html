@@ -593,6 +593,25 @@
       margin-left:0.1875rem;
     }
 
+    /* 1920×1080 等高屏：新增气压/风向覆盖率行后轻微压缩，保持单屏 */
+    @media (max-height:1120px) and (min-height:921px) and (min-width:1101px){
+      .analysis-page .an-overview .kpi-block{
+        min-height:9rem;
+        padding:0.625rem 0.75rem 0.5rem;
+      }
+      .sr-row{
+        min-height:2.25rem;
+        padding:0.25rem 0.75rem;
+      }
+      .sr-head{
+        padding:0.125rem 0.75rem 0.25rem;
+      }
+      .analysis-page .timeline-wrapper{
+        min-height:8rem;
+        padding:0 0.875rem 0.75rem;
+      }
+    }
+
     /* 低高度桌面：轻微压缩间距与环尺寸，避免 1366×768 需要滚动 */
     @media (max-height:920px) and (min-width:1100px){
       body.analysis-page main{
@@ -1101,7 +1120,9 @@
       { name: 'voltage', keys: ['v'] },
       { name: 'current', keys: ['a'] },
       { name: 'gps', keys: ['x', 'y'] },
-      { name: 'wind', keys: ['wind'] }
+      { name: 'wind', keys: ['wind'] },
+      { name: 'pressure', keys: ['b'] },
+      { name: 'wind dir', keys: ['d'] }
     ];
     var channels = sensorGroups.filter(function (g) {
       return data.some(function (r) {
@@ -1197,7 +1218,9 @@
       { keys: ['l'], en: 'SOLAR RADIATION', zh: '太阳辐射' },
       { keys: ['v', 'a'], en: 'POWER STATUS', zh: '电源状态' },
       { keys: ['x', 'y'], en: 'GPS POSITION', zh: 'GPS定位' },
-      { keys: ['wind'], en: 'WIND MONITORING', zh: '风速监测' }
+      { keys: ['wind'], en: 'WIND MONITORING', zh: '风速监测' },
+      { keys: ['b'], en: 'ATMOSPHERIC PRESSURE', zh: '大气压强' },
+      { keys: ['d'], en: 'WIND DIRECTION', zh: '风向' }
     ];
     var ratioHtml = '';
     ratioDefs.forEach(function (def, idx) {

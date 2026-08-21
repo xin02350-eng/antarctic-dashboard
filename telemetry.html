@@ -229,14 +229,15 @@
     h:    { labelKey: 'inside_humidity',  unit: '%RH' },
     j:    { labelKey: 'outside_temp',     unit: '°C' },
     k:    { labelKey: 'outside_humidity', unit: '%RH' },
+    b:    { labelKey: 'pressure',         unit: 'hPa' },
+    d:    { labelKey: 'wind_direction',   unit: '°' },
     wind: { labelKey: 'wind_speed',       unit: 'm/s' },
     x:    { labelKey: 'latitude',         unit: '°' },
     y:    { labelKey: 'longitude',        unit: '°' },
     n:    { labelKey: 'satellites',       unit: '' },
-    g:    { labelKey: 'gps_status',       unit: '' },
     mode: { labelKey: 'mode',             unit: '' }
   };
-  var KNOWN_ORDER = ['v', 'a', 'l', 't', 'h', 'j', 'k', 'wind', 'x', 'y', 'n', 'g', 'mode'];
+  var KNOWN_ORDER = ['v', 'a', 'l', 't', 'h', 'j', 'k', 'b', 'd', 'wind', 'x', 'y', 'n', 'mode'];
 
   /* 动态收集所有字段（含 i/q/r/e 等未知字段），保持稳定顺序 */
   function collectKeys(list) {
@@ -244,7 +245,7 @@
     var seen = {};
     list.forEach(function (r) {
       Object.keys(r).forEach(function (k) {
-        if (k === 'time' || seen[k]) return;
+        if (k === 'time' || k === 'g' || seen[k]) return;
         seen[k] = true;
         keys.push(k);
       });
@@ -290,11 +291,8 @@
     };
   }
 
-  function gpsInfo(d) {
-    var g = d.g;
-    if (g === null || g === undefined || g === '') return { text: '--', cls: '' };
-    var ok = g === 'O' || g === 'OK' || g === 1 || g === '1' || g === true;
-    return ok ? { key: 'ok', text: L('online'), cls: 'gps-ok' } : { key: 'bad', text: L('no_fix'), cls: 'gps-bad' };
+  function gpsInfo() {
+    return { key: 'ok', text: '--', cls: '' };
   }
 
   /* ============ 高性能分批渲染：不全量创建 DOM ============ */
@@ -309,7 +307,7 @@
 
   function rowHtml(d, keys) {
     var mi = modeInfo(d.mode);
-    var gi = gpsInfo(d);
+    var gi = gpsInfo();
     var recCls = (mi.key === 'emergency' || gi.key === 'bad') ? 'tel-alert' :
       (mi.key === 'standby' ? 'tel-warn' : 'tel-ok');
     var html = '<tr class="' + recCls + '">';
@@ -317,9 +315,8 @@
     html += '<td><span class="tel-mode ' + mi.cls + '">' + mi.st + '</span></td>';
     keys.forEach(function (k) {
       var m = metaOf(k);
-      var val = (k === 'mode') ? modeInfo(d[k]).st :
-        (k === 'g' ? gi.text : fmtVal(d[k], m.unit));
-      var cls = (k === 'g' ? gi.cls : '');
+      var val = (k === 'mode') ? modeInfo(d[k]).st : fmtVal(d[k], m.unit);
+      var cls = '';
       if (val === '--') cls += ' null-val';
       html += '<td class="tel-val ' + cls.trim() + '">' + val + '</td>';
     });

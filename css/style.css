@@ -8644,7 +8644,7 @@ margin-top:0;
 
 display:grid;
 
-grid-template-columns:repeat(4,minmax(0,1fr));
+grid-template-columns:repeat(5,minmax(0,1fr));
 
 grid-template-rows:repeat(2,minmax(0,1fr));
 
@@ -8835,9 +8835,9 @@ height:clamp(200px,34vh,520px);
 
 body.sensors-page .sensor-grid{
 
-grid-template-columns:repeat(2,minmax(0,1fr));
+grid-template-columns:repeat(5,minmax(0,1fr));
 
-grid-template-rows:repeat(4,minmax(0,1fr));
+grid-template-rows:repeat(2,minmax(0,1fr));
 
 }
 
