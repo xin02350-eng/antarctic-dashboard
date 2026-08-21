@@ -612,6 +612,17 @@
       }
     }
 
+    /* 1440p 等高屏：轻微压缩，保持单屏 */
+    @media (max-height:1500px) and (min-height:1121px) and (min-width:1101px){
+      .analysis-page .an-overview .kpi-block{
+        min-height:9.5rem;
+      }
+      .sr-row{
+        min-height:3rem;
+        padding:0.5rem 0.75rem;
+      }
+    }
+
     /* 低高度桌面：轻微压缩间距与环尺寸，避免 1366×768 需要滚动 */
     @media (max-height:920px) and (min-width:1100px){
       body.analysis-page main{
