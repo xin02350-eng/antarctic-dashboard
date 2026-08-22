@@ -495,6 +495,7 @@
       refresh();
       if (++tries >= 60) clearInterval(timer);
     }, 300);
+    if (window.addEventListener) window.addEventListener('anx:data', refresh);
   })();
   </script>
   <!-- 语言切换（全站统一） -->

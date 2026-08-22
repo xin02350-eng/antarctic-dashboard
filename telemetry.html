@@ -507,6 +507,10 @@
     window.addEventListener('anx:langchange', function () {
       if (lastList) render(lastList, true);
     });
+    window.addEventListener('anx:data', function () {
+      var d = readData();
+      if (d) render(d, true);
+    });
   }
 })();
 </script>

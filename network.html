@@ -401,7 +401,8 @@
       window.addEventListener('resize', function () { map.invalidateSize(); });
       if (window.anxApplyLang) window.anxApplyLang(window.anxCurrentLang || 'en');
     }
-    fetch('./data.json').then(function (r) { return r.json(); }).then(function (d) {
+    function refreshNetwork() {
+    fetch('./data.json?v=' + Date.now()).then(function (r) { return r.json(); }).then(function (d) {
       var n = Array.isArray(d) ? d.length : 0;
       ['kRecords'].forEach(function (id) { var el = document.getElementById(id); if (el) el.textContent = n; });
       if (!Array.isArray(d) || !d.length) return;
@@ -477,6 +478,9 @@
         var ve = document.getElementById('sparkVal'); if (ve) ve.textContent = lastT;
       }
     }).catch(function () {});
+    }
+    refreshNetwork();
+    setInterval(refreshNetwork, 30000);
     function go(href) {
       if (!href || document.body.dataset.busy) return;
       document.body.dataset.busy = '1';

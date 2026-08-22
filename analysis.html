@@ -1302,6 +1302,7 @@
     render();
     if (++tries > 60) clearInterval(timer);
   }, 500);
+  if (window.addEventListener) window.addEventListener('anx:data', render);
 })();
 </script>
 

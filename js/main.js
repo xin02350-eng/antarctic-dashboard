@@ -10,6 +10,8 @@
 
 
 let DATA = [];
+var lastDataKey = null;
+var dataBusy = false;
 
 let latest = null;
 
@@ -348,6 +350,11 @@ window.ANX_PARSE_TIME = function (t) {
 
 async function loadData(){
 
+if(dataBusy){
+return;
+}
+dataBusy = true;
+
 
 var delays = [1000, 2000, 4000];
 for (var attempt = 0; attempt <= delays.length; attempt++) {
@@ -377,6 +384,13 @@ if(!Array.isArray(DATA)){
 throw new Error("data.json format invalid");
 }
 
+var dataKey = DATA.length + "|" + (DATA.length ? String(DATA[DATA.length - 1].time || "") : "");
+if(dataKey === lastDataKey){
+dataBusy = false;
+return;
+}
+lastDataKey = dataKey;
+
 
 
 console.log(
@@ -392,6 +406,8 @@ processData();
 
 
 fullRefresh();
+try { window.dispatchEvent(new CustomEvent("anx:data", { detail: { count: DATA.length } })); } catch (e) {}
+dataBusy = false;
 return;
 
 
@@ -412,6 +428,7 @@ await new Promise(function (resolve) { setTimeout(resolve, delays[attempt]); });
 
 }
 }
+dataBusy = false;
 }
 
 
@@ -2503,6 +2520,8 @@ document.addEventListener(
 
 
 loadData();
+
+setInterval(loadData, 30000);
 
 
 
