@@ -8914,7 +8914,6 @@ grid-template-rows:auto;
 
 }
 
-
 /* =========================================================
    V0.6 · FINAL UI POLISH
    允许自然滚动；用 clamp/vh/minmax 自动适应屏幕高度，
@@ -13314,5 +13313,17 @@ padding:0.625rem 0.75rem;
 }
 body.dashboard-page .side-panel.side-right .sensor-value strong{
 font-size:1.25rem;
+}
+}
+
+/* 手机横屏：传感器两列，减少纵向滚动（末尾覆盖，确保生效） */
+@media (max-width:900px) and (orientation:landscape) and (max-height:520px){
+body.sensors-page .sensor-grid{
+grid-template-columns:repeat(2,minmax(0,1fr))!important;
+grid-template-rows:auto!important;
+gap:0.375rem!important;
+}
+body.sensors-page .sensor-grid canvas{
+height:clamp(5rem,26vh,8rem)!important;
 }
 }
