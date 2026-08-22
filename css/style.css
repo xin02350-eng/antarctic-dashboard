@@ -13316,6 +13316,24 @@ font-size:1.25rem;
 }
 }
 
+/* 手机竖屏：横屏专用，提示旋转 */
+@media (orientation:portrait) and (max-width:600px){
+body.ambient-theme::after,body::after{
+content:"⟳ 请横屏查看 · 旋转手机";
+position:fixed;
+inset:0;
+z-index:999999;
+display:flex;
+align-items:center;
+justify-content:center;
+background:#020a12;
+color:#8ceaff;
+font-size:18px;
+letter-spacing:3px;
+text-align:center;
+}
+}
+
 /* 手机横屏：传感器两列，减少纵向滚动（末尾覆盖，确保生效） */
 @media (max-width:900px) and (orientation:landscape) and (max-height:520px){
 body.sensors-page .sensor-grid{

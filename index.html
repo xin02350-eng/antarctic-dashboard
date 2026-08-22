@@ -240,6 +240,15 @@
       .hero .btn .explore-arrow{transform:none !important}
       .kicker,.hero h1,.hero .btn,.manifesto{transition:none !important}
     }
+    /* 手机竖屏：横屏专用，提示旋转 */
+    @media (orientation:portrait) and (max-width:600px){
+      body::after{
+        content:"⟳ 请横屏查看 · 旋转手机";
+        position:fixed;inset:0;z-index:999999;
+        display:flex;align-items:center;justify-content:center;
+        background:#020a12;color:#8ceaff;font-size:18px;letter-spacing:3px;text-align:center;
+      }
+    }
   </style>
 </head>
 <body class="home-page">

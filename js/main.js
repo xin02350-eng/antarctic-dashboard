@@ -852,7 +852,7 @@ document.getElementById(
 if(temp){
 
 temp.innerHTML=
-showValue(d.t);
+showValue(d.j);
 
 
 }
@@ -880,7 +880,7 @@ document.getElementById(
 if(humidity){
 
 humidity.innerHTML=
-showValue(d.h);
+showValue(d.k);
 
 
 }
@@ -896,7 +896,7 @@ document.getElementById(
 if(outsideTemp){
 
 outsideTemp.innerHTML=
-showValue(d.j);
+showValue(d.t);
 
 }
 
@@ -911,7 +911,7 @@ document.getElementById(
 if(outsideHumidity){
 
 outsideHumidity.innerHTML=
-showValue(d.k);
+showValue(d.h);
 
 }
 
@@ -1103,7 +1103,7 @@ if(temp){
 
 
 temp.innerHTML=
-showValue(d.t);
+showValue(d.j);
 
 
 }
@@ -1517,28 +1517,28 @@ let sensorConfig = [
 
 {
 id:"chartInTemp",
-key:"t",
+key:"j",
 name:"INSIDE TEMPERATURE"
 },
 
 
 {
 id:"chartInHum",
-key:"h",
+key:"k",
 name:"INSIDE HUMIDITY"
 },
 
 
 {
 id:"chartOutTemp",
-key:"j",
+key:"t",
 name:"OUTSIDE TEMPERATURE"
 },
 
 
 {
 id:"chartOutHum",
-key:"k",
+key:"h",
 name:"OUTSIDE HUMIDITY"
 },
 
@@ -2118,7 +2118,7 @@ ${showValue(d.v)}
 
 ${window.ANX_T ? window.ANX_T("inside_temp") : "TEMP"}:
 
-${showValue(d.t)}
+${showValue(d.j)}
 
 </p>
 
@@ -2128,7 +2128,7 @@ ${showValue(d.t)}
 
 ${window.ANX_T ? window.ANX_T("inside_humidity") : "HUMIDITY"}:
 
-${showValue(d.h)}
+${showValue(d.k)}
 
 </p>
 
