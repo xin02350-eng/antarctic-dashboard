@@ -7,7 +7,30 @@
   <link rel="icon" href="data:,">
   <link rel="stylesheet" href="./css/style.css?v=20260824c">
 <style>html{font-size:16px;font-size:clamp(12px, 0.833333vw, 20px);-webkit-text-size-adjust:100%;text-size-adjust:100%}
-.lang-float{position:fixed;top:1.75rem;right:2rem;z-index:120}.header-right{margin-right:9.375rem}@media (max-width:768px){.lang-float{top:18px;right:14px}.header-right{margin-right:0}}</style></head>
+.lang-float{position:fixed;top:1.75rem;right:2rem;z-index:120}.header-right{margin-right:9.375rem}@media (max-width:768px){.lang-float{top:18px;right:14px}.header-right{margin-right:0}}</style>
+<style>
+  .hardware-page .hw-carousel{position:absolute;inset:0.75rem;overflow:hidden;border:1px solid rgba(140,234,255,.18);border-radius:0.375rem;background:radial-gradient(120% 90% at 20% 0%,rgba(70,140,190,.12),transparent 55%),#04101d;box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 12px 30px rgba(0,0,0,.28)}
+  .hardware-page .hw-track{display:flex;height:100%;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-ms-overflow-style:none;cursor:grab;scroll-behavior:smooth}
+  .hardware-page .hw-track::-webkit-scrollbar{display:none}
+  .hardware-page .hw-slide{flex:0 0 100%;min-width:0;height:100%;margin:0;position:relative;display:flex;align-items:center;justify-content:center;scroll-snap-align:center}
+  .hardware-page .hw-slide img{width:100%;height:100%;object-fit:cover;display:block}
+  .hardware-page .hw-slide:nth-child(1) img{object-position:50% 28%}
+  .hardware-page .hw-slide:nth-child(2) img{object-position:50% 50%}
+  .hardware-page .hw-slide:nth-child(3) img{object-position:50% 32%}
+  .hardware-page .hw-slide:nth-child(4) img{object-position:50% 50%}
+  .hardware-page .hw-slide figcaption{position:absolute;left:0;right:0;bottom:0;padding:1rem 1rem 1.75rem;font-size:0.625rem;letter-spacing:2.5px;color:rgba(220,245,255,.85);text-align:left;background:linear-gradient(180deg,transparent,rgba(2,10,18,.84));text-transform:uppercase}
+  .hardware-page .hw-slide figcaption::before{content:"";display:block;width:2.25rem;height:1px;background:rgba(140,234,255,.7);margin-bottom:0.375rem}
+  .hardware-page .hw-nav{position:absolute;top:50%;transform:translateY(-50%);z-index:5;width:2.25rem;height:2.25rem;border:1px solid rgba(140,234,255,.25);border-radius:50%;background:rgba(3,14,25,.55);color:#bfe8ff;font-size:1.15rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .25s ease,border-color .25s ease,color .25s ease;backdrop-filter:blur(4px)}
+  .hardware-page .hw-prev{left:0.75rem}
+  .hardware-page .hw-next{right:0.75rem}
+  .hardware-page .hw-nav:hover{background:rgba(20,60,92,.85);border-color:rgba(180,235,255,.7);color:#fff}
+  .hardware-page .hw-dots{position:absolute;left:50%;bottom:0.875rem;transform:translateX(-50%);z-index:5;display:flex;gap:0.375rem}
+  .hardware-page .hw-dots button{width:1.75rem;height:2px;border:0;padding:0;background:rgba(140,234,255,.25);cursor:pointer;transition:background .25s ease,box-shadow .25s ease}
+  .hardware-page .hw-dots button.on{background:#8ceaff;box-shadow:0 0 8px rgba(140,234,255,.6)}
+  .hardware-page .hw-counter{position:absolute;top:0.75rem;right:0.875rem;z-index:5;font-family:Consolas,"Courier New",monospace;font-size:0.625rem;letter-spacing:2px;color:rgba(140,234,255,.65)}
+  .hardware-page .hw-counter b{color:#eafcff;font-weight:500}
+  @media (prefers-reduced-motion: reduce){.hardware-page .hw-track{transition:none}}
+</style></head>
 
 <body class="ambient-theme hardware-page"><div class="lang-float"><div class="lang-switch"><span class="lang-pill" aria-hidden="true"></span><button type="button" data-lang="zh">中</button><button type="button" data-lang="en" class="active">EN</button></div></div>
 
@@ -87,13 +110,29 @@
         </div>
 
         <div class="doc-photo">
-          <div class="photo-placeholder">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true">
-              <path d="M4 7h3l2-3h6l2 3h3v13H4V7z"/>
-              <circle cx="12" cy="13" r="4"/>
-            </svg>
-            <p data-i18n="real_device_photo">REAL DEVICE PHOTO</p>
-            <p class="photo-sub" data-i18n="image_slot">IMAGE SLOT · REPLACE WITH TEST PHOTOGRAPH</p>
+          <div class="hw-carousel" id="hwCarousel">
+            <div class="hw-track">
+              <figure class="hw-slide">
+                <img src="./assets/hardware/02-1.jpg" alt="DMS-A02 02-1">
+                <figcaption><span data-lang="en">Hardware View 02-1</span><span data-lang="zh">硬件视图 02-1</span></figcaption>
+              </figure>
+              <figure class="hw-slide">
+                <img src="./assets/hardware/02-2.jpg" alt="DMS-A02 02-2">
+                <figcaption><span data-lang="en">Hardware View 02-2</span><span data-lang="zh">硬件视图 02-2</span></figcaption>
+              </figure>
+              <figure class="hw-slide">
+                <img src="./assets/hardware/02-3.jpg" alt="DMS-A02 02-3">
+                <figcaption><span data-lang="en">Hardware View 02-3</span><span data-lang="zh">硬件视图 02-3</span></figcaption>
+              </figure>
+              <figure class="hw-slide">
+                <img src="./assets/hardware/02-4.jpg" alt="DMS-A02 02-4">
+                <figcaption><span data-lang="en">Hardware View 02-4</span><span data-lang="zh">硬件视图 02-4</span></figcaption>
+              </figure>
+            </div>
+            <button type="button" class="hw-nav hw-prev" aria-label="Previous">‹</button>
+            <button type="button" class="hw-nav hw-next" aria-label="Next">›</button>
+            <div class="hw-dots" aria-hidden="true"></div>
+            <span class="hw-counter"><b>01</b> / 04</span>
           </div>
         </div>
 
@@ -287,6 +326,66 @@
     try { saved = localStorage.getItem('anx-lang'); } catch (e) {}
     apply(saved === 'zh' ? 'zh' : 'en');
     bind();
+  })();
+  </script>
+  <!-- 硬件照片滚动展示（02-1 / 02-2 / 02-3 / 02-4） -->
+  <script>
+  (function () {
+    var root = document.getElementById('hwCarousel');
+    if (!root) return;
+    var track = root.querySelector('.hw-track');
+    var dotsWrap = root.querySelector('.hw-dots');
+    var counter = root.querySelector('.hw-counter');
+    if (!track || !track.children.length) return;
+    var slides = track.children.length;
+    var idx = 0;
+    var timer = null;
+    function pad(n) { return String(n).padStart(2, '0'); }
+    function width() { return track.clientWidth || 1; }
+    function ui() {
+      Array.prototype.forEach.call(dotsWrap.children, function (d, i) {
+        d.classList.toggle('on', i === idx);
+      });
+      if (counter) counter.innerHTML = '<b>' + pad(idx + 1) + '</b> / ' + pad(slides);
+    }
+    function go(i) {
+      idx = (i + slides) % slides;
+      track.scrollTo({ left: idx * width(), behavior: 'smooth' });
+      ui();
+    }
+    function stop() { if (timer) { clearInterval(timer); timer = null; } }
+    function auto() { stop(); timer = setInterval(function () { go(idx + 1); }, 4000); }
+    for (var i = 0; i < slides; i++) {
+      (function (k) {
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.setAttribute('aria-label', 'Slide ' + (k + 1));
+        b.addEventListener('click', function () { go(k); auto(); });
+        dotsWrap.appendChild(b);
+      })(i);
+    }
+    var prev = root.querySelector('.hw-prev');
+    var next = root.querySelector('.hw-next');
+    if (prev) prev.addEventListener('click', function () { go(idx - 1); auto(); });
+    if (next) next.addEventListener('click', function () { go(idx + 1); auto(); });
+    var ticking = false;
+    track.addEventListener('scroll', function () {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(function () {
+        ticking = false;
+        var i = Math.round(track.scrollLeft / width());
+        if (i !== idx) { idx = (i + slides) % slides; ui(); }
+      });
+    }, { passive: true });
+    track.addEventListener('wheel', function (e) {
+      if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+        e.preventDefault();
+        track.scrollLeft += e.deltaY;
+      }
+    }, { passive: false });
+    ui();
+    auto();
   })();
   </script>
 </body>
