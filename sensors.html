@@ -441,15 +441,40 @@
       };
     }
 
+    /* 风速通道：数值区间小（0~1.5 m/s），收窄左侧刻度并减小字号，避免遮挡曲线 */
+    if (ctx && ctx.id === 'chartWind' && cfg) {
+      cfg.options = cfg.options || {};
+      cfg.options.scales = cfg.options.scales || {};
+      cfg.options.scales.y = cfg.options.scales.y || {};
+      cfg.options.scales.y.beginAtZero = true;
+      cfg.options.scales.y.suggestedMax = 2;
+      cfg.options.scales.y.stepSize = 0.5;
+      cfg.options.scales.y.ticks = cfg.options.scales.y.ticks || {};
+      cfg.options.scales.y.ticks.font = { size: 9 };
+      cfg.options.scales.y.ticks.padding = 2;
+      cfg.options.scales.y.ticks.maxTicksLimit = 5;
+      cfg.options.scales.y.ticks.callback = function (v) {
+        return (typeof v === 'number') ? v.toFixed(1) : v;
+      };
+      cfg.options.plugins = cfg.options.plugins || {};
+      cfg.options.plugins.tooltip = cfg.options.plugins.tooltip || {};
+      cfg.options.plugins.tooltip.callbacks = cfg.options.plugins.tooltip.callbacks || {};
+      cfg.options.plugins.tooltip.callbacks.label = function (context) {
+        var v = context.parsed && context.parsed.y;
+        if (typeof v !== 'number' || isNaN(v)) return window.ANX_T ? window.ANX_T('no_data') : 'NO DATA';
+        return parseFloat(v.toFixed(2)) + ' m/s';
+      };
+    }
+
     /* 风向通道：0–360°（正北为 0），刻度按 90° 一格 */
     if (ctx && ctx.id === 'chartWindDir' && cfg) {
       cfg.options = cfg.options || {};
       cfg.options.scales = cfg.options.scales || {};
       cfg.options.scales.y = cfg.options.scales.y || {};
       cfg.options.scales.y.beginAtZero = true;
-      cfg.options.scales.y.suggestedMax = 360;
-      cfg.options.scales.y.stepSize = 90;
       cfg.options.scales.y.ticks = cfg.options.scales.y.ticks || {};
+      cfg.options.scales.y.ticks.font = { size: 9 };
+      cfg.options.scales.y.ticks.padding = 2;
       cfg.options.scales.y.ticks.callback = function (v) { return v + '°'; };
       cfg.options.plugins = cfg.options.plugins || {};
       cfg.options.plugins.tooltip = cfg.options.plugins.tooltip || {};
