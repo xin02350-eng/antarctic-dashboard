@@ -48,15 +48,18 @@
     .ov-mod:last-child{border-bottom:0}
     .ov-label{display:block;font-size:0.75rem;letter-spacing:1.5px;color:#5f7f93;text-transform:uppercase;margin-bottom:0.25rem}
     .ov-val{display:flex;align-items:center;gap:0.4375rem;font-size:1.5rem;font-weight:500;color:#eafcff;letter-spacing:.5px;font-variant-numeric:tabular-nums}
+    .ov-val#kRecords{font-size:1.25rem}
     .ov-val.on{color:#00e5a8}
     .ov-mod{border-bottom:1px solid rgba(98,217,255,.045)}
     .ov-hr{height:0.0625rem;background:rgba(98,217,255,.08);margin:0.75rem 0 0.375rem}
-    .ov-health{display:flex;flex-direction:column}
-    .ov-row{display:flex;align-items:center;gap:0.5rem;padding:0.4375rem 0.125rem;font-size:0.5rem;letter-spacing:1.2px;color:#8aa9bc;text-transform:uppercase}
-    .ov-row .ov-label{flex:1;margin-bottom:0}
-    .ov-row b{font-size:1.0625rem;font-weight:500;color:#cfe2ee;letter-spacing:1px;white-space:nowrap;font-variant-numeric:tabular-nums}
+    .ov-health{display:flex;flex-direction:column;gap:0.625rem}
+    .ov-row{display:flex;align-items:center;gap:0.75rem;padding:0.625rem 0.125rem;font-size:0.5rem;letter-spacing:1.2px;color:#8aa9bc;text-transform:uppercase}
+    .ov-row .ov-label{flex:0 0 4.5rem;white-space:nowrap;margin-bottom:0}
+    .ov-row b{font-size:0.8125rem;font-weight:500;color:#cfe2ee;letter-spacing:.5px;white-space:nowrap;line-height:1.25;font-variant-numeric:tabular-nums;margin-left:auto;text-align:right}
     .ov-row b.cy{color:#8ceaff}
-    .ov-row .meter{flex:none;max-width:3.875rem}
+    .ov-row .sig-group{margin-left:auto;display:flex;align-items:center;gap:0.625rem}
+    .ov-row .sig-group .sig{flex:none}
+    .ov-row .sig-group b{font-size:0.75rem;font-weight:500;color:#8ceaff;letter-spacing:.5px}
     .meter{flex:1;max-width:4.625rem;height:0.1875rem;border-radius:999px;background:rgba(98,217,255,.12);overflow:hidden}
     .meter i{display:block;height:100%;border-radius:999px;background:#5fa8cf}
     .sig{display:flex;align-items:flex-end;gap:0.125rem;height:0.6875rem;flex:none}
@@ -94,6 +97,10 @@
     .map-foot{display:flex;align-items:center;justify-content:space-between;padding:0.75rem 1rem 0.9375rem;border-top:1px solid rgba(98,217,255,.07);font-size:0.625rem;letter-spacing:1px;color:#6f93a8}
     .map-foot b{color:#9fd8c2;font-weight:500;font-size:0.6875rem}
     .dossier{position:absolute;left:1rem;bottom:2.875rem;z-index:6;min-width:20.625rem;border:1px solid rgba(0,229,168,.34);border-left:2px solid #00e5a8;background:radial-gradient(120% 90% at 16% 0%,rgba(0,229,168,.07),transparent 55%),radial-gradient(100% 70% at 88% 100%,rgba(2,10,18,.5),transparent 60%),rgba(3,14,24,.96);box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 12px 28px rgba(0,0,0,.3);backdrop-filter:blur(0.625rem);padding:1rem 1.125rem;border-radius:0.375rem}
+    .dossier-b{left:calc(1rem + 22.5rem)}
+    @media (max-width:1500px){
+      .dossier-b{left:1rem;top:4.5rem;bottom:auto}
+    }
     .dossier h4{display:flex;align-items:center;gap:0.5rem;font-size:1rem;letter-spacing:2px;color:#eafcff;font-weight:600}
     .dossier h4::before{content:"";width:0.125rem;height:0.75rem;border-radius:0.0625rem;background:#8ceaff}
     .dossier .dsub{font-size:0.625rem;letter-spacing:1.5px;color:#9fd8c2;margin-top:0.3125rem;text-transform:uppercase}
@@ -133,31 +140,33 @@
     .node-layout-a .node-id{align-items:flex-end;text-align:right;padding-bottom:1.125rem}
     .node-layout-b .node-id{align-items:center;text-align:center;padding-left:6%}
     .node-layout-c .node-id{justify-content:flex-end;align-items:center;text-align:center}
-    .term .enter{position:relative;display:flex;align-items:center;justify-content:space-between;margin:0.625rem 0 0.75rem;padding:1rem 1.1rem;border:1px solid rgba(140,234,255,.10);border-radius:0.625rem;background:radial-gradient(120% 90% at 16% 0%,rgba(110,195,245,.15),transparent 55%),radial-gradient(100% 70% at 88% 100%,rgba(3,12,22,.4),transparent 60%),linear-gradient(165deg,rgba(15,36,58,.95),rgba(7,18,31,.9));box-shadow:inset 0 1px 0 rgba(255,255,255,.06),inset 0 0 0 1px rgba(140,234,255,.05),0 6px 16px rgba(0,0,0,.28);color:#eafcff;font-size:1.0625rem;letter-spacing:2px;text-decoration:none;transition:color .3s ease,background .3s ease,box-shadow .3s ease}
-    .term .enter::before{content:"";position:absolute;inset:0;border-radius:0.625rem;padding:0.0938rem;background:conic-gradient(from var(--flow-angle),rgba(105,150,185,0) 0 52%,rgba(110,175,210,.55) 62%,rgba(150,210,240,.95) 69%,rgba(205,245,255,1) 76%,#f2fdff 80%,rgba(190,240,255,1) 84%,rgba(120,195,230,.72) 90%,rgba(105,150,185,0) 97%,rgba(105,150,185,0) 100%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude;animation:enterFlow 3.6s linear infinite;pointer-events:none;opacity:.92;filter:drop-shadow(0 0 5px rgba(120,210,250,.28))}
-    .term .enter-label{position:relative;display:inline-block;line-height:1}
-    .term .enter .enter-beam{display:none}
-    .term .enter-label .enter-base{display:inline-block;background:linear-gradient(180deg,#e6f7fe 0%,#a9d4ec 40%,#7fa9c8 62%,#4c7594 100%);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;filter:drop-shadow(0 0 6px rgba(110,210,245,.16)) drop-shadow(0 1px 0 rgba(225,248,255,.08))}
-    .term .enter-label .enter-shine{position:absolute;inset:0;color:transparent;background:linear-gradient(100deg,rgba(150,210,240,0) 32%,rgba(240,252,255,1) 48%,rgba(220,245,255,1) 52%,rgba(150,210,240,0) 68%);background-size:220% 100%;background-position:130% 0;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 0 10px rgba(160,228,255,.55));animation:enterShine 3.6s ease-in-out infinite;pointer-events:none}
-    .term .enter-arrow{position:relative;display:inline-block;width:1.875rem;height:0.75rem;margin-left:0.75rem;flex:none;animation:enterAdvance 3.6s ease-in-out infinite}
+    .term .enter{position:relative;display:flex;align-items:center;justify-content:space-between;margin:0.625rem 0 0.75rem;padding:0.875rem 1rem;border:0;border-radius:0.5rem;background:transparent;color:#eafcff;text-decoration:none;cursor:pointer;font-family:inherit;transition:color .3s ease,background .3s ease,box-shadow .3s ease,transform .35s ease,filter .35s ease}
+    .term .enter::before{content:"";position:absolute;inset:0;border-radius:0.5rem;padding:2px;background:conic-gradient(from var(--flow-angle),rgba(105,150,185,0) 0 56%,rgba(110,175,210,.34) 64%,rgba(150,210,240,.72) 70%,rgba(205,245,255,1) 77%,#f2fdff 81%,rgba(190,240,255,1) 85%,rgba(120,195,230,.52) 91%,rgba(105,150,185,0) 97%,rgba(105,150,185,0) 100%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude;animation:flowBorder 6.5s linear infinite;pointer-events:none}
+    .term .enter .enter-beam{position:absolute;inset:0;border:1px solid transparent;border-radius:0.5rem;background:transparent;box-shadow:none;opacity:0;pointer-events:none}
+    .term .enter-label{position:relative;display:inline-block;line-height:1.18;color:#8ec9e8;-webkit-text-fill-color:#8ec9e8;font-size:1.125rem;font-weight:600;letter-spacing:1px;min-width:0}
+    html[data-lang="zh"] .term .enter-label{letter-spacing:.18em}
+    html[data-lang="en"] .term .enter-label{font-size:0.9375rem;letter-spacing:1.5px;text-transform:uppercase}
+    .term .enter-label .enter-base{display:inline-block;background:linear-gradient(180deg,#e6f7fe 0%,#a9d4ec 40%,#7fa9c8 62%,#4c7594 100%);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;filter:drop-shadow(0 0 8px rgba(110,210,245,.20)) drop-shadow(0 1px 0 rgba(225,248,255,.10))}
+    .term .enter-label .enter-shine{position:absolute;inset:0;color:transparent;background:linear-gradient(100deg,rgba(150,210,240,0) 36%,rgba(240,252,255,1) 50%,rgba(150,210,240,0) 64%);background-size:220% 100%;background-position:130% 0;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 0 9px rgba(180,235,255,.38));animation:txtSweep 6.5s ease-in-out infinite;pointer-events:none}
+    .term .enter-arrow{position:relative;display:inline-block;width:2.5rem;height:0.875rem;margin-left:0.75rem;flex:none;top:-1px;animation:arrowAdvance 6.5s ease-in-out infinite}
     .term .enter-arrow svg{display:block;width:100%;height:100%}
-    .term .enter-arrow .arrow-shape{fill:none;stroke:url(#enterArrowGrad);stroke-width:5;stroke-linecap:round;stroke-linejoin:round;opacity:.94}
-    .term .enter-arrow .flow-arrow{fill:none;stroke:#dff4ff;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;opacity:0;mix-blend-mode:screen;-webkit-mask-image:linear-gradient(90deg,transparent 0,transparent 43%,rgba(0,0,0,.18) 47%,#000 50%,rgba(0,0,0,.18) 53%,transparent 57%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,transparent 43%,rgba(0,0,0,.18) 47%,#000 50%,rgba(0,0,0,.18) 53%,transparent 57%,transparent 100%);-webkit-mask-size:300% 100%;mask-size:300% 100%;-webkit-mask-position:100% 0;mask-position:100% 0;animation:enterArrowFlow 3.6s ease-in-out infinite;pointer-events:none}
-    .term .enter-arrow::after{content:"";position:absolute;right:-0.125rem;top:50%;width:0.3125rem;height:0.3125rem;margin-top:-0.1562rem;border-radius:50%;background:#f4fdff;box-shadow:0 0 6px rgba(220,245,255,.9);opacity:0;animation:tipGlint 3.6s ease-in-out infinite}
-    .term .enter:hover{color:#fff;background:radial-gradient(120% 90% at 16% 0%,rgba(120,205,250,.18),transparent 55%),radial-gradient(100% 70% at 88% 100%,rgba(3,12,22,.4),transparent 60%),linear-gradient(165deg,rgba(18,42,66,.97),rgba(9,22,37,.92));box-shadow:inset 0 1px 0 rgba(255,255,255,.07),inset 0 0 0 1px rgba(140,234,255,.06),0 8px 20px rgba(0,0,0,.32)}
-    .term .enter:hover::before{opacity:1}
-    .term .enter:hover .enter-base{filter:drop-shadow(0 0 9px rgba(120,215,250,.32)) drop-shadow(0 1px 0 rgba(235,250,255,.14))}
-    .term .enter:hover .enter-shine{animation-duration:2s}
-    .term .enter:hover .enter-arrow{animation-duration:2s}
-    .term .enter:hover .enter-arrow .flow-arrow{animation-duration:2s}
-    .term .enter:hover .enter-arrow::after{animation-duration:2s}
+    .term .enter-arrow .arrow-shape{fill:none;stroke:url(#enterArrowGrad);stroke-width:3.6;stroke-linecap:round;stroke-linejoin:round;opacity:.94}
+    .term .enter-arrow .flow-arrow{fill:none;stroke:#cfe9f8;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;opacity:0;mix-blend-mode:screen;-webkit-mask-image:linear-gradient(90deg,transparent 0,transparent 43%,rgba(0,0,0,.18) 47%,#000 50%,rgba(0,0,0,.18) 53%,transparent 57%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,transparent 43%,rgba(0,0,0,.18) 47%,#000 50%,rgba(0,0,0,.18) 53%,transparent 57%,transparent 100%);-webkit-mask-size:300% 100%;mask-size:300% 100%;-webkit-mask-position:100% 0;mask-position:100% 0;animation:arrowFlow 6.5s ease-in-out infinite;pointer-events:none}
+    .term .enter:hover{transform:scale(1.04);filter:brightness(1.12)}
+    .term .enter:hover .enter-beam{border-color:rgba(150,210,240,.50);background:linear-gradient(180deg,rgba(16,42,66,.60),rgba(6,20,36,.52));box-shadow:inset 0 1px 0 rgba(215,245,255,.22),inset 0 -1px 0 rgba(0,6,14,.45),inset 0 0 0 1px rgba(180,225,245,.12)}
+    .term .enter:hover .enter-label .enter-base{filter:drop-shadow(0 0 10px rgba(120,215,250,.35)) drop-shadow(0 0 22px rgba(90,190,235,.20)) drop-shadow(0 1px 0 rgba(235,250,255,.16))}
+    .term .enter:hover .enter-arrow .arrow-shape{opacity:1}
+    .term .enter:hover::before{animation-duration:3.2s}
+    .term .enter:hover .enter-label .enter-shine{animation-duration:3.2s}
+    .term .enter:hover .enter-arrow{animation-duration:3.2s}
+    .term .enter:hover .enter-arrow .flow-arrow{animation-duration:3.2s}
+    .term .enter:active{filter:brightness(1.3)}
     .term .enter:focus-visible{outline:1px solid rgba(140,234,255,.75);outline-offset:6px;border-radius:0.5rem}
     @property --flow-angle{syntax:'<angle>';inherits:false;initial-value:0deg}
-    @keyframes enterFlow{to{--flow-angle:360deg}}
-    @keyframes enterShine{0%,40%{opacity:0;background-position:130% 0}44%{opacity:1}46%{opacity:1;background-position:130% 0}74%{background-position:-30% 0}78%,100%{opacity:0;background-position:-30% 0}}
-    @keyframes enterArrowFlow{0%,58%{opacity:0;-webkit-mask-position:100% 0;mask-position:100% 0}62%{opacity:.9}64%{opacity:.9;-webkit-mask-position:100% 0;mask-position:100% 0}82%{opacity:.9;-webkit-mask-position:0% 0;mask-position:0% 0}86%,100%{opacity:0;-webkit-mask-position:0% 0;mask-position:0% 0}}
-    @keyframes enterAdvance{0%,68%{transform:translateX(0);animation-timing-function:cubic-bezier(.16,1,.3,1)}80%{transform:translateX(6px);animation-timing-function:cubic-bezier(.65,0,.35,1)}100%{transform:translateX(0)}}
-    @keyframes tipGlint{0%,56%{opacity:0}62%{opacity:1}70%,100%{opacity:0}}
+    @keyframes flowBorder{to{--flow-angle:360deg}}
+    @keyframes txtSweep{0%,46%{opacity:0;background-position:130% 0}50%{opacity:1}52%{opacity:1;background-position:130% 0}78%{background-position:-30% 0}82%,100%{opacity:0;background-position:-30% 0}}
+    @keyframes arrowFlow{0%,72%{opacity:0;-webkit-mask-position:100% 0;mask-position:100% 0}76%{opacity:.75}78%{opacity:.75;-webkit-mask-position:100% 0;mask-position:100% 0}92%{opacity:.75;-webkit-mask-position:0% 0;mask-position:0% 0}96%,100%{opacity:0;-webkit-mask-position:0% 0;mask-position:0% 0}}
+    @keyframes arrowAdvance{0%,82%{transform:translateX(0);animation-timing-function:cubic-bezier(.16,1,.3,1)}90%{transform:translateX(7px);animation-timing-function:cubic-bezier(.65,0,.35,1)}100%{transform:translateX(0)}}
     @media (prefers-reduced-motion: reduce){
       .term .enter::before,.term .enter .enter-shine,.term .enter .enter-arrow,.term .enter .enter-arrow *{animation:none !important}
       .term .enter-arrow::after{animation:none !important}
@@ -274,7 +283,7 @@
         </div>
         <div class="ov-mod">
           <span class="ov-label"><span data-lang="en">Connected Nodes</span><span data-lang="zh">接入节点</span></span>
-          <b class="ov-val">01</b>
+          <b class="ov-val">01, 02</b>
         </div>
         <div class="ov-mod">
           <span class="ov-label"><span data-lang="en">Data Records</span><span data-lang="zh">数据记录</span></span>
@@ -289,13 +298,14 @@
       <div class="ov-health">
         <div class="ov-row">
           <span class="ov-label"><span data-lang="en">SOC</span><span data-lang="zh">电量</span></span>
-          <span class="meter" aria-hidden="true"><i id="socMeter" style="width:0%"></i></span>
           <b id="socVal">--</b>
         </div>
         <div class="ov-row">
           <span class="ov-label"><span data-lang="en">Signal</span><span data-lang="zh">信号</span></span>
-          <span class="sig" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span>
-          <b class="cy"><span data-lang="en">Strong</span><span data-lang="zh">强</span></b>
+          <span class="sig-group">
+            <span class="sig" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span><b class="cy">01</b>
+            <span class="sig" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span><b class="cy">02</b>
+          </span>
         </div>
         <div class="ov-row">
           <span class="ov-label"><span data-lang="en">Uptime</span><span data-lang="zh">运行时长</span></span>
@@ -326,6 +336,19 @@
           <svg id="sparkTemp" viewBox="0 0 220 46" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="sparkFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="rgba(140,234,255,.28)"></stop><stop offset="1" stop-color="rgba(140,234,255,0)"></stop></linearGradient></defs><path id="sparkArea" fill="url(#sparkFill)"></path><path id="sparkLine" fill="none" stroke="#8ceaff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
         </div>
       </div>
+      <div class="dossier dossier-b">
+        <h4>DMS-A02</h4>
+        <div class="dsub"><span data-lang="en">Nanjing Observation Node</span><span data-lang="zh">南京观测节点</span></div>
+        <div class="dtele">
+          <span><b id="teleV2">--</b><i data-lang="en">Voltage</i><i data-lang="zh">电压</i></span>
+          <span><b id="teleT2">--</b><i data-lang="en">Outside Temp</i><i data-lang="zh">舱外温度</i></span>
+          <span><b id="teleH2">--</b><i data-lang="en">Humidity</i><i data-lang="zh">湿度</i></span>
+        </div>
+        <div class="spark">
+          <div class="spark-head"><span data-lang="en">Temperature Trend</span><span data-lang="zh">温度趋势</span><b id="sparkVal2">--</b></div>
+          <svg id="sparkTemp2" viewBox="0 0 220 46" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="sparkFill2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="rgba(140,234,255,.28)"></stop><stop offset="1" stop-color="rgba(140,234,255,0)"></stop></linearGradient></defs><path id="sparkArea2" fill="url(#sparkFill2)"></path><path id="sparkLine2" fill="none" stroke="#8ceaff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        </div>
+      </div>
       <div class="map-foot">
         <span><span data-lang="en">Position</span><span data-lang="zh">坐标</span> · <b>32.0491° N / 118.7937° E</b></span>
         <span><span data-lang="en">Site</span><span data-lang="zh">站点</span> · <b><span data-lang="en">Nanjing</span><span data-lang="zh">南京</span></b></span>
@@ -347,21 +370,21 @@
           <span class="ni-label"><span data-lang="en">Active Node</span><span data-lang="zh">活动节点</span></span>
         </div>
         <div class="ni-line" aria-hidden="true"></div>
-        <a class="enter" href="./dashboard.html" id="enterTerminal"><span class="enter-label"><span class="enter-base" data-lang="en">Enter Terminal</span><span class="enter-base" data-lang="zh">进入终端</span><span class="enter-shine" data-lang="en" aria-hidden="true">Enter Terminal</span><span class="enter-shine" data-lang="zh" aria-hidden="true">进入终端</span></span><span class="enter-beam" aria-hidden="true"></span><span class="enter-arrow" aria-hidden="true"><svg width="60" height="24" viewBox="0 0 60 24"><defs><linearGradient id="enterArrowGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#34536e"></stop><stop offset="0.55" stop-color="#5b84a3"></stop><stop offset="1" stop-color="#96bcd4"></stop></linearGradient></defs><path class="arrow-shape" d="M0 12 H55.2 M37.2 3.75 L55.2 12 M37.2 20.25 L55.2 12"></path><path class="flow-arrow" d="M0 12 H55.2 M37.2 3.75 L55.2 12 M37.2 20.25 L55.2 12"></path></svg></span></a>
+        <a class="enter" href="./dashboard.html" id="enterTerminal"><span class="enter-label"><span class="enter-base" data-lang="en">Enter Terminal Monitoring Platform</span><span class="enter-base" data-lang="zh">进入终端监测平台</span><span class="enter-shine" data-lang="en" aria-hidden="true">Enter Terminal Monitoring Platform</span><span class="enter-shine" data-lang="zh" aria-hidden="true">进入终端监测平台</span></span><span class="enter-beam" aria-hidden="true"></span><span class="enter-arrow" aria-hidden="true"><svg width="60" height="24" viewBox="0 0 60 24"><defs><linearGradient id="enterArrowGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#34536e"></stop><stop offset="0.55" stop-color="#5b84a3"></stop><stop offset="1" stop-color="#96bcd4"></stop></linearGradient></defs><path class="arrow-shape" d="M0 12 H55.2 M37.2 3.75 L55.2 12 M37.2 20.25 L55.2 12"></path><path class="flow-arrow" d="M0 12 H55.2 M37.2 3.75 L55.2 12 M37.2 20.25 L55.2 12"></path></svg></span></a>
       </div>
 
-      <div class="term active">
+      <div class="term">
         <div class="th">
           <div class="id-left"><h4>DMS-A02</h4></div>
-          <span class="th-right"><span class="node-led" aria-hidden="true"></span><b class="onlbl"><span data-lang="en">Deployed</span><span data-lang="zh">已部署</span></b></span>
+          <span class="th-right"><span class="node-led off" aria-hidden="true"></span><b class="stlbl"><span data-lang="en">Standby</span><span data-lang="zh">待命</span></b></span>
         </div>
-        <p class="identity"><span data-lang="en">Deployed Observation Node</span><span data-lang="zh">已部署观测节点</span></p>
+        <p class="identity"><span data-lang="en">Nanjing Observation Node</span><span data-lang="zh">南京观测节点</span></p>
         <div class="node-id">
           <span class="ni-num">02</span>
-          <span class="ni-label"><span data-lang="en">Deployed Node</span><span data-lang="zh">已部署节点</span></span>
+          <span class="ni-label"><span data-lang="en">Standby Node</span><span data-lang="zh">待命节点</span></span>
         </div>
         <div class="ni-line" aria-hidden="true"></div>
-        <a class="enter" href="./dashboard-a02.html"><span class="enter-label"><span class="enter-base" data-lang="en">Enter Terminal</span><span class="enter-base" data-lang="zh">进入终端</span><span class="enter-shine" data-lang="en" aria-hidden="true">Enter Terminal</span><span class="enter-shine" data-lang="zh" aria-hidden="true">进入终端</span></span><span class="enter-beam" aria-hidden="true"></span><span class="enter-arrow" aria-hidden="true"><svg width="60" height="24" viewBox="0 0 60 24"><defs><linearGradient id="enterArrowGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#34536e"></stop><stop offset="0.55" stop-color="#5b84a3"></stop><stop offset="1" stop-color="#96bcd4"></stop></linearGradient></defs><path class="arrow-shape" d="M0 12 H55.2 M37.2 3.75 L55.2 12 M37.2 20.25 L55.2 12"></path><path class="flow-arrow" d="M0 12 H55.2 M37.2 3.75 L55.2 12 M37.2 20.25 L55.2 12"></path></svg></span></a>
+        <a class="enter" href="./dashboard-a02.html"><span class="enter-label"><span class="enter-base" data-lang="en">Enter Terminal Monitoring Platform</span><span class="enter-base" data-lang="zh">进入终端监测平台</span><span class="enter-shine" data-lang="en" aria-hidden="true">Enter Terminal Monitoring Platform</span><span class="enter-shine" data-lang="zh" aria-hidden="true">进入终端监测平台</span></span><span class="enter-beam" aria-hidden="true"></span><span class="enter-arrow" aria-hidden="true"><svg width="60" height="24" viewBox="0 0 60 24"><defs><linearGradient id="enterArrowGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#34536e"></stop><stop offset="0.55" stop-color="#5b84a3"></stop><stop offset="1" stop-color="#96bcd4"></stop></linearGradient></defs><path class="arrow-shape" d="M0 12 H55.2 M37.2 3.75 L55.2 12 M37.2 20.25 L55.2 12"></path><path class="flow-arrow" d="M0 12 H55.2 M37.2 3.75 L55.2 12 M37.2 20.25 L55.2 12"></path></svg></span></a>
       </div>
       <div class="term future">
         <div class="th">
@@ -374,7 +397,7 @@
           <span class="ni-label"><span data-lang="en">Future Node</span><span data-lang="zh">未来节点</span></span>
         </div>
         <div class="ni-line" aria-hidden="true"></div>
-        <a class="enter" href="./dashboard-a03.html"><span class="enter-label"><span class="enter-base" data-lang="en">Enter Terminal</span><span class="enter-base" data-lang="zh">进入终端</span><span class="enter-shine" data-lang="en" aria-hidden="true">Enter Terminal</span><span class="enter-shine" data-lang="zh" aria-hidden="true">进入终端</span></span><span class="enter-beam" aria-hidden="true"></span><span class="enter-arrow" aria-hidden="true"><svg width="60" height="24" viewBox="0 0 60 24"><defs><linearGradient id="enterArrowGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#34536e"></stop><stop offset="0.55" stop-color="#5b84a3"></stop><stop offset="1" stop-color="#96bcd4"></stop></linearGradient></defs><path class="arrow-shape" d="M0 12 H55.2 M37.2 3.75 L55.2 12 M37.2 20.25 L55.2 12"></path><path class="flow-arrow" d="M0 12 H55.2 M37.2 3.75 L55.2 12 M37.2 20.25 L55.2 12"></path></svg></span></a>
+        <a class="enter" href="./dashboard-a03.html"><span class="enter-label"><span class="enter-base" data-lang="en">Enter Terminal Monitoring Platform</span><span class="enter-base" data-lang="zh">进入终端监测平台</span><span class="enter-shine" data-lang="en" aria-hidden="true">Enter Terminal Monitoring Platform</span><span class="enter-shine" data-lang="zh" aria-hidden="true">进入终端监测平台</span></span><span class="enter-beam" aria-hidden="true"></span><span class="enter-arrow" aria-hidden="true"><svg width="60" height="24" viewBox="0 0 60 24"><defs><linearGradient id="enterArrowGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#34536e"></stop><stop offset="0.55" stop-color="#5b84a3"></stop><stop offset="1" stop-color="#96bcd4"></stop></linearGradient></defs><path class="arrow-shape" d="M0 12 H55.2 M37.2 3.75 L55.2 12 M37.2 20.25 L55.2 12"></path><path class="flow-arrow" d="M0 12 H55.2 M37.2 3.75 L55.2 12 M37.2 20.25 L55.2 12"></path></svg></span></a>
       </div>
     </aside>
 
@@ -415,85 +438,120 @@
       if (window.anxApplyLang) window.anxApplyLang(window.anxCurrentLang || 'en');
     }
     function refreshNetwork() {
-    fetch('./data.json?v=' + Date.now()).then(function (r) { return r.json(); }).then(function (d) {
-      var n = Array.isArray(d) ? d.length : 0;
-      ['kRecords'].forEach(function (id) { var el = document.getElementById(id); if (el) el.textContent = n; });
-      if (!Array.isArray(d) || !d.length) return;
-      var last = d[d.length - 1];
-      var setTxt = function (id, v) { var el = document.getElementById(id); if (el && v !== undefined && v !== null && v !== '') el.textContent = v; };
-      function voltageToSoc(v) {
-        if (v === null || v === undefined || isNaN(v)) return null;
-        if (v >= 13.5) return 100;
-        if (v >= 13.4) return 99;
-        if (v >= 13.3) return 98;
-        if (v >= 13.1) return 97;
-        if (v >= 13.0) return 96;
-        if (v >= 12.9) return 95;
-        if (v >= 12.8) return 93;
-        if (v >= 12.7) return 91;
-        if (v >= 12.6) return 89;
-        if (v >= 12.5) return 87;
-        if (v >= 12.4) return 85;
-        if (v >= 12.3) return 83;
-        if (v >= 12.2) return 81;
-        if (v >= 12.1) return 79;
-        if (v >= 12.0) return 76;
-        if (v >= 11.9) return 74;
-        if (v >= 11.8) return 70;
-        if (v >= 11.7) return 68;
-        if (v >= 11.6) return 64;
-        if (v >= 11.5) return 60;
-        if (v >= 11.4) return 55;
-        if (v >= 11.3) return 49;
-        if (v >= 11.2) return 42;
-        if (v >= 11.1) return 33;
-        if (v >= 11.0) return 25;
-        if (v >= 10.9) return 17;
-        if (v >= 10.8) return 11;
-        if (v >= 10.7) return 6;
-        if (v >= 10.6) return 3;
-        if (v >= 10.5) return 2;
-        return 0;
-      }
-      if (last && typeof last.v === 'number') {
-        var vTxt = last.v.toFixed(1) + 'V';
-        setTxt('teleV', vTxt); setTxt('tVoltage', last.v.toFixed(1));
-        var soc = voltageToSoc(last.v);
-        if (soc !== null) {
-          setTxt('socVal', soc + '%');
-          var socMeter = document.getElementById('socMeter');
-          if (socMeter) socMeter.style.width = soc + '%';
+      Promise.all([
+        fetch('./data.json?v=' + Date.now()).then(function (r) { return r.json(); }).catch(function () { return []; }),
+        fetch('./data02.json?v=' + Date.now()).then(function (r) { return r.json(); }).catch(function () { return []; })
+      ]).then(function (arr) {
+        var d1 = Array.isArray(arr[0]) ? arr[0] : [];
+        var d2 = Array.isArray(arr[1]) ? arr[1] : [];
+        window.__netCache = { d1: d1, d2: d2 };
+        var setTxt = function (id, v) { var el = document.getElementById(id); if (el && v !== undefined && v !== null && v !== '') el.textContent = v; };
+        function voltageToSoc(v) {
+          if (v === null || v === undefined || isNaN(v)) return null;
+          if (v >= 13.5) return 100;
+          if (v >= 13.4) return 99;
+          if (v >= 13.3) return 98;
+          if (v >= 13.1) return 97;
+          if (v >= 13.0) return 96;
+          if (v >= 12.9) return 95;
+          if (v >= 12.8) return 93;
+          if (v >= 12.7) return 91;
+          if (v >= 12.6) return 89;
+          if (v >= 12.5) return 87;
+          if (v >= 12.4) return 85;
+          if (v >= 12.3) return 83;
+          if (v >= 12.2) return 81;
+          if (v >= 12.1) return 79;
+          if (v >= 12.0) return 76;
+          if (v >= 11.9) return 74;
+          if (v >= 11.8) return 70;
+          if (v >= 11.7) return 68;
+          if (v >= 11.6) return 64;
+          if (v >= 11.5) return 60;
+          if (v >= 11.4) return 55;
+          if (v >= 11.3) return 49;
+          if (v >= 11.2) return 42;
+          if (v >= 11.1) return 33;
+          if (v >= 11.0) return 25;
+          if (v >= 10.9) return 17;
+          if (v >= 10.8) return 11;
+          if (v >= 10.7) return 6;
+          if (v >= 10.6) return 3;
+          if (v >= 10.5) return 2;
+          return 0;
         }
-      }
-      if (last && typeof last.j === 'number') { var tTxt = last.j.toFixed(1) + '°C'; setTxt('teleT', tTxt); setTxt('tTemp', last.j.toFixed(1)); }
-      if (last && typeof last.k === 'number') { var hTxt = last.k.toFixed(1) + '%'; setTxt('teleH', hTxt); setTxt('tHumid', last.k.toFixed(1)); }
-      if (last && last.time) {
-        var ts = String(last.time).split(' ');
-        if (ts.length >= 2) { var syncTxt = ts[0].slice(5) + ' ' + ts[1].slice(0, 5); setTxt('lastSync', syncTxt); setTxt('ltSync', syncTxt); }
-      }
-      var times = d.map(function (p) { return p && p.time ? new Date(String(p.time).replace(' ', 'T')) : null; }).filter(function (v) { return v && !isNaN(v.getTime()); });
-      if (times.length > 1) {
-        var tMin = Math.min.apply(null, times), tMax = Math.max.apply(null, times);
-        var spanH = Math.round((tMax - tMin) / 3600000);
-        setTxt('uptime', spanH >= 24 ? Math.floor(spanH / 24) + 'd ' + (spanH % 24) + 'h' : spanH + 'h');
-      }
-      var last48 = d.slice(-48);
-      var temps = last48.map(function (p) { return (p && typeof p.j === 'number') ? p.j : null; }).filter(function (v) { return v !== null; });
-      if (temps.length > 1) {
-        var min = Math.min.apply(null, temps), max = Math.max.apply(null, temps), range = (max - min) || 1;
-        var W = 220, H = 46, pad = 4;
-        var pts = temps.map(function (v, i) { return [pad + (W - pad * 2) * i / (temps.length - 1), pad + (H - pad * 2) * (1 - (v - min) / range)]; });
-        var line = pts.map(function (c) { return c[0].toFixed(1) + ' ' + c[1].toFixed(1); }).join(' L');
-        var areaD = 'M' + line + ' L' + pts[pts.length - 1][0].toFixed(1) + ' ' + H + ' L' + pts[0][0].toFixed(1) + ' ' + H + ' Z';
-        var lastT = temps[temps.length - 1].toFixed(1) + '°C';
-        var le = document.getElementById('sparkLine'); if (le) le.setAttribute('d', 'M' + line);
-        var ae = document.getElementById('sparkArea'); if (ae) ae.setAttribute('d', areaD);
-        var ve = document.getElementById('sparkVal'); if (ve) ve.textContent = lastT;
-      }
-    }).catch(function () {});
+        function lastVolt(d) {
+          for (var i = d.length - 1; i >= 0; i--) {
+            var v = d[i] && d[i].v;
+            if (typeof v === 'number' && !isNaN(v)) return v;
+          }
+          return null;
+        }
+        function spanText(d) {
+          var times = d.map(function (p) { return p && p.time ? new Date(String(p.time).replace(' ', 'T')) : null; }).filter(function (v) { return v && !isNaN(v.getTime()); });
+          if (times.length < 2) return '--';
+          var spanH = Math.round((Math.max.apply(null, times) - Math.min.apply(null, times)) / 3600000);
+          return spanH >= 24 ? Math.floor(spanH / 24) + 'd ' + (spanH % 24) + 'h' : spanH + 'h';
+        }
+        function p(n) { return window.anxCurrentLang === 'zh' ? '（' + n + '）' : ' (' + n + ')'; }
+        function pair(a, b, unit) {
+          function f(v) { return (v === null || v === undefined || isNaN(v)) ? '--' : (unit ? v + unit : v); }
+          return f(a) + p('01') + ' / ' + f(b) + p('02');
+        }
+        var zh = window.anxCurrentLang === 'zh';
+        var k1 = d1.length, k2 = d2.length;
+        setTxt('kRecords', zh ? k1 + '条' + p('01') + ' + ' + k2 + '条' + p('02') : k1 + p('01') + ' + ' + k2 + p('02'));
+        var s1 = voltageToSoc(lastVolt(d1)), s2 = voltageToSoc(lastVolt(d2));
+        setTxt('socVal', pair(s1, s2, '%'));
+        setTxt('uptime', spanText(d1) + p('01') + ' / ' + spanText(d2) + p('02'));
+        /* 中部 A01 地图浮层（保持单节点显示） */
+        var last = d1.length ? d1[d1.length - 1] : null;
+        if (last && typeof last.v === 'number') {
+          var vTxt = last.v.toFixed(1) + 'V';
+          setTxt('teleV', vTxt); setTxt('tVoltage', last.v.toFixed(1));
+        }
+        if (last && typeof last.j === 'number') { var tTxt = last.j.toFixed(1) + '°C'; setTxt('teleT', tTxt); setTxt('tTemp', last.j.toFixed(1)); }
+        if (last && typeof last.k === 'number') { var hTxt = last.k.toFixed(1) + '%'; setTxt('teleH', hTxt); setTxt('tHumid', last.k.toFixed(1)); }
+        if (last && last.time) {
+          var ts = String(last.time).split(' ');
+          if (ts.length >= 2) { var syncTxt = ts[0].slice(5) + ' ' + ts[1].slice(0, 5); setTxt('lastSync', syncTxt); setTxt('ltSync', syncTxt); }
+        }
+        var last48 = d1.slice(-48);
+        var temps = last48.map(function (p) { return (p && typeof p.j === 'number') ? p.j : null; }).filter(function (v) { return v !== null; });
+        if (temps.length > 1) {
+          var min = Math.min.apply(null, temps), max = Math.max.apply(null, temps), range = (max - min) || 1;
+          var W = 220, H = 46, pad = 4;
+          var pts = temps.map(function (v, i) { return [pad + (W - pad * 2) * i / (temps.length - 1), pad + (H - pad * 2) * (1 - (v - min) / range)]; });
+          var line = pts.map(function (c) { return c[0].toFixed(1) + ' ' + c[1].toFixed(1); }).join(' L');
+          var areaD = 'M' + line + ' L' + pts[pts.length - 1][0].toFixed(1) + ' ' + H + ' L' + pts[0][0].toFixed(1) + ' ' + H + ' Z';
+          var lastT = temps[temps.length - 1].toFixed(1) + '°C';
+          var le = document.getElementById('sparkLine'); if (le) le.setAttribute('d', 'M' + line);
+          var ae = document.getElementById('sparkArea'); if (ae) ae.setAttribute('d', areaD);
+          var ve = document.getElementById('sparkVal'); if (ve) ve.textContent = lastT;
+        }
+        /* 中部 A02 地图浮层（读取 data02.json） */
+        var last2 = d2.length ? d2[d2.length - 1] : null;
+        if (last2 && typeof last2.v === 'number') { setTxt('teleV2', last2.v.toFixed(1) + 'V'); }
+        if (last2 && typeof last2.j === 'number') { setTxt('teleT2', last2.j.toFixed(1) + '°C'); }
+        if (last2 && typeof last2.k === 'number') { setTxt('teleH2', last2.k.toFixed(1) + '%'); }
+        var last482 = d2.slice(-48);
+        var temps2 = last482.map(function (p) { return (p && typeof p.j === 'number') ? p.j : null; }).filter(function (v) { return v !== null; });
+        if (temps2.length > 1) {
+          var min2 = Math.min.apply(null, temps2), max2 = Math.max.apply(null, temps2), range2 = (max2 - min2) || 1;
+          var P2 = 4;
+          var pts2 = temps2.map(function (v, i) { return [P2 + (220 - P2 * 2) * i / (temps2.length - 1), P2 + (46 - P2 * 2) * (1 - (v - min2) / range2)]; });
+          var line2 = pts2.map(function (c) { return c[0].toFixed(1) + ' ' + c[1].toFixed(1); }).join(' L');
+          var areaD2 = 'M' + line2 + ' L' + pts2[pts2.length - 1][0].toFixed(1) + ' 46 L' + pts2[0][0].toFixed(1) + ' 46 Z';
+          var lastT2 = temps2[temps2.length - 1].toFixed(1) + '°C';
+          var le2 = document.getElementById('sparkLine2'); if (le2) le2.setAttribute('d', 'M' + line2);
+          var ae2 = document.getElementById('sparkArea2'); if (ae2) ae2.setAttribute('d', areaD2);
+          var ve2 = document.getElementById('sparkVal2'); if (ve2) ve2.textContent = lastT2;
+        }
+      }).catch(function () {});
     }
     refreshNetwork();
     setInterval(refreshNetwork, 30000);
+    if (window.addEventListener) window.addEventListener('anx:langchange', function () { refreshNetwork(); });
     function go(href) {
       if (!href || document.body.dataset.busy) return;
       document.body.dataset.busy = '1';
