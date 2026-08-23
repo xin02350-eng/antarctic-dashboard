@@ -307,6 +307,22 @@ link:"通信链路"
 }
 };
 
+/* A02 终端：共享文案自动切换为 DMS-A02 */
+if (/a02/i.test(location.pathname)) {
+  if (window.ANX_I18N && window.ANX_I18N.en) {
+    window.ANX_I18N.en.ant_a01_position = "DMS-A02 POSITION";
+    window.ANX_I18N.zh.ant_a01_position = "DMS-A02 位置";
+  }
+}
+
+/* A03 终端：共享文案自动切换为 DMS-A03 */
+if (/a03/i.test(location.pathname)) {
+  if (window.ANX_I18N && window.ANX_I18N.en) {
+    window.ANX_I18N.en.ant_a01_position = "DMS-A03 POSITION";
+    window.ANX_I18N.zh.ant_a01_position = "DMS-A03 位置";
+  }
+}
+
 window.ANX_LANG = "en";
 window.ANX_T = function (key, params) {
   var dict = (window.ANX_I18N && window.ANX_I18N[window.ANX_LANG]) || (window.ANX_I18N && window.ANX_I18N.en) || {};
@@ -347,6 +363,22 @@ window.ANX_PARSE_TIME = function (t) {
  数据读取
 ========================== */
 
+/* A02/A03 终端字段差异：data02 与 data03 共用同一数据格式 */
+var TERMINAL_A03STYLE = /a0[23]/i.test(location.pathname);
+var FIELD_MAP = TERMINAL_A03STYLE ? {
+  insideTemp: "t",
+  insideHumidity: "k",
+  outsideTemp: "j",
+  outsideHumidity: "h",
+  solar: "s"
+} : {
+  insideTemp: "j",
+  insideHumidity: "k",
+  outsideTemp: "t",
+  outsideHumidity: "h",
+  solar: "l"
+};
+
 
 async function loadData(){
 
@@ -359,7 +391,8 @@ dataBusy = true;
 var delays = [1000, 2000, 4000];
 for (var attempt = 0; attempt <= delays.length; attempt++) {
 try{
-let url = "./data.json?v=" + Date.now() + "&try=" + attempt;
+var dataFile = /a03/i.test(location.pathname) ? "./data03.json" : (/a02/i.test(location.pathname) ? "./data02.json" : "./data.json");
+let url = dataFile + "?v=" + Date.now() + "&try=" + attempt;
 
 
 
@@ -852,7 +885,7 @@ document.getElementById(
 if(temp){
 
 temp.innerHTML=
-showValue(d.j);
+showValue(d[FIELD_MAP.insideTemp]);
 
 
 }
@@ -880,7 +913,7 @@ document.getElementById(
 if(humidity){
 
 humidity.innerHTML=
-showValue(d.k);
+showValue(d[FIELD_MAP.insideHumidity]);
 
 
 }
@@ -896,7 +929,7 @@ document.getElementById(
 if(outsideTemp){
 
 outsideTemp.innerHTML=
-showValue(d.t);
+showValue(d[FIELD_MAP.outsideTemp]);
 
 }
 
@@ -911,7 +944,7 @@ document.getElementById(
 if(outsideHumidity){
 
 outsideHumidity.innerHTML=
-showValue(d.h);
+showValue(d[FIELD_MAP.outsideHumidity]);
 
 }
 
@@ -926,7 +959,7 @@ document.getElementById(
 if(solar){
 
 solar.innerHTML=
-showValue(d.l);
+showValue(d[FIELD_MAP.solar]);
 
 }
 
@@ -1055,7 +1088,7 @@ if(solar){
 
 
 solar.innerHTML=
-showValue(d.l);
+showValue(d[FIELD_MAP.solar]);
 
 
 }
@@ -1103,7 +1136,7 @@ if(temp){
 
 
 temp.innerHTML=
-showValue(d.j);
+showValue(d[FIELD_MAP.insideTemp]);
 
 
 }
@@ -1513,8 +1546,63 @@ updateMap();
 
 
 
-let sensorConfig = [
+let sensorConfig = TERMINAL_A03STYLE ? [
+{
+id:"chartInTemp",
+key:"t",
+name:"INSIDE TEMPERATURE"
+},
 
+
+{
+id:"chartInHum",
+key:"k",
+name:"INSIDE HUMIDITY"
+},
+
+
+{
+id:"chartOutTemp",
+key:"j",
+name:"OUTSIDE TEMPERATURE"
+},
+
+
+{
+id:"chartOutHum",
+key:"h",
+name:"OUTSIDE HUMIDITY"
+},
+
+
+{
+id:"chartSolar",
+key:"s",
+name:"SOLAR RADIATION"
+},
+
+
+{
+id:"chartCurrent",
+key:"a",
+name:"CURRENT"
+},
+
+
+{
+id:"chartVoltage",
+key:"v",
+name:"VOLTAGE"
+},
+
+
+{
+id:"chartWind",
+key:"wind",
+name:"WIND SPEED"
+}
+
+] : [
 {
 id:"chartInTemp",
 key:"j",
@@ -2118,7 +2206,7 @@ ${showValue(d.v)}
 
 ${window.ANX_T ? window.ANX_T("inside_temp") : "TEMP"}:
 
-${showValue(d.j)}
+${showValue(d[FIELD_MAP.insideTemp])}
 
 </p>
 
@@ -2128,7 +2216,7 @@ ${showValue(d.j)}
 
 ${window.ANX_T ? window.ANX_T("inside_humidity") : "HUMIDITY"}:
 
-${showValue(d.k)}
+${showValue(d[FIELD_MAP.insideHumidity])}
 
 </p>
 

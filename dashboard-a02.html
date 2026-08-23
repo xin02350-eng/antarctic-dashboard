@@ -2,11 +2,11 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
   <meta name="color-scheme" content="dark">
-  <title data-title-en="DISTRIBUTED MONITORING SYSTEM · DMS-A02" data-title-zh="自主观测系统 · DMS-A02">DISTRIBUTED MONITORING SYSTEM · DMS-A02</title>
+  <title data-title-en="DISTRIBUTED MONITORING SYSTEM" data-title-zh="自主观测系统">DISTRIBUTED MONITORING SYSTEM</title>
   <link rel="icon" href="data:,">
-  <link rel="stylesheet" href="./css/style.css?v=20260822b">
+  <link rel="stylesheet" href="./css/style.css?v=20260824c">
   <style>html{font-size:16px;font-size:clamp(12px, 0.833333vw, 20px);-webkit-text-size-adjust:100%;text-size-adjust:100%}
 
     /* V43 · Dashboard 简约化：隐藏底部统计卡（核心状态/传感器/地图/任务流保留） */
@@ -61,9 +61,6 @@
       body.dashboard-page main{overflow-y:auto}
       .dashboard-hero .hero-controls .lang-switch{position:fixed;top:16px;right:12px;z-index:120}
     }
-      /* V47.33 · 未来终端状态：等待部署（与 A01 同一组件，仅降低亮度） */
-    body .system-online.pending{border-color:rgba(124,151,169,.35);color:#9fb3c2}
-    body .system-online.pending > span:first-child{background:#7c97a9;box-shadow:0 0 8px rgba(124,151,169,.45)}
     /* V48.2 · Tablet 专用（768–1200px）：地图铺满，消除桌面压缩感 */
     @media (min-width:768px) and (max-width:1200px){
       body.dashboard-page main{display:flex;flex-direction:column}
@@ -118,11 +115,11 @@
       <div class="hero-main">
         <div class="dashboard-kicker"><span data-lang="en">AUTONOMOUS DIGITAL TWIN · MISSION CONTROL</span><span data-lang="zh">自主数字孪生 · 任务控制</span></div>
         <div class="dashboard-title"><span data-lang="en">AUTONOMOUS MONITORING SYSTEM</span><span data-lang="zh">自主观测系统</span></div>
-        <div class="hero-sub"><span data-lang="en">STATION DMS-A02 · AWAITING DEPLOYMENT</span><span data-lang="zh">站点 DMS-A02 · 等待部署</span></div>
+        <div class="hero-sub"><span data-lang="en">AUTONOMOUS ENVIRONMENTAL MONITORING PLATFORM · STATION DMS-A02</span><span data-lang="zh">自主环境监测平台 · 站点 DMS-A02</span></div>
       </div>
       <div class="hero-controls">
         <div class="hero-status">
-          <div class="system-online pending"><span></span><span data-lang="en">AWAITING DEPLOYMENT</span><span data-lang="zh">等待部署</span></div>
+          <div class="system-online"><span></span><span data-lang="en">SYSTEM ONLINE</span><span data-lang="zh">系统在线</span></div>
           <div class="hero-station"><span data-lang="en">STATION DMS-A02</span><span data-lang="zh">站点 DMS-A02</span></div>
         </div>
         <div class="lang-switch"><span class="lang-pill" aria-hidden="true"></span><button type="button" data-lang="zh">中</button><button type="button" data-lang="en" class="active">EN</button></div>
@@ -133,8 +130,8 @@
     <section class="mission-info dashboard-command-strip">
       <div class="cmd-cell">
         <span class="cmd-label" data-i18n="mission_status">MISSION STATUS</span>
-        <strong class="cmd-value"><i class="cmd-led"></i><span data-lang="en">PENDING</span><span data-lang="zh">待命</span></strong>
-        <span class="cmd-sub"><span data-lang="en">WAITING FOR DEPLOYMENT</span><span data-lang="zh">等待部署</span></span>
+        <strong class="cmd-value"><i class="cmd-led"></i><span data-i18n="nominal">NOMINAL</span></strong>
+        <span class="cmd-sub" data-i18n="all_systems_check">ALL SYSTEMS CHECK</span>
       </div>
       <div class="cmd-cell">
         <span class="cmd-label" data-i18n="current_time">CURRENT TIME</span>
@@ -145,7 +142,7 @@
         <span class="cmd-label" data-i18n="operation_mode">OPERATION MODE</span>
         <strong class="cmd-value">
           <i class="cmd-led mode-led"></i><span class="mode-text" id="modeDisplay">--</span>
-          <span id="systemMode" class="mode-raw" aria-hidden="true">S</span>
+          <span id="systemMode" class="mode-raw" aria-hidden="true">--</span>
         </strong>
         <span class="cmd-sub" id="modeSub" data-i18n="autonomous">AUTONOMOUS</span>
       </div>
@@ -157,14 +154,14 @@
       <!-- 中部：地图战区（视觉中心） -->
       <section class="map-panel">
         <div class="map-panel-head">
-          <div class="panel-title"><span data-lang="en">NODE POSITIONING · NOT AVAILABLE</span><span data-lang="zh">节点定位 · 暂不可用</span></div>
-          <div class="panel-title-tag"><span data-lang="en">NO TELEMETRY</span><span data-lang="zh">无遥测</span></div>
+          <div class="panel-title" data-i18n="node_positioning">NODE POSITIONING · GPS TRACKING</div>
+          <div class="panel-title-tag" data-i18n="live_telemetry_feed">LIVE TELEMETRY FEED</div>
         </div>
 
         <div class="map-status-grid">
-          <div class="map-cell"><span data-i18n="gps_status">GPS STATUS</span><strong><span data-lang="en">NO FIX</span><span data-lang="zh">未定位</span></strong><i class="map-cell-led"></i></div>
+          <div class="map-cell"><span data-i18n="gps_status">GPS STATUS</span><strong data-i18n="tracking">TRACKING</strong><i class="map-cell-led"></i></div>
           <div class="map-cell" id="mapModeCell"><span data-i18n="mode">MODE</span><strong id="mapModeValue">--</strong><i class="map-cell-led"></i></div>
-          <div class="map-cell"><span data-i18n="power">POWER</span><strong><span data-lang="en">NO DATA</span><span data-lang="zh">暂无数据</span></strong><i class="map-cell-led"></i></div>
+          <div class="map-cell"><span data-i18n="power">POWER</span><strong data-i18n="solar_battery">SOLAR + BATTERY</strong><i class="map-cell-led"></i></div>
         </div>
 
         <!-- #worldMap 由 main.js 创建真实 Leaflet 地图；以下装饰层均为 pointer-events:none，不影响拖拽缩放 -->
@@ -238,9 +235,9 @@
     <section class="stream-panel">
       <div class="panel-title" data-i18n="mission_stream">MISSION STREAM</div>
       <div class="stream">
-        <div class="stream-row"><i class="stream-dot"></i><span data-lang="en">STATION AWAITING DEPLOYMENT</span><span data-lang="zh">站点等待部署</span><em>--</em></div>
-        <div class="stream-row"><i class="stream-dot"></i><span data-lang="en">TELEMETRY LINK NOT ESTABLISHED</span><span data-lang="zh">遥测链路未建立</span><em>--</em></div>
-        <div class="stream-row"><i class="stream-dot"></i><span data-lang="en">MODULES IN STANDBY</span><span data-lang="zh">模块处于待机</span><em>--</em></div>
+        <div class="stream-row"><i class="stream-dot"></i><span data-i18n="stream_env">ENVIRONMENT DATA ACQUISITION ACTIVE</span><em data-i18n="running">RUNNING</em></div>
+        <div class="stream-row"><i class="stream-dot"></i><span data-i18n="stream_gps">SATELLITE POSITIONING ACTIVE</span><em data-i18n="running">RUNNING</em></div>
+        <div class="stream-row"><i class="stream-dot"></i><span data-i18n="stream_long">LONG TERM MONITORING MODE</span><em data-i18n="running">RUNNING</em></div>
       </div>
     </section>
 
@@ -265,57 +262,8 @@
 
 <!-- 页面级扫描线与设备编号铭牌（氛围层，不拦截交互） -->
 <div class="scan-line" aria-hidden="true"></div>
-
 <!-- 数据核心与地图初始化（不允许修改） -->
-<script>
-/* V47.33 · DMS-A02 终端页本地数据层
-   不加载 js/main.js，避免将 DMS-A01 的 data.json 数据带入未来终端页。
-   页面模板与 DMS-A01 完全一致；地图使用同一 Leaflet + 蓝色网格视觉系统，
-   无真实坐标时不放置任何伪造节点。 */
-window.ANX_I18N = { en: {"satellites":"SATELLITES","pyranometer":"Solar Radiation Sensor","outside":"OUTSIDE","lat":"LAT","lon":"LON","current_time":"CURRENT TIME","operation_mode":"OPERATION MODE","continuous_run":"CONTINUOUS RUN","protective_mode":"PROTECTIVE MODE","brand_subtitle":"Autonomous Environmental Observatory","gps_status":"GPS STATUS","data_records":"DATA RECORDS","nominal":"NOMINAL","no_fix":"NO FIX","low_power_standby":"Standby","standby":"Standby","null":"NULL","inside_humidity":"INSIDE HUMIDITY","telemetry_samples":"TELEMETRY SAMPLES","last_data_contact":"LAST DATA CONTACT","no_signal":"WAITING FOR DATA","sensor_offline":"SENSOR OFFLINE","mission_status":"MISSION STATUS","emergency":"EMERGENCY","normal":"NORMAL","mission_stream":"MISSION STREAM","autonomous":"AUTONOMOUS","mode_unknown":"MODE UNKNOWN","cabin":"CABIN","power":"POWER","operation_days":"OPERATION DAYS","last_update":"LAST UPDATE","awaiting_sensor":"AWAITING SENSOR","no_telemetry":"WAITING FOR DATA","waiting_data":"WAITING FOR DATA","local_time":"LOCAL TIME","running":"RUNNING","normal_operation":"NORMAL OPERATION","mode":"MODE","solar_radiation_label":"SOLAR RADIATION"}, zh: {"satellites":"卫星数","pyranometer":"太阳能辐射传感器","outside":"舱外","lat":"纬度","lon":"经度","current_time":"当前时间","operation_mode":"运行模式","continuous_run":"持续运行","protective_mode":"保护模式","brand_subtitle":"自主环境观测站","gps_status":"GPS 状态","data_records":"数据记录","nominal":"正常","no_fix":"未定位","low_power_standby":"节能","standby":"节能","null":"无数据","inside_humidity":"舱内湿度","telemetry_samples":"遥测样本","last_data_contact":"最近数据联系","no_signal":"等待数据","sensor_offline":"传感器离线","mission_status":"任务状态","emergency":"应急","normal":"正常","mission_stream":"任务流","autonomous":"自动","mode_unknown":"模式未知","cabin":"舱内","power":"供电","operation_days":"运行天数","last_update":"最近更新","awaiting_sensor":"等待传感器","no_telemetry":"等待数据","waiting_data":"等待数据","local_time":"本地时间","running":"运行中","normal_operation":"正常运行","mode":"模式","solar_radiation_label":"太阳辐射"} };
-window.ANX_LANG = "en";
-window.ANX_T = function (key, params) {
-  var dict = (window.ANX_I18N && window.ANX_I18N[window.ANX_LANG]) || (window.ANX_I18N && window.ANX_I18N.en) || {};
-  var text = dict[key] !== undefined ? dict[key] : key;
-  if (params) {
-    Object.keys(params).forEach(function (k) {
-      text = String(text).split("{" + k + "}").join(params[k]);
-    });
-  }
-  return text;
-};
-window.ANX_APPLY_I18N = function (lang) {
-  window.ANX_LANG = lang === "zh" ? "zh" : "en";
-  document.querySelectorAll("[data-i18n]").forEach(function (el) {
-    var key = el.getAttribute("data-i18n");
-    if (key) el.textContent = window.ANX_T(key);
-  });
-};
-(function () {
-  'use strict';
-  /* 本地时钟（格式与全站一致） */
-  function tickClock() {
-    var el = document.getElementById('time');
-    if (!el) return;
-    var now = new Date();
-    var text = now.getFullYear() + '-' + String(now.getMonth() + 1).padStart(2, '0') + '-' + String(now.getDate()).padStart(2, '0') + ' ' + now.toLocaleTimeString();
-    if (el.textContent !== text) el.textContent = text;
-  }
-  tickClock();
-  setInterval(tickClock, 1000);
-  /* 地图：同一套 Leaflet 视觉系统（全球视图，无伪造节点坐标） */
-  function initMap() {
-    if (typeof L === 'undefined' || window.deviceMap) return;
-    var box = document.getElementById('worldMap');
-    if (!box) return;
-    window.deviceMap = L.map('worldMap', { zoomControl: false })
-      .setView([0, 0], 2);
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18 })
-      .addTo(window.deviceMap);
-  }
-  initMap();
-})();
-</script>
+<script src="./js/main.js?v=20260824f"></script>
 
 <!-- =========================================================
      Dashboard 专属前端装饰层（纯原生 JavaScript）
@@ -489,7 +437,7 @@ window.ANX_APPLY_I18N = function (lang) {
 
     ctx.fillStyle = 'rgba(140,234,255,.45)';
     ctx.font = '8px "Segoe UI", sans-serif';
-    ctx.fillText('60°S · FUTURE SECTOR', pole.x + 6, pole.y - r60 - 4);
+    ctx.fillText('60°S · TEST SECTOR', pole.x + 6, pole.y - r60 - 4);
   }
 
   /* 站区作业圈：以真实定位点为中心，半径约 300km 的虚线圆 */

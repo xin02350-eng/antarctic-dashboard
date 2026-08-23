@@ -2,49 +2,954 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <meta name="color-scheme" content="dark">
-  <title data-title-en="DISTRIBUTED MONITORING SYSTEM · DMS-A02" data-title-zh="自主观测系统 · DMS-A02">DISTRIBUTED MONITORING SYSTEM · DMS-A02</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+  <title data-title-en="DISTRIBUTED MONITORING SYSTEM - MISSION ANALYTICS" data-title-zh="自主观测系统 · 任务成果分析">DISTRIBUTED MONITORING SYSTEM - MISSION ANALYTICS</title>
   <link rel="icon" href="data:,">
-  <link rel="stylesheet" href="./css/style.css?v=20260822b">
+  <link rel="stylesheet" href="./css/style.css?v=20260824c">
   <style>html{font-size:16px;font-size:clamp(12px, 0.833333vw, 20px);-webkit-text-size-adjust:100%;text-size-adjust:100%}
 
-
-    /* V47 · 待部署节点统一视觉 */
-    body .system-online.pending{border-color:rgba(124,151,169,.35);color:#9fb3c2}
-    body .system-online.pending > span:first-child{background:#7c97a9;box-shadow:0 0 8px rgba(124,151,169,.45)}
-    .waiting-panel{max-width:47.5rem;margin:3.5rem auto;padding:3.25rem 2.5rem;border:1px solid rgba(140,234,255,.14);border-radius:0.625rem;background:linear-gradient(165deg,rgba(9,28,44,.5),rgba(5,16,28,.36));text-align:center;position:relative}
-    .waiting-panel::before{content:"";position:absolute;left:0;top:0;right:0;height:0.125rem;background:linear-gradient(90deg,rgba(124,151,169,.7),rgba(98,217,255,.12))}
-    .waiting-mark{width:4rem;height:4rem;margin:0 auto 1.375rem;border:1px solid rgba(140,234,255,.22);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#7c97a9}
-    .waiting-mark svg{width:1.75rem;height:1.75rem}
-    .waiting-eyebrow{font-size:0.5625rem;letter-spacing:3px;color:rgba(140,234,255,.55);text-transform:uppercase;margin-bottom:0.875rem}
-    .waiting-panel h2{font-size:clamp(1.25rem,2.2vw,1.875rem);font-weight:200;letter-spacing:3px;color:#eafcff;margin-bottom:0.875rem}
-    .waiting-panel p{font-size:0.75rem;line-height:2;color:#9ab8ca;max-width:32.5rem;margin:0 auto}
-    .waiting-tag{display:inline-block;margin-top:1.5rem;font-size:0.5625rem;letter-spacing:2.5px;color:#9fb3c2;border:1px solid rgba(124,151,169,.35);border-radius:999px;padding:0.375rem 1rem;text-transform:uppercase}
-    .placeholder-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0.875rem;max-width:47.5rem;margin:1.5rem auto 3.75rem}
-    .placeholder-cell{border:1px solid rgba(140,234,255,.1);border-radius:0.5rem;padding:1.125rem;background:rgba(7,22,36,.3);text-align:center}
-    .placeholder-cell b{display:block;font-size:1.375rem;font-weight:300;color:#6f93a8;letter-spacing:2px}
-    .placeholder-cell span{display:block;font-size:0.5rem;letter-spacing:2px;color:#6f93a8;margin-top:0.5rem;text-transform:uppercase}
-    body.location-page main,body.sensors-page main,body.telemetry-page main,body.hardware-page main,body.analysis-page main{height:auto!important;min-height:100vh;overflow:visible!important;display:block;padding:1.625rem 1.875rem}
-    @media (max-width:700px){
-      .waiting-panel{margin:30px 14px;padding:36px 22px}
-      .placeholder-grid{grid-template-columns:1fr;margin:18px 14px 40px}
+    /* Analysis v2：成果分析页（仅本页样式） */
+    body.analysis-page{
+      height:auto;
+      overflow:auto;
     }
-      .lang-float{position:fixed;top:1.625rem;right:2rem;z-index:120}
-      .header-right{margin-right:9.375rem}
+    body.analysis-page main{
+      height:auto;
+      min-height:100vh;
+      overflow:visible;
+      padding:2.625rem 1.125rem 0;
+      gap:0.5rem;
+      display:flex;
+      flex-direction:column;
+    }
+    .an-sub{
+      font-size:0.5625rem;
+      letter-spacing:1.5px;
+      color:#6f93a8;
+      margin-top:0.25rem;
+    }
+    .analysis-page .mission-header{
+      padding-bottom:0.375rem;
+    }
+    .analysis-page .an-head h2{
+      font-size:1.5rem;
+    }
+    .analysis-page .an-kicker{
+      font-size:0.5rem;
+    }
+    .analysis-page .an-meta span{
+      font-size:0.5625rem;
+    }
+
+    /* 中部区域：analysis-container 显式 CSS Grid，五个独立区域 */
+    .analysis-page .analysis-container{
+      display:grid;
+      grid-template-columns:minmax(0,20rem) minmax(0,1fr);
+      grid-template-rows:auto 1fr auto;
+      grid-template-areas:
+        "summary summary"
+        "soc ratio"
+        "timeline timeline";
+      gap:0.625rem;
+      align-items:stretch;
+      flex:1 0 auto;
+      width:100%;
+      min-height:0;
+    }
+    .analysis-page .summary-section{
+      grid-area:summary;
+      min-width:0;
+      position:static;
+      border:1px solid rgba(140,234,255,.10);
+      border-radius:0.625rem;
+      background:linear-gradient(165deg, rgba(9,28,44,.42), rgba(5,16,28,.34));
+      padding:0.5rem 0.875rem 0.625rem;
+    }
+    .analysis-page .sensor-ratio-section{
+      grid-area:ratio;
+      min-width:0;
+      position:static;
+    }
+    .analysis-page .soc-section{
+      grid-area:soc;
+      min-width:0;
+      position:static;
+    }
+    .analysis-page .timeline-wrapper{
+      grid-area:timeline;
+      min-width:0;
+      position:static;
+      border:1px solid rgba(140,234,255,.10);
+      border-radius:0.625rem;
+      background:linear-gradient(165deg, rgba(9,28,44,.38), rgba(5,16,28,.30));
+      padding:0.125rem 0.875rem 1.375rem;
+      display:flex;
+      flex-direction:column;
+      justify-content:flex-start;
+      min-height:11.875rem;
+    }
+    .analysis-page .timeline-body{
+      flex:1;
+      min-height:0;
+      width:100%;
+      display:flex;
+      align-items:stretch;
+      justify-content:center;
+    }
+    /* 顶部核心成果区域 */
+    .analysis-page .an-sec-title{
+      font-size:0.625rem;
+      letter-spacing:3px;
+      color:rgba(140,234,255,.65);
+      border-bottom:1px solid rgba(98,217,255,.12);
+      padding-bottom:0.375rem;
+      margin:0 0 0.625rem;
+    }
+    .analysis-page .an-sec-sub{
+      font-size:0.5625rem;
+      letter-spacing:1px;
+      color:#6f93a8;
+      margin:-0.25rem 0 0.625rem;
+    }
+    .analysis-page .an-overview{
+      display:grid;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:0.75rem;
+      align-items:stretch;
+    }
+    .analysis-page .an-overview .kpi-block{
+      min-height:10.5rem;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      position:relative;
+      padding:0.875rem 0.875rem 0.75rem;
+      border:1px solid rgba(140,234,255,.10);
+      border-radius:0.5rem;
+      background:linear-gradient(165deg, rgba(9,28,44,.50), rgba(5,16,28,.36));
+    }
+    .analysis-page .an-overview .kpi-block::before{
+      content:'';
+      position:absolute;
+      left:0.75rem;
+      right:0.75rem;
+      top:0;
+      height:0.125rem;
+      border-radius:0 0 0.125rem 0.125rem;
+      background:linear-gradient(90deg, rgba(98,217,255,0), rgba(98,217,255,.55), rgba(98,217,255,0));
+      opacity:.65;
+    }
+    .analysis-page .an-overview .kpi-block .kpi-num b{
+      font-size:clamp(2rem,2.8vw,2.5rem);
+    }
+    .analysis-page .an-overview .kpi-block:last-child .kpi-num b{
+      font-size:clamp(1rem,1.4vw,1.25rem);
+      letter-spacing:.5px;
+      word-break:break-all;
+    }
+    .analysis-page .an-overview .kpi-label{
+      font-size:0.625rem;
+    }
+    .analysis-page .an-overview .kpi-num{
+      display:flex;
+      align-items:baseline;
+      justify-content:center;
+      gap:0.625rem;
+    }
+    .analysis-page .an-overview .kpi-foot{
+      font-size:0.5rem;
+      letter-spacing:1.5px;
+      color:#6f93a8;
+      text-align:center;
+    }
+    /* SOC 独立模块（右侧高列 / 手机独立区域） */
+    .soc-module{
+      border:1px solid rgba(140,234,255,.18);
+      border-radius:0.625rem;
+      background:linear-gradient(165deg, rgba(9,28,44,.62), rgba(5,16,28,.5));
+      padding:0.625rem 0.75rem;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      gap:0.25rem;
+      min-height:0;
+      height:auto;
+      flex:1;
+    }
+    .soc-section{
+      display:flex;
+    }
+    .soc-section .an-sec-title{
+      margin-bottom:0.5rem;
+      text-align:center;
+    }
+    .soc-module::before{
+      content:'';
+      position:absolute;
+      width:15.625rem;
+      height:15.625rem;
+      border-radius:50%;
+      background:radial-gradient(circle, rgba(98,217,255,.10), transparent 62%);
+      pointer-events:none;
+      z-index:0;
+    }
+    .soc-module > *{
+      position:relative;
+      z-index:1;
+    }
+    .soc-wrap{
+      display:grid;
+      place-items:center;
+      width:clamp(10rem, 15vw, 13.75rem);
+      height:clamp(10rem, 15vw, 13.75rem);
+      min-width:10rem;
+      min-height:10rem;
+    }
+    .soc-ring{
+      width:clamp(10rem, 15vw, 13.75rem);
+      height:clamp(10rem, 15vw, 13.75rem);
+      min-width:10rem;
+      min-height:10rem;
+      transform:rotate(-90deg);
+      grid-area:1 / 1;
+    }
+    .soc-ring circle{
+      fill:none;
+      stroke-width:10;
+    }
+    .soc-track{
+      stroke:rgba(98,217,255,.12);
+    }
+    .soc-ticks{
+      fill:none;
+      stroke:rgba(98,217,255,.16);
+      stroke-width:2;
+      stroke-dasharray:1 5;
+    }
+    .soc-outer-ticks{
+      fill:none;
+      stroke:rgba(98,217,255,.14);
+      stroke-width:1;
+      stroke-dasharray:1 4;
+    }
+    .soc-arc{
+      stroke:#62d9ff;
+      stroke-linecap:round;
+      stroke-dasharray:0 999;
+      filter:drop-shadow(0 0 6px rgba(98,217,255,.35));
+      transition:stroke-dasharray .8s ease, stroke .4s ease;
+    }
+    .soc-center{
+      grid-area:1 / 1;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:0.125rem;
+      font-variant-numeric:tabular-nums;
+    }
+    .soc-center b{
+      font-size:5rem;
+      font-weight:700;
+      color:#eafcff;
+      letter-spacing:1px;
+    }
+    .soc-center span{
+      font-size:1.25rem;
+      color:#8ceaff;
+      margin-top:0.625rem;
+    }
+    .soc-label{
+      font-size:0.5625rem;
+      letter-spacing:2px;
+      color:rgba(140,234,255,.7);
+      margin-top:0.25rem;
+      text-align:center;
+    }
+    .soc-state{
+      font-size:0.5rem;
+      letter-spacing:2px;
+      color:#9fd8c2;
+      border:1px solid rgba(0,229,168,.22);
+      border-radius:999px;
+      padding:0.125rem 0.625rem;
+    }
+    .soc-meta{
+      margin:0;
+      font-size:0.5rem;
+      color:#6f93a8;
+      text-align:center;
+      line-height:1.5;
+    }
+    .soc-meta b{
+      color:#dff6ff;
+      font-weight:600;
+    }
+    .soc-meta .soc-state{
+      display:inline-block;
+      margin-left:0.25rem;
+      color:#9fd8c2;
+    }
+
+    /* 旧 SOC 定位规则兜底（确保无 absolute 堆叠） */
+    .soc-module{
+      position:relative;
+    }
+    .soc-wrap .soc-ring,
+    .soc-wrap .soc-center{
+      position:static;
+    }
+
+    /* 传感器数据返回率（逐通道真实覆盖） */
+    .analysis-page .sensor-ratio-section{
+      min-width:0;
+      position:static;
+      border:1px solid rgba(140,234,255,.10);
+      border-radius:0.625rem;
+      background:linear-gradient(165deg, rgba(9,28,44,.42), rgba(5,16,28,.34));
+      padding:0.375rem 0.875rem;
+      display:flex;
+      flex-direction:column;
+      min-height:0;
+    }
+    .sr-list{
+      display:flex;
+      flex-direction:column;
+      gap:0.625rem;
+      padding:0.25rem 0;
+      flex:1 0 auto;
+      justify-content:space-evenly;
+    }
+    .sensor-ratio-section .an-sec-title{
+      font-size:0.6875rem;
+    }
+    .sr-head{
+      display:grid;
+      grid-template-columns:minmax(9.375rem,1fr) 6.875rem minmax(3.75rem,1fr) 4.75rem;
+      gap:0.75rem;
+      align-items:center;
+      padding:0.125rem 0.75rem 0.375rem;
+      border-bottom:1px solid rgba(98,217,255,.08);
+      margin-bottom:0.125rem;
+    }
+    .sr-head span{
+      font-size:0.5rem;
+      letter-spacing:1.2px;
+      color:rgba(127,163,181,.65);
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+    .sr-head .sr-h-p{
+      text-align:right;
+    }
+    .sr-row{
+      display:grid;
+      grid-template-columns:minmax(9.375rem,1fr) 6.875rem minmax(3.75rem,1fr) 4.75rem;
+      align-items:center;
+      gap:0.75rem;
+      padding:0.625rem 0.75rem;
+      min-height:3.25rem;
+      border-radius:0.375rem;
+      background:rgba(6,20,34,.35);
+      border-bottom:1px solid rgba(98,217,255,.06);
+    }
+    .sr-row:last-child{
+      border-bottom:0;
+    }
+    .sr-name{
+      display:flex;
+      flex-direction:column;
+      align-items:flex-start;
+      gap:0.125rem;
+      min-width:0;
+      position:relative;
+      padding-left:0.5rem;
+    }
+    .sr-name::before{
+      content:'';
+      position:absolute;
+      left:0;
+      top:0.125rem;
+      bottom:0.125rem;
+      width:0.125rem;
+      border-radius:0.0625rem;
+      background:rgba(98,217,255,.35);
+    }
+    .sr-name .sr-ch{
+      font-style:normal;
+      font-size:0.625rem;
+      letter-spacing:1.2px;
+      color:rgba(98,217,255,.75);
+      flex:none;
+    }
+    .sr-name b{
+      display:block;
+      font-size:0.875rem;
+      letter-spacing:1px;
+      color:#dff6ff;
+      font-weight:600;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+    .sr-ratio{
+      font-size:0.6875rem;
+      color:#dff6ff;
+      font-variant-numeric:tabular-nums;
+    }
+    .sr-bar{
+      height:0.375rem;
+      border-radius:0.1875rem;
+      background:rgba(98,217,255,.10);
+      overflow:hidden;
+    }
+    .sr-bar i{
+      display:block;
+      height:100%;
+      border-radius:0.1875rem;
+      background:linear-gradient(90deg, rgba(98,217,255,.5), rgba(140,234,255,.85));
+      transition:width .6s ease;
+    }
+    .sr-pct{
+      font-size:1rem;
+      color:#8ceaff;
+      text-align:right;
+      font-variant-numeric:tabular-nums;
+      display:flex;
+      align-items:center;
+      justify-content:flex-end;
+      gap:0.375rem;
+    }
+    .sr-state{
+      width:0.375rem;
+      height:0.375rem;
+      border-radius:50%;
+      background:rgba(98,217,255,.25);
+      flex:none;
+    }
+    .sr-state.ok{
+      background:#00e5a8;
+      box-shadow:0 0 4px rgba(0,229,168,.25);
+    }
+    .sr-state.off{
+      background:rgba(255,82,99,.55);
+    }
+    .sr-row.sr-off .sr-name b{
+      color:rgba(223,246,255,.55);
+    }
+    .sr-note{
+      font-size:0.5625rem;
+      color:#6f93a8;
+      margin:-0.125rem 0.125rem 0.625rem;
+      line-height:1.5;
+    }
+
+    .an-note{
+      font-size:0.625rem;
+      letter-spacing:.5px;
+      color:#6f93a8;
+      line-height:1.6;
+      padding:0.375rem 0.625rem;
+      margin:0.5rem 0 0.125rem;
+      border-left:2px solid rgba(98,217,255,.35);
+    }
+    /* 横向紧凑任务时间轴（页面底部，不超屏不滚动） */
+    .tl-body{
+      display:flex;
+      align-items:stretch;
+      justify-content:center;
+      gap:1rem;
+      margin:0;
+      width:100%;
+    }
+    .tl-nodes{
+      position:relative;
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      flex:1;
+      min-width:0;
+      padding:0.125rem 0.125rem 0;
+    }
+    .tl-nodes::before{
+      content:'';
+      position:absolute;
+      left:2%;
+      right:2%;
+      top:0.3125rem;
+      height:0.125rem;
+      background:linear-gradient(90deg, rgba(98,217,255,.12), rgba(98,217,255,.55), rgba(98,217,255,.12));
+      border-radius:0.125rem;
+      pointer-events:none;
+    }
+    .tl-node{
+      position:relative;
+      flex:1;
+      min-width:0;
+      text-align:center;
+      z-index:1;
+    }
+    .tl-node .dot{
+      width:0.75rem;
+      height:0.75rem;
+      border-radius:50%;
+      background:#62d9ff;
+      box-shadow:0 0 8px rgba(98,217,255,.55);
+      margin:0 auto 0.5rem;
+      display:block;
+    }
+    .tl-node.last .dot{
+      background:#00e5a8;
+      box-shadow:0 0 8px rgba(0,229,168,.55);
+    }
+    .tl-node .date{
+      font-size:0.625rem;
+      letter-spacing:1px;
+      color:#8ceaff;
+      display:block;
+    }
+    .tl-node b{
+      display:block;
+      font-size:0.6875rem;
+      letter-spacing:1px;
+      color:#dff6ff;
+      margin-top:0.125rem;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+    .tl-node p{
+      font-size:0.5625rem;
+      color:#7f9fb2;
+      margin:0.125rem 0 0;
+      line-height:1.4;
+    }
+    .tl-hint{
+      font-size:0.5625rem;
+      letter-spacing:1px;
+      color:#6f93a8;
+      margin:0.125rem 0.125rem 0;
+    }
+
+    .analysis-page .timeline-wrapper h3{
+      font-size:0.625rem;
+      letter-spacing:3px;
+      color:rgba(140,234,255,.65);
+      border-bottom:1px solid rgba(98,217,255,.12);
+      padding-bottom:0.375rem;
+      margin-bottom:0.625rem;
+    }
+
+    /* 任务持续卡片（时间轴最右侧，正常 flex 流，无 absolute 覆盖） */
+    .tl-duration{
+      flex:0 0 11.875rem;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      gap:0.0625rem;
+      min-height:2.125rem;
+      padding:0.1875rem 0.5rem;
+      border:1px solid rgba(140,234,255,.16);
+      border-radius:0.5rem;
+      background:linear-gradient(165deg, rgba(9,28,44,.55), rgba(5,16,28,.45));
+    }
+    .tl-dur-label{
+      font-size:0.4375rem;
+      letter-spacing:2px;
+      color:rgba(140,234,255,.7);
+      text-align:center;
+    }
+    .tl-dur-dates{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:0.0625rem;
+      font-size:0.5rem;
+      color:#dff6ff;
+      font-variant-numeric:tabular-nums;
+    }
+    .tl-dur-dates b{
+      font-weight:600;
+      color:#eafcff;
+    }
+    .tl-dur-arrow{
+      font-size:0.5rem;
+      color:#62d9ff;
+      line-height:1;
+    }
+    .tl-dur-days{
+      font-size:0.5625rem;
+      color:#8ceaff;
+      font-weight:700;
+      letter-spacing:1px;
+      font-variant-numeric:tabular-nums;
+    }
+    .tl-dur-days em{
+      font-style:normal;
+      font-size:0.375rem;
+      color:#6f93a8;
+      margin-left:0.1875rem;
+    }
+
+    /* 1920×1080 等高屏：新增气压/风向覆盖率行后轻微压缩，保持单屏 */
+    @media (max-height:1120px) and (min-height:921px) and (min-width:1101px){
+      .analysis-page .an-overview .kpi-block{
+        min-height:9rem;
+        padding:0.625rem 0.75rem 0.5rem;
+      }
+      .sr-row{
+        min-height:2.25rem;
+        padding:0.25rem 0.75rem;
+      }
+      .sr-head{
+        padding:0.125rem 0.75rem 0.25rem;
+      }
+      .analysis-page .timeline-wrapper{
+        min-height:8rem;
+        padding:0 0.875rem 0.75rem;
+      }
+    }
+
+    /* 1440p 等高屏：轻微压缩，保持单屏 */
+    @media (max-height:1500px) and (min-height:1121px) and (min-width:1101px){
+      .analysis-page .an-overview .kpi-block{
+        min-height:9.5rem;
+      }
+      .sr-row{
+        min-height:3rem;
+        padding:0.5rem 0.75rem;
+      }
+    }
+
+    /* 低高度桌面：轻微压缩间距与环尺寸，避免 1366×768 需要滚动 */
+    @media (max-height:920px) and (min-width:1100px){
+      body.analysis-page main{
+        padding-top:1.9375rem;
+        padding-bottom:0;
+        gap:0.1875rem;
+      }
+      .analysis-page .analysis-container{
+        gap:0.1875rem;
+      }
+      .analysis-page .summary-section{
+        padding:0.25rem 0.875rem 0.375rem;
+      }
+      .analysis-page .an-overview .kpi-block{
+        min-height:7.5rem;
+        padding:0.5rem 0.625rem 0.375rem;
+      }
+      .analysis-page .an-overview .kpi-block .kpi-num b{
+        font-size:clamp(1.625rem,2.3vw,2rem);
+      }
+      .analysis-page .an-overview .kpi-label{
+        font-size:0.5625rem;
+      }
+      .analysis-page .an-overview .kpi-foot{
+        font-size:0.4375rem;
+      }
+      .analysis-page .an-sec-title{
+        margin-bottom:0.25rem;
+      }
+      .sensor-ratio-section .an-sec-title{
+        margin-bottom:0.25rem;
+      }
+      .sr-note{
+        margin:-0.125rem 0.125rem 0.1875rem;
+      }
+      .soc-wrap{
+        width:clamp(10rem, 15vw, 13.75rem);
+        height:clamp(10rem, 15vw, 13.75rem);
+        min-width:10rem;
+        min-height:10rem;
+      }
+      .soc-ring{
+        width:clamp(10rem, 15vw, 13.75rem);
+        height:clamp(10rem, 15vw, 13.75rem);
+        min-width:10rem;
+        min-height:10rem;
+      }
+      .soc-center b{
+        font-size:3.75rem;
+      }
+      .soc-center span{
+        font-size:1rem;
+        margin-top:0.5rem;
+      }
+      .soc-module{
+        padding:0.25rem 0.75rem;
+      }
+      .soc-meta{
+        font-size:0.4375rem;
+      }
+      .soc-state{
+        font-size:0.4375rem;
+        padding:0.0625rem 0.5rem;
+      }
+      .sr-list{
+        gap:0.3125rem;
+        padding:0;
+        justify-content:space-evenly;
+      }
+      .sr-row{
+        padding:0.25rem 0.625rem;
+        min-height:2.25rem;
+        grid-template-columns:minmax(6.875rem,1fr) 6rem minmax(3.125rem,1fr) 3.75rem;
+        gap:0.5rem;
+      }
+      .sr-head{
+        grid-template-columns:minmax(6.875rem,1fr) 6rem minmax(3.125rem,1fr) 3.75rem;
+        padding:0 0.625rem 0.1875rem;
+        margin-bottom:0;
+      }
+      .sr-name b{
+        font-size:0.6875rem;
+      }
+      .sr-name{
+        gap:0;
+      }
+      .sr-name .sr-ch{
+        font-size:0.5rem;
+      }
+      .sr-pct{
+        font-size:0.75rem;
+      }
+      .sr-ratio{
+        font-size:0.625rem;
+      }
+      .sr-bar{
+        height:0.25rem;
+      }
+      .tl-nodes{
+        padding:0.0625rem 0.125rem 0.0625rem;
+      }
+      .tl-duration{
+        min-height:2.125rem;
+      }
+      .analysis-page .timeline-wrapper{
+        padding:0 0.875rem 1rem;
+        min-height:8.75rem;
+      }
+      .analysis-page .timeline-wrapper h3{
+        margin-bottom:0.0625rem;
+      }
+      .tl-hint{
+        margin:0;
+      }
+      .tl-node p{
+        display:none;
+      }
+      .tl-node b{
+        font-size:0.625rem;
+      }
+      .tl-node .date{
+        font-size:0.5625rem;
+      }
+      .tl-node .dot{
+        width:0.625rem;
+        height:0.625rem;
+      }
+      .tl-body{
+        gap:0.375rem;
+      }
+      .analysis-page .mission-header{
+        padding-bottom:0.1875rem;
+      }
+      .analysis-page .an-head h2{
+        font-size:1.25rem;
+      }
+      .analysis-page .an-kicker{
+        font-size:0.4375rem;
+      }
+      .analysis-page .an-meta span{
+        font-size:0.4375rem;
+      }
+    }
+
+    @media (max-width:1100px){
+      .analysis-page .analysis-container{
+        grid-template-columns:1fr;
+        grid-template-rows:auto;
+        grid-template-areas:
+          "summary"
+          "soc"
+          "ratio"
+          "timeline";
+      }
+      .analysis-page .an-overview{
+        grid-template-columns:1fr 1fr;
+      }
+      .soc-module{
+        min-height:0;
+        min-width:0;
+        flex-direction:row;
+        gap:14px;
+        justify-content:center;
+        padding:14px 12px;
+      }
+      .sr-row{
+        grid-template-columns:minmax(110px,1fr) 96px minmax(50px,1fr) 60px;
+      }
+      .sr-head{
+        grid-template-columns:minmax(110px,1fr) 96px minmax(50px,1fr) 60px;
+      }
+    }
+    @media (min-width:901px) and (max-width:1100px){
+      body.analysis-page main{
+        padding-top:0.875rem;
+        padding-bottom:0;
+        gap:0.375rem;
+      }
+      .analysis-page .analysis-container{
+        grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);
+        grid-template-rows:auto auto auto;
+        grid-template-areas:
+          "summary summary"
+          "soc ratio"
+          "timeline timeline";
+        gap:0.375rem;
+      }
+      .analysis-page .summary-section{
+        padding:0.25rem 0.75rem 0.375rem;
+      }
+      .analysis-page .an-overview .kpi-block{
+        min-height:5.5rem;
+        padding:0.375rem 0.5rem 0.25rem;
+      }
+      .analysis-page .an-overview .kpi-block .kpi-num b{
+        font-size:clamp(1.25rem,2vw,1.75rem);
+      }
+      .analysis-page .an-overview .kpi-label{
+        font-size:0.5rem;
+      }
+      .analysis-page .an-overview .kpi-foot{
+        font-size:0.4375rem;
+      }
+      .soc-wrap,.soc-ring{
+        width:clamp(8rem,15vw,10rem);
+        height:clamp(8rem,15vw,10rem);
+        min-width:8rem;
+        min-height:8rem;
+      }
+      .soc-center b{
+        font-size:2.75rem;
+      }
+      .soc-center span{
+        font-size:0.875rem;
+        margin-top:0.25rem;
+      }
+      .soc-module{
+        padding:0.25rem 0.5rem;
+      }
+      .sr-row{
+        min-height:2rem;
+        padding:0.1875rem 0.5rem;
+        grid-template-columns:minmax(5.5rem,1fr) 4.5rem minmax(2.5rem,1fr) 3rem;
+        gap:0.375rem;
+      }
+      .sr-head{
+        grid-template-columns:minmax(5.5rem,1fr) 4.5rem minmax(2.5rem,1fr) 3rem;
+        padding:0 0.5rem 0.125rem;
+      }
+      .analysis-page .timeline-wrapper{
+        padding:0 0.75rem 0.625rem;
+        min-height:7rem;
+      }
+      .tl-node p{
+        display:none;
+      }
+      .tl-node b{
+        font-size:0.5625rem;
+      }
+      .tl-node .date{
+        font-size:0.5rem;
+      }
+      .tl-node .dot{
+        width:0.5rem;
+        height:0.5rem;
+      }
+      .analysis-page .mission-header{
+        padding-bottom:0.1875rem;
+      }
+    }
+    @media (max-width:700px){
+      .analysis-page .an-overview{
+        grid-template-columns:1fr 1fr;
+      }
+      .sr-head{
+        display:none;
+      }
+      .tl-body{
+        flex-direction:column;
+        transform:none;
+      }
+      .tl-duration{
+        flex:1 1 auto;
+        width:100%;
+        min-height:0;
+        flex-direction:row;
+        justify-content:space-between;
+        align-items:center;
+        padding:10px 14px;
+      }
+    }
+    @media (max-width:420px){
+      .analysis-page .an-overview{
+        grid-template-columns:1fr;
+      }
+      .sr-row{
+        grid-template-columns:1fr 1fr;
+        gap:5px 8px;
+      }
+      .sr-bar{
+        grid-column:1 / 3;
+      }
+      .sr-pct{
+        text-align:left;
+        justify-content:flex-start;
+      }
+      .sr-name{
+        gap:0;
+      }
+      .sr-name b{
+        font-size:12px;
+      }
+      .tl-node p{
+        display:none;
+      }
+      .tl-node b{
+        white-space:normal;
+      }
+      .tl-duration{
+        flex-direction:column;
+        gap:6px;
+      }
+    }
+
+    /* V38 phone SOC module column layout (prevent horizontal overflow) */
+    @media (max-width:768px){
+      .analysis-page .soc-module{
+        flex-direction:column;
+        align-items:center;
+        justify-content:center;
+        gap:0.25rem;
+        padding:0.625rem 0.75rem;
+      }
+    }
   </style>
-</head>
-<body class="ambient-theme analysis-page">
+<style>.lang-float{position:fixed;top:1.75rem;right:2rem;z-index:120}.header-right{margin-right:9.375rem}@media (max-width:768px){.lang-float{top:18px;right:14px}.header-right{margin-right:0}}</style></head>
 
-<div class="lang-float"><div class="lang-switch"><span class="lang-pill" aria-hidden="true"></span><button type="button" data-lang="zh">中</button><button type="button" data-lang="en" class="active">EN</button></div></div>
+<body class="ambient-theme analysis-page"><div class="lang-float"><div class="lang-switch"><span class="lang-pill" aria-hidden="true"></span><button type="button" data-lang="zh">中</button><button type="button" data-lang="en" class="active">EN</button></div></div>
 
+<div class="app">
 
   <aside class="sidebar">
     <div class="brand">
       <div class="logo">DMS</div>
       <div>
         <h1><span data-lang="en">DISTRIBUTED<br>MONITORING SYSTEM</span><span data-lang="zh">分布式监测系统</span></h1>
-        <p><span data-lang="en">Autonomous Environmental Observatory</span><span data-lang="zh">自主环境观测平台</span></p>
+        <p data-i18n="brand_subtitle">Autonomous Environmental Observatory</p>
       </div>
     </div>
     <input type="checkbox" id="navToggle" class="nav-toggle" aria-hidden="true">
@@ -55,48 +960,357 @@
       <a class="nav-item" href="./sensors-a02.html"><span data-lang="en">Sensors</span><span data-lang="zh">传感器</span></a>
       <a class="nav-item" href="./telemetry-a02.html"><span data-lang="en">DATA</span><span data-lang="zh">数据</span></a>
       <a class="nav-item" href="./hardware-a02.html"><span data-lang="en">Hardware</span><span data-lang="zh">硬件</span></a>
-      <a class="nav-item active" href="./analysis-a02.html"><span data-lang="en">Analysis</span><span data-lang="zh">分析</span></a>    </nav>
+      <a class="nav-item active"><span data-lang="en">Analysis</span><span data-lang="zh">分析</span></a>
+      
+    </nav>
     <label for="navToggle" class="nav-overlay" aria-hidden="true"></label>
   </aside>
+
   <main>
-    <header class="mission-header">
+
+    <!-- MISSION OVERVIEW -->
+    <header class="mission-header an-head">
       <div>
-        <h2><span data-lang="en">Analysis</span><span data-lang="zh">分析</span></h2>
-        <p><span data-lang="en">Station DMS-A02 · awaiting deployment</span><span data-lang="zh">站点 DMS-A02 · 等待部署</span></p>
+        <div class="an-kicker" data-lang="en">AUTONOMOUS MONITORING MISSION SUMMARY</div>
+        <div class="an-kicker" data-lang="zh">自主观测系统 · 任务成果分析</div>
+        <h2 data-lang="en">MISSION ANALYTICS</h2>
+        <h2 data-lang="zh">任务成果分析</h2>
+        <div class="an-sub" data-lang="en">An autonomous monitoring node · long-term environmental data collection and transmission.</div>
+        <div class="an-sub" data-lang="zh">自主监测节点 · 长期采集并稳定回传环境数据。</div>
       </div>
-      <div class="header-right">
-        <div class="system-online pending"><span></span><span data-lang="en">AWAITING DEPLOYMENT</span><span data-lang="zh">等待部署</span></div>
-        <div class="status-stack">
-          <span class="status-stack-label"><span data-lang="en">NODE STATUS</span><span data-lang="zh">节点状态</span></span>
-          <span class="status-stack-value"><span data-lang="en">NOT DEPLOYED</span><span data-lang="zh">未部署</span></span>
-        </div>
+      <div class="an-meta">
+        <span data-lang="en">MISSION ID <b>DMS-A02</b></span>
+        <span data-lang="zh">任务编号 <b>DMS-A02</b></span>
+        <span data-lang="en">VERSION <b>V0.4</b></span>
+        <span data-lang="zh">版本 <b>V0.4</b></span>
+        <span data-lang="en">STATUS <b class="ok">OPERATIONAL</b></span>
+        <span data-lang="zh">状态 <b class="ok">运行中</b></span>
       </div>
     </header>
-    <section class="waiting-panel">
-      <div class="waiting-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3.2"/><path d="M12 2a10 10 0 0 1 10 10M12 22a10 10 0 0 0 10-10M12 2a10 10 0 0 0-10 10M12 22a10 10 0 0 1-10-10"/></svg></div>
-      <div class="waiting-eyebrow"><span data-lang="en">FUTURE NODE · DMS-A02</span><span data-lang="zh">未来节点 · DMS-A02</span></div>
-      <h2><span data-lang="en">No Data Available</span><span data-lang="zh">暂无数据</span></h2>
-      <p><span data-lang="en">This module will activate once the station is deployed and telemetry is established.</span><span data-lang="zh">站点部署并建立遥测后，本模块将自动启用。</span></p>
-      <span class="waiting-tag"><span data-lang="en">Waiting for Deployment</span><span data-lang="zh">等待部署</span></span>
+
+    <!-- 中部成果区：显式 Grid 三区域 -->
+    <div class="analysis-container">
+
+    <section class="summary-section">
+      <h3 class="an-sec-title" data-lang="en">MISSION OVERVIEW</h3>
+      <h3 class="an-sec-title" data-lang="zh">任务概览</h3>
+      <div class="an-sec-sub" data-lang="en">Core results of the autonomous monitoring mission.</div>
+      <div class="an-sec-sub" data-lang="zh">自主监测任务的核心成果。</div>
+      <section class="an-overview">
+      <div class="kpi-block">
+        <span class="kpi-label" data-lang="en">DATA RECORDS</span>
+        <span class="kpi-label" data-lang="zh">数据记录</span>
+        <span class="kpi-num"><b id="sumRecords">--</b><em data-lang="en">REC</em><em data-lang="zh">条</em></span>
+        <span class="kpi-foot" data-lang="en">TELEMETRY</span><span class="kpi-foot" data-lang="zh">遥测记录</span>
+      </div>
+      <div class="kpi-block">
+        <span class="kpi-label" data-lang="en">Data Types Collected</span>
+        <span class="kpi-label" data-lang="zh">采集数据种类</span>
+        <span class="kpi-num"><b id="sumChannels">--</b><em data-lang="en">TYPES</em><em data-lang="zh">种</em></span>
+        <span class="kpi-foot" data-lang="en">DATA TYPES</span><span class="kpi-foot" data-lang="zh">数据类别</span>
+      </div>
+      <div class="kpi-block">
+        <span class="kpi-label" data-lang="en">OPERATION DAYS</span>
+        <span class="kpi-label" data-lang="zh">运行天数</span>
+        <span class="kpi-num"><b id="sumDays">--</b><em data-lang="en">DAYS</em><em data-lang="zh">天</em></span>
+        <span class="kpi-foot" data-lang="en">CONTINUOUS RUN</span><span class="kpi-foot" data-lang="zh">持续运行</span>
+      </div>
+      <div class="kpi-block">
+        <span class="kpi-label" data-lang="en">LATEST UPDATE</span>
+        <span class="kpi-label" data-lang="zh">最近更新</span>
+        <span class="kpi-num"><b id="sumLatest">--</b></span>
+        <span class="kpi-foot" data-lang="en">LAST CONTACT</span><span class="kpi-foot" data-lang="zh">最近同步</span>
+      </div>
+      </section>
     </section>
-    <section class="placeholder-grid">
-      <div class="placeholder-cell"><b>--</b><span data-lang="en">DATA</span><span data-lang="zh">数据</span></div>
-      <div class="placeholder-cell"><b>--</b><span data-lang="en">STATUS</span><span data-lang="zh">状态</span></div>
-      <div class="placeholder-cell"><b>--</b><span data-lang="en">LINK</span><span data-lang="zh">链路</span></div>
+
+    <!-- 传感器数据返回率 -->
+    <section class="sensor-ratio-section">
+      <h3 class="an-sec-title" data-lang="en">Sensor Data Coverage</h3>
+      <h3 class="an-sec-title" data-lang="zh">传感器数据覆盖率</h3>
+      <p class="sr-note" data-lang="en">Shows the proportion of valid sensor records within all telemetry records.</p>
+      <p class="sr-note" data-lang="zh">表示各类传感器有效数据记录在全部遥测记录中的覆盖比例。</p>
+      <div class="sr-head">
+        <span data-lang="en">SENSOR · TYPE</span><span data-lang="zh">编号 · 类型</span>
+        <span data-lang="en">DATA COVERAGE</span><span data-lang="zh">数据覆盖率</span>
+        <span data-lang="en">COVERAGE</span><span data-lang="zh">覆盖率</span>
+        <span class="sr-h-p" data-lang="en">RATIO</span><span class="sr-h-p" data-lang="zh">占比</span>
+      </div>
+      <div class="sr-list" id="sensorRatio"></div>
     </section>
+
+    <!-- SOC 独立区域 -->
+    <section class="soc-section">
+      <div class="soc-module">
+        <div class="soc-wrap">
+          <svg class="soc-ring" viewBox="0 0 150 150" aria-hidden="true">
+            <circle class="soc-track" cx="75" cy="75" r="63"></circle>
+            <circle class="soc-ticks" cx="75" cy="75" r="58"></circle>
+            <circle class="soc-outer-ticks" cx="75" cy="75" r="69"></circle>
+            <circle class="soc-arc" id="socArc" cx="75" cy="75" r="63"></circle>
+          </svg>
+          <div class="soc-center"><b id="sumSoc">--</b><span>%</span></div>
+        </div>
+        <div class="soc-label">SOC</div>
+        <p class="soc-meta"><span data-lang="en">Battery Status:</span><span data-lang="zh">电池状态：</span><b id="socState" class="soc-state">--</b></p>
+        <p class="soc-meta"><span data-lang="en">Voltage:</span><span data-lang="zh">电压：</span><b id="sumVoltage">--</b><span>V</span></p>
+        <p class="soc-meta"><span data-lang="en">Power Source:</span><span data-lang="zh">供电来源：</span><b data-lang="en">Solar + Battery</b><b data-lang="zh">太阳能 + 电池</b></p>
+      </div>
+    </section>
+
+    <!-- 横向任务时间轴（页面最底部） -->
+    <div class="timeline-wrapper">
+      <h3 data-lang="en">MISSION TIMELINE</h3>
+      <h3 data-lang="zh">任务时间轴</h3>
+      <div class="timeline-body">
+        <div class="tl-body">
+          <div class="tl-nodes" id="anTimeline"></div>
+          <div class="tl-duration">
+            <div class="tl-dur-label" data-lang="en">MISSION DURATION</div>
+            <div class="tl-dur-label" data-lang="zh">任务持续</div>
+            <div class="tl-dur-dates"><b id="tlStart">--</b><span class="tl-dur-arrow">↓</span><b id="tlEnd">--</b></div>
+            <div class="tl-dur-days"><b id="tlDays">--</b><em data-lang="en">DAYS</em><em data-lang="zh">天</em></div>
+          </div>
+        </div>
+      </div>
+      <p class="tl-hint" data-lang="en">Key events derived from the recorded mission history.</p>
+      <p class="tl-hint" data-lang="zh">基于实际记录数据提取的关键任务事件。</p>
+    </div>
+
+    </div>
+
   </main>
 </div>
 
-  <script>
+<!-- 全站暴风雪模块（三层：远景雪雾 / 中景主雪 / 前景大粒） -->
+<script src="./js/ambient.js?v=20260806b"></script>
+
+<!-- 数据核心（main.js 保持不变） -->
+<script src="./js/main.js?v=20260824f"></script>
+
+<!-- 任务成果分析层（纯显示逻辑，不影响 main.js / data02.json） -->
+<script>
+(function () {
+  'use strict';
+  var tries = 0;
+
+  function ready() {
+    try { return typeof DATA !== 'undefined' && DATA && DATA.length; } catch (e) { return false; }
+  }
+
+  function $(id) { return document.getElementById(id); }
+  function setTxt(id, t) { var el = $(id); if (el) el.textContent = t; }
+  function pad(n) { return String(n).padStart(2, '0'); }
+  function parseT(ts) {
+    return window.ANX_PARSE_TIME ? window.ANX_PARSE_TIME(ts) : new Date(ts);
+  }
+  function fmtDate(ts) {
+    var d = parseT(ts);
+    if (!d || isNaN(d.getTime())) return '--';
+    return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate());
+  }
+  function fmtFull(ts) {
+    var d = parseT(ts);
+    if (!d || isNaN(d.getTime())) return '--';
+    return fmtDate(ts) + ' ' + pad(d.getHours()) + ':' + pad(d.getMinutes());
+  }
+
+  function compute() {
+    if (!ready()) return;
+    var data = DATA;
+    var total = data.length;
+    if (!total) return;
+
+    /* 传感器通道：按实际数据类型统计（有数据的类型数） */
+    var sensorGroups = [
+      { name: 'inside temp', keys: ['t'] },
+      { name: 'inside hum', keys: ['k'] },
+      { name: 'outside temp', keys: ['j'] },
+      { name: 'outside hum', keys: ['h'] },
+      { name: 'solar', keys: ['s'] },
+      { name: 'voltage', keys: ['v'] },
+      { name: 'current', keys: ['a'] },
+      { name: 'gps', keys: ['x', 'y'] }
+    ];
+    var channels = sensorGroups.filter(function (g) {
+      return data.some(function (r) {
+        return g.keys.some(function (k) { return r[k] !== null && r[k] !== undefined; });
+      });
+    }).length;
+
+    var times = data.map(function (r) {
+        var d = parseT(r.time);
+        return d ? d.getTime() : NaN;
+      })
+      .filter(function (t) { return !isNaN(t); })
+      .sort(function (a, b) { return a - b; });
+    var start = null, end = null, days = '--';
+    if (times.length) {
+      start = times[0];
+      end = times[times.length - 1];
+      days = Math.max(1, Math.round((end - start) / 86400000));
+    }
+
+    function voltageToSoc(v) {
+      if (v === null || v === undefined || isNaN(v)) return null;
+      if (v >= 13.5) return 100;
+      if (v >= 13.4) return 99;
+      if (v >= 13.3) return 98;
+      if (v >= 13.1) return 97;
+      if (v >= 13.0) return 96;
+      if (v >= 12.9) return 95;
+      if (v >= 12.8) return 93;
+      if (v >= 12.7) return 91;
+      if (v >= 12.6) return 89;
+      if (v >= 12.5) return 87;
+      if (v >= 12.4) return 85;
+      if (v >= 12.3) return 83;
+      if (v >= 12.2) return 81;
+      if (v >= 12.1) return 79;
+      if (v >= 12.0) return 76;
+      if (v >= 11.9) return 74;
+      if (v >= 11.8) return 70;
+      if (v >= 11.7) return 68;
+      if (v >= 11.6) return 64;
+      if (v >= 11.5) return 60;
+      if (v >= 11.4) return 55;
+      if (v >= 11.3) return 49;
+      if (v >= 11.2) return 42;
+      if (v >= 11.1) return 33;
+      if (v >= 11.0) return 25;
+      if (v >= 10.9) return 17;
+      if (v >= 10.8) return 11;
+      if (v >= 10.7) return 6;
+      if (v >= 10.6) return 3;
+      if (v >= 10.5) return 2;
+      return 0;
+    }
+    var soc = null;
+    var lastV = null;
+    for (var i = data.length - 1; i >= 0; i--) {
+      if (data[i].soc !== null && data[i].soc !== undefined) { soc = data[i].soc; break; }
+      var v = null;
+      ['v', 'voltage', 'batt', 'battery'].forEach(function (k) {
+        if (v === null && data[i][k] !== null && data[i][k] !== undefined) v = data[i][k];
+      });
+      if (v !== null) { lastV = v; soc = voltageToSoc(Number(v)); break; }
+    }
+    var socNum = (soc !== null && !isNaN(soc)) ? Number(soc) : null;
+    setTxt('sumVoltage', lastV === null ? '--' : Number(lastV).toFixed(1));
+    setTxt('socState', socNum === null ? '--' :
+      (socNum >= 60 ? (window.ANX_T ? window.ANX_T('soc_ok') : 'NORMAL') :
+      (socNum > 0 ? (window.ANX_T ? window.ANX_T('soc_low') : 'LOW') :
+      (window.ANX_T ? window.ANX_T('soc_empty') : 'EMPTY'))));
+
+    var firstS = null, firstE = null;
+    for (var m = 0; m < data.length; m++) {
+      var md = String(data[m].mode === null || data[m].mode === undefined ? '' : data[m].mode).trim().toUpperCase();
+      var mt = parseT(data[m].time);
+      if (firstS === null && md === 'S' && mt) firstS = mt.getTime();
+      if (firstE === null && md === 'E' && mt) firstE = mt.getTime();
+    }
+
+    setTxt('sumRecords', total);
+    setTxt('sumChannels', channels);
+    setTxt('sumSoc', soc === null ? '--' : (typeof soc === 'number' ? soc.toFixed(0) : soc));
+    setTxt('sumDays', days);
+    setTxt('sumLatest', fmtFull(end));
+    setTxt('tlStart', fmtDate(start));
+    setTxt('tlEnd', fmtDate(end));
+    setTxt('tlDays', days);
+
+    /* 传感器数据返回率：各通道实际记录 / 总采样记录 */
+    var ratioDefs = [
+      { keys: ['t', 'k'], en: 'CABIN TEMP & HUM', zh: '舱内温湿度' },
+      { keys: ['j', 'h'], en: 'EXTERNAL ENVIRONMENT', zh: '舱外环境' },
+      { keys: ['s'], en: 'SOLAR RADIATION', zh: '太阳辐射' },
+      { keys: ['v', 'a'], en: 'POWER STATUS', zh: '电源状态' },
+      { keys: ['x', 'y'], en: 'GPS POSITION', zh: 'GPS定位' }
+    ];
+    var ratioHtml = '';
+    ratioDefs.forEach(function (def, idx) {
+      var actual = data.filter(function (r) {
+        return def.keys.some(function (k) {
+          return r[k] !== null && r[k] !== undefined;
+        });
+      }).length;
+      var pct = total ? (actual / total * 100) : 0;
+      var ratioTxt = actual === 0 ? '--' : actual + '/' + total;
+      var pctTxt = actual === 0 ? '--' : pct.toFixed(1) + '%';
+      var idxTxt = String(idx + 1);
+      var online = actual > 0;
+      ratioHtml += '<div class="sr-row' + (online ? '' : ' sr-off') + '">';
+      ratioHtml += '<span class="sr-name">';
+      ratioHtml += '<i class="sr-ch" data-lang="en">SENSOR ' + idxTxt + '</i>';
+      ratioHtml += '<i class="sr-ch" data-lang="zh">传感器' + idxTxt + '</i>';
+      ratioHtml += '<b data-lang="en">' + def.en + '</b>';
+      ratioHtml += '<b data-lang="zh">' + def.zh + '</b>';
+      ratioHtml += '</span>';
+      ratioHtml += '<span class="sr-ratio">' + ratioTxt + '</span>';
+      ratioHtml += '<span class="sr-bar"><i style="width:' + (actual === 0 ? 0 : pct.toFixed(1)) + '%"></i></span>';
+      ratioHtml += '<b class="sr-pct"><i class="sr-state' + (online ? ' ok' : ' off') + '"></i>' + pctTxt + '</b>';
+      ratioHtml += '</div>';
+    });
+    var ratioBox = $('sensorRatio');
+    if (ratioBox) ratioBox.innerHTML = ratioHtml;
+
+    /* SOC 圆环 */
+    var arc = $('socArc');
+    if (arc) {
+      var C = 2 * Math.PI * 63;
+      if (soc === null || isNaN(soc)) {
+        arc.setAttribute('stroke-dasharray', '0 ' + C);
+        arc.setAttribute('stroke', '#62d9ff');
+      } else {
+        var pct = Math.max(0, Math.min(100, Number(soc)));
+        arc.setAttribute('stroke-dasharray', ((pct / 100) * C).toFixed(1) + ' ' + C.toFixed(1));
+        arc.setAttribute('stroke', pct >= 60 ? '#00e5a8' : (pct >= 30 ? '#f5b942' : '#ff5263'));
+      }
+    }
+
+    /* 横向时间轴 */
+    var nodes = [
+      { t: start, en: 'MISSION START', zh: '任务启动', enD: 'The system began collecting data.', zhD: '系统开始采集数据。' },
+      { t: firstS, en: 'FIRST S EVENT', zh: '首次S事件', enD: 'First record with standby (S) mode.', zhD: '首次检测到S状态。' },
+      { t: firstE, en: 'FIRST E EVENT', zh: '首次E事件', enD: 'First record with emergency (E) mode.', zhD: '首次检测到E状态。' },
+      { t: end, en: 'LATEST DATA', zh: '最新数据', enD: 'Most recent data synchronization.', zhD: '最近一次数据同步。' }
+    ];
+    var html = '';
+    nodes.forEach(function (n, idx) {
+      html += '<div class="tl-node' + (idx === nodes.length - 1 ? ' last' : '') + '">';
+      html += '<i class="dot"></i>';
+      html += '<span class="date">' + (n.t ? fmtDate(n.t) : '--') + '</span>';
+      html += '<b data-lang="en">' + n.en + '</b>';
+      html += '<b data-lang="zh">' + n.zh + '</b>';
+      html += '<p data-lang="en">' + n.enD + '</p>';
+      html += '<p data-lang="zh">' + n.zhD + '</p>';
+      html += '</div>';
+    });
+    var box = $('anTimeline');
+    if (box) box.innerHTML = html;
+    if (window.anxApplyLang) window.anxApplyLang(window.anxCurrentLang || 'en');
+  }
+
+  function render() { if (ready()) compute(); }
+  var timer = setInterval(function () {
+    render();
+    if (++tries > 60) clearInterval(timer);
+  }, 500);
+  if (window.addEventListener) window.addEventListener('anx:data', render);
+})();
+</script>
+
+<!-- 语言切换（全站统一） -->
+<script>
   (function () {
     function apply(lang) {
-      document.documentElement.setAttribute('data-lang', lang);
-      document.documentElement.setAttribute('lang', lang === 'zh' ? 'zh-CN' : 'en');
-      document.querySelectorAll('[data-lang]').forEach(function (el) {
-        if (el.tagName === 'BUTTON' && el.parentNode && el.parentNode.classList && el.parentNode.classList.contains('lang-switch')) return;
-        el.style.display = (el.getAttribute('data-lang') === lang) ? '' : 'none';
-      });
-      document.querySelectorAll('.lang-switch button').forEach(function (b) {
+  document.documentElement.setAttribute('data-lang', lang);
+  document.documentElement.setAttribute('lang', lang === 'zh' ? 'zh-CN' : 'en');
+  document.querySelectorAll('[data-lang]').forEach(function (el) {
+    if (el.tagName === 'BUTTON' && el.parentNode && el.parentNode.classList && el.parentNode.classList.contains('lang-switch')) return;
+    el.style.display = (el.getAttribute('data-lang') === lang) ? '' : 'none';
+  });
+  document.querySelectorAll('.lang-switch button').forEach(function (b) {
         var on = b.getAttribute('data-lang') === lang;
         b.classList.toggle('active', on);
         if (b.hasAttribute('aria-pressed')) b.setAttribute('aria-pressed', String(on));
@@ -126,6 +1340,7 @@
     apply(saved === 'zh' ? 'zh' : 'en');
     bind();
   })();
-  </script>
+</script>
+
 </body>
 </html>

@@ -2,7 +2,7 @@
 <html lang="zh-CN" data-lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
   <meta name="color-scheme" content="dark">
   <title data-title-en="DISTRIBUTED MONITORING SYSTEM · OBSERVATION NETWORK" data-title-zh="自主观测系统 · 观测网络">DISTRIBUTED MONITORING SYSTEM · OBSERVATION NETWORK</title>
   <link rel="icon" href="data:,">
@@ -174,7 +174,7 @@
     @keyframes leaveFade{to{opacity:1}}
 
     @media (max-width:900px), (min-width:901px) and (max-width:1024px) and (orientation:portrait){
-      .main{grid-template-columns:1fr;grid-template-rows:auto minmax(300px,38vh) auto;gap:14px}
+      .main{grid-template-columns:1fr;grid-template-rows:auto auto auto;gap:14px}
       .archive{flex-direction:column;overflow:hidden}
       .arc-foot{display:none}
       .side{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
@@ -184,10 +184,10 @@
       .top{padding:12px 16px}
       .brand p{display:none}
       .home-link{display:none}
-      .main{padding:10px;grid-template-rows:auto 300px auto;gap:10px}
+      .main{padding:10px;grid-template-rows:auto auto auto;gap:10px}
       #networkMap{min-height:300px}
       .side{grid-template-columns:1fr}
-      .dossier{left:10px;bottom:34px;min-width:190px;padding:10px 12px}
+      .dossier{left:10px;bottom:72px;min-width:190px;padding:10px 12px}
       .map-foot{flex-direction:column;align-items:flex-start;gap:4px}
     }
     /* V48.2 · Tablet 专用（768–1200px）：竖屏地图加大，横屏保持三栏平衡 */
@@ -237,6 +237,10 @@
         display:flex;align-items:center;justify-content:center;
         background:#020a12;color:#8ceaff;font-size:18px;letter-spacing:3px;text-align:center;
       }
+    }
+    @media (max-width:900px){
+      .main{min-height:100dvh}
+      .top{padding-left:max(1rem, env(safe-area-inset-left));padding-right:max(1rem, env(safe-area-inset-right));padding-top:max(0.5rem, env(safe-area-inset-top))}
     }
   </style>
 </head>
@@ -346,15 +350,15 @@
         <a class="enter" href="./dashboard.html" id="enterTerminal"><span class="enter-label"><span class="enter-base" data-lang="en">Enter Terminal</span><span class="enter-base" data-lang="zh">进入终端</span><span class="enter-shine" data-lang="en" aria-hidden="true">Enter Terminal</span><span class="enter-shine" data-lang="zh" aria-hidden="true">进入终端</span></span><span class="enter-beam" aria-hidden="true"></span><span class="enter-arrow" aria-hidden="true"><svg width="60" height="24" viewBox="0 0 60 24"><defs><linearGradient id="enterArrowGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#34536e"></stop><stop offset="0.55" stop-color="#5b84a3"></stop><stop offset="1" stop-color="#96bcd4"></stop></linearGradient></defs><path class="arrow-shape" d="M0 12 H55.2 M37.2 3.75 L55.2 12 M37.2 20.25 L55.2 12"></path><path class="flow-arrow" d="M0 12 H55.2 M37.2 3.75 L55.2 12 M37.2 20.25 L55.2 12"></path></svg></span></a>
       </div>
 
-      <div class="term future">
+      <div class="term active">
         <div class="th">
           <div class="id-left"><h4>DMS-A02</h4></div>
-          <span class="th-right"><span class="node-led off" aria-hidden="true"></span><b class="stlbl"><span data-lang="en">Not Deployed</span><span data-lang="zh">未部署</span></b></span>
+          <span class="th-right"><span class="node-led" aria-hidden="true"></span><b class="onlbl"><span data-lang="en">Deployed</span><span data-lang="zh">已部署</span></b></span>
         </div>
-        <p class="identity"><span data-lang="en">Future Observation Node</span><span data-lang="zh">未来观测节点</span></p>
+        <p class="identity"><span data-lang="en">Deployed Observation Node</span><span data-lang="zh">已部署观测节点</span></p>
         <div class="node-id">
           <span class="ni-num">02</span>
-          <span class="ni-label"><span data-lang="en">Future Node</span><span data-lang="zh">未来节点</span></span>
+          <span class="ni-label"><span data-lang="en">Deployed Node</span><span data-lang="zh">已部署节点</span></span>
         </div>
         <div class="ni-line" aria-hidden="true"></div>
         <a class="enter" href="./dashboard-a02.html"><span class="enter-label"><span class="enter-base" data-lang="en">Enter Terminal</span><span class="enter-base" data-lang="zh">进入终端</span><span class="enter-shine" data-lang="en" aria-hidden="true">Enter Terminal</span><span class="enter-shine" data-lang="zh" aria-hidden="true">进入终端</span></span><span class="enter-beam" aria-hidden="true"></span><span class="enter-arrow" aria-hidden="true"><svg width="60" height="24" viewBox="0 0 60 24"><defs><linearGradient id="enterArrowGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#34536e"></stop><stop offset="0.55" stop-color="#5b84a3"></stop><stop offset="1" stop-color="#96bcd4"></stop></linearGradient></defs><path class="arrow-shape" d="M0 12 H55.2 M37.2 3.75 L55.2 12 M37.2 20.25 L55.2 12"></path><path class="flow-arrow" d="M0 12 H55.2 M37.2 3.75 L55.2 12 M37.2 20.25 L55.2 12"></path></svg></span></a>

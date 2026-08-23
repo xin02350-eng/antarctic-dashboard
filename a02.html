@@ -2,61 +2,86 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
   <meta name="color-scheme" content="dark">
-  <title data-title-en="DISTRIBUTED MONITORING SYSTEM · DMS-A02" data-title-zh="自主观测系统 · DMS-A02">DISTRIBUTED MONITORING SYSTEM · DMS-A02</title>
+  <title data-title-en="DISTRIBUTED MONITORING SYSTEM" data-title-zh="自主观测系统">DISTRIBUTED MONITORING SYSTEM</title>
   <link rel="icon" href="data:,">
-  <link rel="stylesheet" href="./css/style.css?v=20260822b">
+  <link rel="stylesheet" href="./css/style.css?v=20260824c">
   <style>html{font-size:16px;font-size:clamp(12px, 0.833333vw, 20px);-webkit-text-size-adjust:100%;text-size-adjust:100%}
 
     /* V43 · Dashboard 简约化：隐藏底部统计卡（核心状态/传感器/地图/任务流保留） */
     body.dashboard-page .operation-grid{display:none}
-    /* DMS-A02：等待部署终端 */
-    body.a02-page .system-online{color:#e6c07a;border-color:rgba(230,192,122,.35)}
-    body.a02-page .system-online span:first-child{background:#e6c07a;box-shadow:0 0 8px rgba(230,192,122,.5);animation:none}
-    body.a02-page .cmd-value{color:#e6c07a}
-    body.a02-page .sensor-state{display:none}
-    body.a02-page .sensor-card{border-style:dashed;border-color:rgba(230,192,122,.22)}
-    body.a02-page .stream-row .stream-dot{background:#e6c07a}
     @media (min-width:901px){
-      body.a02-page .side-right{display:none}
-      body.a02-page .mission-grid{grid-template-columns:minmax(220px,26%) minmax(0,1fr)}
+      body.dashboard-page .side-right{display:none}
+      body.dashboard-page .mission-grid{grid-template-columns:minmax(220px,26%) minmax(0,1fr)}
     }
     @media (min-width:901px){
-      body.a02-page .mission-header{padding:22px 18px 12px}
-      body.a02-page .dashboard-kicker{letter-spacing:4px;font-size:9px}
-      body.a02-page .dashboard-title{font-size:clamp(22px,2.2vw,34px);letter-spacing:2px}
-      body.a02-page .mission-info{padding:8px 14px}
-      body.a02-page .sensor-card{padding:16px 16px 14px;background:linear-gradient(165deg,rgba(9,28,44,.5),rgba(5,16,28,.36));border:1px solid rgba(230,192,122,.2);border-top:2px solid rgba(230,192,122,.35);border-radius:8px;border-style:dashed}
-      body.a02-page .sensor-value strong{font-size:clamp(20px,1.8vw,28px)}
-      body.a02-page .map-panel{border-radius:10px;overflow:hidden}
-      body.a02-page .stream-panel{border-radius:8px}
-      body.a02-page .stream-row{padding:8px 14px}
+      body.dashboard-page .mission-header{padding:22px 18px 12px}
+      body.dashboard-page .dashboard-kicker{letter-spacing:4px;font-size:9px}
+      body.dashboard-page .dashboard-title{font-size:clamp(22px,2.2vw,34px);letter-spacing:2px}
+      body.dashboard-page .mission-info{padding:8px 14px}
+      body.dashboard-page .sensor-card{padding:16px 16px 14px;background:linear-gradient(165deg,rgba(9,28,44,.5),rgba(5,16,28,.36));border:1px solid rgba(140,234,255,.1);border-top:2px solid rgba(98,217,255,.4);border-radius:8px}
+      body.dashboard-page .sensor-value strong{font-size:clamp(20px,1.8vw,28px)}
+      body.dashboard-page .map-panel{border-radius:10px;overflow:hidden}
+      body.dashboard-page .stream-panel{border-radius:8px}
+      body.dashboard-page .stream-row{padding:8px 14px}
     }
-    @media (max-height:820px){
-      body.a02-page main{gap:0.375rem}
-      body.a02-page .mission-header{padding:12px 18px 8px}
-      body.a02-page .mission-info{padding:5px 14px}
-      body.a02-page #worldMap{height:clamp(8rem,20vh,18rem)!important;min-height:clamp(8rem,20vh,18rem)!important}
-      body.a02-page .sensor-card{min-height:7.25rem;padding:10px 14px 10px}
-      body.a02-page .sensor-value{margin:0.25rem 0 0.125rem}
-      body.a02-page .sensor-value strong{font-size:clamp(18px,1.6vw,24px)}
-      body.a02-page .sensor-meta{padding-top:0.25rem}
-      body.a02-page .stream-panel{padding:0.375rem 0.875rem}
-      body.a02-page .stream-row{padding:0.125rem 0}
+    .dashboard-hero .hero-controls{display:flex;align-items:center;gap:0.875rem}
+    .dashboard-hero .hero-controls .lang-switch{flex:none}
+    body.dashboard-page .mission-grid{grid-template-columns:minmax(0,1fr)}
+    body.dashboard-page .map-status-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+    body.dashboard-page .side-panel{grid-template-rows:auto repeat(2,minmax(0,1fr))}
+    /* V47.25 · 一屏版式：三状态模块等宽 + 纵向紧凑 */
+    body.dashboard-page .mission-info.dashboard-command-strip{grid-template-columns:repeat(3,1fr);gap:0.75rem;margin-top:0.5rem;padding:0 0.875rem}
+    body.dashboard-page .dashboard-command-strip .cmd-cell{padding:0.625rem 0.875rem;border-radius:0.5rem}
+    body.dashboard-page .cmd-value{font-size:1.25rem;margin-top:0.375rem}
+    body.dashboard-page .cmd-sub{margin-top:0.1875rem}
+    body.dashboard-page .mission-header{padding:0.75rem 1.125rem 0.375rem}
+    body.dashboard-page .mission-grid{margin-top:0.5rem}
+    body.dashboard-page main{min-height:calc(100vh - 0.25rem);padding-bottom:0.25rem}
+    body.dashboard-page .map-panel-head{padding:0.5rem 0.875rem}
+    body.dashboard-page .map-status-grid{margin:0.625rem 0 0.75rem}
+    body.dashboard-page #worldMap{flex:0 1 auto;height:clamp(18.75rem,52vh,38.75rem)}
+    body.dashboard-page .stream-panel{padding:0.375rem 0.875rem}
+    body.dashboard-page .stream-row{padding:0.25rem 0.625rem}
+    @media (max-height:850px){
+      body.dashboard-page .mission-header{padding:10px 18px 4px}
+      body.dashboard-page .dashboard-command-strip .cmd-cell{padding:8px 12px}
+      body.dashboard-page .cmd-value{font-size:18px}
+      body.dashboard-page .mission-grid{margin-top:6px}
+      body.dashboard-page #worldMap{height:clamp(240px,36vh,340px)}
+      body.dashboard-page .stream-row{padding:3px 8px}
     }
-    .a02-map-msg{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.5rem;z-index:5;pointer-events:none;background:rgba(3,13,24,.55)}
-    .a02-map-msg b{font-size:0.8125rem;letter-spacing:4px;color:#e6c07a;font-weight:500}
-    .a02-map-msg span{font-size:0.5625rem;letter-spacing:2px;color:#9ab8ca}
+    /* V47.26 · 单屏锁定：html/body 与主区域均锁定 100vh，禁止纵向滚动 */
+    html,body{height:100%;overflow:hidden}
+    body.dashboard-page .app{height:100vh;height:100dvh;overflow:hidden}
+    body.dashboard-page main{height:100vh;height:100dvh;min-height:0;overflow:hidden}
+    body.dashboard-page #mapGraticule{height:100%!important}
+    @media (max-width:768px){
+      body.dashboard-page main{overflow-y:auto}
+      .dashboard-hero .hero-controls .lang-switch{position:fixed;top:16px;right:12px;z-index:120}
+    }
+    /* V48.2 · Tablet 专用（768–1200px）：地图铺满，消除桌面压缩感 */
+    @media (min-width:768px) and (max-width:1200px){
+      body.dashboard-page main{display:flex;flex-direction:column}
+            body.dashboard-page .dashboard-hero{flex-direction:row;justify-content:space-between;align-items:center;gap:0.75rem}
+      body.dashboard-page .hero-main{min-width:0;flex:1 1 auto}
+      body.dashboard-page .hero-status{flex:none}
+      body.dashboard-page .dashboard-command-strip .cmd-cell{padding:0.5rem 0.625rem;min-height:0}
+      body.dashboard-page .stream-panel{margin-top:0}
+      body.dashboard-page .mission-grid{display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(22.5rem,1fr) auto;flex:1 1 auto;min-height:0}
+      body.dashboard-page .map-panel{grid-column:1;grid-row:1;min-height:0}
+      body.dashboard-page #worldMap{height:auto;flex:1 1 auto;min-height:16.25rem;max-height:none;aspect-ratio:auto}
+    }
   </style>
 
   <!-- Leaflet 地图（真实地图，由 main.js 初始化） -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-<style>.lang-float{position:fixed;top:1.75rem;right:2rem;z-index:120}.header-right{margin-right:9.375rem}@media (max-width:768px){.lang-float{top:18px;right:14px}.header-right{margin-right:0}}</style></head>
+</head>
 
 <!-- dashboard-page：Dashboard 专属样式作用域；ambient-theme：全局环境氛围 -->
-<body class="dashboard-page ambient-theme a02-page"><div class="lang-float"><div class="lang-switch"><span class="lang-pill" aria-hidden="true"></span><button type="button" data-lang="zh">中</button><button type="button" data-lang="en" class="active">EN</button></div></div>
+<body class="dashboard-page ambient-theme">
 
 <div class="app">
 
@@ -65,21 +90,19 @@
     <div class="brand">
       <div class="logo">DMS</div>
       <div>
-        <h1>DISTRIBUTED<br>MONITORING SYSTEM</h1>
+        <h1><span data-lang="en">DISTRIBUTED<br>MONITORING SYSTEM</span><span data-lang="zh">分布式监测系统</span></h1>
         <p data-i18n="brand_subtitle">Autonomous Environmental Observatory</p>
       </div>
     </div>
     <input type="checkbox" id="navToggle" class="nav-toggle" aria-hidden="true">
     <label for="navToggle" class="nav-toggle-btn" aria-label="MENU"><span></span><span></span><span></span></label>
     <nav class="sidebar-menu">
-      <a class="nav-item" href="./dashboard.html"><span data-lang="en">Dashboard</span><span data-lang="zh">仪表盘</span></a>
-      <a class="nav-item" href="./location.html"><span data-lang="en">Location</span><span data-lang="zh">位置</span></a>
-      <a class="nav-item" href="./sensors.html"><span data-lang="en">Sensors</span><span data-lang="zh">传感器</span></a>
-      <a class="nav-item" href="./telemetry.html"><span data-lang="en">DATA</span><span data-lang="zh">数据</span></a>
-      <a class="nav-item" href="./hardware.html"><span data-lang="en">Hardware</span><span data-lang="zh">硬件</span></a>
-      <a class="nav-item" href="./analysis.html"><span data-lang="en">Analysis</span><span data-lang="zh">分析</span></a>
-      <a class="nav-item active" href="./a02.html"><span data-lang="en">DMS-A02</span><span data-lang="zh">DMS-A02</span></a>
-      
+      <a class="nav-item active"><span data-lang="en">Dashboard</span><span data-lang="zh">仪表盘</span></a>
+      <a class="nav-item" href="./location-a02.html"><span data-lang="en">Location</span><span data-lang="zh">位置</span></a>
+      <a class="nav-item" href="./sensors-a02.html"><span data-lang="en">Sensors</span><span data-lang="zh">传感器</span></a>
+      <a class="nav-item" href="./telemetry-a02.html"><span data-lang="en">DATA</span><span data-lang="zh">数据</span></a>
+      <a class="nav-item" href="./hardware-a02.html"><span data-lang="en">Hardware</span><span data-lang="zh">硬件</span></a>
+      <a class="nav-item" href="./analysis-a02.html"><span data-lang="en">Analysis</span><span data-lang="zh">分析</span></a>
     </nav>
     <label for="navToggle" class="nav-overlay" aria-hidden="true"></label>
   </aside>
@@ -90,13 +113,16 @@
     <!-- 顶部：任务标题区 -->
     <header class="mission-header dashboard-hero">
       <div class="hero-main">
-        <div class="dashboard-kicker"><span data-lang="en">DISTRIBUTED MONITORING SYSTEM · TERMINAL DMS-A02</span><span data-lang="zh">自主观测系统 · 终端 DMS-A02</span></div>
+        <div class="dashboard-kicker"><span data-lang="en">AUTONOMOUS DIGITAL TWIN · MISSION CONTROL</span><span data-lang="zh">自主数字孪生 · 任务控制</span></div>
         <div class="dashboard-title"><span data-lang="en">AUTONOMOUS MONITORING SYSTEM</span><span data-lang="zh">自主观测系统</span></div>
         <div class="hero-sub"><span data-lang="en">AUTONOMOUS ENVIRONMENTAL MONITORING PLATFORM · STATION DMS-A02</span><span data-lang="zh">自主环境监测平台 · 站点 DMS-A02</span></div>
       </div>
-      <div class="hero-status">
-        <div class="system-online"><span></span><span data-lang="en">WAITING FOR DEPLOYMENT</span><span data-lang="zh">等待部署</span></div>
-        <div class="hero-station"><span data-lang="en">STATION DMS-A02</span><span data-lang="zh">站点 DMS-A02</span></div>
+      <div class="hero-controls">
+        <div class="hero-status">
+          <div class="system-online"><span></span><span data-lang="en">SYSTEM ONLINE</span><span data-lang="zh">系统在线</span></div>
+          <div class="hero-station"><span data-lang="en">STATION DMS-A02</span><span data-lang="zh">站点 DMS-A02</span></div>
+        </div>
+        <div class="lang-switch"><span class="lang-pill" aria-hidden="true"></span><button type="button" data-lang="zh">中</button><button type="button" data-lang="en" class="active">EN</button></div>
       </div>
     </header>
 
@@ -104,8 +130,8 @@
     <section class="mission-info dashboard-command-strip">
       <div class="cmd-cell">
         <span class="cmd-label" data-i18n="mission_status">MISSION STATUS</span>
-        <strong class="cmd-value"><i class="cmd-led"></i><span data-lang="en">PENDING</span><span data-lang="zh">待部署</span></strong>
-        <span class="cmd-sub" data-lang="en">WAITING FOR DEPLOYMENT</span><span class="cmd-sub" data-lang="zh">等待部署</span>
+        <strong class="cmd-value"><i class="cmd-led"></i><span data-i18n="nominal">NOMINAL</span></strong>
+        <span class="cmd-sub" data-i18n="all_systems_check">ALL SYSTEMS CHECK</span>
       </div>
       <div class="cmd-cell">
         <span class="cmd-label" data-i18n="current_time">CURRENT TIME</span>
@@ -125,61 +151,21 @@
     <!-- 中部：大地图 + 两侧科研数据面板（非卡片堆叠） -->
     <section class="mission-grid">
 
-      <!-- 左侧面板：电力 / 环境 -->
-      <aside class="side-panel side-left">
-        <div class="side-panel-title" data-i18n="power_environment">POWER &amp; ENVIRONMENT</div>
-
-        <div class="status-card sensor-card">
-          <div class="sensor-head">
-            <svg class="sensor-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4.8 13.4h5.2L9 22l9.2-11.6H13z"/></svg>
-            <span class="sensor-name" data-i18n="voltage">VOLTAGE</span>
-            <span class="sensor-led"></span>
-          </div>
-          <div class="sensor-value"><strong id="voltage">--</strong><span class="sensor-unit">V</span></div>
-          <div class="sensor-meta"><span data-i18n="battery_bus">BATTERY BUS</span><span class="sensor-state" data-i18n="nominal">NOMINAL</span></div>
-          <span class="sensor-index">01</span>
-        </div>
-
-        <div class="status-card sensor-card">
-          <div class="sensor-head">
-            <svg class="sensor-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h3l2-6 4 12 2-6h7"/></svg>
-            <span class="sensor-name" data-i18n="current">CURRENT</span>
-            <span class="sensor-led"></span>
-          </div>
-          <div class="sensor-value"><strong id="current">--</strong><span class="sensor-unit">mA</span></div>
-          <div class="sensor-meta"><span data-i18n="load_draw">LOAD DRAW</span><span class="sensor-state" data-i18n="nominal">NOMINAL</span></div>
-          <span class="sensor-index">02</span>
-        </div>
-
-        <div class="status-card sensor-card">
-          <div class="sensor-head">
-            <svg class="sensor-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 4a2 2 0 1 1 4 0v9.5a4 4 0 1 1-4 0V4z"/><path d="M12 9v7"/></svg>
-            <span class="sensor-name" data-i18n="temperature">TEMPERATURE</span>
-            <span class="sensor-led"></span>
-          </div>
-          <div class="sensor-value"><strong id="insideTemp">--</strong><span class="sensor-unit">°C</span></div>
-          <div class="sensor-meta"><span data-i18n="cabin">CABIN</span><span><span data-i18n="outside">OUTSIDE</span> <b id="outsideTemp">--</b>°C</span></div>
-          <span class="sensor-index">03</span>
-        </div>
-      </aside>
-
       <!-- 中部：地图战区（视觉中心） -->
       <section class="map-panel">
         <div class="map-panel-head">
           <div class="panel-title" data-i18n="node_positioning">NODE POSITIONING · GPS TRACKING</div>
-          <div class="panel-title-tag"><span data-lang="en">PENDING DEPLOYMENT</span><span data-lang="zh">等待部署</span></div>
+          <div class="panel-title-tag" data-i18n="live_telemetry_feed">LIVE TELEMETRY FEED</div>
         </div>
 
         <div class="map-status-grid">
-          <div class="map-cell"><span data-i18n="gps_status">GPS STATUS</span><strong data-lang="en">PENDING</strong><strong data-lang="zh">待部署</strong><i class="map-cell-led"></i></div>
+          <div class="map-cell"><span data-i18n="gps_status">GPS STATUS</span><strong data-i18n="tracking">TRACKING</strong><i class="map-cell-led"></i></div>
           <div class="map-cell" id="mapModeCell"><span data-i18n="mode">MODE</span><strong id="mapModeValue">--</strong><i class="map-cell-led"></i></div>
           <div class="map-cell"><span data-i18n="power">POWER</span><strong data-i18n="solar_battery">SOLAR + BATTERY</strong><i class="map-cell-led"></i></div>
-          <div class="map-cell"><span data-i18n="comms">COMMS</span><strong data-i18n="data_link">DATA LINK</strong><i class="map-cell-led"></i></div>
         </div>
 
         <!-- #worldMap 由 main.js 创建真实 Leaflet 地图；以下装饰层均为 pointer-events:none，不影响拖拽缩放 -->
         <div id="worldMap">
-          <div class="a02-map-msg"><b>DMS-A02</b><span data-lang="en">PENDING DEPLOYMENT</span><span data-lang="zh">等待部署</span></div>
           <div class="map-layer map-tint" aria-hidden="true"></div>
           <canvas id="mapGraticule" class="map-layer map-graticule" aria-hidden="true"></canvas>
           <div class="map-layer map-scan" aria-hidden="true"></div>
@@ -199,7 +185,7 @@
 
       <!-- 右侧面板：气候 / 通信 -->
       <aside class="side-panel side-right">
-        <div class="side-panel-title" data-i18n="climate_comms">CLIMATE &amp; COMMS</div>
+        <div class="side-panel-title"><span data-lang="en">CLIMATE</span><span data-lang="zh">气候</span></div>
 
         <div class="status-card sensor-card">
           <div class="sensor-head">
@@ -223,16 +209,6 @@
           <span class="sensor-index">05</span>
         </div>
 
-        <div class="status-card sensor-card">
-          <div class="sensor-head">
-            <svg class="sensor-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20a12 12 0 0 1 16 0"/><path d="M8 16a8 8 0 0 1 8 0"/><circle cx="12" cy="12" r="1.6"/></svg>
-            <span class="sensor-name" data-i18n="data_link">DATA LINK</span>
-            <span class="sensor-led"></span>
-          </div>
-          <div class="sensor-value"><strong id="gpsStatusPage">--</strong><span class="sensor-unit" data-i18n="fix">FIX</span></div>
-          <div class="sensor-meta"><span><span data-i18n="satellites">SATELLITES</span> <b id="satelliteSmall">--</b></span><span class="sensor-state" data-i18n="nominal">NOMINAL</span></div>
-          <span class="sensor-index">06</span>
-        </div>
       </aside>
     </section>
 
@@ -259,8 +235,9 @@
     <section class="stream-panel">
       <div class="panel-title" data-i18n="mission_stream">MISSION STREAM</div>
       <div class="stream">
-        <div class="stream-row"><i class="stream-dot"></i><span data-lang="en">SYSTEM AWAITING DEPLOYMENT</span><span data-lang="zh">系统等待部署</span><em data-lang="en">PENDING</em><em data-lang="zh">待部署</em></div>
-        <div class="stream-row"><i class="stream-dot"></i><span data-lang="en">DATA LINK STANDBY</span><span data-lang="zh">数据链路待命</span><em data-lang="en">STANDBY</em><em data-lang="zh">待命</em></div>
+        <div class="stream-row"><i class="stream-dot"></i><span data-i18n="stream_env">ENVIRONMENT DATA ACQUISITION ACTIVE</span><em data-i18n="running">RUNNING</em></div>
+        <div class="stream-row"><i class="stream-dot"></i><span data-i18n="stream_gps">SATELLITE POSITIONING ACTIVE</span><em data-i18n="running">RUNNING</em></div>
+        <div class="stream-row"><i class="stream-dot"></i><span data-i18n="stream_long">LONG TERM MONITORING MODE</span><em data-i18n="running">RUNNING</em></div>
       </div>
     </section>
 
@@ -285,8 +262,8 @@
 
 <!-- 页面级扫描线与设备编号铭牌（氛围层，不拦截交互） -->
 <div class="scan-line" aria-hidden="true"></div>
-
 <!-- 数据核心与地图初始化（不允许修改） -->
+<script src="./js/main.js?v=20260824f"></script>
 
 <!-- =========================================================
      Dashboard 专属前端装饰层（纯原生 JavaScript）
@@ -362,6 +339,24 @@
   /* 经纬网：步长随缩放级别自适应，保证任何缩放下网格都清晰可见 */
   function drawGraticule(map, ctx, w, h) {
     ctx.clearRect(0, 0, w, h);
+    /* 底层蓝图网格：固定像素间距铺满整个地图容器，四边完整连续 */
+    var gstep = 48;
+    ctx.strokeStyle = 'rgba(140,234,255,.055)';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    for (var gx = 0; gx <= w; gx += gstep) { ctx.moveTo(gx, 0); ctx.lineTo(gx, h); }
+    for (var gy = 0; gy <= h; gy += gstep) { ctx.moveTo(0, gy); ctx.lineTo(w, gy); }
+    ctx.stroke();
+    ctx.strokeStyle = 'rgba(140,234,255,.04)';
+    ctx.beginPath();
+    for (var gk = -h; gk <= w; gk += gstep) {
+      var gx1 = gk >= 0 ? gk : 0;
+      var gy1 = gk >= 0 ? 0 : -gk;
+      var gx2, gy2;
+      if (w - gk <= h) { gx2 = w; gy2 = w - gk; } else { gx2 = gk + h; gy2 = h; }
+      ctx.moveTo(gx1, gy1); ctx.lineTo(gx2, gy2);
+    }
+    ctx.stroke();
     var b = map.getBounds();
     var z = map.getZoom();
     var baseStep = z >= 10 ? 0.25 : z >= 8 ? 0.5 : z >= 6 ? 1 : z >= 4 ? 5 : 10;
@@ -466,7 +461,7 @@
 
     ctx.fillStyle = 'rgba(98,217,255,.4)';
     ctx.font = '8px "Segoe UI", sans-serif';
-    ctx.fillText('R≈300KM · DMS-A01 ZONE', p.x + 5, p.y - r - 3);
+    ctx.fillText('R≈300KM · DMS-A02 ZONE', p.x + 5, p.y - r - 3);
   }
 
   /* 将雷达扫掠 / 扩散光圈 / 定位核心移动到真实标记点 */

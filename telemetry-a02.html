@@ -2,49 +2,161 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <meta name="color-scheme" content="dark">
-  <title data-title-en="DISTRIBUTED MONITORING SYSTEM · DMS-A02" data-title-zh="自主观测系统 · DMS-A02">DISTRIBUTED MONITORING SYSTEM · DMS-A02</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+  <title data-title-en="DISTRIBUTED MONITORING SYSTEM - DATA" data-title-zh="自主观测系统 · 数据">DISTRIBUTED MONITORING SYSTEM - DATA</title>
   <link rel="icon" href="data:,">
-  <link rel="stylesheet" href="./css/style.css?v=20260822b">
+  <link rel="stylesheet" href="./css/style.css?v=20260824c">
+
+  <!-- REAL TIME TELEMETRY：纯表格 + 固定表头（仅本页） -->
   <style>html{font-size:16px;font-size:clamp(12px, 0.833333vw, 20px);-webkit-text-size-adjust:100%;text-size-adjust:100%}
 
-
-    /* V47 · 待部署节点统一视觉 */
-    body .system-online.pending{border-color:rgba(124,151,169,.35);color:#9fb3c2}
-    body .system-online.pending > span:first-child{background:#7c97a9;box-shadow:0 0 8px rgba(124,151,169,.45)}
-    .waiting-panel{max-width:47.5rem;margin:3.5rem auto;padding:3.25rem 2.5rem;border:1px solid rgba(140,234,255,.14);border-radius:0.625rem;background:linear-gradient(165deg,rgba(9,28,44,.5),rgba(5,16,28,.36));text-align:center;position:relative}
-    .waiting-panel::before{content:"";position:absolute;left:0;top:0;right:0;height:0.125rem;background:linear-gradient(90deg,rgba(124,151,169,.7),rgba(98,217,255,.12))}
-    .waiting-mark{width:4rem;height:4rem;margin:0 auto 1.375rem;border:1px solid rgba(140,234,255,.22);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#7c97a9}
-    .waiting-mark svg{width:1.75rem;height:1.75rem}
-    .waiting-eyebrow{font-size:0.5625rem;letter-spacing:3px;color:rgba(140,234,255,.55);text-transform:uppercase;margin-bottom:0.875rem}
-    .waiting-panel h2{font-size:clamp(1.25rem,2.2vw,1.875rem);font-weight:200;letter-spacing:3px;color:#eafcff;margin-bottom:0.875rem}
-    .waiting-panel p{font-size:0.75rem;line-height:2;color:#9ab8ca;max-width:32.5rem;margin:0 auto}
-    .waiting-tag{display:inline-block;margin-top:1.5rem;font-size:0.5625rem;letter-spacing:2.5px;color:#9fb3c2;border:1px solid rgba(124,151,169,.35);border-radius:999px;padding:0.375rem 1rem;text-transform:uppercase}
-    .placeholder-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0.875rem;max-width:47.5rem;margin:1.5rem auto 3.75rem}
-    .placeholder-cell{border:1px solid rgba(140,234,255,.1);border-radius:0.5rem;padding:1.125rem;background:rgba(7,22,36,.3);text-align:center}
-    .placeholder-cell b{display:block;font-size:1.375rem;font-weight:300;color:#6f93a8;letter-spacing:2px}
-    .placeholder-cell span{display:block;font-size:0.5rem;letter-spacing:2px;color:#6f93a8;margin-top:0.5rem;text-transform:uppercase}
-    body.location-page main,body.sensors-page main,body.telemetry-page main,body.hardware-page main,body.analysis-page main{height:auto!important;min-height:100vh;overflow:visible!important;display:block;padding:1.625rem 1.875rem}
-    @media (max-width:700px){
-      .waiting-panel{margin:30px 14px;padding:36px 22px}
-      .placeholder-grid{grid-template-columns:1fr;margin:18px 14px 40px}
+    .telemetry-page .tel-scroll{
+      max-height:calc(100vh - 13.125rem);
+      overflow:auto;
+      border:1px solid rgba(98,217,255,.14);
+      border-radius:0.5rem;
+      background:rgba(4,16,27,.45);
     }
-      .lang-float{position:fixed;top:1.625rem;right:2rem;z-index:120}
-      .header-right{margin-right:9.375rem}
+    .telemetry-page .tel-table{ min-width:67.5rem; }
+    .telemetry-page .tel-table thead th{
+      position:sticky;
+      top:0;
+      z-index:2;
+      background:#081b2c;
+      border-bottom:1px solid rgba(98,217,255,.2);
+    }
+    .telemetry-page .tel-table thead th em{
+      display:block;
+      font-style:normal;
+      font-size:0.5rem;
+      letter-spacing:1px;
+      color:#6f93a8;
+      font-weight:400;
+    }
+    /* ============ 终端自定义滚动组件 ============ */
+    /* 原生滚动条彻底隐藏（避免系统白色样式），视觉完全由网页控制；
+       滚轮 / 触控板 / 触摸滚动仍由 overflow:auto 提供 */
+    @media (min-width:769px){
+      body.telemetry-page{
+        height:100vh;
+        overflow:hidden;
+      }
+      body.telemetry-page main{
+        height:100vh;
+        overflow:hidden;
+      }
+      .telemetry-page .tel-loading{
+        padding:0.375rem 0 0;
+      }
+    }
+    .telemetry-page .telemetry-stream{
+      max-height:none;
+      min-height:0;
+      overflow:visible;
+      padding-right:0;
+    }
+    .telemetry-page .tel-scroll{
+      position:relative;
+      scrollbar-width:none;
+      -ms-overflow-style:none;
+      padding-right:0.625rem;
+      padding-bottom:0.625rem;
+    }
+    .telemetry-page .tel-scroll::-webkit-scrollbar,
+    .telemetry-page .telemetry-stream::-webkit-scrollbar{
+      width:0;
+      height:0;
+      display:none;
+    }
+    .telemetry-page .tel-scroll-wrap{
+      position:relative;
+    }
+    .telemetry-page .tel-sb{
+      position:absolute;
+      z-index:5;
+      opacity:0;
+      pointer-events:none;
+      transition:opacity .25s ease;
+      background:linear-gradient(180deg, rgba(8,26,42,.55), rgba(5,16,28,.4));
+      border:1px solid rgba(98,217,255,.07);
+      border-radius:0.3125rem;
+      box-shadow:inset 0 0 6px rgba(2,10,18,.5);
+    }
+    .telemetry-page .tel-sb-v{
+      top:0.125rem;
+      right:0.125rem;
+      bottom:0.125rem;
+      width:0.5rem;
+    }
+    .telemetry-page .tel-sb-h{
+      left:0.125rem;
+      right:0.125rem;
+      bottom:0.125rem;
+      height:0.5rem;
+    }
+    .telemetry-page .tel-sb-thumb{
+      position:absolute;
+      left:0.0625rem;
+      top:0;
+      background:linear-gradient(135deg, rgba(98,217,255,.65), rgba(140,234,255,.35));
+      border:1px solid rgba(140,234,255,.18);
+      border-radius:0.625rem;
+      box-shadow:inset 0 1px 1px rgba(255,255,255,.12), 0 0 4px rgba(98,217,255,.12);
+    }
+    .telemetry-page .tel-sb-v .tel-sb-thumb{
+      width:100%;
+    }
+    .telemetry-page .tel-sb-h .tel-sb-thumb{
+      left:0;
+      top:0.0625rem;
+      height:100%;
+    }
+    .telemetry-page .tel-sb-thumb:hover{
+      background:linear-gradient(135deg, rgba(140,234,255,.85), rgba(98,217,255,.5));
+      box-shadow:inset 0 1px 1px rgba(255,255,255,.18), 0 0 6px rgba(98,217,255,.18);
+    }
+    .telemetry-page .tel-sb-thumb:active{
+      background:linear-gradient(135deg, rgba(160,240,255,.9), rgba(120,225,255,.55));
+      box-shadow:inset 0 1px 1px rgba(255,255,255,.22), 0 0 8px rgba(98,217,255,.22);
+    }
+    /* 鼠标移入显示，移出隐藏 */
+    .telemetry-page .tel-scroll-wrap:hover .tel-sb{
+      opacity:1;
+      pointer-events:auto;
+    }
+    @media (max-width:768px){
+      .telemetry-page .tel-sb-v{
+        width:6px;
+      }
+      .telemetry-page .tel-sb-h{
+        height:6px;
+      }
+    }
+    .telemetry-page .gps-ok{ color:#00e5a8; }
+    .telemetry-page .gps-bad{ color:#ff9aa4; }
+    .telemetry-page .tel-loading{
+      font-size:0.5625rem;
+      letter-spacing:2px;
+      color:#6f93a8;
+      text-align:center;
+      padding:0.5rem 0 0.125rem;
+    }
   </style>
-</head>
-<body class="ambient-theme telemetry-page">
 
-<div class="lang-float"><div class="lang-switch"><span class="lang-pill" aria-hidden="true"></span><button type="button" data-lang="zh">中</button><button type="button" data-lang="en" class="active">EN</button></div></div>
+  <!-- Telemetry 大量表格：雪花降载至 50%（不关闭） -->
+  <script>window.__antSnowScale = 0.5;</script>
+<style>.lang-float{position:fixed;top:1.75rem;right:2rem;z-index:120}.header-right{margin-right:9.375rem}@media (max-width:768px){.lang-float{top:18px;right:14px}.header-right{margin-right:0}}</style></head>
 
+<body class="ambient-theme telemetry-page"><div class="lang-float"><div class="lang-switch"><span class="lang-pill" aria-hidden="true"></span><button type="button" data-lang="zh">中</button><button type="button" data-lang="en" class="active">EN</button></div></div>
+
+<div class="app">
 
   <aside class="sidebar">
     <div class="brand">
       <div class="logo">DMS</div>
       <div>
         <h1><span data-lang="en">DISTRIBUTED<br>MONITORING SYSTEM</span><span data-lang="zh">分布式监测系统</span></h1>
-        <p><span data-lang="en">Autonomous Environmental Observatory</span><span data-lang="zh">自主环境观测平台</span></p>
+        <p data-i18n="brand_subtitle">Autonomous Environmental Observatory</p>
       </div>
     </div>
     <input type="checkbox" id="navToggle" class="nav-toggle" aria-hidden="true">
@@ -53,40 +165,353 @@
       <a class="nav-item" href="./dashboard-a02.html"><span data-lang="en">Dashboard</span><span data-lang="zh">仪表盘</span></a>
       <a class="nav-item" href="./location-a02.html"><span data-lang="en">Location</span><span data-lang="zh">位置</span></a>
       <a class="nav-item" href="./sensors-a02.html"><span data-lang="en">Sensors</span><span data-lang="zh">传感器</span></a>
-      <a class="nav-item active" href="./telemetry-a02.html"><span data-lang="en">DATA</span><span data-lang="zh">数据</span></a>
+      <a class="nav-item active"><span data-lang="en">DATA</span><span data-lang="zh">数据</span></a>
       <a class="nav-item" href="./hardware-a02.html"><span data-lang="en">Hardware</span><span data-lang="zh">硬件</span></a>
-      <a class="nav-item" href="./analysis-a02.html"><span data-lang="en">Analysis</span><span data-lang="zh">分析</span></a>    </nav>
+      <a class="nav-item" href="./analysis-a02.html"><span data-lang="en">Analysis</span><span data-lang="zh">分析</span></a>
+      
+    </nav>
     <label for="navToggle" class="nav-overlay" aria-hidden="true"></label>
   </aside>
+
   <main>
+
     <header class="mission-header">
       <div>
         <h2><span data-lang="en">DATA</span><span data-lang="zh">数据</span></h2>
-        <p><span data-lang="en">Station DMS-A02 · awaiting deployment</span><span data-lang="zh">站点 DMS-A02 · 等待部署</span></p>
+        <p><span data-lang="en">AUTONOMOUS DATA TRANSMISSION</span><span data-lang="zh">自主采集数据回传</span></p>
       </div>
       <div class="header-right">
-        <div class="system-online pending"><span></span><span data-lang="en">AWAITING DEPLOYMENT</span><span data-lang="zh">等待部署</span></div>
+        <div class="system-online"><span></span><span data-lang="en">SYSTEM ONLINE</span><span data-lang="zh">系统在线</span></div>
         <div class="status-stack">
-          <span class="status-stack-label"><span data-lang="en">NODE STATUS</span><span data-lang="zh">节点状态</span></span>
-          <span class="status-stack-value"><span data-lang="en">NOT DEPLOYED</span><span data-lang="zh">未部署</span></span>
+          <span class="status-stack-label" data-lang="en">DATA LINK</span><span class="status-stack-label" data-lang="zh">数据链路</span>
+          <span class="status-stack-value" data-lang="en">LoRa Communication · ONLINE</span><span class="status-stack-value" data-lang="zh">LoRa通信 · 在线</span>
         </div>
       </div>
     </header>
-    <section class="waiting-panel">
-      <div class="waiting-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3.2"/><path d="M12 2a10 10 0 0 1 10 10M12 22a10 10 0 0 0 10-10M12 2a10 10 0 0 0-10 10M12 22a10 10 0 0 1-10-10"/></svg></div>
-      <div class="waiting-eyebrow"><span data-lang="en">FUTURE NODE · DMS-A02</span><span data-lang="zh">未来节点 · DMS-A02</span></div>
-      <h2><span data-lang="en">No Data Available</span><span data-lang="zh">暂无数据</span></h2>
-      <p><span data-lang="en">This module will activate once the station is deployed and telemetry is established.</span><span data-lang="zh">站点部署并建立遥测后，本模块将自动启用。</span></p>
-      <span class="waiting-tag"><span data-lang="en">Waiting for Deployment</span><span data-lang="zh">等待部署</span></span>
+
+    <!-- 遥测数据容器：id 必须保持 telemetryData（main.js 依赖此 ID） -->
+    <section class="panel hud-frame">
+        <div class="panel-title" id="dataPanelTitle">LATEST 20 RECORDS · 13 CHANNELS</div>
+      <div class="telemetry-stream" id="telemetryData"></div>
     </section>
-    <section class="placeholder-grid">
-      <div class="placeholder-cell"><b>--</b><span data-lang="en">DATA</span><span data-lang="zh">数据</span></div>
-      <div class="placeholder-cell"><b>--</b><span data-lang="en">STATUS</span><span data-lang="zh">状态</span></div>
-      <div class="placeholder-cell"><b>--</b><span data-lang="en">LINK</span><span data-lang="zh">链路</span></div>
-    </section>
+
   </main>
 </div>
 
+<!-- 环境氛围层：雪花画布 / 页面扫描线 / 设备编号铭牌 -->
+<!-- 全站暴风雪模块（模块化，自动创建背景/前景画布） -->
+<script src="./js/ambient.js?v=20260806b"></script>
+<div class="scan-line" aria-hidden="true"></div>
+
+<!-- 数据核心（main.js 保持不变：负责读取 data02.json 并写入 #telemetryData） -->
+<script src="./js/main.js?v=20260824f"></script>
+
+<!-- =========================================================
+     Telemetry 最小数据渲染层（纯显示逻辑，不改 main.js）
+     - 无 MutationObserver，无自触发，杜绝死循环
+     - 每 0.5 秒检查一次 main.js 的全局 DATA，就绪后渲染一次
+     - 若 main.js 数据 3 秒内未就绪，自行读取 data02.json 兜底
+     - 表头按数据字段自动生成，最近 20 条，不写死任何数据
+========================================================= -->
+<script>
+(function () {
+  'use strict';
+  var box = document.getElementById('telemetryData');
+  if (!box) return;
+  var L = function (k, p) { return window.ANX_T ? window.ANX_T(k, p) : k; };
+
+  /* ============ 字段元数据：A02 独立字段识别（data02 格式） ============ */
+  var FIELD_META = {
+    v:    { labelKey: 'voltage',          unit: 'V' },
+    a:    { labelKey: 'current',          unit: 'mA' },
+    s:    { labelKey: 'solar_irradiance', unit: 'W/m²' },
+    t:    { labelKey: 'inside_temp',      unit: '°C' },
+    k:    { labelKey: 'inside_humidity',  unit: '%RH' },
+    j:    { labelKey: 'outside_temp',     unit: '°C' },
+    h:    { labelKey: 'outside_humidity', unit: '%RH' },
+    x:    { labelKey: 'latitude',         unit: '°' },
+    y:    { labelKey: 'longitude',        unit: '°' },
+    n:    { labelKey: 'satellites',       unit: '' },
+    mode: { labelKey: 'mode',             unit: '' }
+  };
+  var KNOWN_ORDER = ['v', 'a', 's', 't', 'k', 'j', 'h', 'x', 'y', 'n', 'mode'];
+
+  /* 动态收集所有字段（含 i/q/r/e 等未知字段），保持稳定顺序 */
+  function collectKeys(list) {
+    var keys = [];
+    var seen = {};
+    list.forEach(function (r) {
+      Object.keys(r).forEach(function (k) {
+        if (k === 'time' || k === 'g' || seen[k]) return;
+        seen[k] = true;
+        keys.push(k);
+      });
+    });
+    keys.sort(function (a, b) {
+      var ia = KNOWN_ORDER.indexOf(a), ib = KNOWN_ORDER.indexOf(b);
+      if (ia >= 0 && ib >= 0) return ia - ib;
+      if (ia >= 0) return -1;
+      if (ib >= 0) return 1;
+      return a < b ? -1 : (a > b ? 1 : 0);
+    });
+    return keys;
+  }
+
+  function metaOf(k) {
+    return FIELD_META[k] ? { label: L(FIELD_META[k].labelKey), unit: FIELD_META[k].unit } : { label: k.toUpperCase(), unit: '' };
+  }
+
+  /* 本地时间格式化：YYYY-MM-DD HH:mm（保留分钟，不依赖 main.js） */
+  function fmtTime(t) {
+    if (!t) return '--';
+    var d = window.ANX_PARSE_TIME ? window.ANX_PARSE_TIME(t) : new Date(t);
+    if (!d || isNaN(d.getTime())) return String(t);
+    function p(n) { return String(n).padStart(2, '0'); }
+    return d.getFullYear() + '-' + p(d.getMonth() + 1) + '-' + p(d.getDate()) +
+      ' ' + p(d.getHours()) + ':' + p(d.getMinutes());
+  }
+
+  /* NULL 一律显示 --，不补 0、不插值 */
+  function fmtVal(v, unit) {
+    if (v === null || v === undefined || v === '') return '--';
+    var n = (typeof v === 'number') ? parseFloat(v.toFixed(2)) : v;
+    return unit ? n + ' ' + unit : String(n);
+  }
+
+  function modeInfo(m) {
+    var raw = (m === null || m === undefined || m === '') ? 'N' : String(m);
+    var key = raw === 'E' ? 'emergency' : (raw === 'S' ? 'standby' : 'normal');
+    return {
+      key: key,
+      st: L(key),
+      cls: raw === 'E' ? 'm-emergency' : (raw === 'S' ? 'm-standby' : 'm-normal')
+    };
+  }
+
+  function gpsInfo() {
+    return { key: 'ok', text: '--', cls: '' };
+  }
+
+  /* ============ 高性能分批渲染：不全量创建 DOM ============ */
+  var BATCH = 50;
+  var rowsHtml = [];
+  var renderedCount = 0;
+  var allDone = false;
+  var loadingBusy = false;
+  var scrollEl = null;
+  var tbodyEl = null;
+  var loadEl = null;
+
+  function rowHtml(d, keys) {
+    var mi = modeInfo(d.mode);
+    var gi = gpsInfo();
+    var recCls = (mi.key === 'emergency' || gi.key === 'bad') ? 'tel-alert' :
+      (mi.key === 'standby' ? 'tel-warn' : 'tel-ok');
+    var html = '<tr class="' + recCls + '">';
+    html += '<td class="tel-time">' + fmtTime(d.time) + '</td>';
+    html += '<td><span class="tel-mode ' + mi.cls + '">' + mi.st + '</span></td>';
+    keys.forEach(function (k) {
+      var m = metaOf(k);
+      var val = (k === 'mode') ? modeInfo(d[k]).st : fmtVal(d[k], m.unit);
+      var cls = '';
+      if (val === '--') cls += ' null-val';
+      html += '<td class="tel-val ' + cls.trim() + '">' + val + '</td>';
+    });
+    html += '</tr>';
+    return html;
+  }
+
+  function buildShell(keys) {
+    var html = '<div class="tel-scroll-wrap">';
+    html += '<div class="tel-scroll"><table class="tel-table"><thead><tr>';
+    html += '<th>' + L('time') + '</th><th>' + L('mode') + '</th>';
+    keys.forEach(function (k) {
+      var m = metaOf(k);
+      html += '<th>' + m.label + (m.unit ? '<em>(' + m.unit + ')</em>' : '') + '</th>';
+    });
+    html += '</tr></thead><tbody></tbody></table></div>';
+    html += '<div class="tel-sb tel-sb-v"><div class="tel-sb-thumb" data-dir="v"></div></div>';
+    html += '<div class="tel-sb tel-sb-h"><div class="tel-sb-thumb" data-dir="h"></div></div>';
+    html += '</div>';
+    html += '<div class="tel-loading">' + L('loading_history') + '</div>';
+    return html;
+  }
+
+  /* 追加一批（50 条），使用 DocumentFragment 批量挂载 */
+  function appendBatch() {
+    if (loadingBusy || allDone) return;
+    loadingBusy = true;
+    var batch = rowsHtml.slice(renderedCount, renderedCount + BATCH);
+    if (!batch.length) {
+      allDone = true;
+      loadingBusy = false;
+      if (loadEl) loadEl.textContent = L('all_loaded', { n: renderedCount });
+      return;
+    }
+    var frag = document.createDocumentFragment();
+    var tmp = document.createElement('tbody');
+    tmp.innerHTML = batch.join('');
+    while (tmp.firstChild) frag.appendChild(tmp.firstChild);
+    tbodyEl.appendChild(frag);
+    renderedCount += batch.length;
+    loadingBusy = false;
+    if (renderedCount >= rowsHtml.length) {
+      allDone = true;
+      if (loadEl) loadEl.textContent = L('all_loaded', { n: renderedCount });
+    } else if (loadEl) {
+      loadEl.textContent = L('history_progress', { a: renderedCount, b: rowsHtml.length });
+    }
+    updateSb();
+  }
+
+  /* 自定义滚动条：隐藏原生滚动条，视觉完全由网页控制 */
+  function updateSb() {
+    var sc = box.querySelector('.tel-scroll');
+    var tv = box.querySelector('.tel-sb-v .tel-sb-thumb');
+    var th = box.querySelector('.tel-sb-h .tel-sb-thumb');
+    if (!sc || !tv || !th) return;
+    var sy = sc.scrollHeight, cy = sc.clientHeight, st = sc.scrollTop;
+    var sx = sc.scrollWidth, cx = sc.clientWidth, sl = sc.scrollLeft;
+    if (sy > cy + 1) {
+      var hh = Math.max(26, Math.round(cy * cy / sy));
+      tv.style.height = hh + 'px';
+      tv.style.top = Math.round((cy - hh) * (st / (sy - cy))) + 'px';
+      tv.style.display = 'block';
+    } else {
+      tv.style.display = 'none';
+    }
+    if (sx > cx + 1) {
+      var hw = Math.max(26, Math.round(cx * cx / sx));
+      th.style.width = hw + 'px';
+      th.style.left = Math.round((cx - hw) * (sl / (sx - cx))) + 'px';
+      th.style.display = 'block';
+    } else {
+      th.style.display = 'none';
+    }
+  }
+
+  function initSb() {
+    var sc = box.querySelector('.tel-scroll');
+    if (!sc) return;
+    sc.addEventListener('scroll', updateSb, { passive: true });
+    window.addEventListener('resize', function () { setTimeout(updateSb, 60); });
+    /* 滑块拖拽（鼠标 / 触摸） */
+    box.querySelectorAll('.tel-sb-thumb').forEach(function (thumb) {
+      thumb.addEventListener('pointerdown', function (ev) {
+        ev.preventDefault();
+        var dir = thumb.getAttribute('data-dir');
+        var startX = ev.clientX, startY = ev.clientY;
+        var st0 = sc.scrollTop, sl0 = sc.scrollLeft;
+        function move(mv) {
+          if (dir === 'v') {
+            var hh = thumb.offsetHeight;
+            var maxTop = Math.max(1, sc.clientHeight - hh);
+            sc.scrollTop = st0 + (mv.clientY - startY) / maxTop * (sc.scrollHeight - sc.clientHeight);
+          } else {
+            var ww = thumb.offsetWidth;
+            var maxLeft = Math.max(1, sc.clientWidth - ww);
+            sc.scrollLeft = sl0 + (mv.clientX - startX) / maxLeft * (sc.scrollWidth - sc.clientWidth);
+          }
+        }
+        function up() {
+          window.removeEventListener('pointermove', move);
+          window.removeEventListener('pointerup', up);
+        }
+        window.addEventListener('pointermove', move);
+        window.addEventListener('pointerup', up);
+      });
+    });
+    updateSb();
+  }
+
+  /* 首屏未填满时自动继续加载 */
+  function ensureFill() {
+    if (!scrollEl || allDone) return;
+    if (tbodyEl.scrollHeight <= scrollEl.clientHeight + 2 && !loadingBusy) {
+      appendBatch();
+      if (!allDone) requestAnimationFrame(ensureFill);
+    }
+  }
+
+  /* 滚动接近底部时继续加载下一批 */
+  function wireScroll() {
+    if (!scrollEl) return;
+    scrollEl.addEventListener('scroll', function () {
+      if (allDone || loadingBusy) return;
+      if (scrollEl.scrollTop + scrollEl.clientHeight >= scrollEl.scrollHeight - 160) {
+        appendBatch();
+      }
+    }, { passive: true });
+  }
+
+  /* 渲染入口：已存在表格则跳过（幂等，无循环） */
+  var lastList = null;
+  function render(list, force) {
+    if (!list || !list.length) return;
+    if (box.querySelector('.tel-table')) {
+      if (!force) return;
+      box.innerHTML = '';
+      renderedCount = 0;
+      allDone = false;
+      loadingBusy = false;
+      rowsHtml = [];
+      scrollEl = null;
+      tbodyEl = null;
+      loadEl = null;
+    }
+    var keys = collectKeys(list);
+    var titleEl = document.getElementById('dataPanelTitle');
+    if (titleEl) titleEl.textContent = L('latest_records', { n: list.length, c: 13 });
+    box.innerHTML = buildShell(keys);
+    scrollEl = box.querySelector('.tel-scroll');
+    tbodyEl = box.querySelector('.tel-table tbody');
+    loadEl = box.querySelector('.tel-loading');
+    rowsHtml = list.slice().reverse().map(function (d) { return rowHtml(d, keys); });
+    renderedCount = 0;
+    allDone = false;
+    appendBatch();
+    wireScroll();
+    initSb();
+    requestAnimationFrame(ensureFill);
+    lastList = list;
+  }
+
+  /* 优先使用 main.js 的全局 DATA */
+  function readData() {
+    try {
+      if (typeof DATA !== 'undefined' && DATA && DATA.length) return DATA;
+    } catch (e) { /* DATA 未就绪时忽略 */ }
+    return null;
+  }
+
+  var tries = 0;
+  var fallbackSent = false;
+  var timer = setInterval(function () {
+    var data = readData();
+    if (data) {
+      render(data);
+    } else if (!fallbackSent && tries === 6) {
+      /* main.js 数据 3 秒未就绪：自行读取 data02.json 兜底（不改 main.js / data02.json） */
+      fallbackSent = true;
+      fetch('./data02.json?v=' + Date.now())
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (d) { if (d && d.length) render(d); })
+        .catch(function () { /* 网络失败保持空容器，由 main.js 报错 */ });
+    }
+    if (++tries > 60) clearInterval(timer);
+  }, 500);
+  if (window.addEventListener) {
+    window.addEventListener('anx:langchange', function () {
+      if (lastList) render(lastList, true);
+    });
+    window.addEventListener('anx:data', function () {
+      var d = readData();
+      if (d) render(d, true);
+    });
+  }
+})();
+</script>
+  <!-- 语言切换（全站统一） -->
   <script>
   (function () {
     function apply(lang) {

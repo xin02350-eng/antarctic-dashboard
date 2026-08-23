@@ -2,7 +2,7 @@
 <html lang="zh-CN" data-lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
   <meta name="color-scheme" content="dark">
   <title data-title-en="DISTRIBUTED MONITORING SYSTEM · EXPLORATION" data-title-zh="自主观测系统 · 探索序章">DISTRIBUTED MONITORING SYSTEM · EXPLORATION</title>
   <link rel="icon" href="data:,">
@@ -96,7 +96,7 @@
     .hero-content{position:relative;display:block}
     .hero-content>*{margin-left:0;padding-left:0;text-align:left}
     .kicker{display:flex;align-items:center;gap:1rem;font-size:0.6875rem;letter-spacing:.52em;color:rgba(140,234,255,.68);margin-bottom:2.125rem;text-transform:uppercase;opacity:0;transform:translateY(14px)}
-    .kicker::before{content:"";width:44px;height:1px;background:linear-gradient(90deg,rgba(98,217,255,.8),transparent)}
+    .kicker::before{content:"";width:80px;height:1px;background:linear-gradient(90deg,rgba(98,217,255,.8),transparent)}
     html[data-lang="zh"] .kicker{margin-bottom:1.875rem}
     .home-page.loaded .kicker{opacity:1;transform:none;transition:opacity .9s ease .4s,transform .9s ease .4s}
     .hero h1{font-size:36px;font-size:clamp(28px,3.2vw,55px);line-height:1.3;font-weight:200;letter-spacing:.1em;opacity:0;transform:translateY(20px)}
@@ -105,7 +105,7 @@
     .hero h1 em{font-style:normal;background:linear-gradient(180deg,#f2fdff 24%,#8ceaff 92%);-webkit-background-clip:text;background-clip:text;color:transparent}
     .hero h1 em:first-child{font-family:"Noto Sans SC","Segoe UI Light","Microsoft YaHei UI Light","Microsoft YaHei","PingFang SC",sans-serif;font-size:.6em;font-weight:300;letter-spacing:.34em;background:none;color:rgba(170,215,238,.82);-webkit-text-fill-color:rgba(170,215,238,.82);-webkit-mask-image:linear-gradient(90deg,#000 60%,transparent 98%);mask-image:linear-gradient(90deg,#000 60%,transparent 98%)}
     .hero h1 em:last-child{font-family:"Noto Serif SC","Source Han Serif SC","Songti SC","STSong","SimSun",serif;font-size:1em;font-weight:400;letter-spacing:.12em;margin-left:1.05em}
-    .hero h1 em:last-child::after{content:"";display:block;width:92%;max-width:26.25rem;height:1px;margin-top:1rem;background:linear-gradient(90deg,rgba(140,234,255,.55),rgba(140,234,255,.08) 72%,transparent);opacity:.8}
+    .hero h1 em:last-child::after{content:"";display:block;width:100%;min-width:28rem;max-width:34rem;height:1px;margin-top:1rem;background:linear-gradient(90deg,rgba(140,234,255,.55),rgba(140,234,255,.08) 72%,transparent);opacity:.8}
     html[data-lang="zh"] .hero h1{font-size:3.875rem}
     html[data-lang="zh"] .hero h1 em:first-child{font-family:"LXGW WenKai","Ma Shan Zheng","Zhi Mang Xing","STXingkai","KaiTi","STKaiti","楷体",cursive;letter-spacing:.38em;transform:scaleX(1.04);transform-origin:left center;color:rgba(190,228,244,.9);-webkit-text-fill-color:rgba(190,228,244,.9)}
     html[data-lang="zh"] .hero h1 em:last-child{font-family:"LXGW WenKai","Ma Shan Zheng","Zhi Mang Xing","STXingkai","KaiTi","STKaiti","楷体",cursive;letter-spacing:.30em;margin-left:calc(1.05em + 2.8125rem);font-weight:600;-webkit-text-stroke:0.7px rgba(140,205,235,.30);background:linear-gradient(180deg,#eaf8ff 0%,#b9e2f7 38%,#7fc4ea 72%,#4f8fb8 100%);-webkit-background-clip:text;background-clip:text;color:transparent;transform:scaleX(1.05);transform-origin:left center}
@@ -249,6 +249,13 @@
         background:#020a12;color:#8ceaff;font-size:18px;letter-spacing:3px;text-align:center;
       }
     }
+    /* 手机矮横屏：压缩首页，避免顶栏/CTA/理念文案重叠 */
+    @media (max-width:1024px) and (orientation:landscape) and (max-height:420px){
+      .hero{top:88px !important;bottom:auto !important;max-width:440px}
+      .hero h1{font-size:clamp(22px,4vw,30px) !important}
+      .hero .btn{top:auto !important;bottom:48px !important;left:22px !important}
+      .manifesto{display:none !important}
+    }
   </style>
 </head>
 <body class="home-page">
@@ -271,7 +278,7 @@
 
   <section class="hero">
     <div class="hero-content">
-      <div class="kicker"><span data-lang="en">Autonomous Observation Network</span><span data-lang="zh">自主观测网络</span></div>
+      <div class="kicker" aria-hidden="true"></div>
       <h1>
         <span data-lang="en"><em>From Observation,</em><em>Toward the Unknown</em></span>
         <span data-lang="zh"><em>始于观测，</em><em>走向未知</em></span>

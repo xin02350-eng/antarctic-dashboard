@@ -2,49 +2,60 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <meta name="color-scheme" content="dark">
-  <title data-title-en="DISTRIBUTED MONITORING SYSTEM · DMS-A03" data-title-zh="自主观测系统 · DMS-A03">DISTRIBUTED MONITORING SYSTEM · DMS-A03</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+  <title data-title-en="DISTRIBUTED MONITORING SYSTEM - SENSORS" data-title-zh="自主观测系统 · 传感器">DISTRIBUTED MONITORING SYSTEM - SENSORS</title>
   <link rel="icon" href="data:,">
-  <link rel="stylesheet" href="./css/style.css?v=20260822b">
+  <link rel="stylesheet" href="./css/style.css?v=20260824c">
+
+  <!-- Chart.js（图表引擎） -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Sensors 图表面板：右侧 REAL TIME 状态标（仅本页） -->
   <style>html{font-size:16px;font-size:clamp(12px, 0.833333vw, 20px);-webkit-text-size-adjust:100%;text-size-adjust:100%}
 
-
-    /* V47 · 待部署节点统一视觉 */
-    body .system-online.pending{border-color:rgba(124,151,169,.35);color:#9fb3c2}
-    body .system-online.pending > span:first-child{background:#7c97a9;box-shadow:0 0 8px rgba(124,151,169,.45)}
-    .waiting-panel{max-width:47.5rem;margin:3.5rem auto;padding:3.25rem 2.5rem;border:1px solid rgba(140,234,255,.14);border-radius:0.625rem;background:linear-gradient(165deg,rgba(9,28,44,.5),rgba(5,16,28,.36));text-align:center;position:relative}
-    .waiting-panel::before{content:"";position:absolute;left:0;top:0;right:0;height:0.125rem;background:linear-gradient(90deg,rgba(124,151,169,.7),rgba(98,217,255,.12))}
-    .waiting-mark{width:4rem;height:4rem;margin:0 auto 1.375rem;border:1px solid rgba(140,234,255,.22);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#7c97a9}
-    .waiting-mark svg{width:1.75rem;height:1.75rem}
-    .waiting-eyebrow{font-size:0.5625rem;letter-spacing:3px;color:rgba(140,234,255,.55);text-transform:uppercase;margin-bottom:0.875rem}
-    .waiting-panel h2{font-size:clamp(1.25rem,2.2vw,1.875rem);font-weight:200;letter-spacing:3px;color:#eafcff;margin-bottom:0.875rem}
-    .waiting-panel p{font-size:0.75rem;line-height:2;color:#9ab8ca;max-width:32.5rem;margin:0 auto}
-    .waiting-tag{display:inline-block;margin-top:1.5rem;font-size:0.5625rem;letter-spacing:2.5px;color:#9fb3c2;border:1px solid rgba(124,151,169,.35);border-radius:999px;padding:0.375rem 1rem;text-transform:uppercase}
-    .placeholder-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0.875rem;max-width:47.5rem;margin:1.5rem auto 3.75rem}
-    .placeholder-cell{border:1px solid rgba(140,234,255,.1);border-radius:0.5rem;padding:1.125rem;background:rgba(7,22,36,.3);text-align:center}
-    .placeholder-cell b{display:block;font-size:1.375rem;font-weight:300;color:#6f93a8;letter-spacing:2px}
-    .placeholder-cell span{display:block;font-size:0.5rem;letter-spacing:2px;color:#6f93a8;margin-top:0.5rem;text-transform:uppercase}
-    body.location-page main,body.sensors-page main,body.telemetry-page main,body.hardware-page main,body.analysis-page main{height:auto!important;min-height:100vh;overflow:visible!important;display:block;padding:1.625rem 1.875rem}
-    @media (max-width:700px){
-      .waiting-panel{margin:30px 14px;padding:36px 22px}
-      .placeholder-grid{grid-template-columns:1fr;margin:18px 14px 40px}
+    .sensors-page .sensor-grid .panel-title{
+      position:relative;
+      padding-right:4rem;
     }
-      .lang-float{position:fixed;top:1.625rem;right:2rem;z-index:120}
-      .header-right{margin-right:9.375rem}
+    .sensors-page .sensor-grid .panel-title::after{
+      content:"REAL TIME";
+      position:absolute;
+      right:0;
+      top:0.125rem;
+      font-size:0.5rem;
+      letter-spacing:1.5px;
+      color:#6f93a8;
+    }
+    html[data-lang="zh"] .sensors-page .sensor-grid .panel-title::after{
+      content:"实时";
+    }
+    @media (min-width:901px) and (max-width:1100px){
+      body.sensors-page .sensor-grid{
+        grid-template-columns:repeat(4,minmax(0,1fr))!important;
+        grid-template-rows:repeat(3,minmax(0,1fr))!important;
+        gap:0.375rem!important;
+      }
+      body.sensors-page .sensor-grid .panel{
+        padding:0.375rem 0.5rem!important;
+      }
+      body.sensors-page .sensor-grid canvas{
+        height:clamp(6.5rem,20vh,13rem)!important;
+      }
+    }
   </style>
-</head>
-<body class="ambient-theme sensors-page">
+<style>.lang-float{position:fixed;top:1.75rem;right:2rem;z-index:120}.header-right{margin-right:9.375rem}@media (max-width:768px){.lang-float{top:18px;right:14px}.header-right{margin-right:0}}</style></head>
 
-<div class="lang-float"><div class="lang-switch"><span class="lang-pill" aria-hidden="true"></span><button type="button" data-lang="zh">中</button><button type="button" data-lang="en" class="active">EN</button></div></div>
+<!-- ambient-theme：环境氛围（极光/雾效/雪花/扫描线）；sensors-page：本页专属样式 -->
+<body class="ambient-theme sensors-page"><div class="lang-float"><div class="lang-switch"><span class="lang-pill" aria-hidden="true"></span><button type="button" data-lang="zh">中</button><button type="button" data-lang="en" class="active">EN</button></div></div>
 
+<div class="app">
 
   <aside class="sidebar">
     <div class="brand">
       <div class="logo">DMS</div>
       <div>
         <h1><span data-lang="en">DISTRIBUTED<br>MONITORING SYSTEM</span><span data-lang="zh">分布式监测系统</span></h1>
-        <p><span data-lang="en">Autonomous Environmental Observatory</span><span data-lang="zh">自主环境观测平台</span></p>
+        <p data-i18n="brand_subtitle">Autonomous Environmental Observatory</p>
       </div>
     </div>
     <input type="checkbox" id="navToggle" class="nav-toggle" aria-hidden="true">
@@ -52,41 +63,401 @@
     <nav class="sidebar-menu">
       <a class="nav-item" href="./dashboard-a03.html"><span data-lang="en">Dashboard</span><span data-lang="zh">仪表盘</span></a>
       <a class="nav-item" href="./location-a03.html"><span data-lang="en">Location</span><span data-lang="zh">位置</span></a>
-      <a class="nav-item active" href="./sensors-a03.html"><span data-lang="en">Sensors</span><span data-lang="zh">传感器</span></a>
+      <a class="nav-item active"><span data-lang="en">Sensors</span><span data-lang="zh">传感器</span></a>
       <a class="nav-item" href="./telemetry-a03.html"><span data-lang="en">DATA</span><span data-lang="zh">数据</span></a>
       <a class="nav-item" href="./hardware-a03.html"><span data-lang="en">Hardware</span><span data-lang="zh">硬件</span></a>
-      <a class="nav-item" href="./analysis-a03.html"><span data-lang="en">Analysis</span><span data-lang="zh">分析</span></a>    </nav>
+      <a class="nav-item" href="./analysis-a03.html"><span data-lang="en">Analysis</span><span data-lang="zh">分析</span></a>
+      
+    </nav>
     <label for="navToggle" class="nav-overlay" aria-hidden="true"></label>
   </aside>
+
   <main>
+
     <header class="mission-header">
       <div>
-        <h2><span data-lang="en">Sensors</span><span data-lang="zh">传感器</span></h2>
-        <p><span data-lang="en">Station DMS-A03 · awaiting deployment</span><span data-lang="zh">站点 DMS-A03 · 等待部署</span></p>
+        <h2><span data-lang="en">ENVIRONMENT MONITORING</span><span data-lang="zh">环境监测</span></h2>
+        <p><span data-lang="en">Multi-channel sensor acquisition system</span><span data-lang="zh">多通道传感器采集系统</span></p>
       </div>
       <div class="header-right">
-        <div class="system-online pending"><span></span><span data-lang="en">AWAITING DEPLOYMENT</span><span data-lang="zh">等待部署</span></div>
+        <div class="system-online"><span></span><span data-lang="en">SYSTEM ONLINE</span><span data-lang="zh">系统在线</span></div>
         <div class="status-stack">
-          <span class="status-stack-label"><span data-lang="en">NODE STATUS</span><span data-lang="zh">节点状态</span></span>
-          <span class="status-stack-value"><span data-lang="en">NOT DEPLOYED</span><span data-lang="zh">未部署</span></span>
+          <span class="status-stack-label" data-lang="en">SENSOR ARRAY</span><span class="status-stack-label" data-lang="zh">传感器阵列</span>
+          <span class="status-stack-value" data-lang="en">Data Acquisition</span><span class="status-stack-value" data-lang="zh">数据采集单元</span>
         </div>
       </div>
     </header>
-    <section class="waiting-panel">
-      <div class="waiting-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3.2"/><path d="M12 2a10 10 0 0 1 10 10M12 22a10 10 0 0 0 10-10M12 2a10 10 0 0 0-10 10M12 22a10 10 0 0 1-10-10"/></svg></div>
-      <div class="waiting-eyebrow"><span data-lang="en">FUTURE NODE · DMS-A03</span><span data-lang="zh">未来节点 · DMS-A03</span></div>
-      <h2><span data-lang="en">No Data Available</span><span data-lang="zh">暂无数据</span></h2>
-      <p><span data-lang="en">This module will activate once the station is deployed and telemetry is established.</span><span data-lang="zh">站点部署并建立遥测后，本模块将自动启用。</span></p>
-      <span class="waiting-tag"><span data-lang="en">Waiting for Deployment</span><span data-lang="zh">等待部署</span></span>
+
+    <!-- 七通道传感器曲线（A03：无风速/风向/气压） -->
+    <section class="sensor-grid hud-frame">
+
+      <div class="panel">
+        <div class="panel-title"><span data-i18n="cabin_temperature">CABIN TEMPERATURE</span><br>RS485</div>
+        <canvas id="chartInTemp"></canvas>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title"><span data-i18n="cabin_humidity">CABIN HUMIDITY</span><br>RS485</div>
+        <canvas id="chartInHum"></canvas>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title"><span data-i18n="outside_temperature">OUTSIDE TEMPERATURE</span><br>SHT35</div>
+        <canvas id="chartOutTemp"></canvas>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title"><span data-i18n="outside_humidity">OUTSIDE HUMIDITY</span><br>SHT35</div>
+        <canvas id="chartOutHum"></canvas>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title"><span data-i18n="solar_radiation">SOLAR IRRADIANCE</span><br><span data-lang="en">Solar Radiation Sensor</span><span data-lang="zh">太阳能辐射传感器</span> · W/m²</div>
+        <canvas id="chartSolar"></canvas>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title" data-i18n="current_ma">CURRENT (mA)</div>
+        <canvas id="chartCurrent"></canvas>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title" data-i18n="voltage_title">VOLTAGE</div>
+        <canvas id="chartVoltage"></canvas>
+      </div>
+
     </section>
-    <section class="placeholder-grid">
-      <div class="placeholder-cell"><b>--</b><span data-lang="en">DATA</span><span data-lang="zh">数据</span></div>
-      <div class="placeholder-cell"><b>--</b><span data-lang="en">STATUS</span><span data-lang="zh">状态</span></div>
-      <div class="placeholder-cell"><b>--</b><span data-lang="en">LINK</span><span data-lang="zh">链路</span></div>
-    </section>
+
   </main>
 </div>
 
+<!-- 环境氛围层：雪花画布 / 页面扫描线 / 设备编号铭牌 -->
+<!-- 全站暴风雪模块（模块化，自动创建背景/前景画布） -->
+<script src="./js/ambient.js?v=20260806b"></script>
+<div class="scan-line" aria-hidden="true"></div>
+
+<!-- =========================================================
+     SOLAR IRRADIANCE 图表辅助配置（纯显示层）
+     不改 main.js：仅在创建 chartSolar 时接管呈现参数
+     - Y 轴强制 beginAtZero:true
+     - 根据真实数据最大值自动计算顶部空间（suggestedMax）
+     - 浅蓝曲线 + 面积渐变填充 + 细化网格线
+========================================================= -->
+<script>
+(function () {
+  'use strict';
+  var RealChart = window.Chart;
+  if (typeof RealChart !== 'function') return;
+
+  /* 十六进制颜色 → rgba（用于渐变填充） */
+  function hexToRgba(hex, a) {
+    var n = parseInt(hex.slice(1), 16);
+    return 'rgba(' + ((n >> 16) & 255) + ',' + ((n >> 8) & 255) + ',' + (n & 255) + ',' + a + ')';
+  }
+
+  window.Chart = function (ctx, cfg) {
+    /* 全图表统一科研风格：细线、圆滑曲线、小尺寸低透明数据点、渐变填充 */
+    if (ctx && cfg && ctx.id && ctx.id.indexOf('chart') === 0) {
+      var palette = {
+        chartInTemp: '#63C7FF',
+        chartOutTemp: '#63C7FF',
+        chartInHum: '#45E6D0',
+        chartOutHum: '#45E6D0',
+        chartSolar: '#FFD166',
+        chartCurrent: '#56F2A8',
+        chartVoltage: '#8CD9FF',
+        chartWind: '#A7C7E7',
+        chartPressure: '#7FD1AE',
+        chartWindDir: '#8CEAFF'
+      };
+      var color = palette[ctx.id] || '#8ceaff';
+
+      /* 颜色提亮（hover 增亮 / 光晕） */
+      function lighten(hex, amt) {
+        var n = parseInt(hex.slice(1), 16);
+        var r = ((n >> 16) & 255), g = ((n >> 8) & 255), b = (n & 255);
+        r = Math.round(r + (255 - r) * amt);
+        g = Math.round(g + (255 - g) * amt);
+        b = Math.round(b + (255 - b) * amt);
+        return 'rgb(' + r + ',' + g + ',' + b + ')';
+      }
+      cfg.options = cfg.options || {};
+      cfg.options.scales = cfg.options.scales || {};
+      cfg.options.scales.x = cfg.options.scales.x || {};
+      cfg.options.scales.y = cfg.options.scales.y || {};
+
+      /* 统一时间刻度：MM/DD HH（删除 :00 分钟） */
+      cfg.options.scales.x.ticks = cfg.options.scales.x.ticks || {};
+      cfg.options.scales.x.ticks.color = '#C7DDEA';
+      cfg.options.scales.x.ticks.callback = function (value) {
+        var label = (this && this.getLabelForValue) ? this.getLabelForValue(value) : String(value);
+        return String(label).replace(/:00$/, '');
+      };
+      cfg.options.scales.x.grid = { color: 'rgba(98,217,255,.07)' };
+      cfg.options.scales.y.grid = { color: 'rgba(98,217,255,.09)' };
+      cfg.options.scales.y.ticks = cfg.options.scales.y.ticks || {};
+      cfg.options.scales.y.ticks.color = '#6f93a8';
+
+      var ds = cfg.data.datasets[0];
+      ds.borderColor = color;
+      ds.borderWidth = 2;
+      ds.tension = 0.35;
+      ds.pointRadius = 0;        /* 隐藏常规数据点，仅 hover 显示 */
+      ds.pointHoverRadius = 5;
+      ds.pointBackgroundColor = color;
+      ds.pointBorderWidth = 0;
+      ds.pointHoverBorderWidth = 2;
+      ds.pointHoverBorderColor = color;
+      ds.pointHoverBackgroundColor = '#eafcff';
+      ds.hoverBorderColor = lighten(color, 0.35);
+      ds.hoverBorderWidth = 2;
+      ds.pointHitRadius = 4;
+      ds.spanGaps = false;       /* 严格真实数据：NULL 处断开，不插值、不连虚假线 */
+      ds.fill = true;
+      ds.backgroundColor = function (context) {
+        var chart = context.chart;
+        var area = chart.chartArea;
+        if (!area) return hexToRgba(color, 0.10);
+        var g = chart.ctx.createLinearGradient(0, area.top, 0, area.bottom);
+        g.addColorStop(0, hexToRgba(color, 0.20));
+        g.addColorStop(1, hexToRgba(color, 0));
+        return g;
+      };
+      /* 低存在感网格 */
+      cfg.options.scales.x.grid = { color: 'rgba(98,217,255,.05)' };
+      cfg.options.scales.y.grid = { color: 'rgba(98,217,255,.06)' };
+      cfg.options.scales.x.border = { color: 'rgba(98,217,255,.15)' };
+      cfg.options.scales.y.border = { color: 'rgba(98,217,255,.15)' };
+      /* 轻微数据流动感 + NASA 风格提示框 */
+      cfg.options.animation = cfg.options.animation || {};
+      cfg.options.animation.duration = 800;
+      cfg.options.plugins = cfg.options.plugins || {};
+      cfg.options.plugins.tooltip = cfg.options.plugins.tooltip || {};
+      var tt = cfg.options.plugins.tooltip;
+      tt.backgroundColor = 'rgba(4,17,29,.92)';
+      tt.borderColor = 'rgba(98,217,255,.35)';
+      tt.borderWidth = 1;
+      tt.titleColor = '#bfe9ff';
+      tt.bodyColor = '#dff6ff';
+      tt.padding = 8;
+      tt.cornerRadius = 4;
+
+      /* ---------- 自适应时间刻度（按真实数据跨度） ---------- */
+      function pad2(n) { return String(n).padStart(2, '0'); }
+
+      /* 原始时间序列：优先读全局 DATA（与图表标签同序），否则从标签解析 */
+      var rawTimes = [];
+      try {
+        if (typeof DATA !== 'undefined' && DATA && DATA.length) {
+          DATA.forEach(function (dd) {
+            rawTimes.push(dd && dd.time ? new Date(dd.time).getTime() : null);
+          });
+        }
+      } catch (e) { rawTimes = []; }
+
+      if (!rawTimes.length && cfg.data && cfg.data.labels && cfg.data.labels.length) {
+        var yearNow = new Date().getFullYear();
+        cfg.data.labels.forEach(function (lb) {
+          var m = /(\d{2})\/(\d{2})\s+(\d{2})/.exec(String(lb));
+          if (m) {
+            var dt = new Date(yearNow, +m[1] - 1, +m[2], +m[3]);
+            if (dt.getTime() > Date.now() + 15552000000) dt.setFullYear(yearNow - 1);
+            rawTimes.push(dt.getTime());
+          } else {
+            rawTimes.push(null);
+          }
+        });
+      }
+
+      var validT = rawTimes.filter(function (t) { return t; });
+      var spanMs = 0;
+      if (validT.length > 1) {
+        spanMs = Math.max.apply(null, validT) - Math.min.apply(null, validT);
+      }
+
+      function fmtTick(ts) {
+        if (!ts) return '';
+        var d = new Date(ts);
+        var hh = pad2(d.getHours());
+        if (spanMs <= 86400000) return hh;                       /* ≤24h：HH */
+        if (spanMs <= 604800000) return pad2(d.getMonth() + 1) + '-' + pad2(d.getDate()) + ' ' + hh; /* ≤7d：MM-DD HH */
+        return pad2(d.getMonth() + 1) + '-' + pad2(d.getDate()); /* >7d：MM-DD */
+      }
+
+      /* 直接重写标签为自适应格式（Chart.js 分类轴会原样渲染标签，
+         避免刻度回调收到索引而非标签导致时间轴显示数字） */
+      if (cfg.data && cfg.data.labels && cfg.data.labels.length &&
+          rawTimes.length === cfg.data.labels.length) {
+        cfg.data.labels = cfg.data.labels.map(function (lb, idx) {
+          return rawTimes[idx] ? fmtTick(rawTimes[idx]) : String(lb).replace(/:00$/, '');
+        });
+      }
+
+      /* 手机/桌面刻度密度自适应 */
+      var canvasW = ctx.canvas ? ctx.canvas.clientWidth : 0;
+      var narrow = canvasW > 0 ? canvasW < 560 : (window.innerWidth || 0) < 768;
+      cfg.options.scales.x.ticks.maxTicksLimit = narrow ? 6 : 12;
+      cfg.options.scales.x.ticks.autoSkip = true;
+      cfg.options.scales.x.ticks.maxRotation = narrow ? 30 : 45;
+      cfg.options.scales.x.ticks.minRotation = narrow ? 30 : 45;
+      cfg.options.scales.x.ticks.font = { size: 11 };
+      cfg.options.scales.x.ticks.color = '#C7DDEA';
+
+      /* Y 轴刻度：小字号低亮灰蓝 */
+      cfg.options.scales.y.ticks = cfg.options.scales.y.ticks || {};
+      cfg.options.scales.y.ticks.font = { size: 11 };
+      cfg.options.scales.y.ticks.color = '#C7DDEA';
+
+      /* Y 轴单位标题（科研仪器感） */
+      var unitTitle = {
+        chartInTemp: '°C',
+        chartOutTemp: '°C',
+        chartInHum: '%RH',
+        chartOutHum: '%RH',
+        chartSolar: 'W/m²',
+        chartCurrent: 'mA',
+        chartVoltage: 'V',
+        chartWind: 'm/s',
+        chartPressure: 'hPa',
+        chartWindDir: '°'
+      };
+      if (unitTitle[ctx.id]) {
+        cfg.options.scales.y.title = cfg.options.scales.y.title || {};
+        cfg.options.scales.y.title.display = true;
+        cfg.options.scales.y.title.text = unitTitle[ctx.id];
+        cfg.options.scales.y.title.color = '#C7DDEA';
+        cfg.options.scales.y.title.font = { size: 11 };
+      }
+
+      /* ---------- Tooltip：完整时间 + 自动单位 ---------- */
+      var units = {
+        chartInTemp: ' °C',
+        chartOutTemp: ' °C',
+        chartInHum: ' %RH',
+        chartOutHum: ' %RH',
+        chartSolar: ' W/m²',
+        chartCurrent: ' mA',
+        chartVoltage: ' V',
+        chartWind: ' m/s',
+        chartPressure: ' hPa',
+        chartWindDir: ' °'
+      };
+      tt.callbacks = tt.callbacks || {};
+      tt.callbacks.title = function (items) {
+        var it = items && items[0];
+        var idx = it ? it.dataIndex : -1;
+        var ts = rawTimes && rawTimes[idx];
+        if (ts) {
+          var d = new Date(ts);
+          return d.getFullYear() + '-' + pad2(d.getMonth() + 1) + '-' + pad2(d.getDate()) +
+            ' ' + pad2(d.getHours()) + ':' + pad2(d.getMinutes());
+        }
+        return (it && it.label) || '';
+      };
+      tt.callbacks.label = function (context) {
+        var v = context.parsed && context.parsed.y;
+        if (typeof v !== 'number' || isNaN(v)) return window.ANX_T ? window.ANX_T('no_data') : 'NO DATA';
+        return parseFloat(v.toFixed(2)) + (units[ctx.id] || '');
+      };
+    }
+
+    /* CURRENT 通道：单位 mA（数值直接展示，不换算） */
+    if (ctx && ctx.id === 'chartCurrent' && cfg) {
+      cfg.options = cfg.options || {};
+      cfg.options.scales = cfg.options.scales || {};
+      cfg.options.scales.y = cfg.options.scales.y || {};
+      cfg.options.scales.y.title = {
+        display: true,
+        text: window.ANX_T ? window.ANX_T('current_ma') : 'CURRENT (mA)',
+        color: '#6f93a8',
+        font: { size: 10 }
+      };
+      cfg.options.plugins = cfg.options.plugins || {};
+      cfg.options.plugins.tooltip = cfg.options.plugins.tooltip || {};
+      cfg.options.plugins.tooltip.callbacks = cfg.options.plugins.tooltip.callbacks || {};
+      cfg.options.plugins.tooltip.callbacks.label = function (context) {
+        return context.parsed.y + ' mA';
+      };
+    }
+
+    /* 仅对 SOLAR IRRADIANCE 通道应用科研仪表风格 */
+    if (ctx && ctx.id === 'chartSolar' && cfg) {
+      cfg.options = cfg.options || {};
+      cfg.options.scales = cfg.options.scales || {};
+      cfg.options.scales.y = cfg.options.scales.y || {};
+      cfg.options.scales.x = cfg.options.scales.x || {};
+
+      /* 1. Y 轴从 0 开始 */
+      cfg.options.scales.y.beginAtZero = true;
+
+      /* 2. 按真实数据范围自动调整最大值；数据很小时保留顶部空间 */
+      var vals = (cfg.data && cfg.data.datasets && cfg.data.datasets[0] && cfg.data.datasets[0].data) || [];
+      var maxVal = 0;
+      vals.forEach(function (v) { if (typeof v === 'number' && v > maxVal) maxVal = v; });
+      var top = Math.max(3, Math.ceil(maxVal * 1.25));
+      cfg.options.scales.y.suggestedMax = top;
+      cfg.options.scales.y.stepSize = 1;
+
+      /* 3. 网格线细化 + 刻度配色 */
+      cfg.options.scales.y.grid = { color: 'rgba(98,217,255,.10)' };
+      cfg.options.scales.y.ticks = cfg.options.scales.y.ticks || {};
+      cfg.options.scales.y.ticks.color = '#6f93a8';
+      cfg.options.scales.x.grid = { color: 'rgba(98,217,255,.07)' };
+      cfg.options.scales.x.ticks = cfg.options.scales.x.ticks || {};
+      cfg.options.scales.x.ticks.color = '#C7DDEA';
+
+      /* 4. 浅蓝曲线 + 面积渐变填充 */
+      var ds = cfg.data.datasets[0];
+      ds.borderColor = '#FFD166';
+      ds.borderWidth = 2;
+      ds.pointRadius = 0;
+      ds.pointBackgroundColor = '#ffe9b8';
+      ds.tension = 0.35;
+      ds.spanGaps = false;
+      ds.fill = true;
+      ds.backgroundColor = function (context) {
+        var chart = context.chart;
+        var area = chart.chartArea;
+        if (!area) return 'rgba(255,209,102,.10)';
+        var g = chart.ctx.createLinearGradient(0, area.top, 0, area.bottom);
+        g.addColorStop(0, 'rgba(255,209,102,.20)');
+        g.addColorStop(1, 'rgba(255,209,102,0)');
+        return g;
+      };
+    }
+
+    /* 风向通道：0–360°（正北为 0），刻度按 90° 一格 */
+    if (ctx && ctx.id === 'chartWindDir' && cfg) {
+      cfg.options = cfg.options || {};
+      cfg.options.scales = cfg.options.scales || {};
+      cfg.options.scales.y = cfg.options.scales.y || {};
+      cfg.options.scales.y.beginAtZero = true;
+      cfg.options.scales.y.suggestedMax = 360;
+      cfg.options.scales.y.stepSize = 90;
+      cfg.options.scales.y.ticks = cfg.options.scales.y.ticks || {};
+      cfg.options.scales.y.ticks.callback = function (v) { return v + '°'; };
+      cfg.options.plugins = cfg.options.plugins || {};
+      cfg.options.plugins.tooltip = cfg.options.plugins.tooltip || {};
+      cfg.options.plugins.tooltip.callbacks = cfg.options.plugins.tooltip.callbacks || {};
+      cfg.options.plugins.tooltip.callbacks.label = function (context) {
+        var v = context.parsed && context.parsed.y;
+        if (typeof v !== 'number' || isNaN(v)) return window.ANX_T ? window.ANX_T('no_data') : 'NO DATA';
+        return parseFloat(v.toFixed(1)) + '°';
+      };
+    }
+    return new RealChart(ctx, cfg);
+  };
+
+  /* 保留 Chart.js 静态接口，避免影响其他页面逻辑 */
+  window.Chart.register = RealChart.register;
+  window.Chart.unregister = RealChart.unregister;
+  window.Chart.getChart = RealChart.getChart;
+})();
+</script>
+
+<!-- 数据核心与图表创建（main.js 保持不变） -->
+<script src="./js/main.js?v=20260824f"></script>
+  <!-- 语言切换（全站统一） -->
   <script>
   (function () {
     function apply(lang) {

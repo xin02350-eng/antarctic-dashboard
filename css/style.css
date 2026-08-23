@@ -13345,3 +13345,44 @@ body.sensors-page .sensor-grid canvas{
 height:clamp(5rem,26vh,8rem)!important;
 }
 }
+
+/* 手机真机适配：动态视口高度 + 刘海安全区，避免浏览器工具栏导致的错位重叠 */
+@media (max-width:900px){
+body main,body .app{
+min-height:100dvh !important;
+}
+body .top{
+padding-left:max(1rem, env(safe-area-inset-left)) !important;
+padding-right:max(1rem, env(safe-area-inset-right)) !important;
+padding-top:max(0.5rem, env(safe-area-inset-top)) !important;
+}
+body .app,body.dashboard-page .app{
+flex-direction:column !important;
+}
+body .sidebar,body.dashboard-page .sidebar{
+flex:none !important;
+width:100% !important;
+}
+body main,body.dashboard-page main{
+width:100% !important;
+height:auto !important;
+overflow:visible !important;
+}
+body.dashboard-page .app{
+height:auto !important;
+overflow:visible !important;
+}
+body.dashboard-page .mission-grid{
+grid-template-rows:auto auto auto !important;
+}
+body.dashboard-page #worldMap{
+height:min(48vh,320px) !important;
+}
+}
+
+/* 768 及以下：固定顶栏让位 */
+@media (max-width:768px){
+body.dashboard-page main,body.sensors-page main,body.telemetry-page main,body.hardware-page main,body.analysis-page main,body.location-page main{
+margin-top:calc(49px + env(safe-area-inset-top)) !important;
+}
+}
