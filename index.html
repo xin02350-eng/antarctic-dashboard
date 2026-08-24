@@ -264,7 +264,7 @@
       .manifesto{display:none !important}
     }
   </style>
-  <link rel="stylesheet" href="./css/mobile.css?v=20260824o">
+  <link rel="stylesheet" href="./css/mobile.css?v=20260824x">
 </head>
 <body class="home-page">
 
@@ -1009,7 +1009,7 @@
           labelCtx.fill();
 
           /* 标签：冷白 + 极轻蓝光 + 锐利主体（稍醒目） */
-          labelCtx.font = '600 ' + Math.round(24 * u) + 'px "Segoe UI","Microsoft YaHei",sans-serif';
+          labelCtx.font = '600 ' + Math.round((window.innerWidth < 1024 ? 14 : 24) * u) + 'px "Segoe UI","Microsoft YaHei",sans-serif';
           labelCtx.textBaseline = 'middle';
           labelCtx.shadowColor = 'rgba(90,190,235,0.70)';
           labelCtx.shadowBlur = Math.round(7 * u);
@@ -1099,7 +1099,7 @@
       var mt = mfel.getBoundingClientRect().top;
       var top = tb + (mt - tb) * 0.65 - btel.offsetHeight / 2;
       top = Math.max(tb + 40, Math.min(mt - btel.offsetHeight - 40, top));
-      btel.style.top = Math.round(top) + 'px';
+      btel.style.setProperty('top', Math.round(top) + 'px', 'important');
       var spans = document.querySelectorAll('.hero h1 > span');
       var visible = null;
       for (var si = 0; si < spans.length; si++) {
@@ -1119,7 +1119,7 @@
         var btnRect = btel.getBoundingClientRect();
         var left = btnRect.left + (target - cur);
         left = Math.max(20, Math.min(window.innerWidth - btnRect.width - 20, left));
-        btel.style.left = Math.round(left) + 'px';
+        btel.style.setProperty('left', Math.round(left) + 'px', 'important');
       }
     }
     positionExploreBtn();
