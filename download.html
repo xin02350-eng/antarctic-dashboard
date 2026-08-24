@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+  <title>DMS 下载安装</title>
+  <meta name="theme-color" content="#06131f">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{
+      font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif;
+      background:radial-gradient(120% 90% at 50% 0%,#0b2b45 0%,#06131f 55%,#020a12 100%);
+      color:#dff4ff;
+      display:flex;align-items:center;justify-content:center;
+      padding:24px;
+      min-height:100dvh;
+    }
+    .card{
+      width:100%;max-width:440px;
+      background:rgba(7,24,40,.82);
+      border:1px solid rgba(140,234,255,.22);
+      border-radius:18px;
+      padding:34px 26px 30px;
+      text-align:center;
+      box-shadow:0 24px 60px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.06);
+      backdrop-filter:blur(12px);
+    }
+    .logo{
+      width:76px;height:76px;margin:0 auto 16px;border-radius:18px;
+      background:linear-gradient(160deg,#123a5a,#071d31);
+      border:1px solid rgba(140,234,255,.4);
+      display:flex;align-items:center;justify-content:center;
+      font-size:26px;font-weight:700;letter-spacing:2px;color:#8ceaff;
+      box-shadow:0 0 28px rgba(80,190,255,.25);
+    }
+    h1{font-size:22px;letter-spacing:3px;font-weight:600;margin-bottom:6px}
+    .sub{font-size:13px;color:#7fa3bc;letter-spacing:2px;margin-bottom:22px}
+    .btn{
+      display:block;width:100%;padding:16px 12px;border-radius:12px;
+      background:linear-gradient(135deg,#0f8fd9,#0a6fb0);
+      color:#fff;font-size:18px;letter-spacing:4px;font-weight:600;
+      text-decoration:none;box-shadow:0 10px 26px rgba(15,143,217,.4),inset 0 1px 0 rgba(255,255,255,.25);
+      transition:transform .2s ease,box-shadow .2s ease;
+      margin-bottom:18px;
+    }
+    .btn:active{transform:scale(.97)}
+    .info{font-size:12px;color:#8aa9bc;line-height:1.9;text-align:left}
+    .info b{color:#cfe9ff;font-weight:500}
+    .warn{
+      margin-top:16px;padding:12px 14px;border-radius:10px;
+      background:rgba(245,185,66,.10);border:1px solid rgba(245,185,66,.30);
+      font-size:12px;color:#f5d9a0;line-height:1.8;text-align:left;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="logo">DMS</div>
+    <h1>DMS 自主观测系统</h1>
+    <div class="sub">ANDROID APP · 横屏全屏版</div>
+    <a class="btn" href="./apk/DMS-antarctic.apk">点击下载并安装</a>
+    <div class="info">
+      文件大小：<b>约 17 MB</b><br>
+      适用系统：<b>Android 5.1 及以上</b><br>
+      安装后：<b>全屏横屏 · 免浏览器</b><br>
+      安装方法：<b>点击按钮 → 浏览器下载 → 点通知安装</b>
+    </div>
+    <div class="warn">
+      如果在微信里打开本页没反应，请点右上角“<b>···</b>” → <b>在浏览器打开</b>，再点按钮。
+      首次安装系统会提示“允许安装未知应用”，点允许即可。
+    </div>
+  </div>
+</body>
+</html>

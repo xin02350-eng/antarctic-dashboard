@@ -1,0 +1,23 @@
+{
+  "name": "DMS 自主观测系统",
+  "short_name": "DMS",
+  "description": "Distributed Monitoring System · Autonomous Observation Network",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "landscape",
+  "background_color": "#06131f",
+  "theme_color": "#06131f",
+  "icons": [
+    {
+      "src": "assets/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
