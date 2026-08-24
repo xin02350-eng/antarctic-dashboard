@@ -57,9 +57,8 @@
     .ov-row .ov-label{flex:0 0 4.5rem;white-space:nowrap;margin-bottom:0}
     .ov-row b{font-size:0.8125rem;font-weight:500;color:#cfe2ee;letter-spacing:.5px;white-space:nowrap;line-height:1.25;font-variant-numeric:tabular-nums;margin-left:auto;text-align:right}
     .ov-row b.cy{color:#8ceaff}
-    .ov-row .sig-group{margin-left:auto;display:flex;align-items:center;gap:0.625rem}
-    .ov-row .sig-group .sig{flex:none}
-    .ov-row .sig-group b{font-size:0.75rem;font-weight:500;color:#8ceaff;letter-spacing:.5px}
+    .ov-row.sig-row b{order:1}
+    .ov-row.sig-row .sig{order:2}
     .meter{flex:1;max-width:4.625rem;height:0.1875rem;border-radius:999px;background:rgba(98,217,255,.12);overflow:hidden}
     .meter i{display:block;height:100%;border-radius:999px;background:#5fa8cf}
     .sig{display:flex;align-items:flex-end;gap:0.125rem;height:0.6875rem;flex:none}
@@ -97,10 +96,6 @@
     .map-foot{display:flex;align-items:center;justify-content:space-between;padding:0.75rem 1rem 0.9375rem;border-top:1px solid rgba(98,217,255,.07);font-size:0.625rem;letter-spacing:1px;color:#6f93a8}
     .map-foot b{color:#9fd8c2;font-weight:500;font-size:0.6875rem}
     .dossier{position:absolute;left:1rem;bottom:2.875rem;z-index:6;min-width:20.625rem;border:1px solid rgba(0,229,168,.34);border-left:2px solid #00e5a8;background:radial-gradient(120% 90% at 16% 0%,rgba(0,229,168,.07),transparent 55%),radial-gradient(100% 70% at 88% 100%,rgba(2,10,18,.5),transparent 60%),rgba(3,14,24,.96);box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 12px 28px rgba(0,0,0,.3);backdrop-filter:blur(0.625rem);padding:1rem 1.125rem;border-radius:0.375rem}
-    .dossier-b{left:calc(1rem + 22.5rem)}
-    @media (max-width:1500px){
-      .dossier-b{left:1rem;top:4.5rem;bottom:auto}
-    }
     .dossier h4{display:flex;align-items:center;gap:0.5rem;font-size:1rem;letter-spacing:2px;color:#eafcff;font-weight:600}
     .dossier h4::before{content:"";width:0.125rem;height:0.75rem;border-radius:0.0625rem;background:#8ceaff}
     .dossier .dsub{font-size:0.625rem;letter-spacing:1.5px;color:#9fd8c2;margin-top:0.3125rem;text-transform:uppercase}
@@ -283,7 +278,7 @@
         </div>
         <div class="ov-mod">
           <span class="ov-label"><span data-lang="en">Connected Nodes</span><span data-lang="zh">接入节点</span></span>
-          <b class="ov-val">01, 02</b>
+          <b class="ov-val">01</b>
         </div>
         <div class="ov-mod">
           <span class="ov-label"><span data-lang="en">Data Records</span><span data-lang="zh">数据记录</span></span>
@@ -300,12 +295,10 @@
           <span class="ov-label"><span data-lang="en">SOC</span><span data-lang="zh">电量</span></span>
           <b id="socVal">--</b>
         </div>
-        <div class="ov-row">
+        <div class="ov-row sig-row">
           <span class="ov-label"><span data-lang="en">Signal</span><span data-lang="zh">信号</span></span>
-          <span class="sig-group">
-            <span class="sig" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span><b class="cy">01</b>
-            <span class="sig" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span><b class="cy">02</b>
-          </span>
+          <span class="sig" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span>
+          <b class="cy"><span data-lang="en">Strong</span><span data-lang="zh">强</span></b>
         </div>
         <div class="ov-row">
           <span class="ov-label"><span data-lang="en">Uptime</span><span data-lang="zh">运行时长</span></span>
@@ -336,19 +329,6 @@
           <svg id="sparkTemp" viewBox="0 0 220 46" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="sparkFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="rgba(140,234,255,.28)"></stop><stop offset="1" stop-color="rgba(140,234,255,0)"></stop></linearGradient></defs><path id="sparkArea" fill="url(#sparkFill)"></path><path id="sparkLine" fill="none" stroke="#8ceaff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
         </div>
       </div>
-      <div class="dossier dossier-b">
-        <h4>DMS-A02</h4>
-        <div class="dsub"><span data-lang="en">Nanjing Observation Node</span><span data-lang="zh">南京观测节点</span></div>
-        <div class="dtele">
-          <span><b id="teleV2">--</b><i data-lang="en">Voltage</i><i data-lang="zh">电压</i></span>
-          <span><b id="teleT2">--</b><i data-lang="en">Outside Temp</i><i data-lang="zh">舱外温度</i></span>
-          <span><b id="teleH2">--</b><i data-lang="en">Humidity</i><i data-lang="zh">湿度</i></span>
-        </div>
-        <div class="spark">
-          <div class="spark-head"><span data-lang="en">Temperature Trend</span><span data-lang="zh">温度趋势</span><b id="sparkVal2">--</b></div>
-          <svg id="sparkTemp2" viewBox="0 0 220 46" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="sparkFill2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="rgba(140,234,255,.28)"></stop><stop offset="1" stop-color="rgba(140,234,255,0)"></stop></linearGradient></defs><path id="sparkArea2" fill="url(#sparkFill2)"></path><path id="sparkLine2" fill="none" stroke="#8ceaff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-        </div>
-      </div>
       <div class="map-foot">
         <span><span data-lang="en">Position</span><span data-lang="zh">坐标</span> · <b>32.0491° N / 118.7937° E</b></span>
         <span><span data-lang="en">Site</span><span data-lang="zh">站点</span> · <b><span data-lang="en">Nanjing</span><span data-lang="zh">南京</span></b></span>
@@ -373,15 +353,15 @@
         <a class="enter" href="./dashboard.html" id="enterTerminal"><span class="enter-label"><span class="enter-base" data-lang="en">Enter Terminal Monitoring Platform</span><span class="enter-base" data-lang="zh">进入终端监测平台</span><span class="enter-shine" data-lang="en" aria-hidden="true">Enter Terminal Monitoring Platform</span><span class="enter-shine" data-lang="zh" aria-hidden="true">进入终端监测平台</span></span><span class="enter-beam" aria-hidden="true"></span><span class="enter-arrow" aria-hidden="true"><svg width="60" height="24" viewBox="0 0 60 24"><defs><linearGradient id="enterArrowGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#34536e"></stop><stop offset="0.55" stop-color="#5b84a3"></stop><stop offset="1" stop-color="#96bcd4"></stop></linearGradient></defs><path class="arrow-shape" d="M0 12 H55.2 M37.2 3.75 L55.2 12 M37.2 20.25 L55.2 12"></path><path class="flow-arrow" d="M0 12 H55.2 M37.2 3.75 L55.2 12 M37.2 20.25 L55.2 12"></path></svg></span></a>
       </div>
 
-      <div class="term">
+      <div class="term future">
         <div class="th">
           <div class="id-left"><h4>DMS-A02</h4></div>
-          <span class="th-right"><span class="node-led off" aria-hidden="true"></span><b class="stlbl"><span data-lang="en">Standby</span><span data-lang="zh">待命</span></b></span>
+          <span class="th-right"><span class="node-led off" aria-hidden="true"></span><b class="stlbl"><span data-lang="en">Not Deployed</span><span data-lang="zh">未部署</span></b></span>
         </div>
-        <p class="identity"><span data-lang="en">Nanjing Observation Node</span><span data-lang="zh">南京观测节点</span></p>
+        <p class="identity"><span data-lang="en">Future Observation Node</span><span data-lang="zh">未来观测节点</span></p>
         <div class="node-id">
           <span class="ni-num">02</span>
-          <span class="ni-label"><span data-lang="en">Standby Node</span><span data-lang="zh">待命节点</span></span>
+          <span class="ni-label"><span data-lang="en">Future Node</span><span data-lang="zh">未来节点</span></span>
         </div>
         <div class="ni-line" aria-hidden="true"></div>
         <a class="enter" href="./dashboard-a02.html"><span class="enter-label"><span class="enter-base" data-lang="en">Enter Terminal Monitoring Platform</span><span class="enter-base" data-lang="zh">进入终端监测平台</span><span class="enter-shine" data-lang="en" aria-hidden="true">Enter Terminal Monitoring Platform</span><span class="enter-shine" data-lang="zh" aria-hidden="true">进入终端监测平台</span></span><span class="enter-beam" aria-hidden="true"></span><span class="enter-arrow" aria-hidden="true"><svg width="60" height="24" viewBox="0 0 60 24"><defs><linearGradient id="enterArrowGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#34536e"></stop><stop offset="0.55" stop-color="#5b84a3"></stop><stop offset="1" stop-color="#96bcd4"></stop></linearGradient></defs><path class="arrow-shape" d="M0 12 H55.2 M37.2 3.75 L55.2 12 M37.2 20.25 L55.2 12"></path><path class="flow-arrow" d="M0 12 H55.2 M37.2 3.75 L55.2 12 M37.2 20.25 L55.2 12"></path></svg></span></a>
@@ -438,13 +418,9 @@
       if (window.anxApplyLang) window.anxApplyLang(window.anxCurrentLang || 'en');
     }
     function refreshNetwork() {
-      Promise.all([
-        fetch('./data.json?v=' + Date.now()).then(function (r) { return r.json(); }).catch(function () { return []; }),
-        fetch('./data02.json?v=' + Date.now()).then(function (r) { return r.json(); }).catch(function () { return []; })
-      ]).then(function (arr) {
-        var d1 = Array.isArray(arr[0]) ? arr[0] : [];
-        var d2 = Array.isArray(arr[1]) ? arr[1] : [];
-        window.__netCache = { d1: d1, d2: d2 };
+      fetch('./data.json?v=' + Date.now()).then(function (r) { return r.json(); }).then(function (d) {
+        if (!Array.isArray(d)) return;
+        var n = d.length;
         var setTxt = function (id, v) { var el = document.getElementById(id); if (el && v !== undefined && v !== null && v !== '') el.textContent = v; };
         function voltageToSoc(v) {
           if (v === null || v === undefined || isNaN(v)) return null;
@@ -480,35 +456,19 @@
           if (v >= 10.5) return 2;
           return 0;
         }
-        function lastVolt(d) {
-          for (var i = d.length - 1; i >= 0; i--) {
-            var v = d[i] && d[i].v;
-            if (typeof v === 'number' && !isNaN(v)) return v;
-          }
-          return null;
-        }
-        function spanText(d) {
-          var times = d.map(function (p) { return p && p.time ? new Date(String(p.time).replace(' ', 'T')) : null; }).filter(function (v) { return v && !isNaN(v.getTime()); });
+        function spanText(arr) {
+          var times = arr.map(function (p) { return p && p.time ? new Date(String(p.time).replace(' ', 'T')) : null; }).filter(function (v) { return v && !isNaN(v.getTime()); });
           if (times.length < 2) return '--';
           var spanH = Math.round((Math.max.apply(null, times) - Math.min.apply(null, times)) / 3600000);
           return spanH >= 24 ? Math.floor(spanH / 24) + 'd ' + (spanH % 24) + 'h' : spanH + 'h';
         }
-        function p(n) { return window.anxCurrentLang === 'zh' ? '（' + n + '）' : ' (' + n + ')'; }
-        function pair(a, b, unit) {
-          function f(v) { return (v === null || v === undefined || isNaN(v)) ? '--' : (unit ? v + unit : v); }
-          return f(a) + p('01') + ' / ' + f(b) + p('02');
-        }
-        var zh = window.anxCurrentLang === 'zh';
-        var k1 = d1.length, k2 = d2.length;
-        setTxt('kRecords', zh ? k1 + '条' + p('01') + ' + ' + k2 + '条' + p('02') : k1 + p('01') + ' + ' + k2 + p('02'));
-        var s1 = voltageToSoc(lastVolt(d1)), s2 = voltageToSoc(lastVolt(d2));
-        setTxt('socVal', pair(s1, s2, '%'));
-        setTxt('uptime', spanText(d1) + p('01') + ' / ' + spanText(d2) + p('02'));
-        /* 中部 A01 地图浮层（保持单节点显示） */
-        var last = d1.length ? d1[d1.length - 1] : null;
+        setTxt('kRecords', n);
+        var last = n ? d[n - 1] : null;
         if (last && typeof last.v === 'number') {
           var vTxt = last.v.toFixed(1) + 'V';
           setTxt('teleV', vTxt); setTxt('tVoltage', last.v.toFixed(1));
+          var soc = voltageToSoc(last.v);
+          if (soc !== null) setTxt('socVal', soc + '%');
         }
         if (last && typeof last.j === 'number') { var tTxt = last.j.toFixed(1) + '°C'; setTxt('teleT', tTxt); setTxt('tTemp', last.j.toFixed(1)); }
         if (last && typeof last.k === 'number') { var hTxt = last.k.toFixed(1) + '%'; setTxt('teleH', hTxt); setTxt('tHumid', last.k.toFixed(1)); }
@@ -516,7 +476,8 @@
           var ts = String(last.time).split(' ');
           if (ts.length >= 2) { var syncTxt = ts[0].slice(5) + ' ' + ts[1].slice(0, 5); setTxt('lastSync', syncTxt); setTxt('ltSync', syncTxt); }
         }
-        var last48 = d1.slice(-48);
+        setTxt('uptime', spanText(d));
+        var last48 = d.slice(-48);
         var temps = last48.map(function (p) { return (p && typeof p.j === 'number') ? p.j : null; }).filter(function (v) { return v !== null; });
         if (temps.length > 1) {
           var min = Math.min.apply(null, temps), max = Math.max.apply(null, temps), range = (max - min) || 1;
@@ -528,24 +489,6 @@
           var le = document.getElementById('sparkLine'); if (le) le.setAttribute('d', 'M' + line);
           var ae = document.getElementById('sparkArea'); if (ae) ae.setAttribute('d', areaD);
           var ve = document.getElementById('sparkVal'); if (ve) ve.textContent = lastT;
-        }
-        /* 中部 A02 地图浮层（读取 data02.json） */
-        var last2 = d2.length ? d2[d2.length - 1] : null;
-        if (last2 && typeof last2.v === 'number') { setTxt('teleV2', last2.v.toFixed(1) + 'V'); }
-        if (last2 && typeof last2.j === 'number') { setTxt('teleT2', last2.j.toFixed(1) + '°C'); }
-        if (last2 && typeof last2.k === 'number') { setTxt('teleH2', last2.k.toFixed(1) + '%'); }
-        var last482 = d2.slice(-48);
-        var temps2 = last482.map(function (p) { return (p && typeof p.j === 'number') ? p.j : null; }).filter(function (v) { return v !== null; });
-        if (temps2.length > 1) {
-          var min2 = Math.min.apply(null, temps2), max2 = Math.max.apply(null, temps2), range2 = (max2 - min2) || 1;
-          var P2 = 4;
-          var pts2 = temps2.map(function (v, i) { return [P2 + (220 - P2 * 2) * i / (temps2.length - 1), P2 + (46 - P2 * 2) * (1 - (v - min2) / range2)]; });
-          var line2 = pts2.map(function (c) { return c[0].toFixed(1) + ' ' + c[1].toFixed(1); }).join(' L');
-          var areaD2 = 'M' + line2 + ' L' + pts2[pts2.length - 1][0].toFixed(1) + ' 46 L' + pts2[0][0].toFixed(1) + ' 46 Z';
-          var lastT2 = temps2[temps2.length - 1].toFixed(1) + '°C';
-          var le2 = document.getElementById('sparkLine2'); if (le2) le2.setAttribute('d', 'M' + line2);
-          var ae2 = document.getElementById('sparkArea2'); if (ae2) ae2.setAttribute('d', areaD2);
-          var ve2 = document.getElementById('sparkVal2'); if (ve2) ve2.textContent = lastT2;
         }
       }).catch(function () {});
     }
