@@ -78,7 +78,7 @@
   <!-- Leaflet 地图（真实地图，由 main.js 初始化） -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-  <link rel="stylesheet" href="./css/mobile.css?v=20260825d">
+  <link rel="stylesheet" href="./css/mobile.css?v=20260825e">
 </head>
 
 <!-- dashboard-page：Dashboard 专属样式作用域；ambient-theme：全局环境氛围 -->
@@ -192,12 +192,12 @@
 
       <div class="status-card sensor-card">
         <div class="sensor-head">
-          <svg class="sensor-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3s6 6.4 6 11a6 6 0 0 1-12 0c0-4.6 6-11 6-11z"/></svg>
-          <span class="sensor-name" data-i18n="inside_humidity">HUMIDITY</span>
+          <svg class="sensor-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13.5V5a2 2 0 1 1 4 0v8.5a4 4 0 1 1-4 0z"/><path d="M12 9v4"/></svg>
+          <span class="sensor-name" data-i18n="cabin_temperature">CABIN TEMPERATURE</span>
           <span class="sensor-led"></span>
         </div>
-        <div class="sensor-value"><strong id="humidity">--</strong><span class="sensor-unit">%RH</span></div>
-        <div class="sensor-meta"><span data-i18n="cabin">CABIN</span><span><span data-i18n="outside">OUTSIDE</span> <b id="outsideHumidity">--</b>%RH</span></div>
+        <div class="sensor-value"><strong id="insideTemp">--</strong><span class="sensor-unit">°C</span></div>
+        <div class="sensor-meta"><span data-i18n="cabin">CABIN</span><span><span data-i18n="outside">OUTSIDE</span> <b id="outsideTemp">--</b>°C</span></div>
         <span class="sensor-index">04</span>
       </div>
 
