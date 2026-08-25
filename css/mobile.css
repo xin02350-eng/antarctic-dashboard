@@ -921,6 +921,7 @@
     display:flex !important;
     flex-direction:column !important;
     gap:0.375rem !important;
+    padding:0.375rem 0.375rem 0.375rem 0 !important;
   }
   body.sensors-page .mission-header{
     display:flex !important;
@@ -1016,7 +1017,7 @@
     display:grid !important;
     grid-template-columns:repeat(5,minmax(0,1fr)) !important;
     grid-template-rows:repeat(2,minmax(0,1fr)) !important;
-    gap:0.25rem !important;
+    gap:0.1875rem !important;
     margin:0 !important;
   }
   body.sensors-page .sensor-grid .panel{
