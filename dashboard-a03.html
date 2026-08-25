@@ -78,7 +78,7 @@
   <!-- Leaflet 地图（真实地图，由 main.js 初始化） -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-  <link rel="stylesheet" href="./css/mobile.css?v=20260824x">
+  <link rel="stylesheet" href="./css/mobile.css?v=20260825a">
 </head>
 
 <!-- dashboard-page：Dashboard 专属样式作用域；ambient-theme：全局环境氛围 -->
@@ -184,34 +184,34 @@
         </div>
       </section>
 
-      <!-- 右侧面板：气候 / 通信 -->
-      <aside class="side-panel side-right">
-        <div class="side-panel-title"><span data-lang="en">CLIMATE</span><span data-lang="zh">气候</span></div>
-
-        <div class="status-card sensor-card">
-          <div class="sensor-head">
-            <svg class="sensor-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3s6 6.4 6 11a6 6 0 0 1-12 0c0-4.6 6-11 6-11z"/></svg>
-            <span class="sensor-name" data-i18n="inside_humidity">HUMIDITY</span>
-            <span class="sensor-led"></span>
-          </div>
-          <div class="sensor-value"><strong id="humidity">--</strong><span class="sensor-unit">%RH</span></div>
-          <div class="sensor-meta"><span data-i18n="cabin">CABIN</span><span><span data-i18n="outside">OUTSIDE</span> <b id="outsideHumidity">--</b>%RH</span></div>
-          <span class="sensor-index">04</span>
-        </div>
-
-        <div class="status-card sensor-card">
-          <div class="sensor-head">
-            <svg class="sensor-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M19.1 4.9l-1.8 1.8M6.7 17.3l-1.8 1.8"/></svg>
-            <span class="sensor-name" data-i18n="solar_radiation_label">SOLAR RADIATION</span>
-            <span class="sensor-led"></span>
-          </div>
-          <div class="sensor-value"><strong id="solar">--</strong><span class="sensor-unit">W/m²</span></div>
-          <div class="sensor-meta"><span data-i18n="pyranometer">PYRANOMETER</span><span class="sensor-state" data-i18n="nominal">NOMINAL</span></div>
-          <span class="sensor-index">05</span>
-        </div>
-
-      </aside>
     </section>
+
+    <!-- 右侧面板：气候 / 通信 -->
+    <aside class="side-panel side-right">
+      <div class="side-panel-title"><span data-lang="en">CLIMATE</span><span data-lang="zh">气候</span></div>
+
+      <div class="status-card sensor-card">
+        <div class="sensor-head">
+          <svg class="sensor-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3s6 6.4 6 11a6 6 0 0 1-12 0c0-4.6 6-11 6-11z"/></svg>
+          <span class="sensor-name" data-i18n="inside_humidity">HUMIDITY</span>
+          <span class="sensor-led"></span>
+        </div>
+        <div class="sensor-value"><strong id="humidity">--</strong><span class="sensor-unit">%RH</span></div>
+        <div class="sensor-meta"><span data-i18n="cabin">CABIN</span><span><span data-i18n="outside">OUTSIDE</span> <b id="outsideHumidity">--</b>%RH</span></div>
+        <span class="sensor-index">04</span>
+      </div>
+
+      <div class="status-card sensor-card">
+        <div class="sensor-head">
+          <svg class="sensor-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M19.1 4.9l-1.8 1.8M6.7 17.3l-1.8 1.8"/></svg>
+          <span class="sensor-name" data-i18n="solar_radiation_label">SOLAR RADIATION</span>
+          <span class="sensor-led"></span>
+        </div>
+        <div class="sensor-value"><strong id="solar">--</strong><span class="sensor-unit">W/m²</span></div>
+        <div class="sensor-meta"><span data-i18n="pyranometer">PYRANOMETER</span><span class="sensor-state" data-i18n="nominal">NOMINAL</span></div>
+        <span class="sensor-index">05</span>
+      </div>
+    </aside>
 
     <!-- 底部：任务统计（任务闭环） -->
     <section class="operation-grid">
