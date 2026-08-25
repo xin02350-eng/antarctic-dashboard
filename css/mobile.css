@@ -652,6 +652,11 @@
     color:#7fa3bc !important;
     white-space:nowrap !important;
     overflow:hidden !important;
+    border-top:0 !important;
+    border-bottom:1px solid rgba(140,234,255,.12) !important;
+    margin-top:0.1875rem !important;
+    padding-top:0 !important;
+    padding-bottom:0.0625rem !important;
   }
   body.dashboard-page .side-panel .sensor-meta b{
     color:#cfe9f8 !important;
