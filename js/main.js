@@ -2012,7 +2012,25 @@ x:{
 ticks:{
 
 
-maxTicksLimit:8
+autoSkip:true,
+
+
+maxRotation:0,
+
+
+minRotation:0,
+
+
+maxTicksLimit:5,
+
+
+font:{
+
+
+size:7.5
+
+
+}
 
 
 }
@@ -2026,7 +2044,22 @@ maxTicksLimit:8
 y:{
 
 
-beginAtZero:false
+beginAtZero:false,
+
+
+ticks:{
+
+
+font:{
+
+
+size:7.5
+
+
+}
+
+
+}
 
 
 }

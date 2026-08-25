@@ -43,7 +43,7 @@
       }
     }
   </style>
-<style>.lang-float{position:fixed;top:1.75rem;right:2rem;z-index:120}.header-right{margin-right:9.375rem}@media (max-width:768px){.lang-float{top:18px;right:14px}.header-right{margin-right:0}}</style>  <link rel="stylesheet" href="./css/mobile.css?v=20260825j">
+<style>.lang-float{position:fixed;top:1.75rem;right:2rem;z-index:120}.header-right{margin-right:9.375rem}@media (max-width:768px){.lang-float{top:18px;right:14px}.header-right{margin-right:0}}</style>  <link rel="stylesheet" href="./css/mobile.css?v=20260825k">
 </head>
 
 <!-- ambient-theme：环境氛围（极光/雾效/雪花/扫描线）；sensors-page：本页专属样式 -->
@@ -311,17 +311,17 @@
 
       /* 手机/桌面刻度密度自适应 */
       var canvasW = ctx.canvas ? ctx.canvas.clientWidth : 0;
-      var narrow = canvasW > 0 ? canvasW < 560 : (window.innerWidth || 0) < 768;
-      cfg.options.scales.x.ticks.maxTicksLimit = narrow ? 6 : 12;
+      var narrow = canvasW > 0 ? canvasW < 560 : ((window.innerWidth || 0) <= 1024 && (window.innerHeight || 0) <= 520);
+      cfg.options.scales.x.ticks.maxTicksLimit = narrow ? 5 : 12;
       cfg.options.scales.x.ticks.autoSkip = true;
-      cfg.options.scales.x.ticks.maxRotation = narrow ? 30 : 45;
-      cfg.options.scales.x.ticks.minRotation = narrow ? 30 : 45;
-      cfg.options.scales.x.ticks.font = { size: 11 };
+      cfg.options.scales.x.ticks.maxRotation = narrow ? 0 : 45;
+      cfg.options.scales.x.ticks.minRotation = narrow ? 0 : 45;
+      cfg.options.scales.x.ticks.font = { size: narrow ? 7.5 : 11 };
       cfg.options.scales.x.ticks.color = '#C7DDEA';
 
       /* Y 轴刻度：小字号低亮灰蓝 */
       cfg.options.scales.y.ticks = cfg.options.scales.y.ticks || {};
-      cfg.options.scales.y.ticks.font = { size: 11 };
+      cfg.options.scales.y.ticks.font = { size: narrow ? 7.5 : 11 };
       cfg.options.scales.y.ticks.color = '#C7DDEA';
 
       /* Y 轴单位标题（科研仪器感） */
@@ -497,7 +497,7 @@
 </script>
 
 <!-- 数据核心与图表创建（main.js 保持不变） -->
-<script src="./js/main.js?v=20260825b"></script>
+<script src="./js/main.js?v=20260825c"></script>
   <!-- V49.19 · 风速“暂无数据”占位：有有效风速数据时隐藏，无数据时显示（不动图表/数据逻辑） -->
   <script>
   (function () {
