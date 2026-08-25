@@ -459,6 +459,7 @@ await new Promise(function (resolve) { setTimeout(resolve, delays[attempt]); });
 
 
 
+
 }
 }
 dataBusy = false;
@@ -542,6 +543,23 @@ gpsData.sat=d.n;
 
 
 break;
+
+
+}
+
+
+if(
+gpsData.lat===null
+||
+gpsData.lng===null
+){
+
+
+gpsData.lat=32.049141;
+
+gpsData.lng=118.793686;
+
+gpsData.sat=null;
 
 
 }
