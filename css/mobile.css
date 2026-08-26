@@ -1028,13 +1028,14 @@
   body.sensors-page .sensor-grid .panel-title{
     font-size:0.4375rem !important;
     letter-spacing:0.5px !important;
+    line-height:1.1 !important;
     white-space:nowrap;
     overflow:hidden;
     text-overflow:ellipsis;
-    margin-bottom:0.1875rem !important;
+    margin-bottom:0.125rem !important;
   }
   body.sensors-page .sensor-grid canvas{
-    height:calc(100% - 1rem) !important;
+    height:calc(100% - 1.375rem) !important;
     width:100% !important;
   }
 

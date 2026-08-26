@@ -54,7 +54,7 @@
       }
     }
   </style>
-<style>.lang-float{position:fixed;top:1.75rem;right:2rem;z-index:120}.header-right{margin-right:9.375rem}@media (max-width:768px){.lang-float{top:18px;right:14px}.header-right{margin-right:0}}</style>  <link rel="stylesheet" href="./css/mobile.css?v=20260825l">
+<style>.lang-float{position:fixed;top:1.75rem;right:2rem;z-index:120}.header-right{margin-right:9.375rem}@media (max-width:768px){.lang-float{top:18px;right:14px}.header-right{margin-right:0}}</style>  <link rel="stylesheet" href="./css/mobile.css?v=20260825m">
 </head>
 
 <!-- ambient-theme：环境氛围（极光/雾效/雪花/扫描线）；sensors-page：本页专属样式 -->
@@ -313,7 +313,7 @@
       /* 手机/桌面刻度密度自适应 */
       var canvasW = ctx.canvas ? ctx.canvas.clientWidth : 0;
       var narrow = canvasW > 0 ? canvasW < 560 : ((window.innerWidth || 0) <= 1024 && (window.innerHeight || 0) <= 520);
-      cfg.options.scales.x.ticks.maxTicksLimit = narrow ? 5 : 12;
+      cfg.options.scales.x.ticks.maxTicksLimit = narrow ? 3 : 12;
       cfg.options.scales.x.ticks.autoSkip = true;
       cfg.options.scales.x.ticks.maxRotation = narrow ? 0 : 45;
       cfg.options.scales.x.ticks.minRotation = narrow ? 0 : 45;
@@ -323,6 +323,7 @@
       /* Y 轴刻度：小字号低亮灰蓝 */
       cfg.options.scales.y.ticks = cfg.options.scales.y.ticks || {};
       cfg.options.scales.y.ticks.font = { size: narrow ? 7.5 : 11 };
+      cfg.options.scales.y.ticks.padding = narrow ? 1 : 3;
       cfg.options.scales.y.ticks.color = '#C7DDEA';
 
       /* Y 轴单位标题（科研仪器感） */
@@ -343,7 +344,7 @@
         cfg.options.scales.y.title.display = true;
         cfg.options.scales.y.title.text = unitTitle[ctx.id];
         cfg.options.scales.y.title.color = '#C7DDEA';
-        cfg.options.scales.y.title.font = { size: 11 };
+        cfg.options.scales.y.title.font = { size: narrow ? 7 : 11 };
       }
 
       /* ---------- Tooltip：完整时间 + 自动单位 ---------- */
@@ -387,7 +388,7 @@
         display: true,
         text: window.ANX_T ? window.ANX_T('current_ma') : 'CURRENT (mA)',
         color: '#6f93a8',
-        font: { size: 10 }
+        font: { size: narrow ? 7 : 10 }
       };
       cfg.options.plugins = cfg.options.plugins || {};
       cfg.options.plugins.tooltip = cfg.options.plugins.tooltip || {};
