@@ -322,8 +322,8 @@
 
       /* Y 轴刻度：小字号低亮灰蓝 */
       cfg.options.scales.y.ticks = cfg.options.scales.y.ticks || {};
-      cfg.options.scales.y.ticks.font = { size: narrow ? 7.5 : 11 };
-      cfg.options.scales.y.ticks.padding = narrow ? 1 : 3;
+      cfg.options.scales.y.ticks.font = { size: narrow ? 6.5 : 11 };
+      cfg.options.scales.y.ticks.padding = narrow ? 0 : 3;
       cfg.options.scales.y.ticks.color = '#C7DDEA';
 
       /* Y 轴单位标题（科研仪器感） */
@@ -344,7 +344,8 @@
         cfg.options.scales.y.title.display = true;
         cfg.options.scales.y.title.text = unitTitle[ctx.id];
         cfg.options.scales.y.title.color = '#C7DDEA';
-        cfg.options.scales.y.title.font = { size: narrow ? 7 : 11 };
+        cfg.options.scales.y.title.font = { size: narrow ? 5.5 : 11 };
+        cfg.options.scales.y.title.padding = narrow ? 0 : 4;
       }
 
       /* ---------- Tooltip：完整时间 + 自动单位 ---------- */
