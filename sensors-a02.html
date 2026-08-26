@@ -317,8 +317,17 @@
       cfg.options.scales.x.ticks.autoSkip = true;
       cfg.options.scales.x.ticks.maxRotation = narrow ? 0 : 45;
       cfg.options.scales.x.ticks.minRotation = narrow ? 0 : 45;
-      cfg.options.scales.x.ticks.font = { size: narrow ? 7.5 : 11 };
+      cfg.options.scales.x.ticks.font = { size: narrow ? 6.5 : 11 };
+      cfg.options.scales.x.ticks.autoSkipPadding = 6;
+      cfg.options.scales.x.ticks.padding = 1;
       cfg.options.scales.x.ticks.color = '#C7DDEA';
+
+      /* 窄屏：时间标签只保留 MM-DD，去掉小时，避免任何数据量下重叠 */
+      if (narrow && cfg.data && cfg.data.labels) {
+        cfg.data.labels = cfg.data.labels.map(function (lb) {
+          return String(lb).replace(/\s\d{2}$/, '');
+        });
+      }
 
       /* Y 轴刻度：小字号低亮灰蓝 */
       cfg.options.scales.y.ticks = cfg.options.scales.y.ticks || {};
