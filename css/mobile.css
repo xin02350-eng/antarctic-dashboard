@@ -229,15 +229,25 @@
   }
 
   /* ---------- 第2页：地图在上，状态/节点在下，字改小 ---------- */
+  body.network-page{
+    display:flex !important;
+    flex-direction:column !important;
+    height:100vh !important;
+    height:100dvh !important;
+    overflow:hidden !important;
+  }
+  body.network-page .top{
+    flex:none !important;
+    min-height:0 !important;
+  }
   body.network-page .main{
     display:grid !important;
     grid-template-columns:minmax(0,48%) minmax(0,52%) !important;
     grid-template-rows:minmax(0,1fr) minmax(0,1fr) !important;
     gap:0.375rem !important;
     padding:0.375rem !important;
-    flex:none !important;
-    height:calc(100vh - 2.75rem);
-    height:calc(100dvh - 2.75rem) !important;
+    flex:1 1 auto !important;
+    height:auto !important;
     min-height:0 !important;
     overflow:hidden !important;
     margin:0 !important;
@@ -1258,6 +1268,95 @@
   }
 
   /* ---------- 第3页：位置一屏 ---------- */
+  body.location-page .mission-header{
+    display:flex !important;
+    flex-direction:row !important;
+    flex-wrap:nowrap !important;
+    align-items:center !important;
+    justify-content:space-between !important;
+    gap:0.625rem !important;
+    width:100% !important;
+    max-width:none !important;
+    height:auto !important;
+    min-height:2.75rem !important;
+    margin:0 !important;
+    padding:0.25rem 4.5rem 0.25rem 0.625rem !important;
+    text-align:left !important;
+    border:1px solid rgba(140,234,255,.14) !important;
+    border-radius:0.375rem !important;
+    background:linear-gradient(115deg, rgba(12,34,54,.72), rgba(6,20,34,.62)), radial-gradient(circle at 78% 0%, rgba(98,217,255,.10), transparent 45%) !important;
+    box-shadow:none !important;
+    overflow:hidden !important;
+  }
+  body.location-page .mission-header > div:first-child{
+    flex:1 1 auto !important;
+    min-width:0 !important;
+    display:flex !important;
+    flex-direction:column !important;
+    align-items:flex-start !important;
+    gap:0.0625rem !important;
+  }
+  body.location-page .mission-header h2{
+    font-size:0.9375rem !important;
+    font-weight:600 !important;
+    letter-spacing:2px !important;
+    color:#f2fbff !important;
+    line-height:1.1 !important;
+    white-space:nowrap !important;
+    overflow:hidden !important;
+    text-overflow:ellipsis !important;
+  }
+  body.location-page .mission-header p{
+    font-size:0.4375rem !important;
+    letter-spacing:1px !important;
+    color:#7fa3bc !important;
+    margin:0 !important;
+    white-space:nowrap !important;
+    overflow:hidden !important;
+    text-overflow:ellipsis !important;
+  }
+  body.location-page .header-right{
+    display:flex !important;
+    flex-direction:row !important;
+    align-items:center !important;
+    gap:0.5rem !important;
+    margin:0 !important;
+    flex:none !important;
+  }
+  body.location-page .system-online{
+    display:flex !important;
+    align-items:center !important;
+    gap:0.3125rem !important;
+    font-size:0.5rem !important;
+    letter-spacing:1px !important;
+    color:#8ff0cf !important;
+    white-space:nowrap !important;
+  }
+  body.location-page .system-online > span:first-child{
+    flex:none !important;
+    width:0.3125rem !important;
+    height:0.3125rem !important;
+    border-radius:50% !important;
+    background:#00e5a8 !important;
+    box-shadow:0 0 6px rgba(0,229,168,.7) !important;
+  }
+  body.location-page .status-stack{
+    display:flex !important;
+    flex-direction:row !important;
+    align-items:baseline !important;
+    gap:0.1875rem !important;
+    white-space:nowrap !important;
+  }
+  body.location-page .status-stack-label{
+    font-size:0.4375rem !important;
+    letter-spacing:1px !important;
+    color:#eafcff !important;
+  }
+  body.location-page .status-stack-value{
+    font-size:0.4375rem !important;
+    letter-spacing:1px !important;
+    color:#6f93a8 !important;
+  }
   body.location-page main{
     display:flex !important;
     flex-direction:column !important;
