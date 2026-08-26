@@ -1024,15 +1024,26 @@
     min-height:0 !important;
     height:100% !important;
     padding:0.25rem !important;
+    overflow:visible !important;
   }
   body.sensors-page .sensor-grid .panel-title{
+    position:relative !important;
     font-size:0.4375rem !important;
     letter-spacing:0.5px !important;
     line-height:1.1 !important;
+    min-height:0.9375rem !important;
+    padding-right:3.5rem !important;
     white-space:nowrap;
     overflow:hidden;
     text-overflow:ellipsis;
     margin-bottom:0.125rem !important;
+  }
+  body.sensors-page .sensor-grid .panel-title::after{
+    top:0 !important;
+    right:0.0625rem !important;
+    line-height:1 !important;
+    white-space:nowrap !important;
+    z-index:2 !important;
   }
   body.sensors-page .sensor-grid canvas{
     height:calc(100% - 1.375rem) !important;
