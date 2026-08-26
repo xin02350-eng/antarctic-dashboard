@@ -1057,25 +1057,88 @@
     gap:0.375rem !important;
   }
   body.hardware-page .mission-header{
-    height:2.5rem !important;
+    display:flex !important;
+    flex-direction:row !important;
     flex-wrap:nowrap !important;
+    align-items:center !important;
+    justify-content:space-between !important;
+    gap:0.625rem !important;
+    width:100% !important;
+    max-width:none !important;
+    height:auto !important;
+    min-height:2.75rem !important;
+    margin:0 !important;
+    padding:0.25rem 0.625rem !important;
+    text-align:left !important;
+    border:1px solid rgba(140,234,255,.14) !important;
+    border-radius:0.375rem !important;
+    background:linear-gradient(115deg, rgba(12,34,54,.72), rgba(6,20,34,.62)), radial-gradient(circle at 78% 0%, rgba(98,217,255,.10), transparent 45%) !important;
+    box-shadow:none !important;
     overflow:hidden !important;
   }
+  body.hardware-page .mission-header > div:first-child{
+    flex:1 1 auto !important;
+    min-width:0 !important;
+    display:flex !important;
+    flex-direction:column !important;
+    align-items:flex-start !important;
+    gap:0.0625rem !important;
+  }
   body.hardware-page .mission-header h2{
+    font-size:0.9375rem !important;
+    font-weight:600 !important;
+    letter-spacing:2px !important;
+    color:#f2fbff !important;
+    line-height:1.1 !important;
     white-space:nowrap;
     overflow:hidden;
     text-overflow:ellipsis;
   }
   body.hardware-page .mission-header p{
-    display:none !important;
+    font-size:0.4375rem !important;
+    letter-spacing:1px !important;
+    color:#7fa3bc !important;
+    margin:0 !important;
+    white-space:nowrap !important;
+    overflow:hidden !important;
+    text-overflow:ellipsis !important;
+  }
+  body.hardware-page .header-right{
+    display:flex !important;
+    align-items:center !important;
+    margin:0 !important;
+    flex:none !important;
+  }
+  body.hardware-page .system-online{
+    display:flex !important;
+    align-items:center !important;
+    gap:0.3125rem !important;
+    font-size:0.5rem !important;
+    letter-spacing:1px !important;
+    color:#8ff0cf !important;
+    white-space:nowrap !important;
+  }
+  body.hardware-page .system-online > span:first-child{
+    flex:none !important;
+    width:0.3125rem !important;
+    height:0.3125rem !important;
+    border-radius:50% !important;
+    background:#00e5a8 !important;
+    box-shadow:0 0 6px rgba(0,229,168,.7) !important;
   }
   body.hardware-page .doc-single{
     flex:1 1 auto !important;
     min-height:0 !important;
     display:grid !important;
     grid-template-columns:minmax(0,58%) minmax(0,42%) !important;
+    grid-template-rows:minmax(0,1fr) !important;
     gap:0.375rem !important;
+    align-items:stretch !important;
+    align-content:stretch !important;
     overflow:hidden !important;
+  }
+  body.hardware-page .doc-single > *{
+    align-self:stretch !important;
   }
   body.hardware-page .doc-single > .doc-side:first-of-type{
     display:none !important;
@@ -1108,22 +1171,90 @@
     overflow:hidden !important;
     display:flex !important;
     flex-direction:column !important;
-    gap:0.25rem !important;
+    justify-content:space-between !important;
+    gap:0.3125rem !important;
     padding:0.3125rem !important;
+  }
+  body.hardware-page .doc-single > .doc-side:last-of-type{
+    border:1px solid rgba(140,234,255,.14) !important;
+    border-radius:0.375rem !important;
+    background:linear-gradient(115deg, rgba(12,34,54,.72), rgba(6,20,34,.62)), radial-gradient(circle at 78% 0%, rgba(98,217,255,.10), transparent 45%) !important;
   }
   body.hardware-page .doc-side h3{
     font-size:0.5rem !important;
-    margin:0 !important;
+    letter-spacing:1.5px !important;
+    color:#8ceaff !important;
+    margin:0 0 0.125rem !important;
+    padding-bottom:0.125rem !important;
   }
   body.hardware-page .doc-side .hud-card{
-    padding:0.1875rem 0.3125rem !important;
+    flex:none !important;
+    display:flex !important;
+    align-items:center !important;
+    gap:0.375rem !important;
+    padding:0.25rem 0.4375rem !important;
+    border:1px solid rgba(140,234,255,.10) !important;
+    border-radius:0.3125rem !important;
+    background:rgba(7,24,40,.5) !important;
   }
-  body.hardware-page .doc-side .hud-card:nth-of-type(n+4){
-    display:none !important;
+  body.hardware-page .hc-dot{
+    flex:none !important;
+    width:0.3125rem !important;
+    height:0.3125rem !important;
+    border-radius:50% !important;
+    background:#00e5a8 !important;
+    box-shadow:0 0 5px rgba(0,229,168,.6) !important;
   }
-  body.hardware-page .hc-name,
+  body.hardware-page .hc-body{
+    flex:1 1 auto !important;
+    min-width:0 !important;
+    display:flex !important;
+    align-items:baseline !important;
+    justify-content:space-between !important;
+    flex-wrap:nowrap !important;
+    gap:0.1875rem !important;
+  }
+  body.hardware-page .hc-name{
+    display:inline !important;
+    width:auto !important;
+    flex:none !important;
+    font-size:0.5rem !important;
+    letter-spacing:1px !important;
+    color:#9fc3d6 !important;
+    white-space:nowrap !important;
+    overflow:hidden !important;
+    text-overflow:ellipsis !important;
+  }
   body.hardware-page .hc-val{
-    font-size:0.5625rem !important;
+    font-size:0.875rem !important;
+    font-weight:500 !important;
+    color:#f2fbff !important;
+    font-variant-numeric:tabular-nums !important;
+    white-space:nowrap !important;
+  }
+  body.hardware-page .hc-unit{
+    font-size:0.5rem !important;
+    color:#6f93a8 !important;
+  }
+  body.hardware-page .doc-side .tech-line{
+    flex:none !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:space-between !important;
+    gap:0.5rem !important;
+    padding:0.2rem 0.125rem !important;
+    border-bottom:1px dashed rgba(140,234,255,.08) !important;
+    font-size:0.4375rem !important;
+    letter-spacing:1px !important;
+    color:#7fa3bc !important;
+  }
+  body.hardware-page .doc-side .tech-line span:last-child{
+    color:#eafcff !important;
+    text-align:right !important;
+    font-weight:500 !important;
+  }
+  body.hardware-page .hw-strip{
+    display:none !important;
   }
 
   /* ---------- 第3页：位置一屏 ---------- */
