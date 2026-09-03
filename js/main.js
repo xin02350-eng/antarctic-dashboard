@@ -10,6 +10,22 @@
 
 
 let DATA = [];
+var DMS_IGNORED_TIMES = [
+  '2026-09-03 20:43',
+  '2026-09-03 20:37',
+  '2026-09-03 20:27'
+];
+function dmsIgnoreRecord(record) {
+  var t = record && record.time ? String(record.time) : '';
+  for (var i = 0; i < DMS_IGNORED_TIMES.length; i++) {
+    if (t === DMS_IGNORED_TIMES[i] || t.indexOf(DMS_IGNORED_TIMES[i]) === 0) return true;
+  }
+  return false;
+}
+window.DMS_FILTER_DATA = function (data) {
+  if (!Array.isArray(data)) return data;
+  return data.filter(function (record) { return !dmsIgnoreRecord(record); });
+};
 var lastDataKey = null;
 var dataBusy = false;
 
@@ -416,6 +432,7 @@ DATA = await res.json();
 if(!Array.isArray(DATA)){
 throw new Error("data.json format invalid");
 }
+DATA = window.DMS_FILTER_DATA(DATA);
 
 var dataKey = DATA.length + "|" + (DATA.length ? String(DATA[DATA.length - 1].time || "") : "");
 if(dataKey === lastDataKey){
@@ -604,7 +621,7 @@ return window.ANX_T ? window.ANX_T("null") : "NULL";
 }
 
 
-return v;
+return String(v);
 
 
 }

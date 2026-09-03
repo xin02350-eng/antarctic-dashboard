@@ -384,7 +384,7 @@
       tt.callbacks.label = function (context) {
         var v = context.parsed && context.parsed.y;
         if (typeof v !== 'number' || isNaN(v)) return window.ANX_T ? window.ANX_T('no_data') : 'NO DATA';
-        return parseFloat(v.toFixed(2)) + (units[ctx.id] || '');
+        return (ctx.id === 'chartVoltage' ? String(v) : parseFloat(v.toFixed(2))) + (units[ctx.id] || '');
       };
     }
 
@@ -508,7 +508,7 @@
 </script>
 
 <!-- 数据核心与图表创建（main.js 保持不变） -->
-<script src="./js/main.js?v=20260825c"></script>
+<script src="./js/main.js?v=20260903a"></script>
   <!-- V49.19 · 风速“暂无数据”占位：有有效风速数据时隐藏，无数据时显示（不动图表/数据逻辑） -->
   <script>
   (function () {

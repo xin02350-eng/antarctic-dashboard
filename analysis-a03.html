@@ -1087,7 +1087,7 @@
 <script src="./js/ambient.js?v=20260806b"></script>
 
 <!-- 数据核心（main.js 保持不变） -->
-<script src="./js/main.js?v=20260825c"></script>
+<script src="./js/main.js?v=20260903a"></script>
 
 <!-- 任务成果分析层（纯显示逻辑，不影响 main.js / data03.json） -->
 <script>
@@ -1197,7 +1197,7 @@
       if (v !== null) { lastV = v; soc = voltageToSoc(Number(v)); break; }
     }
     var socNum = (soc !== null && !isNaN(soc)) ? Number(soc) : null;
-    setTxt('sumVoltage', lastV === null ? '--' : Number(lastV).toFixed(1));
+    setTxt('sumVoltage', lastV === null ? '--' : String(lastV));
     setTxt('socState', socNum === null ? '--' :
       (socNum >= 60 ? (window.ANX_T ? window.ANX_T('soc_ok') : 'NORMAL') :
       (socNum > 0 ? (window.ANX_T ? window.ANX_T('soc_low') : 'LOW') :

@@ -205,7 +205,7 @@
 <div class="scan-line" aria-hidden="true"></div>
 
 <!-- 数据核心（main.js 保持不变：负责读取 data02.json 并写入 #telemetryData） -->
-<script src="./js/main.js?v=20260825c"></script>
+<script src="./js/main.js?v=20260903a"></script>
 
 <!-- =========================================================
      Telemetry 最小数据渲染层（纯显示逻辑，不改 main.js）
@@ -275,7 +275,7 @@
   /* NULL 一律显示 --，不补 0、不插值 */
   function fmtVal(v, unit) {
     if (v === null || v === undefined || v === '') return '--';
-    var n = (typeof v === 'number') ? parseFloat(v.toFixed(2)) : v;
+    var n = (typeof v === 'number') ? (unit === 'V' ? String(v) : parseFloat(v.toFixed(2))) : v;
     return unit ? n + ' ' + unit : String(n);
   }
 
@@ -496,7 +496,7 @@
       fallbackSent = true;
       fetch('./data02.json?v=' + Date.now())
         .then(function (r) { return r.ok ? r.json() : null; })
-        .then(function (d) { if (d && d.length) render(d); })
+        .then(function (d) { if (d && d.length) render(window.DMS_FILTER_DATA ? window.DMS_FILTER_DATA(d) : d); })
         .catch(function () { /* 网络失败保持空容器，由 main.js 报错 */ });
     }
     if (++tries > 60) clearInterval(timer);
