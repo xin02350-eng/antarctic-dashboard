@@ -1,0 +1,10 @@
+.telemetry-access { display:flex; flex-wrap:wrap; align-items:center; gap:.5rem .75rem; padding:.75rem 0; margin-bottom:.75rem; border-bottom:1px solid rgba(140,234,255,.18); }
+.telemetry-access .access-status { flex:1 0 100%; margin:0; color:#dff6ff; font-size:14px; line-height:1.5; }
+.telemetry-access label { color:#b5d5e5; font-size:14px; }
+.telemetry-access input { min-width:0; width:12rem; max-width:100%; }
+.telemetry-access input, .telemetry-access button { min-height:44px; padding:.5rem .75rem; border:1px solid #527d90; border-radius:4px; background:#081d2c; color:#eafcff; font:14px/1.4 Arial,sans-serif; }
+.telemetry-access button { cursor:pointer; background:#123548; }
+.telemetry-access :focus-visible { outline:2px solid #8ceaff; outline-offset:2px; }
+.telemetry-access [hidden] { display:none!important; }
+.telemetry-access #historyAccessError { flex:1 0 100%; margin:0; color:#ffb4bc; font-size:14px; }
+.telemetry-access #historyAccessError:empty { display:none; }

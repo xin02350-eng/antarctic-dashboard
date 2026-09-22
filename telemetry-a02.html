@@ -146,6 +146,7 @@
   <!-- Telemetry 大量表格：雪花降载至 50%（不关闭） -->
   <script>window.__antSnowScale = 0.5;</script>
 <style>.lang-float{position:fixed;top:1.75rem;right:2rem;z-index:120}.header-right{margin-right:9.375rem}@media (max-width:768px){.lang-float{top:18px;right:14px}.header-right{margin-right:0}}</style>  <link rel="stylesheet" href="./css/mobile.css?v=20260825n">
+  <link rel="stylesheet" href="./css/telemetry-access.css?v=20260922a">
 </head>
 
 <body class="ambient-theme telemetry-page"><div class="lang-float"><div class="lang-switch"><span class="lang-pill" aria-hidden="true"></span><button type="button" data-lang="zh">中</button><button type="button" data-lang="en" class="active">EN</button></div></div>
@@ -206,6 +207,7 @@
 
 <!-- 数据核心（main.js 保持不变：负责读取 data02.json 并写入 #telemetryData） -->
 <script src="./js/main.js?v=20260903a"></script>
+<script src="./js/telemetry-access.js?v=20260922a"></script>
 
 <!-- =========================================================
      Telemetry 最小数据渲染层（纯显示逻辑，不改 main.js）
@@ -460,6 +462,8 @@
       tbodyEl = null;
       loadEl = null;
     }
+    lastList = list;
+    list = window.DMS_TELEMETRY_ACCESS.visibleRows(list);
     var keys = collectKeys(list);
     var titleEl = document.getElementById('dataPanelTitle');
     if (titleEl) titleEl.textContent = L('latest_records', { n: list.length, c: 13 });
@@ -467,14 +471,13 @@
     scrollEl = box.querySelector('.tel-scroll');
     tbodyEl = box.querySelector('.tel-table tbody');
     loadEl = box.querySelector('.tel-loading');
-    rowsHtml = list.slice().reverse().map(function (d) { return rowHtml(d, keys); });
+    rowsHtml = list.map(function (d) { return rowHtml(d, keys); });
     renderedCount = 0;
     allDone = false;
     appendBatch();
     wireScroll();
     initSb();
     requestAnimationFrame(ensureFill);
-    lastList = list;
   }
 
   /* 优先使用 main.js 的全局 DATA */
@@ -502,6 +505,10 @@
     if (++tries > 60) clearInterval(timer);
   }, 500);
   if (window.addEventListener) {
+    window.addEventListener('anx:telemetryaccess', function () {
+      var data = readData() || lastList;
+      if (data) render(data, true);
+    });
     window.addEventListener('anx:langchange', function () {
       if (lastList) render(lastList, true);
     });
