@@ -3,6 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+  <script id="desktop-entry">
+    // Only desktop enters the redesigned site. Keep the original mobile and diagnostic views.
+    var desktopEntry = new URLSearchParams(location.search);
+    if (window.matchMedia('(min-width: 769px)').matches && desktopEntry.get('legacy') !== '1') {
+      location.replace('./expedition.html?view=' + (desktopEntry.get('view') === 'globe' ? 'globe' : 'dashboard') + '&station=a01');
+    }
+  </script>
   <meta name="color-scheme" content="dark">
   <title data-title-en="DISTRIBUTED MONITORING SYSTEM · EXPLORATION" data-title-zh="自主观测系统 · 探索序章">DISTRIBUTED MONITORING SYSTEM · EXPLORATION</title>
   <link rel="icon" href="data:,">
@@ -265,6 +272,8 @@
     }
   </style>
   <link rel="stylesheet" href="./css/mobile.css?v=20260825n">
+  <link rel="stylesheet" href="./css/polar-system.css?v=20260926a">
+  <script defer src="./js/polar-shell.js?v=20260926c"></script>
 </head>
 <body class="home-page">
 

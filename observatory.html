@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-language="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#07131e">
+  <title>极境观测 · DMS</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./css/observatory.css?v=20261001a">
+  <script defer src="./assets/three.min.js"></script>
+  <link rel="preload" as="image" href="./assets/polar/antarctic-glacier-storm-v4.png">
+  <script defer src="./js/polar-power.js?v=20260930b"></script>
+  <script defer src="./js/polar-mast.js?v=20260930b"></script>
+  <script defer src="./js/polar-snow.js?v=20260930b"></script>
+  <script defer src="./js/polar-environment.js?v=20261001a"></script>
+  <script defer src="./js/polar-scene.js?v=20261001d"></script>
+  <script defer src="./js/expedition-icons.js?v=20261001a"></script>
+  <script defer src="./js/observatory.js?v=20261001a"></script>
+</head>
+<body>
+  <div id="polarScene" aria-label="南极冰原上的原创监测装置三维概念场景"></div>
+  <div class="scene-shade" aria-hidden="true"></div>
+  <div class="scene-grain" aria-hidden="true"></div>
+  <div class="scene-fallback" id="sceneFallback" hidden><p data-zh="三维场景暂不可用，观测数据与页面导航仍可使用。" data-en="3D is unavailable. Observation data and navigation remain accessible."></p></div>
+
+  <header class="masthead">
+    <a class="brand" href="./observatory.html" aria-label="DMS 极境观测首页"><span class="brand-mark">D<span>·</span>M<span>·</span>S</span><span class="brand-caption" data-zh="分布式监测系统" data-en="DISTRIBUTED MONITORING"></span></a>
+    <nav class="main-nav" aria-label="主导航">
+      <a href="./observatory.html" class="active" aria-current="page"><span data-zh="极境现场" data-en="FIELD VIEW"></span></a>
+      <a href="./network.html"><span data-zh="观测网络" data-en="NETWORK"></span></a>
+      <a href="./dashboard.html" data-destination="dashboard"><span data-zh="任务控制" data-en="MISSION CONTROL"></span></a>
+      <a href="./hardware.html" data-destination="hardware"><span data-zh="装置档案" data-en="HARDWARE"></span></a>
+    </nav>
+    <div class="header-tools"><time id="utcClock">--:--:-- UTC</time><button type="button" id="motionToggle" class="motion-control" aria-pressed="false" aria-label="暂停场景动画" title="暂停场景动画"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="pause-icon" d="M8 5v14M16 5v14"/><path class="play-icon" d="M8 5l11 7-11 7z"/></svg><span class="sr-only">暂停场景动画</span></button><button id="languageButton" type="button" aria-label="Switch to English">EN</button></div>
+  </header>
+
+  <main>
+    <section class="mission-copy" aria-labelledby="missionTitle">
+      <p class="eyebrow"><span class="tiny-cross">+</span> ANTARCTIC FIELD OBSERVATORY</p>
+      <h1 id="missionTitle"><span data-zh="始于监测，" data-en="From Monitoring,"></span><br><span class="title-light" data-zh="走向未知" data-en="Toward the Unknown"></span></h1>
+      <p class="mission-description" data-zh="未知之境，需要探索者的脚步；\n无人之地，需要第一组观测数据。" data-en="The unknown requires explorers;\nUninhabited lands require the first set of observations."></p>
+      <a class="primary-link" href="./dashboard.html" data-destination="dashboard"><span data-zh="进入观测控制台" data-en="OPEN MISSION CONTROL"></span><span aria-hidden="true">↗</span></a>
+      <div class="mission-index"><span>01 /</span><div><strong data-zh="单主轴 · 三面光伏观测节点" data-en="SINGLE-MAST SOLAR OBSERVATORY"></strong><small>TRI-FACE SOLAR / GPS / LoRa</small></div></div>
+    </section>
+
+    <aside class="telemetry" aria-label="最新观测数据">
+      <div class="telemetry-heading"><span class="eyebrow">NODE TELEMETRY</span><span id="dataState" class="data-state" data-state="loading" role="status">连接中</span></div>
+      <h2><span id="stationName">DMS–A01</span><span class="node-symbol" aria-hidden="true">⌁</span></h2>
+      <p class="source-note" data-zh="实际采集数据 · 非场景模拟值" data-en="MEASURED DATA · NOT SIMULATED"></p>
+      <dl class="readouts">
+        <div class="main-reading"><dt data-zh="环境温度" data-en="AIR TEMPERATURE"></dt><dd><strong id="valueTemp">—</strong><span>°C</span></dd></div>
+        <div><dt data-zh="风速" data-en="WIND SPEED"></dt><dd><strong id="valueWind">—</strong><span>m/s</span></dd></div>
+        <div><dt data-zh="系统电压" data-en="SYSTEM VOLTAGE"></dt><dd><strong id="valueVoltage">—</strong><span>V</span></dd></div>
+        <div><dt data-zh="大气压强" data-en="PRESSURE"></dt><dd><strong id="valuePressure">—</strong><span>hPa</span></dd></div>
+      </dl>
+      <div class="trend-head"><span data-zh="温度趋势 / 最近100条" data-en="TEMPERATURE / LAST 100"></span><span>°C</span></div>
+      <svg id="temperatureTrend" class="trend" viewBox="0 0 240 58" role="img" aria-label="最近100条温度趋势"><defs><linearGradient id="trendFade" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#9be0d8" stop-opacity=".22"/><stop offset="1" stop-color="#9be0d8" stop-opacity="0"/></linearGradient></defs><path id="trendArea" fill="url(#trendFade)"/><path id="trendLine" fill="none" stroke="#a4ddd7" stroke-width="1.3"/><path d="M0 57H240" stroke="#a4ddd7" opacity=".2"/></svg>
+      <div class="latest-update"><span data-zh="最近采集" data-en="LAST OBSERVATION"></span><time id="lastObservation">—</time></div>
+      <a class="text-link" href="./telemetry.html" data-destination="telemetry"><span data-zh="查看观测记录" data-en="VIEW DATA RECORDS"></span><span>↗</span></a>
+    </aside>
+
+    <div class="instrument-label secondary" id="antennaLabel" aria-hidden="true"><span class="label-dot"></span><span><b>LoRa UPLINK</b><small data-zh="双向通信 · 链路示意" data-en="BIDIRECTIONAL · VISUALIZATION"></small></span></div>
+    <div class="instrument-label secondary" id="sensorLabel" aria-hidden="true"><span class="label-dot"></span><span><b data-zh="环境感知阵列" data-en="SENSOR ARRAY"></b><small>TEMP / RH / WIND</small></span></div>
+    <div class="instrument-label" id="powerLabel" aria-hidden="true"><span class="label-dot"></span><span><b data-zh="三面光伏" data-en="TRI-FACE SOLAR"></b><small data-zh="单主轴 · 三棱柱结构" data-en="SINGLE MAST · TRIANGULAR PRISM"></small></span></div>
+
+    <div class="view-controls" aria-label="三维场景控制">
+      <span class="control-caption">PERSPECTIVE</span>
+      <button type="button" data-view="wide" aria-pressed="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8l8-4 8 4v9l-8 4-8-4zM4 8l8 4 8-4M12 12v9"/></svg><span data-zh="全景" data-en="WIDE"></span></button>
+      <button type="button" data-view="close" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="6"/><path d="M14.5 14.5L21 21M10 7v6M7 10h6"/></svg><span data-zh="近景" data-en="DETAIL"></span></button>
+      <button type="button" data-view="top" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9l9-5 9 5-9 5zM3 14l9 5 9-5"/></svg><span data-zh="俯瞰" data-en="ABOVE"></span></button>
+    </div>
+
+    <div class="field-caption"><span class="field-cross" aria-hidden="true">+</span><div><span>ANTARCTICA / EXTREME ENVIRONMENT</span><p data-zh="概念场景 · 暴风雪非实时天气 · 通信为示意" data-en="CONCEPT SCENE · WEATHER & SIGNALS ARE ILLUSTRATIVE"></p></div></div>
+    <div class="interaction-hint" data-zh="拖动环绕 · 滚轮缩放" data-en="DRAG TO ORBIT · SCROLL TO ZOOM"></div>
+    <div id="environmentStatus" class="environment-status" role="status" data-zh="正在加载极地环境…" data-en="Loading polar environment…">正在加载极地环境…</div>
+  </main>
+
+  <footer class="mission-dock">
+    <div class="dock-intro"><span class="eyebrow">OBSERVATION NODES</span><span data-zh="选择观测节点" data-en="SELECT A NODE"></span></div>
+    <div class="station-tabs" role="group" aria-label="观测节点">
+      <button type="button" data-station="a01" aria-pressed="true"><span class="station-dot"></span><b>DMS–A01</b><small data-zh="01 / 观测节点" data-en="01 / OBSERVATION NODE"></small></button>
+      <button type="button" data-station="a02" aria-pressed="false"><span class="station-dot"></span><b>DMS–A02</b><small data-zh="02 / 观测节点" data-en="02 / OBSERVATION NODE"></small></button>
+      <button type="button" data-station="a03" aria-pressed="false"><span class="station-dot"></span><b>DMS–A03</b><small data-zh="03 / 观测节点" data-en="03 / OBSERVATION NODE"></small></button>
+    </div>
+    <a class="globe-link" href="./index.html?view=globe"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3 12h18M5 7h14M5 17h14"/></svg><span data-zh="全球视野" data-en="GLOBAL VIEW"></span><span>↗</span></a>
+  </footer>
+  <noscript><p class="no-script">请启用 JavaScript 查看三维场景。<a href="./dashboard.html">进入仪表盘</a></p></noscript>
+</body>
+</html>
