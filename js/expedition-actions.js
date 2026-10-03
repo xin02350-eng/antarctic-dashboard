@@ -1,5 +1,5 @@
 /* One measured SVG edge per action. The browser animates its real stroke;
-   JavaScript only measures on mount/resize and pauses hidden decorations. */
+   JavaScript measures on mount/resize, repairs replaced labels, and pauses hidden decorations. */
 (function (root) {
   'use strict';
   const selectors = '.solid-link,.primary-link,.outline-button,.table-pager button,.telemetry-access button[type=submit]';
@@ -62,7 +62,13 @@
 
     function remeasure() { entries.forEach(measure); sync(); }
 
+    function repair(entry) {
+      if (entry.frame.parentNode !== entry.source) entry.source.appendChild(entry.frame);
+      measure(entry);
+    }
+
     function release(entry) {
+      entry.mutation?.disconnect();
       resize?.unobserve?.(entry.source); intersection?.unobserve?.(entry.source);
       entry.frame.remove(); entry.source.classList.remove(...entry.addedClasses, 'action-trace-paused');
       entries.delete(entry.source);
@@ -75,7 +81,7 @@
       if (scope.matches?.(selectors)) candidates.add(scope);
       let mounted = 0;
       candidates.forEach(source => {
-        if (entries.has(source)) { measure(entries.get(source)); return; }
+        if (entries.has(source)) { repair(entries.get(source)); return; }
         const frame = doc.createElementNS(ns, 'svg');
         frame.setAttribute('class', 'action-trace'); frame.setAttribute('aria-hidden', 'true');
         frame.setAttribute('focusable', 'false'); frame.setAttribute('pointer-events', 'none');
@@ -90,6 +96,16 @@
         source.classList.add('action-trace-host'); source.appendChild(frame);
         const entry = { source, frame, rects, addedClasses, visible: true };
         entries.set(source, entry); measure(entry);
+        // Telemetry translation replaces button.textContent even when the label
+        // and its dimensions are unchanged (for example after a wrong password).
+        // Observe only this control's direct children, never the page subtree.
+        if (env.MutationObserver) {
+          entry.mutation = new env.MutationObserver(() => {
+            if (entries.get(source) !== entry || source.isConnected === false || frame.parentNode === source) return;
+            repair(entry);
+          });
+          entry.mutation.observe(source, { childList: true });
+        }
         resize?.observe(source); intersection?.observe(source); mounted++;
       });
       sync(); return mounted;
