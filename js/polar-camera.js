@@ -9,6 +9,16 @@
     var hero = name === 'hero';
     width = Number.isFinite(width) && width > 0 ? width : 1440;
     height = Number.isFinite(height) && height > 0 ? height : 900;
+    if (name === 'instrument') return {
+      // This archival viewport is much wider/shorter than the homepage scene.
+      // Center the unchanged mast and fill the vertical viewing area, not its horizon.
+      name: 'instrument', horizontalOffset: 0.015, verticalOffset: 0.04,
+      presets: {
+        wide: { azimuth: 0.65, elevation: 0.10, radius: 14.6, targetY: 3.15 },
+        close: { azimuth: 0.84, elevation: 0.17, radius: 13.8, targetY: 3.15 },
+        top: { azimuth: 0.72, elevation: 0.82, radius: 14.4, targetY: 3.60 }
+      }
+    };
     if (!hero) return {
       name: 'standard', horizontalOffset: 0.18, verticalOffset: -0.015,
       presets: {

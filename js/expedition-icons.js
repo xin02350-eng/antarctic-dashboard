@@ -1,16 +1,17 @@
-/* Fine-line navigation glyphs. Semantic labels and existing controls stay intact. */
+/* Compact 24-grid line icons. Semantic labels and existing controls stay intact. */
 (function (root) {
   'use strict';
-  const glyphs = Object.freeze({ '↗': 'northeast', '→': 'right', '←': 'left', '↓': 'down', '↻': 'refresh' });
+  const glyphs = Object.freeze({ '↗': 'northeast', '→': 'right', '←': 'left', '↓': 'down', '↻': 'refresh', '⇩': 'download' });
   const paths = Object.freeze({
-    northeast: 'M5.5 18.5 18.5 5.5 M11.5 5.5H18.5V12.5',
-    right: 'M3 12H21 M16.5 7.5 21 12 16.5 16.5',
-    left: 'M21 12H3 M7.5 7.5 3 12 7.5 16.5',
-    down: 'M12 3V21 M7.5 16.5 12 21 16.5 16.5',
-    refresh: 'M19.5 8.5A8 8 0 1 0 20 15 M19.5 3.8V8.5H14.8'
+    northeast: 'M7 17 17 7 M8 7H17V16',
+    right: 'M5.5 12H18.5 M13.5 7 18.5 12 13.5 17',
+    left: 'M18.5 12H5.5 M10.5 7 5.5 12 10.5 17',
+    down: 'M12 5.5V18.5 M7 13.5 12 18.5 17 13.5',
+    refresh: 'M19 9A7.3 7.3 0 1 0 19 15 M19 5V9H15',
+    download: 'M12 4.5V15 M8 11 12 15 16 11 M5 16V19.5H19V16'
   });
   const selectors = 'a,button,.table-scroll thead small';
-  const pattern = /([↗→←↓↻])/u;
+  const pattern = /([↗→←↓↻⇩])/u;
 
   function create(doc) {
     function icon(direction) {
@@ -19,7 +20,7 @@
       svg.setAttribute('viewBox', '0 0 24 24'); svg.setAttribute('width', '24'); svg.setAttribute('height', '24');
       svg.setAttribute('aria-hidden', 'true'); svg.setAttribute('focusable', 'false');
       svg.setAttribute('pointer-events', 'none'); svg.setAttribute('fill', 'none');
-      svg.setAttribute('stroke', 'currentColor'); svg.setAttribute('stroke-width', '1.25');
+      svg.setAttribute('stroke', 'currentColor'); svg.setAttribute('stroke-width', '1.5');
       svg.setAttribute('stroke-linecap', 'round'); svg.setAttribute('stroke-linejoin', 'round');
       const path = doc.createElementNS(ns, 'path');
       path.setAttribute('d', paths[direction]); path.setAttribute('vector-effect', 'non-scaling-stroke');

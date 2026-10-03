@@ -1,0 +1,18 @@
+{
+  "width": 4096,
+  "height": 2048,
+  "lossless": true,
+  "flipY": false,
+  "encoding": "sRGB",
+  "sources": {
+    "js/earth-surface.js": "5c8a51debcf24f18bcbd96e1bf821557ae7531cd638aa20cff56be40fb429876",
+    "assets/geo/countries.json": "6866c877d39cba9c357620878839b336d569f8c662d3cfab4cb1dbe2d39c977f",
+    "assets/geo/geolines.json": "c09c7883df618dfefb56fb37c349fedb38e7f926d5eb85d11648f33c8bdf5fbf",
+    "assets/geo/rivers.json": "55aa4497405afc07cdc931b7fbe062c4d6693ba2a550c0d24899953f5d507c8d"
+  },
+  "output": {
+    "file": "assets/geo/earth-surface-v1.webp",
+    "bytes": 710336,
+    "sha256": "b79a6078dc53760ea6afa90ae331b15be2a91bb826079378c757ae477bf009c6"
+  }
+}

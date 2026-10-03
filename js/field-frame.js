@@ -5,6 +5,6 @@
   document.documentElement.dataset.language=en?'en':'zh';
   document.querySelectorAll('[data-view]').forEach((b,i)=>{if(en)b.textContent=['Wide','Detail','Above'][i];});
   const motion=document.getElementById('motionToggle');
-  const update=()=>{const paused=motion.getAttribute('aria-pressed')==='true';motion.textContent=paused?'▷':'Ⅱ';motion.setAttribute('aria-label',en?(paused?'Resume scene':'Pause scene'):(paused?'继续场景动画':'暂停场景动画'));};
+  const update=()=>{const paused=motion.getAttribute('aria-pressed')==='true';const label=en?(paused?'Resume scene':'Pause scene'):(paused?'继续场景动画':'暂停场景动画');motion.setAttribute('aria-label',label);motion.setAttribute('title',label);};
   window.addEventListener('polar:motion',update);update();
 })();

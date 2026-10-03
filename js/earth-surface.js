@@ -4,6 +4,9 @@
   'use strict';
   function project(lng,lat,w,h){return [(lng+180)/360*w,(lat+90)/180*h];}
   function lines(g){if(!g)return [];if(g.type==='Polygon'||g.type==='MultiLineString')return g.coordinates;if(g.type==='MultiPolygon')return g.coordinates.flat();return g.type==='LineString'?[g.coordinates]:[];}
+  function configure(T,renderer,map){
+    map.flipY=false;map.anisotropy=Math.min(8,renderer.capabilities.getMaxAnisotropy());map.minFilter=T.LinearMipmapLinearFilter;map.magFilter=T.LinearFilter;map.encoding=T.sRGBEncoding;return map;
+  }
   function texture(T,renderer,geography){
     const canvas=document.createElement('canvas');canvas.width=4096;canvas.height=2048;
     const ctx=canvas.getContext('2d'),w=canvas.width,h=canvas.height,g=ctx.createLinearGradient(0,0,0,h);
@@ -23,7 +26,7 @@
     function paint(features,color,width){ctx.lineWidth=width;ctx.lineJoin='round';ctx.strokeStyle=color;for(const f of features||[])for(const ring of lines(f.geometry)){ctx.beginPath();let last=null;for(const [lng,lat] of ring){const [x,y]=project(lng,lat,w,h);if(last===null||Math.abs(x-last)>w/2)ctx.moveTo(x,y);else ctx.lineTo(x,y);last=x;}ctx.stroke();}}
     paint(geography.countries?.features,'#76cad440',4.2);
     paint(geography.countries?.features,'#91ced5',1.15);paint(geography.geolines?.features,'#96d2f022',.8);paint(geography.rivers?.features,'#78beeb35',.9);
-    const map=new T.CanvasTexture(canvas);map.flipY=false;map.anisotropy=Math.min(8,renderer.capabilities.getMaxAnisotropy());map.minFilter=T.LinearMipmapLinearFilter;map.magFilter=T.LinearFilter;map.encoding=T.sRGBEncoding;return map;
+    return configure(T,renderer,new T.CanvasTexture(canvas));
   }
-  return {project,lines,texture};
+  return {project,lines,texture,configure};
 });

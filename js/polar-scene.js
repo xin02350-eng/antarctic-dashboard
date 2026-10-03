@@ -3,14 +3,26 @@
   'use strict';
   var host = document.getElementById('polarScene'), fallback = document.getElementById('sceneFallback');
   if (!host) return;
+  var startupClock = typeof performance !== 'undefined' ? function () { return performance.now(); } : function () { return 0; };
+  host.dataset.runtimeStartMs = startupClock().toFixed(1);
   var cameraProfile = new URLSearchParams(window.location.search).get('profile');
-  document.documentElement.dataset.profile = cameraProfile === 'hero' ? 'hero' : 'standard';
-  var publishedReadyState = null;
+  document.documentElement.dataset.profile = cameraProfile === 'hero' || cameraProfile === 'instrument' ? cameraProfile : 'standard';
+  var publishedReadyState = null, firstFrameRendered = false, panoramaSettled = false, environmentFailed = false;
   function publishReady(state) {
     host.dataset.readyState = state;
+    if (!host.dataset.visibleFrameMs && state !== 'unavailable') host.dataset.visibleFrameMs = startupClock().toFixed(1);
     if (cameraProfile !== 'hero' || window.parent === window || publishedReadyState === state) return;
     publishedReadyState = state;
     window.parent.postMessage({ type: 'dms:field-ready', state: state }, window.location.origin);
+  }
+  function publishEnvironmentState() {
+    // A finished render with the original panorama is meaningful immediately.
+    // The two fine-detail snow textures refine it without hiding the entire device.
+    if (!firstFrameRendered || !panoramaSettled || contextLost) return;
+    var failed = environmentFailed;
+    host.dataset.qualityState = failed ? 'degraded' : host.dataset.environment === 'ready' ? 'ready' : 'refining';
+    if (failed || host.dataset.environment === 'ready') publishReady(failed ? 'degraded' : 'ready');
+    else publishReady('degraded');
   }
   var T = window.THREE, renderer;
   try {
@@ -79,10 +91,12 @@
   window.createPolarSnow(T, model, snowDepositMaterial);
   var environmentNote = document.getElementById('environmentStatus');
   var environment = window.PolarEnvironment.create(T, renderer, scene, function (resources) {
+    firstFrameRendered = false;
     host.dataset.environment = resources.panorama === 'ready' && resources.snow === 'ready' && resources.crust === 'ready' ? 'ready' : 'loading';
     var failed = resources.panorama === 'error' || resources.snow === 'error' || resources.crust === 'error';
+    panoramaSettled = resources.panorama !== 'loading'; environmentFailed = failed;
     if (failed) host.dataset.environment = 'degraded';
-    if (failed || host.dataset.environment === 'ready') publishReady(failed ? 'degraded' : 'ready');
+    publishEnvironmentState();
     if (environmentNote) {
       environmentNote.hidden = host.dataset.environment === 'ready';
       environmentNote.dataset.zh = failed ? '环境素材未完整加载，三维操作与数据仍可使用' : '正在加载极地环境…';
@@ -152,7 +166,7 @@
     var w = window.innerWidth, h = window.innerHeight;
     var offset = Number(host.dataset.horizontalOffset || 0.065);
     var verticalOffset = -0.015;
-    if (composition && composition.name === 'hero') {
+    if (composition && (composition.name === 'hero' || composition.name === 'instrument')) {
       composition = window.PolarCamera.profile(cameraProfile, w, h); presets = composition.presets;
       offset = composition.horizontalOffset; verticalOffset = composition.verticalOffset;
       if (selectedPreset) destination = Object.assign({}, presets[selectedPreset]);
@@ -205,11 +219,12 @@
       element.style.opacity = visible && (!entry[2] || showSignals) ? '1' : '0'; element.style.left = x + 'px'; element.style.top = y + 'px';
     });
   }
-  var time = 0, lastFrame = 0, lastShadowTime = -1, raf = 0, contextLost = false;
+  var time = 0, lastFrame = 0, lastShadowTime = -1, raf = 0, contextLost = false, meaningfulFramePresented = false;
   var activity = window.PolarCamera && window.PolarCamera.visibilityGate(window.location.origin, window.parent);
   if (activity) activity.page(!document.hidden);
   function canRender() { return !document.hidden && !contextLost && (!activity || activity.active()); }
   function updateActivity() {
+    host.dataset.runtimeActive = String(canRender());
     if (!canRender()) { cancelAnimationFrame(raf); raf = 0; lastFrame = 0; }
     else if (!raf) { lastFrame = 0; raf = requestAnimationFrame(frame); }
   }
@@ -218,6 +233,10 @@
   });
   function frame(now) {
     if (!canRender()) { raf = 0; lastFrame = 0; return; }
+    // Do not compile an invisible, untextured sky program and immediately replace it.
+    if (!panoramaSettled) { raf = requestAnimationFrame(frame); return; }
+    // The preceding frame is already on screen before optional GPU work starts.
+    if (meaningfulFramePresented) environment.afterFrame?.();
     var dt = lastFrame ? Math.min((now - lastFrame) / 1000, 0.05) : 0; lastFrame = now;
     if (!paused) time += dt;
     var smoothing = reduced.matches ? 1 : 1 - Math.exp(-dt * 5);
@@ -263,10 +282,15 @@
       }
       driftGeometry.attributes.position.needsUpdate = true;
     }
-    positionLabels(); renderer.render(scene, camera); raf = requestAnimationFrame(frame);
+    positionLabels(); renderer.render(scene, camera);
+    if (!host.dataset.firstDrawMs) host.dataset.firstDrawMs = startupClock().toFixed(1);
+    firstFrameRendered = true; publishEnvironmentState();
+    if (panoramaSettled) meaningfulFramePresented = true;
+    if (host.dataset.qualityState === 'ready' && !host.dataset.fullQualityMs) host.dataset.fullQualityMs = startupClock().toFixed(1);
+    raf = requestAnimationFrame(frame);
   }
-  renderer.domElement.addEventListener('webglcontextlost', function (event) { event.preventDefault(); contextLost = true; if (activity) activity.context(false); updateActivity(); fallback.hidden = false; publishReady('unavailable'); });
-  renderer.domElement.addEventListener('webglcontextrestored', function () { environment.restore(); contextLost = false; if (activity) activity.context(true); fallback.hidden = true; renderer.shadowMap.needsUpdate = true; updateActivity(); publishReady(host.dataset.environment === 'ready' ? 'ready' : 'degraded'); });
+  renderer.domElement.addEventListener('webglcontextlost', function (event) { event.preventDefault(); contextLost = true; firstFrameRendered = false; if (activity) activity.context(false); updateActivity(); fallback.hidden = false; publishReady('unavailable'); });
+  renderer.domElement.addEventListener('webglcontextrestored', function () { environment.restore(); contextLost = false; if (activity) activity.context(true); fallback.hidden = true; renderer.shadowMap.needsUpdate = true; updateActivity(); });
   document.addEventListener('visibilitychange', function () { if (activity) activity.page(!document.hidden); updateActivity(); });
   window.addEventListener('pagehide', function () { if (activity) activity.page(false); updateActivity(); });
   window.addEventListener('pageshow', function () { if (activity) activity.page(!document.hidden); updateActivity(); });

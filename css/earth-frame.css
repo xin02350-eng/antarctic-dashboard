@@ -1,104 +1,92 @@
 html, body {
   margin: 0; width: 100%; height: 100%; overflow: hidden;
-  background: #08131e; color: #b7d9e9;
-  font: 12px/1.6 "Segoe UI", "Microsoft YaHei", sans-serif; color-scheme: dark;
+  background: #080e15; color: #dbe4eb;
+  font: 1rem/1.6 "Segoe UI", "Microsoft YaHei", sans-serif; color-scheme: dark;
 }
 .earth-aura {
   position: absolute; inset: 0; pointer-events: none;
-  background: radial-gradient(ellipse at 65% 45%, #1a465550, transparent 53%),
-    linear-gradient(145deg, #030a12, #07141e 65%, #020911);
+  background: radial-gradient(ellipse at 66% 46%, #18344038, transparent 58%),
+    linear-gradient(145deg, #080e15, #0a121b 65%, #060b11);
 }
-.orbital-reticle {
-  position: absolute; left: 67%; top: 50%; width: min(71vh, 49vw); aspect-ratio: 1;
-  border: 1px solid #79b4ce12; border-radius: 50%; transform: translate(-50%, -50%);
-  box-shadow: 0 0 0 18px #7cbed303, 0 0 0 19px #7cbed30a; pointer-events: none;
-}
+/* The globe carries its own orbital geometry; no second decorative HUD. */
+.orbital-reticle, .earth-register { display: none; }
 #earthViewport { position: absolute; inset: 0; outline: none; }
 canvas { display: block; touch-action: none; cursor: grab; transition: opacity .5s ease-out; }
 canvas:active { cursor: grabbing; }
 #earthViewport:focus-visible { outline: 1px solid #9cdced66; outline-offset: -5px; }
 
-/* Geographic labels remain light enough not to compete with the globe. */
+/* Geography stays legible without giving every place a separate card. */
 #earthLabels { position: absolute; inset: 0; pointer-events: none; }
 .earth-label {
-  position: absolute; white-space: nowrap; letter-spacing: .045em; color: #dfedf5;
-  text-shadow: 0 2px 8px #021322; transform: translateY(-50%);
-  border-left: 1px solid #b3d9df73; border-radius: 0 6px 6px 0; padding: 7px 12px;
-  background: linear-gradient(105deg, #12222feb, #101d2854);
-  box-shadow: inset 0 1px 0 #e8f4ff0e, 0 4px 12px -7px #00000080;
+  position: absolute; white-space: nowrap; letter-spacing: .035em; color: #e8eef2;
+  text-shadow: 0 1px 8px #050b12; transform: translateY(-50%);
+  border-left: 1px solid #cee9ed80; padding: .375rem .625rem;
+  background: linear-gradient(90deg, #080e15b8, #080e1500);
 }
-.earth-label small {
-  display: block; font: 10px/1.5 Consolas, monospace;
-  color: #acccd5; letter-spacing: .12em;
-}
-.earth-label b { display: block; font-size: 13px; font-weight: 500; line-height: 1.65; }
+.earth-label small { display: none; }
+.earth-label b { display: block; font-size: .875rem; font-weight: 500; line-height: 1.65; }
 .earth-label em {
-  display: block; font: 10px/1.75 Consolas, monospace; color: #a0b8c7;
-  font-style: normal; letter-spacing: .03em; font-variant-numeric: tabular-nums;
+  display: block; font: .75rem/1.6 Consolas, monospace; color: #a8b7c4;
+  font-style: normal; letter-spacing: .015em; font-variant-numeric: tabular-nums;
 }
 .earth-label:before {
-  content: ""; position: absolute; left: -25px; top: 50%; width: 25px; height: 1px;
-  background: linear-gradient(90deg, transparent, #b3d9df); pointer-events: none;
+  content: ""; position: absolute; left: -20px; top: 50%; width: 20px; height: 1px;
+  background: linear-gradient(90deg, transparent, #cee9ed80); pointer-events: none;
 }
-.earth-register {
-  position: absolute; right: 28px; top: 25px; border-right: 1px solid #b3d3de38;
-  padding-right: 13px; text-align: right; pointer-events: none;
-  color: #9ab7c7; font: 10px/1.9 Consolas, monospace; letter-spacing: .12em;
-}
-.earth-register b {
-  display: block; color: #e1edf5; font: 28px/1.45 Consolas, monospace;
-  letter-spacing: -.045em; font-variant-numeric: tabular-nums;
-}
-.earth-register i { font: 10px Consolas, monospace; color: #a0b6c5; letter-spacing: .09em; }
-.earth-register em { font-size: 11px; font-style: normal; color: #afc4d1; letter-spacing: .06em; }
 
-/* A single shared optical shell; individual buttons do not sample the scene. */
+/* The same machined graphite rail as the field scene, with one reflected edge. */
 .earth-toolbar {
-  position: absolute; right: 28px; bottom: 50px; display: flex; align-items: center;
-  gap: 3px; padding: 4px; border: 1px solid #d4e3ee19; border-radius: 11px;
-  background: linear-gradient(155deg, #26303bcc, #101923e6 60%, #101a25eb);
-  box-shadow: inset 0 1px 0 #f0f7ff12, inset 0 -1px 0 #00000038,
-    0 5px 8px -4px #01060be0, 0 16px 32px -12px #01060b99;
-  backdrop-filter: blur(20px) saturate(.85);
+  position: absolute; right: 1rem; bottom: 3rem; display: flex; align-items: center;
+  flex-wrap: wrap; max-width: calc(100% - 2rem);
+  gap: 2px; padding: 3px; border: 1px solid #d6e3e82e; border-radius: 4px;
+  background: #0a1017d9;
+  box-shadow: 0 8px 24px -12px #00000080;
+  backdrop-filter: blur(12px) saturate(.6);
 }
-.earth-toolbar button {
-  position: relative; font: inherit; font-size: 13px; letter-spacing: .02em;
-  min-height: 44px; min-width: 44px; padding: 0 15px; border-radius: 7px;
-  background: transparent; color: #adbdc9; border: 0; cursor: pointer;
-  transition: background .18s ease, color .18s ease, box-shadow .18s ease;
-}
-.earth-toolbar button + button:before {
-  content: ""; position: absolute; left: -2px; top: 14px; bottom: 14px; width: 1px;
-  background: linear-gradient(transparent, #d3e3ee20 30%, #d3e3ee20 70%, transparent);
+.earth-toolbar:before {
+  content: ""; position: absolute; left: .75rem; right: .75rem; top: -1px; height: 1px;
+  background: linear-gradient(90deg, transparent, #e3f1f466 36%, #c5dce52e 76%, transparent);
   pointer-events: none;
 }
+.earth-toolbar button {
+  position: relative; font: inherit; font-size: .875rem; font-weight: 500; letter-spacing: .025em;
+  min-height: 44px; min-width: 44px; padding: 0 .625rem; border-radius: 2px;
+  background: transparent; color: #cbd7df; border: 0; cursor: pointer;
+  transition: background .18s ease, color .18s ease;
+}
+.earth-toolbar button + button:before {
+  content: ""; position: absolute; left: -1px; top: 16px; bottom: 16px; width: 1px;
+  background: #d8e6eb21; pointer-events: none;
+}
 .earth-toolbar button[aria-pressed=true] {
-  color: #edf4f9; background: linear-gradient(150deg, #7e91a42b, #61778b14);
-  box-shadow: inset 0 1px 0 #e4f0fa20, inset 0 -1px 0 #03080d38, 0 2px 4px #00000024;
+  color: #f2f8f9; background: #d6e9ee13; box-shadow: none;
+}
+.earth-toolbar button[aria-pressed=true]:after {
+  content: ""; position: absolute; left: calc(50% - 6px); bottom: 3px;
+  width: 12px; height: 1px; background: #d1edf0; pointer-events: none;
 }
 .earth-toolbar button:hover:not(:disabled) {
-  color: #f7faff; background: #c3d3e315;
-  box-shadow: inset 0 1px 0 #e4f0fa14, 0 2px 4px #00000018;
+  color: #fff; background: #e7edf21a; box-shadow: none;
 }
-.earth-toolbar button[aria-pressed=true]:hover:not(:disabled) {
-  background: linear-gradient(150deg, #9cafbf35, #6b849c21);
-}
-.earth-toolbar button:focus-visible { outline: 2px solid #d3e9f6; outline-offset: 2px; }
+.earth-toolbar button:focus-visible { outline: 2px solid #d3e9f6; outline-offset: 2px; background: #d6e9ee13; }
 .earth-toolbar button:disabled { opacity: .45; cursor: default; box-shadow: none; }
 .earth-caption {
-  position: absolute; right: 28px; bottom: 16px; left: 28px; display: flex;
-  justify-content: space-between; gap: 20px; color: #a0bacb;
-  font: 10px/1.5 Consolas, "Microsoft YaHei", monospace; letter-spacing: .055em; pointer-events: none;
+  position: absolute; right: 1rem; bottom: .875rem; left: 1rem; display: flex;
+  justify-content: space-between; flex-wrap: wrap; gap: .25rem 1.25rem; color: #899ba9;
+  font: .6875rem/1.5 Consolas, "Microsoft YaHei", monospace; letter-spacing: .035em; pointer-events: none;
 }
 #globeFallback {
-  position: absolute; left: 50%; right: 6%; top: 40%; padding: 24px;
-  border: 1px solid #d0e7f41c; border-radius: 11px; background: #111d2ae8; color: #d4e2ed;
-  box-shadow: inset 0 1px 0 #edf7ff12, 0 16px 40px -14px #00000080; font-size: 14px;
+  position: absolute; left: 1rem; right: 1rem; top: 40%; padding: 1.5rem;
+  border: 1px solid #e7edf21f; border-radius: 4px; background: #0a1017ed; color: #dbe4eb;
+  box-shadow: 0 8px 24px -12px #00000080; font-size: .875rem;
 }
 [hidden] { display: none !important; }
-@media (max-width: 1199px) {
-  .earth-toolbar { right: 18px; }
-  .earth-toolbar button { padding: 0 10px; }
-  .earth-caption { left: 20px; right: 20px; }
+@media (min-width: 769px) {
+  .earth-toolbar { right: 1.5rem; }
+  .earth-caption { left: 1.5rem; right: 1.5rem; }
+  #globeFallback { left: 50%; right: 6%; }
+}
+@media (min-width: 1200px) {
+  .earth-toolbar button { padding-inline: .875rem; }
 }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }

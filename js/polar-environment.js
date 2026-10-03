@@ -25,7 +25,14 @@
   }
   function create(T, renderer, scene, onStatus, accumulationMaterial) {
     var group = new T.Group(); group.name = 'antarctic-environment'; scene.add(group);
-    var loader = new T.TextureLoader(), reflectionTarget, panoramaTexture;
+    var loader = new T.TextureLoader(), reflectionTarget, panoramaTexture, detailStarted = false, reflectionPending = false;
+    // Equal-size, lossless delivery copies: original PNGs remain the recovery path.
+    // No detail is resampled, and a blocked/unsupported WebP never removes a texture.
+    function loadTexture(name, onLoad, onError) {
+      loader.load('./assets/polar/' + name + '.webp', onLoad, undefined, function () {
+        loader.load('./assets/polar/' + name + '.png', onLoad, undefined, onError);
+      });
+    }
     var skyMaterial = new T.MeshBasicMaterial({ color: 0xe4edf6, side: T.BackSide, depthWrite: false, fog: false, toneMapped: false });
     var skyGeometry = new T.SphereGeometry(450, 100, 80), skyUV = skyGeometry.attributes.uv;
     // The generated plate is a wide-angle panorama, not a calibrated 180-degree vertical capture.
@@ -43,19 +50,19 @@
       var pmrem = new T.PMREMGenerator(renderer);
       reflectionTarget = pmrem.fromEquirectangular(panoramaTexture); scene.environment = reflectionTarget.texture; pmrem.dispose();
     }
-    loader.load('./assets/polar/antarctic-glacier-storm-v4.png', function (texture) {
+    loadTexture('antarctic-glacier-storm-v4', function (texture) {
       texture.encoding = T.sRGBEncoding; texture.wrapS = T.MirroredRepeatWrapping; panoramaTexture = texture;
       skyMaterial.map = texture; skyMaterial.needsUpdate = true;
-      rebuildReflection(); status('panorama', 'ready');
-    }, undefined, function () { skyMaterial.color.setHex(0x10263e); status('panorama', 'error'); });
-    if (accumulationMaterial) loader.load('./assets/polar/compacted-snow-crust-v2.png', function (texture) {
+      reflectionPending = true; status('panorama', 'ready');
+    }, function () { skyMaterial.color.setHex(0x10263e); status('panorama', 'error'); });
+    function loadCrust() { if (accumulationMaterial) loadTexture('compacted-snow-crust-v2', function (texture) {
       texture.encoding = T.sRGBEncoding; texture.wrapS = texture.wrapT = T.RepeatWrapping; texture.repeat.set(2.5, 2.5);
       texture.anisotropy = Math.min(8, renderer.capabilities.getMaxAnisotropy());
       accumulationMaterial.map = texture;
       var bump = texture.clone(); bump.encoding = T.LinearEncoding; bump.needsUpdate = true;
       accumulationMaterial.bumpMap = bump; accumulationMaterial.bumpScale = 0.035;
       accumulationMaterial.needsUpdate = true; status('crust', 'ready');
-    }, undefined, function () { status('crust', 'error'); });
+    }, function () { status('crust', 'error'); }); }
 
     var groundGeometry = new T.PlaneGeometry(300, 300, 280, 280); groundGeometry.rotateX(-Math.PI / 2);
     var positions = groundGeometry.attributes.position, uv = groundGeometry.attributes.uv;
@@ -92,7 +99,7 @@
     };
     var apron = new T.Mesh(apronGeometry, apronMaterial); apron.name = 'distant-snow-transition'; group.add(apron);
     var snow = new T.Mesh(groundGeometry, snowMaterial); snow.name = 'displaced-sastrugi-foreground'; snow.receiveShadow = true; group.add(snow);
-    loader.load('./assets/polar/wind-carved-snow-v1.png', function (texture) {
+    function loadSnow() { loadTexture('wind-carved-snow-v1', function (texture) {
       texture.encoding = T.sRGBEncoding; texture.wrapS = texture.wrapT = T.RepeatWrapping; texture.repeat.set(23, 31);
       texture.anisotropy = Math.min(8, renderer.capabilities.getMaxAnisotropy());
       snowMaterial.map = apronMaterial.map = texture;
@@ -101,7 +108,7 @@
       snowMaterial.bumpMap = bump; snowMaterial.bumpScale = 0.035; snowMaterial.needsUpdate = true;
       apronMaterial.bumpMap = bump; apronMaterial.bumpScale = 0.035; apronMaterial.needsUpdate = true;
       status('snow', 'ready');
-    }, undefined, function () { status('snow', 'error'); });
+    }, function () { status('snow', 'error'); }); }
 
     // Transparent low-lying snow haze, shaped by world-space noise; never a screen-white wash.
     var haze = new T.Mesh(new T.PlaneGeometry(110, 100), new T.ShaderMaterial({
@@ -134,7 +141,13 @@
       var plume = new T.Mesh(new T.PlaneGeometry(85 + i * 16, 5 + i * 2), plumeMaterial);
       plume.position.set(-8 + i * 6, 1.4 + i * 0.65, -14 - i * 21); plume.rotation.y = -0.21; plumes.add(plume);
     }
-    return { group: group, heightAt: heightAt, restore: rebuildReflection, update: function (time, camera) {
+    // Called only after a meaningful panorama/device frame has been presented.
+    // Detail downloads cannot compete with the panorama; PMREM cannot block its reveal.
+    function afterFrame() {
+      if (!detailStarted) { detailStarted = true; loadCrust(); loadSnow(); return; }
+      if (reflectionPending) { reflectionPending = false; rebuildReflection(); }
+    }
+    return { group: group, heightAt: heightAt, afterFrame: afterFrame, restore: rebuildReflection, update: function (time, camera) {
       sky.position.copy(camera.position); haze.material.uniforms.time.value = time; plumeTime.value = time;
     } };
   }

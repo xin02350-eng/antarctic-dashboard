@@ -1,7 +1,7 @@
 /* Pointer-lit, machined edges. No perimeter orbit or permanently running frame. */
 (function (root) {
   'use strict';
-  const selectors = '.overview-chart,.signal-stage,.mini-signal,.node-entry,.energy-panel,.download-art,.engineering-sheet > section,.atlas,.instrument-stage,.globe-stage,.table-scroll';
+  const selectors = '.mini-signal,.node-entry';
   const limit = 24, ns = 'http://www.w3.org/2000/svg';
   const properties = ['--surface-x', '--surface-y', '--surface-rx', '--surface-ry', '--surface-lift', '--surface-light'];
   const finite = (value, fallback) => Number.isFinite(Number(value)) ? Number(value) : fallback;
@@ -171,7 +171,7 @@
         const addedClasses = classes.filter(name => !anchor.classList.contains(name));
         const originalStyles = properties.map(name => ({ value: anchor.style.getPropertyValue(name), priority: anchor.style.getPropertyPriority?.(name) || '' }));
         anchor.classList.add(...classes); anchor.appendChild(frame);
-        const entry = { source, anchor, frame, gradient, stops, paths, visible: true, hover: false, tilt: ledger || optical ? 0 : small ? 1.6 : .6, lift: ledger || optical ? 0 : small ? 7 : 5, addedClasses, originalStyles, current: neutral(), target: neutral(), steps: 0 };
+        const entry = { source, anchor, frame, gradient, stops, paths, visible: true, hover: false, tilt: 0, lift: small ? 2 : 0, addedClasses, originalStyles, current: neutral(), target: neutral(), steps: 0 };
         entry.measure = () => {
           entry.width = Math.max(4, finite(source.offsetWidth || source.clientWidth, 4));
           entry.height = Math.max(4, finite(source.offsetHeight || source.clientHeight, 4));
