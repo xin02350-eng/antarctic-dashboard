@@ -11,6 +11,8 @@
   let active='dashboard', station='a01', channel=null, range='100', photo=0, deviceView='photos', instrumentSeen=false;
   let rows=[],status='loading',generation=0,controller,charts=[],map, networkRows={}, refreshing=false,paintFrame,earthObserver,fieldObserver;
   let tableRenderJob=null,tableRenderGeneration=0;
+  let renderedView=null,chartRenderJob=null,chartRenderGeneration=0;
+  const chartStates=new WeakMap();
   const t=(zh,en)=>lang==='zh'?zh:en;
   const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const n=(v,d=1)=>D.valid(v)?Number(v).toLocaleString(lang==='zh'?'zh-CN':'en-US',{maximumFractionDigits:d,minimumFractionDigits:d}):'—';
@@ -19,7 +21,7 @@
   const link=(view,text,cls='')=>`<a class="${cls}" href="${url(view)}" data-route="${view}">${text}</a>`;
   const pageNames={sensors:['环境监测','Environment'],telemetry:['观测档案','Records'],network:['观测网络','Network'],location:['节点定位','Location'],hardware:['实物展示','Hardware'],analysis:['任务分析','Analysis'],globe:['全球视野','Global view']};
   const title=()=>`<header class="page-title"><div><span class="eyebrow">${labels[active][1].toUpperCase()}</span><h1>${pageNames[active][lang==='zh'?0:1]}</h1></div><span class="page-node">DMS—${station.toUpperCase()}</span></header>`;
-  const note=()=> status==='error'?t('数据读取失败，请重试','Data unavailable — retry'):status==='loading'?t('读取观测记录…','Loading observations…'):({empty:t('等待首组观测','Awaiting first observation'),historical:t('历史观测数据','Historical observations'),updated:t('最近已更新','Recently updated')})[D.summary(rows,station).state];
+  const note=()=> status==='error'?t('数据读取失败，请重试','Data unavailable — retry'):status==='loading'?t('读取观测记录…','Loading observations…'):({empty:t('等待首组观测','Awaiting first observation'),historical:t('历史观测数据','Historical observations'),updated:t('最近已更新','Recently updated')})[!rows.length?'empty':Date.now()-D.time(rows[0].time)>86400000?'historical':'updated'];
   const badge=()=>`<span class="data-badge ${status==='error'?'error':''}"><i></i>${note()}</span>`;
   const metric=(name,value,unit='',small='')=>`<div class="metric"><span>${name}</span><strong>${value}<small>${unit}</small></strong>${small?`<p>${small}</p>`:''}</div>`;
   function header() {
@@ -31,8 +33,8 @@
     document.documentElement.lang=lang==='zh'?'zh-CN':'en';document.documentElement.dataset.lang=lang;
     document.body.dataset.view=active;
   }
-  function scene(profile='instrument',hidden=false) {return `<iframe class="field-frame"${hidden?' hidden':''} title="${t('原创极地监测装置交互场景','Interactive polar instrument scene')}" src="./field-frame.html?station=${station}&lang=${lang}&profile=${profile}&v=20261004b" loading="eager"></iframe>`;}
-  function earthScene(){return `<iframe class="earth-frame" title="${t('蓝线三维地球，可旋转与缩放','Interactive blue-line Earth, rotate and zoom')}" src="./globe-frame.html?lang=${lang}&v=20261004c" loading="eager"></iframe>`;}
+  function scene(profile='instrument',hidden=false) {return `<iframe class="field-frame"${hidden?' hidden':''} title="${t('原创极地监测装置交互场景','Interactive polar instrument scene')}" src="./field-frame.html?station=${station}&lang=${lang}&profile=${profile}&v=20261004e" loading="eager"></iframe>`;}
+  function earthScene(){return `<iframe class="earth-frame" title="${t('蓝线三维地球，可旋转与缩放','Interactive blue-line Earth, rotate and zoom')}" src="./globe-frame.html?lang=${lang}&v=20261004e" loading="eager"></iframe>`;}
   function orbitalNetwork(){return `${earthScene()}<div class="orbital-copy"><div class="orbital-heading"><h1>${t('观测<em>网络</em>','Observation<em>network</em>')}</h1></div><div class="orbital-actions">${link('location',t('实际定位','Location')+' →','solid-link')}</div><small>${t('南京 → 东北（哈尔滨）→ 南极<br>示意链路 · 非实际部署','Nanjing → Northeast China → Antarctica<br>Illustrative route · Not actual deployment')}</small></div>`;}
   function overview() {
     const s=D.summary(rows,station),c=D.channels(station),r=s.latest;
@@ -105,11 +107,32 @@
   function download() {
     return `<section class="download-story"><div><h1>${t('DMS<br><em>自主观测系统</em>','DMS<br><em>Autonomous observation system</em>')}</h1><a class="solid-link" href="https://cdn.jsdelivr.net/gh/xin02350-eng/antarctic-dashboard@bb40a21/apk/DMS-antarctic.apk">${t('下载 Android 客户端','Download Android app')} ⇩</a><a class="quiet-link" href="./apk/DMS-antarctic.apk">${t('备用下载','Alternative download')} →</a><dl><div><dt>ANDROID</dt><dd>5.1+</dd></div><div><dt>${t('安装包','PACKAGE')}</dt><dd>≈ 4 MB</dd></div><div><dt>${t('显示方式','DISPLAY')}</dt><dd>${t('横屏 / 全屏','Landscape / Full screen')}</dd></div></dl><details class="download-help"><summary>${t('安装说明','Installation')}</summary><p>${t('下载后点击安装。微信内请先“在浏览器打开”；按系统提示允许此来源安装。','Open the downloaded package to install. In WeChat, open in your browser first. Allow installation from this source if prompted.')}</p></details></div><div class="download-art" aria-hidden="true"><div class="orbit-line"></div><span>DMS</span></div></section>`;
   }
-  function destroyView(){
+  function cancelChartRender(){
+    chartRenderGeneration++;
+    if(!chartRenderJob)return;
+    if(chartRenderJob.idle)window.cancelIdleCallback(chartRenderJob.id);else clearTimeout(chartRenderJob.id);
+    chartRenderJob=null;
+  }
+  function preserveChartSurfaces(draft){
+    // The DOM patcher removes attributes absent from its draft. Keep Chart's
+    // backing-store dimensions so updating copy cannot clear a live canvas.
+    charts.forEach(chart=>{
+      const canvas=chart.canvas,next=canvas?.id&&draft.querySelector('#'+canvas.id);
+      if(!next)return;
+      ['width','height','style'].forEach(name=>{const value=canvas.getAttribute(name);if(value!==null)next.setAttribute(name,value);});
+    });
+  }
+  function destroyView(preserveCharts=false){
     cancelTableRender();
+    // A fully unlocked archive can contain tens of thousands of cells. It has
+    // no scene state to preserve and must not burden every later route scan.
+    if(active!=='telemetry')$('telemetryData')?.replaceChildren();
+    cancelChartRender();
     viewQuery('.field-frame')?.contentWindow?.postMessage({type:'dms:field-visibility',visible:false},location.origin);
     viewQuery('.earth-frame')?.contentWindow?.postMessage({type:'dms:earth-visibility',visible:false},location.origin);
-    window.ExpeditionActions?.destroy();window.ExpeditionSpecular?.destroy();earthObserver?.disconnect();earthObserver=null;fieldObserver?.disconnect();fieldObserver=null;charts.forEach(c=>c.destroy());charts=[];if(map){map.remove();map=null;}
+    window.ExpeditionActions?.destroy();window.ExpeditionSpecular?.destroy();earthObserver?.disconnect();earthObserver=null;fieldObserver?.disconnect();fieldObserver=null;
+    if(!preserveCharts){charts.forEach(c=>c.destroy());charts=[];}
+    if(map){map.remove();map=null;}
   }
   function finishSurfaces(){window.ExpeditionIcons?.mount();window.ExpeditionSpecular?.mount();window.ExpeditionActions?.mount();}
   function observeEarth(){
@@ -142,7 +165,8 @@
     return `<section class="network-summary">${metric(t('舱内温度','Cabin temperature'),n(r[c[0].key]),'°C')}${metric(t('系统电压','System voltage'),n(r.v,3),'V')}${metric(t('电量估算','Charge estimate'),s.soc??'—','%')}${metric(t('观测跨度','Observation span'),s.days??'—',t('天','days'))}<div class="network-trend"><span>${t('舱内温度 · 最近48次采集','CABIN · LAST 48 OBSERVATIONS')}</span><div><canvas id="networkTrend" role="img" aria-label="${t('舱内温度趋势','Cabin temperature trend')}"></canvas></div></div></section>`;
   }
   function render() {
-    cancelAnimationFrame(paintFrame);destroyView();header();
+    const preserveCharts=active===renderedView;
+    cancelAnimationFrame(paintFrame);destroyView(preserveCharts);header();
     const renderers={dashboard:overview,sensors,telemetry:archive,network,location:network,hardware,analysis,globe,download};
     // Finish the detached draft first; connected scene frames must never be removed just to update a readout.
     const draft=document.createElement('div');draft.innerHTML=renderers[active]();
@@ -150,8 +174,10 @@
     if(active==='hardware')draft.insertAdjacentHTML('beforeend',instrumentChannels());
     if(['network','location'].includes(active))draft.querySelector('.atlas').insertAdjacentHTML('afterend',networkSummary());
     if(status==='error')draft.insertAdjacentHTML('afterbegin',`<div class="error-banner" role="alert">${t('未能读取观测数据，当前不展示过期读数。','Could not read data. Stale readings have been cleared.')} <button data-action="refresh">${t('重试','Retry')}</button></div>`);
+    if(preserveCharts)preserveChartSurfaces(draft);
     viewRoot=window.ExpeditionView.route($('view'),active);
     window.ExpeditionView.render(viewRoot,draft.innerHTML);
+    renderedView=active;
     observeEarth();observeField();
     $('recordWorkspace').hidden=active!=='telemetry';
     if(active==='telemetry')renderTable();
@@ -161,20 +187,40 @@
     tick();
   }
   function drawVisibleCharts(){
-      charts.forEach(c=>c.destroy());charts=[];
+      cancelChartRender();
+      // Keep unchanged plots. A channel click changes one graph, not all eleven.
+      charts=charts.filter(chart=>{if(viewRoot?.contains(chart.canvas))return true;chart.destroy();return false;});
+      if(document.hidden||!window.Chart)return;
       if(active==='dashboard')drawChart('overviewChart',D.channels(station)[2],rows.slice(0,100));
       if(active==='sensors'){
-        const defs=D.channels(station);drawChart('signalChart',defs.find(c=>c.key===channel),visibleTrend());
-        defs.forEach((c,i)=>drawChart('mini'+i,c,visibleTrend(),true));
+        const defs=D.channels(station),trend=visibleTrend(),ordered=trend.slice().reverse(),labels=ordered.map(r=>String(r.time).slice(0,16));
+        drawChart('signalChart',defs.find(c=>c.key===channel),trend,false,ordered,labels);
+        // Summary plots never hold up the route's main content or a click. Each
+        // small job yields; leaving the route cancels every outstanding job.
+        const revision=chartRenderGeneration;let index=0;
+        const schedule=()=>{
+          const idle=typeof window.requestIdleCallback==='function'&&typeof window.cancelIdleCallback==='function';
+          chartRenderJob={idle,id:idle?window.requestIdleCallback(next,{timeout:100}):setTimeout(next,16)};
+        };
+        const next=()=>{
+          if(revision!==chartRenderGeneration||active!=='sensors'||document.hidden)return;
+          chartRenderJob=null;
+          drawChart('mini'+index,defs[index],trend,true,ordered,labels);index++;
+          if(index<defs.length)schedule();
+        };
+        if(defs.length)schedule();
       }
       if(active==='network'||active==='location')drawChart('networkTrend',D.channels(station)[0],rows.slice(0,48),true);
   }
   function visibleTrend(){if(range==='all')return rows;if(range==='24h'){const end=D.time(rows[0]?.time);return rows.filter(r=>D.time(r.time)>=end-86400000);}return rows.slice(0,100);}
-  function drawChart(id,c,list,mini=false) {
+  function drawChart(id,c,list,mini=false,preparedRows,preparedLabels) {
     const canvas=$(id);if(!canvas||!window.Chart||!c)return;
-    const ordered=list.slice().reverse();
+    const existing=charts.find(chart=>chart.canvas===canvas),signature=[station,lang,range,c.key,mini].join(':');
+    const previous=existing&&chartStates.get(existing);
+    if(previous?.rows===rows&&previous.signature===signature)return;
+    const ordered=preparedRows||list.slice().reverse();
     const config={type:'line',plugins:window.ExpeditionCharts?[window.ExpeditionCharts.finish(mini)]:[],
-      data:{labels:ordered.map(r=>String(r.time).slice(0,16)),datasets:[{
+      data:{labels:preparedLabels||ordered.map(r=>String(r.time).slice(0,16)),datasets:[{
         label:c[lang]+' / '+c.unit,data:ordered.map(r=>D.valid(r[c.key])?Number(r[c.key]):null),
         borderColor:c.color,backgroundColor:context=>window.ExpeditionCharts?window.ExpeditionCharts.fill(context,c.color):c.color+'0c',
         borderWidth:mini?1.4:1.8,pointRadius:0,pointHoverRadius:4,pointHoverBackgroundColor:'#e2fffa',pointHoverBorderColor:c.color,
@@ -186,7 +232,14 @@
           y:{display:!mini,grid:{color:'#bbd4e610'},border:{display:false},ticks:{color:'#9bb0be',maxTicksLimit:5}}}
       }
     };
-    charts.push(new Chart(canvas,window.ExpeditionCharts?.configure(config,c.key,mini)||config));
+    if(existing){
+      const next=window.ExpeditionCharts?.configure(config,c.key,mini)||config;
+      existing.data=next.data;existing.options=next.options;existing.update('none');
+      chartStates.set(existing,{rows,signature});
+    }else{
+      const chart=new Chart(canvas,window.ExpeditionCharts?.configure(config,c.key,mini)||config);
+      charts.push(chart);chartStates.set(chart,{rows,signature});
+    }
   }
   function drawMap(){
     const host=$('atlasMap');if(!host||map)return;
@@ -202,6 +255,21 @@
   // The optional remote map library must not hold back the homepage and its local 3D scene.
   document.querySelector('script[src*="/leaflet.js"]')?.addEventListener('load',()=>{if(active==='location'&&!map)drawMap();});
   document.querySelector('script[src*="chart.umd.min.js"]')?.addEventListener('load',drawVisibleCharts);
+  function sameObservations(left,right){
+    if(left===right)return true;
+    if(!Array.isArray(left)||!Array.isArray(right)||left.length!==right.length)return false;
+    for(let i=0;i<left.length;i++){
+      const a=left[i],b=right[i];if(a===b)continue;
+      if(!a||!b)return false;
+      const keys=Object.keys(a);if(keys.length!==Object.keys(b).length)return false;
+      for(const key of keys){
+        if(!Object.prototype.hasOwnProperty.call(b,key))return false;
+        const value=a[key],other=b[key];
+        if(value!==other&&(!(value&&other&&typeof value==='object'&&typeof other==='object')||JSON.stringify(value)!==JSON.stringify(other)))return false;
+      }
+    }
+    return true;
+  }
   async function load(quiet=false){
     const request=++generation;if(controller)controller.abort();controller=new AbortController();const localController=controller;
     if(!quiet){status='loading';rows=[];render();}refreshing=true;
@@ -209,16 +277,16 @@
     try{
       const response=await fetch('./'+D.sources[station],{cache:'no-store',signal:localController.signal});if(!response.ok)throw Error('HTTP '+response.status);
       const next=D.normalize(await response.json());if(request!==generation)return;
-      const unchanged=quiet&&status==='ready'&&JSON.stringify(next)===JSON.stringify(rows);
-      rows=next;networkRows[station]=next;status='ready';refreshing=false;if(!unchanged)render();
+      const unchanged=quiet&&status==='ready'&&sameObservations(next,rows);
+      if(!unchanged)rows=next;networkRows[station]=rows;status='ready';refreshing=false;if(!unchanged)render();
       if(active==='network'||active==='location'){
-        const previousNetwork=JSON.stringify(networkRows);
-        await Promise.all(Object.keys(D.sources).filter(id=>id!==station).map(async id=>{try{const r=await fetch('./'+D.sources[id],{cache:'no-store',signal:localController.signal});if(!r.ok)throw Error();const other=D.normalize(await r.json());if(request===generation)networkRows[id]=other;}catch(e){if(request===generation)networkRows[id]=null;}}));
-        if(request===generation&&JSON.stringify(networkRows)!==previousNetwork)render();
+        let networkChanged=false;
+        await Promise.all(Object.keys(D.sources).filter(id=>id!==station).map(async id=>{try{const r=await fetch('./'+D.sources[id],{cache:'no-store',signal:localController.signal});if(!r.ok)throw Error();const other=D.normalize(await r.json());if(request===generation&&!sameObservations(other,networkRows[id])){networkRows[id]=other;networkChanged=true;}}catch(e){if(request===generation&&networkRows[id]!==null){networkRows[id]=null;networkChanged=true;}}}));
+        if(request===generation&&networkChanged)render();
       }
     }catch(e){if(request!==generation)return;rows=[];status='error';refreshing=false;render();}finally{clearTimeout(timeout);}
   }
-  function readRoute(){const p=new URLSearchParams(location.search);active=views.includes(p.get('view'))?p.get('view'):'dashboard';station=Object.hasOwn(D.sources,p.get('station'))?p.get('station'):'a01';}
+  function readRoute(){const p=new URLSearchParams(location.search);active=views.includes(p.get('view'))?p.get('view'):'dashboard';station=Object.prototype.hasOwnProperty.call(D.sources,p.get('station'))?p.get('station'):'a01';}
   function navigate(view,node=station){
     if(view==='hardware'&&active!=='hardware')deviceView='photos';
     const changed=node!==station;active=view;station=node;
@@ -230,15 +298,15 @@
   document.addEventListener('click',e=>{
     const a=e.target.closest('[data-route]');if(a&&!e.metaKey&&!e.ctrlKey&&!e.shiftKey&&e.button===0){e.preventDefault();navigate(a.dataset.route,a.dataset.node||station);return;}
     const b=e.target.closest('button');if(!b||b.disabled)return;
-    if(b.dataset.channel){channel=b.dataset.channel;render();window.scrollTo({top:0,behavior:'smooth'});}
-    if(b.dataset.range){range=b.dataset.range;render();}
+    if(b.dataset.channel&&b.dataset.channel!==channel){channel=b.dataset.channel;render();window.scrollTo({top:0,behavior:'smooth'});}
+    if(b.dataset.range&&b.dataset.range!==range){range=b.dataset.range;render();}
     if(b.dataset.device){deviceView=b.dataset.device;render();}
     if(b.dataset.photo!==undefined){photo=Number(b.dataset.photo)===1?1:0;render();}
     if(b.dataset.action==='language'){lang=lang==='zh'?'en':'zh';try{localStorage.setItem('anx-lang',lang);}catch(e){}document.documentElement.dataset.lang=lang;window.dispatchEvent(new Event('anx:langchange'));render();}
     if(b.dataset.action==='refresh')load(true);
     if(['previous-photo','next-photo'].includes(b.dataset.action)){photo=photo===0?1:0;render();}
   });
-  document.addEventListener('visibilitychange',()=>{const frame=viewQuery('.field-frame');if(frame)fieldVisibility(frame);});
+  document.addEventListener('visibilitychange',()=>{const frame=viewQuery('.field-frame');if(frame)fieldVisibility(frame);if(document.hidden)cancelChartRender();else drawVisibleCharts();});
   window.addEventListener('message',e=>{
     const frame=viewQuery('.field-hero .field-frame');
     if(e.origin!==location.origin||!frame||e.source!==frame.contentWindow)return;
@@ -256,6 +324,8 @@
     location.replace('./'+destination);return true;
   }
   readRoute();if(useMobileLayout())return;
-  window.matchMedia('(min-width:769px)').addEventListener('change',useMobileLayout);
+  const desktopMedia=window.matchMedia('(min-width:769px)');
+  if(typeof desktopMedia.addEventListener==='function')desktopMedia.addEventListener('change',useMobileLayout);
+  else desktopMedia.addListener?.(useMobileLayout);
   document.documentElement.dataset.lang=lang;window.dispatchEvent(new Event('anx:langchange'));load();
 })();

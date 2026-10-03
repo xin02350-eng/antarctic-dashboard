@@ -23,7 +23,9 @@
     var dunes = (fbm(x * 0.085, z * 0.13) - 0.48) * 1.9;
     return -0.055 + blend * (dunes + ridges);
   }
-  function create(T, renderer, scene, onStatus, accumulationMaterial) {
+  function create(T, renderer, scene, onStatus, accumulationMaterial, options) {
+    options = options || {};
+    var quality = options.quality || { tier: 'balanced', terrainSegments: 192 };
     var group = new T.Group(); group.name = 'antarctic-environment'; scene.add(group);
     var loader = new T.TextureLoader(), reflectionTarget, panoramaTexture, detailStarted = false, reflectionPending = false;
     // Equal-size, lossless delivery copies: original PNGs remain the recovery path.
@@ -34,7 +36,7 @@
       });
     }
     var skyMaterial = new T.MeshBasicMaterial({ color: 0xe4edf6, side: T.BackSide, depthWrite: false, fog: false, toneMapped: false });
-    var skyGeometry = new T.SphereGeometry(450, 100, 80), skyUV = skyGeometry.attributes.uv;
+    var skyGeometry = new T.SphereGeometry(450, 64, 40), skyUV = skyGeometry.attributes.uv;
     // The generated plate is a wide-angle panorama, not a calibrated 180-degree vertical capture.
     // Remap the horizon band to avoid making distant ice cliffs loom over the instrument.
     for (var skyVertex = 0; skyVertex < skyUV.count; skyVertex++) {
@@ -47,8 +49,21 @@
     function rebuildReflection() {
       if (!panoramaTexture) return;
       if (reflectionTarget) reflectionTarget.dispose();
-      var pmrem = new T.PMREMGenerator(renderer);
-      reflectionTarget = pmrem.fromEquirectangular(panoramaTexture); scene.environment = reflectionTarget.texture; pmrem.dispose();
+      var pmrem, input = panoramaTexture, reducedInput;
+      try {
+        // Reflection is deliberately diffuse. Filtering the full panorama wastes
+        // startup GPU time without adding visible detail to these rough surfaces.
+        if (typeof document !== 'undefined' && panoramaTexture.image) {
+          var sample = document.createElement('canvas'); sample.width = quality.tier === 'low' ? 256 : 512; sample.height = sample.width / 2;
+          var paint = sample.getContext('2d');
+          if (paint) { paint.drawImage(panoramaTexture.image, 0, 0, sample.width, sample.height); reducedInput = new T.CanvasTexture(sample); reducedInput.encoding = T.sRGBEncoding; input = reducedInput; }
+        }
+        pmrem = new T.PMREMGenerator(renderer);
+        reflectionTarget = pmrem.fromEquirectangular(input); scene.environment = reflectionTarget.texture;
+      } catch (error) {
+        // Restricted WebGL1 / software drivers must retain usable diffuse lighting.
+        scene.environment = null; reflectionTarget = null;
+      } finally { if (pmrem) pmrem.dispose(); if (reducedInput) reducedInput.dispose(); }
     }
     loadTexture('antarctic-glacier-storm-v4', function (texture) {
       texture.encoding = T.sRGBEncoding; texture.wrapS = T.MirroredRepeatWrapping; panoramaTexture = texture;
@@ -64,7 +79,10 @@
       accumulationMaterial.needsUpdate = true; status('crust', 'ready');
     }, function () { status('crust', 'error'); }); }
 
-    var groundGeometry = new T.PlaneGeometry(300, 300, 280, 280); groundGeometry.rotateX(-Math.PI / 2);
+    // Same exact terrain function; a bounded grid avoids Uint32 element indices
+    // on WebGL1 and halves CPU construction / GPU vertex work on normal devices.
+    var segments = Math.min(224, Math.max(64, quality.terrainSegments || 192));
+    var groundGeometry = new T.PlaneGeometry(300, 300, segments, segments); groundGeometry.rotateX(-Math.PI / 2);
     var positions = groundGeometry.attributes.position, uv = groundGeometry.attributes.uv;
     for (var i = 0; i < positions.count; i++) {
       var x = positions.getX(i), z = positions.getZ(i);
@@ -147,7 +165,7 @@
       if (!detailStarted) { detailStarted = true; loadCrust(); loadSnow(); return; }
       if (reflectionPending) { reflectionPending = false; rebuildReflection(); }
     }
-    return { group: group, heightAt: heightAt, afterFrame: afterFrame, restore: rebuildReflection, update: function (time, camera) {
+    return { group: group, heightAt: heightAt, afterFrame: afterFrame, pendingWork: function () { return !detailStarted || reflectionPending; }, restore: rebuildReflection, update: function (time, camera) {
       sky.position.copy(camera.position); haze.material.uniforms.time.value = time; plumeTime.value = time;
     } };
   }

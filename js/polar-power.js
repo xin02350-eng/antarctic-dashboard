@@ -2,8 +2,21 @@
 (function (root, factory) {
   if (typeof module === 'object' && module.exports) module.exports = factory;
   else root.createPolarPower = factory;
-})(typeof window === 'undefined' ? globalThis : window, function (T, materials) {
+})(typeof window === 'undefined' ? globalThis : window, function (T, materials, options) {
   'use strict';
+  options = options || {};
+  function canInstance() {
+    if (options.instancing === false || !T.InstancedMesh) return false;
+    var renderer = options.renderer;
+    if (!renderer) return true;
+    if (renderer.capabilities && renderer.capabilities.isWebGL2) return true;
+    // A missing/blocked WebGL1 extension must never silently remove all photovoltaic cells.
+    try {
+      return !!(renderer.extensions && (renderer.extensions.has ? renderer.extensions.has('ANGLE_instanced_arrays') :
+        renderer.extensions.get && renderer.extensions.get('ANGLE_instanced_arrays')));
+    } catch (error) { return false; }
+  }
+  var instancing = canInstance(), fallbackCells, fallbackTraces, fallbackCellMaterial;
   var assembly = new T.Group(); assembly.name = 'solar-power-assembly';
   var solar = new T.Group(); solar.name = 'three-panel-solar-prism';
   solar.position.y = 3.45; assembly.add(solar);
@@ -34,6 +47,46 @@
   cellShape.lineTo(-cw, ch - corner); cellShape.lineTo(-cw, -ch + corner); cellShape.closePath();
   var cellGeo = new T.ShapeGeometry(cellShape);
   var matrixObject = new T.Object3D();
+  function repeatedGeometry(base, copies, colors) {
+    var flat = base.index ? base.toNonIndexed() : base, count = flat.attributes.position.count;
+    var result = new T.BufferGeometry();
+    Object.keys(flat.attributes).forEach(function (name) {
+      var attribute = flat.attributes[name], array = new attribute.array.constructor(attribute.array.length * copies.length);
+      copies.forEach(function (point, instance) {
+        var offset = instance * attribute.array.length;
+        array.set(attribute.array, offset);
+        if (name === 'position') for (var vertex = 0; vertex < count; vertex++) {
+          array[offset + vertex * 3] += point[0]; array[offset + vertex * 3 + 1] += point[1]; array[offset + vertex * 3 + 2] += point[2];
+        }
+      });
+      result.setAttribute(name, new T.BufferAttribute(array, attribute.itemSize, attribute.normalized));
+    });
+    if (colors) {
+      var color = new Float32Array(count * copies.length * 3);
+      colors.forEach(function (value, instance) {
+        for (var vertex = 0; vertex < count; vertex++) value.toArray(color, (instance * count + vertex) * 3);
+      });
+      result.setAttribute('color', new T.BufferAttribute(color, 3));
+    }
+    result.computeBoundingBox(); result.computeBoundingSphere();
+    if (flat !== base) flat.dispose();
+    return result;
+  }
+  function fallbackGeometry() {
+    if (fallbackCells) return;
+    var positions = [], traces = [], colors = [];
+    for (var row = 0; row < 8; row++) for (var col = 0; col < 5; col++) {
+      var x = (col - 2) * cellWidth, y = (row - 3.5) * cellHeight;
+      positions.push([x, y, 0.030]);
+      colors.push(new T.Color().setHSL(0.60 + col * 0.002, 0.40, 0.057 + (row % 3) * 0.003));
+      [-0.12, 0, 0.12].forEach(function (offset) { traces.push([x + offset, y, 0.032]); });
+    }
+    fallbackCells = repeatedGeometry(cellGeo, positions, colors);
+    var traceBase = new T.BoxGeometry(0.0025, cellHeight * 0.93, 0.001);
+    fallbackTraces = repeatedGeometry(traceBase, traces); traceBase.dispose();
+    // Clone only in the compatibility path: vertex colors exactly replace instance colors.
+    fallbackCellMaterial = materials.cell.clone(); fallbackCellMaterial.vertexColors = true;
+  }
   vertices.forEach(function (a, index) {
     var b = vertices[(index + 1) % 3], panel = new T.Group();
     panel.name = 'photovoltaic-panel-' + (index + 1);
@@ -48,19 +101,26 @@
     });
     // Frost only collects along the upper edge; leave the PV faces readable.
     box(width, 0.009, 0.057, materials.frost, panel, 0, height / 2 + 0.026, 0);
-    var cells = new T.InstancedMesh(cellGeo, materials.cell, 40);
-    cells.name = 'individual-pv-cells'; cells.receiveShadow = true;
-    var traces = new T.InstancedMesh(new T.BoxGeometry(0.0025, cellHeight * 0.93, 0.001), materials.trace, 120);
-    var cellIndex = 0, traceIndex = 0;
-    for (var row = 0; row < 8; row++) for (var col = 0; col < 5; col++) {
-      var x = (col - 2) * cellWidth, y = (row - 3.5) * cellHeight;
-      matrixObject.position.set(x, y, 0.030); matrixObject.updateMatrix();
-      cells.setMatrixAt(cellIndex, matrixObject.matrix);
-      cells.setColorAt(cellIndex++, new T.Color().setHSL(0.60 + col * 0.002, 0.40, 0.057 + (row % 3) * 0.003));
-      [-0.12, 0, 0.12].forEach(function (offset) {
-        matrixObject.position.set(x + offset, y, 0.032); matrixObject.updateMatrix(); traces.setMatrixAt(traceIndex++, matrixObject.matrix);
-      });
+    var cells, traces;
+    if (instancing) {
+      cells = new T.InstancedMesh(cellGeo, materials.cell, 40);
+      traces = new T.InstancedMesh(new T.BoxGeometry(0.0025, cellHeight * 0.93, 0.001), materials.trace, 120);
+      var cellIndex = 0, traceIndex = 0;
+      for (var row = 0; row < 8; row++) for (var col = 0; col < 5; col++) {
+        var x = (col - 2) * cellWidth, y = (row - 3.5) * cellHeight;
+        matrixObject.position.set(x, y, 0.030); matrixObject.updateMatrix();
+        cells.setMatrixAt(cellIndex, matrixObject.matrix);
+        cells.setColorAt(cellIndex++, new T.Color().setHSL(0.60 + col * 0.002, 0.40, 0.057 + (row % 3) * 0.003));
+        [-0.12, 0, 0.12].forEach(function (offset) {
+          matrixObject.position.set(x + offset, y, 0.032); matrixObject.updateMatrix(); traces.setMatrixAt(traceIndex++, matrixObject.matrix);
+        });
+      }
+    } else {
+      fallbackGeometry();
+      cells = new T.Mesh(fallbackCells, fallbackCellMaterial); traces = new T.Mesh(fallbackTraces, materials.trace);
     }
+    cells.name = 'individual-pv-cells'; cells.receiveShadow = true; cells.userData.cellCount = 40;
+    traces.name = 'pv-busbar-traces'; traces.userData.traceCount = 120;
     panel.add(cells, traces);
     for (var j = 0; j < 5; j++) [-1, 1].forEach(function (side) {
       var bolt = part(new T.CylinderGeometry(0.015, 0.015, 0.012, 6), silver, panel, (j - 2) * width / 4.25, side * height / 2, 0.052);
@@ -74,6 +134,7 @@
     rod([a[0], -height / 2 - 0.13, a[1]], [0, -0.90, 0], 0.038, silver, solar).name = 'pv-lower-support';
     rod([a[0], height / 2, a[1]], [0, height / 2, 0], 0.024, dark, solar);
   });
-  assembly.userData = { photovoltaicPanelCount: 3, windGeneratorCount: 0, coaxial: true, conceptOnly: true };
+  assembly.userData = { photovoltaicPanelCount: 3, windGeneratorCount: 0, coaxial: true, conceptOnly: true,
+    photovoltaicRendering: instancing ? 'instanced' : 'merged-webgl1' };
   return { group: assembly, solar: solar, panels: panels, vertices: vertices };
 });

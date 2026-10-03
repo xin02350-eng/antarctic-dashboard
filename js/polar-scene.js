@@ -7,9 +7,15 @@
   host.dataset.runtimeStartMs = startupClock().toFixed(1);
   var cameraProfile = new URLSearchParams(window.location.search).get('profile');
   document.documentElement.dataset.profile = cameraProfile === 'hero' || cameraProfile === 'instrument' ? cameraProfile : 'standard';
-  var publishedReadyState = null, firstFrameRendered = false, panoramaSettled = false, environmentFailed = false;
+  var publishedReadyState = null, firstFrameRendered = false, panoramaSettled = false, environmentFailed = false, sceneInitialized = false;
+  var quality = window.PolarRenderBudget ? window.PolarRenderBudget.create({ navigator: window.navigator, mode: 'field' }) : {
+    profile: function () { return { tier: 'balanced', shadowSize: 1024, particleScale: 1, terrainSegments: 192 }; },
+    pixelRatio: function (w,h,dpr) { return Math.min(dpr || 1,1.5,Math.sqrt(2000000/(Math.max(1,w)*Math.max(1,h)))); },
+    sample: function () { return false; }, reset: function () {}
+  };
+  host.dataset.renderQuality = quality.profile().tier;
   function publishReady(state) {
-    host.dataset.readyState = state;
+    if (host.dataset.readyState !== state) host.dataset.readyState = state;
     if (!host.dataset.visibleFrameMs && state !== 'unavailable') host.dataset.visibleFrameMs = startupClock().toFixed(1);
     if (cameraProfile !== 'hero' || window.parent === window || publishedReadyState === state) return;
     publishedReadyState = state;
@@ -20,20 +26,22 @@
     // The two fine-detail snow textures refine it without hiding the entire device.
     if (!firstFrameRendered || !panoramaSettled || contextLost) return;
     var failed = environmentFailed;
-    host.dataset.qualityState = failed ? 'degraded' : host.dataset.environment === 'ready' ? 'ready' : 'refining';
+    var qualityState = failed ? 'degraded' : host.dataset.environment === 'ready' ? 'ready' : 'refining';
+    if (host.dataset.qualityState !== qualityState) host.dataset.qualityState = qualityState;
     if (failed || host.dataset.environment === 'ready') publishReady(failed ? 'degraded' : 'ready');
     else publishReady('degraded');
   }
   var T = window.THREE, renderer;
   try {
     if (!T || !window.createPolarPower || !window.createPolarMast || !window.createPolarSnow || !window.PolarEnvironment) throw new Error('3D runtime unavailable');
-    renderer = new T.WebGLRenderer({ antialias: true, powerPreference: 'high-performance' });
+    try { renderer = new T.WebGLRenderer({ antialias: quality.profile().tier !== 'low', powerPreference: 'high-performance' }); }
+    catch (preferredError) { renderer = new T.WebGLRenderer({ antialias: false }); }
   } catch (error) {
     fallback.hidden = false;
     publishReady('unavailable');
     document.querySelectorAll('.view-controls button, #motionToggle').forEach(function (button) { button.disabled = true; }); return;
   }
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  renderer.setPixelRatio(quality.pixelRatio(window.innerWidth, window.innerHeight, window.devicePixelRatio));
   renderer.outputEncoding = T.sRGBEncoding; renderer.toneMapping = T.ACESFilmicToneMapping; renderer.toneMappingExposure = 0.88;
   renderer.shadowMap.enabled = true; renderer.shadowMap.type = T.PCFSoftShadowMap;
   renderer.shadowMap.autoUpdate = false; renderer.shadowMap.needsUpdate = true;
@@ -42,7 +50,7 @@
   var camera = new T.PerspectiveCamera(36, 1, 0.1, 600);
   scene.add(new T.HemisphereLight(0xc2d3e5, 0x202e3b, 0.44));
   var sun = new T.DirectionalLight(0xe4ebf3, 1.35); sun.position.set(-5, 12, -10); sun.castShadow = true;
-  sun.shadow.mapSize.set(2048, 2048); Object.assign(sun.shadow.camera, { left: -8, right: 8, top: 12, bottom: -8, near: 0.5, far: 55 });
+  sun.shadow.mapSize.set(quality.profile().shadowSize, quality.profile().shadowSize); Object.assign(sun.shadow.camera, { left: -8, right: 8, top: 12, bottom: -8, near: 0.5, far: 55 });
   sun.shadow.bias = -0.00015; sun.shadow.normalBias = 0.008; sun.shadow.radius = 2; scene.add(sun);
   var rim = new T.DirectionalLight(0xc6d7e4, 1.02); rim.position.set(6, 5, -10); scene.add(rim);
   // A cool sky-side bounce separates the two front faces without turning the storm into daylight.
@@ -77,7 +85,9 @@
     decalContext.font = '18px monospace'; decalContext.fillText('POLAR AUTONOMOUS OBSERVATORY', 26, 127); decalTexture.needsUpdate = true;
   }
   setDecal('DMS–A01'); m.decal = new T.MeshStandardMaterial({ map: decalTexture, roughness: 0.72 });
-  var model = window.createPolarMast(T, m, window.createPolarPower, window.PolarEnvironment.heightAt), station = model.group;
+  var model = window.createPolarMast(T, m, function (three, materials) {
+    return window.createPolarPower(three, materials, { renderer: renderer });
+  }, window.PolarEnvironment.heightAt), station = model.group;
   scene.add(station);
   var snowDepositMaterial = mat(0xe3edf5, 0.0, 0.96);
   snowDepositMaterial.vertexColors = true;
@@ -89,6 +99,13 @@
   };
   snowDepositMaterial.envMapIntensity = 0.20;
   window.createPolarSnow(T, model, snowDepositMaterial);
+  // The stationary structure casts one cached shadow. The small measuring cups
+  // remain animated, without repeatedly rerendering every static shadow caster.
+  model.cups.traverse(function (part) { if (part.isMesh) part.castShadow = false; });
+  if (window.PolarBatch) {
+    var batch = window.PolarBatch.compact(T, station, { exclude: [model.cups] });
+    host.dataset.modelDrawsBefore = String(batch.before); host.dataset.modelDrawsAfter = String(batch.after);
+  }
   var environmentNote = document.getElementById('environmentStatus');
   var environment = window.PolarEnvironment.create(T, renderer, scene, function (resources) {
     firstFrameRendered = false;
@@ -103,7 +120,8 @@
       environmentNote.dataset.en = failed ? 'Environment partially unavailable. Controls and data remain accessible.' : 'Loading polar environment…';
       environmentNote.textContent = document.documentElement.dataset.language === 'en' ? environmentNote.dataset.en : environmentNote.dataset.zh;
     }
-  }, snowDepositMaterial);
+    requestFrame();
+  }, snowDepositMaterial, { quality: quality.profile() });
   function mesh(geometry, material, parent, point) {
     var object = new T.Mesh(geometry, material); if (point) object.position.copy(point); (parent || scene).add(object); return object;
   }
@@ -171,13 +189,17 @@
       offset = composition.horizontalOffset; verticalOffset = composition.verticalOffset;
       if (selectedPreset) destination = Object.assign({}, presets[selectedPreset]);
     }
-    camera.aspect = w / h; camera.setViewOffset(w, h, -w * offset, h * verticalOffset, w, h); camera.updateProjectionMatrix(); renderer.setSize(w, h);
+    camera.aspect = w / h; camera.setViewOffset(w, h, -w * offset, h * verticalOffset, w, h); camera.updateProjectionMatrix();
+    renderer.setPixelRatio(quality.pixelRatio(w,h,window.devicePixelRatio)); renderer.setSize(w, h);
+    requestFrame();
   }
   window.addEventListener('resize', resize); resize();
   function clearPreset() { selectedPreset = null; document.querySelectorAll('[data-view]').forEach(function (button) { button.setAttribute('aria-pressed', 'false'); }); }
   renderer.domElement.addEventListener('pointerdown', function (event) {
     if (event.button !== 0) return;
-    dragging = true; pointerX = event.clientX; pointerY = event.clientY; renderer.domElement.setPointerCapture(event.pointerId);
+    dragging = true; pointerX = event.clientX; pointerY = event.clientY;
+    try { if (renderer.domElement.setPointerCapture) renderer.domElement.setPointerCapture(event.pointerId); } catch (captureError) { /* Window exit events release older pointer implementations. */ }
+    requestFrame();
   });
   renderer.domElement.addEventListener('pointermove', function (event) {
     if (!dragging) return;
@@ -185,8 +207,11 @@
     destination.azimuth -= (event.clientX - pointerX) * 0.006;
     destination.elevation = Math.max(0.03, Math.min(1.20, destination.elevation + (event.clientY - pointerY) * 0.004));
     pointerX = event.clientX; pointerY = event.clientY;
+    requestFrame();
   });
-  ['pointerup', 'pointercancel', 'lostpointercapture'].forEach(function (type) { renderer.domElement.addEventListener(type, function () { dragging = false; }); });
+  function endDrag() { dragging = false; }
+  ['pointerup', 'pointercancel', 'lostpointercapture'].forEach(function (type) { renderer.domElement.addEventListener(type, endDrag); });
+  ['pointerup', 'pointercancel', 'blur'].forEach(function (type) { window.addEventListener(type, endDrag); });
   renderer.domElement.addEventListener('wheel', function (event) {
     if (composition && composition.name === 'hero' && !event.shiftKey) {
       // The immersive canvas is also the page surface. Do not trap ordinary scrolling.
@@ -197,46 +222,67 @@
       }
       return;
     }
-    event.preventDefault(); clearPreset(); destination.radius = Math.max(11, Math.min(32, destination.radius + event.deltaY * 0.012));
+    event.preventDefault(); clearPreset(); destination.radius = Math.max(11, Math.min(32, destination.radius + event.deltaY * 0.012)); requestFrame();
   }, { passive: false });
   document.querySelectorAll('[data-view]').forEach(function (button) {
     button.addEventListener('click', function () { selectedPreset = button.dataset.view; destination = Object.assign({}, presets[selectedPreset]);
       detailMode = button.dataset.view === 'close';
       document.querySelectorAll('[data-view]').forEach(function (item) { item.setAttribute('aria-pressed', String(item === button)); });
+      requestFrame();
     });
   });
   var motionButton = document.getElementById('motionToggle');
   function publishMotion() { if (motionButton) motionButton.setAttribute('aria-pressed', String(paused)); window.dispatchEvent(new CustomEvent('polar:motion', { detail: { paused: paused } })); }
-  publishMotion(); if (motionButton) motionButton.addEventListener('click', function () { paused = !paused; publishMotion(); });
-  reduced.addEventListener('change', function (event) { paused = event.matches; publishMotion(); });
-  window.addEventListener('polar:station', function (event) { setDecal('DMS–' + event.detail.toUpperCase()); });
+  publishMotion(); if (motionButton) motionButton.addEventListener('click', function () { paused = !paused; publishMotion(); requestFrame(); });
+  function motionPreference(event) { paused = event.matches; publishMotion(); requestFrame(); }
+  if (reduced.addEventListener) reduced.addEventListener('change', motionPreference);
+  else if (reduced.addListener) reduced.addListener(motionPreference);
+  window.addEventListener('polar:station', function (event) { setDecal('DMS–' + event.detail.toUpperCase()); requestFrame(); });
   var labels = [ ['antennaLabel', model.anchors.antenna, true], ['sensorLabel', model.anchors.sensor, false], ['powerLabel', model.anchors.solar, false] ];
   function positionLabels() {
+    if (cameraProfile === 'hero' || cameraProfile === 'instrument') return;
     labels.forEach(function (entry) {
       var element = document.getElementById(entry[0]), p = station.localToWorld(entry[1].clone()).project(camera);
       var x = (p.x + 1) * window.innerWidth / 2, y = (1 - p.y) * window.innerHeight / 2;
       var visible = detailMode && p.z < 1 && x > innerWidth * 0.40 && x < innerWidth * 0.72 && y > 120 && y < innerHeight - 180;
-      element.style.opacity = visible && (!entry[2] || showSignals) ? '1' : '0'; element.style.left = x + 'px'; element.style.top = y + 'px';
+      var opacity = visible && (!entry[2] || showSignals) ? '1' : '0';
+      if (element.style.opacity !== opacity) element.style.opacity = opacity;
+      if (visible) { element.style.left = x.toFixed(1) + 'px'; element.style.top = y.toFixed(1) + 'px'; }
     });
   }
-  var time = 0, lastFrame = 0, lastShadowTime = -1, raf = 0, contextLost = false, meaningfulFramePresented = false;
+  var time = 0, lastFrame = 0, lastTick = 0, raf = 0, contextLost = false, meaningfulFramePresented = false;
+  var needsFrame = true, weatherPainted = false, statsStart = 0, statsFrames = 0;
   var activity = window.PolarCamera && window.PolarCamera.visibilityGate(window.location.origin, window.parent);
   if (activity) activity.page(!document.hidden);
   function canRender() { return !document.hidden && !contextLost && (!activity || activity.active()); }
+  function requestFrame() { needsFrame = true; if (sceneInitialized && canRender() && !raf) raf = requestAnimationFrame(frame); }
   function updateActivity() {
     host.dataset.runtimeActive = String(canRender());
-    if (!canRender()) { cancelAnimationFrame(raf); raf = 0; lastFrame = 0; }
+    if (!canRender()) { cancelAnimationFrame(raf); raf = 0; lastFrame = lastTick = 0; statsStart = statsFrames = 0; dragging = false; quality.reset(); }
     else if (!raf) { lastFrame = 0; raf = requestAnimationFrame(frame); }
   }
   window.addEventListener('message', function (event) {
     if (activity && activity.message(event)) updateActivity();
   });
   function frame(now) {
+    raf = 0;
     if (!canRender()) { raf = 0; lastFrame = 0; return; }
     // Do not compile an invisible, untextured sky program and immediately replace it.
     if (!panoramaSettled) { raf = requestAnimationFrame(frame); return; }
+    var elapsed = lastTick ? now - lastTick : 1000 / 60;
+    if (lastTick && elapsed < 1000 / 60 - .75) { raf = requestAnimationFrame(frame); return; }
+    lastTick = elapsed >= 1000 / 60 ? now - elapsed % (1000 / 60) : now;
+    needsFrame = false;
     // The preceding frame is already on screen before optional GPU work starts.
     if (meaningfulFramePresented) environment.afterFrame?.();
+    if (lastFrame && !paused && quality.sample(now-lastFrame, now)) {
+      host.dataset.renderQuality = quality.profile().tier;
+      renderer.setPixelRatio(quality.pixelRatio(window.innerWidth,window.innerHeight,window.devicePixelRatio));
+      renderer.setSize(window.innerWidth,window.innerHeight);
+      sun.shadow.mapSize.set(quality.profile().shadowSize,quality.profile().shadowSize);
+      if (sun.shadow.map) { sun.shadow.map.dispose(); sun.shadow.map = null; }
+      renderer.shadowMap.needsUpdate = true;
+    }
     var dt = lastFrame ? Math.min((now - lastFrame) / 1000, 0.05) : 0; lastFrame = now;
     if (!paused) time += dt;
     var smoothing = reduced.matches ? 1 : 1 - Math.exp(-dt * 5);
@@ -246,7 +292,8 @@
     lookAt.set(0, current.targetY, 0); camera.lookAt(lookAt); camera.updateMatrixWorld();
     environment.update(time, camera);
     var gust = 1 + 0.22 * Math.sin(time * 0.63) + 0.13 * Math.sin(time * 1.37);
-    for (var snowIndex = 0; snowIndex < 1200; snowIndex++) {
+    var snowCount = Math.round(1200 * quality.profile().particleScale);
+    if (!paused || !weatherPainted) for (var snowIndex = 0; snowIndex < snowCount; snowIndex++) {
       var seed = snowIndex * 4, offset = snowIndex * 6, length = streakSeeds[seed + 3];
       var sx = ((streakSeeds[seed] + time * 11 + 29) % 58) - 29;
       var sy = ((streakSeeds[seed + 1] - time * 1.9) % 18 + 18) % 18;
@@ -254,10 +301,10 @@
       streakPositions[offset] = sx; streakPositions[offset + 1] = sy; streakPositions[offset + 2] = sz;
       streakPositions[offset + 3] = sx - length * gust; streakPositions[offset + 4] = sy + length * 0.17; streakPositions[offset + 5] = sz - length * 0.22;
     }
-    streakGeometry.attributes.position.needsUpdate = true;
-    if (!paused || lastShadowTime < 0) {
+    streakGeometry.setDrawRange(0, snowCount * 2);
+    if (!paused || !weatherPainted) streakGeometry.attributes.position.needsUpdate = true;
+    if (!paused || !weatherPainted) {
       model.cups.rotation.y = time * 0.85;
-      if (time - lastShadowTime >= 1 / 12) { renderer.shadowMap.needsUpdate = true; lastShadowTime = time; }
       m.glow.emissiveIntensity = 1.3 + Math.sin(time * 1.6) * 0.25;
       rings.forEach(function (ring, index) {
         var phase = (time * 0.23 + index / rings.length) % 1; ring.scale.setScalar(0.1 + phase * 1.8);
@@ -281,18 +328,34 @@
         driftPositions[j + 1] = environment.heightAt(driftPositions[j], driftPositions[j + 2]) + 0.22 + Math.sin(time * 0.7 + j) * 0.08;
       }
       driftGeometry.attributes.position.needsUpdate = true;
+      weatherPainted = true;
     }
-    positionLabels(); renderer.render(scene, camera);
+    positionLabels();
+    try { renderer.render(scene, camera); }
+    catch (renderError) {
+      contextLost = true; firstFrameRendered = false;
+      if (activity) activity.context(false);
+      updateActivity(); fallback.hidden = false; publishReady('unavailable');
+      document.querySelectorAll('.view-controls button').forEach(function (button) { button.disabled = true; });
+      return;
+    }
     if (!host.dataset.firstDrawMs) host.dataset.firstDrawMs = startupClock().toFixed(1);
     firstFrameRendered = true; publishEnvironmentState();
     if (panoramaSettled) meaningfulFramePresented = true;
     if (host.dataset.qualityState === 'ready' && !host.dataset.fullQualityMs) host.dataset.fullQualityMs = startupClock().toFixed(1);
-    raf = requestAnimationFrame(frame);
+    if (!statsStart) statsStart = now; else statsFrames++;
+    if (now-statsStart>=1000) {
+      host.dataset.renderFps = (statsFrames*1000/(now-statsStart)).toFixed(1);
+      if (renderer.info) host.dataset.renderCalls = String(renderer.info.render.calls);
+      statsFrames=0;statsStart=now;
+    }
+    var moving = Object.keys(current).some(function (key) { return Math.abs(current[key]-destination[key]) > .0005; });
+    if (!paused || moving || needsFrame || environment.pendingWork && environment.pendingWork()) raf = requestAnimationFrame(frame);
   }
   renderer.domElement.addEventListener('webglcontextlost', function (event) { event.preventDefault(); contextLost = true; firstFrameRendered = false; if (activity) activity.context(false); updateActivity(); fallback.hidden = false; publishReady('unavailable'); });
-  renderer.domElement.addEventListener('webglcontextrestored', function () { environment.restore(); contextLost = false; if (activity) activity.context(true); fallback.hidden = true; renderer.shadowMap.needsUpdate = true; updateActivity(); });
+  renderer.domElement.addEventListener('webglcontextrestored', function () { environment.restore(); contextLost = false; if (activity) activity.context(true); fallback.hidden = true; document.querySelectorAll('.view-controls button').forEach(function (button) { button.disabled = false; }); renderer.shadowMap.needsUpdate = true; updateActivity(); });
   document.addEventListener('visibilitychange', function () { if (activity) activity.page(!document.hidden); updateActivity(); });
   window.addEventListener('pagehide', function () { if (activity) activity.page(false); updateActivity(); });
   window.addEventListener('pageshow', function () { if (activity) activity.page(!document.hidden); updateActivity(); });
-  updateActivity();
+  sceneInitialized = true; updateActivity();
 })();

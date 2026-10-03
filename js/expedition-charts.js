@@ -30,6 +30,11 @@
     }
     const options=config.options||(config.options={});
     options.animation=false;options.responsive=true;options.maintainAspectRatio=false;
+    options.resizeDelay=120;
+    options.devicePixelRatio=()=>Math.max(1,Math.min(mini?1.25:1.5,Number(typeof window==='object'?window.devicePixelRatio:1)||1));
+    // Miniatures are buttons, not eleven extra hover surfaces. Their parent
+    // remains clickable and keyboard-accessible without Chart pointer work.
+    if(mini)options.events=[];
     const layout=options.layout||(options.layout={});
     layout.padding={top:mini?2:8,right:mini?2:7,bottom:0,left:0};
     const plugins=options.plugins||(options.plugins={});
@@ -43,7 +48,7 @@
       Object.assign(grid,{color:key==='y'?context=>context?.tick?.value===0?'#d4e5ee29':'#bbd4e612':'#bbd4e612',drawTicks:false});if(key==='x')grid.display=false;
       const border=scale.border||(scale.border={});border.display=false;
       const ticks=scale.ticks||(scale.ticks={});
-      Object.assign(ticks,{color:'#9bb0be',padding:10,font:{family:'Consolas, monospace',size:11,weight:'normal'}});
+      Object.assign(ticks,{color:'#9bb0be',padding:10,sampleSize:24,font:{family:'Consolas, monospace',size:11,weight:'normal'}});
     }
     return config;
   }
