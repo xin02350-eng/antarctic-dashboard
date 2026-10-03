@@ -1,4 +1,4 @@
-/* Pointer-lit, machined edges. No perimeter orbit or permanently running frame. */
+/* Pointer- and focus-lit bevels. No perimeter orbit or permanently running frame. */
 (function (root) {
   'use strict';
   const selectors = '.mini-signal,.node-entry';
@@ -21,7 +21,10 @@
   function create(doc, env) {
     let entries = [], resize, intersection, motion, coarse, raf = 0, lastTime;
     const settling = new Set();
-    const blocked = entry => !!doc.hidden || !entry.visible || !!motion?.matches || !!coarse?.matches;
+    const suspended = entry => !!doc.hidden || !entry.visible;
+    const staticMode = () => !!motion?.matches || !!coarse?.matches;
+    const blocked = entry => suspended(entry) || staticMode();
+    const focusTarget = entry => ({ ...neutral(), x: .5, y: 0, lift: staticMode() ? 0 : entry.lift, light: 1 });
     const invalidateBounds = () => entries.forEach(entry => { entry.bounds = undefined; });
 
     function paint(entry) {
@@ -33,15 +36,15 @@
       style.setProperty('--surface-lift', `${coordinate(value.lift)}px`);
       style.setProperty('--surface-light', `${coordinate(value.light)}`);
       const x = value.x * entry.width, y = value.y * entry.height;
-      // A slender oblique band acts like light reflecting from a polished bevel.
-      // Its transparent stops leave the remainder of the perimeter invisible.
+      // An asymmetric cold-white crest with a softer trailing reflection reads
+      // like a machined bevel, not an evenly illuminated neon perimeter.
       const span = Math.max(110, Math.min(250, Math.hypot(entry.width, entry.height) * .24));
       entry.gradient.setAttribute('x1', coordinate(x - span * .83));
       entry.gradient.setAttribute('y1', coordinate(y - span * .56));
       entry.gradient.setAttribute('x2', coordinate(x + span * .83));
       entry.gradient.setAttribute('y2', coordinate(y + span * .56));
       const strength = .035 + value.light * .765;
-      entry.stops.forEach((stop, index) => stop.setAttribute('stop-opacity', coordinate(strength * [0, 0, .3, 1, .28, 0, 0][index])));
+      entry.stops.forEach((stop, index) => stop.setAttribute('stop-opacity', coordinate(strength * [0, 0, .18, 1, .42, 0, 0][index])));
     }
 
     function stopIfIdle() {
@@ -50,7 +53,10 @@
 
     function reset(entry) {
       entry.hover = false; entry.anchor.classList.remove('surface-hover');
-      entry.current = neutral(); entry.target = neutral(); entry.bounds = undefined;
+      const focused = entry.focus && !suspended(entry);
+      entry.anchor.classList.toggle('surface-focus', focused);
+      entry.current = focused ? focusTarget(entry) : neutral();
+      entry.target = { ...entry.current }; entry.bounds = undefined;
       settling.delete(entry); paint(entry); stopIfIdle();
     }
 
@@ -58,9 +64,9 @@
       raf = 0;
       const dt = lastTime === undefined ? 16 : Math.max(8, Math.min(40, time - lastTime));
       lastTime = time;
-      const alpha = 1 - Math.exp(-dt / 78);
       Array.from(settling).forEach(entry => {
         if (blocked(entry)) { reset(entry); return; }
+        const alpha = 1 - Math.exp(-dt / (entry.hover || entry.focus ? 72 : 52));
         let remaining = false;
         for (const key of Object.keys(entry.current)) {
           const distance = entry.target[key] - entry.current[key];
@@ -77,6 +83,9 @@
 
     function settle(entry) {
       if (blocked(entry)) { reset(entry); return; }
+      if (Object.keys(entry.current).every(key => entry.current[key] === entry.target[key])) {
+        settling.delete(entry); stopIfIdle(); return;
+      }
       if (!env.requestAnimationFrame) { entry.current = { ...entry.target }; paint(entry); return; }
       entry.steps = 0; settling.add(entry);
       if (!raf) raf = env.requestAnimationFrame(frame);
@@ -107,10 +116,28 @@
       settle(entry);
     }
 
+    function leave(entry) {
+      entry.hover = false; entry.bounds = undefined;
+      entry.anchor.classList.remove('surface-hover');
+      entry.target = entry.focus ? focusTarget(entry) : neutral();
+      settle(entry);
+    }
+
+    function focus(entry, active) {
+      entry.focus = active;
+      entry.anchor.classList.toggle('surface-focus', active && !suspended(entry));
+      // Focus must not teleport a pointer-driven highlight. Once the pointer
+      // leaves, its reflection settles at the top bevel of the focused item.
+      if (entry.hover && !blocked(entry)) return;
+      entry.target = active ? focusTarget(entry) : neutral();
+      settle(entry);
+    }
+
     const sync = () => entries.forEach(entry => {
       entry.anchor.classList.toggle('specular-paused', blocked(entry));
-      entry.anchor.classList.toggle('specular-reduced', !!motion?.matches || !!coarse?.matches);
+      entry.anchor.classList.toggle('specular-reduced', staticMode());
       if (blocked(entry)) reset(entry);
+      else if (entry.focus) focus(entry, true);
     });
 
     function destroy() {
@@ -125,7 +152,7 @@
       });
       entries.forEach(entry => {
         for (const [name, handler] of Object.entries(entry.handlers)) entry.source.removeEventListener(name, handler);
-        entry.frame.remove(); entry.anchor.classList.remove(...entry.addedClasses, 'surface-hover', 'specular-paused', 'specular-reduced');
+        entry.frame.remove(); entry.anchor.classList.remove(...entry.addedClasses, 'surface-hover', 'surface-focus', 'specular-paused', 'specular-reduced');
         entry.originalStyles.forEach((original, index) => {
           if (original.value) entry.anchor.style.setProperty(properties[index], original.value, original.priority);
           else entry.anchor.style.removeProperty(properties[index]);
@@ -155,7 +182,7 @@
         frame.setAttribute('pointer-events', 'none'); frame.setAttribute('preserveAspectRatio', 'none');
         const defs = doc.createElementNS(ns, 'defs'), gradient = doc.createElementNS(ns, 'linearGradient'), id = `surface-reflection-${++serial}`;
         gradient.setAttribute('id', id); gradient.setAttribute('gradientUnits', 'userSpaceOnUse');
-        const stops = [0, .29, .465, .5, .535, .71, 1].map((offset, index) => {
+        const stops = [0, .22, .455, .5, .522, .77, 1].map((offset, index) => {
           const stop = doc.createElementNS(ns, 'stop');
           stop.setAttribute('offset', offset); stop.setAttribute('stop-color', index === 3 ? '#f5fbff' : '#b7c9d5');
           gradient.appendChild(stop); return stop;
@@ -171,7 +198,7 @@
         const addedClasses = classes.filter(name => !anchor.classList.contains(name));
         const originalStyles = properties.map(name => ({ value: anchor.style.getPropertyValue(name), priority: anchor.style.getPropertyPriority?.(name) || '' }));
         anchor.classList.add(...classes); anchor.appendChild(frame);
-        const entry = { source, anchor, frame, gradient, stops, paths, visible: true, hover: false, tilt: 0, lift: small ? 2 : 0, addedClasses, originalStyles, current: neutral(), target: neutral(), steps: 0 };
+        const entry = { source, anchor, frame, gradient, stops, paths, visible: true, hover: false, focus: false, tilt: 0, lift: small ? 2 : 0, addedClasses, originalStyles, current: neutral(), target: neutral(), steps: 0 };
         entry.measure = () => {
           entry.width = Math.max(4, finite(source.offsetWidth || source.clientWidth, 4));
           entry.height = Math.max(4, finite(source.offsetHeight || source.clientHeight, 4));
@@ -191,13 +218,14 @@
         entry.handlers = {
           pointerenter: event => pointer(entry, event),
           pointermove: event => pointer(entry, event),
-          pointerleave: () => {
-            entry.hover = false; entry.bounds = undefined; anchor.classList.remove('surface-hover');
-            entry.target = neutral(); settle(entry);
-          }
+          pointerleave: () => leave(entry),
+          pointercancel: () => leave(entry),
+          focusin: () => focus(entry, true),
+          focusout: event => { if (!source.contains?.(event.relatedTarget)) focus(entry, false); }
         };
         Object.entries(entry.handlers).forEach(([name, handler]) => source.addEventListener(name, handler, { passive: true }));
         entry.measure(); entries.push(entry);
+        if (source === doc.activeElement || source.contains?.(doc.activeElement)) focus(entry, true);
       });
       if (env.ResizeObserver) {
         resize = new env.ResizeObserver(changes => changes.forEach(change => {

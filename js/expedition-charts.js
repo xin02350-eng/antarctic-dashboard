@@ -1,7 +1,8 @@
 /* Optical chart treatment. Labels, observations, units and numeric scales are never rewritten. */
 (function(root,factory){const api=factory();if(typeof module==='object'&&module.exports)module.exports=api;else root.ExpeditionCharts=api;})(typeof window==='undefined'?globalThis:window,function(){
   'use strict';
-  const palette=Object.freeze({t:'#b8d2df',j:'#b8d2df',k:'#adbec8',h:'#adbec8',s:'#cbd6dc',l:'#cbd6dc',a:'#b7c5d4',v:'#b8cbd5',wind:'#a9cbdc',b:'#aebecf',d:'#c2ced8'});
+  // Related sensors share one pigment; the restrained range still separates the physical quantities.
+  const palette=Object.freeze({t:'#b5dbea',j:'#b5dbea',k:'#9ebcd6',h:'#9ebcd6',s:'#e0e7ec',l:'#e0e7ec',a:'#c2c9e5',v:'#badbdc',wind:'#a6cedf',b:'#afbed8',d:'#ccd5df'});
   const gradients=new WeakMap();
   const color=value=>typeof value==='string'&&/^#[\da-f]{6}$/i.test(value)?value:'#b8d2df';
   const can=(ctx,names)=>ctx&&names.every(name=>typeof ctx[name]==='function');
@@ -25,7 +26,7 @@
     const ink=palette[channelKey]||palette.t;
     for(const dataset of config.data?.datasets||[]){
       if(!dataset||typeof dataset!=='object')continue;
-      Object.assign(dataset,{borderColor:ink,backgroundColor:context=>fill(context,ink,mini),borderWidth:mini?1.25:1.6,borderCapStyle:'round',borderJoinStyle:'round',pointRadius:0,pointHoverRadius:mini?0:2.4,pointHoverBackgroundColor:'#e1ebf1',pointHoverBorderColor:ink,pointHoverBorderWidth:1,pointHitRadius:12});
+      Object.assign(dataset,{borderColor:ink,backgroundColor:context=>fill(context,ink,mini),borderWidth:mini?1.25:1.8,borderCapStyle:'round',borderJoinStyle:'round',pointRadius:0,pointHoverRadius:mini?0:2.4,pointHoverBackgroundColor:'#edf5f9',pointHoverBorderColor:ink,pointHoverBorderWidth:1,pointHitRadius:12});
     }
     const options=config.options||(config.options={});
     options.animation=false;options.responsive=true;options.maintainAspectRatio=false;
@@ -33,12 +34,13 @@
     layout.padding={top:mini?2:8,right:mini?2:7,bottom:0,left:0};
     const plugins=options.plugins||(options.plugins={});
     const tooltip=plugins.tooltip||(plugins.tooltip={});
-    Object.assign(tooltip,{enabled:!mini,backgroundColor:'#111e2af5',titleColor:'#adbfca',bodyColor:'#e1ebf1',padding:12,cornerRadius:9,borderColor:'#d3e5ef2e',borderWidth:1,displayColors:false,caretSize:4,caretPadding:9,bodySpacing:6,titleMarginBottom:8,titleFont:{family:'Consolas, monospace',size:11,weight:'normal'},bodyFont:{family:'Segoe UI, sans-serif',size:13,weight:'500'}});
+    Object.assign(tooltip,{enabled:!mini,backgroundColor:'#0c1620fa',titleColor:'#a8bbc8',bodyColor:'#edf5f9',padding:{top:12,right:14,bottom:12,left:14},cornerRadius:6,borderColor:'#d7e7f033',borderWidth:1,displayColors:false,caretSize:0,caretPadding:12,bodySpacing:6,titleMarginBottom:9,titleFont:{family:'Consolas, monospace',size:12,weight:'normal'},bodyFont:{family:'Consolas, "Segoe UI", monospace',size:13,weight:'500'}});
     const scales=options.scales||(options.scales={});
     for(const key of ['x','y']){
       const scale=scales[key]||(scales[key]={});scale.display=!mini;
       const grid=scale.grid||(scale.grid={});
-      Object.assign(grid,{color:'#bbd4e610',drawTicks:false});if(key==='x')grid.display=false;
+      // A zero reference is stronger only when the existing numeric scale actually contains it.
+      Object.assign(grid,{color:key==='y'?context=>context?.tick?.value===0?'#d4e5ee29':'#bbd4e612':'#bbd4e612',drawTicks:false});if(key==='x')grid.display=false;
       const border=scale.border||(scale.border={});border.display=false;
       const ticks=scale.ticks||(scale.ticks={});
       Object.assign(ticks,{color:'#9bb0be',padding:10,font:{family:'Consolas, monospace',size:11,weight:'normal'}});
@@ -50,7 +52,7 @@
     if(!finiteArea(area)||!can(ctx,['save','restore','beginPath','rect','clip','arc','fill','stroke']))return;
     const datasets=chart.data?.datasets;if(!datasets||typeof chart.getDatasetMeta!=='function')return;
     const dataset=datasets[0],meta=chart.getDatasetMeta(0);
-    if(!dataset||!meta||meta.hidden)return;
+    if(!dataset||dataset.hidden||!meta||meta.hidden)return;
     const samples=dataset.data,tail=meta.data&&meta.data[meta.data.length-1],last=samples&&samples[samples.length-1];
     // Never search backwards for a point: a missing final sample must remain visibly missing.
     if(tail&&!tail.skip&&Number.isFinite(last)){
@@ -69,7 +71,9 @@
     const active=chart.getActiveElements();if(!Array.isArray(active))return;
     const item=active.find(item=>{
       const index=item?.datasetIndex??0,series=datasets[index],point=item?.element;
-      return point&&!point.skip&&Number.isFinite(series?.data?.[item.index]);
+      if(!Number.isInteger(index)||index<0||!Number.isInteger(item?.index)||item.index<0||!point||point.skip||series?.hidden||!Number.isFinite(series?.data?.[item.index]))return false;
+      const seriesMeta=index===0?meta:chart.getDatasetMeta(index);
+      return !!seriesMeta&&!seriesMeta.hidden;
     });
     if(!item)return;
     const x=item.element.x,y=item.element.y;
@@ -78,10 +82,18 @@
     const opticalX=(Math.round(x*dpr)+.5)/dpr,opticalY=(Math.round(y*dpr)+.5)/dpr;
     ctx.save();
     try{
-      clip(ctx,area);ctx.shadowBlur=0;ctx.lineWidth=.75;ctx.strokeStyle='#d2e2ea46';ctx.setLineDash([2,5]);
-      ctx.beginPath();ctx.moveTo(opticalX,area.top);ctx.lineTo(opticalX,area.bottom);ctx.stroke();
-      ctx.strokeStyle='#d2e2ea26';ctx.beginPath();ctx.moveTo(area.left,opticalY);ctx.lineTo(opticalX,opticalY);ctx.stroke();
-      ctx.setLineDash([]);ctx.strokeStyle='#cfdee9a6';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(opticalX,area.bottom-4);ctx.lineTo(opticalX,area.bottom);ctx.moveTo(area.left,opticalY);ctx.lineTo(area.left+4,opticalY);ctx.stroke();
+      clip(ctx,area);ctx.shadowBlur=0;ctx.lineWidth=1/dpr;ctx.strokeStyle='#d2e2ea54';ctx.setLineDash([2,5]);
+      // A small aperture keeps the real observation unobscured instead of drawing a cross over it.
+      const gap=5.5;
+      ctx.beginPath();
+      if(opticalY-gap>area.top){ctx.moveTo(opticalX,area.top);ctx.lineTo(opticalX,opticalY-gap);}
+      if(opticalY+gap<area.bottom){ctx.moveTo(opticalX,opticalY+gap);ctx.lineTo(opticalX,area.bottom);}
+      ctx.stroke();
+      ctx.strokeStyle='#d2e2ea32';ctx.beginPath();
+      if(opticalX-gap>area.left){ctx.moveTo(area.left,opticalY);ctx.lineTo(opticalX-gap,opticalY);}
+      ctx.stroke();
+      // Solid registration ticks are one physical pixel, including on high-DPI displays.
+      ctx.setLineDash([]);ctx.strokeStyle='#cfdee9b8';ctx.beginPath();ctx.moveTo(opticalX,area.bottom-5);ctx.lineTo(opticalX,area.bottom);ctx.moveTo(area.left,opticalY);ctx.lineTo(area.left+5,opticalY);ctx.stroke();
     }finally{ctx.restore();}
   }};}
   return {fill,finish,configure,palette};

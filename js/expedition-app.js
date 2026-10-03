@@ -30,8 +30,8 @@
     document.documentElement.lang=lang==='zh'?'zh-CN':'en';document.documentElement.dataset.lang=lang;
     document.body.dataset.view=active;
   }
-  function scene(profile='instrument',hidden=false) {return `<iframe class="field-frame"${hidden?' hidden':''} title="${t('原创极地监测装置交互场景','Interactive polar instrument scene')}" src="./field-frame.html?station=${station}&lang=${lang}&profile=${profile}&v=20261004a" loading="eager"></iframe>`;}
-  function earthScene(){return `<iframe class="earth-frame" title="${t('蓝线三维地球，可旋转与缩放','Interactive blue-line Earth, rotate and zoom')}" src="./globe-frame.html?lang=${lang}&v=20261004a" loading="eager"></iframe>`;}
+  function scene(profile='instrument',hidden=false) {return `<iframe class="field-frame"${hidden?' hidden':''} title="${t('原创极地监测装置交互场景','Interactive polar instrument scene')}" src="./field-frame.html?station=${station}&lang=${lang}&profile=${profile}&v=20261004b" loading="eager"></iframe>`;}
+  function earthScene(){return `<iframe class="earth-frame" title="${t('蓝线三维地球，可旋转与缩放','Interactive blue-line Earth, rotate and zoom')}" src="./globe-frame.html?lang=${lang}&v=20261004b" loading="eager"></iframe>`;}
   function orbitalNetwork(){return `${earthScene()}<div class="orbital-copy"><div class="orbital-heading"><h1>${t('观测<em>网络</em>','Observation<em>network</em>')}</h1></div><div class="orbital-actions">${link('location',t('实际定位','Location')+' →','solid-link')}</div><small>${t('南京 → 东北（哈尔滨）→ 南极<br>示意链路 · 非实际部署','Nanjing → Northeast China → Antarctica<br>Illustrative route · Not actual deployment')}</small></div>`;}
   function overview() {
     const s=D.summary(rows,station),c=D.channels(station),r=s.latest;

@@ -28,23 +28,23 @@ html[data-language="en"] .mission-copy h1{font-size:clamp(34px,3.5vw,60px);lette
 .motion-control[aria-pressed="true"] .pause-icon{display:none}.motion-control[aria-pressed="true"] .play-icon{display:block}
 /* Polar edition: the landscape is the spectacle; interface is the instrument. */
 @media(min-width:769px){
-  :root{--ice:#edf3f4;--muted:#a0adb2;--line:#d3e3e518;--mint:#cee9ed;background:#080e15}
+  :root{--ice:#edf4f8;--muted:#a5b6c3;--line:#c7ddec1c;--mint:#b9dfef;background:#080f17}
   .scene-grain,.mission-index,.tiny-cross,.field-cross,.control-caption,.node-symbol,.brand-caption,.mission-copy .eyebrow,.telemetry-heading .eyebrow,.dock-intro .eyebrow,.station-tabs small{display:none}
   .header-tools time{display:none}
-  .masthead{border-bottom-color:#d3e3e518}
+  .masthead{border-bottom-color:#c7ddec1c}
   .brand-mark{font-size:1.375rem;letter-spacing:.1em}
-  .brand-mark span{color:#b9c8d0;font-size:1rem}
-  .main-nav a{color:#b0bdc5;font-size:.8125rem;letter-spacing:.055em}
+  .brand-mark span{color:#bfd3df;font-size:1rem}
+  .main-nav a{color:#acbdc9;font-size:.8125rem;letter-spacing:.055em}
   .main-nav .active:after{height:1px;right:auto;width:16px;background:var(--mint);box-shadow:none}
   .header-tools{gap:.5rem}
-  .header-tools button{min-width:44px;min-height:44px;border:1px solid transparent;border-radius:2px;font-size:.8125rem;color:#c3ced5;background:transparent;transition:background .18s,color .18s}
+  .header-tools button{min-width:44px;min-height:44px;border:1px solid transparent;border-radius:7px;font-size:.8125rem;color:#c3d3de;background:transparent;transition:background .18s,color .18s}
   .header-tools button:hover{color:#fff;background:#edf4fa0c}
   .header-tools .motion-control{color:#a8b7c2}
   .header-tools .motion-control[aria-pressed="true"]{color:var(--mint);background:#edf4fa08}
-  .mission-copy h1{font-family:"Segoe UI Variable","Microsoft YaHei",sans-serif;font-size:clamp(36px,3.3vw,60px);font-weight:550;line-height:1.27;letter-spacing:.025em;color:#f0f5f5;margin-top:0}
-  .mission-copy .title-light{font-weight:350;color:#b9d5db}
-  .mission-description{font-size:.875rem;line-height:1.9;letter-spacing:.025em;color:#afbdc7;max-width:25em}
-  .primary-link{position:relative;isolation:isolate;gap:2rem;padding:.6rem 1.35rem;min-height:48px;margin-top:.25rem;border:1px solid #c6e3ef24;border-radius:999px;background:linear-gradient(145deg,#20323de6,#101c27eb 64%,#172b35e6);box-shadow:inset 0 1px 0 #effaff09,0 4px 16px #02080e26;color:#e9f5fa;font-size:.875rem;font-weight:500;letter-spacing:.035em;transition:background .28s,box-shadow .28s,transform .28s}
+  .mission-copy h1{font-family:"Segoe UI Variable","Microsoft YaHei",sans-serif;font-size:clamp(36px,3.3vw,60px);font-weight:400;line-height:1.27;letter-spacing:.025em;color:#edf5fa;margin-top:0}
+  .mission-copy .title-light{font-weight:350;color:#b7d8e9}
+  .mission-description{font-size:.875rem;line-height:1.9;letter-spacing:.025em;color:#adc0ce;max-width:25em}
+  .primary-link{position:relative;isolation:isolate;gap:2rem;padding:.6rem 1.35rem;min-height:48px;margin-top:.25rem;border:1px solid #c6e3ef24;border-radius:999px;background:linear-gradient(145deg,#304858e8,#142635ef 58%,#203a49eb);box-shadow:inset 0 1px 0 #f0fbff16,inset 0 -1px 0 #02091138,0 6px 18px #02080e35;color:#e9f5fa;font-size:.875rem;font-weight:500;letter-spacing:.035em;transition:background .28s,box-shadow .28s,transform .28s}
   .primary-link:hover{background:linear-gradient(145deg,#294553ed,#132733f5 64%,#1c3846ed);border-color:#c6e3ef24;box-shadow:inset 0 1px 0 #effaff10,0 6px 22px #02080e38;transform:translateY(-1px);color:#fff}
   .primary-link:active{transform:none}
   .primary-link>span:last-child{color:inherit}
@@ -68,7 +68,7 @@ html[data-language="en"] .mission-copy h1{font-size:clamp(34px,3.5vw,60px);lette
   .latest-update time{letter-spacing:.015em;color:#bdcbd4;font-variant-numeric:tabular-nums}
   .text-link{font-size:.75rem;letter-spacing:.025em;color:#d2e5e9;min-height:44px;margin-top:.25rem}
   .text-link:hover,.globe-link:hover{color:#fff}
-  .mission-dock{height:84px;border-top-color:#d3e3e518}
+  .mission-dock{height:84px;border-top-color:#c7ddec1c}
   .dock-intro>span:last-child{font-size:.75rem;letter-spacing:.025em;color:#a9bac6}
   .station-tabs button{min-width:145px;min-height:44px;padding:0 24px;border-top:0;color:#9eb0bc;transition:color .18s,background .18s}
   .station-tabs b{font-size:.875rem;letter-spacing:.045em}
@@ -82,24 +82,24 @@ html[data-language="en"] .mission-copy h1{font-size:clamp(34px,3.5vw,60px);lette
   .field-caption>div>span{display:none}
   .field-caption p{font-size:.6875rem;letter-spacing:0;max-width:26rem;line-height:1.5;color:#a3b5c2}
   .interaction-hint{bottom:107px;font-size:.6875rem;letter-spacing:.025em;color:#a3b5c2}
-  .view-controls{bottom:154px;gap:2px;padding:3px;border:1px solid #e7edf21f;border-radius:4px;background:#0a1017d9;box-shadow:0 8px 24px -12px #00000080;backdrop-filter:blur(12px) saturate(.6)}
-  .view-controls button{position:relative;flex-direction:row;gap:0;min-width:44px;min-height:44px;width:auto;padding:0 .875rem;border:0;border-radius:2px;font-size:.875rem;letter-spacing:.035em;background:transparent;color:#acb6c0}
+  .view-controls{bottom:154px;gap:2px;padding:3px;border:1px solid #d6e9f328;border-radius:10px;background:linear-gradient(145deg,#1d303ee8,#0d1b28ed);box-shadow:0 14px 28px -18px #000b,0 3px 8px #02081038,inset 0 1px #e5f4ff0e,inset 0 -1px #02091140;backdrop-filter:blur(12px) saturate(.7)}
+  .view-controls button{position:relative;flex-direction:row;gap:0;min-width:44px;min-height:44px;width:auto;padding:0 .875rem;border:0;border-radius:7px;font-size:.875rem;letter-spacing:.035em;background:transparent;color:#acbfcd;transition:background .22s,color .22s,box-shadow .22s}
   .view-controls button>svg{display:none}
-  .view-controls button+button:before{content:"";position:absolute;left:-1px;top:16px;bottom:16px;width:1px;background:#e7edf21a;pointer-events:none}
-  .view-controls button[aria-pressed="true"]{background:#edf4fa08;color:#f0f4f7}
+  .view-controls button+button:before{content:"";position:absolute;left:-1px;top:16px;bottom:16px;width:1px;background:#d3e6f017;pointer-events:none}
+  .view-controls button[aria-pressed="true"]{background:linear-gradient(145deg,#bdddef15,#85adca09);box-shadow:inset 0 1px #e5f4ff0c,0 2px 5px #02080e1a;color:#edf6fc}
   .view-controls button[aria-pressed="true"]:after{content:"";position:absolute;left:calc(50% - 6px);bottom:3px;width:12px;height:1px;background:var(--mint);pointer-events:none}
-  .view-controls button:hover:not(:disabled){background:#e7edf212;color:#fff}
+  .view-controls button:hover:not(:disabled){background:#c8e5f419;box-shadow:inset 0 1px #e5f4ff10;color:#fff}
   .view-controls button:focus-visible{outline:2px solid #d3e9f6;outline-offset:2px}
   .instrument-label>span:last-child{padding:.375rem .625rem;background:linear-gradient(90deg,#080e15b8,#080e1500);border:0;backdrop-filter:none}
   .instrument-label b{font-size:.75rem;letter-spacing:.035em;color:#e8eef2}
   .instrument-label small{font-size:.625rem;letter-spacing:.025em;color:#a8b7c4}
   .label-dot{border-color:#cee9ed;box-shadow:none}
-  .environment-status{font-size:.75rem;letter-spacing:.025em;color:#dbe4eb;background:#0a1017ed;border:1px solid #e7edf21f;border-radius:2px}
-  .scene-fallback{padding:1.25rem;border:1px solid #e7edf21f;border-radius:2px;background:#0a1017ed;color:#dbe4eb;font-size:.875rem}
+  .environment-status{font-size:.75rem;letter-spacing:.025em;color:#d7e8f2;background:linear-gradient(145deg,#1d303ee8,#0d1b28ed);border:1px solid #d6e9f328;border-radius:7px;box-shadow:0 6px 18px #02080e26,inset 0 1px #e5f4ff0b}
+  .scene-fallback{padding:1.25rem;border:1px solid #d6e9f328;border-radius:10px;background:linear-gradient(145deg,#1d303ee8,#0d1b28ed);box-shadow:0 14px 28px -18px #000b,inset 0 1px #e5f4ff0e;color:#d7e8f2;font-size:.875rem}
   .primary-link .icon,.text-link .icon,.globe-link .icon{display:inline-block;width:22px;height:22px;vertical-align:middle;flex:none;color:inherit;transition:transform .24s cubic-bezier(.2,.7,.25,1)}
   .text-link .icon,.globe-link .icon{width:20px;height:20px}
   .primary-link:hover .icon,.text-link:hover .icon,.globe-link:hover .icon{transform:translate(2px,-2px)}
-  html[data-language="en"] .mission-copy h1{font-family:"Segoe UI",Arial,sans-serif;letter-spacing:-.045em;line-height:1.12;font-weight:550}
+  html[data-language="en"] .mission-copy h1{font-family:"Segoe UI",Arial,sans-serif;letter-spacing:-.045em;line-height:1.12;font-weight:400}
   html[data-language="en"] .main-nav a{font-size:.75rem;letter-spacing:.04em}
 }
 /* Shared SVG optical edge is loaded separately from the desktop application. */

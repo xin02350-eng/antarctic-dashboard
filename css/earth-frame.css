@@ -5,7 +5,8 @@ html, body {
 }
 .earth-aura {
   position: absolute; inset: 0; pointer-events: none;
-  background: radial-gradient(ellipse at 66% 46%, #18344038, transparent 58%),
+  background: radial-gradient(ellipse at 65% 43%, #21455840, transparent 54%),
+    radial-gradient(ellipse at 76% 14%, #a4d6ee0b, transparent 43%),
     linear-gradient(145deg, #080e15, #0a121b 65%, #060b11);
 }
 /* The globe carries its own orbital geometry; no second decorative HUD. */
@@ -19,29 +20,31 @@ canvas:active { cursor: grabbing; }
 #earthLabels { position: absolute; inset: 0; pointer-events: none; }
 .earth-label {
   position: absolute; white-space: nowrap; letter-spacing: .035em; color: #e8eef2;
-  text-shadow: 0 1px 8px #050b12; transform: translateY(-50%);
-  border-left: 1px solid #cee9ed80; padding: .375rem .625rem;
-  background: linear-gradient(90deg, #080e15b8, #080e1500);
+  text-shadow: 0 1px 8px #050b12; transform: translateY(-50%); box-sizing: border-box;
+  border-left: 1px solid #d7edf06b; padding: .375rem .75rem;
+  background: linear-gradient(90deg, #080e15d1, #080e154a 80%, #080e1500);
 }
 .earth-label small { display: none; }
-.earth-label b { display: block; font-size: .875rem; font-weight: 500; line-height: 1.65; }
+.earth-label b { display: block; font-size: .875rem; font-weight: 500; line-height: 1.7; color: #edf6fa; }
 .earth-label em {
-  display: block; font: .75rem/1.6 Consolas, monospace; color: #a8b7c4;
+  display: block; font: .75rem/1.6 Consolas, monospace; color: #a7bdcc;
   font-style: normal; letter-spacing: .015em; font-variant-numeric: tabular-nums;
 }
 .earth-label:before {
-  content: ""; position: absolute; left: -20px; top: 50%; width: 20px; height: 1px;
-  background: linear-gradient(90deg, transparent, #cee9ed80); pointer-events: none;
+  content: ""; position: absolute; left: var(--leader-origin, 0px); top: 50%;
+  width: var(--leader-length, 20px); height: 1px; transform-origin: left center;
+  transform: rotate(var(--leader-angle, 180deg));
+  background: linear-gradient(90deg, #c0dbe46b, #c0dbe429); pointer-events: none;
 }
 
 /* The same machined graphite rail as the field scene, with one reflected edge. */
 .earth-toolbar {
   position: absolute; right: 1rem; bottom: 3rem; display: flex; align-items: center;
   flex-wrap: wrap; max-width: calc(100% - 2rem);
-  gap: 2px; padding: 3px; border: 1px solid #d6e3e82e; border-radius: 4px;
-  background: #0a1017d9;
-  box-shadow: 0 8px 24px -12px #00000080;
-  backdrop-filter: blur(12px) saturate(.6);
+  gap: 6px; padding: 4px; border: 1px solid #d6e3e828; border-radius: 10px;
+  background: linear-gradient(145deg, #1d303ee8, #0d1b28ed);
+  box-shadow: 0 12px 26px -13px #000000a0, inset 0 1px #e2f2fc13;
+  backdrop-filter: blur(14px) saturate(.7);
 }
 .earth-toolbar:before {
   content: ""; position: absolute; left: .75rem; right: .75rem; top: -1px; height: 1px;
@@ -50,30 +53,31 @@ canvas:active { cursor: grabbing; }
 }
 .earth-toolbar button {
   position: relative; font: inherit; font-size: .875rem; font-weight: 500; letter-spacing: .025em;
-  min-height: 44px; min-width: 44px; padding: 0 .625rem; border-radius: 2px;
-  background: transparent; color: #cbd7df; border: 0; cursor: pointer;
-  transition: background .18s ease, color .18s ease;
+  min-height: 44px; min-width: 44px; padding: 0 .625rem; border-radius: 7px;
+  background: transparent; color: #aebecb; border: 0; cursor: pointer;
+  transition: background .18s ease, color .18s ease, box-shadow .18s ease;
 }
 .earth-toolbar button + button:before {
-  content: ""; position: absolute; left: -1px; top: 16px; bottom: 16px; width: 1px;
-  background: #d8e6eb21; pointer-events: none;
+  content: ""; position: absolute; left: -3px; top: 16px; bottom: 16px; width: 1px;
+  background: #d8e6eb1a; pointer-events: none;
 }
 .earth-toolbar button[aria-pressed=true] {
-  color: #f2f8f9; background: #d6e9ee13; box-shadow: none;
+  color: #f2f8f9; background: linear-gradient(180deg, #eff7fc17, #7fabc908);
+  box-shadow: inset 0 1px 0 #d8effa1c;
 }
 .earth-toolbar button[aria-pressed=true]:after {
   content: ""; position: absolute; left: calc(50% - 6px); bottom: 3px;
   width: 12px; height: 1px; background: #d1edf0; pointer-events: none;
 }
 .earth-toolbar button:hover:not(:disabled) {
-  color: #fff; background: #e7edf21a; box-shadow: none;
+  color: #fff; background: #e7edf218; box-shadow: inset 0 1px 0 #d8effa1c;
 }
 .earth-toolbar button:focus-visible { outline: 2px solid #d3e9f6; outline-offset: 2px; background: #d6e9ee13; }
 .earth-toolbar button:disabled { opacity: .45; cursor: default; box-shadow: none; }
 .earth-caption {
   position: absolute; right: 1rem; bottom: .875rem; left: 1rem; display: flex;
-  justify-content: space-between; flex-wrap: wrap; gap: .25rem 1.25rem; color: #899ba9;
-  font: .6875rem/1.5 Consolas, "Microsoft YaHei", monospace; letter-spacing: .035em; pointer-events: none;
+  justify-content: space-between; flex-wrap: wrap; gap: .25rem 1.25rem; color: #91a4b3;
+  font: .75rem/1.5 Consolas, "Microsoft YaHei", monospace; letter-spacing: .025em; pointer-events: none;
 }
 #globeFallback {
   position: absolute; left: 1rem; right: 1rem; top: 40%; padding: 1.5rem;
@@ -81,12 +85,12 @@ canvas:active { cursor: grabbing; }
   box-shadow: 0 8px 24px -12px #00000080; font-size: .875rem;
 }
 [hidden] { display: none !important; }
-@media (min-width: 769px) {
+@media (min-width: 768px) {
   .earth-toolbar { right: 1.5rem; }
   .earth-caption { left: 1.5rem; right: 1.5rem; }
   #globeFallback { left: 50%; right: 6%; }
 }
-@media (min-width: 1200px) {
+@media (min-width: 1280px) {
   .earth-toolbar button { padding-inline: .875rem; }
 }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }

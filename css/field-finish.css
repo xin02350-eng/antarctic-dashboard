@@ -3,9 +3,9 @@ html { font-size: 100%; }
 .controls {
   align-items: center; gap: 2px; padding: 3px; border: 1px solid #d6e3e82e;
   right: 1rem; bottom: 1rem; max-width: calc(100% - 2rem);
-  border-radius: 4px; isolation: isolate;
-  background: #0a1017d9;
-  box-shadow: 0 8px 24px -12px #00000080;
+  border-radius: 10px; isolation: isolate;
+  background: linear-gradient(145deg,#1d303ee8,#0d1b28ed);
+  box-shadow: 0 12px 26px -13px #000000a0,inset 0 1px #e2f2fc13;
   backdrop-filter: blur(12px) saturate(.6);
 }
 .controls:before {
@@ -14,7 +14,7 @@ html { font-size: 100%; }
   pointer-events: none;
 }
 .controls button {
-  position: relative; min-height: 44px; min-width: 44px; padding: 0 .625rem; border: 0; border-radius: 2px;
+  position: relative; min-height: 44px; min-width: 44px; padding: 0 .625rem; border: 0; border-radius: 7px;
   font: .875rem/1.5 "Segoe UI", "Microsoft YaHei", sans-serif; font-weight: 500; letter-spacing: .025em;
   color: #cbd7df; background: transparent; box-shadow: none; backdrop-filter: none;
   transition: color .18s ease, background .18s ease;
@@ -24,7 +24,7 @@ html { font-size: 100%; }
   background: #d8e6eb21; pointer-events: none;
 }
 .controls button[aria-pressed=true] {
-  color: #f2f8f9; background: #d6e9ee13; border: 0; box-shadow: none;
+  color: #f2f8ff; background: linear-gradient(#c5e5f61a,#c5e5f608); border: 0; box-shadow: inset 0 1px #e3f6ff14;
 }
 .controls button[aria-pressed=true]:after {
   content: ""; position: absolute; left: calc(50% - 6px); bottom: 3px;
