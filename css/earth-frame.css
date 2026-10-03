@@ -1,13 +1,13 @@
 html, body {
   margin: 0; width: 100%; height: 100%; overflow: hidden;
-  background: #080e15; color: #dbe4eb;
+  background: transparent; color: #dbe4eb;
   font: 1rem/1.6 "Segoe UI", "Microsoft YaHei", sans-serif; color-scheme: dark;
 }
 .earth-aura {
   position: absolute; inset: 0; pointer-events: none;
   background: radial-gradient(ellipse at 65% 43%, #21455840, transparent 54%),
     radial-gradient(ellipse at 76% 14%, #a4d6ee0b, transparent 43%),
-    linear-gradient(145deg, #080e15, #0a121b 65%, #060b11);
+    radial-gradient(ellipse at 58% 58%, #06132052, transparent 72%);
 }
 /* The globe carries its own orbital geometry; no second decorative HUD. */
 .orbital-reticle, .earth-register { display: none; }

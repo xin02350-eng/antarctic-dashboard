@@ -8,8 +8,9 @@
   const views=['dashboard','network','location','sensors','telemetry','hardware','analysis','globe','download'];
   const labels={dashboard:['任务现场','Mission'],network:['观测网络','Network'],location:['节点定位','Location'],sensors:['环境趋势','Trends'],telemetry:['观测档案','Records'],hardware:['实物展示','Hardware'],analysis:['任务分析','Analysis'],globe:['全球视野','Globe'],download:['客户端','Client']};
   let lang='zh';try{lang=localStorage.getItem('anx-lang')==='en'?'en':'zh';}catch(e){}
-  let active='dashboard', station='a01', channel=null, range='100', page=0, photo=0, deviceView='photos', instrumentSeen=false;
+  let active='dashboard', station='a01', channel=null, range='100', photo=0, deviceView='photos', instrumentSeen=false;
   let rows=[],status='loading',generation=0,controller,charts=[],map, networkRows={}, refreshing=false,paintFrame,earthObserver,fieldObserver;
+  let tableRenderJob=null,tableRenderGeneration=0;
   const t=(zh,en)=>lang==='zh'?zh:en;
   const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const n=(v,d=1)=>D.valid(v)?Number(v).toLocaleString(lang==='zh'?'zh-CN':'en-US',{maximumFractionDigits:d,minimumFractionDigits:d}):'—';
@@ -23,7 +24,7 @@
   const metric=(name,value,unit='',small='')=>`<div class="metric"><span>${name}</span><strong>${value}<small>${unit}</small></strong>${small?`<p>${small}</p>`:''}</div>`;
   function header() {
     const navItem=(v,i)=>`<a href="${url(v)}" data-route="${v}" ${active===v||(v==='network'&&active==='location')?'aria-current="page"':''}><span class="nav-index" aria-hidden="true">${String(i+1).padStart(2,'0')}</span><span>${labels[v][lang==='zh'?0:1]}</span><span class="nav-arrow" aria-hidden="true">→</span></a>`;
-    $('appHeader').innerHTML=`<div class="navigation-rail"><a class="wordmark" href="${url('dashboard')}" data-route="dashboard"><b>DMS<span>POLAR SYSTEMS</span></b></a><nav class="primary-nav" aria-label="${t('主导航','Main navigation')}">${['dashboard','network','sensors','telemetry','analysis','hardware'].map(navItem).join('')}</nav><div class="header-end"><label class="station-select"><span class="sr-only">${t('观测节点','Observation node')}</span><select id="stationSelect">${['a01','a02','a03'].map(s=>`<option value="${s}" ${s===station?'selected':''}>DMS–${s.toUpperCase()}</option>`).join('')}</select></label><button class="language" data-action="language" aria-label="${t('Switch to English','切换中文')}">${t('EN','中')}</button><details class="header-menu"><summary aria-label="${t('更多页面','More pages')}"><span class="menu-glyph" aria-hidden="true"></span></summary><nav class="nav-secondary" aria-label="${t('更多页面','More pages')}">${['globe','download'].map((v,i)=>navItem(v,i+6)).join('')}<a href="./observatory.html?station=${station}">${t('沉浸现场','Immersive field')}<span aria-hidden="true">→</span></a></nav></details></div></div>`;
+    $('appHeader').innerHTML=`<div class="navigation-rail"><a class="wordmark" href="${url('dashboard')}" data-route="dashboard"><b>DMS<span>POLAR SYSTEMS</span></b></a><nav class="primary-nav" aria-label="${t('主导航','Main navigation')}">${['dashboard','network','sensors','telemetry','analysis','hardware'].map(navItem).join('')}</nav><div class="header-end"><label class="station-select"><span class="sr-only">${t('观测节点','Observation node')}</span><select id="stationSelect">${['a01','a02','a03'].map(s=>`<option value="${s}" ${s===station?'selected':''}>DMS–${s.toUpperCase()}</option>`).join('')}</select></label><button class="language" data-action="language" aria-label="${t('Switch to English','切换中文')}">${t('EN','中')}</button></div></div>`;
     $('appFooter').innerHTML=`<span>DMS / POLAR</span><div>${link('globe',t('全球视野','Global view'))}${link('download',t('客户端下载','Download app'))}<a href="./observatory.html?station=${station}">${t('沉浸现场','Immersive field')} →</a></div><time id="clock"></time>`;
     $('stationSelect').addEventListener('change',e=>navigate(active,e.target.value));
     document.title=`${labels[active][lang==='zh'?0:1]} / DMS`;
@@ -31,7 +32,7 @@
     document.body.dataset.view=active;
   }
   function scene(profile='instrument',hidden=false) {return `<iframe class="field-frame"${hidden?' hidden':''} title="${t('原创极地监测装置交互场景','Interactive polar instrument scene')}" src="./field-frame.html?station=${station}&lang=${lang}&profile=${profile}&v=20261004b" loading="eager"></iframe>`;}
-  function earthScene(){return `<iframe class="earth-frame" title="${t('蓝线三维地球，可旋转与缩放','Interactive blue-line Earth, rotate and zoom')}" src="./globe-frame.html?lang=${lang}&v=20261004b" loading="eager"></iframe>`;}
+  function earthScene(){return `<iframe class="earth-frame" title="${t('蓝线三维地球，可旋转与缩放','Interactive blue-line Earth, rotate and zoom')}" src="./globe-frame.html?lang=${lang}&v=20261004c" loading="eager"></iframe>`;}
   function orbitalNetwork(){return `${earthScene()}<div class="orbital-copy"><div class="orbital-heading"><h1>${t('观测<em>网络</em>','Observation<em>network</em>')}</h1></div><div class="orbital-actions">${link('location',t('实际定位','Location')+' →','solid-link')}</div><small>${t('南京 → 东北（哈尔滨）→ 南极<br>示意链路 · 非实际部署','Nanjing → Northeast China → Antarctica<br>Illustrative route · Not actual deployment')}</small></div>`;}
   function overview() {
     const s=D.summary(rows,station),c=D.channels(station),r=s.latest;
@@ -49,13 +50,40 @@
   function archive() {
     return `${title()}<div class="archive-toolbar"><div>${badge()}<span id="recordCount"></span></div><button class="outline-button" data-action="refresh">${refreshing?'…':'↻'} ${t('刷新记录','Refresh')}</button></div>`;
   }
+  function cancelTableRender(){
+    tableRenderGeneration++;
+    if(!tableRenderJob)return;
+    if(tableRenderJob.idle)window.cancelIdleCallback(tableRenderJob.id);else clearTimeout(tableRenderJob.id);
+    tableRenderJob=null;
+  }
+  function tableRows(list,keys){
+    return list.map(r=>`<tr><th scope="row">${date(r.time,true)}</th>${keys.map(k=>`<td>${k==='mode'?`<span class="mode-label">${mode(r[k])}</span>`:r[k]===null||r[k]===undefined||r[k]===''?'—':esc(r[k])}</td>`).join('')}</tr>`).join('');
+  }
   function renderTable() {
-    const allowed=window.DMS_TELEMETRY_ACCESS.visibleRows(rows),keys=D.tableKeys(rows,station),limit=50;
-    page=Math.min(page,Math.max(0,Math.ceil(allowed.length/limit)-1));const list=allowed.slice(page*limit,(page+1)*limit);
+    cancelTableRender();
+    const allowed=window.DMS_TELEMETRY_ACCESS.visibleRows(rows),keys=D.tableKeys(rows,station);
     const meta=Object.fromEntries(D.channels(station).map(c=>[c.key,c]));
     Object.assign(meta,{mode:{zh:'模式',en:'Mode'},x:{zh:'纬度',en:'Latitude',unit:'°'},y:{zh:'经度',en:'Longitude',unit:'°'},n:{zh:'卫星数',en:'Satellites'}});
     const count=$('recordCount');if(count)count.textContent=t(`可查看 ${allowed.length} 条 / 共 ${rows.length} 条`,`Available ${allowed.length} / ${rows.length} records`);
-    $('telemetryData').innerHTML=`<div class="table-scroll" tabindex="0" role="region" aria-label="${t('观测数据表，支持横向滚动','Observation table, horizontally scrollable')}"><table><thead><tr><th scope="col">${t('采集时间','Observed at')}<small>↓ ${t('最新优先','Newest first')}</small></th>${keys.map(k=>`<th scope="col">${esc(meta[k]?.[lang]||k.toUpperCase())}<small>${esc(meta[k]?.unit||'')}</small></th>`).join('')}</tr></thead><tbody>${list.map(r=>`<tr><th scope="row">${date(r.time,true)}</th>${keys.map(k=>`<td>${k==='mode'?`<span class="mode-label">${mode(r[k])}</span>`:r[k]===null||r[k]===undefined||r[k]===''?'—':esc(r[k])}</td>`).join('')}</tr>`).join('')}</tbody></table>${!list.length?`<div class="empty-state">${note()}<p>${t('不会用模拟记录填充表格。','The table is never filled with simulated records.')}</p></div>`:''}</div><div class="table-pager"><span>${list.length?page*limit+1:0}—${Math.min((page+1)*limit,allowed.length)} / ${allowed.length}</span><div><button data-page="${page-1}" ${page===0?'disabled':''}>← ${t('上一页','Previous')}</button><b>${page+1} / ${Math.max(1,Math.ceil(allowed.length/limit))}</b><button data-page="${page+1}" ${(page+1)*limit>=allowed.length?'disabled':''}>${t('下一页','Next')} →</button></div></div>`;
+    // The complete public allowance is present immediately in one continuous table.
+    let cursor=Math.min(100,allowed.length);
+    const host=$('telemetryData'),revision=tableRenderGeneration;
+    host.innerHTML=`<div class="table-scroll" tabindex="0" role="region" aria-label="${t('观测数据表，支持上下及横向滚动','Observation table, vertically and horizontally scrollable')}"><table aria-rowcount="${allowed.length+1}" aria-busy="${cursor<allowed.length}"><thead><tr><th scope="col">${t('采集时间','Observed at')}<small>↓ ${t('最新优先','Newest first')}</small></th>${keys.map(k=>`<th scope="col">${esc(meta[k]?.[lang]||k.toUpperCase())}<small>${esc(meta[k]?.unit||'')}</small></th>`).join('')}</tr></thead><tbody>${tableRows(allowed.slice(0,cursor),keys)}</tbody></table>${!allowed.length?`<div class="empty-state">${note()}<p>${t('不会用模拟记录填充表格。','The table is never filled with simulated records.')}</p></div>`:''}</div>`;
+    if(cursor===allowed.length)return;
+    const table=host.querySelector('table'),body=host.querySelector('tbody');
+    const schedule=()=>{
+      const idle=typeof window.requestIdleCallback==='function'&&typeof window.cancelIdleCallback==='function';
+      tableRenderJob={idle,id:idle?window.requestIdleCallback(append,{timeout:120}):setTimeout(append,16)};
+    };
+    const append=()=>{
+      if(revision!==tableRenderGeneration||active!=='telemetry'||!body.isConnected)return;
+      tableRenderJob=null;
+      // Yield between small batches after unlocking thousands of observations.
+      const end=Math.min(cursor+200,allowed.length);
+      body.insertAdjacentHTML('beforeend',tableRows(allowed.slice(cursor,end),keys));cursor=end;
+      if(cursor<allowed.length)schedule();else table.setAttribute('aria-busy','false');
+    };
+    schedule();
   }
   function network() {
     const s=D.summary(rows,station),gps=s.gps;
@@ -78,6 +106,7 @@
     return `<section class="download-story"><div><h1>${t('DMS<br><em>自主观测系统</em>','DMS<br><em>Autonomous observation system</em>')}</h1><a class="solid-link" href="https://cdn.jsdelivr.net/gh/xin02350-eng/antarctic-dashboard@bb40a21/apk/DMS-antarctic.apk">${t('下载 Android 客户端','Download Android app')} ⇩</a><a class="quiet-link" href="./apk/DMS-antarctic.apk">${t('备用下载','Alternative download')} →</a><dl><div><dt>ANDROID</dt><dd>5.1+</dd></div><div><dt>${t('安装包','PACKAGE')}</dt><dd>≈ 4 MB</dd></div><div><dt>${t('显示方式','DISPLAY')}</dt><dd>${t('横屏 / 全屏','Landscape / Full screen')}</dd></div></dl><details class="download-help"><summary>${t('安装说明','Installation')}</summary><p>${t('下载后点击安装。微信内请先“在浏览器打开”；按系统提示允许此来源安装。','Open the downloaded package to install. In WeChat, open in your browser first. Allow installation from this source if prompted.')}</p></details></div><div class="download-art" aria-hidden="true"><div class="orbit-line"></div><span>DMS</span></div></section>`;
   }
   function destroyView(){
+    cancelTableRender();
     viewQuery('.field-frame')?.contentWindow?.postMessage({type:'dms:field-visibility',visible:false},location.origin);
     viewQuery('.earth-frame')?.contentWindow?.postMessage({type:'dms:earth-visibility',visible:false},location.origin);
     window.ExpeditionActions?.destroy();window.ExpeditionSpecular?.destroy();earthObserver?.disconnect();earthObserver=null;fieldObserver?.disconnect();fieldObserver=null;charts.forEach(c=>c.destroy());charts=[];if(map){map.remove();map=null;}
@@ -192,26 +221,23 @@
   function readRoute(){const p=new URLSearchParams(location.search);active=views.includes(p.get('view'))?p.get('view'):'dashboard';station=Object.hasOwn(D.sources,p.get('station'))?p.get('station'):'a01';}
   function navigate(view,node=station){
     if(view==='hardware'&&active!=='hardware')deviceView='photos';
-    const changed=node!==station;active=view;station=node;page=0;
+    const changed=node!==station;active=view;station=node;
     history.pushState({},'',url(view,node));
     if(changed){channel=null;const lock=document.querySelector('.access-lock');if(lock&&!lock.hidden)lock.click();load();}
     else{render();if(['network','location'].includes(view))load(true);}
     $('content').focus({preventScroll:true});window.scrollTo({top:0,left:0,behavior:'instant'});
   }
   document.addEventListener('click',e=>{
-    const menu=document.querySelector('.header-menu');if(menu&&!menu.contains(e.target))menu.open=false;
     const a=e.target.closest('[data-route]');if(a&&!e.metaKey&&!e.ctrlKey&&!e.shiftKey&&e.button===0){e.preventDefault();navigate(a.dataset.route,a.dataset.node||station);return;}
     const b=e.target.closest('button');if(!b||b.disabled)return;
     if(b.dataset.channel){channel=b.dataset.channel;render();window.scrollTo({top:0,behavior:'smooth'});}
     if(b.dataset.range){range=b.dataset.range;render();}
-    if(b.dataset.page!==undefined){page=Number(b.dataset.page);renderTable();finishSurfaces();}
     if(b.dataset.device){deviceView=b.dataset.device;render();}
     if(b.dataset.photo!==undefined){photo=Number(b.dataset.photo)===1?1:0;render();}
     if(b.dataset.action==='language'){lang=lang==='zh'?'en':'zh';try{localStorage.setItem('anx-lang',lang);}catch(e){}document.documentElement.dataset.lang=lang;window.dispatchEvent(new Event('anx:langchange'));render();}
     if(b.dataset.action==='refresh')load(true);
     if(['previous-photo','next-photo'].includes(b.dataset.action)){photo=photo===0?1:0;render();}
   });
-  document.addEventListener('keydown',e=>{if(e.key==='Escape'){const menu=document.querySelector('.header-menu');if(menu?.open){menu.open=false;menu.querySelector('summary').focus();}}});
   document.addEventListener('visibilitychange',()=>{const frame=viewQuery('.field-frame');if(frame)fieldVisibility(frame);});
   window.addEventListener('message',e=>{
     const frame=viewQuery('.field-hero .field-frame');
@@ -219,8 +245,8 @@
     if(e.data?.type==='dms:field-ready'&&['ready','degraded','unavailable'].includes(e.data.state))frame.closest('.mission-stage')?.classList.add('is-ready');
     if(e.data?.type==='dms:field-scroll'){const delta=e.data.deltaY;if(Number.isFinite(delta))window.scrollBy({top:Math.max(-innerHeight,Math.min(innerHeight,delta)),left:0,behavior:'instant'});}
   });
-  window.addEventListener('anx:telemetryaccess',()=>{page=0;if(active==='telemetry'){renderTable();finishSurfaces();}});
-  window.addEventListener('popstate',()=>{const before=station;readRoute();page=0;if(before!==station){channel=null;const lock=document.querySelector('.access-lock');if(lock&&!lock.hidden)lock.click();load();}else{render();if(['network','location'].includes(active))load(true);}});
+  window.addEventListener('anx:telemetryaccess',()=>{if(active==='telemetry'){renderTable();finishSurfaces();}});
+  window.addEventListener('popstate',()=>{const before=station;readRoute();if(before!==station){channel=null;const lock=document.querySelector('.access-lock');if(lock&&!lock.hidden)lock.click();load();}else{render();if(['network','location'].includes(active))load(true);}});
   function tick(){const clock=$('clock');if(clock)clock.textContent=new Date().toISOString().slice(11,19)+' UTC';}
   setInterval(tick,1000);setInterval(()=>{if(!document.hidden&&!refreshing)load(true);},60000);
   function useMobileLayout(){

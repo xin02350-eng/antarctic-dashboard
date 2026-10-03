@@ -27,7 +27,7 @@
     width = Number.isFinite(width) && width > 0 ? width : 1440;
     height = Number.isFinite(height) && height > 0 ? height : 900;
     var rand = random(seed), area = clamp(width * height / 1296000, 0.7, 1.25);
-    var counts = { powder: Math.round(280 * area), streak: Math.round(clamp(180 * area, 160, 220)),
+    var counts = { powder: Math.round(260 * area), streak: Math.round(clamp(210 * area, 170, 265)),
       near: Math.round(clamp(44 * area, 35, 55)) };
     var particles = [], padding = 120;
     Object.keys(counts).forEach(function (layer) {
@@ -35,9 +35,11 @@
         particles.push({ layer: layer, x: rand() * (width + padding * 2) - padding,
           y: Math.pow(rand(), 0.75) * (height + padding * 2) - padding,
           phase: rand() * Math.PI * 2, speed: 0.65 + rand() * 0.7,
-          radius: 0.42 + rand() * 0.4,
-          length: layer === 'near' ? 50 + rand() * 45 : layer === 'streak' ? 12 + rand() * 34 : 0.65 + rand() * 1.75,
-          alpha: layer === 'powder' ? 0.12 + rand() * 0.13 : layer === 'streak' ? 0.2 + rand() * 0.22 : 0.1 + rand() * 0.16,
+          radius: 0.55 + rand() * 0.55,
+          length: layer === 'near' ? 12 + rand() * 14 : layer === 'streak' ? 4 + rand() * 5 : 0.65 + rand() * 1.75,
+          alpha: layer === 'powder' ? 0.24 + rand() * 0.18 : layer === 'streak' ? 0.42 + rand() * 0.36 : 0.18 + rand() * 0.16,
+          rotation: rand() * Math.PI * 2, spin: (rand() - 0.5) * 0.55,
+          variant: Math.floor(rand() * 3), aspect: 0.65 + rand() * 0.3,
           windSlope: 0.36, gust: 0.9 });
       }
     });
@@ -124,25 +126,44 @@
         });
       return surface;
     }
-    function streakSprite(near) {
-      var surface = doc.createElement('canvas'); surface.width = 128; surface.height = near ? 48 : 16;
-      var paint = surface.getContext('2d'), center = surface.height / 2;
-      var gradient = paint.createLinearGradient(0, center, 128, center);
-      gradient.addColorStop(0, 'rgba(226,242,250,0)');
-      gradient.addColorStop(0.1, 'rgba(226,242,250,0.82)');
-      gradient.addColorStop(0.22, 'rgba(226,242,250,1)');
-      gradient.addColorStop(0.57, 'rgba(210,232,244,0.35)');
-      gradient.addColorStop(1, 'rgba(187,216,234,0)');
-      paint.strokeStyle = gradient; paint.lineCap = 'round';
-      (near ? [[34, 0.025], [22, 0.06], [12, 0.18], [5, 0.7]] : [[9, 0.03], [4, 0.12], [1.9, 1]])
-        .forEach(function (pass) {
-          paint.lineWidth = pass[0]; paint.globalAlpha = pass[1];
-          paint.beginPath(); paint.moveTo(2, center); paint.lineTo(126, center); paint.stroke();
+    function crystalSprite(variant) {
+      var surface = doc.createElement('canvas'); surface.width = surface.height = 32;
+      var paint = surface.getContext('2d');
+      // Uneven ice facets, never repeated snowflake icons or long rain-like strokes.
+      var facets = [
+        [[6, 13], [12, 5], [20, 9], [26, 19], [16, 25], [7, 21]],
+        [[8, 7], [21, 10], [25, 17], [19, 25], [10, 23], [5, 15]],
+        [[12, 5], [23, 9], [24, 21], [15, 26], [6, 18], [8, 11]]
+      ][variant];
+      paint.fillStyle = 'rgba(212,233,244,0.82)'; paint.beginPath();
+      facets.forEach(function (point, index) {
+        if (index) paint.lineTo(point[0], point[1]); else paint.moveTo(point[0], point[1]);
+      });
+      paint.closePath(); paint.fill();
+      paint.fillStyle = 'rgba(246,251,255,0.72)'; paint.beginPath();
+      paint.moveTo(facets[0][0], facets[0][1]); paint.lineTo(facets[1][0], facets[1][1]);
+      paint.lineTo(17, 17); paint.closePath(); paint.fill();
+      return surface;
+    }
+    function nearSnowSprite(variant) {
+      var surface = doc.createElement('canvas'); surface.width = surface.height = 64;
+      var paint = surface.getContext('2d');
+      // The camera sees nearby powder out of focus: asymmetrical soft clusters, not giant dots.
+      [[0.4, 0.45, 0.27, 0.76], [0.58, 0.55, 0.24, 0.54], [0.62, 0.32, 0.17, 0.26]]
+        .forEach(function (lobe, index) {
+          var x = 64 * (lobe[0] + (variant - 1) * (index === 1 ? 0.07 : -0.03));
+          var y = 64 * (lobe[1] + (variant - 1) * (index === 2 ? 0.07 : 0.02));
+          var gradient = paint.createRadialGradient(x, y, 0, x, y, 64 * lobe[2]);
+          gradient.addColorStop(0, 'rgba(230,245,252,' + lobe[3] + ')');
+          gradient.addColorStop(0.34, 'rgba(220,239,249,' + lobe[3] * 0.78 + ')');
+          gradient.addColorStop(0.72, 'rgba(204,229,244,' + lobe[3] * 0.2 + ')');
+          gradient.addColorStop(1, 'rgba(196,221,238,0)');
+          paint.fillStyle = gradient; paint.fillRect(0, 0, 64, 64);
         });
       return surface;
     }
     // All blur kernels and gradients are cached once; the animation loop only composites sprites.
-    var powderVeil = plumeSprite(), midStreak = streakSprite(false), nearStreak = streakSprite(true);
+    var powderVeil = plumeSprite(), crystals = [0, 1, 2].map(crystalSprite), nearSnow = [0, 1, 2].map(nearSnowSprite);
     function resize() {
       var nextWidth = Math.max(1, Number(win.innerWidth) || 1440);
       var nextHeight = Math.max(1, Number(win.innerHeight) || 900);
@@ -162,8 +183,9 @@
     }
     function edgeWeight(p) {
       var edge = Math.pow(Math.abs(clamp(p.x / width, 0, 1) - 0.5) * 2, 0.8);
-      var depth = 0.7 + 0.3 * Math.pow(clamp(p.y / height, 0, 1), 1.5);
-      return (0.32 + 0.68 * edge) * depth;
+      var depth = 0.82 + 0.18 * Math.pow(clamp(p.y / height, 0, 1), 1.5);
+      // Content remains quieter, but snow must not disappear across the entire center of the viewport.
+      return (0.58 + 0.42 * edge) * depth;
     }
     function draw(still) {
       context.clearRect(0, 0, width, height);
@@ -180,9 +202,12 @@
         var strength = edgeWeight(p) * intensity;
         context.globalAlpha = p.alpha * strength * (0.7 + p.gust * 0.3);
         if (p.layer !== 'powder') {
-          var thickness = p.layer === 'near' ? 9 : 5.2;
-          context.save(); context.translate(p.x, p.y); context.rotate(-Math.atan(p.windSlope));
-          context.drawImage(p.layer === 'near' ? nearStreak : midStreak, 0, -thickness / 2, p.length, thickness);
+          var tumble = still ? 1 : 0.82 + Math.sin(time * 0.8 + p.phase) * 0.18;
+          var thickness = p.length * p.aspect * tumble;
+          context.save(); context.translate(p.x, p.y);
+          context.rotate(p.rotation + (still ? 0 : time * p.spin));
+          context.drawImage(p.layer === 'near' ? nearSnow[p.variant] : crystals[p.variant],
+            -p.length / 2, -thickness / 2, p.length, thickness);
           context.restore();
         } else {
           context.beginPath(); context.arc(p.x, p.y, p.radius, 0, Math.PI * 2); context.fill();

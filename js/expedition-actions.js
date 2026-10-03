@@ -1,8 +1,10 @@
-/* One measured SVG edge per action. The browser animates its real stroke;
-   JavaScript measures on mount/resize, repairs replaced labels, and pauses hidden decorations. */
+/* The original site's masked gradient arc, with a measured SVG stroke fallback.
+   JavaScript only detects paint support, measures on mount/resize, repairs
+   replaced labels, and pauses hidden decorations. CSS owns all motion. */
 (function (root) {
   'use strict';
-  const selectors = '.solid-link,.primary-link,.outline-button,.table-pager button,.telemetry-access button[type=submit]';
+  const cardSelectors = '.mini-signal[aria-pressed=true],.node-entry.selected';
+  const selectors = `.solid-link,.primary-link,.outline-button,.table-pager button,.telemetry-access button[type=submit],${cardSelectors}`;
   const ns = 'http://www.w3.org/2000/svg';
   const finite = (value, fallback = 0) => Number.isFinite(Number(value)) ? Number(value) : fallback;
   const rounded = value => Math.round(value * 1000) / 1000;
@@ -16,6 +18,20 @@
 
   function create(doc, env = doc?.defaultView || root) {
     const entries = new Map();
+    let supportsFlow = typeof env.CSS?.registerProperty === 'function' &&
+      !!env.CSS?.supports?.('background', 'conic-gradient(from 0deg,transparent,#fff)') &&
+      (!!env.CSS?.supports?.('mask-composite', 'exclude') || !!env.CSS?.supports?.('-webkit-mask-composite', 'xor'));
+    if (supportsFlow) {
+      try {
+        // Some engines expose the registration API before parsing @property.
+        // Register explicitly so the angle interpolates instead of jumping.
+        env.CSS.registerProperty({ name: '--action-flow-angle', syntax: '<angle>', inherits: false, initialValue: '0deg' });
+      } catch (error) {
+        // A prior create() or stylesheet registration may already own the name.
+        // Other registration failures cannot promise interpolation: use SVG.
+        supportsFlow = error?.name === 'InvalidModificationError';
+      }
+    }
     let resize, intersection, listening = false;
 
     function sync() {
@@ -76,7 +92,9 @@
 
     function mount(scope = doc) {
       begin();
-      entries.forEach(entry => { if (entry.source.isConnected === false) release(entry); });
+      entries.forEach(entry => {
+        if (entry.source.isConnected === false || (entry.card && entry.source.matches?.(cardSelectors) === false)) release(entry);
+      });
       const candidates = new Set(scope.querySelectorAll(selectors));
       if (scope.matches?.(selectors)) candidates.add(scope);
       let mounted = 0;
@@ -92,9 +110,12 @@
           rect.setAttribute('fill', 'none'); rect.setAttribute('vector-effect', 'non-scaling-stroke');
           frame.appendChild(rect); return rect;
         });
-        const addedClasses = source.classList.contains('action-trace-host') ? [] : ['action-trace-host'];
-        source.classList.add('action-trace-host'); source.appendChild(frame);
-        const entry = { source, frame, rects, addedClasses, visible: true };
+        const card = !!source.matches?.(cardSelectors);
+        const desiredClasses = supportsFlow ? ['action-trace-host', 'action-flow-host'] : ['action-trace-host'];
+        if (card) desiredClasses.push('action-trace-card');
+        const addedClasses = desiredClasses.filter(name => !source.classList.contains(name));
+        source.classList.add(...desiredClasses); source.appendChild(frame);
+        const entry = { source, frame, rects, addedClasses, visible: true, card };
         entries.set(source, entry); measure(entry);
         // Telemetry translation replaces button.textContent even when the label
         // and its dimensions are unchanged (for example after a wrong password).
