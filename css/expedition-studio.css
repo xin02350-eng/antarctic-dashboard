@@ -65,11 +65,11 @@ a:hover .icon-down, a:hover .icon-download { transform: translateY(2px); }
 /* A single horizon. Navigation never cages the field in a dashboard rail. */
 .site-header { position: fixed; z-index: 1000; inset: 0 0 auto; background: #080e12ed; border-bottom: 1px solid #e4eff00e; backdrop-filter: blur(20px); }
 .site-header:after { content: ""; position: absolute; inset: auto var(--gutter) -1px; height: 1px; background: linear-gradient(90deg,transparent,#c8e6ea29 50%,transparent); pointer-events: none; }
-.navigation-rail { min-height: 80px; padding: 0 var(--gutter); display: flex; align-items: center; justify-content: space-between; gap: 2rem; }
+.navigation-rail { min-height: 80px; padding: 0 var(--gutter); display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; }
 .wordmark { display: flex; align-items: center; gap: .9rem; min-height: 44px; flex-shrink: 0; }
 .wordmark b { font-size: 1.4rem; font-weight: 600; line-height: 1; letter-spacing: .09em; }
 .wordmark b span { display: block; margin-top: .5rem; font: .5625rem/1.2 var(--mono); letter-spacing: .2em; color: #a7b6c0; }
-.primary-nav { display: flex; align-items: center; justify-content: center; gap: clamp(1rem,2.8vw,3rem); }
+.primary-nav { display: flex; align-items: center; justify-content: center; gap: clamp(1rem,1.7vw,2rem); }
 .primary-nav a { position: relative; display: inline-flex; align-items: center; min-height: 44px; color: #a5b4bb; font-size: .875rem; white-space: nowrap; }
 .primary-nav a:after { content: ""; position: absolute; height: 1px; bottom: 0; left: 0; right: auto; width: 22px; background: linear-gradient(90deg,#ecf8f7,var(--accent)); transform: scaleX(0); transform-origin: left; transition: transform .35s var(--ease); }
 .primary-nav a:hover, .primary-nav a[aria-current] { color: #f6fbff; }
@@ -115,45 +115,12 @@ a:hover .icon-down, a:hover .icon-download { transform: translateY(2px); }
 .data-badge.error { color: #ddb39f; }
 .data-badge.error i { background: #ddb39f; }
 .solid-link { position: relative; isolation: isolate; min-height: 48px; display: inline-flex; justify-content: space-between; align-items: center; gap: 2rem; padding: .75rem 1.35rem; border: 1px solid #c6e3ef24; border-radius: 999px; background: var(--control); box-shadow: var(--control-edge); color: #e9f5fa; font-size: .875rem; font-weight: 500; }
-.solid-link:before { pointer-events: none; }
 .solid-link:hover { background: linear-gradient(145deg,#294553ed,#132733f5 64%,#1c3846ed); box-shadow: inset 0 1px 0 #effaff10,0 6px 22px #02080e38; transform: translateY(-1px); color: #fff; }
 .solid-link:active { transform: translateY(0); }
 
-/* Light travels on a one-pixel optical edge, never across the label. The
-   translucent core and near-invisible rail stay still; only a silver crest moves. */
-@property --action-angle { syntax: "<angle>"; initial-value: 35deg; inherits: false; }
-:is(.solid-link,.outline-button,.table-pager button,.telemetry-access button[type=submit]) { position: relative; isolation: isolate; }
-@supports (mask-composite: exclude) or (-webkit-mask-composite: xor) {
-  :where(.solid-link,.outline-button,.table-pager button,.telemetry-access button[type=submit]):before,
-  :where(.solid-link,.outline-button,.table-pager button,.telemetry-access button[type=submit]):after {
-    content: ""; position: absolute; inset: -1px; z-index: -1; border-radius: inherit; padding: 1px; pointer-events: none;
-    background: conic-gradient(from var(--action-angle,35deg),transparent 0deg 205deg,#658b9d18 235deg,#8dbbc766 267deg,#d5eff5d9 288deg,#f4fdff 294deg,#c5e8f199 299deg,transparent 307deg 360deg);
-    -webkit-mask: linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
-    mask: linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor; mask-composite: exclude;
-    animation: action-perimeter 8s linear infinite; animation-delay: -2s;
-    transition: opacity .35s ease;
-  }
-  :where(.solid-link,.outline-button,.table-pager button,.telemetry-access button[type=submit]):before { opacity: .88; }
-  :where(.solid-link,.outline-button,.table-pager button,.telemetry-access button[type=submit]):after { filter: blur(2px); opacity: .32; }
-  :is(.solid-link,.telemetry-access button[type=submit]):is(:hover,:focus-visible):before { opacity: 1; }
-  :is(.solid-link,.telemetry-access button[type=submit]):is(:hover,:focus-visible):after { opacity: .55; }
-  :is(.outline-button,.table-pager button):before,
-  :is(.outline-button,.table-pager button):after { animation-play-state: paused; opacity: 0; }
-  :is(.outline-button,.table-pager button):not(:disabled):is(:hover,:focus-visible):before { animation-play-state: running; opacity: .8; }
-  :is(.outline-button,.table-pager button):not(:disabled):is(:hover,:focus-visible):after { animation-play-state: running; opacity: .3; }
-  :is(.solid-link,.outline-button,.table-pager button,.telemetry-access button[type=submit]):is(:disabled,[aria-disabled=true]):before,
-  :is(.solid-link,.outline-button,.table-pager button,.telemetry-access button[type=submit]):is(:disabled,[aria-disabled=true]):after { animation: none; opacity: 0; }
-}
-@keyframes action-perimeter { to { --action-angle: 395deg; } }
-@media (prefers-reduced-motion: reduce) {
-  :is(.solid-link,.outline-button,.table-pager button,.telemetry-access button[type=submit]):before,
-  :is(.solid-link,.outline-button,.table-pager button,.telemetry-access button[type=submit]):after { animation: none !important; --action-angle: 35deg; }
-}
+/* The moving edge is shared with the immersive page in expedition-actions.css. */
 @media (forced-colors: active) {
   :is(.solid-link,.outline-button,.table-pager button,.telemetry-access button[type=submit]) { border: 1px solid ButtonText !important; background: ButtonFace !important; color: ButtonText !important; box-shadow: none !important; }
-  :is(.solid-link,.outline-button,.table-pager button,.telemetry-access button[type=submit]):before,
-  :is(.solid-link,.outline-button,.table-pager button,.telemetry-access button[type=submit]):after { display: none; }
 }
 .quiet-link { display: inline-flex; align-items: center; gap: 1rem; min-height: 44px; font-size: .8125rem; color: #b9c9d4; }
 .quiet-link:hover { color: #fff; }
@@ -350,9 +317,11 @@ body[data-view=globe] .globe-stage { margin-top: 1.5rem; height: clamp(440px,cal
 .node-entry>span:last-of-type { color: #9cb7c9; }
 
 /* Instrument film frame: captions sit beneath, never across the main silhouette. */
-.device-tabs { margin: -3.5rem var(--gutter) 2rem auto; justify-content: end; }
+.device-tabs { margin: -3rem var(--gutter) 1.25rem auto; justify-content: end; }
+body[data-view=hardware] .page-title { padding: 1.25rem 0; }
 body[data-view=hardware] .page-node { display: none; }
-.instrument-stage { position: relative; height: clamp(420px,calc(100svh - 260px),800px); margin: 0 var(--gutter); overflow: hidden; background: #111c24; }
+body[data-view=hardware] .page-node { display: none; }
+.instrument-stage { position: relative; height: clamp(420px,calc(100svh - 222px),800px); margin: 0 var(--gutter); overflow: hidden; background: #111c24; }
 .instrument-stage>.field-frame { height: calc(100% - 88px); }
 .instrument-legend { position: absolute; left: 0; right: 0; bottom: 0; height: 88px; padding: 1rem 1.5rem; background: #101a20; border-top: 1px solid #d7e9ee18; pointer-events: none; }
 .instrument-legend ol { margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 2rem; }
@@ -360,11 +329,26 @@ body[data-view=hardware] .page-node { display: none; }
 .instrument-legend li b { color: #89a0b0; font: .625rem var(--mono); padding-top: .25rem; }
 .instrument-legend small { display: block; margin-top: .35rem; color: #9bb0bf; font-size: .6875rem; }
 .instrument-legend>p { font-size: .6875rem; margin-top: .65rem; color: #96adba; }
-.hardware-photo { position: absolute; inset: 0 0 88px; display: flex; align-items: center; justify-content: center; background: #10191f; }
-.hardware-photo img { width: 100%; height: 100%; object-fit: contain; padding: 1rem 65px; }
-.photo-index { position: absolute; right: 1.5rem; top: 1.5rem; font: .6875rem var(--mono); color: #a6b9c8; }
-.hardware-photo button { position: absolute; top: calc(50% - 22px); left: 1rem; width: 44px; height: 44px; display: grid; place-items: center; border-radius: 2px; background: #0d1a22dd; color: #d4e6f0; border: 1px solid #d6edf22b; backdrop-filter: blur(12px); }
-.hardware-photo button:last-child { left: auto; right: 1rem; }
+.instrument-stage.photo-mode { background: linear-gradient(135deg,#18242b,#0c151b 75%); border-top: 1px solid #c7dde321; }
+.hardware-photo { position: absolute; inset: 0; display: grid; grid-template-rows: minmax(0,1fr) auto; gap: 1rem; padding: 1rem; }
+.photo-stage { min-width: 0; min-height: 0; display: grid; grid-template-rows: minmax(0,1fr) 44px; gap: .75rem; }
+.hardware-main-image { display: block; width: 100%; height: 100%; min-height: 0; object-fit: contain; }
+.photo-controls { display: flex; align-items: center; justify-content: center; gap: 1rem; }
+.photo-index { min-width: 4.5rem; text-align: center; font: .75rem var(--mono); color: #acbec8; letter-spacing: .12em; }
+.photo-controls button { width: 44px; height: 44px; display: grid; place-items: center; border-radius: 50%; background: transparent; color: #d4e6f0; border: 1px solid #d6edf21f; transition: border-color .25s,background .25s; }
+.photo-controls button:hover { border-color: #c9e9ed70; background: #d6edf209; }
+.photo-rail { display: flex; justify-content: center; gap: .75rem; }
+.photo-rail button { position: relative; display: block; width: 5rem; min-height: 44px; padding: .3rem; border: 1px solid transparent; background: #07101666; color: #91a9b5; }
+.photo-rail img { display: block; width: 100%; height: 4rem; object-fit: contain; opacity: .55; transition: opacity .25s; }
+.photo-rail button>span { display: block; margin-top: .5rem; font: .6875rem var(--mono); text-align: left; }
+.photo-rail button[aria-pressed=true] { border-color: #c6e0e34d; color: #e2f2f4; background: #c6e0e305; }
+.photo-rail button[aria-pressed=true] img,.photo-rail button:hover img { opacity: 1; }
+@media (min-width: 768px) {
+  .hardware-photo { grid-template-columns: minmax(0,1fr) 8rem; grid-template-rows: minmax(0,1fr); gap: clamp(2rem,4vw,4rem); padding: 1.25rem 1.5rem 1rem; max-width: 50rem; margin: 0 auto; }
+  .photo-rail { flex-direction: column; justify-content: center; gap: 1rem; }
+  .photo-rail button { width: 100%; padding: .5rem; }
+  .photo-rail img { height: 7rem; }
+}
 .engineering-sheet { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; margin: 0 var(--gutter); padding: 2.5rem 0; }
 .engineering-sheet h2 { font-size: 1.5rem; margin: 0 0 1.25rem; }
 .engineering-sheet dl { margin: 0; }
@@ -380,9 +364,11 @@ body[data-view=hardware] .page-node { display: none; }
 .instrument-channels a { display: inline-flex; align-items: center; min-height: 44px; margin-top: .5rem; color: #b5d0e0; font-size: .8125rem; }
 
 /* Analysis: open report typography and one dimensional power object. */
+body[data-view=analysis] .page-title { padding: 1.25rem 0 1rem; }
+body[data-view=analysis] .page-title h1 { font-size: clamp(2rem,2.6vw,2.75rem); }
 .analysis-summary { display: grid; grid-template-columns: minmax(280px,.8fr) 2fr; gap: 2rem; align-items: center; margin: 0 var(--gutter); padding: .25rem 0 1.25rem; border-bottom: 1px solid var(--line); }
 .analysis-total { display: flex; align-items: baseline; gap: 1rem; }
-.analysis-total>strong { display: block; font: 300 clamp(4rem,6vw,6rem)/1.05 var(--numeric); font-variant-numeric: tabular-nums; color: #dcebf3; letter-spacing: -.045em; }
+.analysis-total>strong { display: block; font: 300 clamp(3.25rem,4.5vw,4.75rem)/1.05 var(--numeric); font-variant-numeric: tabular-nums; color: #dcebf3; letter-spacing: -.045em; }
 .analysis-total>p { color: #9aafbd; font-size: .8125rem; }
 .analysis-summary>div:last-of-type { display: grid; grid-template-columns: .8fr .8fr 1.6fr; gap: 1.5rem; }
 .analysis-summary .metric:last-child strong { font-size: 1.25rem; letter-spacing: -.03em; }

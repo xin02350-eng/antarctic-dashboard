@@ -26,17 +26,14 @@
     $('languageButton').setAttribute('aria-label', text('Switch to English', '切换为中文'));
     document.title = text('极境观测 · DMS', 'POLAR OBSERVATORY · DMS');
     $('temperatureTrend').setAttribute('aria-label', text('最近100条温度趋势', 'Temperature trend, latest 100 records'));
-    if (window.matchMedia?.('(min-width:769px)')?.matches) window.ExpeditionIcons?.mount();
-    updateMotion(); updateState();
-  }
-  function updateMotion() {
-    var button = $('motionToggle'), stopped = button.getAttribute('aria-pressed') === 'true';
-    var label = stopped ? text('继续场景动画', 'Resume scene animation') : text('暂停场景动画', 'Pause scene animation');
-    button.querySelector('span').textContent = label;
-    button.setAttribute('aria-label', label); button.setAttribute('title', label);
+    if (window.matchMedia?.('(min-width:769px)')?.matches) {
+      window.ExpeditionIcons?.mount(); window.ExpeditionActions?.mount();
+    }
+    updateState();
   }
   $('languageButton').addEventListener('click', function () { language = language === 'zh' ? 'en' : 'zh'; try { localStorage.setItem('anx-lang', language); } catch (error) {} applyLanguage(); });
-  window.addEventListener('polar:motion', updateMotion);
+  window.addEventListener('pagehide', function () { window.ExpeditionActions?.destroy(); });
+  window.addEventListener('pageshow', function (event) { if (event.persisted && window.matchMedia?.('(min-width:769px)')?.matches) window.ExpeditionActions?.mount(); });
   function parseTime(value) {
     // Match main.js: timestamps without an offset are interpreted in browser local time.
     if (typeof value !== 'string') return NaN;

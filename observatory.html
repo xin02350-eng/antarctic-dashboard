@@ -6,16 +6,18 @@
   <meta name="theme-color" content="#07131e">
   <title>极境观测 · DMS</title>
   <link rel="icon" href="data:,">
-  <link rel="stylesheet" href="./css/observatory.css?v=20261003c">
+  <link rel="stylesheet" href="./css/observatory.css?v=20261004a">
+  <link rel="stylesheet" href="./css/expedition-actions.css?v=20261004a">
   <script defer src="./assets/three.min.js"></script>
   <link rel="preload" as="image" type="image/webp" fetchpriority="high" href="./assets/polar/antarctic-glacier-storm-v4.webp">
   <script defer src="./js/polar-power.js?v=20260930b"></script>
   <script defer src="./js/polar-mast.js?v=20260930b"></script>
   <script defer src="./js/polar-snow.js?v=20260930b"></script>
   <script defer src="./js/polar-environment.js?v=20261003e"></script>
-  <script defer src="./js/polar-scene.js?v=20261003g"></script>
+  <script defer src="./js/polar-scene.js?v=20261004a"></script>
   <script defer src="./js/expedition-icons.js?v=20261003a"></script>
-  <script defer src="./js/observatory.js?v=20261001a"></script>
+  <script defer src="./js/expedition-actions.js?v=20261004a"></script>
+  <script defer src="./js/observatory.js?v=20261004a"></script>
 </head>
 <body>
   <div id="polarScene" aria-label="南极冰原上的原创监测装置三维概念场景"></div>
@@ -31,7 +33,7 @@
       <a href="./dashboard.html" data-destination="dashboard"><span data-zh="任务控制" data-en="MISSION CONTROL"></span></a>
       <a href="./hardware.html" data-destination="hardware"><span data-zh="装置档案" data-en="HARDWARE"></span></a>
     </nav>
-    <div class="header-tools"><time id="utcClock">--:--:-- UTC</time><button type="button" id="motionToggle" class="motion-control" aria-pressed="false" aria-label="暂停场景动画" title="暂停场景动画"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="pause-icon" d="M8 5v14M16 5v14"/><path class="play-icon" d="M8 5l11 7-11 7z"/></svg><span class="sr-only">暂停场景动画</span></button><button id="languageButton" type="button" aria-label="Switch to English">EN</button></div>
+    <div class="header-tools"><time id="utcClock">--:--:-- UTC</time><button id="languageButton" type="button" aria-label="Switch to English">EN</button></div>
   </header>
 
   <main>

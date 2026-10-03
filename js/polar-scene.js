@@ -206,8 +206,8 @@
     });
   });
   var motionButton = document.getElementById('motionToggle');
-  function publishMotion() { motionButton.setAttribute('aria-pressed', String(paused)); window.dispatchEvent(new CustomEvent('polar:motion', { detail: { paused: paused } })); }
-  publishMotion(); motionButton.addEventListener('click', function () { paused = !paused; publishMotion(); });
+  function publishMotion() { if (motionButton) motionButton.setAttribute('aria-pressed', String(paused)); window.dispatchEvent(new CustomEvent('polar:motion', { detail: { paused: paused } })); }
+  publishMotion(); if (motionButton) motionButton.addEventListener('click', function () { paused = !paused; publishMotion(); });
   reduced.addEventListener('change', function (event) { paused = event.matches; publishMotion(); });
   window.addEventListener('polar:station', function (event) { setDecal('DMS–' + event.detail.toUpperCase()); });
   var labels = [ ['antennaLabel', model.anchors.antenna, true], ['sensorLabel', model.anchors.sensor, false], ['powerLabel', model.anchors.solar, false] ];

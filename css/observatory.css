@@ -102,31 +102,9 @@ html[data-language="en"] .mission-copy h1{font-size:clamp(34px,3.5vw,60px);lette
   html[data-language="en"] .mission-copy h1{font-family:"Segoe UI",Arial,sans-serif;letter-spacing:-.045em;line-height:1.12;font-weight:550}
   html[data-language="en"] .main-nav a{font-size:.75rem;letter-spacing:.04em}
 }
-/* Match the main site's optical action without loading its layout or scripts. */
-@property --action-angle { syntax: "<angle>"; initial-value: 35deg; inherits: false; }
-@media (min-width:769px) {
-  @supports (mask-composite: exclude) or (-webkit-mask-composite: xor) {
-    .primary-link:before, .primary-link:after {
-      content: ""; position: absolute; inset: -1px; z-index: -1; border-radius: inherit; padding: 1px; pointer-events: none;
-      background: conic-gradient(from var(--action-angle,35deg),transparent 0deg 205deg,#658b9d18 235deg,#8dbbc766 267deg,#d5eff5d9 288deg,#f4fdff 294deg,#c5e8f199 299deg,transparent 307deg 360deg);
-      -webkit-mask: linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
-      mask: linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor; mask-composite: exclude;
-      animation: action-perimeter 8s linear infinite; animation-delay: -2s; transition: opacity .35s ease;
-    }
-    .primary-link:before { opacity: .88; }
-    .primary-link:after { filter: blur(2px); opacity: .32; }
-    .primary-link:is(:hover,:focus-visible):before { opacity: 1; }
-    .primary-link:is(:hover,:focus-visible):after { opacity: .55; }
-  }
-}
-@keyframes action-perimeter { to { --action-angle: 395deg; } }
-@media (prefers-reduced-motion: reduce) {
-  .primary-link, .primary-link:before, .primary-link:after { animation: none !important; transition: none !important; --action-angle: 35deg; transform: none !important; }
-}
+/* Shared SVG optical edge is loaded separately from the desktop application. */
 @media (forced-colors: active) {
   .primary-link { border: 1px solid ButtonText !important; background: ButtonFace !important; color: ButtonText !important; box-shadow: none !important; }
-  .primary-link:before, .primary-link:after { display: none; }
 }
 @media(min-width:769px) and (max-width:1199px){
   .station-tabs button{min-width:124px;padding:0 12px}

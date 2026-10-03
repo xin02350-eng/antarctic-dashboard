@@ -1,0 +1,23 @@
+/* A restrained travelling highlight on the actual perimeter, not a rotating
+   gradient. The control's existing dimensions, surface and typography remain. */
+.action-trace-host { position: relative; isolation: isolate; }
+.action-trace { position: absolute; inset: 0 auto auto 0; z-index: 1; overflow: visible; pointer-events: none; }
+.action-trace rect {
+  fill: none; pointer-events: none; stroke-linecap: round; stroke-linejoin: round;
+  animation: action-trace-orbit 4.8s linear infinite;
+}
+.action-trace-tail { stroke: #8abcc9; stroke-width: 1.15; stroke-dasharray: 20 80; opacity: .35; }
+.action-trace-core { stroke: #c4eaf2; stroke-width: 1.25; stroke-dasharray: 8 92; opacity: .8; }
+.action-trace-head { stroke: #f2fcff; stroke-width: 1.6; stroke-dasharray: 1.6 98.4; filter: drop-shadow(0 0 2px #b6eaff90); }
+@keyframes action-trace-orbit { from { stroke-dashoffset: 0; } to { stroke-dashoffset: 100; } }
+:is(.outline-button,.table-pager button)>.action-trace { opacity: 0; transition: opacity .24s ease; }
+:is(.outline-button,.table-pager button)>.action-trace rect { animation-play-state: paused; }
+:is(.outline-button,.table-pager button):not(:disabled):not([aria-disabled=true]):is(:hover,:focus-visible)>.action-trace { opacity: 1; }
+:is(.outline-button,.table-pager button):not(:disabled):not([aria-disabled=true]):is(:hover,:focus-visible)>.action-trace rect { animation-play-state: running; }
+.action-trace-host:is(:disabled,[aria-disabled=true])>.action-trace { display: none; }
+.action-trace-host.action-trace-paused>.action-trace rect { animation-play-state: paused !important; }
+@media (prefers-reduced-motion: reduce) {
+  .action-trace-host>.action-trace { transition: none; }
+  .action-trace-host>.action-trace rect { animation: none !important; stroke-dashoffset: 15; }
+}
+@media (forced-colors: active) { .action-trace-host>.action-trace { display: none; } }
