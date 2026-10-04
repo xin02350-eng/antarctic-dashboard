@@ -15,6 +15,7 @@
       display:flex;align-items:center;justify-content:center;
       padding:24px;
       min-height:100dvh;
+      height:auto;
     }
     .card{
       width:100%;max-width:440px;
@@ -48,6 +49,9 @@
     .btn.second{background:linear-gradient(135deg,#1d4f73,#143c59);box-shadow:0 8px 20px rgba(20,70,110,.32),inset 0 1px 0 rgba(255,255,255,.14);margin-top:10px;font-size:15px;letter-spacing:2px}
     .info{font-size:12px;color:#8aa9bc;line-height:1.9;text-align:left}
     .info b{color:#cfe9ff;font-weight:500}
+    details{margin-top:16px;text-align:left;font-size:12px;line-height:1.9;color:#8aa9bc}
+    summary{min-height:44px;display:flex;align-items:center;cursor:pointer;color:#cfe9ff}
+    details a{display:inline-flex;align-items:center;min-height:44px;color:#b4dfee;margin-right:16px}
     .warn{
       margin-top:16px;padding:12px 14px;border-radius:10px;
       background:rgba(245,185,66,.10);border:1px solid rgba(245,185,66,.30);
@@ -56,26 +60,26 @@
   </style>
   <link rel="stylesheet" href="./css/mobile.css?v=20260825n">
   <link rel="stylesheet" href="./css/polar-system.css?v=20260926a">
-  <script defer src="./js/polar-shell.js?v=20260926c"></script>
+  <script defer src="./js/polar-shell.js?v=20261005b"></script>
 </head>
 <body>
   <div class="card">
     <div class="logo">DMS</div>
     <h1>DMS 自主观测系统</h1>
-    <div class="sub">ANDROID APP · 横屏全屏版</div>
-    <a class="btn" href="https://cdn.jsdelivr.net/gh/xin02350-eng/antarctic-dashboard@bb40a21/apk/DMS-antarctic.apk">国内加速下载并安装</a>
-    <a class="btn second" href="./apk/DMS-antarctic.apk">备用下载（GitHub）</a>
+    <div class="sub">ANDROID 2.0.1 · 横屏测试版</div>
+    <a class="btn" href="./apk/DMS-antarctic-2.0.1-preview.apk">下载 2.0.1 测试版</a>
+    <a class="btn second" href="./expedition.html?view=dashboard&client=mobile">体验横屏网页版</a>
     <div class="info">
-      文件大小：<b>约 4 MB</b><br>
-      适用系统：<b>Android 5.1 及以上</b><br>
+      文件大小：<b>8.69 MiB</b><br>
+      适用系统：<b>Android 5.1+，Chrome / WebView 90+</b><br>
       安装后：<b>全屏横屏 · 免浏览器</b><br>
       安装方法：<b>点击按钮 → 浏览器下载 → 点通知安装</b><br>
-      加速链接如果打不开，点下面的备用下载。
+      可更新 2.0.0 测试版；因签名不同，不能覆盖原 1.7。
     </div>
     <div class="warn">
-      如果在微信里打开本页没反应，请点右上角“<b>···</b>” → <b>在浏览器打开</b>，再点按钮。
-      首次安装系统会提示“允许安装未知应用”，点允许即可。
+      此包为调试签名测试版，尚未完成真机兼容验证。原版用户请保留旧应用，优先在测试设备安装。微信内请先点“<b>在浏览器打开</b>”，再按系统提示下载和安装。
     </div>
+    <details><summary>保留的旧版安装包</summary><a href="./apk/DMS-antarctic.apk">原版 1.7</a><a href="https://cdn.jsdelivr.net/gh/xin02350-eng/antarctic-dashboard@bb40a21/apk/DMS-antarctic.apk">原版镜像</a></details>
   </div>
 </body>
 </html>

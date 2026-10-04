@@ -79,6 +79,7 @@ canvas:active { cursor: grabbing; }
   justify-content: space-between; flex-wrap: wrap; gap: .25rem 1.25rem; color: #91a4b3;
   font: .75rem/1.5 Consolas, "Microsoft YaHei", monospace; letter-spacing: .025em; pointer-events: none;
 }
+.earth-touch-hint { display: none; }
 #globeFallback {
   position: absolute; left: 1rem; right: 1rem; top: 40%; padding: 1.5rem;
   border: 1px solid #e7edf21f; border-radius: 4px; background: #0a1017ed; color: #dbe4eb;
@@ -94,3 +95,48 @@ canvas:active { cursor: grabbing; }
   .earth-toolbar button { padding-inline: .875rem; }
 }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+
+/* Mobile-first touch treatment is explicitly scoped, leaving the desktop
+   optical rail, geographic positions and model untouched. */
+html[data-client=mobile] .earth-toolbar {
+  right: .75rem; bottom: .75rem;
+  right: calc(.75rem + env(safe-area-inset-right, 0px));
+  bottom: calc(.75rem + env(safe-area-inset-bottom, 0px));
+  max-width: calc(100% - 1.5rem);
+  max-width: calc(100% - 1.5rem - env(safe-area-inset-left, 0px) - env(safe-area-inset-right, 0px));
+  gap: .5rem; padding: .25rem;
+  background: linear-gradient(145deg,#1d303ef5,#0d1b28fa);
+  backdrop-filter: none; -webkit-backdrop-filter: none;
+}
+html[data-client=mobile] .earth-toolbar button {
+  min-width: 3rem; min-height: 3rem; padding: 0 .75rem;
+  font-size: .875rem; line-height: 1.4; white-space: nowrap;
+  touch-action: manipulation; -webkit-tap-highlight-color: transparent;
+}
+html[data-client=mobile] .earth-toolbar button + button:before { display: none; }
+html[data-client=mobile] .earth-caption {
+  left: .75rem; right: .75rem; bottom: 5rem; gap: .25rem .75rem;
+  left: calc(.75rem + env(safe-area-inset-left, 0px));
+  right: calc(.75rem + env(safe-area-inset-right, 0px));
+  bottom: calc(5rem + env(safe-area-inset-bottom, 0px));
+  font-size: .875rem; line-height: 1.4;
+  justify-content: flex-end; pointer-events: none;
+}
+html[data-client=mobile] #earthViewport[aria-busy=false]~.earth-caption #globeStatus { display: none; }
+html[data-client=mobile] .earth-desktop-hint { display: none; }
+html[data-client=mobile] .earth-touch-hint { display: inline; }
+html[data-client=mobile] .earth-label { padding: .25rem .5rem; }
+html[data-client=mobile] .earth-label em { font-size: .875rem; line-height: 1.35; }
+html[data-client=mobile] #globeFallback {
+  top: 12%; left: .75rem; right: .75rem;
+  left: calc(.75rem + env(safe-area-inset-left, 0px));
+  right: calc(.75rem + env(safe-area-inset-right, 0px));
+  padding: 1rem; max-height: calc(100% - 7rem); overflow: auto;
+  box-sizing: border-box; font-size: .875rem; line-height: 1.5;
+}
+@media (min-width: 768px) {
+  html[data-client=mobile] .earth-toolbar button { padding-inline: 1rem; }
+}
+@media (max-height: 320px) {
+  html[data-client=mobile] .earth-touch-hint { display: none; }
+}

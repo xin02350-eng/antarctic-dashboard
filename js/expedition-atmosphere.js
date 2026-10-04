@@ -122,6 +122,8 @@
     canvas.className = 'atmosphere-canvas'; canvas.setAttribute('aria-hidden', 'true');
     if (owned) host.appendChild(canvas);
     var desktop = win.matchMedia('(min-width:769px)'), reduced = win.matchMedia('(prefers-reduced-motion: reduce)');
+    var mobileClient = doc.documentElement && doc.documentElement.getAttribute('data-client') === 'mobile';
+    function enabled() { return (desktop.matches || mobileClient) && !(doc.documentElement && doc.documentElement.getAttribute('data-client-portrait') === 'true'); }
     var view = doc.body && doc.body.dataset.view || 'dashboard', destroyed = false, suspended = false;
     var animationFrame = 0, refreshFrame = 0, lastFrame = null, time = 0, field, width = 0, height = 0, dpr = 1;
     var cleanups = [], mode = 'disabled', maskTop = 0;
@@ -182,7 +184,7 @@
     function resize() {
       var nextWidth = Math.max(1, Number(win.innerWidth) || 1440);
       var nextHeight = Math.max(1, Number(win.innerHeight) || 900);
-      var nextDpr = pixelRatio(nextWidth, nextHeight, Number(win.devicePixelRatio), win.navigator);
+      var nextDpr = pixelRatio(nextWidth, nextHeight, mobileClient ? Math.min(1,Number(win.devicePixelRatio)||1) : Number(win.devicePixelRatio), win.navigator);
       if (nextWidth === width && nextHeight === height && nextDpr === dpr) return;
       width = nextWidth; height = nextHeight; dpr = nextDpr;
       canvas.width = Math.max(1, Math.floor(width * dpr)); canvas.height = Math.max(1, Math.floor(height * dpr));
@@ -238,7 +240,7 @@
     }
     function animate(timestamp) {
       animationFrame = 0;
-      if (destroyed || suspended || doc.hidden || !desktop.matches || reduced.matches || mode !== 'animated') return;
+      if (destroyed || suspended || doc.hidden || !enabled() || reduced.matches || mode !== 'animated') return;
       var clock = tick(lastFrame, timestamp);
       if (clock.draw) {
         lastFrame = clock.last; time += stepField(field, clock.delta, time); draw(false);
@@ -249,10 +251,10 @@
       refreshFrame = 0;
       if (destroyed) return;
       resize(); updateMask();
-      var visible = !suspended && !doc.hidden && desktop.matches && maskTop < height;
+      var visible = !suspended && !doc.hidden && enabled() && maskTop < height;
       if (!visible) {
         stop(); canvas.hidden = true;
-        mode = !desktop.matches ? 'disabled' : maskTop >= height ? 'hero' : 'paused';
+        mode = !enabled() ? 'disabled' : maskTop >= height ? 'hero' : 'paused';
       } else {
         canvas.hidden = false;
         if (reduced.matches) { stop(); mode = 'static'; draw(true); }
@@ -271,6 +273,7 @@
       refresh();
     }
     cleanups.push(listen(win, 'resize', queueRefresh, { passive: true }));
+    cleanups.push(listen(win, 'dms:client-orientation', queueRefresh));
     cleanups.push(listen(win, 'scroll', queueRefresh, { passive: true }));
     cleanups.push(listen(doc, 'visibilitychange', visibility));
     cleanups.push(listen(win, 'pagehide', function () {

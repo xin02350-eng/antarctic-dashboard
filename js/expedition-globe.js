@@ -93,8 +93,14 @@
   function resize(){const w=Math.max(1,innerWidth),h=Math.max(1,innerHeight);labels.forEach(label=>{label.width=0;label.height=0;});camera.aspect=w/h;camera.setViewOffset(w,h,-w*.16,0,w,h);camera.updateProjectionMatrix();applyRenderSize(w,h);resetClock();wake();}
   function focusView(view){target=view==='polar'?{x:-1.43,y:-1.22}:{x:.48,y:-2.05};const delta=target.y-earth.rotation.y;target.y=earth.rotation.y+Math.atan2(Math.sin(delta),Math.cos(delta));distance=390;document.querySelectorAll('[data-earth-view]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.earthView===view)));wake();}
   document.querySelectorAll('[data-earth-view]').forEach(b=>b.addEventListener('click',()=>focusView(b.dataset.earthView)));
-  const canvas=renderer.domElement;canvas.addEventListener('pointerdown',e=>{dragging=true;target=null;x=e.clientX;y=e.clientY;budget?.reset();try{canvas.setPointerCapture?.(e.pointerId);}catch(error){/* Window exit listeners also release unsupported pointer capture. */}});canvas.addEventListener('pointermove',e=>{if(!dragging)return;earth.rotation.y+=(e.clientX-x)*.005;earth.rotation.x=Math.max(-1.5,Math.min(1.5,earth.rotation.x+(e.clientY-y)*.005));x=e.clientX;y=e.clientY;wake();});
-  function endDrag(){if(!dragging)return;dragging=false;resetClock();wake();}
+  const canvas=renderer.domElement;
+  const touchControls=window.SceneTouch&&(document.documentElement.dataset?.client==='mobile'||q.get('client')==='mobile')?window.SceneTouch.create(canvas,{
+    active(active){dragging=active;if(active)target=null;resetClock();wake();},
+    rotate(dx,dy){earth.rotation.y+=dx*.005;earth.rotation.x=Math.max(-1.5,Math.min(1.5,earth.rotation.x+dy*.005));wake();},
+    zoom(ratio){distance=Math.max(300,Math.min(520,distance*ratio));wake();}
+  }):null;
+  canvas.addEventListener('pointerdown',e=>{if(touchControls?.down(e))return;dragging=true;target=null;x=e.clientX;y=e.clientY;budget?.reset();try{canvas.setPointerCapture?.(e.pointerId);}catch(error){/* Window exit listeners also release unsupported pointer capture. */}});canvas.addEventListener('pointermove',e=>{if(touchControls?.move(e))return;if(!dragging)return;earth.rotation.y+=(e.clientX-x)*.005;earth.rotation.x=Math.max(-1.5,Math.min(1.5,earth.rotation.x+(e.clientY-y)*.005));x=e.clientX;y=e.clientY;wake();});
+  function endDrag(event){if(touchControls){if(!event||event.type==='blur')touchControls.clear();else if(touchControls.up(event))return;}if(!dragging)return;dragging=false;resetClock();wake();}
   ['pointerup','pointercancel','lostpointercapture'].forEach(name=>canvas.addEventListener(name,endDrag));['pointerup','pointercancel','blur'].forEach(name=>window.addEventListener(name,endDrag));
   canvas.addEventListener('wheel',e=>{e.preventDefault();distance=Math.max(300,Math.min(520,distance+e.deltaY*.12));wake();},{passive:false});
   viewport.addEventListener('keydown',e=>{const moves={ArrowLeft:[0,-.08],ArrowRight:[0,.08],ArrowUp:[-.08,0],ArrowDown:[.08,0]};if(moves[e.key]){e.preventDefault();target=null;earth.rotation.x=Math.max(-1.5,Math.min(1.5,earth.rotation.x+moves[e.key][0]));earth.rotation.y+=moves[e.key][1];wake();}if(['+','=','-'].includes(e.key)){e.preventDefault();distance=Math.max(300,Math.min(520,distance+(e.key==='-'?12:-12)));wake();}});
@@ -143,7 +149,7 @@
   function setLabelProperty(label,key,value){if(label.paint[key]!==value){label.el.style.setProperty(key,value);label.paint[key]=value;}}
   function resetClock(){last=0;renderPhase=0;lastRenderAt=0;metricsStart=0;metricsFrames=0;budget?.reset();}
   function wake(){const active=!disposed&&pageActive&&inView&&!document.hidden&&!contextLost;viewport.dataset.runtimeActive=String(active);if(!active){cancelAnimationFrame(raf);raf=0;return;}if(!raf)raf=requestAnimationFrame(frame);}
-  function visibility(){if(document.hidden||!inView||contextLost)dragging=false;resetClock();wake();}
+  function visibility(){if(!pageActive||document.hidden||!inView||contextLost){touchControls?.clear();dragging=false;}resetClock();wake();}
   window.addEventListener('resize',resize);document.addEventListener('visibilitychange',visibility);window.addEventListener('message',e=>{if(e.origin!==location.origin||e.source!==parent||e.data?.type!=='dms:earth-visibility')return;inView=e.data.visible===true;visibility();});
   if(reduced.addEventListener)reduced.addEventListener('change',visibility);else reduced.addListener?.(visibility);
   canvas.addEventListener('webglcontextlost',e=>{e.preventDefault();contextLost=true;fallback.hidden=false;visibility();});canvas.addEventListener('webglcontextrestored',()=>{contextLost=false;fallback.hidden=!!map;document.querySelectorAll('button').forEach(b=>b.disabled=false);visibility();});
@@ -193,7 +199,7 @@
   // compile() creates programs only: no empty Earth is drawn or texture uploaded.
   if(pendingMap){material.map=EarthSurface.configure(T,renderer,pendingMap);material.color.set(0xffffff);material.needsUpdate=true;try{renderer.compile(scene,camera);viewport.dataset.shaderWarmMs=startupClock().toFixed(1);}catch(error){viewport.dataset.shaderWarmMs='unavailable';}}
   window.addEventListener('pagehide',(event={})=>{
-    pageActive=false;resetClock();wake();
+    pageActive=false;visibility();
     // A BFCache page keeps its WebGL state. Destroy only a genuine navigation;
     // the back button must be able to resume the same globe without a reload.
     if(event.persisted)return;

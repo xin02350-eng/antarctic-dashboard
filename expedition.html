@@ -1,13 +1,18 @@
 <!doctype html>
 <html lang="zh-CN" data-lang="zh">
 <head>
-  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#0a1118"><title>DMS / 极地任务系统</title>
   <link rel="icon" href="data:,">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <script defer src="./js/expedition-client.js?v=20261004m"></script>
   <script id="scenePreload">
   /* Inline so selecting the critical lane never adds a blocking script request. */
   (function(){
-    if(!window.matchMedia('(min-width:769px)').matches)return;
+    if(!window.matchMedia('(min-width:769px)').matches&&new URLSearchParams(location.search).get('client')!=='mobile')return;
     const view=new URLSearchParams(location.search).get('view')||'dashboard';
     const device=view==='dashboard',earth=['network','globe'].includes(view);
     if(!device&&!earth)return;
@@ -21,18 +26,30 @@
   </script>
   <link rel="stylesheet" href="./css/expedition-studio.css?v=20261004h">
   <link rel="stylesheet" href="./css/expedition-actions.css?v=20261004g">
+  <link rel="stylesheet" href="./css/expedition-mobile.css?v=20261005a">
   <script defer src="./js/expedition-dependencies.js?v=20261004g"></script>
   <script defer src="./js/expedition-data.js?v=20260926c"></script>
   <script defer src="./js/telemetry-access.js?v=20260923a"></script>
   <script defer src="./js/expedition-charts.js?v=20261004e"></script>
-  <script defer src="./js/expedition-atmosphere.js?v=20261004g"></script>
+  <script defer src="./js/expedition-atmosphere.js?v=20261004m"></script>
   <script defer src="./js/expedition-specular.js?v=20261004b"></script>
   <script defer src="./js/expedition-icons.js?v=20261003a"></script>
   <script defer src="./js/expedition-actions.js?v=20261004g"></script>
   <script defer src="./js/expedition-view.js?v=20261003b"></script>
-  <script defer src="./js/expedition-app.js?v=20261004g"></script>
+  <script defer src="./js/expedition-app.js?v=20261005b"></script>
 </head>
 <body>
+  <section id="compatibilityNotice" class="orientation-gate" role="alert" hidden>
+    <small>DMS / POLAR SYSTEMS</small><h1>请更新浏览内核</h1>
+    <p>请更新 Android System WebView / Chrome，或使用新版浏览器打开。</p>
+    <p lang="en">Update your system WebView or browser to open the field view.</p>
+    <button id="compatibilityReload" type="button">更新后重新打开 / Retry</button>
+  </section>
+  <section id="orientationGate" class="orientation-gate" role="dialog" aria-modal="true" aria-labelledby="orientationTitle" hidden>
+    <span class="orientation-device" aria-hidden="true"></span><small>DMS / POLAR SYSTEMS</small>
+    <h1 id="orientationTitle">横屏，进入极境</h1><p id="orientationMessage" role="status">请将手机横放，展开完整任务现场。</p>
+    <button id="enterLandscape" type="button">进入横屏</button>
+  </section>
   <div id="polarAtmosphere" aria-hidden="true"></div>
   <a class="skip" href="#content">跳至主要内容 / Skip to content</a>
   <header id="appHeader" class="site-header"></header>

@@ -195,13 +195,24 @@
   }
   window.addEventListener('resize', resize); resize();
   function clearPreset() { selectedPreset = null; document.querySelectorAll('[data-view]').forEach(function (button) { button.setAttribute('aria-pressed', 'false'); }); }
+  var touchControls = window.SceneTouch && (document.documentElement.dataset.client === 'mobile' || /(?:^|[?&])client=mobile(?:&|$)/.test(window.location.search)) ? window.SceneTouch.create(renderer.domElement, {
+    active: function (active) { dragging = active; quality.reset(); requestFrame(); },
+    rotate: function (dx, dy) {
+      if (Math.abs(dx) + Math.abs(dy) > 1) clearPreset();
+      destination.azimuth -= dx * 0.006;
+      destination.elevation = Math.max(0.03, Math.min(1.20, destination.elevation + dy * 0.004)); requestFrame();
+    },
+    zoom: function (ratio) { clearPreset(); destination.radius = Math.max(11, Math.min(32, destination.radius * ratio)); requestFrame(); }
+  }) : null;
   renderer.domElement.addEventListener('pointerdown', function (event) {
+    if (touchControls && touchControls.down(event)) return;
     if (event.button !== 0) return;
     dragging = true; pointerX = event.clientX; pointerY = event.clientY;
     try { if (renderer.domElement.setPointerCapture) renderer.domElement.setPointerCapture(event.pointerId); } catch (captureError) { /* Window exit events release older pointer implementations. */ }
     requestFrame();
   });
   renderer.domElement.addEventListener('pointermove', function (event) {
+    if (touchControls && touchControls.move(event)) return;
     if (!dragging) return;
     if (Math.abs(event.clientX - pointerX) + Math.abs(event.clientY - pointerY) > 1) clearPreset();
     destination.azimuth -= (event.clientX - pointerX) * 0.006;
@@ -209,7 +220,13 @@
     pointerX = event.clientX; pointerY = event.clientY;
     requestFrame();
   });
-  function endDrag() { dragging = false; }
+  function endDrag(event) {
+    if (touchControls) {
+      if (!event || event.type === 'blur') touchControls.clear();
+      else if (touchControls.up(event)) return;
+    }
+    dragging = false;
+  }
   ['pointerup', 'pointercancel', 'lostpointercapture'].forEach(function (type) { renderer.domElement.addEventListener(type, endDrag); });
   ['pointerup', 'pointercancel', 'blur'].forEach(function (type) { window.addEventListener(type, endDrag); });
   renderer.domElement.addEventListener('wheel', function (event) {
@@ -258,7 +275,7 @@
   function requestFrame() { needsFrame = true; if (sceneInitialized && canRender() && !raf) raf = requestAnimationFrame(frame); }
   function updateActivity() {
     host.dataset.runtimeActive = String(canRender());
-    if (!canRender()) { cancelAnimationFrame(raf); raf = 0; lastFrame = lastTick = 0; statsStart = statsFrames = 0; dragging = false; quality.reset(); }
+    if (!canRender()) { if (touchControls) touchControls.clear(); cancelAnimationFrame(raf); raf = 0; lastFrame = lastTick = 0; statsStart = statsFrames = 0; dragging = false; quality.reset(); }
     else if (!raf) { lastFrame = 0; raf = requestAnimationFrame(frame); }
   }
   window.addEventListener('message', function (event) {

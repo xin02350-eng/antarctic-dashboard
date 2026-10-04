@@ -4,10 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
   <script id="desktop-entry">
-    // Only desktop enters the redesigned site. Keep the original mobile and diagnostic views.
+    // Phones enter the shared landscape client in either orientation. A narrow
+    // mouse-driven desktop window keeps the established responsive entrance.
     var desktopEntry = new URLSearchParams(location.search);
-    if (window.matchMedia('(min-width: 769px)').matches && desktopEntry.get('legacy') !== '1') {
-      location.replace('./expedition.html?view=' + (desktopEntry.get('view') === 'globe' ? 'globe' : 'dashboard') + '&station=a01');
+    var mobileEntry = desktopEntry.get('client') === 'mobile' ||
+      (window.matchMedia('(pointer: coarse)').matches && Math.min(window.innerWidth, window.innerHeight) <= 768);
+    var entryStation = /^a0[123]$/.test(desktopEntry.get('station')) ? desktopEntry.get('station') : 'a01';
+    if ((window.matchMedia('(min-width: 769px)').matches || mobileEntry) && desktopEntry.get('legacy') !== '1') {
+      location.replace('./expedition.html?view=' + (desktopEntry.get('view') === 'globe' ? 'globe' : 'dashboard') + '&station=' + entryStation + (mobileEntry ? '&client=mobile' : ''));
     }
   </script>
   <meta name="color-scheme" content="dark">
@@ -273,7 +277,7 @@
   </style>
   <link rel="stylesheet" href="./css/mobile.css?v=20260825n">
   <link rel="stylesheet" href="./css/polar-system.css?v=20260926a">
-  <script defer src="./js/polar-shell.js?v=20260926c"></script>
+  <script defer src="./js/polar-shell.js?v=20261005b"></script>
 </head>
 <body class="home-page">
 

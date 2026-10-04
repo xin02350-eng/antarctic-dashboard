@@ -2,21 +2,25 @@
 (function (root, factory) {
   var api = factory();
   if (typeof module === 'object' && module.exports) module.exports = api;
-  else {
-    var destination = api.desktopRoute(root.location.pathname.split('/').pop(), root.location.search);
-    if (destination && root.matchMedia('(min-width: 769px)').matches) root.location.replace(destination);
-    else api.start(root.document, root);
-  }
+  else api.start(root.document, root);
 })(typeof window === 'undefined' ? globalThis : window, function () {
   'use strict';
-  function desktopRoute(file, query) {
-    if (new URLSearchParams(query || '').get('legacy') === '1') return null;
+  function isMobileClient(win) {
+    if (new URLSearchParams(win.location.search || '').get('client') === 'mobile') return true;
+    return !!(win.matchMedia && win.matchMedia('(pointer: coarse)').matches && Math.min(win.innerWidth, win.innerHeight) <= 768);
+  }
+  function desktopRoute(file, query, mobile) {
+    var params = new URLSearchParams(query || '');
+    if (params.get('legacy') === '1') return null;
     var view = (file || 'index.html').replace(/\.html$/, '').replace(/-a0[23]$/, '');
     if (view === 'a02') view = 'dashboard';
-    if (view === 'index') view = new URLSearchParams(query || '').get('view') === 'globe' ? 'globe' : 'dashboard';
+    if (view === 'index') view = params.get('view') === 'globe' ? 'globe' : 'dashboard';
     if (!/^(dashboard|location|network|sensors|telemetry|hardware|analysis|download|globe)$/.test(view)) return null;
-    var node = /a02/.test(file) ? 'a02' : /a03/.test(file) ? 'a03' : 'a01';
-    return './expedition.html?view=' + view + '&station=' + node;
+    // A node-specific filename remains authoritative; generic bookmarks may
+    // carry a validated station query without losing it at the shared entry.
+    var node = /(?:-a02|^a02)\.html$/.test(file) ? 'a02' : /-a03\.html$/.test(file) ? 'a03' :
+      /^a0[123]$/.test(params.get('station')) ? params.get('station') : 'a01';
+    return './expedition.html?view=' + view + '&station=' + node + (mobile || params.get('client') === 'mobile' ? '&client=mobile' : '');
   }
   function route(filename, station) {
     var family = filename.replace(/\.html$/, '').replace(/-a0[23]$/, '');
@@ -29,7 +33,7 @@
     var file = win.location.pathname.split('/').pop() || 'index.html';
     if (file === 'observatory.html' || file === 'test.html') return;
     var desktop = win.matchMedia('(min-width: 769px)');
-    // Mobile remains on its established layout; this release is the desktop redesign.
+    // Only legacy/diagnostic desktop surfaces need the presentation shell.
     if (!desktop.matches) return;
     var station = /(?:-a02|^a02)\.html$/.test(file) ? 'a02' : /-a03\.html$/.test(file) ? 'a03' : 'a01';
     var sidebar = doc.querySelector('.sidebar'), main = doc.querySelector('.app > main');
@@ -95,17 +99,20 @@
   function start(doc, win) {
     var desktop = win.matchMedia('(min-width: 769px)'), dispose;
     function adapt() {
-      var destination = desktopRoute(win.location.pathname.split('/').pop(), win.location.search);
-      if (desktop.matches && destination && typeof win.location.replace === 'function') { win.location.replace(destination); return; }
+      var mobile = isMobileClient(win);
+      var destination = desktopRoute(win.location.pathname.split('/').pop(), win.location.search, mobile);
+      if ((desktop.matches || mobile) && destination && typeof win.location.replace === 'function') { win.location.replace(destination); return; }
       if (desktop.matches && !dispose) dispose = mount(doc, win);
       else if (!desktop.matches && dispose) { dispose(); dispose = null; }
     }
     adapt();
-    desktop.addEventListener('change', adapt);
+    if (desktop.addEventListener) desktop.addEventListener('change', adapt);
+    else if (desktop.addListener) desktop.addListener(adapt);
     return function stop() {
-      desktop.removeEventListener('change', adapt);
+      if (desktop.removeEventListener) desktop.removeEventListener('change', adapt);
+      else if (desktop.removeListener) desktop.removeListener(adapt);
       if (dispose) dispose();
     };
   }
-  return { route: route, desktopRoute: desktopRoute, mount: mount, start: start };
+  return { route: route, desktopRoute: desktopRoute, isMobileClient: isMobileClient, mount: mount, start: start };
 });

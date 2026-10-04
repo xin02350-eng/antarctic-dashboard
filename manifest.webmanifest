@@ -2,7 +2,7 @@
   "name": "DMS 自主观测系统",
   "short_name": "DMS",
   "description": "Distributed Monitoring System · Autonomous Observation Network",
-  "start_url": "./index.html",
+  "start_url": "./expedition.html?client=mobile",
   "scope": "./",
   "display": "standalone",
   "orientation": "landscape",

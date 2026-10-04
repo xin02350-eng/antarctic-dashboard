@@ -2,7 +2,10 @@
 (function (root, factory) {
   var api = factory();
   if (typeof module === 'object' && module.exports) module.exports = api;
-  else root.PolarRenderBudget = api;
+  else {
+    root.PolarRenderBudget = api;
+    if (api.isMobile({ environment: root }) && root.document && root.document.documentElement) root.document.documentElement.setAttribute('data-client', 'mobile');
+  }
 })(typeof window === 'undefined' ? globalThis : window, function () {
   'use strict';
   var profiles = {
@@ -11,11 +14,29 @@
     economy: { tier: 'economy', maxDpr: .8, maxPixels: 650000, maxFps: 30, shadowSize: 256, particleScale: .3, terrainSegments: 96 }
   };
   function positive(value, fallback) { return Number.isFinite(Number(value)) && Number(value) > 0 ? Number(value) : fallback; }
+  function isMobile(options) {
+    options = options || {};
+    var environment = options.environment || (typeof window !== 'undefined' ? window : {});
+    var device = options.navigator || environment.navigator || {};
+    var query = /(?:^|[?&])client=([^&]*)/.exec(environment.location && environment.location.search || '');
+    var client = options.client || query && query[1];
+    if (client === 'mobile') return true;
+    if (client === 'desktop') return false;
+    // A phone/tablet iframe may be wider than the old desktop breakpoint when
+    // held sideways. Physical CSS screen bounds, not iframe height, identify it.
+    var screen = environment.screen || {};
+    var width = positive(screen.width, positive(environment.innerWidth, Infinity));
+    var height = positive(screen.height, positive(environment.innerHeight, Infinity));
+    var coarse = false;
+    try { coarse = !!(environment.matchMedia && environment.matchMedia('(pointer: coarse)').matches); } catch (error) {}
+    return Number(device.maxTouchPoints) > 0 && coarse && Math.min(width, height) <= 1024;
+  }
   function create(options) {
     options = options || {};
-    var device = options.navigator || {}, memory = Number(device.deviceMemory), cores = Number(device.hardwareConcurrency);
+    var environment = options.environment || (typeof window !== 'undefined' ? window : {});
+    var device = options.navigator || environment.navigator || {}, memory = Number(device.deviceMemory), cores = Number(device.hardwareConcurrency);
     var lowMemory = memory > 0 && memory <= 4, lowCores = cores > 0 && cores <= 4;
-    var tier = lowMemory || lowCores || device.connection && device.connection.saveData ? 'low' : 'balanced';
+    var tier = isMobile(options) || lowMemory || lowCores || device.connection && device.connection.saveData ? 'low' : 'balanced';
     var warmup = null, start = null, total = 0, count = 0, slow = 0;
     function reset() { warmup = start = null; total = count = slow = 0; }
     function profile() { return Object.assign({}, profiles[tier]); }
@@ -44,5 +65,5 @@
     }
     return { profile: profile, pixelRatio: pixelRatio, sample: sample, reset: reset };
   }
-  return { create: create };
+  return { create: create, isMobile: isMobile };
 });
