@@ -268,10 +268,11 @@
     raf = 0;
     if (!canRender()) { raf = 0; lastFrame = 0; return; }
     // Do not compile an invisible, untextured sky program and immediately replace it.
-    if (!panoramaSettled) { raf = requestAnimationFrame(frame); return; }
+    if (!panoramaSettled) return; // Resource completion/timeout wakes one frame; no empty polling loop.
     var elapsed = lastTick ? now - lastTick : 1000 / 60;
-    if (lastTick && elapsed < 1000 / 60 - .75) { raf = requestAnimationFrame(frame); return; }
-    lastTick = elapsed >= 1000 / 60 ? now - elapsed % (1000 / 60) : now;
+    var frameInterval = 1000 / (quality.profile().maxFps || 60);
+    if (lastTick && elapsed < frameInterval - .75) { raf = requestAnimationFrame(frame); return; }
+    lastTick = elapsed >= frameInterval ? now - elapsed % frameInterval : now;
     needsFrame = false;
     // The preceding frame is already on screen before optional GPU work starts.
     if (meaningfulFramePresented) environment.afterFrame?.();
@@ -292,7 +293,8 @@
     lookAt.set(0, current.targetY, 0); camera.lookAt(lookAt); camera.updateMatrixWorld();
     environment.update(time, camera);
     var gust = 1 + 0.22 * Math.sin(time * 0.63) + 0.13 * Math.sin(time * 1.37);
-    var snowCount = Math.round(1200 * quality.profile().particleScale);
+    var particleScale = quality.profile().particleScale;
+    var snowCount = Math.round(1200 * particleScale), powderCount = Math.round(2600 * particleScale), driftCount = Math.round(360 * particleScale);
     if (!paused || !weatherPainted) for (var snowIndex = 0; snowIndex < snowCount; snowIndex++) {
       var seed = snowIndex * 4, offset = snowIndex * 6, length = streakSeeds[seed + 3];
       var sx = ((streakSeeds[seed] + time * 11 + 29) % 58) - 29;
@@ -302,6 +304,7 @@
       streakPositions[offset + 3] = sx - length * gust; streakPositions[offset + 4] = sy + length * 0.17; streakPositions[offset + 5] = sz - length * 0.22;
     }
     streakGeometry.setDrawRange(0, snowCount * 2);
+    particleGeometry.setDrawRange(0, powderCount); driftGeometry.setDrawRange(0, driftCount);
     if (!paused || !weatherPainted) streakGeometry.attributes.position.needsUpdate = true;
     if (!paused || !weatherPainted) {
       model.cups.rotation.y = time * 0.85;
@@ -316,14 +319,14 @@
         scanGeometry.attributes.position.setXYZ(sample, scanX, environment.heightAt(scanX, scanZ) + 0.034, scanZ);
       }
       scanGeometry.attributes.position.needsUpdate = true;
-      for (var j = 0; j < particlePositions.length; j += 3) {
+      for (var j = 0; j < powderCount * 3; j += 3) {
         particlePositions[j] += dt * 11 * gust; particlePositions[j + 1] -= dt * 1.9; particlePositions[j + 2] += dt * 2.4;
         if (particlePositions[j] > 35) particlePositions[j] = -35;
         if (particlePositions[j + 1] < 0) particlePositions[j + 1] = 13;
         if (particlePositions[j + 2] > 35) particlePositions[j + 2] = -35;
       }
       particleGeometry.attributes.position.needsUpdate = true;
-      for (j = 0; j < driftPositions.length; j += 3) {
+      for (j = 0; j < driftCount * 3; j += 3) {
         driftPositions[j] += dt * 8.5 * gust; if (driftPositions[j] > 22) driftPositions[j] = -22;
         driftPositions[j + 1] = environment.heightAt(driftPositions[j], driftPositions[j + 2]) + 0.22 + Math.sin(time * 0.7 + j) * 0.08;
       }

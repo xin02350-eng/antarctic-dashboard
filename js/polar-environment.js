@@ -31,8 +31,26 @@
     // Equal-size, lossless delivery copies: original PNGs remain the recovery path.
     // No detail is resampled, and a blocked/unsupported WebP never removes a texture.
     function loadTexture(name, onLoad, onError) {
-      loader.load('./assets/polar/' + name + '.webp', onLoad, undefined, function () {
-        loader.load('./assets/polar/' + name + '.png', onLoad, undefined, onError);
+      var complete = false, acceptedTexture, reported = false, fallbackStarted = false, deadline;
+      var schedule = options.setTimeout || (typeof setTimeout === 'function' && setTimeout);
+      var cancel = options.clearTimeout || (typeof clearTimeout === 'function' && clearTimeout);
+      function report() { if (!complete && !reported) { reported = true; onError(); } }
+      function clearDeadline() { if (deadline && cancel) cancel(deadline); deadline = null; }
+      function accept(texture) {
+        if (complete) { if (texture !== acceptedTexture) texture.dispose(); return; }
+        complete = true; acceptedTexture = texture; clearDeadline(); onLoad(texture);
+      }
+      // A stalled connection must not hold the scene behind an endless spinner.
+      // Do not cancel the original request: a late success restores full quality.
+      // Only an actual format/network failure starts the larger PNG recovery.
+      if (schedule) {
+        deadline = schedule(report, name === 'antarctic-glacier-storm-v4' ? 6000 : 10000);
+        if (deadline && deadline.unref) deadline.unref();
+      }
+      loader.load('./assets/polar/' + name + '.webp', accept, undefined, function () {
+        if (complete || fallbackStarted) return;
+        fallbackStarted = true;
+        loader.load('./assets/polar/' + name + '.png', accept, undefined, function () { clearDeadline(); report(); });
       });
     }
     var skyMaterial = new T.MeshBasicMaterial({ color: 0xe4edf6, side: T.BackSide, depthWrite: false, fog: false, toneMapped: false });
@@ -54,7 +72,7 @@
         // Reflection is deliberately diffuse. Filtering the full panorama wastes
         // startup GPU time without adding visible detail to these rough surfaces.
         if (typeof document !== 'undefined' && panoramaTexture.image) {
-          var sample = document.createElement('canvas'); sample.width = quality.tier === 'low' ? 256 : 512; sample.height = sample.width / 2;
+          var sample = document.createElement('canvas'); sample.width = quality.tier === 'balanced' ? 512 : 256; sample.height = sample.width / 2;
           var paint = sample.getContext('2d');
           if (paint) { paint.drawImage(panoramaTexture.image, 0, 0, sample.width, sample.height); reducedInput = new T.CanvasTexture(sample); reducedInput.encoding = T.sRGBEncoding; input = reducedInput; }
         }
@@ -67,7 +85,7 @@
     }
     loadTexture('antarctic-glacier-storm-v4', function (texture) {
       texture.encoding = T.sRGBEncoding; texture.wrapS = T.MirroredRepeatWrapping; panoramaTexture = texture;
-      skyMaterial.map = texture; skyMaterial.needsUpdate = true;
+      skyMaterial.color.setHex(0xe4edf6); skyMaterial.map = texture; skyMaterial.needsUpdate = true;
       reflectionPending = true; status('panorama', 'ready');
     }, function () { skyMaterial.color.setHex(0x10263e); status('panorama', 'error'); });
     function loadCrust() { if (accumulationMaterial) loadTexture('compacted-snow-crust-v2', function (texture) {

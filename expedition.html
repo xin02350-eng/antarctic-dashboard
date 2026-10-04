@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="theme-color" content="#0a1118"><title>DMS / 极地任务系统</title>
-  <link rel="icon" href="data:,"><link id="mapStyle" rel="stylesheet" media="print" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="icon" href="data:,">
   <script id="scenePreload">
   /* Inline so selecting the critical lane never adds a blocking script request. */
   (function(){
@@ -19,19 +19,18 @@
     preload(device?'./assets/polar/antarctic-glacier-storm-v4.webp':'./assets/geo/earth-surface-v1.webp','image');
   })();
   </script>
-  <link rel="stylesheet" href="./css/expedition-studio.css?v=20261004d">
-  <link rel="stylesheet" href="./css/expedition-actions.css?v=20261004c">
-  <script async src="./assets/chart.umd.min.js"></script>
-  <script async src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <link rel="stylesheet" href="./css/expedition-studio.css?v=20261004g">
+  <link rel="stylesheet" href="./css/expedition-actions.css?v=20261004g">
+  <script defer src="./js/expedition-dependencies.js?v=20261004g"></script>
   <script defer src="./js/expedition-data.js?v=20260926c"></script>
   <script defer src="./js/telemetry-access.js?v=20260923a"></script>
   <script defer src="./js/expedition-charts.js?v=20261004e"></script>
-  <script defer src="./js/expedition-atmosphere.js?v=20261004c"></script>
+  <script defer src="./js/expedition-atmosphere.js?v=20261004g"></script>
   <script defer src="./js/expedition-specular.js?v=20261004b"></script>
   <script defer src="./js/expedition-icons.js?v=20261003a"></script>
-  <script defer src="./js/expedition-actions.js?v=20261004c"></script>
+  <script defer src="./js/expedition-actions.js?v=20261004g"></script>
   <script defer src="./js/expedition-view.js?v=20261003b"></script>
-  <script defer src="./js/expedition-app.js?v=20261004e"></script>
+  <script defer src="./js/expedition-app.js?v=20261004g"></script>
 </head>
 <body>
   <div id="polarAtmosphere" aria-hidden="true"></div>

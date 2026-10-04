@@ -6,8 +6,9 @@
 })(typeof window === 'undefined' ? globalThis : window, function () {
   'use strict';
   var profiles = {
-    balanced: { tier: 'balanced', maxDpr: 1.5, maxPixels: 2000000, shadowSize: 1024, particleScale: 1, terrainSegments: 192 },
-    low: { tier: 'low', maxDpr: 1, maxPixels: 1100000, shadowSize: 512, particleScale: .5, terrainSegments: 128 }
+    balanced: { tier: 'balanced', maxDpr: 1.5, maxPixels: 2000000, maxFps: 60, shadowSize: 1024, particleScale: 1, terrainSegments: 192 },
+    low: { tier: 'low', maxDpr: 1, maxPixels: 1100000, maxFps: 60, shadowSize: 512, particleScale: .5, terrainSegments: 128 },
+    economy: { tier: 'economy', maxDpr: .8, maxPixels: 650000, maxFps: 30, shadowSize: 256, particleScale: .3, terrainSegments: 96 }
   };
   function positive(value, fallback) { return Number.isFinite(Number(value)) && Number(value) > 0 ? Number(value) : fallback; }
   function create(options) {
@@ -23,7 +24,7 @@
       return Math.min(positive(dpr, 1), p.maxDpr, Math.sqrt(p.maxPixels / area));
     }
     function sample(interval, now) {
-      if (tier === 'low' || !Number.isFinite(interval) || !Number.isFinite(now)) return false;
+      if (tier === 'economy' || !Number.isFinite(interval) || !Number.isFinite(now)) return false;
       // Visibility handlers explicitly reset the sampler. Clamp an isolated
       // upload's weight, but keep sustained very slow frames in the sample.
       if (interval <= 0) { reset(); return false; }
@@ -31,11 +32,14 @@
       if (warmup === null) warmup = now;
       if (now - warmup < 1000) return false;
       if (start === null) start = now;
-      total += interval; count++; if (interval > 24) slow++;
+      // A stable 30 fps device stays in the detailed low tier. Only sustained
+      // pressure below about 23 fps earns the final, bounded 30 fps budget.
+      var threshold = tier === 'low' ? 44 : 24;
+      total += interval; count++; if (interval > threshold) slow++;
       if (now - start < 2000 || count < 20) return false;
-      var downgrade = total / count > 24 && slow / count > .4;
+      var downgrade = total / count > threshold && slow / count > .4;
       start = now; total = count = slow = 0;
-      if (downgrade) { tier = 'low'; reset(); return true; }
+      if (downgrade) { tier = tier === 'balanced' ? 'low' : 'economy'; reset(); return true; }
       return false;
     }
     return { profile: profile, pixelRatio: pixelRatio, sample: sample, reset: reset };

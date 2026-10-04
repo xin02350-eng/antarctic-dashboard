@@ -42,6 +42,10 @@
     }
 
     function measure(entry) {
+      // The typed-angle path follows the control's CSS box automatically.
+      // Its dormant SVG is only compatibility markup: measuring it would
+      // force a layout read after every mount for a surface never painted.
+      if (supportsFlow) return;
       const source = entry.source, computed = env.getComputedStyle?.(source);
       const bounds = source.getBoundingClientRect?.();
       const width = source.offsetWidth || bounds?.width || 2, height = source.offsetHeight || bounds?.height || 2;
@@ -65,11 +69,11 @@
       if (listening) return;
       listening = true;
       doc.addEventListener('visibilitychange', sync);
-      if (env.ResizeObserver) resize = new env.ResizeObserver(changes => {
+      if (!supportsFlow && env.ResizeObserver) resize = new env.ResizeObserver(changes => {
         changes.forEach(change => { const entry = entries.get(change.target); if (entry) measure(entry); });
         sync();
       });
-      else env.addEventListener?.('resize', remeasure);
+      else if (!supportsFlow) env.addEventListener?.('resize', remeasure);
       if (env.IntersectionObserver) intersection = new env.IntersectionObserver(changes => {
         changes.forEach(change => { const entry = entries.get(change.target); if (entry) entry.visible = change.isIntersecting; });
         sync();

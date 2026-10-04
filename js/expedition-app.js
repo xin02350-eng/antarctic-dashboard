@@ -33,12 +33,12 @@
     document.documentElement.lang=lang==='zh'?'zh-CN':'en';document.documentElement.dataset.lang=lang;
     document.body.dataset.view=active;
   }
-  function scene(profile='instrument',hidden=false) {return `<iframe class="field-frame"${hidden?' hidden':''} title="${t('原创极地监测装置交互场景','Interactive polar instrument scene')}" src="./field-frame.html?station=${station}&lang=${lang}&profile=${profile}&v=20261004e" loading="eager"></iframe>`;}
-  function earthScene(){return `<iframe class="earth-frame" title="${t('蓝线三维地球，可旋转与缩放','Interactive blue-line Earth, rotate and zoom')}" src="./globe-frame.html?lang=${lang}&v=20261004e" loading="eager"></iframe>`;}
+  function scene(profile='instrument',hidden=false) {return `<iframe class="field-frame"${hidden?' hidden':''} title="${t('原创极地监测装置交互场景','Interactive polar instrument scene')}" src="./field-frame.html?station=${station}&lang=${lang}&profile=${profile}&v=20261004g" loading="eager"></iframe>`;}
+  function earthScene(){return `<iframe class="earth-frame" title="${t('蓝线三维地球，可旋转与缩放','Interactive blue-line Earth, rotate and zoom')}" src="./globe-frame.html?lang=${lang}&v=20261004g" loading="eager"></iframe>`;}
   function orbitalNetwork(){return `${earthScene()}<div class="orbital-copy"><div class="orbital-heading"><h1>${t('观测<em>网络</em>','Observation<em>network</em>')}</h1></div><div class="orbital-actions">${link('location',t('实际定位','Location')+' →','solid-link')}</div><small>${t('南京 → 东北（哈尔滨）→ 南极<br>示意链路 · 非实际部署','Nanjing → Northeast China → Antarctica<br>Illustrative route · Not actual deployment')}</small></div>`;}
   function overview() {
     const s=D.summary(rows,station),c=D.channels(station),r=s.latest;
-    return `<section class="field-hero" aria-label="${t('极地监测任务现场','Polar monitoring field')}"><div class="mission-stage">${scene('hero')}</div><div class="field-vignette"></div><div class="hero-copy"><h1>${t('始于监测，<br><em>走向未知</em>','From Monitoring,<br><em>Toward the Unknown</em>')}</h1><p class="hero-manifesto">${t('未知之境，需要探索者的脚步；<br>无人之地，需要第一组观测数据。','The unknown requires explorers;<br>Uninhabited lands require the first set of observations.')}</p><div class="hero-actions">${link('sensors',t('开启探索','Start Exploration')+' <span aria-hidden="true">→</span>','solid-link hero-enter')}</div></div><div class="hero-telemetry"><div class="field-readout"><span>${t('环境温度 · 最近采集','TEMPERATURE · LAST OBSERVATION')}</span><strong>${n(r[c[2].key])}<small>°C</small></strong></div><div class="hero-status">${badge()}<time>${date(r.time)}</time></div></div><div class="field-foot">${t('原创概念场景 · 非实时天气','ORIGINAL CONCEPT · NOT LIVE WEATHER')}</div><a class="hero-scroll" href="#observations" aria-label="${t('向下查看观测数据','Scroll to observations')}"><span>${t('观测数据','OBSERVATIONS')}</span><span aria-hidden="true">↓</span></a></section>
+    return `<section class="field-hero" aria-label="${t('极地监测任务现场','Polar monitoring field')}"><div class="mission-stage">${scene('hero')}</div><div class="field-vignette"></div><div class="hero-copy"><h1>${t('始于监测，<br><em>走向未知</em>','From Monitoring,<br><em>Toward the Unknown</em>')}</h1><div class="hero-actions">${link('sensors',t('开启探索','Start Exploration')+' <span aria-hidden="true">→</span>','solid-link hero-enter')}</div></div><div class="hero-field-notes"><p class="hero-manifesto">${t('未知之境，需要探索者的脚步；<br>无人之地，需要第一组观测数据。','The unknown requires explorers;<br>Uninhabited lands require the first set of observations.')}</p><div class="hero-telemetry"><div class="field-readout"><span>${t('环境温度 · 最近采集','TEMPERATURE · LAST OBSERVATION')}</span><strong>${n(r[c[2].key])}<small>°C</small></strong></div><div class="hero-status">${badge()}<time>${date(r.time)}</time></div></div></div><div class="field-foot">${t('原创概念场景 · 非实时天气','ORIGINAL CONCEPT · NOT LIVE WEATHER')}</div><a class="hero-scroll" href="#observations" aria-label="${t('向下查看观测数据','Scroll to observations')}"><span>${t('观测数据','OBSERVATIONS')}</span><span aria-hidden="true">↓</span></a></section>
     <section id="observations" class="mission-ribbon" aria-label="${t('任务摘要','Mission summary')}"><div class="ribbon-identity"><b>DMS—${station.toUpperCase()}</b>${link('location',t('定位与链路','Location & link')+' →')}</div>${metric(t('风速','Wind speed'),n(r.wind,2),'m/s')}${metric(t('系统电压','System voltage'),n(r.v,3),'V')}${metric(t('累计记录','Records'),s.total.toLocaleString(),'')}${metric(t('任务跨度','Mission span'),s.days??'—',t('天','days'))}</section>
     <section class="overview-lower"><div class="observation-intro"><h2>${t('最近观测','Latest observations')}</h2><p>${badge()}</p><time>${date(r.time)}</time><div class="observation-links">${link('telemetry',t('全部记录','All records')+' →','quiet-link')}${link('hardware',t('监测装置','Instrument')+' →','quiet-link')}</div></div><div class="overview-chart"><div class="section-heading"><span>${t('环境温度 / 最近100条','Air temperature / latest 100')}</span><b>${n(r[c[2].key])} °C</b></div><div class="chart-box"><canvas id="overviewChart" aria-label="${t('最近100条环境温度曲线','Air temperature trend')}" role="img"></canvas></div></div></section>
     <section class="detail-strip">${metric(t('舱内温度','Cabin temperature'),n(r[c[0].key]),'°C')}${metric(t('舱内湿度','Cabin humidity'),n(r.k),'%RH')}${metric(t('环境湿度','Air humidity'),n(r.h),'%RH')}${metric(t('太阳辐射','Solar irradiance'),n(r[c[4].key],0),'W/m²')}${metric(t('运行模式','Operating mode'),mode(r.mode),'')}</section>`;
@@ -124,6 +124,7 @@
   }
   function destroyView(preserveCharts=false){
     cancelTableRender();
+    window.ExpeditionDependencies?.cancelCharts();
     // A fully unlocked archive can contain tens of thousands of cells. It has
     // no scene state to preserve and must not burden every later route scan.
     if(active!=='telemetry')$('telemetryData')?.replaceChildren();
@@ -181,16 +182,36 @@
     observeEarth();observeField();
     $('recordWorkspace').hidden=active!=='telemetry';
     if(active==='telemetry')renderTable();
-    paintFrame=requestAnimationFrame(()=>{if(active==='network'||active==='location')drawMap();drawVisibleCharts();});
+    paintFrame=requestAnimationFrame(()=>{if(active==='location')drawMap();drawVisibleCharts();});
     finishSurfaces();
     window.ExpeditionAtmosphere?.setView(active);
     tick();
+  }
+  function chartLoadState(canvas,state){
+    const host=canvas?.parentElement;if(!host)return;
+    let message=host.querySelector('.chart-load-state');
+    if(state==='ready'){message?.remove();host.removeAttribute('aria-busy');return;}
+    if(!message){message=document.createElement('div');message.className='chart-load-state';message.setAttribute('role','status');host.appendChild(message);}
+    host.setAttribute('aria-busy',String(state==='loading'));
+    message.replaceChildren(document.createTextNode(state==='error'?t('曲线暂未加载','Chart unavailable'):t('正在读取曲线…','Loading chart…')));
+    if(state==='error'){const button=document.createElement('button');button.className='outline-button';button.dataset.action='retry-charts';button.textContent=t('重试','Retry');message.appendChild(button);}
+  }
+  function requestCharts(retry=false){
+    const canvas=$({dashboard:'overviewChart',sensors:'signalChart',network:'networkTrend',location:'networkTrend'}[active]);
+    if(!canvas)return;
+    if(!window.ExpeditionDependencies){chartLoadState(canvas,'error');return;}
+    window.ExpeditionDependencies.watchCharts(canvas,state=>{
+      chartLoadState(canvas,state);
+      if(state==='ready')drawVisibleCharts();
+    },{immediate:active==='sensors',retry});
   }
   function drawVisibleCharts(){
       cancelChartRender();
       // Keep unchanged plots. A channel click changes one graph, not all eleven.
       charts=charts.filter(chart=>{if(viewRoot?.contains(chart.canvas))return true;chart.destroy();return false;});
-      if(document.hidden||!window.Chart)return;
+      if(document.hidden)return;
+      if(!window.Chart){requestCharts();return;}
+      viewRoot?.querySelectorAll?.('.chart-load-state').forEach(message=>{message.parentElement?.removeAttribute('aria-busy');message.remove();});
       if(active==='dashboard')drawChart('overviewChart',D.channels(station)[2],rows.slice(0,100));
       if(active==='sensors'){
         const defs=D.channels(station),trend=visibleTrend(),ordered=trend.slice().reverse(),labels=ordered.map(r=>String(r.time).slice(0,16));
@@ -241,20 +262,31 @@
       charts.push(chart);chartStates.set(chart,{rows,signature});
     }
   }
-  function drawMap(){
-    const host=$('atlasMap');if(!host||map)return;
-    const mapStyle=$('mapStyle');if(mapStyle)mapStyle.media='all';
-    if(!window.L){host.innerHTML=`<div class="empty-state">${t('地图组件未加载，可继续查看坐标与记录。','Map unavailable. Coordinates and records remain accessible.')}</div>`;return;}
+  function mapLoadState(host,state){
+    host.setAttribute('aria-busy',String(state==='loading'));
+    host.innerHTML=`<div class="empty-state" role="status">${state==='error'?t('地图暂不可用，坐标与记录仍可查看。','Map unavailable. Coordinates and records remain accessible.'):t('正在读取地理底图…','Loading geographic map…')}${state==='error'?`<p><button class="outline-button" data-action="retry-map">${t('重试地图','Retry map')}</button></p>`:''}</div>`;
+  }
+  function drawMap(retry=false){
+    const host=$('atlasMap');if(active!=='location'||!host||map)return;
+    const dependencies=window.ExpeditionDependencies;
+    if(!dependencies){mapLoadState(host,'error');return;}
+    if(dependencies.state('map')!=='ready'){
+      if(dependencies.state('map')==='error'&&!retry){mapLoadState(host,'error');return;}
+      mapLoadState(host,'loading');
+      dependencies.load('map',{retry}).then(()=>{if(active==='location'&&$('atlasMap')===host&&!map)drawMap();},()=>{if(active==='location'&&$('atlasMap')===host&&!map)mapLoadState(host,'error');});
+      return;
+    }
+    if(!window.L){mapLoadState(host,'error');return;}
+    host.removeAttribute('aria-busy');
     host.replaceChildren();
     const gps=D.summary(rows,station).gps, center=gps?[Number(gps.x),Number(gps.y)]:[-75,0];
-    map=L.map(host,{zoomControl:true,scrollWheelZoom:true}).setView(center,gps?7:2);
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',maxZoom:19}).addTo(map);
-    Object.entries({...networkRows,[station]:rows}).forEach(([id,data])=>{const p=D.summary(data||[],id).gps;if(!p)return;L.circleMarker([Number(p.x),Number(p.y)],{radius:id===station?9:5,color:'#bdedda',weight:2,fillColor:'#9bd5c0',fillOpacity:.6}).addTo(map).bindPopup(`<strong>DMS–${id.toUpperCase()}</strong><br>${date(p.time)}<br><a href="${url('dashboard',id)}">${t('进入任务现场','Open mission')}</a>`);});
-    if(!gps)host.insertAdjacentHTML('beforeend',`<div class="map-empty-note">${t('此节点暂无有效GPS记录，底图显示项目应用区域，不代表已部署。','No GPS observations for this node. Map shows the application region, not a deployment.')}</div>`);
+    try{
+      map=L.map(host,{zoomControl:true,scrollWheelZoom:true});map.setView(center,gps?7:2);
+      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',maxZoom:19}).addTo(map);
+      Object.entries({...networkRows,[station]:rows}).forEach(([id,data])=>{const p=D.summary(data||[],id).gps;if(!p)return;L.circleMarker([Number(p.x),Number(p.y)],{radius:id===station?9:5,color:'#bdedda',weight:2,fillColor:'#9bd5c0',fillOpacity:.6}).addTo(map).bindPopup(`<strong>DMS–${id.toUpperCase()}</strong><br>${date(p.time)}<br><a href="${url('dashboard',id)}">${t('进入任务现场','Open mission')}</a>`);});
+      if(!gps)host.insertAdjacentHTML('beforeend',`<div class="map-empty-note">${t('此节点暂无有效GPS记录，底图显示项目应用区域，不代表已部署。','No GPS observations for this node. Map shows the application region, not a deployment.')}</div>`);
+    }catch(e){try{map?.remove();}catch(ignore){}map=null;mapLoadState(host,'error');}
   }
-  // The optional remote map library must not hold back the homepage and its local 3D scene.
-  document.querySelector('script[src*="/leaflet.js"]')?.addEventListener('load',()=>{if(active==='location'&&!map)drawMap();});
-  document.querySelector('script[src*="chart.umd.min.js"]')?.addEventListener('load',drawVisibleCharts);
   function sameObservations(left,right){
     if(left===right)return true;
     if(!Array.isArray(left)||!Array.isArray(right)||left.length!==right.length)return false;
@@ -270,21 +302,29 @@
     }
     return true;
   }
+  async function fetchObservations(id,signal){
+    let timer;
+    const timeout=new Promise((resolve,reject)=>{timer=setTimeout(()=>reject(Error('Observation request timed out')),15000);});
+    const read=(async()=>{
+      const options={cache:'no-store'};if(signal)options.signal=signal;
+      const response=await fetch('./'+D.sources[id],options);if(!response.ok)throw Error('HTTP '+response.status);
+      return D.normalize(await response.json());
+    })();
+    try{return await Promise.race([read,timeout]);}finally{clearTimeout(timer);}
+  }
   async function load(quiet=false){
-    const request=++generation;if(controller)controller.abort();controller=new AbortController();const localController=controller;
+    const request=++generation,requestStation=station;if(controller)controller.abort();controller=typeof AbortController==='function'?new AbortController():null;const localController=controller;
     if(!quiet){status='loading';rows=[];render();}refreshing=true;
-    const timeout=setTimeout(()=>localController.abort(),15000);
     try{
-      const response=await fetch('./'+D.sources[station],{cache:'no-store',signal:localController.signal});if(!response.ok)throw Error('HTTP '+response.status);
-      const next=D.normalize(await response.json());if(request!==generation)return;
+      const next=await fetchObservations(requestStation,localController?.signal);if(request!==generation)return;
       const unchanged=quiet&&status==='ready'&&sameObservations(next,rows);
-      if(!unchanged)rows=next;networkRows[station]=rows;status='ready';refreshing=false;if(!unchanged)render();
+      if(!unchanged)rows=next;networkRows[requestStation]=rows;status='ready';refreshing=false;if(!unchanged)render();
       if(active==='network'||active==='location'){
         let networkChanged=false;
-        await Promise.all(Object.keys(D.sources).filter(id=>id!==station).map(async id=>{try{const r=await fetch('./'+D.sources[id],{cache:'no-store',signal:localController.signal});if(!r.ok)throw Error();const other=D.normalize(await r.json());if(request===generation&&!sameObservations(other,networkRows[id])){networkRows[id]=other;networkChanged=true;}}catch(e){if(request===generation&&networkRows[id]!==null){networkRows[id]=null;networkChanged=true;}}}));
+        await Promise.all(Object.keys(D.sources).filter(id=>id!==requestStation).map(async id=>{try{const other=await fetchObservations(id,localController?.signal);if(request===generation&&!sameObservations(other,networkRows[id])){networkRows[id]=other;networkChanged=true;}}catch(e){if(request===generation&&networkRows[id]!==null){networkRows[id]=null;networkChanged=true;}}}));
         if(request===generation&&networkChanged)render();
       }
-    }catch(e){if(request!==generation)return;rows=[];status='error';refreshing=false;render();}finally{clearTimeout(timeout);}
+    }catch(e){if(request!==generation)return;localController?.abort();rows=[];status='error';refreshing=false;render();}
   }
   function readRoute(){const p=new URLSearchParams(location.search);active=views.includes(p.get('view'))?p.get('view'):'dashboard';station=Object.prototype.hasOwnProperty.call(D.sources,p.get('station'))?p.get('station'):'a01';}
   function navigate(view,node=station){
@@ -304,6 +344,8 @@
     if(b.dataset.photo!==undefined){photo=Number(b.dataset.photo)===1?1:0;render();}
     if(b.dataset.action==='language'){lang=lang==='zh'?'en':'zh';try{localStorage.setItem('anx-lang',lang);}catch(e){}document.documentElement.dataset.lang=lang;window.dispatchEvent(new Event('anx:langchange'));render();}
     if(b.dataset.action==='refresh')load(true);
+    if(b.dataset.action==='retry-charts')requestCharts(true);
+    if(b.dataset.action==='retry-map')drawMap(true);
     if(['previous-photo','next-photo'].includes(b.dataset.action)){photo=photo===0?1:0;render();}
   });
   document.addEventListener('visibilitychange',()=>{const frame=viewQuery('.field-frame');if(frame)fieldVisibility(frame);if(document.hidden)cancelChartRender();else drawVisibleCharts();});

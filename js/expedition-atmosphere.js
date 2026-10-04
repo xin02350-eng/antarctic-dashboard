@@ -13,7 +13,22 @@
 })(typeof window === 'undefined' ? globalThis : window, function () {
   'use strict';
   var FRAME_INTERVAL = 1000 / 30, MAX_DELTA = 1 / 15, MAX_DPR = 1.5;
+  var MAX_PIXELS = 2000000, LOW_PIXELS = 1100000;
   var clamp = function (value, low, high) { return Math.min(high, Math.max(low, value)); };
+  function pixelRatio(width, height, deviceDpr, navigator) {
+    width = Number.isFinite(width) && width > 0 ? width : 1440;
+    height = Number.isFinite(height) && height > 0 ? height : 900;
+    deviceDpr = Number.isFinite(deviceDpr) && deviceDpr > 0 ? deviceDpr : 1;
+    navigator = navigator || {};
+    var memory = Number(navigator.deviceMemory), cores = Number(navigator.hardwareConcurrency);
+    var constrained = Number.isFinite(memory) && memory > 0 && memory <= 4 ||
+      Number.isFinite(cores) && cores > 0 && cores <= 4 ||
+      !!(navigator.connection && navigator.connection.saveData);
+    // Snow remains in CSS-pixel coordinates. Only its backing store changes:
+    // a 4K display must not multiply every transparent full-screen composite.
+    return Math.min(deviceDpr, constrained ? 1 : MAX_DPR,
+      Math.sqrt((constrained ? LOW_PIXELS : MAX_PIXELS) / (width * height)));
+  }
   function random(seed) {
     var state = (Number(seed) >>> 0) || 846201;
     return function () {
@@ -167,12 +182,14 @@
     function resize() {
       var nextWidth = Math.max(1, Number(win.innerWidth) || 1440);
       var nextHeight = Math.max(1, Number(win.innerHeight) || 900);
-      var nextDpr = clamp(Number(win.devicePixelRatio) || 1, 1, MAX_DPR);
+      var nextDpr = pixelRatio(nextWidth, nextHeight, Number(win.devicePixelRatio), win.navigator);
       if (nextWidth === width && nextHeight === height && nextDpr === dpr) return;
       width = nextWidth; height = nextHeight; dpr = nextDpr;
-      canvas.width = Math.round(width * dpr); canvas.height = Math.round(height * dpr);
+      canvas.width = Math.max(1, Math.floor(width * dpr)); canvas.height = Math.max(1, Math.floor(height * dpr));
       canvas.style.width = width + 'px'; canvas.style.height = height + 'px';
       context.setTransform(dpr, 0, 0, dpr, 0, 0);
+      host.dataset.atmosphereDpr = String(Math.round(dpr * 1000) / 1000);
+      host.dataset.atmospherePixels = String(canvas.width * canvas.height);
       field = makeField(width, height, options.seed);
     }
     function updateMask() {
@@ -276,6 +293,6 @@
         maskTop: maskTop, count: field ? field.particles.length : 0, strength: viewStrength(view), time: time, destroyed: destroyed }; }
     };
   }
-  return { create: create, makeField: makeField, stepField: stepField, tick: tick, windProfile: windProfile, viewStrength: viewStrength,
-    limits: { fps: 30, maxDelta: MAX_DELTA, maxDpr: MAX_DPR, maxParticles: 700 } };
+  return { create: create, makeField: makeField, stepField: stepField, tick: tick, windProfile: windProfile, viewStrength: viewStrength, pixelRatio: pixelRatio,
+    limits: { fps: 30, maxDelta: MAX_DELTA, maxDpr: MAX_DPR, maxPixels: MAX_PIXELS, lowPixels: LOW_PIXELS, maxParticles: 700 } };
 });

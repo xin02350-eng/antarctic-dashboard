@@ -68,9 +68,9 @@
   const orbit=new T.Group();scene.add(orbit);
   function circle(radius,opacity){const points=[];for(let i=0;i<=180;i++){const a=i/180*Math.PI*2;points.push(new T.Vector3(Math.cos(a)*radius,0,Math.sin(a)*radius));}const line=new T.Line(new T.BufferGeometry().setFromPoints(points),new T.LineBasicMaterial({color:0x77b3d1,transparent:true,opacity}));line.rotation.set(.42,0,.22);orbit.add(line);}
   circle(127,.21);circle(130,.06);const ticks=[];for(let i=0;i<72;i++){const a=i/72*Math.PI*2,r=i%6?130.8:133.8;ticks.push(Math.cos(a)*130,0,Math.sin(a)*130,Math.cos(a)*r,0,Math.sin(a)*r);}const tickGeo=new T.BufferGeometry();tickGeo.setAttribute('position',new T.Float32BufferAttribute(ticks,3));const tickLines=new T.LineSegments(tickGeo,new T.LineBasicMaterial({color:0xa4c8dd,transparent:true,opacity:.26}));tickLines.rotation.set(.42,0,.22);orbit.add(tickLines);
-  let distance=390,dragging=false,x=0,y=0,inView=true,contextLost=false,disposed=false,target=null;
+  let distance=390,dragging=false,x=0,y=0,inView=true,pageActive=true,contextLost=false,disposed=false,target=null;
   const reduced=matchMedia('(prefers-reduced-motion: reduce)'),orbitSpeed=Math.PI*2/60;earth.rotation.set(.48,-2.05,0);
-  let raf=0,last=0,time=0,renderPhase=0,lastRenderAt=0,metricsStart=0,metricsFrames=0;const frameInterval=1000/60;
+  let raf=0,last=0,time=0,renderPhase=0,lastRenderAt=0,metricsStart=0,metricsFrames=0;
   const world=new T.Vector3(),normal=new T.Vector3(),toCamera=new T.Vector3();
   // Resolve label collisions in screen space without hiding a visible project anchor.
   // There are only three labels; measured dimensions are cached until a resize.
@@ -98,13 +98,14 @@
   ['pointerup','pointercancel','lostpointercapture'].forEach(name=>canvas.addEventListener(name,endDrag));['pointerup','pointercancel','blur'].forEach(name=>window.addEventListener(name,endDrag));
   canvas.addEventListener('wheel',e=>{e.preventDefault();distance=Math.max(300,Math.min(520,distance+e.deltaY*.12));wake();},{passive:false});
   viewport.addEventListener('keydown',e=>{const moves={ArrowLeft:[0,-.08],ArrowRight:[0,.08],ArrowUp:[-.08,0],ArrowDown:[.08,0]};if(moves[e.key]){e.preventDefault();target=null;earth.rotation.x=Math.max(-1.5,Math.min(1.5,earth.rotation.x+moves[e.key][0]));earth.rotation.y+=moves[e.key][1];wake();}if(['+','=','-'].includes(e.key)){e.preventDefault();distance=Math.max(300,Math.min(520,distance+(e.key==='-'?12:-12)));wake();}});
-  function frame(now){raf=0;if(disposed||document.hidden||!inView||contextLost||!map)return;
+  function frame(now){raf=0;if(disposed||!pageActive||document.hidden||!inView||contextLost||!map)return;
+    const frameInterval=1000/(budget?.profile().maxFps||60);
     const elapsed=now-renderPhase;
     // Keep the remainder: resetting phase to now would turn a 144 Hz screen
     // into 48 fps. Interaction and orbit integrate accepted-paint timestamps.
     if(!reduced.matches&&renderPhase&&elapsed<frameInterval-.75){raf=requestAnimationFrame(frame);return;}
     renderPhase=now-(elapsed>=frameInterval?elapsed%frameInterval:0);
-    if(lastRenderAt&&budget?.sample(now-lastRenderAt,now))applyRenderSize();lastRenderAt=now;
+    if(lastRenderAt&&!reduced.matches&&budget?.sample(now-lastRenderAt,now))applyRenderSize();lastRenderAt=now;
     const dt=last?Math.min((now-last)/1000,.1):0;last=now;time+=reduced.matches?0:dt;
     if(target){const blend=reduced.matches?1:1-Math.exp(-dt*5);earth.rotation.x+=(target.x-earth.rotation.x)*blend;earth.rotation.y+=(target.y-earth.rotation.y)*blend;if(Math.abs(target.x-earth.rotation.x)+Math.abs(target.y-earth.rotation.y)<.001)target=null;}else if(!dragging&&!reduced.matches)earth.rotation.y+=dt*orbitSpeed;
     streams.forEach(s=>{
@@ -141,19 +142,63 @@
   }
   function setLabelProperty(label,key,value){if(label.paint[key]!==value){label.el.style.setProperty(key,value);label.paint[key]=value;}}
   function resetClock(){last=0;renderPhase=0;lastRenderAt=0;metricsStart=0;metricsFrames=0;budget?.reset();}
-  function wake(){const active=!disposed&&inView&&!document.hidden&&!contextLost;viewport.dataset.runtimeActive=String(active);if(!active){cancelAnimationFrame(raf);raf=0;return;}if(!raf)raf=requestAnimationFrame(frame);}
+  function wake(){const active=!disposed&&pageActive&&inView&&!document.hidden&&!contextLost;viewport.dataset.runtimeActive=String(active);if(!active){cancelAnimationFrame(raf);raf=0;return;}if(!raf)raf=requestAnimationFrame(frame);}
   function visibility(){if(document.hidden||!inView||contextLost)dragging=false;resetClock();wake();}
   window.addEventListener('resize',resize);document.addEventListener('visibilitychange',visibility);window.addEventListener('message',e=>{if(e.origin!==location.origin||e.source!==parent||e.data?.type!=='dms:earth-visibility')return;inView=e.data.visible===true;visibility();});
   if(reduced.addEventListener)reduced.addEventListener('change',visibility);else reduced.addListener?.(visibility);
-  canvas.addEventListener('webglcontextlost',e=>{e.preventDefault();contextLost=true;fallback.hidden=false;visibility();});canvas.addEventListener('webglcontextrestored',()=>{contextLost=false;fallback.hidden=true;document.querySelectorAll('button').forEach(b=>b.disabled=false);visibility();});
-  const abort=typeof AbortController==='function'?new AbortController():null,releasedTextures=new WeakSet();let map;
+  canvas.addEventListener('webglcontextlost',e=>{e.preventDefault();contextLost=true;fallback.hidden=false;visibility();});canvas.addEventListener('webglcontextrestored',()=>{contextLost=false;fallback.hidden=!!map;document.querySelectorAll('button').forEach(b=>b.disabled=false);visibility();});
+  const abort=typeof AbortController==='function'?new AbortController():null,releasedTextures=new WeakSet();let map,pendingMap,mapMode='',primarySettled=false,surfaceDeadline=0,geographyDeadline=0,geographyStarted=false;
+  function delay(callback,ms){if(typeof setTimeout!=='function')return 0;const timer=setTimeout(callback,ms);timer?.unref?.();return timer;}
+  function clearDelay(timer){if(timer&&typeof clearTimeout==='function')clearTimeout(timer);}
   function releaseTexture(texture){if(texture&&!releasedTextures.has(texture)){releasedTextures.add(texture);texture.dispose();}}
-  function installMap(texture,complete,mode){if(disposed){releaseTexture(texture);return;}const previous=map||material.map;map=texture;material.map=map;if(previous!==map)releaseTexture(previous);material.color.set(0xffffff);material.needsUpdate=true;viewport.dataset.surfaceSource=mode;status.textContent=complete?tr('蓝线地球 / 本地地理数据','BLUE-LINE EARTH / LOCAL GEOGRAPHY'):tr('地理边界暂未加载','GEOGRAPHIC BOUNDARIES UNAVAILABLE');wake();}
-  function geographyFallback(){if(disposed)return;Promise.all(['countries','geolines','rivers'].map(async name=>{try{const r=await fetch('./assets/geo/'+name+'.json',abort?{signal:abort.signal}:{});if(!r.ok)throw Error('geography');return [name,await r.json()];}catch(e){return [name,null];}})).then(entries=>{if(disposed)return;const geography=Object.fromEntries(entries);installMap(EarthSurface.texture(T,renderer,geography),!!geography.countries,'runtime');});}
+  function installMap(texture,complete,mode){
+    if(disposed||mapMode==='precompiled'&&mode!=='precompiled'){releaseTexture(texture);return;}
+    const previous=map||material.map;map=texture;mapMode=mode;material.map=map;
+    // A timed-out image may still arrive. Keep its pending Texture alive until
+    // the callback, so fallback disposal cannot break a later full-quality map.
+    if(previous!==map&&(previous!==pendingMap||primarySettled))releaseTexture(previous);
+    material.color.set(0xffffff);material.needsUpdate=true;viewport.dataset.surfaceSource=mode;
+    status.textContent=complete?tr('蓝线地球 / 本地地理数据','BLUE-LINE EARTH / LOCAL GEOGRAPHY'):tr('地理边界暂未加载','GEOGRAPHIC BOUNDARIES UNAVAILABLE');
+    fallback.hidden=contextLost?false:true;wake();
+  }
+  function stalledSurface(){
+    if(disposed||map)return;
+    fallback.hidden=false;viewport.setAttribute('aria-busy','false');
+    status.textContent=tr('地理背景加载较慢，正在尝试本地数据','Geographic background delayed; trying local data');
+  }
+  function geographyFallback(){
+    if(disposed||geographyStarted||mapMode==='precompiled')return;geographyStarted=true;
+    const geography={};let previewed=false;
+    function paintGeography(){
+      if(disposed||mapMode==='precompiled')return;
+      try{installMap(EarthSurface.texture(T,renderer,geography),!!geography.countries,'runtime');}
+      catch(error){if(!map){fallback.hidden=false;viewport.setAttribute('aria-busy','false');status.textContent=tr('地理背景暂不可用，数据与导航仍可使用','Geographic background unavailable; data and navigation remain accessible');}}
+    }
+    // One stalled JSON must not block an otherwise valid country map. A late
+    // complete response may refine this bounded preview, but never replace a
+    // successfully loaded lossless precompiled surface.
+    geographyDeadline=delay(()=>{previewed=true;paintGeography();},2500);
+    Promise.all(['countries','geolines','rivers'].map(async name=>{
+      try{const r=await fetch('./assets/geo/'+name+'.json',abort?{signal:abort.signal}:{});if(!r.ok)throw Error('geography');geography[name]=await r.json();if(previewed&&name==='countries')paintGeography();}
+      catch(e){geography[name]=null;}
+    })).then(()=>{clearDelay(geographyDeadline);geographyDeadline=0;if(!previewed||Object.values(geography).some(Boolean))paintGeography();});
+  }
   // The same lossless 4096 × 2048 painter output is built once, not on every visit.
-  const pendingMap=new T.TextureLoader().load('./assets/geo/earth-surface-v1.webp',texture=>installMap(EarthSurface.configure(T,renderer,texture),true,'precompiled'),undefined,geographyFallback);
+  surfaceDeadline=delay(()=>{surfaceDeadline=0;stalledSurface();geographyFallback();},6000);
+  pendingMap=new T.TextureLoader().load('./assets/geo/earth-surface-v1.webp',texture=>{
+    primarySettled=true;clearDelay(surfaceDeadline);surfaceDeadline=0;clearDelay(geographyDeadline);geographyDeadline=0;
+    installMap(EarthSurface.configure(T,renderer,texture),true,'precompiled');
+  },undefined,()=>{primarySettled=true;clearDelay(surfaceDeadline);surfaceDeadline=0;geographyFallback();});
   // Warm exactly the mapped material variant during the download/decode window.
   // compile() creates programs only: no empty Earth is drawn or texture uploaded.
   if(pendingMap){material.map=EarthSurface.configure(T,renderer,pendingMap);material.color.set(0xffffff);material.needsUpdate=true;try{renderer.compile(scene,camera);viewport.dataset.shaderWarmMs=startupClock().toFixed(1);}catch(error){viewport.dataset.shaderWarmMs='unavailable';}}
-  window.addEventListener('pagehide',()=>{disposed=true;abort?.abort();wake();const geometries=new Set([tailGeometry,headGeometry]),materials=new Set([trailMaterial,...fallbackTrailMaterials]);scene.traverse(o=>{if(o.geometry)geometries.add(o.geometry);if(o.material)(Array.isArray(o.material)?o.material:[o.material]).forEach(m=>materials.add(m));});geometries.forEach(g=>g.dispose());materials.forEach(m=>m.dispose());releaseTexture(map);releaseTexture(pendingMap);renderer.dispose();});resize();
+  window.addEventListener('pagehide',(event={})=>{
+    pageActive=false;resetClock();wake();
+    // A BFCache page keeps its WebGL state. Destroy only a genuine navigation;
+    // the back button must be able to resume the same globe without a reload.
+    if(event.persisted)return;
+    disposed=true;abort?.abort();clearDelay(surfaceDeadline);clearDelay(geographyDeadline);
+    const geometries=new Set([tailGeometry,headGeometry]),materials=new Set([trailMaterial,...fallbackTrailMaterials]);scene.traverse(o=>{if(o.geometry)geometries.add(o.geometry);if(o.material)(Array.isArray(o.material)?o.material:[o.material]).forEach(m=>materials.add(m));});geometries.forEach(g=>g.dispose());materials.forEach(m=>m.dispose());releaseTexture(map);releaseTexture(pendingMap);renderer.dispose();
+  });
+  window.addEventListener('pageshow',()=>{if(disposed)return;pageActive=true;visibility();});resize();
 })();

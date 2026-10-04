@@ -9,16 +9,16 @@
   fill: none; pointer-events: none; stroke-linecap: round; stroke-linejoin: round;
   animation: action-trace-orbit 6.5s linear infinite;
 }
-.action-trace-tail { stroke: #6ebcdb; stroke-width: 1.4; stroke-dasharray: 32 68; opacity: .55; }
-.action-trace-core { stroke: #a1e6fa; stroke-width: 1.65; stroke-dasharray: 16 84; opacity: .9; }
-.action-trace-head { stroke: #f2fdff; stroke-width: 2; stroke-dasharray: 5 95; filter: drop-shadow(0 0 3px #8ceaffb8); }
+.action-trace-tail { stroke: #8bbed2; stroke-width: 1; stroke-dasharray: 32 68; opacity: .4; }
+.action-trace-core { stroke: #c5e9f2; stroke-width: 1.2; stroke-dasharray: 16 84; opacity: .85; }
+.action-trace-head { stroke: #f2fdff; stroke-width: 1.35; stroke-dasharray: 5 95; filter: drop-shadow(0 0 1.25px #c6eeff75); }
 @keyframes action-trace-orbit { from { stroke-dashoffset: 0; } to { stroke-dashoffset: 100; } }
 
 /* Identical color progression to the legacy exploration button. The mask
    punches out the whole interior, leaving the label and hit area untouched. */
 .action-flow-host::before, .action-flow-host::after {
   content: ''; position: absolute; inset: -1px; z-index: 1; box-sizing: border-box;
-  border-radius: inherit; padding: 2px; pointer-events: none;
+  border-radius: inherit; padding: 1px; pointer-events: none;
   background: conic-gradient(from var(--action-flow-angle),
     #6996b900 0 54%, #6eafd23d 61%, #96d2f0a8 68%, #cdf5ff 76%,
     #f2fdff 81%, #bef0ff 85%, #78c3e685 91%, #6996b900 98% 100%);
@@ -29,17 +29,19 @@
   animation: action-flow-orbit 6.5s linear infinite;
   transition: opacity .28s ease;
 }
-.action-flow-host::before { opacity: .95; }
-.action-flow-host::after { inset: -2px; padding: 3px; filter: blur(3px); opacity: .55; }
+.action-flow-host::before { opacity: .92; }
+/* A narrow refracted echo sits outside the white edge. Keeping the blur
+   local preserves a moving highlight without a broad, glowing tube. */
+.action-flow-host::after { inset: -1.5px; padding: 1.5px; filter: blur(1.25px); opacity: .28; }
 .action-flow-host:is(:hover,:focus-visible)::before { opacity: 1; }
-.action-flow-host:is(:hover,:focus-visible)::after { opacity: .85; }
+.action-flow-host:is(:hover,:focus-visible)::after { opacity: .48; }
 .action-flow-host>.action-trace { visibility: hidden; }
 .action-flow-host>.action-trace rect { animation: none; }
 @keyframes action-flow-orbit { from { --action-flow-angle: 0deg; } to { --action-flow-angle: 360deg; } }
 /* Only the active data channel / station receives a slower optical frame.
    All other cards retain the pointer-driven reflection from the studio layer. */
-.action-flow-host.action-trace-card::before { padding: 1.4px; opacity: .7; animation-duration: 10s; }
-.action-flow-host.action-trace-card::after { padding: 2px; opacity: .25; animation-duration: 10s; }
+.action-flow-host.action-trace-card::before { padding: 1px; opacity: .7; animation-duration: 10s; }
+.action-flow-host.action-trace-card::after { padding: 1.25px; opacity: .16; animation-duration: 10s; }
 .action-trace-card>.action-trace { opacity: .7; }
 .action-trace-card>.action-trace rect { animation-duration: 10s; }
 .action-trace-card:not(.mini-signal[aria-pressed=true]):not(.node-entry.selected)>.action-trace,
@@ -53,7 +55,7 @@
 :is(.outline-button,.table-pager button).action-flow-host::before,
 :is(.outline-button,.table-pager button).action-flow-host::after { opacity: 0; animation-play-state: paused; }
 :is(.outline-button,.table-pager button).action-flow-host:not(:disabled):not([aria-disabled=true]):is(:hover,:focus-visible)::before { opacity: 1; animation-play-state: running; }
-:is(.outline-button,.table-pager button).action-flow-host:not(:disabled):not([aria-disabled=true]):is(:hover,:focus-visible)::after { opacity: .85; animation-play-state: running; }
+:is(.outline-button,.table-pager button).action-flow-host:not(:disabled):not([aria-disabled=true]):is(:hover,:focus-visible)::after { opacity: .48; animation-play-state: running; }
 .action-trace-host:is(:disabled,[aria-disabled=true])>.action-trace { display: none; }
 .action-flow-host:is(:disabled,[aria-disabled=true])::before,
 .action-flow-host:is(:disabled,[aria-disabled=true])::after { display: none; }
