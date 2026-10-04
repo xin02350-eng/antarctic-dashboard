@@ -273,14 +273,16 @@ body[data-view=sensors] .page-title { padding: 1.25rem 0 1rem; }
 .atlas { position: relative; height: clamp(400px,calc(100vh - 306px),760px); height: clamp(400px,calc(100svh - 306px),760px); margin: 0 var(--gutter); overflow: hidden; border-block: 1px solid var(--line); background: #0b131a; }
 .atlas #atlasMap { position: absolute; inset: 0; background: #182530; }
 .atlas .leaflet-tile-pane { filter: invert(.91) hue-rotate(170deg) saturate(.35) brightness(.85) contrast(1.08); }
-.atlas-dossier { position: absolute; z-index: 500; right: 1rem; top: 1rem; bottom: 1rem; width: 300px; padding: 1.25rem; border: 1px solid var(--panel-edge); border-top-color: var(--panel-crown); border-radius: .625rem; background: linear-gradient(145deg,#263641f5,#142330f5); box-shadow: var(--panel-shadow); }
+.atlas-dossier { position: absolute; z-index: 500; right: 1rem; top: 1rem; bottom: 1rem; width: 300px; padding: 1.25rem; display: flex; flex-direction: column; border: 1px solid var(--panel-edge); border-top-color: var(--panel-crown); border-radius: .625rem; background: linear-gradient(145deg,#263641f5,#142330f5); box-shadow: var(--panel-shadow); }
+.atlas-dossier>* { flex-shrink: 0; }
 .atlas-dossier h2 { font: 1.5rem var(--mono); margin-top: .75rem; }
 .coordinates { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: .75rem; margin-bottom: .75rem; padding: 1rem 0 .25rem; border-bottom: 1px solid var(--line); }
 .coordinates b { display: block; font: 400 1.4rem/1.4 var(--numeric); font-variant-numeric: tabular-nums; letter-spacing: -.025em; }
 .coordinates small { display: block; margin: .25rem 0 1rem; font: .6875rem var(--mono); color: #a4bac9; letter-spacing: .1em; }
 .atlas-dossier p { font-size: .8125rem; margin: .7rem 0; }
+.atlas-dossier p+p { margin-top: 0; }
 .atlas-dossier p strong { float: right; font-weight: 400; }
-.atlas-dossier .solid-link { margin-top: 1rem; padding: .7rem .9rem; gap: .75rem; width: 100%; font-size: .75rem; }
+.atlas-dossier .solid-link { margin-top: auto; padding: .7rem .9rem; gap: .75rem; width: 100%; font-size: .75rem; }
 .map-caption { position: absolute; left: 1.5rem; bottom: 1rem; z-index: 500; padding: .5rem .65rem; border-radius: .3125rem; background: #10202de0; color: #bdcfdb; font: .6875rem var(--mono); pointer-events: none; }
 .map-empty-note { position: absolute; left: 30px; bottom: 50%; max-width: 330px; z-index: 500; padding: 1.2rem; color: #c1d5e0; background: #17232fed; font-size: .8125rem; }
 .leaflet-control-attribution { font-size: 11px !important; max-width: 75%; padding: 3px 8px !important; background: #0d1d29ed !important; color: #a9bdc9 !important; border-radius: .25rem 0 0 0; }
@@ -300,7 +302,7 @@ body[data-view=globe] .globe-stage { margin-top: 1.5rem; height: clamp(440px,cal
 .orbital-copy { position: absolute; left: 2rem; top: 3.25rem; bottom: 3.5rem; width: 36%; display: flex; flex-direction: column; align-items: start; pointer-events: none; }
 .orbital-heading h1 { font-size: clamp(3rem,4.5vw,5.5rem); line-height: 1.23; font-weight: 350; letter-spacing: .02em; }
 .orbital-heading em { display: block; color: #9dc6dc; }
-.orbital-actions { margin-top: 1.5rem; display: flex; gap: 1.5rem; align-items: center; pointer-events: auto; }
+.orbital-actions { margin-top: clamp(4rem,12vh,7.5rem); margin-top: clamp(4rem,12svh,7.5rem); display: flex; flex-shrink: 0; gap: 1.5rem; align-items: center; pointer-events: auto; }
 .orbital-actions .solid-link { gap: 1rem; }
 .orbital-copy>small { margin-top: auto; color: #96afbd; font-size: .6875rem; line-height: 1.9; }
 .network-summary { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)) minmax(130px,1.4fr); gap: 1.5rem; margin: 0 var(--gutter); padding: 1.75rem 0; border-bottom: 1px solid var(--line); }
