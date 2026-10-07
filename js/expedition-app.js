@@ -332,6 +332,21 @@
     else{render();if(['network','location'].includes(view))load(true);}
     $('content').focus({preventScroll:true});window.scrollTo({top:0,left:0,behavior:'instant'});
   }
+  // Download only after a visitor points to a globe route. This shares the
+  // normal preload/cache lane; no hidden iframe, renderer or animation starts.
+  function preloadNetworkIntent(e){
+    const connection=window.navigator?.connection;
+    if(document.hidden||connection?.saveData||['slow-2g','2g'].includes(connection?.effectiveType))return;
+    if(e.type==='pointerover'&&e.pointerType==='touch')return;
+    if(e.type==='pointerdown'&&e.button!==0)return;
+    if(e.type!=='pointerdown'&&active==='dashboard'&&viewQuery('.mission-stage:not(.is-ready)'))return;
+    const a=e.target?.closest?.('a[data-route]');
+    if(a&&['network','globe'].includes(a.dataset.route))window.ExpeditionPreload?.(a.dataset.route);
+  }
+  document.addEventListener('focusin',preloadNetworkIntent);
+  document.addEventListener('pointerover',preloadNetworkIntent,{passive:true});
+  document.addEventListener('pointerdown',preloadNetworkIntent,{passive:true});
+  if(!('PointerEvent' in window))document.addEventListener('mouseover',preloadNetworkIntent,{passive:true});
   document.addEventListener('click',e=>{
     const a=e.target.closest('[data-route]');if(a&&!e.metaKey&&!e.ctrlKey&&!e.shiftKey&&e.button===0){e.preventDefault();navigate(a.dataset.route,a.dataset.node||station);return;}
     const b=e.target.closest('button');if(!b||b.disabled)return;

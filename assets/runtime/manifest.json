@@ -7,12 +7,12 @@
   },
   "bundles": {
     "app": {
-      "file": "assets/runtime/app.5aa3606b2451.js",
-      "src": "./assets/runtime/app.5aa3606b2451.js",
-      "url": "./assets/runtime/app.5aa3606b2451.js",
-      "sha256": "5aa3606b2451ebf47fbc4fdeb8e9d0559c5d2ce6b2e9f9309e5b93af5f932aea",
-      "bytes": 117865,
-      "gzipBytes": 37604,
+      "file": "assets/runtime/app.acc44a0dea0e.js",
+      "src": "./assets/runtime/app.acc44a0dea0e.js",
+      "url": "./assets/runtime/app.acc44a0dea0e.js",
+      "sha256": "acc44a0dea0e64d350abc6117e73881d2e3fa3bec81c40fb26c91e609cb506ad",
+      "bytes": 118919,
+      "gzipBytes": 37902,
       "sources": [
         {
           "file": "js/expedition-dependencies.js",
@@ -61,8 +61,8 @@
         },
         {
           "file": "js/expedition-app.js",
-          "sha256": "dc9db59b3dd98c8955b2857178dd499c9e963647d945303122ba152dd919fa62",
-          "bytes": 47428
+          "sha256": "df383eef6314f75ae1ed075a975f3b3107e02db44e85ffa0998e94403498e74a",
+          "bytes": 48482
         }
       ]
     },

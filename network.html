@@ -3,6 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+  <script id="network-entry">
+    // Resolve this bookmark before the legacy map's external dependencies.
+    // Match the shared entrance; diagnostic legacy and narrow mouse views stay intact.
+    (function () {
+      var entry = new URLSearchParams(location.search);
+      var mobile = entry.get('client') === 'mobile' ||
+        (window.matchMedia('(pointer: coarse)').matches && Math.min(window.innerWidth, window.innerHeight) <= 768);
+      var station = /^a0[123]$/.test(entry.get('station')) ? entry.get('station') : 'a01';
+      if ((window.matchMedia('(min-width: 769px)').matches || mobile) && entry.get('legacy') !== '1' && typeof location.replace === 'function') {
+        location.replace('./expedition.html?view=network&station=' + station + (mobile ? '&client=mobile' : ''));
+      }
+    })();
+  </script>
   <meta name="color-scheme" content="dark">
   <title data-title-en="DISTRIBUTED MONITORING SYSTEM · OBSERVATION NETWORK" data-title-zh="自主观测系统 · 观测网络">DISTRIBUTED MONITORING SYSTEM · OBSERVATION NETWORK</title>
   <link rel="icon" href="data:,">
