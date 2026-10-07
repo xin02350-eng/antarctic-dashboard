@@ -12,9 +12,14 @@ html, body {
 /* The globe carries its own orbital geometry; no second decorative HUD. */
 .orbital-reticle, .earth-register { display: none; }
 #earthViewport { position: absolute; inset: 0; outline: none; }
-canvas { display: block; touch-action: none; cursor: grab; transition: opacity .5s ease-out; }
+canvas { display: block; touch-action: none; cursor: grab; }
 canvas:active { cursor: grabbing; }
 #earthViewport:focus-visible { outline: 1px solid #9cdced66; outline-offset: -5px; }
+/* Keep dimensions available for label layout while the first complete frame
+   is prepared. The map and its overlays are revealed by one document state. */
+html:not(.earth-presented) :is(#earthViewport,#earthLabels,.earth-toolbar,.earth-caption),
+html.earth-unavailable :is(#earthViewport,#earthLabels) { visibility: hidden; }
+html.earth-unavailable .earth-caption { visibility: visible; }
 
 /* Geography stays legible without giving every place a separate card. */
 #earthLabels { position: absolute; inset: 0; pointer-events: none; }
@@ -122,7 +127,7 @@ html[data-client=mobile] .earth-caption {
   font-size: .875rem; line-height: 1.4;
   justify-content: flex-end; pointer-events: none;
 }
-html[data-client=mobile] #earthViewport[aria-busy=false]~.earth-caption #globeStatus { display: none; }
+html[data-client=mobile].earth-presented:not(.earth-unavailable) #earthViewport[aria-busy=false]~.earth-caption #globeStatus { display: none; }
 html[data-client=mobile] .earth-desktop-hint { display: none; }
 html[data-client=mobile] .earth-touch-hint { display: inline; }
 html[data-client=mobile] .earth-label { padding: .25rem .5rem; }

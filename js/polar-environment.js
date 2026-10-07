@@ -27,7 +27,7 @@
     options = options || {};
     var quality = options.quality || { tier: 'balanced', terrainSegments: 192 };
     var group = new T.Group(); group.name = 'antarctic-environment'; scene.add(group);
-    var loader = new T.TextureLoader(), reflectionTarget, panoramaTexture, detailStarted = false, reflectionPending = false;
+    var loader = new T.TextureLoader(), reflectionTarget, panoramaTexture, detailStarted = false, reflectionPending = false, reflectionFailed = false;
     // Equal-size, lossless delivery copies: original PNGs remain the recovery path.
     // No detail is resampled, and a blocked/unsupported WebP never removes a texture.
     function loadTexture(name, onLoad, onError) {
@@ -66,6 +66,7 @@
     function status(key, value) { resources[key] = value; if (onStatus) onStatus(Object.assign({}, resources)); }
     function rebuildReflection() {
       if (!panoramaTexture) return;
+      reflectionPending = false; reflectionFailed = false;
       if (reflectionTarget) reflectionTarget.dispose();
       var pmrem, input = panoramaTexture, reducedInput;
       try {
@@ -80,7 +81,7 @@
         reflectionTarget = pmrem.fromEquirectangular(input); scene.environment = reflectionTarget.texture;
       } catch (error) {
         // Restricted WebGL1 / software drivers must retain usable diffuse lighting.
-        scene.environment = null; reflectionTarget = null;
+        scene.environment = null; reflectionTarget = null; reflectionFailed = true;
       } finally { if (pmrem) pmrem.dispose(); if (reducedInput) reducedInput.dispose(); }
     }
     loadTexture('antarctic-glacier-storm-v4', function (texture) {
@@ -177,13 +178,21 @@
       var plume = new T.Mesh(new T.PlaneGeometry(85 + i * 16, 5 + i * 2), plumeMaterial);
       plume.position.set(-8 + i * 6, 1.4 + i * 0.65, -14 - i * 21); plume.rotation.y = -0.21; plumes.add(plume);
     }
-    // Called only after a meaningful panorama/device frame has been presented.
-    // Detail downloads cannot compete with the panorama; PMREM cannot block its reveal.
+    // Start independent material downloads together, before the scene is revealed.
+    // The scene calls prepare after construction; legacy callers may still use afterFrame.
+    function prepare() {
+      if (!detailStarted) { detailStarted = true; loadCrust(); loadSnow(); }
+    }
     function afterFrame() {
-      if (!detailStarted) { detailStarted = true; loadCrust(); loadSnow(); return; }
+      if (!detailStarted) { prepare(); return; }
       if (reflectionPending) { reflectionPending = false; rebuildReflection(); }
     }
-    return { group: group, heightAt: heightAt, afterFrame: afterFrame, pendingWork: function () { return !detailStarted || reflectionPending; }, restore: rebuildReflection, update: function (time, camera) {
+    function presentationReady() {
+      return detailStarted && !reflectionPending && resources.panorama !== 'loading' && resources.snow !== 'loading' && resources.crust !== 'loading';
+    }
+    return { group: group, heightAt: heightAt, prepare: prepare, afterFrame: afterFrame, presentationReady: presentationReady,
+      degraded: function () { return reflectionFailed || resources.panorama === 'error' || resources.snow === 'error' || resources.crust === 'error'; },
+      pendingWork: function () { return !detailStarted || reflectionPending; }, restore: rebuildReflection, update: function (time, camera) {
       sky.position.copy(camera.position); haze.material.uniforms.time.value = time; plumeTime.value = time;
     } };
   }

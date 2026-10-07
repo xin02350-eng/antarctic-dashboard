@@ -7,7 +7,7 @@
   host.dataset.runtimeStartMs = startupClock().toFixed(1);
   var cameraProfile = new URLSearchParams(window.location.search).get('profile');
   document.documentElement.dataset.profile = cameraProfile === 'hero' || cameraProfile === 'instrument' ? cameraProfile : 'standard';
-  var publishedReadyState = null, firstFrameRendered = false, panoramaSettled = false, environmentFailed = false, sceneInitialized = false;
+  var publishedReadyState = null, firstFrameRendered = false, panoramaSettled = false, environmentSettled = false, environmentFailed = false, sceneInitialized = false;
   var quality = window.PolarRenderBudget ? window.PolarRenderBudget.create({ navigator: window.navigator, mode: 'field' }) : {
     profile: function () { return { tier: 'balanced', shadowSize: 1024, particleScale: 1, terrainSegments: 192 }; },
     pixelRatio: function (w,h,dpr) { return Math.min(dpr || 1,1.5,Math.sqrt(2000000/(Math.max(1,w)*Math.max(1,h)))); },
@@ -22,14 +22,13 @@
     window.parent.postMessage({ type: 'dms:field-ready', state: state }, window.location.origin);
   }
   function publishEnvironmentState() {
-    // A finished render with the original panorama is meaningful immediately.
-    // The two fine-detail snow textures refine it without hiding the entire device.
+    // Reveal one complete material state, never an untextured device that refines in view.
     if (!firstFrameRendered || !panoramaSettled || contextLost) return;
-    var failed = environmentFailed;
-    var qualityState = failed ? 'degraded' : host.dataset.environment === 'ready' ? 'ready' : 'refining';
+    if (environment.presentationReady && !environment.presentationReady()) return;
+    var failed = environmentFailed || !!(environment.degraded && environment.degraded());
+    var qualityState = failed ? 'degraded' : 'ready';
     if (host.dataset.qualityState !== qualityState) host.dataset.qualityState = qualityState;
     if (failed || host.dataset.environment === 'ready') publishReady(failed ? 'degraded' : 'ready');
-    else publishReady('degraded');
   }
   var T = window.THREE, renderer;
   try {
@@ -112,6 +111,7 @@
     host.dataset.environment = resources.panorama === 'ready' && resources.snow === 'ready' && resources.crust === 'ready' ? 'ready' : 'loading';
     var failed = resources.panorama === 'error' || resources.snow === 'error' || resources.crust === 'error';
     panoramaSettled = resources.panorama !== 'loading'; environmentFailed = failed;
+    environmentSettled = resources.panorama !== 'loading' && resources.snow !== 'loading' && resources.crust !== 'loading';
     if (failed) host.dataset.environment = 'degraded';
     publishEnvironmentState();
     if (environmentNote) {
@@ -122,6 +122,7 @@
     }
     requestFrame();
   }, snowDepositMaterial, { quality: quality.profile() });
+  if (environment.prepare) environment.prepare();
   function mesh(geometry, material, parent, point) {
     var object = new T.Mesh(geometry, material); if (point) object.position.copy(point); (parent || scene).add(object); return object;
   }
@@ -267,7 +268,7 @@
       if (visible) { element.style.left = x.toFixed(1) + 'px'; element.style.top = y.toFixed(1) + 'px'; }
     });
   }
-  var time = 0, lastFrame = 0, lastTick = 0, raf = 0, contextLost = false, meaningfulFramePresented = false;
+  var time = 0, lastFrame = 0, lastTick = 0, raf = 0, contextLost = false;
   var needsFrame = true, weatherPainted = false, statsStart = 0, statsFrames = 0;
   var activity = window.PolarCamera && window.PolarCamera.visibilityGate(window.location.origin, window.parent);
   if (activity) activity.page(!document.hidden);
@@ -286,13 +287,15 @@
     if (!canRender()) { raf = 0; lastFrame = 0; return; }
     // Do not compile an invisible, untextured sky program and immediately replace it.
     if (!panoramaSettled) return; // Resource completion/timeout wakes one frame; no empty polling loop.
+    // Finish reflection before the first visible render. Pending downloads wake us
+    // through their callbacks instead of keeping an invisible animation loop alive.
+    if (environment.afterFrame) environment.afterFrame();
+    if (environment.presentationReady ? !environment.presentationReady() : !environmentSettled && !environmentFailed) return;
     var elapsed = lastTick ? now - lastTick : 1000 / 60;
     var frameInterval = 1000 / (quality.profile().maxFps || 60);
     if (lastTick && elapsed < frameInterval - .75) { raf = requestAnimationFrame(frame); return; }
     lastTick = elapsed >= frameInterval ? now - elapsed % frameInterval : now;
     needsFrame = false;
-    // The preceding frame is already on screen before optional GPU work starts.
-    if (meaningfulFramePresented) environment.afterFrame?.();
     if (lastFrame && !paused && quality.sample(now-lastFrame, now)) {
       host.dataset.renderQuality = quality.profile().tier;
       renderer.setPixelRatio(quality.pixelRatio(window.innerWidth,window.innerHeight,window.devicePixelRatio));
@@ -361,7 +364,6 @@
     }
     if (!host.dataset.firstDrawMs) host.dataset.firstDrawMs = startupClock().toFixed(1);
     firstFrameRendered = true; publishEnvironmentState();
-    if (panoramaSettled) meaningfulFramePresented = true;
     if (host.dataset.qualityState === 'ready' && !host.dataset.fullQualityMs) host.dataset.fullQualityMs = startupClock().toFixed(1);
     if (!statsStart) statsStart = now; else statsFrames++;
     if (now-statsStart>=1000) {
@@ -370,7 +372,7 @@
       statsFrames=0;statsStart=now;
     }
     var moving = Object.keys(current).some(function (key) { return Math.abs(current[key]-destination[key]) > .0005; });
-    if (!paused || moving || needsFrame || environment.pendingWork && environment.pendingWork()) raf = requestAnimationFrame(frame);
+    if (!raf && (!paused || moving || needsFrame || environment.pendingWork && environment.pendingWork())) raf = requestAnimationFrame(frame);
   }
   renderer.domElement.addEventListener('webglcontextlost', function (event) { event.preventDefault(); contextLost = true; firstFrameRendered = false; if (activity) activity.context(false); updateActivity(); fallback.hidden = false; publishReady('unavailable'); });
   renderer.domElement.addEventListener('webglcontextrestored', function () { environment.restore(); contextLost = false; if (activity) activity.context(true); fallback.hidden = true; document.querySelectorAll('.view-controls button').forEach(function (button) { button.disabled = false; }); renderer.shadowMap.needsUpdate = true; updateActivity(); });

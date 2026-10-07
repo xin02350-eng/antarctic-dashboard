@@ -8,6 +8,9 @@ on:
       - '*.html'
       - 'css/**'
       - 'js/**'
+      - 'assets/runtime/**'
+      - 'scripts/build-runtime-bundles.cjs'
+      - 'tests/runtime-bundles.test.cjs'
       - 'data.json'
       - '.github/workflows/pages.yml'
   workflow_dispatch:
@@ -38,6 +41,16 @@ jobs:
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Verify runtime bundles and entry URLs
+        run: |
+          node scripts/build-runtime-bundles.cjs --check
+          node --test tests/runtime-bundles.test.cjs
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

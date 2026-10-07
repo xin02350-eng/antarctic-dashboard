@@ -1,0 +1,165 @@
+{
+  "formatVersion": 1,
+  "generator": "scripts/build-runtime-bundles.cjs",
+  "sourceNormalization": "UTF-8 without BOM; CRLF and CR normalized to LF before hashing",
+  "minifier": {
+    "name": "none"
+  },
+  "bundles": {
+    "app": {
+      "file": "assets/runtime/app.1680ae93a574.js",
+      "src": "./assets/runtime/app.1680ae93a574.js",
+      "url": "./assets/runtime/app.1680ae93a574.js",
+      "sha256": "1680ae93a574f37733b2749ec07c7d68e29f037cfb84b98a944e21a5e681e8a3",
+      "bytes": 117769,
+      "gzipBytes": 37569,
+      "sources": [
+        {
+          "file": "js/expedition-dependencies.js",
+          "sha256": "3dc86d41909b13d9eb4ffbb7973e722812d34d34095c24b76ddd9f186e472030",
+          "bytes": 4129
+        },
+        {
+          "file": "js/expedition-data.js",
+          "sha256": "ece6a9d49615963f2923aa55b7df5031e44deb4c295aeec8f5217a758fa1df86",
+          "bytes": 4408
+        },
+        {
+          "file": "js/telemetry-access.js",
+          "sha256": "48f0ebd8dd9ef73fc31bd1b401927dd15ebbffd044303c586adeac28aaadedc2",
+          "bytes": 3723
+        },
+        {
+          "file": "js/expedition-charts.js",
+          "sha256": "e97374420c11d689c2d35da593a6a5ac762a106ba3cb245432164e88486d04b7",
+          "bytes": 8263
+        },
+        {
+          "file": "js/expedition-atmosphere.js",
+          "sha256": "fe791423c28392832a84984eac6828398d6b53592d178c051d454c9e33e5e770",
+          "bytes": 16981
+        },
+        {
+          "file": "js/expedition-specular.js",
+          "sha256": "00038b754a76817ebf37fb73e7a7530eef783002256293c4095327bf3b511c89",
+          "bytes": 15049
+        },
+        {
+          "file": "js/expedition-icons.js",
+          "sha256": "d4acd7b2b5c80804c2144a658668f25fde7c0bffdf33e526747066fbc284ef8b",
+          "bytes": 2972
+        },
+        {
+          "file": "js/expedition-actions.js",
+          "sha256": "3145112170c9195dbed14641609c5b13f16c062805fe86c89f60ed26cbfc7a92",
+          "bytes": 8133
+        },
+        {
+          "file": "js/expedition-view.js",
+          "sha256": "65fba97f55416f2b1ce32672960c2ee0092f46c851566835176da5b71e290146",
+          "bytes": 6259
+        },
+        {
+          "file": "js/expedition-app.js",
+          "sha256": "1005c28a1d07944bd841853163b2e224a51493d3cbdee482c978411f9e7c9bd0",
+          "bytes": 47332
+        }
+      ]
+    },
+    "field": {
+      "file": "assets/runtime/field.465d696fdde0.js",
+      "src": "./assets/runtime/field.465d696fdde0.js",
+      "url": "./assets/runtime/field.465d696fdde0.js",
+      "sha256": "465d696fdde078015374b7e0ce6a947d1f4eaea17f912a21442918b7fa3f0ef5",
+      "bytes": 87989,
+      "gzipBytes": 25096,
+      "sources": [
+        {
+          "file": "js/render-budget.js",
+          "sha256": "460b47560281aeb08ddc8ddd444159ee274bec2ed811c10794cfe5c339841833",
+          "bytes": 4310
+        },
+        {
+          "file": "js/scene-touch.js",
+          "sha256": "2e4b07e48335b75bcdca969cc8bcb2a233412553908a9273d897af850ec9284b",
+          "bytes": 3213
+        },
+        {
+          "file": "js/polar-power.js",
+          "sha256": "8b2fc8fdfd32fcf7b53fbd9084d09a4f9e96e60593e4cac8054f447aebf7f053",
+          "bytes": 8351
+        },
+        {
+          "file": "js/polar-mast.js",
+          "sha256": "f83e19f156a606f8a20a4386daf3cf9f13c05277f40f739b6a94ff3a48d72d54",
+          "bytes": 8905
+        },
+        {
+          "file": "js/polar-snow.js",
+          "sha256": "a67256bffd87fd615b1134f765c0e95967aa0feb9669a136885b9ff693e7780c",
+          "bytes": 5411
+        },
+        {
+          "file": "js/polar-batch.js",
+          "sha256": "de4bffa77f0309f002e353bab53f03356926ff6ec44a0864343246c22ba298f5",
+          "bytes": 7901
+        },
+        {
+          "file": "js/polar-environment.js",
+          "sha256": "c70db514bf253127412229b61cc364325f250d207446f266a66a5e4b30d4f3f9",
+          "bytes": 14562
+        },
+        {
+          "file": "js/polar-camera.js",
+          "sha256": "72889757b8b2baaf5fe4696c6d24b2d9f17910653d53cbaf1bc297a80bec81fe",
+          "bytes": 2829
+        },
+        {
+          "file": "js/polar-scene.js",
+          "sha256": "a435e4945a16bf43ba9c51bd0065b3199854455bc147dfd29d11b662d8994a56",
+          "bytes": 30424
+        },
+        {
+          "file": "js/field-frame.js",
+          "sha256": "081981bbf91cac2aea51ac7fdd3ab2a24e2ffb6baa1d56ef35770aa70e580ae5",
+          "bytes": 1618
+        }
+      ]
+    },
+    "earth": {
+      "file": "assets/runtime/earth.a1b256850bcf.js",
+      "src": "./assets/runtime/earth.a1b256850bcf.js",
+      "url": "./assets/runtime/earth.a1b256850bcf.js",
+      "sha256": "a1b256850bcf8b90d63e9152bbe1f711ea7cbe8230361487e29d1e0a4a85b52c",
+      "bytes": 36456,
+      "gzipBytes": 12902,
+      "sources": [
+        {
+          "file": "js/render-budget.js",
+          "sha256": "460b47560281aeb08ddc8ddd444159ee274bec2ed811c10794cfe5c339841833",
+          "bytes": 4310
+        },
+        {
+          "file": "js/scene-touch.js",
+          "sha256": "2e4b07e48335b75bcdca969cc8bcb2a233412553908a9273d897af850ec9284b",
+          "bytes": 3213
+        },
+        {
+          "file": "js/earth-network.js",
+          "sha256": "6437eb7e92ca054be12c09e6cf1abd7f028de66ae36064635d7f00450ead3845",
+          "bytes": 1408
+        },
+        {
+          "file": "js/earth-surface.js",
+          "sha256": "5c8a51debcf24f18bcbd96e1bf821557ae7531cd638aa20cff56be40fb429876",
+          "bytes": 3197
+        },
+        {
+          "file": "js/expedition-globe.js",
+          "sha256": "baabada6a358912623931be66ae7e2807d565a01d993087b25f12b8494c7b48c",
+          "bytes": 24034
+        }
+      ]
+    }
+  }
+}

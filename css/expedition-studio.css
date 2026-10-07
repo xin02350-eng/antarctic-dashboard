@@ -98,7 +98,8 @@ a:hover .icon-down, a:hover .icon-download { transform: translateY(2px); }
   .route-page:not([hidden])>.page-title>div,
   .route-page:not([hidden])>:is(.trend-workspace,.analysis-summary,.analysis-body,.download-story) { animation: workspace-arrival .65s var(--ease) backwards; }
   .route-page:not([hidden])>:is(.trend-workspace,.analysis-body) { animation-delay: .07s; }
-  .route-page:not([hidden]) :is(.hero-copy,.orbital-copy,.globe-copy) { animation: workspace-arrival .85s var(--ease) backwards; }
+  /* Scene copy stays steady while one complete 3D frame becomes available;
+     do not add a separate .85s entrance on top of resource readiness. */
 }
 .site-footer { margin: 0 var(--gutter); min-height: 100px; padding: 1.6rem 0; border-top: 1px solid var(--line); display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; color: #a0b1bd; font: .6875rem var(--mono); letter-spacing: .06em; }
 .site-footer>div { display: flex; gap: 2rem; font: .75rem "Segoe UI", "Microsoft YaHei", sans-serif; }
@@ -139,7 +140,7 @@ body[data-view=dashboard] #content { padding-top: 0; }
 body[data-view=dashboard] #view { animation: none; }
 .field-hero { position: relative; min-height: 650px; height: 100vh; height: 100svh; isolation: isolate; overflow: hidden; background: #182733; }
 .mission-stage { position: absolute; inset: 0; overflow: hidden; z-index: -3; background: #263c50 url('../assets/polar/antarctic-glacier-storm-v4.png') center / cover no-repeat; background-image: image-set(url('../assets/polar/antarctic-glacier-storm-v4.webp') type('image/webp'),url('../assets/polar/antarctic-glacier-storm-v4.png') type('image/png')); }
-.mission-stage>.field-frame { opacity: 0; transition: opacity .25s ease; }
+.mission-stage>.field-frame { opacity: 0; transition: opacity .16s ease-out; }
 .mission-stage.is-ready>.field-frame { opacity: 1; }
 .field-frame { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; background: #203242; }
 .field-vignette { position: absolute; inset: 0; z-index: -2; pointer-events: none; background: linear-gradient(90deg,#061019ed,#091723bf 24%,#10223142 47%,transparent 68%),linear-gradient(0deg,#050e1940,transparent 26%,transparent 85%,#08152124); }
