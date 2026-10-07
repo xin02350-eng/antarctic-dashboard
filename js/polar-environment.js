@@ -64,6 +64,15 @@
     sky.name = 'original-polar-panorama'; sky.rotation.y = Math.PI / 2 + 0.65; sky.renderOrder = -10; group.add(sky);
     var resources = { panorama: 'loading', snow: 'loading', crust: accumulationMaterial ? 'loading' : 'ready' };
     function status(key, value) { resources[key] = value; if (onStatus) onStatus(Object.assign({}, resources)); }
+    function bumpTexture(texture) {
+      // r128 uploads ordinary color/bump images as identical raw RGB(A) bytes.
+      // Only mapTexelToLinear decodes color; the bump shader samples raw red.
+      // Share that upload, not a second identical GPU image. Recheck this when
+      // upgrading Three: later revisions may use hardware sRGB decoding.
+      if (T.REVISION === '128') return texture;
+      var bump = texture.clone(); bump.encoding = T.LinearEncoding; bump.needsUpdate = true;
+      return bump;
+    }
     function rebuildReflection() {
       if (!panoramaTexture) return;
       reflectionPending = false; reflectionFailed = false;
@@ -93,7 +102,7 @@
       texture.encoding = T.sRGBEncoding; texture.wrapS = texture.wrapT = T.RepeatWrapping; texture.repeat.set(2.5, 2.5);
       texture.anisotropy = Math.min(8, renderer.capabilities.getMaxAnisotropy());
       accumulationMaterial.map = texture;
-      var bump = texture.clone(); bump.encoding = T.LinearEncoding; bump.needsUpdate = true;
+      var bump = bumpTexture(texture);
       accumulationMaterial.bumpMap = bump; accumulationMaterial.bumpScale = 0.035;
       accumulationMaterial.needsUpdate = true; status('crust', 'ready');
     }, function () { status('crust', 'error'); }); }
@@ -140,8 +149,8 @@
       texture.encoding = T.sRGBEncoding; texture.wrapS = texture.wrapT = T.RepeatWrapping; texture.repeat.set(23, 31);
       texture.anisotropy = Math.min(8, renderer.capabilities.getMaxAnisotropy());
       snowMaterial.map = apronMaterial.map = texture;
-      // Sample the same micro-relief in linear space for bumping, with separate color metadata.
-      var bump = texture.clone(); bump.encoding = T.LinearEncoding; bump.needsUpdate = true;
+      // Color decoding stays in the map shader; micro-relief samples raw red.
+      var bump = bumpTexture(texture);
       snowMaterial.bumpMap = bump; snowMaterial.bumpScale = 0.035; snowMaterial.needsUpdate = true;
       apronMaterial.bumpMap = bump; apronMaterial.bumpScale = 0.035; apronMaterial.needsUpdate = true;
       status('snow', 'ready');

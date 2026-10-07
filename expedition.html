@@ -12,31 +12,41 @@
   <script id="scenePreload">
   /* Inline so selecting the critical lane never adds a blocking script request. */
   (function(){
-    if(!window.matchMedia('(min-width:769px)').matches&&new URLSearchParams(location.search).get('client')!=='mobile')return;
-    const view=new URLSearchParams(location.search).get('view')||'dashboard';
-    const device=view==='dashboard',earth=['network','globe'].includes(view);
-    if(!device&&!earth)return;
+    const requested=new Set();
     function preload(href,as,priority='high'){
+      if(requested.has(href))return;
+      requested.add(href);
       const link=document.createElement('link');link.rel='preload';link.as=as;link.href=href;link.fetchPriority=priority;
       if(as==='image')link.type='image/webp';document.head.appendChild(link);
     }
-    preload('./assets/three.min.js','script');
-    if(device)preload('./assets/runtime/field.465d696fdde0.js','script'); // runtime-preload:field
-    if(earth)preload('./assets/runtime/earth.a1b256850bcf.js','script'); // runtime-preload:earth
-    preload(device?'./assets/polar/antarctic-glacier-storm-v4.webp':'./assets/geo/earth-surface-v1.webp','image');
-    // A complete field reveal needs both original snow materials. Discover them
-    // before iframe construction, below the priority of the UI and scene scripts.
-    if(device){
-      preload('./assets/polar/compacted-snow-crust-v2.webp','image','low');
-      preload('./assets/polar/wind-carved-snow-v1.webp','image','low');
-    }
+    // Reuse this same lane for the first in-site scene switch. Only requested
+    // routes warm their assets; refresh/language changes never add duplicate links.
+    window.ExpeditionPreload=function(view){
+      if(!window.matchMedia('(min-width:769px)').matches&&new URLSearchParams(location.search).get('client')!=='mobile'&&!window.ExpeditionClient?.mobile)return;
+      const device=view==='dashboard',earth=['network','globe'].includes(view);
+      if(!device&&!earth)return;
+      preload('./assets/three.min.js','script');
+      if(device)preload('./assets/runtime/field.45d9b8f65356.js','script'); // runtime-preload:field
+      if(earth)preload('./assets/runtime/earth.a1b256850bcf.js','script'); // runtime-preload:earth
+      // The frame's deferred scripts wait for its stylesheet. Start that small
+      // request alongside its runtime, not one iframe navigation later.
+      preload(device?'./css/field-finish.css?v=20261004m':'./css/earth-frame.css?v=20261008b','style');
+      preload(device?'./assets/polar/antarctic-glacier-storm-v4.webp':'./assets/geo/earth-surface-v1.webp','image');
+      // A complete field reveal needs both original snow materials. Discover them
+      // before iframe construction, below the priority of the UI and scene scripts.
+      if(device){
+        preload('./assets/polar/compacted-snow-crust-v2.webp','image','low');
+        preload('./assets/polar/wind-carved-snow-v1.webp','image','low');
+      }
+    };
+    window.ExpeditionPreload(new URLSearchParams(location.search).get('view')||'dashboard');
   })();
   </script>
   <link rel="stylesheet" href="./css/expedition-studio.css?v=20261008b">
   <link rel="stylesheet" href="./css/expedition-actions.css?v=20261004g">
   <link rel="stylesheet" href="./css/expedition-mobile.css?v=20261007c">
   <!-- runtime:app -->
-  <script defer src="./assets/runtime/app.1680ae93a574.js"></script>
+  <script defer fetchpriority="high" src="./assets/runtime/app.5aa3606b2451.js"></script>
   <!-- /runtime:app -->
 </head>
 <body>

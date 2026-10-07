@@ -35,7 +35,7 @@
     document.documentElement.lang=lang==='zh'?'zh-CN':'en';document.documentElement.dataset.lang=lang;
     document.body.dataset.view=active;
   }
-  function scene(profile='instrument',hidden=false) {return `<iframe class="field-frame"${hidden?' hidden':''} title="${t('原创极地监测装置交互场景','Interactive polar instrument scene')}" src="./field-frame.html?station=${station}&lang=${lang}&profile=${profile}${clientQuery}&v=20261008b" loading="eager"></iframe>`;}
+  function scene(profile='instrument',hidden=false) {return `<iframe class="field-frame"${hidden?' hidden':''} title="${t('原创极地监测装置交互场景','Interactive polar instrument scene')}" src="./field-frame.html?station=${station}&lang=${lang}&profile=${profile}${clientQuery}&v=20261008c" loading="eager"></iframe>`;}
   function earthScene(){return `<iframe class="earth-frame" title="${t('蓝线三维地球，可旋转与缩放','Interactive blue-line Earth, rotate and zoom')}" src="./globe-frame.html?lang=${lang}${clientQuery}&v=20261008b" loading="eager"></iframe>`;}
   function orbitalNetwork(){return `${earthScene()}<div class="orbital-copy"><div class="orbital-heading"><h1>${t('观测<em>网络</em>','Observation<em>network</em>')}</h1></div><div class="orbital-actions">${link('location',t('实际定位','Location')+' →','solid-link')}</div><small>${t('南京 → 东北（哈尔滨）→ 南极<br>示意链路 · 非实际部署','Nanjing → Northeast China → Antarctica<br>Illustrative route · Not actual deployment')}</small></div>`;}
   function overview() {
@@ -171,6 +171,7 @@
     return `<section class="network-summary">${metric(t('舱内温度','Cabin temperature'),n(r[c[0].key]),'°C')}${metric(t('系统电压','System voltage'),n(r.v,3),'V')}${metric(t('电量估算','Charge estimate'),s.soc??'—','%')}${metric(t('观测跨度','Observation span'),s.days??'—',t('天','days'))}<div class="network-trend"><span>${t('舱内温度 · 最近48次采集','CABIN · LAST 48 OBSERVATIONS')}</span><div><canvas id="networkTrend" role="img" aria-label="${t('舱内温度趋势','Cabin temperature trend')}"></canvas></div></div></section>`;
   }
   function render() {
+    window.ExpeditionPreload?.(active==='hardware'&&deviceView==='concept'?'dashboard':active);
     const preserveCharts=active===renderedView;
     cancelAnimationFrame(paintFrame);destroyView(preserveCharts);header();
     const renderers={dashboard:overview,sensors,telemetry:archive,network,location:network,hardware,analysis,globe,download};

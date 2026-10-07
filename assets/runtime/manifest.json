@@ -7,12 +7,12 @@
   },
   "bundles": {
     "app": {
-      "file": "assets/runtime/app.1680ae93a574.js",
-      "src": "./assets/runtime/app.1680ae93a574.js",
-      "url": "./assets/runtime/app.1680ae93a574.js",
-      "sha256": "1680ae93a574f37733b2749ec07c7d68e29f037cfb84b98a944e21a5e681e8a3",
-      "bytes": 117769,
-      "gzipBytes": 37569,
+      "file": "assets/runtime/app.5aa3606b2451.js",
+      "src": "./assets/runtime/app.5aa3606b2451.js",
+      "url": "./assets/runtime/app.5aa3606b2451.js",
+      "sha256": "5aa3606b2451ebf47fbc4fdeb8e9d0559c5d2ce6b2e9f9309e5b93af5f932aea",
+      "bytes": 117865,
+      "gzipBytes": 37604,
       "sources": [
         {
           "file": "js/expedition-dependencies.js",
@@ -61,18 +61,18 @@
         },
         {
           "file": "js/expedition-app.js",
-          "sha256": "1005c28a1d07944bd841853163b2e224a51493d3cbdee482c978411f9e7c9bd0",
-          "bytes": 47332
+          "sha256": "dc9db59b3dd98c8955b2857178dd499c9e963647d945303122ba152dd919fa62",
+          "bytes": 47428
         }
       ]
     },
     "field": {
-      "file": "assets/runtime/field.465d696fdde0.js",
-      "src": "./assets/runtime/field.465d696fdde0.js",
-      "url": "./assets/runtime/field.465d696fdde0.js",
-      "sha256": "465d696fdde078015374b7e0ce6a947d1f4eaea17f912a21442918b7fa3f0ef5",
-      "bytes": 87989,
-      "gzipBytes": 25096,
+      "file": "assets/runtime/field.45d9b8f65356.js",
+      "src": "./assets/runtime/field.45d9b8f65356.js",
+      "url": "./assets/runtime/field.45d9b8f65356.js",
+      "sha256": "45d9b8f6535673120b950a1b32ea157f8322e30843781b4211f3d1dfdc4bb0d8",
+      "bytes": 88378,
+      "gzipBytes": 25270,
       "sources": [
         {
           "file": "js/render-budget.js",
@@ -106,8 +106,8 @@
         },
         {
           "file": "js/polar-environment.js",
-          "sha256": "c70db514bf253127412229b61cc364325f250d207446f266a66a5e4b30d4f3f9",
-          "bytes": 14562
+          "sha256": "ef22291ab325413994f1fee2f3e40cd54ab8d57af032c623fe453e8757e908c2",
+          "bytes": 14951
         },
         {
           "file": "js/polar-camera.js",
