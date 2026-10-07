@@ -47,6 +47,8 @@
       // A zero reference is stronger only when the existing numeric scale actually contains it.
       Object.assign(grid,{color:key==='y'?context=>context?.tick?.value===0?'#d4e5ee29':'#bbd4e612':'#bbd4e612',drawTicks:false});if(key==='x')grid.display=false;
       const border=scale.border||(scale.border={});border.display=false;
+      const title=scale.title||(scale.title={});
+      Object.assign(title,{display:!mini&&!!title.text,color:'#b7c9d5',padding:{top:8,bottom:8},font:{family:'"Segoe UI", "Microsoft YaHei", sans-serif',size:12,weight:'normal',lineHeight:1.4}});
       const ticks=scale.ticks||(scale.ticks={});
       Object.assign(ticks,{color:'#9bb0be',padding:10,sampleSize:24,font:{family:'Consolas, monospace',size:11,weight:'normal'}});
     }

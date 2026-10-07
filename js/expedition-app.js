@@ -49,7 +49,7 @@
   function sensors() {
     const defs=D.channels(station);if(!defs.some(c=>c.key===channel))channel=defs[2].key;
     const selected=defs.find(c=>c.key===channel),values=visibleTrend().map(r=>r[channel]).filter(D.valid).map(Number);
-    return `${title()}<div class="trend-workspace"><aside class="channel-list" aria-label="${t('选择观测通道','Select a channel')}">${defs.map((c,i)=>`<button data-channel="${c.key}" aria-pressed="${c.key===channel}"><span class="channel-index">${String(i+1).padStart(2,'0')}</span><span>${c[lang]}<small>${c.unit}</small></span><b>${n((rows[0]||{})[c.key],c.key==='v'?3:1)}</b></button>`).join('')}</aside><section class="signal-stage"><div class="signal-top"><div class="signal-identity"><h2>${selected[lang]}</h2><div class="signal-value">${n((rows[0]||{})[channel],channel==='v'?3:1)}<small>${selected.unit}</small></div></div><div class="range-control" role="group" aria-label="${t('曲线范围','Chart range')}">${[['100',t('最近100','Last 100')],['24h',t('最近24小时','Last 24h')],['all',t('全部趋势','Full trend')]].map(([v,l])=>`<button data-range="${v}" aria-pressed="${range===v}">${l}</button>`).join('')}</div></div><div class="chart-box featured-chart"><canvas id="signalChart" role="img" aria-label="${selected[lang]}"></canvas>${values.length?'':`<p class="chart-empty">${t('等待有效观测数据','Awaiting valid observations')}</p>`}</div><div class="signal-stats">${metric(t('区间最低','Minimum'),values.length?n(Math.min(...values),channel==='v'?3:1):'—',selected.unit)}${metric(t('区间最高','Maximum'),values.length?n(Math.max(...values),channel==='v'?3:1):'—',selected.unit)}${metric(t('有效采样','Valid samples'),values.length.toLocaleString())}<span>${badge()}</span></div></section></div><section class="all-signals"><div class="section-heading"><h2>${t('多通道总览','All channels')}</h2><span>${t('独立量程 · 按采集时间排列','Independent scales · Observation order')}</span></div><div class="signal-grid">${defs.map((c,i)=>`<button class="mini-signal" data-channel="${c.key}" aria-pressed="${c.key===channel}"><span>${c[lang]} <small>${c.unit}</small></span><strong>${n((rows[0]||{})[c.key],c.key==='v'?3:1)}</strong><div class="mini-chart"><canvas id="mini${i}" role="img" aria-label="${c[lang]}"></canvas></div></button>`).join('')}</div></section>`;
+    return `${title()}<div class="trend-workspace"><aside class="channel-list" aria-label="${t('选择观测通道','Select a channel')}">${defs.map((c,i)=>`<button data-channel="${c.key}" aria-pressed="${c.key===channel}"><span class="channel-index">${String(i+1).padStart(2,'0')}</span><span>${c[lang]}<small>${c.unit}</small></span><b>${n((rows[0]||{})[c.key],c.key==='v'?3:1)}</b></button>`).join('')}</aside><section class="signal-stage"><div class="signal-top"><div class="signal-identity"><h2>${selected[lang]}</h2><div class="signal-value">${n((rows[0]||{})[channel],channel==='v'?3:1)}<small>${selected.unit}</small></div></div><div class="range-control" role="group" aria-label="${t('曲线范围','Chart range')}">${[['100',t('最近100','Last 100')],['24h',t('最近24小时','Last 24h')],['all',t('全部趋势','Full trend')]].map(([v,l])=>`<button data-range="${v}" aria-pressed="${range===v}">${l}</button>`).join('')}</div></div><div class="chart-box featured-chart"><canvas id="signalChart" role="img" aria-label="${selected[lang]}"></canvas>${values.length?'':`<p class="chart-empty">${t('等待有效观测数据','Awaiting valid observations')}</p>`}</div><div class="signal-stats">${metric(t('区间最低','Minimum'),values.length?n(Math.min(...values),channel==='v'?3:1):'—',selected.unit)}${metric(t('区间最高','Maximum'),values.length?n(Math.max(...values),channel==='v'?3:1):'—',selected.unit)}${metric(t('有效采样','Valid samples'),values.length.toLocaleString())}<span>${badge()}</span></div></section></div>`;
   }
   function archive() {
     return `${title()}<div class="archive-toolbar"><div>${badge()}<span id="recordCount"></span></div><button class="outline-button" data-action="refresh">${refreshing?'…':'↻'} ${t('刷新记录','Refresh')}</button></div>`;
@@ -96,8 +96,10 @@
   function hardware() {
     const s=D.summary(rows,station),r=s.latest,c=D.channels(station);
     if(deviceView==='concept')instrumentSeen=true;
-    const gallery=station==='a01'?`<div class="hardware-photo"><div class="photo-stage"><img class="hardware-main-image" src="./assets/hardware/01-${photo===0?'2':'3'}.jpg" alt="DMS-A01 ${t('硬件实拍','hardware photograph')} ${photo+1}" decoding="async"><div class="photo-controls"><button data-action="previous-photo" aria-label="${t('上一张','Previous photo')}">←</button><span class="photo-index" aria-live="polite">0${photo+1} / 02</span><button data-action="next-photo" aria-label="${t('下一张','Next photo')}">→</button></div></div><div class="photo-rail" role="group" aria-label="${t('选择实物照片','Choose a hardware photograph')}">${[0,1].map(i=>`<button data-photo="${i}" aria-pressed="${photo===i}" aria-label="${t('查看实物照片','View hardware photograph')} ${i+1}"><img src="./assets/hardware/01-${i===0?'2':'3'}.jpg" alt="" decoding="async"><span>0${i+1}</span></button>`).join('')}</div></div>`:`<div class="empty-state">${t('实物档案待补充','Hardware photographs pending')}<p>${t('不使用其他节点的照片代替。','Other nodes’ photographs are not used as substitutes.')}</p></div>`;
-    return `${title()}<div class="device-tabs view-tabs"><button data-device="photos" aria-pressed="${deviceView==='photos'}">${t('实物照片','Hardware photographs')}</button><button data-device="concept" aria-pressed="${deviceView==='concept'}">${t('三维结构','3D structure')}</button></div><section class="instrument-stage ${deviceView==='photos'?'photo-mode':''}">${instrumentSeen?scene('instrument',deviceView!=='concept'):''}${deviceView==='photos'?gallery:`<div class="instrument-legend"><ol><li><b>01</b><span>${t('三面光伏','Tri-face solar')}</span></li><li><b>02</b><span>${t('环境监测舱','Environmental enclosure')}</span></li><li><b>03</b><span>${t('通信与地面锚定','Communication & foundation')}</span></li></ol><p>${t('概念结构示意，实物以档案照片为准。','Concept geometry. Refer to photographs for actual hardware.')}</p></div>`}</section><div class="engineering-sheet"><section><h2>${t('工程档案','Engineering file')}</h2><dl>${[[t('设备编号','Designation'),'DMS–'+station.toUpperCase()],[t('光伏结构','Solar geometry'),t('三块面板围合主轴','Three panels around one mast')],[t('监测舱体','Monitoring enclosure'),t('三棱柱舱体 · 斜面排雪','Triangular enclosure · Sloped snow roof')],[t('防护等级','Enclosure'),'IP66'],[t('电池','Battery'),t('钛酸锂电池','Lithium titanate')],[t('通信','Communication'),'GPS / LoRa'],[t('部署记录','Deployment'),t('地面测试场地 · 地面锚定','Ground test site · Ground anchor')]].map(([a,b])=>`<div><dt>${a}</dt><dd>${b}</dd></div>`).join('')}</dl></section><section><h2>${t('装置遥测','Instrument telemetry')}</h2><div class="hardware-metrics">${metric(t('电压','Voltage'),n(r.v,3),'V')}${metric(t('电流','Current'),n(r.a),'mA')}${metric(t('舱内温度','Cabin temperature'),n(r[c[0].key]),'°C')}${metric(t('太阳辐射','Solar irradiance'),n(r[c[4].key],0),'W/m²')}</div><p>${badge()} · ${date(r.time)}</p></section></div>`;
+    const photoName=i=>i===0?t('实物全貌','Exterior view'):t('内部细节','Interior detail');
+    const photoSource=i=>'./assets/hardware/01-'+(i===0?'2':'3')+'.jpg';
+    const gallery=station==='a01'?`<div class="hardware-photo"><div class="photo-stage"><a class="photo-original" href="${photoSource(photo)}" target="_blank" rel="noopener" aria-label="${t('查看原图','Open original photograph')} · ${photoName(photo)}"><img class="hardware-main-image" src="${photoSource(photo)}" alt="DMS-A01 ${t('硬件实拍','hardware photograph')} ${photo+1}" width="1279" height="1706" decoding="async"><span class="photo-open">${t('查看原图','Original')} ↗</span></a><div class="photo-caption"><span class="photo-serial">0${photo+1}</span><span>${photoName(photo)}</span></div></div><div class="photo-rail" role="group" aria-label="${t('选择实物照片','Choose a hardware photograph')}">${[0,1].map(i=>`<button data-photo="${i}" aria-pressed="${photo===i}" aria-label="${t('查看实物照片','View hardware photograph')} ${i+1}"><span class="photo-preview"><img src="${photoSource(i)}" alt="" width="1279" height="1706" decoding="async"></span><span class="photo-caption"><span class="photo-serial">0${i+1}</span><span>${photoName(i)}</span><span class="photo-select" aria-hidden="true">→</span></span></button>`).join('')}</div><div class="photo-controls"><button data-action="previous-photo" aria-label="${t('上一张','Previous photo')}">←</button><span class="photo-index" aria-live="polite">0${photo+1} / 02</span><button data-action="next-photo" aria-label="${t('下一张','Next photo')}">→</button><span class="photo-provenance">${t('原始实拍','ORIGINAL PHOTOGRAPHS')}</span></div></div>`:`<div class="empty-state"><span class="eyebrow">DMS—${station.toUpperCase()}</span><h2>${t('实物档案待补充','Hardware photographs pending')}</h2><p>${t('不使用其他节点的照片代替。','Other nodes’ photographs are not used as substitutes.')}</p></div>`;
+    return `${title()}<div class="device-tabs view-tabs"><button data-device="photos" aria-pressed="${deviceView==='photos'}">${t('实物照片','Hardware photographs')}</button><button data-device="concept" aria-pressed="${deviceView==='concept'}">${t('三维结构','3D structure')}</button></div><div class="hardware-showcase ${deviceView==='photos'?'photo-layout':'concept-layout'}"><section class="instrument-stage ${deviceView==='photos'?'photo-mode':''}">${instrumentSeen?scene('instrument',deviceView!=='concept'):''}${deviceView==='photos'?gallery:`<div class="instrument-legend"><ol><li><b>01</b><span>${t('三面光伏','Tri-face solar')}</span></li><li><b>02</b><span>${t('环境监测舱','Environmental enclosure')}</span></li><li><b>03</b><span>${t('通信与地面锚定','Communication & foundation')}</span></li></ol><p>${t('概念结构示意，实物以档案照片为准。','Concept geometry. Refer to photographs for actual hardware.')}</p></div>`}</section><div class="engineering-sheet"><section class="hardware-file"><h2>${t('工程档案','Engineering file')}</h2><dl>${[[t('设备编号','Designation'),'DMS–'+station.toUpperCase()],[t('防护等级','Enclosure'),'IP66'],[t('电池','Battery'),t('钛酸锂电池','Lithium titanate')],[t('通信','Communication'),'GPS / LoRa'],[t('部署记录','Deployment'),t('地面测试场地 · 地面锚定','Ground test site · Ground anchor')]].map(([a,b])=>`<div><dt>${a}</dt><dd>${b}</dd></div>`).join('')}</dl></section><section class="hardware-telemetry"><h2>${t('装置遥测','Instrument telemetry')}</h2><div class="hardware-metrics">${metric(t('电压','Voltage'),n(r.v,3),'V')}${metric(t('电流','Current'),n(r.a),'mA')}${metric(t('舱内温度','Cabin temperature'),n(r[c[0].key]),'°C')}${metric(t('太阳辐射','Solar irradiance'),n(r[c[4].key],0),'W/m²')}</div><p>${badge()} · ${date(r.time)}</p></section></div></div>`;
   }
   function analysis() {
     const s=D.summary(rows,station),groups=[{keys:[station==='a01'?'j':'t','k'],zh:'舱内温湿度',en:'Cabin environment'},{keys:[station==='a01'?'t':'j','h'],zh:'外部环境',en:'Outside environment'},{keys:[station==='a01'?'l':'s'],zh:'太阳辐射',en:'Solar irradiance'},{keys:['v','a'],zh:'电源状态',en:'Power system'},{keys:['x','y'],zh:'GPS定位',en:'GPS position'},{keys:['wind'],zh:'风速监测',en:'Wind speed'},{keys:['b'],zh:'大气压强',en:'Air pressure'},{keys:['d'],zh:'风向',en:'Wind direction'}];
@@ -211,7 +213,7 @@
   }
   function drawVisibleCharts(){
       cancelChartRender();
-      // Keep unchanged plots. A channel click changes one graph, not all eleven.
+      // Keep unchanged plots. Selecting a channel reuses the one main graph.
       charts=charts.filter(chart=>{if(viewRoot?.contains(chart.canvas))return true;chart.destroy();return false;});
       if(document.hidden)return;
       if(!window.Chart){requestCharts();return;}
@@ -220,26 +222,14 @@
       if(active==='sensors'){
         const defs=D.channels(station),trend=visibleTrend(),ordered=trend.slice().reverse(),labels=ordered.map(r=>String(r.time).slice(0,16));
         drawChart('signalChart',defs.find(c=>c.key===channel),trend,false,ordered,labels);
-        // Summary plots never hold up the route's main content or a click. Each
-        // small job yields; leaving the route cancels every outstanding job.
-        const revision=chartRenderGeneration;let index=0;
-        const schedule=()=>{
-          const idle=typeof window.requestIdleCallback==='function'&&typeof window.cancelIdleCallback==='function';
-          chartRenderJob={idle,id:idle?window.requestIdleCallback(next,{timeout:100}):setTimeout(next,16)};
-        };
-        const next=()=>{
-          if(revision!==chartRenderGeneration||active!=='sensors'||document.hidden)return;
-          chartRenderJob=null;
-          drawChart('mini'+index,defs[index],trend,true,ordered,labels);index++;
-          if(index<defs.length)schedule();
-        };
-        if(defs.length)schedule();
       }
       if(active==='network'||active==='location')drawChart('networkTrend',D.channels(station)[0],rows.slice(0,48),true);
   }
   function visibleTrend(){if(range==='all')return rows;if(range==='24h'){const end=D.time(rows[0]?.time);return rows.filter(r=>D.time(r.time)>=end-86400000);}return rows.slice(0,100);}
   function drawChart(id,c,list,mini=false,preparedRows,preparedLabels) {
     const canvas=$(id);if(!canvas||!window.Chart||!c)return;
+    const axisTime=lang==='zh'?'采集时间':'Observation time',axisValue=c[lang]+(c.unit?' ('+c.unit+')':'');
+    canvas.setAttribute?.('aria-label',mini?c[lang]:c[lang]+(lang==='zh'?'折线图；横轴：':' trend; horizontal axis: ')+axisTime+(lang==='zh'?'；纵轴：':'; vertical axis: ')+axisValue);
     const existing=charts.find(chart=>chart.canvas===canvas),signature=[station,lang,range,c.key,mini].join(':');
     const previous=existing&&chartStates.get(existing);
     if(previous?.rows===rows&&previous.signature===signature)return;
@@ -253,8 +243,8 @@
       }]},
       options:{responsive:true,maintainAspectRatio:false,animation:false,interaction:{mode:'index',intersect:false},
         plugins:{legend:{display:false},tooltip:{enabled:!mini,backgroundColor:'#111e2af5',titleColor:'#adbfca',bodyColor:'#e1ebf1',padding:12,cornerRadius:9,borderColor:'#d3e5ef2e',borderWidth:1,titleFont:{family:'Consolas',size:11,weight:'normal'},bodyFont:{family:'Segoe UI',size:13}}},
-        scales:{x:{display:!mini,grid:{display:false},ticks:{color:'#9bb0be',maxTicksLimit:6,maxRotation:0,callback:function(value){return this.getLabelForValue(value).slice(5,16);}}},
-          y:{display:!mini,grid:{color:'#bbd4e610'},border:{display:false},ticks:{color:'#9bb0be',maxTicksLimit:5}}}
+        scales:{x:{display:!mini,title:{display:!mini,text:axisTime},grid:{display:false},ticks:{color:'#9bb0be',maxTicksLimit:6,maxRotation:0,callback:function(value){return this.getLabelForValue(value).slice(5,16);}}},
+          y:{display:!mini,title:{display:!mini,text:axisValue},grid:{color:'#bbd4e610'},border:{display:false},ticks:{color:'#9bb0be',maxTicksLimit:5}}}
       }
     };
     if(existing){
@@ -347,7 +337,7 @@
     if(b.dataset.channel&&b.dataset.channel!==channel){channel=b.dataset.channel;render();window.scrollTo({top:0,behavior:'smooth'});}
     if(b.dataset.range&&b.dataset.range!==range){range=b.dataset.range;render();}
     if(b.dataset.device){deviceView=b.dataset.device;render();}
-    if(b.dataset.photo!==undefined){photo=Number(b.dataset.photo)===1?1:0;render();}
+    if(b.dataset.photo!==undefined){photo=Number(b.dataset.photo)===1?1:0;render();viewQuery('.photo-original')?.focus({preventScroll:true});}
     if(b.dataset.action==='language'){lang=lang==='zh'?'en':'zh';try{localStorage.setItem('anx-lang',lang);}catch(e){}document.documentElement.dataset.lang=lang;window.dispatchEvent(new Event('anx:langchange'));render();}
     if(b.dataset.action==='refresh')load(true);
     if(b.dataset.action==='retry-charts')requestCharts(true);
