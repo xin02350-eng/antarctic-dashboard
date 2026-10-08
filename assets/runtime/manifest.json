@@ -7,12 +7,12 @@
   },
   "bundles": {
     "app": {
-      "file": "assets/runtime/app.acc44a0dea0e.js",
-      "src": "./assets/runtime/app.acc44a0dea0e.js",
-      "url": "./assets/runtime/app.acc44a0dea0e.js",
-      "sha256": "acc44a0dea0e64d350abc6117e73881d2e3fa3bec81c40fb26c91e609cb506ad",
-      "bytes": 118919,
-      "gzipBytes": 37902,
+      "file": "assets/runtime/app.82527c91dfc9.js",
+      "src": "./assets/runtime/app.82527c91dfc9.js",
+      "url": "./assets/runtime/app.82527c91dfc9.js",
+      "sha256": "82527c91dfc9d503325658b01ed31e79e07ab2b3afffeae8cce299289509bea0",
+      "bytes": 121395,
+      "gzipBytes": 38664,
       "sources": [
         {
           "file": "js/expedition-dependencies.js",
@@ -31,8 +31,8 @@
         },
         {
           "file": "js/expedition-charts.js",
-          "sha256": "e97374420c11d689c2d35da593a6a5ac762a106ba3cb245432164e88486d04b7",
-          "bytes": 8263
+          "sha256": "a461ca1369fc3ab13fa8eb1e2b16d1c350ed57a27094ae24cdad1b665362f288",
+          "bytes": 9865
         },
         {
           "file": "js/expedition-atmosphere.js",
@@ -46,8 +46,8 @@
         },
         {
           "file": "js/expedition-icons.js",
-          "sha256": "d4acd7b2b5c80804c2144a658668f25fde7c0bffdf33e526747066fbc284ef8b",
-          "bytes": 2972
+          "sha256": "2940b922b0b5db20fc9fd22c43473dd0c5d5acfd42c2db73931663542cdf885c",
+          "bytes": 2995
         },
         {
           "file": "js/expedition-actions.js",
@@ -61,8 +61,8 @@
         },
         {
           "file": "js/expedition-app.js",
-          "sha256": "df383eef6314f75ae1ed075a975f3b3107e02db44e85ffa0998e94403498e74a",
-          "bytes": 48482
+          "sha256": "5e9a54b33d0f5698908c3681ae4c6a72bbf422d35177b10520767c2b6a97113a",
+          "bytes": 49333
         }
       ]
     },

@@ -22,7 +22,7 @@
   content: ""; position: absolute; width: 6px; height: 6px; right: 4px; top: -5px;
   border-right: 1px solid #d5ecf5; border-bottom: 1px solid #d5ecf5; transform: rotate(18deg);
 }
-.orientation-gate>small { font: .75rem/1.5 Consolas,"Segoe UI",sans-serif; letter-spacing: .22em; color: #9fb9ca; }
+.orientation-gate>small { font: .875rem/1.5 Consolas,"Segoe UI",sans-serif; letter-spacing: .16em; color: #9fb9ca; }
 .orientation-gate h1 { font-size: clamp(1.5rem,5vw,2rem); font-weight: 400; line-height: 1.35; }
 .orientation-gate p { max-width: 30ch; font-size: 1rem; line-height: 1.75; color: #acbfcd; }
 .orientation-gate button {
@@ -62,12 +62,13 @@ html[data-client="mobile"] .offline-banner button {
     --client-header: calc(56px + var(--client-top));
     --client-heading: 3.75rem;
     --client-screen: 100vh;
-    --client-scene: clamp(12rem,calc(var(--client-screen) - var(--client-header) - var(--client-heading) - 1rem - var(--client-bottom)),36rem);
+    --client-scene: clamp(9.5rem,calc(var(--client-screen) - var(--client-header) - var(--client-heading) - 1rem - var(--client-bottom)),36rem);
     scroll-padding-top: calc(var(--client-header) + .5rem);
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
   }
-  html[data-client="mobile"] body { min-width: 0; }
+  /* Separate reading, navigation and metadata sizes; hit areas stay full-size. */
+  html[data-client="mobile"] body { min-width: 0; font-size: .9375rem; }
   /* Off-screen light frames have not been measured yet; an SVG's intrinsic
      300px width must not create page-wide horizontal scrolling. */
   html[data-client="mobile"] .action-trace { width: 100%; height: 100%; max-width: 100%; }
@@ -95,26 +96,28 @@ html[data-client="mobile"] .offline-banner button {
   html[data-client="mobile"] .primary-nav a:last-child { margin-right: auto; }
   html[data-client="mobile"] .header-end { gap: .25rem; }
   html[data-client="mobile"] .station-select select {
-    width: 104px; min-height: 44px; padding-left: .25rem; padding-right: 1.25rem;
+    width: 112px; min-height: 44px; padding-left: .25rem; padding-right: 1.25rem;
     font-size: .875rem; letter-spacing: 0;
   }
   html[data-client="mobile"] .station-select:after { right: .4rem; }
   html[data-client="mobile"] .language { min-width: 44px; width: 44px; min-height: 44px; font-size: .875rem; }
   html[data-client="mobile"] #content { padding-top: var(--client-header); min-height: var(--client-screen); }
   html[data-client="mobile"] body[data-view="dashboard"] #content { padding-top: 0; }
-  html[data-client="mobile"] :is(button,input,select,.solid-link,.outline-button,.quiet-link) { min-height: 44px; }
-  html[data-client="mobile"] .solid-link { padding: .625rem 1rem; gap: 1rem; font-size: .875rem; }
+  html[data-client="mobile"] :is(button,input,select,.solid-link,.outline-button,.quiet-link) { min-height: 44px; font-size: .875rem; }
+  html[data-client="mobile"] .solid-link { padding: .625rem 1rem; gap: .75rem; font-size: .875rem; }
+  html[data-client="mobile"] :is(.eyebrow,.data-badge,.page-node small,.metric p,.metric strong small,.section-heading,.chart-load-state,.chart-empty,.empty-state p,.download-story p,.download-story dt,.download-story dd,.download-help) { font-size: .8125rem; }
+  html[data-client="mobile"] .metric strong small { margin-left: .375rem; }
   html[data-client="mobile"] .page-title { min-height: var(--client-heading); padding: .75rem 0; gap: .75rem; align-items: center; }
   html[data-client="mobile"] .page-title>div { flex-direction: row; align-items: center; gap: .75rem; }
   html[data-client="mobile"] .page-title .eyebrow { display: none; }
   html[data-client="mobile"] .page-title h1 { margin: 0; font-size: 1.5rem; line-height: 1.25; }
-  html[data-client="mobile"] .page-node { display: block; padding: 0; font-size: .75rem; white-space: nowrap; }
+  html[data-client="mobile"] .page-node { display: block; padding: 0; font-size: .8125rem; white-space: nowrap; }
   html[data-client="mobile"] .section-heading { gap: .75rem; padding-bottom: .75rem; }
   html[data-client="mobile"] .section-heading h2 { font-size: 1.125rem; }
   html[data-client="mobile"] .site-footer {
-    min-height: 72px; padding: 1rem 0 calc(1rem + var(--client-bottom)); gap: .5rem 1rem; flex-wrap: wrap;
+    min-height: 72px; padding: .75rem 0 calc(.75rem + var(--client-bottom)); gap: .5rem 1rem; flex-wrap: wrap; font-size: .8125rem;
   }
-  html[data-client="mobile"] .site-footer>div { gap: .5rem 1rem; flex-wrap: wrap; font-size: .875rem; }
+  html[data-client="mobile"] .site-footer>div { gap: .5rem 1rem; flex-wrap: wrap; font-size: .8125rem; }
   html[data-client="mobile"] .site-footer a { min-height: 44px; }
 
   /* One full first-screen scene. Supporting copy and readings follow in the
@@ -124,8 +127,8 @@ html[data-client="mobile"] .offline-banner button {
   html[data-client="mobile"] .hero-copy {
     position: relative; inset: auto; margin-left: var(--gutter); width: calc(48% - var(--gutter));
     max-width: 32rem; min-height: var(--client-screen);
-    display: flex; flex-direction: column; align-items: flex-start; gap: 1.5rem;
-    padding-top: calc(var(--client-header) + 1.5rem);
+    display: flex; flex-direction: column; align-items: flex-start; gap: 1rem;
+    padding-top: calc(var(--client-header) + 1rem);
     padding-bottom: calc(clamp(6.25rem,calc(var(--client-screen) * .28),13rem) + var(--client-bottom));
   }
   html[data-client="mobile"] .hero-copy h1 {
@@ -139,23 +142,24 @@ html[data-client="mobile"] .offline-banner button {
     font-size: clamp(1.5rem,3.3vw,2rem); line-height: 1.2; letter-spacing: -.035em;
   }
   html[data-client="mobile"] .hero-actions { margin-top: auto; flex-shrink: 0; gap: .75rem; width: auto; }
-  html[data-client="mobile"] .hero-enter.solid-link { min-height: 48px; gap: 1rem; padding: .625rem 1rem; font-size: .875rem; letter-spacing: .025em; }
+  html[data-client="mobile"] .hero-enter.solid-link { min-height: 48px; gap: .75rem; padding: .625rem 1rem; font-size: .9375rem; letter-spacing: .025em; }
   html[data-client="mobile"] .hero-field-notes {
     position: relative; inset: auto; max-width: none; margin: 0 var(--gutter);
     display: grid; grid-template-columns: minmax(0,1.1fr) minmax(0,1fr); align-items: center;
     gap: 1rem; padding: 1rem 0; border-top: 1px solid var(--line);
   }
-  html[data-client="mobile"] .hero-manifesto { font-size: .875rem; line-height: 1.65; letter-spacing: 0; }
+  html[data-client="mobile"] .hero-manifesto { font-size: .9375rem; line-height: 1.6; letter-spacing: 0; }
   html[data-client="mobile"] .hero-telemetry { flex-wrap: wrap; gap: .5rem .875rem; padding-top: 0; }
   html[data-client="mobile"] .hero-telemetry:before { display: none; }
-  html[data-client="mobile"] .field-readout>span { font-size: .75rem; }
+  html[data-client="mobile"] .field-readout>span { font-size: .8125rem; letter-spacing: 0; }
   html[data-client="mobile"] .field-readout strong { font-size: 1.75rem; line-height: 1.25; }
+  html[data-client="mobile"] .field-readout small { font-size: .8125rem; }
   html[data-client="mobile"] .hero-status { padding-left: .875rem; }
-  html[data-client="mobile"] .hero-status :is(.data-badge,time) { font-size: .75rem; }
+  html[data-client="mobile"] .hero-status :is(.data-badge,time) { font-size: .8125rem; }
   html[data-client="mobile"] .hero-status time { margin-top: .25rem; }
   html[data-client="mobile"] .field-foot {
     top: calc(var(--client-screen) - 1.5rem - var(--client-bottom)); bottom: auto;
-    max-width: calc(100% - 2 * var(--gutter)); font-size: .6875rem;
+    max-width: calc(100% - 2 * var(--gutter)); font-size: .8125rem; line-height: 1.4; letter-spacing: 0;
   }
   html[data-client="mobile"] .hero-scroll {
     display: flex; left: var(--gutter); top: calc(var(--client-screen) - 4.75rem - var(--client-bottom));
@@ -165,11 +169,13 @@ html[data-client="mobile"] .offline-banner button {
   html[data-client="mobile"] .mission-ribbon { grid-template-columns: repeat(4,minmax(0,1fr)); gap: .75rem; padding: 1rem 0; }
   html[data-client="mobile"] .ribbon-identity { grid-column: 1/-1; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
   html[data-client="mobile"] .mission-ribbon .metric { padding: 0; border: 0; }
-  html[data-client="mobile"] .metric>span { font-size: .875rem; }
-  html[data-client="mobile"] .metric>strong { font-size: 1.3rem; }
-  html[data-client="mobile"] .overview-lower { grid-template-columns: minmax(0,1fr) minmax(0,1.7fr); gap: 1.25rem; padding: 1.5rem 0; }
+  html[data-client="mobile"] .metric>span { font-size: .8125rem; }
+  html[data-client="mobile"] .metric>strong { font-size: 1.5rem; white-space: normal; overflow-wrap: anywhere; }
+  html[data-client="mobile"] .ribbon-identity>a { font-size: .8125rem; min-height: 44px; display: inline-flex; align-items: center; }
+  html[data-client="mobile"] .overview-lower { grid-template-columns: minmax(0,1fr) minmax(0,1.7fr); gap: 1rem; padding: 1rem 0; }
   html[data-client="mobile"] .observation-intro h2 { font-size: 1.375rem; }
-  html[data-client="mobile"] .observation-intro p { margin-top: .75rem; }
+  html[data-client="mobile"] .observation-intro p { margin-top: .5rem; font-size: .9375rem; line-height: 1.6; }
+  html[data-client="mobile"] .observation-intro>time { font-size: .8125rem; }
   html[data-client="mobile"] .observation-links { margin-top: .75rem; gap: .25rem .75rem; }
   html[data-client="mobile"] .overview-chart { padding: 0; border: 0; }
   html[data-client="mobile"] .overview-chart .chart-box { height: 12rem; }
@@ -177,33 +183,37 @@ html[data-client="mobile"] .offline-banner button {
 
   /* Full channel selection remains beside the graph, within its own touch
      scroll region. The page itself stays vertically scrollable. */
-  html[data-client="mobile"] .trend-workspace { grid-template-columns: 9rem minmax(0,1fr); gap: .75rem; }
+  html[data-client="mobile"] .trend-workspace { grid-template-columns: 10.5rem minmax(0,1fr); gap: .75rem; }
   html[data-client="mobile"] .channel-list {
     position: sticky; top: calc(var(--client-header) + .5rem); align-self: start;
     display: block; padding-top: 0; max-height: calc(var(--client-screen) - var(--client-header) - var(--client-heading) - 1rem - var(--client-bottom));
     overflow-y: auto; overscroll-behavior-y: contain; -webkit-overflow-scrolling: touch;
   }
   html[data-client="mobile"] .channel-list button { min-height: 48px; padding: .375rem .5rem; gap: .375rem; }
-  html[data-client="mobile"] .channel-list button span:nth-child(2) { font-size: .875rem; }
-  html[data-client="mobile"] .channel-list button b { font-size: .75rem; }
-  html[data-client="mobile"] .signal-stage { padding: .875rem; }
+  html[data-client="mobile"] .channel-list button span:nth-child(2) { min-width: 0; font-size: .875rem; line-height: 1.35; overflow-wrap: break-word; }
+  html[data-client="mobile"] .channel-list button small { font-size: .8125rem; }
+  html[data-client="mobile"] .channel-list button b { flex-shrink: 0; font-size: .8125rem; }
+  html[data-client="mobile"] .signal-stage { padding: .75rem; }
   html[data-client="mobile"] .signal-top { gap: .5rem; flex-wrap: wrap; }
-  html[data-client="mobile"] .signal-value { font-size: 2rem; margin: .25rem 0 .5rem; }
+  html[data-client="mobile"] .signal-value { font-size: 2.25rem; margin: .25rem 0 .5rem; }
   html[data-client="mobile"] .range-control { max-width: 100%; overflow-x: auto; }
   html[data-client="mobile"] .range-control button { flex: 0 0 auto; min-height: 44px; padding: .375rem .5rem; font-size: .875rem; }
-  html[data-client="mobile"] .featured-chart { height: clamp(9rem,calc(var(--client-screen) - var(--client-header) - var(--client-heading) - 6.5rem),22rem); }
+  html[data-client="mobile"] .featured-chart { height: clamp(14rem,calc(var(--client-screen) - var(--client-header) - var(--client-heading) - 6.5rem),22rem); }
   html[data-client="mobile"] .signal-stats { grid-template-columns: repeat(3,minmax(0,1fr)); gap: .5rem; margin-top: .625rem; padding-top: .625rem; }
-  html[data-client="mobile"] .signal-stats .metric strong { font-size: 1.125rem; }
+  html[data-client="mobile"] .signal-stats .metric strong { font-size: 1.375rem; }
   html[data-client="mobile"] .signal-stats>span { grid-column: 1/-1; }
   html[data-client="mobile"] .all-signals { padding: 1.25rem 0 1.5rem; }
   html[data-client="mobile"] .signal-grid { grid-template-columns: repeat(3,minmax(0,1fr)); gap: .625rem; }
   html[data-client="mobile"] .mini-signal { padding: .875rem .75rem; }
+  html[data-client="mobile"] .mini-signal>span { font-size: .875rem; }
+  html[data-client="mobile"] .mini-signal small { font-size: .8125rem; }
   html[data-client="mobile"] .mini-signal>strong { font-size: 1.5rem; margin: .5rem 0; }
 
   /* Only the ledger scrolls horizontally; the access gate remains below it
      in normal document flow and never blocks the newest 100 observations. */
   html[data-client="mobile"] .archive-toolbar { padding-bottom: .625rem; gap: .75rem; align-items: center; }
   html[data-client="mobile"] .archive-toolbar>div { gap: .5rem 1rem; }
+  html[data-client="mobile"] #recordCount { font-size: .8125rem; }
   html[data-client="mobile"] .record-workspace { padding-bottom: 1.5rem; }
   html[data-client="mobile"] .table-scroll {
     width: 100%; max-width: 100%; min-height: 0; max-height: none;
@@ -213,9 +223,12 @@ html[data-client="mobile"] .offline-banner button {
   html[data-client="mobile"] .table-scroll table { width: max-content; min-width: 100%; font-size: .875rem; }
   html[data-client="mobile"] .table-scroll :is(th,td) { padding: .625rem .75rem; }
   html[data-client="mobile"] .table-scroll th:first-child { min-width: 10.5rem; }
-  html[data-client="mobile"] .table-scroll thead th { padding: .625rem .75rem; }
-  html[data-client="mobile"] .telemetry-access { gap: .75rem; padding-top: 1rem; font-size: .875rem; }
+  html[data-client="mobile"] .table-scroll thead th { padding: .625rem .75rem; font-size: .8125rem; }
+  html[data-client="mobile"] .table-scroll thead th small { font-size: .8125rem; }
+  html[data-client="mobile"] .mode-label { font-size: .8125rem; }
+  html[data-client="mobile"] .telemetry-access { gap: .75rem; padding-top: 1rem; font-size: .8125rem; }
   html[data-client="mobile"] .telemetry-access input { font-size: 1rem; min-width: 0; max-width: 100%; width: 16rem; }
+  html[data-client="mobile"] .telemetry-access [role=alert] { font-size: .8125rem; }
 
   /* Short scenes never acquire a desktop minimum height. Actual coordinates
      sit beside the map in normal flow, not on top of its touch interaction. */
@@ -227,30 +240,39 @@ html[data-client="mobile"] .offline-banner button {
   html[data-client="mobile"] .atlas-dossier { position: relative; inset: auto; width: auto; padding: .75rem; gap: .125rem; border-radius: 0; }
   html[data-client="mobile"] .atlas-dossier>.eyebrow { display: none; }
   html[data-client="mobile"] .atlas-dossier h2 { font-size: 1.125rem; margin: 0; line-height: 1.4; }
-  html[data-client="mobile"] .atlas-dossier p { margin: .25rem 0; font-size: .875rem; line-height: 1.4; }
+  html[data-client="mobile"] .atlas-dossier p { margin: .25rem 0; font-size: .9375rem; line-height: 1.4; }
   html[data-client="mobile"] .atlas-dossier .solid-link { margin-top: auto; min-height: 48px; font-size: .875rem; }
   html[data-client="mobile"] .coordinates { gap: .5rem; padding-top: .375rem; margin-bottom: .375rem; }
-  html[data-client="mobile"] .coordinates b { font-size: 1rem; }
-  html[data-client="mobile"] .coordinates small { font-size: .6875rem; letter-spacing: 0; margin-bottom: .5rem; }
-  html[data-client="mobile"] .map-caption { left: .5rem; bottom: .5rem; max-width: calc(100% - 15rem); font-size: .6875rem; }
-  html[data-client="mobile"] .map-empty-note { left: .75rem; right: 15rem; max-width: none; padding: .75rem; font-size: .875rem; }
+  html[data-client="mobile"] .coordinates b { font-size: .875rem; }
+  html[data-client="mobile"] .coordinates small { font-size: .8125rem; letter-spacing: 0; margin-bottom: .375rem; }
+  html[data-client="mobile"] .map-caption { left: .5rem; bottom: .5rem; max-width: calc(100% - 15rem); font-size: .8125rem; }
+  html[data-client="mobile"] .map-empty-note { left: .75rem; right: 15rem; max-width: none; padding: .75rem; font-size: .8125rem; }
+  html[data-client="mobile"] .leaflet-popup-content { font-size: .875rem; }
+  html[data-client="mobile"] .leaflet-control-attribution { font-size: .8125rem !important; }
   html[data-client="mobile"] :is(.orbital-atlas,.globe-stage) { height: var(--client-scene); }
+  /* Two geographic labels plus touch controls need actual vertical room.
+     On very short phones let the document scroll, never clip the scene copy. */
+  html[data-client="mobile"] .orbital-atlas { min-height: 16rem; }
+  html[data-client="mobile"] .globe-stage { min-height: 20rem; }
   html[data-client="mobile"] body[data-view="globe"] .globe-stage { margin-top: .75rem; height: clamp(14rem,calc(var(--client-screen) - var(--client-header) - 1.75rem - var(--client-bottom)),36rem); }
   html[data-client="mobile"] :is(.orbital-copy,.globe-copy) { left: 1rem; top: 1rem; bottom: 1rem; width: 36%; display: flex; flex-direction: column; align-items: start; }
   html[data-client="mobile"] :is(.orbital-heading h1,.globe-copy h1) { font-size: clamp(1.5rem,3vw,2rem); line-height: 1.2; }
   html[data-client="mobile"] .orbital-actions { margin-top: auto; flex-direction: row; gap: .5rem; }
   html[data-client="mobile"] .orbital-actions .solid-link { padding: .625rem .875rem; }
-  html[data-client="mobile"] .orbital-copy>small { margin-top: .75rem; font-size: .75rem; line-height: 1.5; }
-  html[data-client="mobile"] .globe-copy>p { font-size: .75rem; margin: .75rem 0; line-height: 1.5; }
+  html[data-client="mobile"] .orbital-copy>small { margin-top: .5rem; font-size: .8125rem; line-height: 1.4; }
+  html[data-client="mobile"] .globe-copy>p { font-size: .8125rem; margin: .5rem 0; line-height: 1.4; }
   html[data-client="mobile"] .globe-copy>a { margin-top: auto; }
-  html[data-client="mobile"] .globe-copy>small { margin-top: .625rem; font-size: .75rem; }
+  html[data-client="mobile"] .globe-copy>small { margin-top: .5rem; font-size: .8125rem; }
   html[data-client="mobile"] .network-summary { grid-template-columns: repeat(4,minmax(0,1fr)); gap: .75rem; padding: 1rem 0; }
-  html[data-client="mobile"] .network-summary .metric>span { font-size: .875rem; }
-  html[data-client="mobile"] .network-summary .metric>strong { font-size: 1.3rem; }
+  html[data-client="mobile"] .network-summary .metric>span { font-size: .8125rem; }
+  html[data-client="mobile"] .network-summary .metric>strong { font-size: 1.5rem; }
   html[data-client="mobile"] .network-trend { grid-column: 1/-1; }
+  html[data-client="mobile"] .network-trend>span { font-size: .8125rem; }
   html[data-client="mobile"] .node-roster { grid-template-columns: repeat(2,minmax(0,1fr)); gap: .625rem; padding: 1rem 0 1.5rem; }
-  html[data-client="mobile"] .node-entry { padding: .875rem .75rem; gap: .5rem; min-height: 88px; }
-  html[data-client="mobile"] .node-entry p { font-size: .75rem; }
+  html[data-client="mobile"] .node-entry { padding: .75rem; gap: .5rem; min-height: 88px; }
+  html[data-client="mobile"] .node-entry h3 { font-size: .9375rem; }
+  html[data-client="mobile"] .node-entry p { font-size: .8125rem; }
+  html[data-client="mobile"] .node-entry small { font-size: .8125rem; }
 
   /* Device captions follow the scene; photographs keep a separate 44px
      control lane and a scrollable thumbnail rail at every landscape width. */
@@ -261,14 +283,15 @@ html[data-client="mobile"] .offline-banner button {
   html[data-client="mobile"] body:is([data-view="hardware"],[data-view="location"]) .route-page>.page-title { grid-column: 1; grid-row: 1; margin-right: 1rem; }
   html[data-client="mobile"] body:is([data-view="hardware"],[data-view="location"]) .page-node { display: none; }
   html[data-client="mobile"] body[data-view="hardware"] .route-page>.device-tabs { grid-column: 2; grid-row: 1; align-self: center; margin: 0 var(--gutter) 0 0; justify-content: flex-end; gap: 1.25rem; }
+  html[data-client="mobile"] body[data-view="hardware"] .device-tabs button { font-size: .875rem; }
   html[data-client="mobile"] body[data-view="location"] .route-page>.network-toolbar { grid-column: 2; grid-row: 1; margin-left: 0; }
   html[data-client="mobile"] .instrument-stage:not(.photo-mode) { height: auto; padding-top: var(--client-scene); }
   html[data-client="mobile"] .instrument-stage>.field-frame { height: var(--client-scene); }
   html[data-client="mobile"] .instrument-legend { position: relative; inset: auto; height: auto; padding: .875rem; }
   html[data-client="mobile"] .instrument-legend ol { gap: .75rem; }
   html[data-client="mobile"] .instrument-legend li { font-size: .875rem; gap: .375rem; }
-  html[data-client="mobile"] .instrument-legend small { font-size: .75rem; }
-  html[data-client="mobile"] .instrument-legend>p { font-size: .75rem; }
+  html[data-client="mobile"] .instrument-legend small { font-size: .8125rem; }
+  html[data-client="mobile"] .instrument-legend>p { font-size: .8125rem; }
   html[data-client="mobile"] .instrument-stage.photo-mode { height: var(--client-scene); }
   html[data-client="mobile"] .hardware-photo { grid-template-columns: minmax(0,1fr) 4.75rem; grid-template-rows: minmax(0,1fr); gap: .75rem; padding: .625rem; max-width: none; margin: 0; }
   html[data-client="mobile"] .photo-stage { grid-template-rows: minmax(0,1fr) 44px; gap: .375rem; }
@@ -276,67 +299,81 @@ html[data-client="mobile"] .offline-banner button {
   html[data-client="mobile"] .photo-rail { min-height: 0; flex-direction: column; justify-content: flex-start; gap: .5rem; overflow-y: auto; overscroll-behavior-y: contain; }
   html[data-client="mobile"] .photo-rail button { flex: 0 0 auto; width: 100%; min-height: 44px; padding: .25rem; }
   html[data-client="mobile"] .photo-rail img { height: 2.5rem; }
-  html[data-client="mobile"] .photo-rail button>span { margin-top: .25rem; font-size: .75rem; }
-  html[data-client="mobile"] :is(.engineering-sheet,.instrument-channels) { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 1.25rem; padding: 1.5rem 0; }
-  html[data-client="mobile"] :is(.engineering-sheet h2,.instrument-channels h2) { font-size: 1.25rem; margin-bottom: .75rem; }
-  html[data-client="mobile"] .engineering-sheet dl>div { gap: .75rem; padding: .625rem 0; font-size: .875rem; }
+  html[data-client="mobile"] .photo-rail button>span { margin-top: .25rem; font-size: .8125rem; }
+  html[data-client="mobile"] :is(.engineering-sheet,.instrument-channels) { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 1rem; padding: 1rem 0; }
+  html[data-client="mobile"] :is(.engineering-sheet h2,.instrument-channels h2) { font-size: 1.125rem; margin-bottom: .75rem; }
+  html[data-client="mobile"] .engineering-sheet dl>div { gap: .75rem; padding: .5rem 0; font-size: .875rem; }
   html[data-client="mobile"] :is(.engineering-sheet dt,.engineering-sheet dd) { min-width: 0; overflow-wrap: break-word; }
-  html[data-client="mobile"] .instrument-channels p { font-size: .875rem; line-height: 1.7; }
-  html[data-client="mobile"] .instrument-channels .gps-reading { font-size: 1rem; overflow-wrap: anywhere; }
-  html[data-client="mobile"] .hardware-showcase.photo-layout { --gallery-height: var(--client-scene); grid-template-columns: minmax(9.5rem,.7fr) minmax(0,1.6fr); gap: 1.25rem; padding: 0 0 1.25rem; }
-  html[data-client="mobile"] .photo-layout .instrument-stage.photo-mode { grid-column: 2; grid-row: 1; height: var(--client-scene); max-width: none; margin: 0; align-self: start; }
+  html[data-client="mobile"] .engineering-sheet section>p { font-size: .8125rem; }
+  html[data-client="mobile"] .instrument-channels p { font-size: .9375rem; line-height: 1.6; }
+  html[data-client="mobile"] .instrument-channels a { font-size: .875rem; }
+  html[data-client="mobile"] .instrument-channels .gps-reading { font-size: .875rem; overflow-wrap: anywhere; }
+  html[data-client="mobile"] .hardware-showcase.photo-layout { --gallery-height: var(--client-scene); grid-template-columns: minmax(11rem,.85fr) minmax(0,1.6fr); gap: 1rem; padding: 0 0 1rem; }
+  html[data-client="mobile"] .photo-layout .instrument-stage.photo-mode { grid-column: 2; grid-row: 1; height: auto; min-height: var(--client-scene); max-width: none; margin: 0; align-self: stretch; }
   html[data-client="mobile"] .photo-layout .hardware-photo { grid-template-columns: repeat(2,minmax(0,1fr)); grid-template-rows: minmax(0,1fr) 44px; gap: .5rem .75rem; padding: 0; }
-  html[data-client="mobile"] .photo-layout .photo-stage { grid-template-rows: minmax(0,1fr) 1.5rem; gap: .375rem; }
+  html[data-client="mobile"] .photo-layout .photo-stage { grid-template-rows: minmax(0,1fr) 1.5rem; gap: .25rem; }
   html[data-client="mobile"] .photo-layout .photo-rail { height: 100%; display: block; overflow: visible; }
-  html[data-client="mobile"] .photo-layout .photo-rail button { grid-template-rows: minmax(0,1fr) 1.5rem; gap: .375rem; padding: 0; height: 100%; }
+  html[data-client="mobile"] .photo-layout .photo-rail button { grid-template-rows: minmax(0,1fr) 1.5rem; gap: .25rem; padding: 0; height: 100%; }
   html[data-client="mobile"] .photo-layout .photo-rail img { height: 100%; }
   html[data-client="mobile"] .photo-layout .photo-rail button>.photo-caption { margin-top: 0; font-size: .8125rem; }
-  html[data-client="mobile"] .photo-layout .photo-caption { font-size: .8125rem; gap: .5rem; }
+  html[data-client="mobile"] .photo-layout .photo-caption { font-size: .8125rem; gap: .375rem; }
+  html[data-client="mobile"] .photo-layout .photo-open { font-size: .8125rem; min-height: 44px; display: inline-flex; align-items: center; }
   html[data-client="mobile"] .photo-layout .photo-controls { gap: .5rem; }
   html[data-client="mobile"] .photo-layout .photo-controls button { flex: 0 0 44px; }
-  html[data-client="mobile"] .photo-layout .photo-index { min-width: 3.5rem; font-size: .75rem; letter-spacing: .05em; white-space: nowrap; }
+  html[data-client="mobile"] .photo-layout .photo-index { min-width: 4rem; font-size: .8125rem; letter-spacing: .05em; white-space: nowrap; }
   html[data-client="mobile"] .photo-layout .photo-provenance { display: none; }
   html[data-client="mobile"] .photo-layout .engineering-sheet { display: contents; }
   html[data-client="mobile"] .photo-layout .hardware-file { grid-column: 1; grid-row: 1; padding: 0; }
-  html[data-client="mobile"] .photo-layout .hardware-file h2 { font-size: .75rem; margin-bottom: .75rem; gap: .5rem; letter-spacing: .06em; }
-  html[data-client="mobile"] .photo-layout .hardware-file dl { gap: .75rem; }
-  html[data-client="mobile"] .photo-layout .hardware-file dl>div { padding: 0; line-height: 1.5; }
-  html[data-client="mobile"] .photo-layout .hardware-file dl>div:first-child { padding: 0 0 .625rem; }
+  html[data-client="mobile"] .photo-layout .hardware-file h2 { font-size: .875rem; margin-bottom: .5rem; gap: .5rem; letter-spacing: .03em; }
+  html[data-client="mobile"] .photo-layout .hardware-file dl { grid-template-columns: 1fr; gap: .5rem; }
+  html[data-client="mobile"] .photo-layout .hardware-file dl>div { display: grid; grid-template-columns: minmax(4.5rem,.8fr) minmax(0,1.2fr); align-items: baseline; gap: .5rem; padding: 0; line-height: 1.4; }
+  html[data-client="mobile"] .photo-layout .hardware-file dl>div:first-child { display: block; padding: 0 0 .5rem; }
   html[data-client="mobile"] .photo-layout .hardware-file dl>div:first-child dd { font-size: 1.75rem; }
-  html[data-client="mobile"] .photo-layout .hardware-file dt { font-size: .75rem; margin-bottom: .25rem; }
-  html[data-client="mobile"] .photo-layout .hardware-file dd { font-size: .875rem; }
+  html[data-client="mobile"] .photo-layout .hardware-file dt { font-size: .8125rem; margin-bottom: 0; }
+  html[data-client="mobile"] .photo-layout .hardware-file dl>div:first-child dt { font-size: .8125rem; margin-bottom: .25rem; }
+  html[data-client="mobile"] .photo-layout .hardware-file dd { font-size: .875rem; line-height: 1.4; }
+  html[data-client="mobile"] .photo-layout .hardware-file dl>div:last-child { display: block; }
+  html[data-client="mobile"] .photo-layout .hardware-file dl>div:last-child dt { margin-bottom: .25rem; }
   html[data-client="mobile"] .photo-layout .hardware-file dl>div:last-child dd { font-size: .8125rem; }
-  html[data-client="mobile"] .photo-layout .hardware-telemetry { grid-column: 1/-1; grid-template-columns: minmax(0,1fr) auto; gap: .75rem; padding: 1rem 0; }
-  html[data-client="mobile"] .photo-layout .hardware-telemetry h2 { margin: 0; font-size: .8125rem; }
+  html[data-client="mobile"] .photo-layout .hardware-telemetry { grid-column: 1/-1; grid-template-columns: minmax(0,1fr) auto; gap: .625rem; padding: .75rem 0; }
+  html[data-client="mobile"] .photo-layout .hardware-telemetry h2 { margin: 0; font-size: .875rem; }
   html[data-client="mobile"] .photo-layout .hardware-metrics { grid-column: 1/-1; grid-template-columns: repeat(4,minmax(0,1fr)); gap: .75rem; padding: 0; }
   html[data-client="mobile"] .photo-layout .hardware-metrics .metric+.metric { padding-left: .75rem; border-left: 1px solid #a7cbd522; }
-  html[data-client="mobile"] .photo-layout .hardware-metrics .metric>strong { font-size: 1.375rem; }
-  html[data-client="mobile"] .photo-layout .hardware-telemetry>p { grid-column: 2; grid-row: 1; font-size: .75rem; }
+  html[data-client="mobile"] .photo-layout .hardware-metrics .metric>span { font-size: .8125rem; }
+  html[data-client="mobile"] .photo-layout .hardware-metrics .metric>strong { font-size: 1.5rem; }
+  html[data-client="mobile"] .photo-layout .hardware-telemetry>p { grid-column: 2; grid-row: 1; font-size: .8125rem; }
 
   html[data-client="mobile"] .analysis-summary { grid-template-columns: minmax(7.5rem,.7fr) minmax(0,2.3fr); align-items: start; gap: 1rem; padding: .5rem 0 1rem; }
   html[data-client="mobile"] .analysis-total { flex-direction: column; align-items: flex-start; gap: .25rem; }
+  html[data-client="mobile"] .analysis-total>p { font-size: .875rem; margin-top: .25rem; }
   html[data-client="mobile"] .analysis-total>strong { font-size: 2.75rem; }
   html[data-client="mobile"] .analysis-summary>div:last-of-type { grid-template-columns: 1fr 1fr 1.5fr; gap: 1rem; }
   html[data-client="mobile"] .analysis-summary .metric:last-child { grid-column: auto; }
-  html[data-client="mobile"] .analysis-summary .metric:last-child strong { font-size: 1rem; white-space: normal; }
+  html[data-client="mobile"] .analysis-summary .metric:last-child strong { font-size: .875rem; white-space: normal; }
   html[data-client="mobile"] .analysis-body { grid-template-columns: minmax(0,1fr) 10.5rem; gap: 1rem; padding: 1rem 0 1.5rem; }
-  html[data-client="mobile"] .coverage-row { grid-template-columns: 1rem minmax(6rem,.95fr) minmax(2rem,1fr) 3.5rem 3rem; gap: .5rem; min-height: 44px; }
-  html[data-client="mobile"] .coverage-row b { font-size: .875rem; }
-  html[data-client="mobile"] .coverage-row small { display: block; font-size: .75rem; }
-  html[data-client="mobile"] .coverage-row strong { font-size: .875rem; }
+  html[data-client="mobile"] .coverage-row { grid-template-columns: 1rem minmax(0,1fr) auto; gap: .375rem .5rem; min-height: 64px; padding: .5rem 0; }
+  html[data-client="mobile"] .coverage-row>span { grid-column: 1; grid-row: 1; }
+  html[data-client="mobile"] .coverage-row b { grid-column: 2; grid-row: 1; min-width: 0; font-size: .875rem; }
+  html[data-client="mobile"] .coverage-track { grid-column: 2; grid-row: 2; }
+  html[data-client="mobile"] .coverage-row small { grid-column: 3; grid-row: 2; display: block; font-size: .8125rem; white-space: nowrap; }
+  html[data-client="mobile"] .coverage-row strong { grid-column: 3; grid-row: 1; font-size: .875rem; }
   html[data-client="mobile"] .energy-panel { align-self: start; justify-content: flex-start; border-top: 0; border-left: 1px solid var(--line); padding: .5rem 0 .5rem .75rem; }
   html[data-client="mobile"] .energy-ring { width: 120px; height: 120px; margin-bottom: 1rem; }
   html[data-client="mobile"] .energy-ring strong { font-size: 2.5rem; }
-  html[data-client="mobile"] .energy-panel>small { margin-top: .75rem; }
+  html[data-client="mobile"] .energy-panel p { font-size: .8125rem; }
+  html[data-client="mobile"] .energy-panel>small { margin-top: .5rem; font-size: .8125rem; line-height: 1.5; }
+  html[data-client="mobile"] .energy-ring span { font-size: .8125rem; letter-spacing: .05em; }
   html[data-client="mobile"] .chronology { padding: .5rem 0 1.5rem; }
   html[data-client="mobile"] .timeline { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 1rem; }
   html[data-client="mobile"] .timeline>div { padding-top: 1rem; }
+  html[data-client="mobile"] .timeline h3 { font-size: .9375rem; }
+  html[data-client="mobile"] .timeline time { font-size: .8125rem; }
   html[data-client="mobile"] .download-story { grid-template-columns: minmax(0,1fr) minmax(0,.65fr); gap: 1.25rem; min-height: 0; padding: 1rem var(--gutter); }
   html[data-client="mobile"] .download-story h1 { font-size: 2rem; margin: .75rem 0 1.25rem; }
   html[data-client="mobile"] .download-story dl { gap: 1rem; flex-wrap: wrap; padding: 1rem 0; margin-top: 1.25rem; }
   html[data-client="mobile"] .download-art { max-width: 16rem; }
   html[data-client="mobile"] .download-art:before, html[data-client="mobile"] .download-art:after { left: 1rem; font-size: .5625rem; letter-spacing: .05em; }
-  html[data-client="mobile"] .error-banner { margin-block: .75rem; padding: .75rem; font-size: .875rem; }
+  html[data-client="mobile"] .error-banner { margin-block: .75rem; padding: .75rem; font-size: .8125rem; }
 }
 
 @supports (padding-top: env(safe-area-inset-top)) {
@@ -353,6 +390,15 @@ html[data-client="mobile"] .offline-banner button {
   @media (orientation: landscape) {
     html[data-client="mobile"] { --client-screen: 100svh; }
   }
+}
+
+/* On compact English layouts, labels use their full cell width. The gallery
+   stretches with the dossier row, so longer translations do not leave a void. */
+@media (orientation: landscape) and (max-width: 640px) {
+  html[data-client="mobile"][data-lang="en"] .photo-layout .hardware-file dl { grid-template-columns: repeat(2,minmax(0,1fr)); gap: .5rem .625rem; }
+  html[data-client="mobile"][data-lang="en"] .photo-layout .hardware-file dl>div { display: block; }
+  html[data-client="mobile"][data-lang="en"] .photo-layout .hardware-file dl>div:nth-child(4) { grid-column: 1/-1; }
+  html[data-client="mobile"][data-lang="en"] .photo-layout .hardware-file dt { margin-bottom: .25rem; overflow-wrap: normal; }
 }
 
 /* Tablet landscape gains room without restoring the desktop's large gaps. */

@@ -26,6 +26,9 @@ h2 { font-size: 1.75rem; letter-spacing: -.04em; }
 em { font-style: normal; color: #929fa9; }
 small { font-weight: 400; }
 img, canvas { max-width: 100%; }
+/* Let intrinsic content shrink inside grids without clipping focus or text. */
+:is(#view,.route-page,.trend-workspace,.signal-stage,.analysis-body,.coverage,.hardware-showcase,.network-summary)>* { min-width: 0; }
+.action-trace { width: 100%; height: 100%; max-width: 100%; }
 [hidden] { display: none !important; }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); }
 .skip { position: fixed; top: -100px; left: 20px; z-index: 3000; padding: 12px; background: var(--accent); color: #10151b; }
@@ -139,7 +142,7 @@ body[data-view=dashboard] .site-header { background: linear-gradient(#060d15b8,#
 body[data-view=dashboard] #content { padding-top: 0; }
 body[data-view=dashboard] #view { animation: none; }
 .field-hero { position: relative; min-height: 650px; height: 100vh; height: 100svh; isolation: isolate; overflow: hidden; background: #182733; }
-.mission-stage { position: absolute; inset: 0; overflow: hidden; z-index: -3; background: #263c50 url('../assets/polar/antarctic-glacier-storm-v4.png') center / cover no-repeat; background-image: image-set(url('../assets/polar/antarctic-glacier-storm-v4.webp') type('image/webp'),url('../assets/polar/antarctic-glacier-storm-v4.png') type('image/png')); }
+.mission-stage { position: absolute; inset: 0; overflow: hidden; z-index: -3; background: #263c50 url('../assets/polar/antarctic-glacier-storm-v4.webp') center / cover no-repeat; }
 .mission-stage>.field-frame { opacity: 0; transition: opacity .16s ease-out; }
 .mission-stage.is-ready>.field-frame { opacity: 1; }
 .field-frame { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; background: #203242; }
@@ -622,6 +625,53 @@ body[data-view=analysis] .page-title h1 { font-size: clamp(2rem,2.6vw,2.75rem); 
   .hero-scroll { bottom: 23px; }
 }
 
+/* Windowed / zoomed desktop: retain full-size controls, spend less height on
+   decoration, and keep each scene's actions inside its visible composition. */
+@media (min-width: 769px) {
+  html:not([data-client="mobile"]) body[data-view=hardware] .route-page:not([hidden]) { display: grid; grid-template-columns: minmax(0,1fr) auto; }
+  html:not([data-client="mobile"]) body[data-view=hardware] .route-page>* { grid-column: 1/-1; }
+  html:not([data-client="mobile"]) body[data-view=hardware] .route-page>.page-title { grid-column: 1; grid-row: 1; margin-right: 1.5rem; }
+  html:not([data-client="mobile"]) body[data-view=hardware] .route-page>.device-tabs { grid-column: 2; grid-row: 1; margin: 0 var(--gutter) 0 0; align-self: center; }
+  html:not([data-client="mobile"]) .primary-nav { min-width: 0; max-width: 100%; }
+  html:not([data-client="mobile"]) .page-title { flex-wrap: wrap; }
+}
+@media (min-width: 769px) and (max-height: 600px) {
+  html:not([data-client="mobile"]) .navigation-rail { min-height: 64px; }
+  html:not([data-client="mobile"]) #content { padding-top: 64px; }
+  html:not([data-client="mobile"]) body[data-view=dashboard] #content { padding-top: 0; }
+  html:not([data-client="mobile"]) .page-title { padding-top: .75rem; padding-bottom: .75rem; }
+  html:not([data-client="mobile"]) .page-title h1 { font-size: 1.75rem; }
+  html:not([data-client="mobile"]) .network-toolbar { min-height: 44px; padding-top: .5rem; margin-bottom: .5rem; }
+  html:not([data-client="mobile"]) .orbital-atlas { height: clamp(300px,calc(100vh - 136px),480px); height: clamp(300px,calc(100svh - 136px),480px); }
+  html:not([data-client="mobile"]) :is(.orbital-copy,.globe-copy) { top: 1.25rem; bottom: 2.75rem; display: flex; flex-direction: column; align-items: flex-start; }
+  html:not([data-client="mobile"]) :is(.orbital-heading h1,.globe-copy h1) { font-size: clamp(2rem,4vw,2.75rem); line-height: 1.15; }
+  html:not([data-client="mobile"]) .orbital-actions { margin-top: auto; padding-top: 1rem; }
+  html:not([data-client="mobile"]) .orbital-copy>small { margin-top: .75rem; line-height: 1.6; }
+  html:not([data-client="mobile"]) body[data-view=globe] .globe-stage { margin-top: .75rem; height: clamp(300px,calc(100vh - 100px),500px); height: clamp(300px,calc(100svh - 100px),500px); }
+  html:not([data-client="mobile"]) .globe-copy>p { margin: .75rem 0; }
+  html:not([data-client="mobile"]) .globe-copy>a { margin-top: auto; }
+  html:not([data-client="mobile"]) .globe-copy>small { margin-top: .75rem; }
+  html:not([data-client="mobile"]) .table-scroll { min-height: 10rem; }
+  html:not([data-client="mobile"]) .hardware-showcase.photo-layout { --gallery-height: 21rem; row-gap: 1.25rem; padding-top: .5rem; }
+  html:not([data-client="mobile"]) .atlas:not(.orbital-atlas) { display: grid; grid-template-columns: minmax(0,1fr) 17rem; height: auto; min-height: 20rem; }
+  html:not([data-client="mobile"]) .atlas:not(.orbital-atlas) #atlasMap { position: relative; min-height: 20rem; }
+  html:not([data-client="mobile"]) .atlas-dossier { position: relative; inset: auto; width: auto; padding: .75rem; border-radius: 0; }
+  html:not([data-client="mobile"]) .atlas-dossier h2 { margin-top: 0; }
+  html:not([data-client="mobile"]) .atlas-dossier .eyebrow { display: none; }
+  html:not([data-client="mobile"]) .atlas-dossier .coordinates { padding-top: .5rem; margin-bottom: .25rem; }
+  html:not([data-client="mobile"]) .atlas-dossier .coordinates small { margin-bottom: .5rem; }
+  html:not([data-client="mobile"]) .map-caption { max-width: calc(100% - 19rem); }
+  html:not([data-client="mobile"]) .map-empty-note { left: 1rem; right: 18rem; max-width: none; }
+}
+/* Progressive enhancement: old WebViews keep the same photographs and a
+   usable keyboard focus ring even without newer CSS presentation features. */
+@supports not (aspect-ratio: 1) {
+  .photo-original,.photo-preview { width: 100%; }
+  .download-art { min-height: 16rem; }
+}
+@supports not selector(:focus-visible) {
+  a:focus,button:focus,input:focus,select:focus,summary:focus,[tabindex]:focus { outline: 2px solid var(--accent); outline-offset: 3px; }
+}
 /* Safe narrow-width reflow when the desktop URL is opened directly. */
 @media (max-width: 768px) {
   .navigation-rail { grid-template-columns: minmax(0,1fr) auto; padding-block: .7rem; row-gap: .25rem; }

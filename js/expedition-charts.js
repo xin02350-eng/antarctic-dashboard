@@ -3,7 +3,7 @@
   'use strict';
   // Related sensors share one pigment; the restrained range still separates the physical quantities.
   const palette=Object.freeze({t:'#b5dbea',j:'#b5dbea',k:'#9ebcd6',h:'#9ebcd6',s:'#e0e7ec',l:'#e0e7ec',a:'#c2c9e5',v:'#badbdc',wind:'#a6cedf',b:'#afbed8',d:'#ccd5df'});
-  const gradients=new WeakMap();
+  const gradients=new WeakMap(),resizeJobs=new WeakMap();
   const color=value=>typeof value==='string'&&/^#[\da-f]{6}$/i.test(value)?value:'#b8d2df';
   const can=(ctx,names)=>ctx&&names.every(name=>typeof ctx[name]==='function');
   const finiteArea=area=>area&&['left','right','top','bottom'].every(key=>Number.isFinite(area[key]))&&area.right>area.left&&area.bottom>area.top;
@@ -24,6 +24,8 @@
   function configure(config,channelKey,mini=false){
     if(!config||typeof config!=='object')return config;
     const ink=palette[channelKey]||palette.t;
+    const mobile=!mini&&typeof window==='object'&&!!(window.ExpeditionClient?.mobile||window.document?.documentElement?.getAttribute('data-client')==='mobile');
+    const compact=mobile&&window.innerHeight>0&&window.innerHeight<540;
     for(const dataset of config.data?.datasets||[]){
       if(!dataset||typeof dataset!=='object')continue;
       Object.assign(dataset,{borderColor:ink,backgroundColor:context=>fill(context,ink,mini),borderWidth:mini?1.25:1.8,borderCapStyle:'round',borderJoinStyle:'round',pointRadius:0,pointHoverRadius:mini?0:2.4,pointHoverBackgroundColor:'#edf5f9',pointHoverBorderColor:ink,pointHoverBorderWidth:1,pointHitRadius:12});
@@ -36,10 +38,10 @@
     // remains clickable and keyboard-accessible without Chart pointer work.
     if(mini)options.events=[];
     const layout=options.layout||(options.layout={});
-    layout.padding={top:mini?2:8,right:mini?2:7,bottom:0,left:0};
+    layout.padding={top:mini?2:compact?6:8,right:mini?2:7,bottom:0,left:0};
     const plugins=options.plugins||(options.plugins={});
     const tooltip=plugins.tooltip||(plugins.tooltip={});
-    Object.assign(tooltip,{enabled:!mini,backgroundColor:'#0c1620fa',titleColor:'#a8bbc8',bodyColor:'#edf5f9',padding:{top:12,right:14,bottom:12,left:14},cornerRadius:6,borderColor:'#d7e7f033',borderWidth:1,displayColors:false,caretSize:0,caretPadding:12,bodySpacing:6,titleMarginBottom:9,titleFont:{family:'Consolas, monospace',size:12,weight:'normal'},bodyFont:{family:'Consolas, "Segoe UI", monospace',size:13,weight:'500'}});
+    Object.assign(tooltip,{enabled:!mini,backgroundColor:'#0c1620fa',titleColor:'#a8bbc8',bodyColor:'#edf5f9',padding:{top:12,right:14,bottom:12,left:14},cornerRadius:6,borderColor:'#d7e7f033',borderWidth:1,displayColors:false,caretSize:0,caretPadding:12,bodySpacing:6,titleMarginBottom:9,titleFont:{family:'Consolas, monospace',size:mobile?13:12,weight:'normal'},bodyFont:{family:'Consolas, "Segoe UI", monospace',size:mobile?14:13,weight:'500'}});
     const scales=options.scales||(options.scales={});
     for(const key of ['x','y']){
       const scale=scales[key]||(scales[key]={});scale.display=!mini;
@@ -48,13 +50,36 @@
       Object.assign(grid,{color:key==='y'?context=>context?.tick?.value===0?'#d4e5ee29':'#bbd4e612':'#bbd4e612',drawTicks:false});if(key==='x')grid.display=false;
       const border=scale.border||(scale.border={});border.display=false;
       const title=scale.title||(scale.title={});
-      Object.assign(title,{display:!mini&&!!title.text,color:'#b7c9d5',padding:{top:8,bottom:8},font:{family:'"Segoe UI", "Microsoft YaHei", sans-serif',size:12,weight:'normal',lineHeight:1.4}});
+      Object.assign(title,{display:!mini&&!!title.text,color:'#b7c9d5',padding:{top:compact?6:8,bottom:compact?6:8},font:{family:'"Segoe UI", "Microsoft YaHei", sans-serif',size:mobile?13:12,weight:'normal',lineHeight:1.4}});
       const ticks=scale.ticks||(scale.ticks={});
-      Object.assign(ticks,{color:'#9bb0be',padding:10,sampleSize:24,font:{family:'Consolas, monospace',size:11,weight:'normal'}});
+      Object.assign(ticks,{color:'#9bb0be',padding:mobile?8:10,sampleSize:24,font:{family:'Consolas, monospace',size:mobile?12:11,weight:'normal'}});
+      // Keep labels readable in the short landscape viewport without altering data or axis names.
+      if(compact)ticks.maxTicksLimit=Math.min(Number(ticks.maxTicksLimit)||4,4);
+      if(mobile&&key==='x'){
+        ticks.autoSkipPadding=Math.max(Number(ticks.autoSkipPadding)||0,14);
+        if(window.innerWidth>0&&window.innerWidth<=800)ticks.maxTicksLimit=Math.min(Number(ticks.maxTicksLimit)||4,window.innerWidth<=640?2:3);
+      }
     }
     return config;
   }
-  function finish(mini=false){return {id:'polarOptics',afterDatasetsDraw(chart){
+  function finish(mini=false){return {id:'polarOptics',beforeInit(chart){
+    if(typeof chart?._doResize!=='function'||typeof chart.update!=='function')return;
+    // Chart.js 4.4.1 leaves its private resize debounce alive after destroy().
+    // Own that timer from before the first resize, and release it with the canvas.
+    const state={timer:null,stopped:false},delay=Math.max(0,Number(chart.options?.resizeDelay)||0);
+    resizeJobs.set(chart,state);
+    chart._doResize=mode=>{
+      if(state.stopped)return 0;
+      clearTimeout(state.timer);
+      if(delay)state.timer=setTimeout(()=>{state.timer=null;if(!state.stopped)chart.update(mode);},delay);
+      else chart.update(mode);
+      return delay;
+    };
+  },beforeDestroy(chart){
+    const state=resizeJobs.get(chart);
+    if(!state)return;
+    state.stopped=true;clearTimeout(state.timer);resizeJobs.delete(chart);
+  },afterDatasetsDraw(chart){
     const ctx=chart&&chart.ctx,area=chart&&chart.chartArea;
     if(!finiteArea(area)||!can(ctx,['save','restore','beginPath','rect','clip','arc','fill','stroke']))return;
     const datasets=chart.data?.datasets;if(!datasets||typeof chart.getDatasetMeta!=='function')return;

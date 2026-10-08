@@ -45,7 +45,7 @@
         if (!node.parentNode) return;
         const fragment = doc.createDocumentFragment();
         node.data.split(pattern).forEach(part => {
-          if (Object.hasOwn(glyphs, part)) { fragment.appendChild(icon(glyphs[part])); replaced++; }
+          if (Object.prototype.hasOwnProperty.call(glyphs, part)) { fragment.appendChild(icon(glyphs[part])); replaced++; }
           else if (part) fragment.appendChild(doc.createTextNode(part));
         });
         node.parentNode.replaceChild(fragment, node);

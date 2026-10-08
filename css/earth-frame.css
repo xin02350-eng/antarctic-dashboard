@@ -131,7 +131,8 @@ html[data-client=mobile].earth-presented:not(.earth-unavailable) #earthViewport[
 html[data-client=mobile] .earth-desktop-hint { display: none; }
 html[data-client=mobile] .earth-touch-hint { display: inline; }
 html[data-client=mobile] .earth-label { padding: .25rem .5rem; }
-html[data-client=mobile] .earth-label em { font-size: .875rem; line-height: 1.35; }
+html[data-client=mobile] .earth-label b { font-size: .875rem; line-height: 1.4; }
+html[data-client=mobile] .earth-label em { font-size: .8125rem; line-height: 1.35; }
 html[data-client=mobile] #globeFallback {
   top: 12%; left: .75rem; right: .75rem;
   left: calc(.75rem + env(safe-area-inset-left, 0px));
