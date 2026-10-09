@@ -1,85 +1,26 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
-  <title>DMS 下载安装</title>
-  <meta name="theme-color" content="#06131f">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#0b151e">
+  <title>DMS · Android 安装包</title>
   <style>
-    *{box-sizing:border-box;margin:0;padding:0}
-    html,body{height:100%}
-    body{
-      font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif;
-      background:radial-gradient(120% 90% at 50% 0%,#0b2b45 0%,#06131f 55%,#020a12 100%);
-      color:#dff4ff;
-      display:flex;align-items:center;justify-content:center;
-      padding:24px;
-      min-height:100dvh;
-      height:auto;
-    }
-    .card{
-      width:100%;max-width:440px;
-      background:rgba(7,24,40,.82);
-      border:1px solid rgba(140,234,255,.22);
-      border-radius:18px;
-      padding:34px 26px 30px;
-      text-align:center;
-      box-shadow:0 24px 60px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.06);
-      backdrop-filter:blur(12px);
-    }
-    .logo{
-      width:76px;height:76px;margin:0 auto 16px;border-radius:18px;
-      background:linear-gradient(160deg,#123a5a,#071d31);
-      border:1px solid rgba(140,234,255,.4);
-      display:flex;align-items:center;justify-content:center;
-      font-size:26px;font-weight:700;letter-spacing:2px;color:#8ceaff;
-      box-shadow:0 0 28px rgba(80,190,255,.25);
-    }
-    h1{font-size:22px;letter-spacing:3px;font-weight:600;margin-bottom:6px}
-    .sub{font-size:13px;color:#7fa3bc;letter-spacing:2px;margin-bottom:22px}
-    .btn{
-      display:block;width:100%;padding:16px 12px;border-radius:12px;
-      background:linear-gradient(135deg,#0f8fd9,#0a6fb0);
-      color:#fff;font-size:18px;letter-spacing:4px;font-weight:600;
-      text-decoration:none;box-shadow:0 10px 26px rgba(15,143,217,.4),inset 0 1px 0 rgba(255,255,255,.25);
-      transition:transform .2s ease,box-shadow .2s ease;
-      margin-bottom:18px;
-    }
-    .btn:active{transform:scale(.97)}
-    .btn.second{background:linear-gradient(135deg,#1d4f73,#143c59);box-shadow:0 8px 20px rgba(20,70,110,.32),inset 0 1px 0 rgba(255,255,255,.14);margin-top:10px;font-size:15px;letter-spacing:2px}
-    .info{font-size:12px;color:#8aa9bc;line-height:1.9;text-align:left}
-    .info b{color:#cfe9ff;font-weight:500}
-    details{margin-top:16px;text-align:left;font-size:12px;line-height:1.9;color:#8aa9bc}
-    summary{min-height:44px;display:flex;align-items:center;cursor:pointer;color:#cfe9ff}
-    details a{display:inline-flex;align-items:center;min-height:44px;color:#b4dfee;margin-right:16px}
-    .warn{
-      margin-top:16px;padding:12px 14px;border-radius:10px;
-      background:rgba(245,185,66,.10);border:1px solid rgba(245,185,66,.30);
-      font-size:12px;color:#f5d9a0;line-height:1.8;text-align:left;
-    }
+    *{box-sizing:border-box}body{margin:0;background:#0b151e;color:#e9f3f7;font:1rem/1.7 system-ui,"Microsoft YaHei",sans-serif}
+    main{max-width:30rem;margin:auto;padding:2rem 1.5rem}h1{font-size:1.5rem}a{display:flex;align-items:center;min-height:48px;color:#b3dded;text-underline-offset:5px}
+    small{display:block;margin:1.5rem 0;color:#a6b5bf;font-size:.875rem}
   </style>
-  <link rel="stylesheet" href="./css/mobile.css?v=20260825n">
-  <link rel="stylesheet" href="./css/polar-system.css?v=20260926a">
-  <script defer src="./js/polar-shell.js?v=20261005b"></script>
+  <meta http-equiv="refresh" content="0;url=./install.html">
 </head>
 <body>
-  <div class="card">
-    <div class="logo">DMS</div>
-    <h1>DMS 自主观测系统</h1>
-    <div class="sub">ANDROID 2.0.1 · 横屏测试版</div>
-    <a class="btn" href="./apk/DMS-antarctic-2.0.1-preview.apk">下载 2.0.1 测试版</a>
-    <a class="btn second" href="./expedition.html?view=dashboard&client=mobile">体验横屏网页版</a>
-    <div class="info">
-      文件大小：<b>8.69 MiB</b><br>
-      适用系统：<b>Android 5.1+，Chrome / WebView 90+</b><br>
-      安装后：<b>全屏横屏 · 免浏览器</b><br>
-      安装方法：<b>点击按钮 → 浏览器下载 → 点通知安装</b><br>
-      可更新 2.0.0 测试版；因签名不同，不能覆盖原 1.7。
-    </div>
-    <div class="warn">
-      此包为调试签名测试版，尚未完成真机兼容验证。原版用户请保留旧应用，优先在测试设备安装。微信内请先点“<b>在浏览器打开</b>”，再按系统提示下载和安装。
-    </div>
-    <details><summary>保留的旧版安装包</summary><a href="./apk/DMS-antarctic.apk">原版 1.7</a><a href="https://cdn.jsdelivr.net/gh/xin02350-eng/antarctic-dashboard@bb40a21/apk/DMS-antarctic.apk">原版镜像</a></details>
-  </div>
+  <main>
+    <h1>DMS · 安卓客户端</h1>
+    <p>2.0.2 预览版</p>
+    <a href="./install.html">进入下载安装页面 →</a>
+    <a href="./apk/DMS-antarctic-2.0.2-preview.apk" download>直接下载 APK</a>
+    <small>可更新同签名的 2.0.0 / 2.0.1 预览版，不能覆盖原 1.7。调试签名测试版，尚未完成真机兼容验证。</small>
+    <a href="./apk/DMS-antarctic.apk">原版 1.7 安装包</a>
+    <a href="https://cdn.jsdelivr.net/gh/xin02350-eng/antarctic-dashboard@bb40a21/apk/DMS-antarctic.apk">原版镜像</a>
+  </main>
 </body>
 </html>

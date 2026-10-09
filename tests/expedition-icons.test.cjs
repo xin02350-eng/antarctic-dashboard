@@ -112,7 +112,7 @@ test('desktop keeps the DMS wordmark and uses contextual icons without the forme
   assert.equal((app.match(selection) || []).length, 1, 'local photograph selection keeps the horizontal arrow');
   assert.ok(!app.replace(original, '').replace(selection, '').includes('↗'), 'all local navigation outside photograph controls uses the horizontal arrow');
   assert.match(app, /class="nav-arrow" aria-hidden="true">→<\/span>/);
-  assert.ok(app.includes("Android 2.0.1 preview')} ⇩</a>"));
+  assert.ok(app.includes("Android 2.0.2 preview')} ⇩</a>"));
   assert.doesNotMatch(app, /header-menu|menu-glyph/);
   assert.doesNotMatch(css, /header-menu|menu-glyph|nav-secondary/);
   assert.match(css, /\.language \{[^}]*min-width: 44px; min-height: 44px/);
