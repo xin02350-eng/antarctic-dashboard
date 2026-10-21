@@ -1,0 +1,12 @@
+{
+  "asset": "hanyu-zhice-brand-v1.webp",
+  "source": "User-supplied PPT——寒域智测——分布式智能风光监测系统(7).pptx",
+  "packagePart": "ppt/media/image2.png",
+  "sourceSha256": "cc451308164973df3fdeb597745f4f63a95080b67a06d78a247516ddc4730812",
+  "assetSha256": "4d513e57f35b5a6211e23ea96187630d9133d2792c4a8e0b64be6c5ae11482ee",
+  "width": 512,
+  "height": 512,
+  "bytes": 49134,
+  "processing": "Proportionate resize and WebP delivery compression only; no redesign or external logo source.",
+  "usage": "Original emblem and Chinese wordmark are sampled separately into one shared print mask for four cabinet faces. A muted blue-grey PBR ink material masks the source paper at render time; no plaque or duplicate project name. The delivered source artwork remains unchanged."
+}

@@ -45,12 +45,22 @@
   }
   var roof = model.roof.userData;
   function vertex(radius, i, y) { var a = Math.PI / 4 + i * Math.PI * 2 / 3; return new T.Vector3(Math.cos(a) * radius, y, Math.sin(a) * radius); }
-  for (var side = 0; side < 3; side++) {
+  // Use the actual roof perimeter rather than reconstructing a different shape.
+  // Legacy three-sided models keep their original parameterization and density.
+  var hasCorners = Array.isArray(roof.outerCorners) && Array.isArray(roof.innerCorners) &&
+    roof.outerCorners.length >= 3 && roof.outerCorners.length === roof.innerCorners.length;
+  var sides = hasCorners ? roof.outerCorners.length : 3;
+  var roofNX = sides === 4 ? 32 : 40, roofNZ = sides === 4 ? 16 : 20;
+  function corner(inner, index) {
+    if (hasCorners) return new T.Vector3().fromArray((inner ? roof.innerCorners : roof.outerCorners)[index % sides]);
+    return vertex(inner ? roof.innerRadius : roof.outerRadius, index, inner ? roof.peakY : roof.eaveY);
+  }
+  for (var side = 0; side < sides; side++) {
     (function (side) {
       // Parameterization follows each pitched face; the upper throat stays clear of the PV braces.
-      var oa = vertex(roof.outerRadius, side, roof.eaveY), ob = vertex(roof.outerRadius, side + 1, roof.eaveY);
-      var ia = vertex(roof.innerRadius, side, roof.peakY), ib = vertex(roof.innerRadius, side + 1, roof.peakY);
-      deposit('roof-snow-' + side, group, 40, 20, function (u, v) {
+      var oa = corner(false, side), ob = corner(false, side + 1);
+      var ia = corner(true, side), ib = corner(true, side + 1);
+      deposit('roof-snow-' + side, group, roofNX, roofNZ, function (u, v) {
         var along = 0.07 + u * 0.83 + (noise(v * 13, side * 3) - 0.5) * 0.065;
         var lower = 0.018 + noise(u * 17 + side, 3) * 0.12;
         var upper = (side === 2 ? 0.72 : 0.56) - noise(u * 8 + side * 7, 4) * 0.18;

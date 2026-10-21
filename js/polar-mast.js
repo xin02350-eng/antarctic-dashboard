@@ -34,18 +34,18 @@
     cylinder(0.18, 0.18, 0.015, m.silver, 0, y + 0.04, 0);
   });
   cylinder(0.159, 0.159, 0.20, m.orange, 0, 0.8, 0);
-  // Enlarged triangular equipment enclosure: centered on the mast, aligned with the PV prism.
-  var enclosure = new T.Group(); enclosure.name = 'coaxial-triangular-equipment-enclosure'; station.add(enclosure);
-  var bodyRadius = 1.12, bodyBottom = 0.82, bodyTop = 1.96, roofPeak = 2.36, roofRadius = 1.18;
-  enclosure.userData = { sides: 3, radius: bodyRadius, bottom: bodyBottom, top: bodyTop, boreRadius: 0.19 };
-  function trianglePoint(radius, index, y) {
-    var theta = Math.PI / 4 + index * Math.PI * 2 / 3;
-    return new T.Vector3(Math.cos(theta) * radius, y, Math.sin(theta) * radius);
+  // Four-sided equipment cabinet around the same continuous mast. The PV prism above stays triangular.
+  var enclosure = new T.Group(); enclosure.name = 'coaxial-rectangular-equipment-enclosure'; station.add(enclosure);
+  var bodyWidth = 1.96, bodyDepth = 1.62, bodyBottom = 0.82, bodyTop = 1.96, roofPeak = 2.36;
+  enclosure.userData = { sides: 4, width: bodyWidth, depth: bodyDepth, bottom: bodyBottom, top: bodyTop, boreRadius: 0.19 };
+  function rectanglePoint(width, depth, index, y) {
+    var corner = ((index % 4) + 4) % 4;
+    return new T.Vector3((corner === 0 || corner === 3 ? 1 : -1) * width / 2, y, (corner < 2 ? 1 : -1) * depth / 2);
   }
-  function prism(radius, bottom, height, material) {
+  function cabinet(width, depth, bottom, height, material) {
     var shape = new T.Shape();
-    for (var j = 0; j < 3; j++) {
-      var p = trianglePoint(radius, j, 0);
+    for (var j = 0; j < 4; j++) {
+      var p = rectanglePoint(width, depth, j, 0);
       if (j === 0) shape.moveTo(p.x, -p.z); else shape.lineTo(p.x, -p.z);
     }
     shape.closePath();
@@ -54,43 +54,56 @@
     geometry.rotateX(-Math.PI / 2);
     return part(geometry, material, enclosure, 0, bottom, 0);
   }
-  prism(bodyRadius, bodyBottom, bodyTop - bodyBottom, m.white).name = 'triangular-enclosure-body';
-  prism(1.135, 0.77, 0.075, m.dark).name = 'enclosure-lower-seal';
-  // Three pitched roof faces descend from the mast collar to a projecting drip edge.
+  cabinet(bodyWidth, bodyDepth, bodyBottom, bodyTop - bodyBottom, m.white).name = 'rectangular-enclosure-body';
+  cabinet(bodyWidth + 0.03, bodyDepth + 0.03, 0.77, 0.075, m.dark).name = 'enclosure-lower-seal';
+  // Four pitched roof faces descend from the mast collar to a projecting drip edge.
   // An actual opening remains around the continuous mast; the boot seals the roof penetration.
-  var roofPositions = [];
+  var roofPositions = [], outerCorners = [], innerCorners = [];
   function triangle(a, b, c) { roofPositions.push(a.x, a.y, a.z, b.x, b.y, b.z, c.x, c.y, c.z); }
   function quad(a, b, c, d) { triangle(a, b, c); triangle(a, c, d); }
-  for (i = 0; i < 3; i++) {
-    var outerA = trianglePoint(roofRadius, i, bodyTop + 0.02), outerB = trianglePoint(roofRadius, i + 1, bodyTop + 0.02);
-    var innerA = trianglePoint(0.32, i, roofPeak), innerB = trianglePoint(0.32, i + 1, roofPeak);
+  for (i = 0; i < 4; i++) {
+    var outerA = rectanglePoint(2.08, 1.74, i, bodyTop + 0.02), outerB = rectanglePoint(2.08, 1.74, i + 1, bodyTop + 0.02);
+    var innerA = rectanglePoint(0.48, 0.48, i, roofPeak), innerB = rectanglePoint(0.48, 0.48, i + 1, roofPeak);
+    outerCorners.push(outerA.toArray()); innerCorners.push(innerA.toArray());
     var oa = outerA.clone().add(new T.Vector3(0, -0.035, 0)), ob = outerB.clone().add(new T.Vector3(0, -0.035, 0));
     var ia = innerA.clone().add(new T.Vector3(0, -0.035, 0)), ib = innerB.clone().add(new T.Vector3(0, -0.035, 0));
     quad(outerA, innerA, innerB, outerB); quad(oa, ob, ib, ia);
     quad(outerA, outerB, ob, oa); quad(innerA, ia, ib, innerB);
   }
   var roofGeometry = new T.BufferGeometry(); roofGeometry.setAttribute('position', new T.Float32BufferAttribute(roofPositions, 3)); roofGeometry.computeVertexNormals();
-  var roof = part(roofGeometry, m.silver, enclosure); roof.name = 'three-pitched-snow-shedding-roof';
-  roof.userData = { outerRadius: roofRadius, innerRadius: 0.32, eaveY: bodyTop + 0.02, peakY: roofPeak, thickness: 0.035 };
-  cylinder(0.16, 0.33, 0.12, m.rubber, 0, roofPeak + 0.025, 0).name = 'roof-mast-weather-boot';
+  var roof = part(roofGeometry, m.silver, enclosure); roof.name = 'four-pitched-snow-shedding-roof';
+  roof.userData = { sides: 4, outerCorners: outerCorners, innerCorners: innerCorners, width: 2.08, depth: 1.74,
+    eaveY: bodyTop + 0.02, peakY: roofPeak, thickness: 0.035 };
+  cylinder(0.16, 0.42, 0.12, m.rubber, 0, roofPeak + 0.025, 0).name = 'roof-mast-weather-boot';
   // A rolled service-panel edge catches a narrow highlight independently of its seal.
-  var serviceShape = new T.Shape();
-  serviceShape.moveTo(-0.735, -0.425); serviceShape.lineTo(0.735, -0.425);
-  serviceShape.lineTo(0.735, 0.425); serviceShape.lineTo(-0.735, 0.425); serviceShape.closePath();
-  var serviceGeometry = new T.ExtrudeGeometry(serviceShape, {depth: 0.009, bevelEnabled: true, bevelSize: 0.012, bevelThickness: 0.008, bevelSegments: 3, steps: 1});
+  function serviceGeometry(width) {
+    var serviceShape = new T.Shape(), half = width / 2;
+    serviceShape.moveTo(-half, -0.425); serviceShape.lineTo(half, -0.425);
+    serviceShape.lineTo(half, 0.425); serviceShape.lineTo(-half, 0.425); serviceShape.closePath();
+    return new T.ExtrudeGeometry(serviceShape, {depth: 0.009, bevelEnabled: true, bevelSize: 0.012, bevelThickness: 0.008, bevelSegments: 3, steps: 1});
+  }
+  var serviceGeometries = [serviceGeometry(bodyWidth - 0.24), serviceGeometry(bodyDepth - 0.24)];
+  var brandGeometry = new T.PlaneGeometry(1.06, 0.53);
   // Recessed service panels, restrained seams and flush fasteners, with no exposed cable loops.
-  for (i = 0; i < 3; i++) {
-    var face = new T.Group(), center = trianglePoint(bodyRadius, i, 0).add(trianglePoint(bodyRadius, i + 1, 0)).multiplyScalar(0.5);
+  for (i = 0; i < 4; i++) {
+    var face = new T.Group(), center = rectanglePoint(bodyWidth, bodyDepth, i, 0).add(rectanglePoint(bodyWidth, bodyDepth, i + 1, 0)).multiplyScalar(0.5);
+    var panelWidth = (i % 2 === 0 ? bodyWidth : bodyDepth) - 0.24;
+    face.name = 'equipment-service-face-' + (i + 1); face.userData = { side: i, panelWidth: panelWidth, brand: '寒域智测' };
     face.position.set(center.x, (bodyBottom + bodyTop) / 2, center.z); face.rotation.y = Math.atan2(center.x, center.z); enclosure.add(face);
-    part(new T.BoxGeometry(1.53, 0.91, 0.013), m.dark, face, 0, 0, 0.007);
-    part(serviceGeometry, m.white, face, 0, 0, 0.012);
+    part(new T.BoxGeometry(panelWidth + 0.05, 0.91, 0.013), m.dark, face, 0, 0, 0.007);
+    part(serviceGeometries[i % 2], m.white, face, 0, 0, 0.012);
     [-1, 1].forEach(function (side) {
       [-0.36, 0.36].forEach(function (y) {
-        var fastener = part(new T.CylinderGeometry(0.015, 0.015, 0.009, 6), m.silver, face, side * 0.67, y, 0.029); fastener.rotation.x = Math.PI / 2;
+        var fastener = part(new T.CylinderGeometry(0.015, 0.015, 0.009, 6), m.silver, face, side * (panelWidth / 2 - 0.06), y, 0.031); fastener.rotation.x = Math.PI / 2;
       });
     });
-    if (m.decal) part(new T.PlaneGeometry(0.65, 0.20), m.decal, face, 0, 0.12, 0.026);
-    part(new T.BoxGeometry(0.16, 0.014, 0.008), m.dark, face, 0, -0.27, 0.029);
+    if (m.decal) {
+      // Flush ink, not a second plate: the service-door front is at local z = .029.
+      var brand = part(brandGeometry, m.decal, face, 0, 0.025, 0.030);
+      brand.castShadow = false;
+      brand.name = 'hanyu-zhice-brand-face-' + (i + 1); brand.userData = { brand: '寒域智测', side: i, finish: 'direct-print' };
+    }
+    part(new T.BoxGeometry(0.16, 0.014, 0.008), m.dark, face, 0, -0.34, 0.031);
   }
   // Tension stays stabilize the one main mast; they are cables, not additional support poles.
   var stays = new T.Group(); stays.name = 'tension-cables'; station.add(stays);

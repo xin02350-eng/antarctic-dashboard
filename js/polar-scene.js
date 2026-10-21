@@ -76,14 +76,48 @@
   var wearTexture = new T.CanvasTexture(wearCanvas); wearTexture.wrapS = wearTexture.wrapT = T.RepeatWrapping; wearTexture.repeat.set(3, 3);
   [m.white, m.silver, m.dark].forEach(function (material) { material.roughnessMap = wearTexture; material.bumpMap = wearTexture; });
   m.white.bumpScale = 0.00025; m.silver.bumpScale = 0.0008; m.dark.bumpScale = 0.0006;
-  var decalCanvas = document.createElement('canvas'); decalCanvas.width = 512; decalCanvas.height = 160;
+  // One shared print mask, using the supplied emblem and its own Chinese wordmark.
+  // The white source paper is masked in the material, never rendered as a separate plate.
+  // The local artwork download never gates the 3D first frame.
+  var decalCanvas = document.createElement('canvas'); decalCanvas.width = 1024; decalCanvas.height = 512;
   var decalContext = decalCanvas.getContext('2d'), decalTexture = new T.CanvasTexture(decalCanvas); decalTexture.encoding = T.sRGBEncoding;
+  if (renderer.capabilities && renderer.capabilities.getMaxAnisotropy) decalTexture.anisotropy = Math.min(4, renderer.capabilities.getMaxAnisotropy());
+  var brandImage = document.createElement('img'), brandImageReady = false, decalStation = 'DMS–A01';
   function setDecal(name) {
-    decalContext.fillStyle = '#cbd6e0'; decalContext.fillRect(0, 0, 512, 160);
-    decalContext.fillStyle = '#20364a'; decalContext.font = 'bold 72px Arial'; decalContext.fillText(name, 24, 82);
-    decalContext.font = '18px monospace'; decalContext.fillText('POLAR AUTONOMOUS OBSERVATORY', 26, 127); decalTexture.needsUpdate = true;
+    decalStation = name;
+    decalContext.fillStyle = '#ffffff'; decalContext.fillRect(0, 0, 1024, 512);
+    if (brandImageReady) {
+      var sourceScale = brandImage.naturalWidth / 1254;
+      // Recompose the original artwork, without repeating the name in another typeface.
+      decalContext.drawImage(brandImage, 128 * sourceScale, 24 * sourceScale, 998 * sourceScale, 940 * sourceScale, 44, 106, 316, 298);
+      decalContext.drawImage(brandImage, 210 * sourceScale, 974 * sourceScale, 838 * sourceScale, 160 * sourceScale, 412, 198, 548, 105);
+    }
+    else {
+      decalContext.fillStyle = '#17497c'; decalContext.font = '500 104px "Microsoft YaHei", "PingFang SC", "Noto Sans CJK SC", sans-serif';
+      decalContext.fillText('寒域智测', 412, 286);
+    }
+    decalContext.fillStyle = '#526a80'; decalContext.font = '28px monospace'; decalContext.fillText(name, 420, 354);
+    decalTexture.needsUpdate = true;
   }
-  setDecal('DMS–A01'); m.decal = new T.MeshStandardMaterial({ map: decalTexture, roughness: 0.72 });
+  setDecal(decalStation);
+  m.decal = mat(0x36566b, 0.04, 0.56); m.decal.map = decalTexture;
+  m.decal.roughnessMap = wearTexture; m.decal.bumpMap = wearTexture; m.decal.bumpScale = m.white.bumpScale;
+  m.decal.envMapIntensity = m.white.envMapIntensity;
+  m.decal.transparent = true; m.decal.depthWrite = false;
+  m.decal.polygonOffset = true; m.decal.polygonOffsetFactor = -1; m.decal.polygonOffsetUnits = -1;
+  // UV-only mask keeps the original mark's silhouette, including antialiased edges.
+  // One muted ink colour picks up the same scene lighting and powder-coat grain as the door.
+  m.decal.onBeforeCompile = function (shader) {
+    shader.fragmentShader = shader.fragmentShader.replace('#include <map_fragment>',
+      '#ifdef USE_MAP\nvec3 printSample = texture2D(map, vUv).rgb;\n' +
+      'float printCoverage = 1.0 - min(printSample.r, min(printSample.g, printSample.b));\n' +
+      'diffuseColor.a *= smoothstep(0.08, 0.74, printCoverage);\n#endif');
+  };
+  m.decal.customProgramCacheKey = function () { return 'polar-direct-print-v1'; };
+  brandImage.onload = function () { brandImageReady = true; host.dataset.brandStatus = 'ready'; setDecal(decalStation); requestFrame(); };
+  brandImage.onerror = function () { host.dataset.brandStatus = 'unavailable'; requestFrame(); };
+  brandImage.decoding = 'async'; host.dataset.brandStatus = 'loading';
+  brandImage.src = './assets/polar/hanyu-zhice-brand-v1.webp';
   var model = window.createPolarMast(T, m, function (three, materials) {
     return window.createPolarPower(three, materials, { renderer: renderer });
   }, window.PolarEnvironment.heightAt), station = model.group;
