@@ -35,7 +35,7 @@ function sceneHarness({ reduced = false, runtimeError = false, paintError = fals
   let resources = { panorama: 'loading', snow: 'loading', crust: 'loading' };
   const parent = { postMessage(message, origin) { messages.push({ ...message, origin, paints: paints.length }); } };
   const media = { matches: reduced, addEventListener(type, handler) { mediaEvents.set(type, handler); } };
-  const context2d = { fillRect() {}, beginPath() {}, moveTo() {}, lineTo() {}, stroke() {}, fillText() {},
+  const context2d = { save() {}, restore() {}, scale() {}, fillRect() {}, beginPath() {}, moveTo() {}, lineTo() {}, stroke() {}, fillText() {},
     createRadialGradient: () => ({ addColorStop() {} }) };
   const document = {
     hidden: false, documentElement: { dataset: {} },

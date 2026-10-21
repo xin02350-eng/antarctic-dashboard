@@ -83,7 +83,8 @@
     return new T.ExtrudeGeometry(serviceShape, {depth: 0.009, bevelEnabled: true, bevelSize: 0.012, bevelThickness: 0.008, bevelSegments: 3, steps: 1});
   }
   var serviceGeometries = [serviceGeometry(bodyWidth - 0.24), serviceGeometry(bodyDepth - 0.24)];
-  var brandGeometry = new T.PlaneGeometry(1.06, 0.53);
+  // A stacked mark gives the name almost the full door width, without adding a plaque.
+  var brandGeometry = new T.PlaneGeometry(1.24, 0.74);
   // Recessed service panels, restrained seams and flush fasteners, with no exposed cable loops.
   for (i = 0; i < 4; i++) {
     var face = new T.Group(), center = rectanglePoint(bodyWidth, bodyDepth, i, 0).add(rectanglePoint(bodyWidth, bodyDepth, i + 1, 0)).multiplyScalar(0.5);
@@ -99,7 +100,7 @@
     });
     if (m.decal) {
       // Flush ink, not a second plate: the service-door front is at local z = .029.
-      var brand = part(brandGeometry, m.decal, face, 0, 0.025, 0.030);
+      var brand = part(brandGeometry, m.decal, face, 0, 0.040, 0.030);
       brand.castShadow = false;
       brand.name = 'hanyu-zhice-brand-face-' + (i + 1); brand.userData = { brand: '寒域智测', side: i, finish: 'direct-print' };
     }

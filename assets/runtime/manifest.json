@@ -7,10 +7,10 @@
   },
   "bundles": {
     "app": {
-      "file": "assets/runtime/app.96b64a867053.js",
-      "src": "./assets/runtime/app.96b64a867053.js",
-      "url": "./assets/runtime/app.96b64a867053.js",
-      "sha256": "96b64a86705369c4eeed67bc63fe17a91bd66b64daa20c13a8607711e390f35c",
+      "file": "assets/runtime/app.d14a79e43e9c.js",
+      "src": "./assets/runtime/app.d14a79e43e9c.js",
+      "url": "./assets/runtime/app.d14a79e43e9c.js",
+      "sha256": "d14a79e43e9c9815ed9f17a6d2e3e2c64406191c160253e208069d2ed4933934",
       "bytes": 121409,
       "gzipBytes": 38643,
       "sources": [
@@ -61,18 +61,18 @@
         },
         {
           "file": "js/expedition-app.js",
-          "sha256": "343afea35d1093e3da61be4cda6a5ece267414a5e977452eacf6d16d03749f9f",
+          "sha256": "b49fc11c1939dade1e35f94ef71eeda929d039155d59cf0b3ffd3d58e41643f9",
           "bytes": 49347
         }
       ]
     },
     "field": {
-      "file": "assets/runtime/field.5407ea6767e0.js",
-      "src": "./assets/runtime/field.5407ea6767e0.js",
-      "url": "./assets/runtime/field.5407ea6767e0.js",
-      "sha256": "5407ea6767e0d4ea55cd290cd8c7e89427af1a4caea161cf176a12138fc1bc7e",
-      "bytes": 92444,
-      "gzipBytes": 26652,
+      "file": "assets/runtime/field.35d206fff377.js",
+      "src": "./assets/runtime/field.35d206fff377.js",
+      "url": "./assets/runtime/field.35d206fff377.js",
+      "sha256": "35d206fff377f75cec4a60da0027f59e0db0d91aad0fefc662015dae12130dab",
+      "bytes": 92797,
+      "gzipBytes": 26807,
       "sources": [
         {
           "file": "js/render-budget.js",
@@ -91,8 +91,8 @@
         },
         {
           "file": "js/polar-mast.js",
-          "sha256": "df21b45e6c4945054064a523e07e6649d8862a33070ecefd1ce9f18758e9cb6e",
-          "bytes": 9916
+          "sha256": "adf4a0df9749ce16262a661c9f8eed5b4c1fe829fdef8992654113a29d20037f",
+          "bytes": 10004
         },
         {
           "file": "js/polar-snow.js",
@@ -116,8 +116,8 @@
         },
         {
           "file": "js/polar-scene.js",
-          "sha256": "40075c30247cc9af03e942179f2c01c34ac3491eed1dfb1e04905669c976a72a",
-          "bytes": 32829
+          "sha256": "3225cad84c98879287b4cd9f9a34ce88b5af094873b12551024700b56adcc9af",
+          "bytes": 33094
         },
         {
           "file": "js/field-frame.js",

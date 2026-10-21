@@ -90,7 +90,10 @@ test('four outward-facing marks share resources and print flush to the cabinet w
     const normal = new T.Vector3(0, 0, 1).transformDirection(label.matrixWorld);
     assert.ok(normal.dot(new T.Vector3(position.x, 0, position.z)) > .8, 'text faces outward, not through the cabinet');
     directions.push(normal);
-    assert.ok(label.geometry.parameters.width < label.parent.userData.panelWidth - .2);
+    assert.ok(label.geometry.parameters.width >= 1.2, 'name uses the wider stacked print region');
+    assert.ok(label.geometry.parameters.width < label.parent.userData.panelWidth - .12);
+    assert.ok(label.position.y + label.geometry.parameters.height / 2 < .425, 'upper edge clears the door bevel');
+    assert.ok(label.position.y - label.geometry.parameters.height / 2 > -.34, 'lower edge clears the service slot');
   }
   for (let i = 0; i < 4; i++) assert.ok(Math.abs(directions[i].dot(directions[(i + 1) % 4])) < 1e-6);
   assert.equal(model.power.panels.length, 3, 'solar assembly still has exactly three faces');
